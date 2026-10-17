@@ -2,6 +2,15 @@
 
 Punkt wyjścia: piłeczka pingpongowa **Ø 40 mm** i montaż przez syna (patrz [mocowanie](2026-10-17-mocowanie-malego-oka.md)). Dynia prawdziwa, **wysokość 25–27 cm**. Wszystkie liczby to szacunki do sprawdzenia na wydruku testowym.
 
+## Cel wizualny (punkt wejścia od użytkownika)
+
+Kadr z filmu [68percentwater, 0:07](https://www.youtube.com/watch?v=ryUNHPJ3leY&t=7s):
+- **brak ozdobnej oprawy**: gałka siedzi bezpośrednio w otworze wyciętym w miąższu,
+- gałka jest **lekko cofnięta** i krawędź miąższu działa jak oczodół; szczelina wokół gałki ma ok. 3–7 mm,
+- oczy rozsiane po całej dyni, mniej więcej 7 widocznych z jednej strony.
+
+**Konsekwencja:** pierścień-oprawa nakręcany z zewnątrz (wariant A) **psuje ten efekt**. Mocowanie musi działać **wyłącznie od środka**, a z zewnątrz widać tylko miąższ i gałkę. Patrz wariant E w [mocowaniu](2026-10-17-mocowanie-malego-oka.md).
+
 ## Układ modułu (od zewnątrz do środka dyni)
 
 ```

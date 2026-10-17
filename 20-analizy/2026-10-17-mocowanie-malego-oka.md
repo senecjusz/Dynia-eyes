@@ -35,6 +35,16 @@ Tuleja z kołnierzem i 2–3 otworami, którą syn przykręca wkrętami do drewn
 ### D. Wcisk na zatrzaskach (sprężyste łapki)
 - Prosty montaż, ale trzymanie zależy od grubości ścianki i jest niepewne w miękkiej dyni. Odpada jako główne rozwiązanie.
 
+### E. Tuleja wkręcana w miąższ + moduł z bagnetem (nowy faworyt, 2026-10-17)
+Wynika z [celu wizualnego](2026-10-17-modul-malego-oka-wymiary.md#cel-wizualny-punkt-wejścia-od-użytkownika): z zewnątrz ma być widać tylko miąższ i gałkę.
+
+1. **Tuleja-gniazdo** z grubym gwintem „ślimakowym” (jak korkociąg albo kołek do ziemi), drukowana w **kolorze dyni**. Wkręca się ją **od środka** w otwór Ø ~54 mm, a żebra gwintu same wcinają się w miąższ. Tuleja jest okrągła, więc to, w jakiej pozycji skończy się wkręcanie, nie ma znaczenia.
+2. **Moduł oka** (gałka, jarzmo, serwo) wsuwa się w tuleję od środka i blokuje **bagnetem z kluczem**: wchodzi tylko w jednej pozycji, więc oś oka zawsze jest pionowa. Przekręcenie o ~30° i klik.
+
+- **Plusy:** z zewnątrz brak elementów montażowych, efekt jak na filmie. Oba kroki wykonuje syn od środka, bez narzędzi. Moduły można wyjmować i zamieniać.
+- **Minusy:** dwie części do zaprojektowania. Trzeba przetestować, jak gwint trzyma w prawdziwym miąższu (wydruk testowy + kawałek dyni).
+- **Ryzyko:** wkręcanie od środka w małej dyni (25–27 cm) wymaga miejsca na rękę, więc otwór z pokrywką musi być wystarczająco duży.
+
 ## Wspólne elementy modułu (niezależnie od wariantu)
 
 - **Złącze:** standardowa wtyczka 3-pin serwa, a w dyni czekają przedłużacze z PCA9685. Syn tylko wpina wtyczkę. Kable i moduły **numerujemy** (kanał PCA9685 ↔ moduł).
