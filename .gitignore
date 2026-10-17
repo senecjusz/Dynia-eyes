@@ -20,4 +20,4 @@ __pycache__/
 .venv/
 
 # Duże pliki robocze – trzymać w folderze sieciowym, nie w Gicie
-media/raw/
+70-budowa/raw/
