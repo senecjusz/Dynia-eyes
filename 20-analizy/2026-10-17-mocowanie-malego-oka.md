@@ -43,9 +43,10 @@ Tuleja z kołnierzem i 2–3 otworami, którą syn przykręca wkrętami do drewn
 
 ## Ustalone
 
+- **Małe oczy bez powiek** (2026-10-17): sama gałka na 1 serwie, czyli najprostszy mechanizm, który na pewno się uda. Wersja z powieką zostaje jako pomysł na później.
 - **Dynia prawdziwa** (2026-10-17). Konsekwencje: ścianka 2–5 cm, miękka i wilgotna, więc w wariancie A potrzebny jest **długi gwint** (zakres ~20–50 mm) i **szeroki kołnierz oraz pierścień**, żeby nie zgnieść miąższu. Wkręty (wariant C) odpadają. Elektronika (Nano, PCA9685) poza wilgotnym wnętrzem albo w zamkniętej puszce.
 
-## Wersja z powieką
+## Wersja z powieką (odłożona)
 
 Inspiracja: [Kent Harris – Pumpkin Eyes](../10-inspiracje/pumpkin-eyes-kent-harris.md). Małe oko z jedną pomarańczową powieką (2 serwa na oko). Jeśli idziemy w tę stronę, moduł musi to przewidzieć od początku:
 - powieka i jej oś są **przed** ścianką dyni, więc wystają na zewnątrz,
@@ -54,6 +55,5 @@ Inspiracja: [Kent Harris – Pumpkin Eyes](../10-inspiracje/pumpkin-eyes-kent-ha
 
 ## Do ustalenia
 
-1. Małe oczy: same gałki czy z powieką? Wszystkie jednakowe?
-2. Jakie otwornice są w warsztacie (średnice)?
-3. Ile oka ma wystawać poza dynię? Piłeczka może być schowana w oprawie albo wypukła.
+1. Jakie otwornice są w warsztacie (średnice)?
+2. Ile oka ma wystawać poza dynię? Piłeczka może być schowana w oprawie albo wypukła.
