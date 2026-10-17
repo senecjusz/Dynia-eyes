@@ -10,12 +10,21 @@
 | Czujnik ruchu PIR HC-SR501 | 1 | Wystarczy do „ktoś podszedł → oczy się budzą”, nie do śledzenia kierunku |
 | Piłeczki pingpongowe | ✓ | Małe oczy (Ø 40 mm) |
 | Przegub 3 mm i 5 mm | ✓ | Do dużego oka – do doprecyzowania: przegub kulowy czy kardan, osobne sztuki czy jeden 3→5 mm |
+| Drut sprężysty | ✓ | Awaryjnie na popychacze – preferujemy części drukowane |
+| Warsztat Arduino / ESP32 | ✓ | Dużo modułów – przed zakupem czegokolwiek sprawdzić, czy już jest |
+
+## Zamówione (w drodze)
+
+| Część | Ilość | Uwagi |
+|---|---|---|
+| Serwo SG90 | 10 | Razem będzie 18 × SG90 |
+| Serwo MG90S (metalowe przekładnie) | 4 | Do dużego oka – wytrzymają mruganie powieką |
 
 ## Brakuje
 
 | Część | Do czego | Poziom |
 |---|---|---|
-| Zasilacz 5 V, min. 3 A (np. z wtykiem DC + gniazdo, albo mocna ładowarka USB) | Zasilanie serw przez PCA9685 (zacisk V+); Nano nie uciągnie 8 serw z USB | 1 |
+| Zasilacz 5 V, min. 5–6 A (przy kilkunastu serwach) (np. z wtykiem DC + gniazdo, albo mocna ładowarka USB) | Zasilanie serw przez PCA9685 (zacisk V+); Nano nie uciągnie 8 serw z USB | 1 |
 | Kondensator elektrolityczny 470–1000 µF / ≥10 V | Na zasilanie serw przy PCA9685 – tłumi spadki napięcia przy ruchu wielu serw | 1 |
 | Przewody dupont (F-F, M-F), ewentualnie przedłużacze serw | Połączenia; serwa w dyni mogą być dalej od płytki | 1 |
 | Coś na duże oko (np. większa piłka lub wydruk półkuli) | Duże oko | 2 |
@@ -23,6 +32,9 @@
 
 ## Podział serw (propozycja)
 
-- Duże oko: 2 serwa na ruch (lewo–prawo, góra–dół) + 1–2 na powiekę.
-- Małe oczy: pozostałe 4–5 serw, czyli 4–5 małych oczu po 1 serwie (ruch na boki).
-- Przy chęci większej liczby oczu: SG90 są tanie, a PCA9685 ma 16 kanałów.
+Razem: **18 × SG90 + 4 × MG90S = 22 serwa.**
+
+- **Duże oko – MG90S:** lewo–prawo, góra–dół, górna powieka (+ opcjonalnie dolna powieka = 4.).
+- **Małe oczy – SG90:** po 1 serwie na oko (ruch na boki), czyli do 18 małych oczu. Część SG90 może zostać jako zapas.
+- **Kanały:** jeden PCA9685 ma 16 wyjść. Przy więcej niż 16 serwach potrzebny drugi PCA9685 – łączy się szeregowo na tej samej magistrali I²C, trzeba tylko zmienić adres zworką (A0). Sprawdzić, czy jest w warsztacie.
+- **Zasilanie:** przy kilkunastu serwach zasilacz 5 V **min. 5–6 A** zamiast 3 A (SG90 ~0,2–0,3 A w ruchu, do ~0,7 A przy zablokowaniu). Oczy poruszane losowo rzadko ruszają się wszystkie naraz, ale zapas się przydaje.

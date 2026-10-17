@@ -12,3 +12,8 @@
 - Każda istotna decyzja → wiersz w `30-projekt/decyzje.md`.
 - Postęp prac z synem → wpis w `70-budowa/dziennik.md`.
 - Modele 3D powstają w Onshape (w przeglądarce). W repo eksporty w `40-cad/` i linki w `40-cad/README.md`.
+
+## Zasady projektowe
+
+- **Preferujemy części drukowane w 3D** zamiast rzemiosła (drut, kołki, gwoździe, klej). Rozwiązania „craftowe” z researchu traktujemy jako ostateczność.
+- Użytkownik ma dobrze wyposażony warsztat Arduino/ESP32 z wieloma modułami – przed proponowaniem zakupów pytać, czy coś już jest.
