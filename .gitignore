@@ -1,0 +1,23 @@
+# System
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Edytory
+.vscode/
+.idea/
+*.swp
+
+# Slicer – pliki G-code są specyficzne dla drukarki, trzymamy tylko 3MF/STL
+*.gcode
+*.bgcode
+
+# Build firmware (PlatformIO / Arduino / Python)
+.pio/
+build/
+__pycache__/
+*.pyc
+.venv/
+
+# Duże pliki robocze – trzymać w folderze sieciowym, nie w Gicie
+media/raw/
