@@ -11,6 +11,11 @@
 | 2026-10-17 | Moduł oka wpinany bagnetem w gniazdo osadzone w dyni; mocowanie gniazda do ustalenia | Montaż modułu bez narzędzi, wymuszona pionowa oś oka |
 | 2026-10-17 | Mocowanie małego oka: gniazdo z rantem + nakrętka (rodzic), moduł na bagnet (syn) | Najbezpieczniejsze; dziecko robi tylko prostą, nie do pomylenia czynność |
 | 2026-10-17 | Drukowany klucz nasadowy do nakrętki gniazda, pod grzechotkę 3/8" | Syn może sam dokręcić gniazdo; jeden klucz do wszystkich oczu |
+| 2026-10-17 | Model oka F v1 w Onshape (SimpleEye) ze zwykłych operacji + zmienne `#…`, wszystkie części w jednym Part Studio w pozycji złożonej | Użytkownik może sam edytować drzewo; jedno miejsce do sprawdzania kolizji i luzów |
+| 2026-10-17 | Gwint gniazda/nakrętki: trapezowy, prawy, skok 3 mm, luz 0,3 mm, od 14 do 45 mm pod powierzchnią | Docisk ścianki 15–35 mm; prawy = dokręcanie „normalnie” patrząc od środka dyni |
+| 2026-10-17 | Bagnet: 3 zaczepy w gnieździe na 0°/150°/210° (nierówno = jedna pozycja), obrót 30°, garb zatrzasku 0,6 mm | Moduł wchodzi tylko pionowo; klik potwierdza zamknięcie |
+| 2026-10-17 | Napęd oka: SG90 leżący w tulei za jarzmem (wałek pionowo), cięgno korba 20 mm ↔ orczyk 14 mm, piłeczka na 2 czopach + kolec z tyłu | Wszystko mieści się w tulei Ø53,3; ruch oka ±30–40° bez kolizji |
+| 2026-10-17 | Środek piłeczki 5 mm pod powierzchnią dyni; piłeczka wystaje ~13 mm ponad rant | Czopy muszą zmieścić się w tulei przed rantem; do oceny na wydruku |
 | 2026-10-17 | Pudełko z elektroniką i powerbankiem w środku dyni (pionowa wieża); powerbank na podstawce = opcja | Minimum bez dodatkowych konstrukcji; wyprowadzenie na zewnątrz tylko gdy starczy czasu |
 | 2026-10-17 | Plan: minimum (4–8 małych oczu) do 25.10, rozszerzenia niezależne; duże oko raczej na przyszły rok | 2 weekendy do Halloween; nic opcjonalnego nie może blokować minimum |
 | 2026-10-17 | Połączenia i osie na śruby M3/M4; piłeczka na śrubach-osiach przez bieguny (P1) | Śruby są w warsztacie; pewniejsze niż drukowane czopy i klej |
