@@ -17,7 +17,7 @@
 | Przepusty kablowe szczelne | ✓ | Do pudełka elektroniki – rozmiar do podania |
 | Drukarki 3D: Bambu Lab **A1 mini** (stół 180 × 180 × 180) i **X1 Carbon** (256 × 256 × 256) | 2 | Duże części (pudełko-wieża) na X1C |
 | Śruby M3 / M4 / M5, 8–50 mm, nakrętki | komplet | Można zakładać dowolną potrzebną śrubę i nakrętkę (M5 bez najkrótszych 6 mm) |
-| Wkładki gwintowane do wtapiania | ✓ | Rozmiary do potwierdzenia (zakładamy M3, ewentualnie M4) – do gwintów, które będą wielokrotnie skręcane |
+| Wkładki gwintowane do wtapiania | komplet (M2–M5, „chyba cały set”) | Do gwintów wielokrotnie skręcanych; wymiary otworu wg konkretnej wkładki – zmierzyć przed drukiem finalnym |
 
 ## Zamówione (w drodze)
 
