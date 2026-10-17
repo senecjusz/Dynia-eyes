@@ -35,7 +35,8 @@
 | Kondensator elektrolityczny 470–1000 µF / ≥10 V | Na zasilanie serw przy PCA9685 – tłumi spadki napięcia przy ruchu wielu serw | 1 |
 | Przewody dupont (F-F, M-F), ewentualnie przedłużacze serw | Połączenia; serwa w dyni mogą być dalej od płytki | 1 |
 | Coś na duże oko (np. większa piłka lub wydruk półkuli) | Duże oko | 2 |
-| 2–3 dodatkowe PIR-y **albo** radar HLK-LD2450 | Kierunek ruchu przed dynią | 3 |
+| Radar HLK-LD2450 (zamiast 3 PIR-ów; LD2420 nie podaje kierunku) | Kierunek ruchu przed dynią, filtrowany w tłumie | 2.2b / 3 |
+| 2–3 zapasowe moduły oczu (wydruk + SG90) | Szybka wymiana w szkole, gdy dziecko uszkodzi oko | 1 |
 
 ## Podział serw (propozycja)
 

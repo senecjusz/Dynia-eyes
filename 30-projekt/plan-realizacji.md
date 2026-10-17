@@ -1,6 +1,6 @@
 # Plan realizacji – krzywa „minimum najpierw”
 
-**Termin: Halloween, sobota 31.10.2026.** Dziś jest 17.10, więc zostały **2 weekendy w Kobyłce** (17–18.10 i 24–25.10) plus wieczory w Warszawie na druk i kod.
+**Termin: Halloween, sobota 31.10.2026 – albo wcześniej, jeśli wcześniej jest prezentacja w szkole (do ustalenia, patrz [prezentacja w szkole](../20-analizy/2026-10-18-prezentacja-w-szkole.md)).** Dziś jest 17.10, więc zostały **2 weekendy w Kobyłce** (17–18.10 i 24–25.10) plus wieczory w Warszawie na druk i kod.
 
 **Zasada:** najpierw budujemy **minimum, które samo w sobie jest gotową dynią**. Każde rozszerzenie dokładamy osobno i tylko wtedy, gdy minimum już działa. Jeśli czegoś nie zdążymy, po prostu tego nie ma, a dynia i tak działa.
 
