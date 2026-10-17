@@ -31,3 +31,8 @@ Każdy projekt mechanizmu (FeatureScript / Onshape / STL) przechodzi **ostre rev
 - [ ] Wpis w `70-budowa/dziennik.md` i decyzje w `30-projekt/decyzje.md`.
 
 Wynik review: lista uwag (krytyczne / ważne / kosmetyczne) zapisana w `20-analizy/` z datą.
+
+## 6. Struktura Onshape
+- [ ] Każda część jest osobnym Partem z czytelną nazwą, a ruch i kolizje sprawdzone w Assembly.
+- [ ] Drzewo operacji z natywnych, nazwanych operacji, pogrupowanych w foldery według części. Bez jednej monolitycznej operacji FeatureScript.
+- [ ] Parametry w Variable Studio.
