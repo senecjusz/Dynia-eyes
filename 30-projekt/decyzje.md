@@ -10,4 +10,4 @@
 | 2026-10-17 | Poziomy = złożoność, nie mechanizm; duże oko w podpoziomach 2a/2b/2c | Każdy krok daje działające oko; mechanizm dobieramy w analizach |
 | 2026-10-17 | Moduł oka wpinany bagnetem w gniazdo osadzone w dyni; mocowanie gniazda do ustalenia | Montaż modułu bez narzędzi, wymuszona pionowa oś oka |
 | 2026-10-17 | Mocowanie małego oka: gniazdo z rantem + nakrętka (rodzic), moduł na bagnet (syn) | Najbezpieczniejsze; dziecko robi tylko prostą, nie do pomylenia czynność |
-| 2026-10-17 | Drukowany klucz nasadowy do nakrętki gniazda, pod grzechotkę | Syn może sam dokręcić gniazdo; jeden klucz do wszystkich oczu |
+| 2026-10-17 | Drukowany klucz nasadowy do nakrętki gniazda, pod grzechotkę 3/8" | Syn może sam dokręcić gniazdo; jeden klucz do wszystkich oczu |

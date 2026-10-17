@@ -106,6 +106,6 @@ Wpływ na liczbę oczu: rant Ø 72 mm zamiast oprawy ~70–76 mm, więc rozstaw 
 Drukowany **klucz nasadowy pod grzechotkę**, dzięki któremu nakrętkę może dokręcić także syn.
 
 - **Nakrętka:** zamiast skrzydełek (albo obok nich) na obwodzie **4–6 wycięć** jak w nakrętce koronowej. W nie wchodzą zęby klucza.
-- **Klucz:** kubek z zębami na krawędzi. W środku jest **pusty**, bo nakłada się go na wystający koniec gniazda; głębokość ~30 mm pokrywa najcieńszą ściankę dyni. Na dnie **gniazdo pod kwadrat grzechotki**, standardowo **1/4" (6,35 mm)**, ewentualnie 3/8" (9,5 mm). Rozmiar do potwierdzenia według grzechotki w warsztacie.
+- **Klucz:** kubek z zębami na krawędzi. W środku jest **pusty**, bo nakłada się go na wystający koniec gniazda; głębokość ~30 mm pokrywa najcieńszą ściankę dyni. Na dnie **gniazdo pod kwadrat grzechotki**, **3/8" (9,525 mm)**, bo taka jest grzechotka w warsztacie (są też przejściówki na 1/2" i 3/4"). W wydruku otwór ~9,8 mm (luz ~0,3 mm, do kalibracji), z fazą na wejściu i z rowkiem pod kulkę zatrzaskową grzechotki.
 - **Uwaga na siłę:** grzechotka daje dużą dźwignię, a miąższ i drukowany gwint łatwo przeciągnąć. Zasada: kręcić tylko do wyraźnego oporu. Opcjonalnie w kluczu **sprzęgło przeciążeniowe**: zęby skośne, które przeskakują przy zbyt dużej sile (wersja 2, jeśli zwykły klucz się nie sprawdzi).
 - Klucz jest wspólny dla wszystkich gniazd, więc to jeden wydruk.
