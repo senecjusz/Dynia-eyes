@@ -21,4 +21,4 @@
 | 2026-10-17 | Połączenia i osie na śruby M3/M4; piłeczka na śrubach-osiach przez bieguny (P1) | Śruby są w warsztacie; pewniejsze niż drukowane czopy i klej |
 | 2026-10-18 | Kontroler: Arduino Nano; zapas: ESP32 / Raspberry Pi (gdyby zabrakło pamięci), w warsztacie też Uno i Mega | Tani, 5 V jak PCA9685 i PIR, mały pobór; syn nie programuje sam, więc micro:bit niepotrzebny |
 | 2026-10-18 | Dynia będzie prezentowana w szkole: filtrowanie radaru, limit serw w ruchu, zapasowe moduły | Tłum dzieci = ciągły ruch i dotykanie |
-| 2026-10-18 | Najprostsze wykrywanie: HC-SR04, próg ~50 cm, oczy patrzą na wprost; radar LD2450 + ESP32 odłożony | Działa z Nano, filtruje tłum w szkole, minimum kodu |
+| 2026-10-18 | (propozycja, do potwierdzenia) Najprostsze wykrywanie: HC-SR04, próg ~50 cm, oczy patrzą na wprost; radar LD2450 + ESP32 odłożony | Działa z Nano, filtruje tłum w szkole, minimum kodu |
