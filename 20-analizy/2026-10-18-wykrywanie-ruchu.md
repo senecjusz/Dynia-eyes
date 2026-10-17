@@ -41,3 +41,24 @@ Dwa różne zadania:
 ## Do ustalenia
 1. Jakie czujniki są w warsztacie: więcej HC-SR501, HC-SR04, LD2450, inne radary?
 2. Gdzie w dyni może być „nos” albo usta na czujnik?
+
+## Radar: LD2420 czy LD2450? (2026-10-18)
+
+Użytkownik słusznie zauważył, że jeden radar to mniej montażu niż 3 PIR-y. **Pułapka:** pokazany **HLK-LD2420 nie podaje kierunku.**
+
+| | **HLK-LD2420** (pokazany) | **HLK-LD2450** |
+|---|---|---|
+| Co mierzy | obecność + **odległość** jednej osoby | **pozycja X/Y** (kąt ±60° + odległość) do **3 osób** |
+| Kierunek lewo/prawo | **nie** | **tak** |
+| Widzi stojącego człowieka | tak (oddech, mikroruchy), lepiej niż PIR | tak |
+| Zasilanie | **3,3 V** (pin 3V3) | 5 V |
+| Wyjścia | OT2 = cyfrowe „ktoś jest” (3,3 V), OT1/RX = UART | UART 256 000 bodów (3,3 V) |
+| Z Nano | **tak, przez OT2** jako budzik (jak PIR, bez UART) | praktycznie **nie**: jedyny UART Nano jest zajęty przez USB → **Mega** (4 UART-y) albo **ESP32** |
+| Rola w projekcie | **lepszy budzik** niż PIR | **kierunek** (2.2b i poziom 3) |
+
+**Montaż radaru:** fale 24 GHz przechodzą przez cienki plastik, ale mokry miąższ dyni mocno je tłumi. Radar można więc schować za drukowaną, cienką (~1–2 mm) zaślepką w otworze dyni („nos”, usta) i nie widać elektroniki, w przeciwieństwie do kopułki PIR. Przez samą ściankę dyni prawdopodobnie nie zadziała, więc trzeba to sprawdzić testem.
+
+**Rekomendacja:**
+- jeśli **kierunek** (oczy patrzą na gościa) ma być w tym roku, to **LD2450 + Arduino Mega** (jest w warsztacie) zamiast Nano. PCA9685 i okablowanie serw zostają bez zmian,
+- jeśli tylko **budzik**, wystarczy HC-SR501, który już jest. LD2420 to opcjonalny lepszy budzik, który wykryje też stojącego gościa,
+- 3 × PIR odpada, jeśli bierzemy LD2450: jeden czujnik i jedno okienko w dyni.
