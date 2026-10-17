@@ -23,3 +23,7 @@
 | 2026-10-18 | Dynia będzie prezentowana w szkole: filtrowanie radaru, limit serw w ruchu, zapasowe moduły | Tłum dzieci = ciągły ruch i dotykanie |
 | 2026-10-18 | Małe oczy zawsze chaotyczne, bez czujnika; na ruch reaguje tylko duże oko (zamknięte gdy nikogo nie ma, otwiera się po wykryciu PIR-em) | Najprostsze; minimum nie potrzebuje żadnego czujnika |
 | 2026-10-18 | Śledzenie przez duże oko: radar LD2450 + ESP32 (otwarcie i kierunek z jednego czujnika; góra–dół z odległości) | Duże oko ma 2 osie, radar podaje kąt wprost; Nano nie obsłuży portu szeregowego radaru |
+| 2026-10-18 | Duże oko próbujemy zrobić w tym roku, równolegle z małymi oczami (małe oczy = minimum) | Projekt w CAD jest szybki; użytkownik ocenia mechanizm jako prosty |
+| 2026-10-18 | Firmware od początku na ESP32, z kalibracją serw przez stronę w telefonie (Wi-Fi, zapis w pamięci) | Kalibracja to największe ryzyko; radar LD2450 później bez migracji |
+| 2026-10-18 | Zamówić radar HLK-LD2450 | Dostawa kilka dni; śledzenie przez duże oko to wtedy jeden wieczór |
+| 2026-10-18 | Drukarki: X1C w Warszawie (wydruki próbne w tygodniu), A1 mini w Kobyłce (weekendy, małe części) | Logistyka między dwoma miejscami |

@@ -33,11 +33,11 @@
 | 2.2 | **Więcej oczu** (do 16 na jednym PCA9685) | średni (druk + wiercenie) | średnia | zostaje 4–8 oczu |
 | 2.3 | **Powerbank i włącznik na podstawce** pod dynią, kabel przez dno | średni (podstawka + przepust) | wygoda ładowania bez otwierania | ładowanie przez pokrywkę |
 | 2.4 | **Zbiorcze złącza / skrętka** zamiast pojedynczych przedłużaczy | średni | szybszy montaż i demontaż | pojedyncze wtyczki |
-| 2.5 | **Duże oko 2a** (1 powieka, lewo–prawo); **zamknięte, gdy nikogo nie ma, otwiera się po wykryciu (PIR)** | **duży** (nowy mechanizm, MG90S) | duża | **realnie na przyszły rok** albo jako osobna dynia |
-| 2.6 | Duże oko 2b → 2c (mechanizm) | duży | duża | przyszły rok, jeśli zabraknie czasu |
+| 2.5 | **Duże oko 2a → 2b** (powieka, lewo–prawo, góra–dół); zamknięte, gdy nikogo nie ma | średni (projekt w CAD, druk próbny na X1C w tygodniu, MG90S) | duża | **próbujemy w tym roku**; jeśli nie zdążymy, dynia ma same małe oczy |
+| 2.6 | Duże oko 2c (dwie powieki z jednego serwa) | średni | średnia | jeśli starczy czasu |
 | 2.7 | **Śledzenie radarem LD2450** przez duże oko (otwarcie + kierunek) | **mały, gdy jest duże oko**: radar + ~50 linijek kodu (zakładając, że firmware od początku jest na ESP32) | duża | zależy tylko od tego, czy będzie duże oko |
 
-**Realna ocena:** w dwa weekendy pewne są **etap 0, etap 1 i 2.1**. Rozszerzenie 2.2 jest prawdopodobne. Pozostałe rozszerzenia (2.3–2.6) to bonus, a duże oko raczej przechodzi na przyszły rok i niczego to nie psuje.
+**Realna ocena (zaktualizowana 18.10):** pewne są etap 0 i etap 1. Duże oko 2a/2b próbujemy równolegle (druk próbny na X1C w tygodniu). Śledzenie (2.7) to jeden wieczór, gdy duże oko działa.
 
 ## Punkty kontrolne
 
