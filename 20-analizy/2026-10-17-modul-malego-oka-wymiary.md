@@ -100,3 +100,12 @@ Gniazdo (tuleja z rantem + nakrętka) i moduł oka wsuwany w nie na bagnet. Patr
 | Długość gwintu | ścianka 20–30 mm + zapas | zakres docisku **15–35 mm** |
 
 Wpływ na liczbę oczu: rant Ø 72 mm zamiast oprawy ~70–76 mm, więc rozstaw ~85–90 mm i szacunek **~7–8 oczu z przodu** zostaje bez zmian.
+
+### Klucz do nakrętki (pomysł użytkownika)
+
+Drukowany **klucz nasadowy pod grzechotkę**, dzięki któremu nakrętkę może dokręcić także syn.
+
+- **Nakrętka:** zamiast skrzydełek (albo obok nich) na obwodzie **4–6 wycięć** jak w nakrętce koronowej. W nie wchodzą zęby klucza.
+- **Klucz:** kubek z zębami na krawędzi. W środku jest **pusty**, bo nakłada się go na wystający koniec gniazda; głębokość ~30 mm pokrywa najcieńszą ściankę dyni. Na dnie **gniazdo pod kwadrat grzechotki**, standardowo **1/4" (6,35 mm)**, ewentualnie 3/8" (9,5 mm). Rozmiar do potwierdzenia według grzechotki w warsztacie.
+- **Uwaga na siłę:** grzechotka daje dużą dźwignię, a miąższ i drukowany gwint łatwo przeciągnąć. Zasada: kręcić tylko do wyraźnego oporu. Opcjonalnie w kluczu **sprzęgło przeciążeniowe**: zęby skośne, które przeskakują przy zbyt dużej sile (wersja 2, jeśli zwykły klucz się nie sprawdzi).
+- Klucz jest wspólny dla wszystkich gniazd, więc to jeden wydruk.
