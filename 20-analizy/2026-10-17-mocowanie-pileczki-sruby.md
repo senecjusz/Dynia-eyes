@@ -39,6 +39,6 @@ Każde połączenie obrotowe to para: **ciasno w części nieruchomej, luźno w 
 - Wymaga serwa na osi oka, czyli w środku tulei nad lub pod piłeczką. Tuleja byłaby większa, a otwór w dyni rósłby. **Odpada** przy układzie „serwo z tyłu”.
 
 ## Do sprawdzenia na wydruku
-1. Czy M3 wkręcone ciasno w PLA/PETG trzyma po kilku montażach (jeśli nie: nakrętka w kieszeni albo wkładka gwintowana).
+1. Gdzie wystarczy M3 wkręcone ciasno w plastik, a gdzie dać **wkładkę do wtapiania** (są w warsztacie): wszędzie tam, gdzie moduł będzie rozkręcany.
 2. Luz piłeczki na końcówkach śrub, czyli brak bicia przy ruchu.
 3. Przyrząd do wiercenia piłeczki: powtarzalność otworów.
