@@ -15,6 +15,8 @@
 | Powerbank Baseus Airpow PPAP20K, 20 000 mAh, 3 porty | 1 | Główne zasilanie (propozycja) |
 | Powerbank Manta MPB2001S Sunny, 20 000 mAh, 2 porty | 1 | Zapas na zmianę |
 | Przepusty kablowe szczelne | ✓ | Do pudełka elektroniki – rozmiar do podania |
+| Drukarki 3D: Bambu Lab **A1 mini** (stół 180 × 180 × 180) i **X1 Carbon** (256 × 256 × 256) | 2 | Duże części (pudełko-wieża) na X1C |
+| Śruby M3 / M4 / M5, 8–50 mm, nakrętki | komplet | Można zakładać dowolną potrzebną śrubę i nakrętkę (M5 bez najkrótszych 6 mm) |
 
 ## Zamówione (w drodze)
 

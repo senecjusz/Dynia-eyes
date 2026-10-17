@@ -38,7 +38,7 @@ Decyzja użytkownika: pudełko z Nano, PCA9685 i powerbankiem jest **w środku d
 
 ## Do ustalenia
 
-1. **Rozmiar stołu drukarki.** Pudełko ~185 × 105 mm plus ścianki mieści się w typowym stole 220 × 220.
+1. ~~Rozmiar stołu~~: X1 Carbon 256 mm, więc wieża ~185 × 105 × 60 się mieści (A1 mini 180 mm byłby na styk).
 2. **Rozmiar przepustów** (np. PG7 / PG9 / M12 / M16).
 3. **Gdzie stoi dynia:** na zewnątrz (deszcz) czy pod dachem / w środku?
 4. Ile przedłużaczy serw jest w warsztacie?
