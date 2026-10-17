@@ -24,7 +24,7 @@
 
 | Część | Do czego | Poziom |
 |---|---|---|
-| Zasilacz 5 V, min. 5–6 A (przy kilkunastu serwach) (np. z wtykiem DC + gniazdo, albo mocna ładowarka USB) | Zasilanie serw przez PCA9685 (zacisk V+); Nano nie uciągnie 8 serw z USB | 1 |
+| Zasilanie: powerbank 2-portowy (pomysł – patrz [analiza](../20-analizy/2026-10-17-zasilanie-powerbank.md)) + kabel USB → zaciski | Port 1 → Nano, port 2 → V+ PCA9685 | 1 |
 | Kondensator elektrolityczny 470–1000 µF / ≥10 V | Na zasilanie serw przy PCA9685 – tłumi spadki napięcia przy ruchu wielu serw | 1 |
 | Przewody dupont (F-F, M-F), ewentualnie przedłużacze serw | Połączenia; serwa w dyni mogą być dalej od płytki | 1 |
 | Coś na duże oko (np. większa piłka lub wydruk półkuli) | Duże oko | 2 |
