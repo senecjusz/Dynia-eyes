@@ -12,6 +12,7 @@
 | Przegub 3 mm i 5 mm | ✓ | Do dużego oka – do doprecyzowania: przegub kulowy czy kardan, osobne sztuki czy jeden 3→5 mm |
 | Drut sprężysty | ✓ | Awaryjnie na popychacze – preferujemy części drukowane |
 | Warsztat Arduino / ESP32 | ✓ | Dużo modułów – przed zakupem czegokolwiek sprawdzić, czy już jest |
+| Arduino Uno, Arduino Mega, ESP32, Raspberry Pi | ✓ | Zapas, gdyby Nano nie wystarczyło (pamięć) – PCA9685 przez I²C działa z każdym |
 | Powerbank Baseus Airpow PPAP20K, 20 000 mAh, 3 porty | 1 | Główne zasilanie (propozycja) |
 | Powerbank Manta MPB2001S Sunny, 20 000 mAh, 2 porty | 1 | Zapas na zmianę |
 | Przepusty kablowe szczelne | ✓ | Do pudełka elektroniki – rozmiar do podania |
