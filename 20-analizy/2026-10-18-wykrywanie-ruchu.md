@@ -59,6 +59,14 @@ Użytkownik słusznie zauważył, że jeden radar to mniej montażu niż 3 PIR-y
 **Montaż radaru:** fale 24 GHz przechodzą przez cienki plastik, ale mokry miąższ dyni mocno je tłumi. Radar można więc schować za drukowaną, cienką (~1–2 mm) zaślepką w otworze dyni („nos”, usta) i nie widać elektroniki, w przeciwieństwie do kopułki PIR. Przez samą ściankę dyni prawdopodobnie nie zadziała, więc trzeba to sprawdzić testem.
 
 **Rekomendacja:**
-- jeśli **kierunek** (oczy patrzą na gościa) ma być w tym roku, to **LD2450 + Arduino Mega** (jest w warsztacie) zamiast Nano. PCA9685 i okablowanie serw zostają bez zmian,
+- jeśli **kierunek** (oczy patrzą na gościa) ma być w tym roku, to **LD2450 + ESP32** (patrz niżej, dlaczego nie Mega) zamiast Nano. PCA9685 i okablowanie serw zostają bez zmian,
 - jeśli tylko **budzik**, wystarczy HC-SR501, który już jest. LD2420 to opcjonalny lepszy budzik, który wykryje też stojącego gościa,
 - 3 × PIR odpada, jeśli bierzemy LD2450: jeden czujnik i jedno okienko w dyni.
+
+### Dlaczego nie Nano i czemu raczej ESP32 niż Mega (korekta 2026-10-18)
+
+- **Nano:** LD2450 wysyła dane po UART z prędkością **256 000 bodów**. Nano ma **jeden** sprzętowy UART (piny 0/1), a ten jest na stałe połączony z układem USB (CH340), który działa zawsze, gdy Nano jest zasilane z USB, także z powerbanku. Dwa nadajniki na jednej linii dają przekłamane dane. Programowy UART (SoftwareSerial) na 16 MHz nie odbierze niezawodnie 256 000 bodów. Da się obniżyć prędkość radaru komendą konfiguracyjną i użyć AltSoftSerial, ale to kruche rozwiązanie.
+- **Mega:** ma 4 sprzętowe UART-y, więc problem znika, ale logika 5 V. Wyjście radaru 3,3 V jest na granicy progu wejścia (5 V × 0,6 = 3,0 V), czyli zwykle zadziała, choć bez zapasu.
+- **ESP32 (zalecany do radaru):** natywnie **3,3 V** jak radar, **3 sprzętowe UART-y**, które obsługują 256 000 bodów bez problemu, i dużo pamięci. PCA9685 działa z logiką 3,3 V (VCC 3,3 V, a serwa nadal z V+ 5 V). PIR też podaje 3,3 V. Bonus: ESP32 pobiera ~80–150 mA, więc powerbank rzadziej się wyłącza.
+
+**Wniosek:** minimum na Nano. Jeśli dokładamy radar LD2450, przechodzimy na **ESP32** (jest w warsztacie). Okablowanie serw i PCA9685 zostaje bez zmian, a program przenosimy z drobnymi zmianami (biblioteka PCA9685 działa na obu).
