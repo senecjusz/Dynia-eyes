@@ -1,6 +1,6 @@
 # Dynia z ruchomymi oczami 🎃
 
-Projekt na Halloween robiony razem z synem: dynia, która rusza oczami.
+Projekt na Halloween robiony razem z synem: dynia, która rusza oczami. Szczegóły i poziomy realizacji: [docs/projekt.md](docs/projekt.md).
 
 ## Struktura
 
