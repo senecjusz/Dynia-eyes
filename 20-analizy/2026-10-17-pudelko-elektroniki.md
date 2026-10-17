@@ -42,3 +42,17 @@ Decyzja użytkownika: pudełko z Nano, PCA9685 i powerbankiem jest **w środku d
 2. **Rozmiar przepustów** (np. PG7 / PG9 / M12 / M16).
 3. **Gdzie stoi dynia:** na zewnątrz (deszcz) czy pod dachem / w środku?
 4. Ile przedłużaczy serw jest w warsztacie?
+
+## Ile oczu na jednej skrętce (rozszerzenie 2.4)
+
+Skrętka Cat5e/6 ma 8 żył (4 pary, ~0,2 mm² każda). Każde serwo potrzebuje sygnału, +5 V i GND, ale zasilanie i masa mogą być **wspólne**.
+
+| Układ żył | Serw na kabel | Prąd na żyłę zasilania | Ocena |
+|---|---|---|---|
+| 4 × sygnał + 2 × 5 V + 2 × GND | **4** | ~0,5 A średnio, szczyt ~1,5 A przy 4 serwach naraz | **zalecany**: zapas na prąd, każdy sygnał w parze z zasilaniem lub masą |
+| 6 × sygnał + 1 × 5 V + 1 × GND | 6 | szczyt do ~2–3 A na jednej cienkiej żyle | możliwy przy krótkim kablu (< 0,5 m) i programie, który nie rusza wszystkich serw naraz, ale na granicy |
+| 8 × sygnał, zasilanie osobnym grubszym przewodem | 8 | zasilanie poza skrętką | najwięcej oczu na kabel, ale dwa kable zamiast jednego |
+
+Spadek napięcia przy 0,5 m kabla i 1,5 A to ~0,1 V, więc bez znaczenia. Ogranicza tylko obciążalność cienkiej żyły.
+
+**Jak to wygląda:** w pudełku płytka RJ45 → 4 kanały PCA9685 + 5 V + GND. W dyni drukowany **rozgałęźnik** z gniazdem RJ45 i 4 gniazdami 3-pin, a do niego wpinają się 4 moduły. Przy 8 oczach to 2 skrętki zamiast 8 przedłużaczy.
