@@ -34,7 +34,7 @@
 
 Razem: **18 × SG90 + 4 × MG90S = 22 serwa.**
 
-- **Duże oko – MG90S:** lewo–prawo, góra–dół, górna powieka (+ opcjonalnie dolna powieka = 4.).
+- **Duże oko – MG90S:** 2a = 2 serwa (lewo–prawo, powieka), 2b i 2c = 3 serwa (+ góra–dół; w 2c obie powieki z jednego serwa). Jedno MG90S zapasowe.
 - **Małe oczy – SG90:** po 1 serwie na oko (ruch na boki), czyli do 18 małych oczu. Część SG90 może zostać jako zapas.
 - **Kanały:** jeden PCA9685 ma 16 wyjść. Przy więcej niż 16 serwach potrzebny drugi PCA9685 – łączy się szeregowo na tej samej magistrali I²C, trzeba tylko zmienić adres zworką (A0). Sprawdzić, czy jest w warsztacie.
 - **Zasilanie:** przy kilkunastu serwach zasilacz 5 V **min. 5–6 A** zamiast 3 A (SG90 ~0,2–0,3 A w ruchu, do ~0,7 A przy zablokowaniu). Oczy poruszane losowo rzadko ruszają się wszystkie naraz, ale zapas się przydaje.

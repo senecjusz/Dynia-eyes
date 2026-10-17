@@ -10,14 +10,25 @@ Dynia na Halloween z ruszającymi się oczami, robiona razem z synem.
 
 ## Poziomy
 
-### Poziom 1 – minimum: wiele małych oczu
-- Pojedyncze oko = **piłeczka pingpongowa**.
+Poziomy opisują **złożoność** (co dynia potrafi), a nie konkretny mechanizm. Mechanizmy dobieramy osobno w `20-analizy/`.
+
+### Poziom 1 – małe oczy
+- Pojedyncze oko = **piłeczka pingpongowa**, bez powieki.
 - Każde oko poruszane **serwem**, w sposób trochę losowy.
 - Wiele oczu jednocześnie.
 
-### Poziom 2 – jedno duże oko z powieką
-- Dodatkowe **duże oko**, ruch w dwóch osiach: **lewo–prawo i góra–dół**.
-- **Powieka** (mruganie).
+### Poziom 2 – duże oko z powiekami
+Duże oko budujemy stopniowo; każdy podpoziom to działające oko:
+
+| Podpoziom | Powieki | Ruch oka | Serwa |
+|---|---|---|---|
+| **2a** | 1 powieka | lewo–prawo | 2 |
+| **2b** | 1 powieka | lewo–prawo + góra–dół | 3 |
+| **2c** | 2 powieki, najlepiej **z jednego serwa** (sprzężone) | lewo–prawo + góra–dół | 3 |
+
+- 2a → 2b: dochodzi tylko oś góra–dół.
+- 2b → 2c: dochodzi dolna powieka, sprzężona z górną na tym samym serwie.
+- Serwa: 4 × MG90S wystarczą na każdy podpoziom (1 zapasowe).
 
 ### Poziom 3 – duże oko śledzi ruch
 - Czujnik ruchu przed dynią.

@@ -7,3 +7,4 @@
 | 2026-10-17 | Dynia prawdziwa | Projekt na 1–2 tygodnie, wilgoć akceptowalna |
 | 2026-10-17 | Małe oczy bez powiek – 1 serwo na oko | Najprostszy mechanizm, pewny do zrobienia z synem |
 | 2026-10-17 | Punkt wyjścia: moduł-rurka (68percentwater), mocowanie gwintem | Mały otwór w dyni, montaż bez narzędzi przez syna |
+| 2026-10-17 | Poziomy = złożoność, nie mechanizm; duże oko w podpoziomach 2a/2b/2c | Każdy krok daje działające oko; mechanizm dobieramy w analizach |
