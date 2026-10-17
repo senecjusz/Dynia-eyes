@@ -23,8 +23,10 @@ Uwaga: konto Onshape jest na planie Free, więc dokumenty są **publiczne**.
 - Wszystkie części leżą w jednym Part Studio w **pozycji złożonej**: oś oka = Z, płaszczyzna Top = powierzchnia dyni, +Z na zewnątrz, **+Y = GÓRA**.
 - Na górze drzewa są **zmienne** (`#luzBagnet`, `#luzGwint`, `#luzKula`, `#luzJarzmo`, `#luzCzop`, `#kulaD`, `#rantD`, `#kolnierzykD`, `#dociskMin/Max` …) oraz wyliczane z nich średnice (`#modulOD`, `#gniazdoID`, `#gniazdoOD`, `#gwintD`, `#nakretkaOtwor`). Średnice okręgów w szkicach i głębokości wyciągnięć są do nich podpięte.
 - Drobne szkice (zaczepy i rowki bagnetu, profil gwintu, słupki serwa, korba, cięgno) mają wymiary liczbowe. Po zmianie luzu bagnetu albo grubości ścianek trzeba je przejrzeć.
-- Model został zbudowany skryptem [`onshape/oko-f-v1-build.js`](onshape/oko-f-v1-build.js), który dodaje zwykłe operacje (Variable, Plane, Sketch, Extrude, Revolve, Helix, Sweep, Circular pattern) przez REST API. Skrypt opisuje też wszystkie użyte liczby.
+- Drzewo (150 operacji) jest podzielone na foldery w kolejności budowy: **Zmienne (30) → Wspolne (oś Z) → Gniazdo (24) → Nakretka (10) → Modul tuleja (38) → Mechanizm (37: jarzmo, czopy, cięgno) → Podglad (12)**. Operacje mają nazwy w formie `Sekcja: element`, np. `Gniazdo: gwint`, `Modul: rowek bagnetu 150`, `Mechanizm: korba`. Płaszczyzny pomocnicze i szkice są ukryte.
+- Model został zbudowany skryptem [`onshape/oko-f-v1-build.js`](onshape/oko-f-v1-build.js) (`await OS.all()` w konsoli przeglądarki na pustym Part Studio). Skrypt dodaje zwykłe operacje (Variable, Plane, Sketch, Extrude, Revolve, Helix, Sweep, Circular pattern) przez REST API i opisuje wszystkie użyte liczby. Folderów i ukrywania płaszczyzn REST API nie obsługuje, więc zrobiono je ręcznie w interfejsie.
 - Części z prefiksem `PODGLAD` (piłeczka, SG90, orczyk) służą tylko do sprawdzania kolizji. **Nie drukować.**
+- **v1 to wersja do testu dopasowania** (gniazdo, nakrętka, tuleja, bagnet). Mechanizm v1 ma jeszcze drukowane czopy Ø3. Zgodnie z nową zasadą (śruby M3/M4 zamiast czopów, patrz `20-analizy/2026-10-17-mocowanie-pileczki-sruby.md`) zostanie przebudowany w v2 po review. Otwory v1 pasują pod M3: w tulei Ø2,9 do wkręcenia, w jarzmie Ø3,4 z luzem.
 
 ### Części do druku (`stl/`)
 

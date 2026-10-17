@@ -34,7 +34,7 @@
 | 2.3 | **Powerbank i włącznik na podstawce** pod dynią, kabel przez dno | średni (podstawka + przepust) | wygoda ładowania bez otwierania | ładowanie przez pokrywkę |
 | 2.4 | **Zbiorcze złącza / skrętka** zamiast pojedynczych przedłużaczy | średni | szybszy montaż i demontaż | pojedyncze wtyczki |
 | 2.5 | **Duże oko 2a** (1 powieka, lewo–prawo); **zamknięte, gdy nikogo nie ma, otwiera się po wykryciu (PIR)** | **duży** (nowy mechanizm, MG90S) | duża | **realnie na przyszły rok** albo jako osobna dynia |
-| 2.6 | Duże oko 2b → 2c, potem poziom 3 (śledzenie) | bardzo duży | duża | przyszły rok |
+| 2.6 | Duże oko 2b → 2c, potem poziom 3: **śledzenie radarem LD2450 + ESP32** (jeden czujnik: otwarcie + kierunek) | bardzo duży | duża | przyszły rok |
 
 **Realna ocena:** w dwa weekendy pewne są **etap 0, etap 1 i 2.1**. Rozszerzenie 2.2 jest prawdopodobne. Pozostałe rozszerzenia (2.3–2.6) to bonus, a duże oko raczej przechodzi na przyszły rok i niczego to nie psuje.
 

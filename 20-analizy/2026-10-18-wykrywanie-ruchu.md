@@ -4,6 +4,7 @@
 > - **Małe oczy zawsze ruszają się chaotycznie** i nie reagują na nic, więc nie potrzebują czujnika.
 > - **Na ruch reaguje tylko duże oko:** gdy nikogo nie ma, oko jest **zamknięte** (powieka), a gdy ktoś jest, oko się **otwiera**. Ewentualnie, w kolejnym kroku, patrzy w jego stronę.
 > - Do otwierania i zamykania wystarczy **zwykły czujnik obecności**, np. PIR HC-SR501, który już jest. Kierunek (radar, kilka czujników) to dopiero poziom 3.
+> - **Śledzenie przez duże oko (poziom 3), bo ma już serwa lewo–prawo i góra–dół:** jeden radar **HLK-LD2450** robi wszystko naraz. Brak celu oznacza zamknięte oko, cel oznacza otwarte oko, które patrzy w jego stronę. Kąt poziomy = atan2(X, Y) wprost z odczytu radaru. Góry i dołu radar nie mierzy, więc stosujemy prostą regułę: im ktoś bliżej, tym oko patrzy niżej (dzieci są niskie i podchodzą blisko). Radar wymaga **ESP32** zamiast Nano (powód: port szeregowy, nie obliczenia). ESP32 steruje wtedy całą dynią przez ten sam PCA9685.
 > - Poniższe warianty (gapienie się małych oczu, 3 PIR-y, LD2450 dla małych oczu) są **nieaktualne** jako plan, zostają tylko jako notatki.
 
 Dwa różne zadania:

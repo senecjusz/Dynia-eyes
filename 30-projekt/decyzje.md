@@ -22,3 +22,4 @@
 | 2026-10-18 | Kontroler: Arduino Nano; zapas: ESP32 / Raspberry Pi (gdyby zabrakło pamięci), w warsztacie też Uno i Mega | Tani, 5 V jak PCA9685 i PIR, mały pobór; syn nie programuje sam, więc micro:bit niepotrzebny |
 | 2026-10-18 | Dynia będzie prezentowana w szkole: filtrowanie radaru, limit serw w ruchu, zapasowe moduły | Tłum dzieci = ciągły ruch i dotykanie |
 | 2026-10-18 | Małe oczy zawsze chaotyczne, bez czujnika; na ruch reaguje tylko duże oko (zamknięte gdy nikogo nie ma, otwiera się po wykryciu PIR-em) | Najprostsze; minimum nie potrzebuje żadnego czujnika |
+| 2026-10-18 | Śledzenie przez duże oko: radar LD2450 + ESP32 (otwarcie i kierunek z jednego czujnika; góra–dół z odległości) | Duże oko ma 2 osie, radar podaje kąt wprost; Nano nie obsłuży portu szeregowego radaru |
