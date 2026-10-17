@@ -10,10 +10,12 @@
 ## Warianty
 
 ### A. Tuleja z gwintem + pierścień-oprawa (rekomendowany)
+Sprawdzony układ: [68percentwater – rurka z gałką z przodu i serwem z tyłu](../10-inspiracje/arduino-servo-pumpkin-eyes-68percentwater.md). U nich moduły trzymał klej na gorąco, u nas trzyma gwint.
+
 Moduł to drukowana **tuleja z kołnierzem**. Wkłada się ją **od środka** dyni w otwór, a kołnierz opiera się o wewnętrzną ściankę. **Od zewnątrz** syn nakręca ręcznie **duży pierścień z gwintem**, który jest jednocześnie ozdobną oprawą oka i dociska ściankę dyni między kołnierzem a pierścieniem.
 
 - **Plusy:** bez narzędzi. Przykręcanie od zewnątrz jest wygodne i dobrze widać, co się robi. Duży, gruby gwint drukowany (np. trapezowy, skok 3–4 mm) łatwo nakręcić, a trudno go zniszczyć. Długość gwintu pokrywa różne grubości ścianki. Oprawę można stylizować (powieka, „brwi”, kolor).
-- **Minusy:** przez otwór musi przejść cała tuleja z piłeczką, więc otwór jest stosunkowo duży (szacunkowo Ø 55–60 mm, do potwierdzenia w CAD).
+- **Minusy:** przez otwór przechodzi tuleja z piłeczką. Jeśli serwo siedzi z tyłu tulei (jak u 68percentwater), otwór to ~Ø 46–51 mm; serwo obok piłeczki go powiększa (do potwierdzenia w CAD).
 - **Na co uważać:**
   - **Obrót modułu przy dokręcaniu.** Oś oka musi zostać pionowa, więc na kołnierzu dajemy ząbki lub kolce wbijające się w ściankę oraz strzałkę „GÓRA” do ustawienia.
   - **Miękka ścianka prawdziwej dyni.** Szeroki kołnierz i pierścień rozkładają nacisk, żeby nie zgnieść miąższu.
