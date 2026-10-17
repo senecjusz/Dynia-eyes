@@ -70,3 +70,29 @@ Użytkownik słusznie zauważył, że jeden radar to mniej montażu niż 3 PIR-y
 - **ESP32 (zalecany do radaru):** natywnie **3,3 V** jak radar, **3 sprzętowe UART-y**, które obsługują 256 000 bodów bez problemu, i dużo pamięci. PCA9685 działa z logiką 3,3 V (VCC 3,3 V, a serwa nadal z V+ 5 V). PIR też podaje 3,3 V. Bonus: ESP32 pobiera ~80–150 mA, więc powerbank rzadziej się wyłącza.
 
 **Wniosek:** minimum na Nano. Jeśli dokładamy radar LD2450, przechodzimy na **ESP32** (jest w warsztacie). Okablowanie serw i PCA9685 zostaje bez zmian, a program przenosimy z drobnymi zmianami (biblioteka PCA9685 działa na obu).
+
+## Najprostsze rozwiązanie: „podejdziesz na 50 cm, oczy się na ciebie gapią” (2026-10-18)
+
+Pytanie użytkownika: czy nie wystarczy odczyt odległości i reakcja, gdy ktoś jest blisko? **Wystarczy, i to jest najprostsza wersja.**
+
+- **Obliczenia nie są problemem.** Nano spokojnie policzy wszystko, czego tu trzeba. Przy LD2450 jedynym problemem był **sposób komunikacji** (szybki port szeregowy), a nie moc procesora.
+- **Sama odległość nie mówi, gdzie ktoś stoi** (lewo / prawo). Ale jeśli ktoś jest **50 cm przed dynią**, to patrzenie **na wprost** jest prawie patrzeniem na niego. Kierunek nie jest więc potrzebny.
+
+**Zachowanie:**
+- nikt nie jest bliżej niż ~50 cm: oczy rozglądają się losowo,
+- ktoś podszedł bliżej niż 50 cm: **wszystkie oczy jednocześnie zwracają się na wprost** i „gapią się”, dopóki stoi blisko,
+- odszedł: po 2–3 s oczy wracają do rozglądania.
+
+**Bonus w szkole:** próg 50 cm sam filtruje tłum. Reaguje tylko ten, kto podejdzie do dyni, a reszta sali się nie liczy.
+
+**Czujnik do tego (wszystkie działają z Nano):**
+
+| Czujnik | Jak działa z Nano | Montaż |
+|---|---|---|
+| **HC-SR04** (ultradźwięki) | 2 piny cyfrowe, kilka linijek kodu, zasięg 2 cm – 4 m, wąski stożek ~15–30° (dobrze: tylko „na wprost”) | dwa „głośniczki” Ø 16 mm muszą wystawać, np. jako **nozdrza dyni** |
+| VL53L1X (laser ToF) | I²C, ta sama magistrala co PCA9685, zasięg do ~4 m | małe okienko, bardzo dyskretny |
+| LD2420 (radar) | wyjście OT2 „ktoś jest w zasięgu”, zasięg ustawiany raz z komputera | za cienką plastikową zaślepką, niewidoczny |
+
+**Rekomendacja:** **HC-SR04 jako „nozdrza”**. Jest najtańszy, najprostszy w kodzie, sprawdzony z Arduino i pewnie leży w warsztacie. Ten sam czujnik działa jako budzik (zamiast PIR) i jako „gapienie się”.
+
+**Rozszerzenie bez wymiany kontrolera:** 2 × HC-SR04 skierowane lekko w lewo i w prawo. Który widzi bliżej, w tę stronę patrzą oczy. To jedno porównanie dwóch liczb.
