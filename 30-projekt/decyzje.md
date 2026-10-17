@@ -11,3 +11,5 @@
 | 2026-10-17 | Moduł oka wpinany bagnetem w gniazdo osadzone w dyni; mocowanie gniazda do ustalenia | Montaż modułu bez narzędzi, wymuszona pionowa oś oka |
 | 2026-10-17 | Mocowanie małego oka: gniazdo z rantem + nakrętka (rodzic), moduł na bagnet (syn) | Najbezpieczniejsze; dziecko robi tylko prostą, nie do pomylenia czynność |
 | 2026-10-17 | Drukowany klucz nasadowy do nakrętki gniazda, pod grzechotkę 3/8" | Syn może sam dokręcić gniazdo; jeden klucz do wszystkich oczu |
+| 2026-10-17 | Pudełko z elektroniką i powerbankiem w środku dyni (pionowa wieża); powerbank na podstawce = opcja | Minimum bez dodatkowych konstrukcji; wyprowadzenie na zewnątrz tylko gdy starczy czasu |
+| 2026-10-17 | Plan: minimum (4–8 małych oczu) do 25.10, rozszerzenia niezależne; duże oko raczej na przyszły rok | 2 weekendy do Halloween; nic opcjonalnego nie może blokować minimum |

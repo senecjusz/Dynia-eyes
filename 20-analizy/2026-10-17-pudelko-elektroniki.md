@@ -14,17 +14,21 @@ Pomysł użytkownika: drukowane pudełko na powerbank i elektronikę, z **szczel
 
 Wnętrze pudełka szacunkowo: **~175 × 95 × 60 mm**, do potwierdzenia w CAD.
 
-## Gdzie je postawić – propozycja: **podstawa pod dynią**
+## Gdzie je postawić – ustalone: **w środku dyni**
 
-W dyni 25–27 cm, gdy moduły oczu wchodzą ~5 cm do środka, zostaje wolne miejsce o średnicy ~13–15 cm. **Pudełko 18 cm się tam nie zmieści.** Poza tym wnętrze dyni jest mokre.
+Decyzja użytkownika: pudełko z Nano, PCA9685 i powerbankiem jest **w środku dyni**. Wyprowadzenie powerbanku i włącznika na podstawkę pod dynią to **rozszerzenie opcjonalne** (patrz [plan realizacji](../30-projekt/plan-realizacji.md)).
 
-Dlatego proponuję, żeby pudełko było **podstawą (cokołem), na której stoi dynia**:
-- jest sucho i nie trzeba otwierać dyni, żeby wymienić powerbank (wysuwana szuflada albo klapa z boku),
-- kable serw idą do góry przez **przepust w pokrywie** i **otwór w dnie dyni**,
-- na pokrywie przyda się **niskie obrzeże i odpływ**, bo dynia puszcza sok,
-- pokrywa musi unieść dynię (~4–6 kg): żebra, rozłożenie nacisku na ścianki.
+**Czy się zmieści?** Dynia 25–27 cm ma wnętrze o promieniu ~12 cm. Moduły oczu wchodzą do środka na ~5 cm, więc wolny środek ma promień ~7 cm. Pudełko leżące (~18 cm) się nie zmieści, ale **postawione pionowo** jak wieża (podstawa ~95 × 45 mm, wysokość ~175 mm) zajmuje promień ~5 cm i mieści się na dnie dyni pośrodku. Otwór z pokrywką musi mieć **≥ 11 cm**, żeby pudełko przeszło.
 
-**Alternatywa:** pudełko stoi za dynią, a kabel wchodzi przez przepust z tyłu dyni. Projekt jest prostszy, ale kable są widoczne.
+**Wymiana powerbanku:** zdjąć pokrywkę dyni, otworzyć górną klapę wieży i wysunąć powerbank. Wtyczki serw zostają na miejscu.
+
+**Wilgoć:** przy 1–2 tygodniach wystarczy zamknięte pudełko z jednym otworem na kable od dołu, osłoniętym kapturkiem, albo jeden przepust z gumową przelotką na całą wiązkę. Wtyczek serw nie przeciśniemy przez małe dławiki, więc wtyczki zostają **w środku pudełka**, wpięte w PCA9685, a na zewnątrz wychodzą tylko przewody przedłużaczy.
+
+## Okablowanie – minimum
+
+- **Przedłużacze serw 3-pin** (30–50 cm) bezpośrednio z PCA9685 do każdego modułu. Są gotowe, tanie i nie trzeba lutować. Do sprawdzenia, ile ich jest w warsztacie.
+- Numeracja: kanał PCA9685 = numer modułu (naklejka na wtyczce i na module).
+- **Skrętka i zbiorcze złącza** to rozszerzenie opcjonalne. RJ45 ma 8 żył, czyli starczy na 2 serwa na kabel, ale cienkie żyły słabo nadają się do zasilania serw. Ma to sens dopiero przy wielu oczach i wielokrotnym montażu.
 
 ## Przepusty
 
@@ -37,4 +41,4 @@ Dlatego proponuję, żeby pudełko było **podstawą (cokołem), na której stoi
 1. **Rozmiar stołu drukarki.** Pudełko ~185 × 105 mm plus ścianki mieści się w typowym stole 220 × 220.
 2. **Rozmiar przepustów** (np. PG7 / PG9 / M12 / M16).
 3. **Gdzie stoi dynia:** na zewnątrz (deszcz) czy pod dachem / w środku?
-4. Podstawa pod dynią czy pudełko za nią?
+4. Ile przedłużaczy serw jest w warsztacie?
