@@ -55,3 +55,18 @@ Typowy port USB-A daje 2,1–3 A przy 5 V, co jest OK dla serw, jeśli program p
 ## Do sprawdzenia
 1. Jakie powerbanki są w domu (pojemność, liczba portów, tryb low current)?
 2. Test: Nano + PCA9685 + kilka serw w spoczynku. Czy powerbank gaśnie?
+
+## Powerbanki w domu (2026-10-17)
+
+| | **Baseus Airpow 20W (PPAP20K)** | **Manta MPB2001S Sunny** |
+|---|---|---|
+| Pojemność | 20 000 mAh / 74 Wh | 20 000 mAh |
+| Wyjścia | 3 (USB-A, USB-C, …), 5 V / 3 A | 2, do 3 A |
+| Szybkie ładowanie | PD / QC (9–12 V tylko po negocjacji) | PD / QC |
+| Wymiary | 153,5 × 69 × 29,6 mm, 446 g | do zmierzenia (solarny, raczej większy) |
+| Dodatki | — | panel słoneczny, ładowanie indukcyjne (w dyni bez znaczenia) |
+
+- **Czas pracy:** 20 000 mAh to ~12,5 Ah przy 5 V, czyli **~16–40 h**, zależnie od ruchu. Ładowanie co 2–4 wieczory.
+- **Napięcie:** Nano i przecięty kabel do PCA9685 niczego nie negocjują, więc porty dają **5 V**. Nie podłączać serw przez „inteligentne” kable ani triggery PD.
+- **Propozycja:** **Baseus jako główny** (3 porty, mniejszy, znane wymiary), **Manta jako zapas** na zmianę.
+- **Tryb niskiego poboru:** dla żadnego nie jest potwierdzony. Do sprawdzenia testem: Nano + PCA9685 + serwa w spoczynku przez 5 min. Jeśli powerbank zgaśnie, w programie dodajemy impuls podtrzymujący.

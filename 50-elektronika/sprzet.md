@@ -12,6 +12,9 @@
 | Przegub 3 mm i 5 mm | ✓ | Do dużego oka – do doprecyzowania: przegub kulowy czy kardan, osobne sztuki czy jeden 3→5 mm |
 | Drut sprężysty | ✓ | Awaryjnie na popychacze – preferujemy części drukowane |
 | Warsztat Arduino / ESP32 | ✓ | Dużo modułów – przed zakupem czegokolwiek sprawdzić, czy już jest |
+| Powerbank Baseus Airpow PPAP20K, 20 000 mAh, 3 porty | 1 | Główne zasilanie (propozycja) |
+| Powerbank Manta MPB2001S Sunny, 20 000 mAh, 2 porty | 1 | Zapas na zmianę |
+| Przepusty kablowe szczelne | ✓ | Do pudełka elektroniki – rozmiar do podania |
 
 ## Zamówione (w drodze)
 
@@ -24,7 +27,7 @@
 
 | Część | Do czego | Poziom |
 |---|---|---|
-| Zasilanie: powerbank 2-portowy (pomysł – patrz [analiza](../20-analizy/2026-10-17-zasilanie-powerbank.md)) + kabel USB → zaciski | Port 1 → Nano, port 2 → V+ PCA9685 | 1 |
+| Kabel USB → zaciski (do V+ PCA9685) | Powerbank: port 1 → Nano, port 2 → serwa ([analiza](../20-analizy/2026-10-17-zasilanie-powerbank.md)) | 1 |
 | Kondensator elektrolityczny 470–1000 µF / ≥10 V | Na zasilanie serw przy PCA9685 – tłumi spadki napięcia przy ruchu wielu serw | 1 |
 | Przewody dupont (F-F, M-F), ewentualnie przedłużacze serw | Połączenia; serwa w dyni mogą być dalej od płytki | 1 |
 | Coś na duże oko (np. większa piłka lub wydruk półkuli) | Duże oko | 2 |
