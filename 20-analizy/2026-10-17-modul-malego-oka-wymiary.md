@@ -80,3 +80,23 @@ Dynia 25–27 cm ma wnętrze o promieniu ok. 12 cm, więc moduły skierowane do 
 1. Luzy: piłeczka–jarzmo, jarzmo–tuleja, gwint tuleja–oprawa.
 2. Czy gwint drukowany daje się nakręcić palcami dziecka (najlepiej trapezowy, skok 3–4 mm).
 3. Zakres ruchu oka bez zahaczania o oprawę.
+
+## Wariant F – wymiary gniazda
+
+Gniazdo (tuleja z rantem + nakrętka) i moduł oka wsuwany w nie na bagnet. Patrz [mocowanie, wariant F](2026-10-17-mocowanie-malego-oka.md).
+
+| Element | Obliczenie | Wynik |
+|---|---|---|
+| Średnica zewn. tulei modułu | z tabeli wyżej | ~53,3 mm |
+| Luz moduł–gniazdo (bagnet) | 2 × 0,6 | 1,2 mm |
+| **Średnica wewn. gniazda** | 53,3 + 1,2 | **~54,5 mm** |
+| Ścianka gniazda | | 2,4 mm |
+| Średnica zewn. gniazda | 54,5 + 2 × 2,4 | ~59,3 mm |
+| Gwint pod nakrętkę (tylko wewnętrzny koniec, skok ~3 mm) | + 2 × 1,5 | ~62,3 mm |
+| **Otwór w dyni** | gwint musi przejść przez otwór | **Ø 64 mm** (otwornica standardowa) |
+| **Rant (zewnątrz)** | otwór + 2 × 4 mm zakładki | **Ø ~72 mm**, grubość ~2 mm |
+| **Kołnierzyk rantu (do wewnątrz)** | gałka 40 + 2 × 1,5 mm szczeliny | **Ø ~43 mm**, czyli widać gałkę i wąską szczelinę |
+| Nakrętka (od środka) | | Ø ~76 mm, ze skrzydełkami |
+| Długość gwintu | ścianka 20–30 mm + zapas | zakres docisku **15–35 mm** |
+
+Wpływ na liczbę oczu: rant Ø 72 mm zamiast oprawy ~70–76 mm, więc rozstaw ~85–90 mm i szacunek **~7–8 oczu z przodu** zostaje bez zmian.

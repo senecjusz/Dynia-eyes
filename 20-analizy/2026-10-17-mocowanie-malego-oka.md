@@ -35,7 +35,7 @@ Tuleja z kołnierzem i 2–3 otworami, którą syn przykręca wkrętami do drewn
 ### D. Wcisk na zatrzaskach (sprężyste łapki)
 - Prosty montaż, ale trzymanie zależy od grubości ścianki i jest niepewne w miękkiej dyni. Odpada jako główne rozwiązanie.
 
-### E. Tuleja wkręcana w miąższ + moduł z bagnetem (nowy faworyt, 2026-10-17)
+### E. Tuleja wkręcana w miąższ + moduł z bagnetem (zastąpiony przez F)
 Wynika z [celu wizualnego](2026-10-17-modul-malego-oka-wymiary.md#cel-wizualny-punkt-wejścia-od-użytkownika): z zewnątrz ma być widać tylko miąższ i gałkę.
 
 1. **Tuleja-gniazdo** z grubym gwintem „ślimakowym” (jak korkociąg albo kołek do ziemi), drukowana w **kolorze dyni**. Wkręca się ją **od środka** w otwór Ø ~54 mm, a żebra gwintu same wcinają się w miąższ. Tuleja jest okrągła, więc to, w jakiej pozycji skończy się wkręcanie, nie ma znaczenia.
@@ -44,6 +44,19 @@ Wynika z [celu wizualnego](2026-10-17-modul-malego-oka-wymiary.md#cel-wizualny-p
 - **Plusy:** z zewnątrz brak elementów montażowych, efekt jak na filmie. Oba kroki wykonuje syn od środka, bez narzędzi. Moduły można wyjmować i zamieniać.
 - **Minusy:** dwie części do zaprojektowania. Trzeba przetestować, jak gwint trzyma w prawdziwym miąższu (wydruk testowy + kawałek dyni).
 - **Ryzyko:** wkręcanie od środka w małej dyni (25–27 cm) wymaga miejsca na rękę, więc otwór z pokrywką musi być wystarczająco duży.
+
+### F. Gniazdo z rantem + nakrętka, w nie moduł na bagnet (FAWORYT, pomysł użytkownika, 2026-10-17)
+
+Dwa etapy, każdy robi inna osoba:
+
+1. **Gniazdo (montuje rodzic, raz):** drukowana tuleja z **rantem**, który opiera się o dynię **od zewnątrz**, więc tuleja nie wpadnie do środka. Rant jest cienki, w kolorze dyni, z **kołnierzykiem do wewnątrz**: zasłania mechanizm i działa jak oczodół. Od środka rodzic nakręca **nakrętkę ze skrzydełkami**, która dociska ściankę. Przy dokręcaniu trzeba pilnować, żeby znacznik „GÓRA” na rancie był u góry; ząbki pod rantem chronią przed obracaniem.
+2. **Moduł oka (montuje syn):** tuleja z gałką, jarzmem i serwem. Wsuwa się ją od środka w gniazdo i zamyka **bagnetem z kluczem**: wchodzi tylko w jednej pozycji, przekręcenie o ~30° i klik. Potem wpięcie wtyczki serwa.
+
+- **Plusy:** najbezpieczniejsze. Mocowanie w dyni (siła, precyzja, ustawienie pionu) robi dorosły, a dziecko robi czynność prostą i powtarzalną, której nie da się zrobić źle. Moduły są wymienne, a serwis to tylko wyjęcie modułu bez ruszania gniazda.
+- **Minusy:** z zewnątrz widać wąski rant (~4 mm) wokół otworu, a otwór jest większy niż w wersji bez gniazda.
+- **Wariant pokrewny:** tuleja gwintowana na całej długości i **dwa pierścienie** (zewnętrzny i wewnętrzny), które pozwalają ustawić, jak głęboko gałka siedzi w ściance. Więcej regulacji, ale z zewnątrz widać pierścień zamiast rantu.
+
+Przekrój i wymiary: [moduł – wymiary](2026-10-17-modul-malego-oka-wymiary.md#wariant-f--wymiary-gniazda).
 
 ## Wspólne elementy modułu (niezależnie od wariantu)
 
