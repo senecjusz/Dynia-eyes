@@ -39,10 +39,19 @@ Tuleja z kołnierzem i 2–3 otworami, którą syn przykręca wkrętami do drewn
 - **Szablon do wiercenia:** wydruk przykładany do dyni, który wyznacza środek i średnicę otworu.
 - **Otwór pod standardową otwornicę**, żeby nie ciąć nożem na oko. Typowe średnice otwornic: 51, 54, 57, 60, 64, 68 mm.
 
+## Ustalone
+
+- **Dynia prawdziwa** (2026-10-17). Konsekwencje: ścianka 2–5 cm, miękka i wilgotna, więc w wariancie A potrzebny jest **długi gwint** (zakres ~20–50 mm) i **szeroki kołnierz oraz pierścień**, żeby nie zgnieść miąższu. Wkręty (wariant C) odpadają. Elektronika (Nano, PCA9685) poza wilgotnym wnętrzem albo w zamkniętej puszce.
+
+## Wersja z powieką
+
+Inspiracja: [Kent Harris – Pumpkin Eyes](../10-inspiracje/pumpkin-eyes-kent-harris.md). Małe oko z jedną pomarańczową powieką (2 serwa na oko). Jeśli idziemy w tę stronę, moduł musi to przewidzieć od początku:
+- powieka i jej oś są **przed** ścianką dyni, więc wystają na zewnątrz,
+- serwo powieki z boku poszerza moduł, przez co rośnie otwór albo serwo trzeba przenieść za ściankę z napędem przez popychacz,
+- budżet serw: 18 × SG90 = np. 9 oczu z powieką albo mieszanka.
+
 ## Do ustalenia
 
-1. **Dynia prawdziwa czy sztuczna (piankowa)?** To zmienia wszystko:
-   - prawdziwa ma ściankę 2–5 cm, miękką i mokrą, więc potrzebny jest długi gwint i szeroki docisk,
-   - sztuczna ma ściankę ~1 cm i jest sztywna, więc wystarczy krótka tuleja; wariant C też by działał.
+1. Małe oczy: same gałki czy z powieką? Wszystkie jednakowe?
 2. Jakie otwornice są w warsztacie (średnice)?
 3. Ile oka ma wystawać poza dynię? Piłeczka może być schowana w oprawie albo wypukła.
