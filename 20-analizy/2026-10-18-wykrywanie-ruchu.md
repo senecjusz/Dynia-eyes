@@ -1,5 +1,11 @@
 # Wykrywanie ruchu
 
+> **USTALENIE UŻYTKOWNIKA (2026-10-18), ważniejsze niż wszystko poniżej:**
+> - **Małe oczy zawsze ruszają się chaotycznie** i nie reagują na nic, więc nie potrzebują czujnika.
+> - **Na ruch reaguje tylko duże oko:** gdy nikogo nie ma, oko jest **zamknięte** (powieka), a gdy ktoś jest, oko się **otwiera**. Ewentualnie, w kolejnym kroku, patrzy w jego stronę.
+> - Do otwierania i zamykania wystarczy **zwykły czujnik obecności**, np. PIR HC-SR501, który już jest. Kierunek (radar, kilka czujników) to dopiero poziom 3.
+> - Poniższe warianty (gapienie się małych oczu, 3 PIR-y, LD2450 dla małych oczu) są **nieaktualne** jako plan, zostają tylko jako notatki.
+
 Dwa różne zadania:
 - **budzik** (rozszerzenie 2.1): „ktoś podszedł”, więc oczy ożywają,
 - **kierunek** (poziom 3): „ktoś jest z lewej”, więc oczy patrzą w lewo.

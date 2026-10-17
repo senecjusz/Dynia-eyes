@@ -29,12 +29,11 @@
 
 | # | Rozszerzenie | Koszt | Wartość | Jeśli nie zdążymy |
 |---|---|---|---|---|
-| 2.1 | **„Gapienie się”**: ktoś bliżej niż 50 cm, więc wszystkie oczy patrzą na wprost (HC-SR04 jako nozdrza, Nano) ([analiza](../20-analizy/2026-10-18-wykrywanie-ruchu.md)) | mały (czujnik jest, kilka linijek kodu) | duża: efekt „ożywa” + oszczędność baterii | oczy ruszają się cały czas |
+| 2.1 | ~~„Gapienie się” małych oczu~~ – odpada: małe oczy zawsze ruszają się chaotycznie ([analiza](../20-analizy/2026-10-18-wykrywanie-ruchu.md)) | mały (czujnik jest, kilka linijek kodu) | duża: efekt „ożywa” + oszczędność baterii | oczy ruszają się cały czas |
 | 2.2 | **Więcej oczu** (do 16 na jednym PCA9685) | średni (druk + wiercenie) | średnia | zostaje 4–8 oczu |
-| 2.2b | **Małe oczy patrzą na gościa**: 3 × PIR w sektorach, kierunek lewo/środek/prawo | mały (2 PIR-y + osłony) | duża – efekt poziomu 3 bez dużego oka | oczy rozglądają się losowo |
 | 2.3 | **Powerbank i włącznik na podstawce** pod dynią, kabel przez dno | średni (podstawka + przepust) | wygoda ładowania bez otwierania | ładowanie przez pokrywkę |
 | 2.4 | **Zbiorcze złącza / skrętka** zamiast pojedynczych przedłużaczy | średni | szybszy montaż i demontaż | pojedyncze wtyczki |
-| 2.5 | **Duże oko 2a** (1 powieka, lewo–prawo) | **duży** (nowy mechanizm, MG90S) | duża | **realnie na przyszły rok** albo jako osobna dynia |
+| 2.5 | **Duże oko 2a** (1 powieka, lewo–prawo); **zamknięte, gdy nikogo nie ma, otwiera się po wykryciu (PIR)** | **duży** (nowy mechanizm, MG90S) | duża | **realnie na przyszły rok** albo jako osobna dynia |
 | 2.6 | Duże oko 2b → 2c, potem poziom 3 (śledzenie) | bardzo duży | duża | przyszły rok |
 
 **Realna ocena:** w dwa weekendy pewne są **etap 0, etap 1 i 2.1**. Rozszerzenie 2.2 jest prawdopodobne. Pozostałe rozszerzenia (2.3–2.6) to bonus, a duże oko raczej przechodzi na przyszły rok i niczego to nie psuje.
