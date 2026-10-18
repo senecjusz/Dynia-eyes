@@ -223,3 +223,20 @@ Przy mniejszej dyni rozstawy rosną.
 8. **Piłeczka 39,5 w stożku przyrządu** leży 0,7 mm bliżej przodu niż 40,5 (stożek centruje na osi, ale nie w głąb). Przy kołnierzyku Ø41 to nie przeszkadza.
 9. **Przyrząd centrowania** nie usuwa skoku wielowypustu orczyka (~14°): kalibracja środka na stronie ESP32 nadal jest potrzebna.
 10. **Sanki** jadą po krawędziach szczeliny (styk 0,04 mm w symulacji). Jeśli po druku będą za ciasno, przeszlifować.
+
+## v2.3 w SolidCraft: gwint ISO (2026-10-18)
+
+Model: `40-cad/solidcraft/oko-f-v2.3.solidcraft` (opis i ograniczenia w `40-cad/solidcraft/README.md`).
+
+- **Gwint gniazda:** natywny ISO **M63×3**, flanki 60°, od z −36,7 do −15. Rdzeń Ø59,6, ścianka do otworu kasety 2,3 mm. Część w otworze ma Ø63,0, czyli luz 0,25/str. w Ø63,5. Zastępuje 45° skok 5, bo własnego zarysu SolidCraft 0.15 nie liczy.
+- **Luz gwintu** to parametr `luzGwint` = 0,3 mm na stronę, promieniowo. Otwór nakrętki jest wyliczany (`nakretkaOtwor` = 60,35). Oznaczenie gwintu nakrętki SolidCraft przyjmuje tylko jako tekst (M63.6x3 = 63 + 2 × 0,3), więc po zmianie luzu trzeba je przepisać ręcznie.
+- **Uwaga 60°:** luz promieniowy 0,3 daje na flance tylko ~0,15 mm (przy 45° było 0,3), a dolne flanki wiszą bardziej: nawis 30° od poziomu, ok. 0,35 mm na warstwę 0,2, przy zębie 1,7 mm. Dlatego próbka ma dwie nakrętki.
+- **Próbka gwintu (drukować najpierw)**, pliki w `40-cad/3mf/Oko F v2.3/`:
+
+| Plik | Co | Luz na wierzchołku / flance | Zazębienie |
+|---|---|---|---|
+| Probka gwintu - gniazdo | pierścień 15 mm, M63×3 | – | – |
+| Nakretka | właściwa nakrętka Ø74 × 7, M63.6×3 | 0,30 / ~0,15 | 1,33 mm |
+| Probka gwintu - nakretka luz 0.6 | pierścień 7 mm, M64.2×3 | 0,60 / ~0,30 | 1,04 mm |
+
+  Wybrać nakrętkę, która wchodzi palcami bez luzu wyczuwalnego osiowo. Wynik wpisać w `luzGwint` i do tabeli luzów w AGENTS.md.
