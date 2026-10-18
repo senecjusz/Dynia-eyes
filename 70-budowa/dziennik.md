@@ -20,3 +20,8 @@
 - Review v2.1d (Opus + Codex): modułu nie da się złożyć (słupek SG90 i występy pokrywy blokują piłeczkę), wtyczka nie przechodzi przez pokrywę, montaż w dyni niewykonalny narzędziem.
 - Próbka gwintu v2.1 (luz 0,5): za luźna, ~1,3 mm luzu całkowitego.
 - Decyzja: v2.2 = gniazdo + kaseta na zaczepy (zlecone sesji v2).
+
+## 2026-10-18 – próbka gwintu v2.2 i review v2.2
+- Próbka gwintu v2.2 (luz 0,3, flanki 45°, pogłębiony zarys): **luz na wydruku OK**.
+- Review v2.2 (Opus + Codex): pierwsza wersja, którą da się złożyć; do poprawy luz sanek, fazki, zaczepy (kolizja z otworem H, cienki pasek), ucha pod wkładki. Zlecone jako v2.3.
+- Do sprawdzenia po wydruku modułu: napęd symetryczny (pomysł użytkownika), widelec do wyjmowania kasety, zacisk kabla, orczyk.

@@ -52,7 +52,7 @@
 | 2026-10-18 | Kabel SG90: taśma prosto do tyłu z dołu krótszego boku od strony wałka; pokrywa z otworem w kształcie dziurki od klucza (9 × 3,4 na wtyczkę 3-pin, szczelina 1,2 zaciska taśmę) i prowadnicami zamiast kołków | Kabel wychodzi przy wałku; wtyczka musi przejść przy założonej pokrywie |
 | 2026-10-18 | Otwór małego oka pod stałą otwornicę Ø56 mm (część w otworze Ø~55,6) | Otwornica 57 niedostępna; stała daje równiejszy otwór niż nastawna |
 | 2026-10-18 | v2.1d: otwór w dyni pod stałą otwornicę Ø56; część obudowy w otworze Ø55,6 (luz 0,2/str.), gwint Ø54,9 (0,55/str.), rant Ø63 bez zmian; serwo i pokrywa montowane od środka dyni po założeniu obudowy | Otwornicy Ø57 nie ma; serwo i występ pokrywy wystają poza Ø56 |
-| 2026-10-18 | v2.2: gniazdo w dyni + kaseta (kompletny moduł skręcony na stole) wsuwana osiowo, z żebrem (pozycja GÓRA) i 2 sprężystymi zaczepami; otwór Ø62 | W dyni nic się nie skręca (v2.1d nie dało się złożyć); syn wkłada moduł sam |
+| 2026-10-18 | v2.2: gniazdo w dyni + kaseta (kompletny moduł skręcony na stole) wsuwana osiowo, z żebrem (pozycja GÓRA) i 2 sprężystymi zaczepami; otwór Ø62 (zastąpione: Ø63,5, nastawna otwornica) | W dyni nic się nie skręca (v2.1d nie dało się złożyć); syn wkłada moduł sam |
 | 2026-10-18 | Zakres pracy oka ±30°, ograniczniki ±33° jako stop | Przy ±33° napęd na granicy (review v2.1d) |
 | 2026-10-18 | Gwint: luz 0,3 przy flankach 45° i głębszy zarys (~1,6–1,8 mm) | Próbka v2.1 (luz 0,5) za luźna: ~1,3 mm luzu |
 | 2026-10-18 | CAD zostaje w Onshape. Fusion 360 odpada (tylko Windows). SolidCraft (open source, klon Fusion z MCP, Win+Linux) – wrócić, gdy projekt się ustabilizuje | Praca na dwóch komputerach (Windows + Linux); SolidCraft v0.14 jest jeszcze za młody |
@@ -62,3 +62,6 @@
 | 2026-10-18 | Ogranicznik: kołek Ø2,6 × 1,6 na oczku jarzma, 6,7 mm za osią, w szczelinie na wylot w kasecie (stop ±33°); piasty C i H Ø10 (ścianka 2) z wybraniami w ściance kasety ≥ 2 mm | Review v2.1d: ogranicznik za słaby, piasty 1,15–1,2 mm |
 | 2026-10-18 | Rozstaw oczu w dyni R 150: poziomo ≥ 115 mm, pionowo ≥ 145 mm (tył kasety okrągły, bez spłaszczeń) | Spłaszczenia dawały nożowe krawędzie (review) |
 | 2026-10-18 | v2.2 ma osobne Variable Studio „Zmienne v2.2” (Part Studio v2.2 odwołuje się tylko do niego) | Zmiany v2.2 nie psują Part Studio v2.1 w tej samej gałęzi |
+| 2026-10-18 | Otwór małego oka Ø63,5 (nastawna otwornica do 64) | Zaakceptowane przez użytkownika po planie v2.2 |
+| 2026-10-18 | v2.3 = wąskie poprawki review v2.2: luz sanek 0,25, fazki wejściowe, zaczepy obrócone (kolizja z otworem H), pasek za okienkami ≥ 3,5, ucha pod wkładki; napęd bez zmian | Najważniejsze: wkładanie i pewne zablokowanie kasety; reszta po wydruku |
+| 2026-10-18 | Rozstaw oczu w dyni: poziomo ≥ 125 mm, pionowo ≥ 145 mm | Review v2.2: przy 115 nachodzą ucha pokryw |
