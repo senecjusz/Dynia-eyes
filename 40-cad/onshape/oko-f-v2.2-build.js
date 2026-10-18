@@ -389,8 +389,8 @@ OS.gniazdo = async () => {
   const R = rz(135);
   await sketchW('Gniazdo: zebro szkic', qFace('Gniazdo: pl. zebra'), (W) => W.poly([R(D.gIR + 0.05, -D.gEnd), R(D.gIR - 0.9, -D.gEnd), R(D.gIR - 0.9, -D.gEnd + 6.05), R(D.gIR + 0.05, -D.gEnd + 7)]));
   await ext('Gniazdo: zebro', 'Gniazdo: zebro szkic', null, { op: 'ADD', depth: '4 mm', sym: true, scope: G });
-  // okienka zaczepow kasety na 45 i 225 st.
-  for (const a of [45, 225]) {
+  // okienka na haczyki zaczepow kasety (59 i 239 st. - wolne konce ramion)
+  for (const a of [59, 239]) {
     await planeAngle(`Gniazdo: pl. okienka ${a}`, 'Wspolne: os Z', qStd('Front'), deg(a));
     const Q = rz(a);
     await sketchW(`Gniazdo: okienko ${a} szkic`, qFace(`Gniazdo: pl. okienka ${a}`), (W) => W.poly([Q(26.5, D.okno[0]), Q(31, D.okno[0]), Q(31, D.okno[1]), Q(26.5, D.okno[1])]));
@@ -426,13 +426,14 @@ OS.kaseta = async () => {
   await sketchW('Kaseta: rura szkic', qFace('Kaseta: pl. czola'), (W) => { W.circle([0, 0, D.kz0], 54.5, '#kasetaOD'); W.circle([0, 0, D.kz0], 48.5, '#modulID'); });
   await ext(K, 'Kaseta: rura szkic', BACK, { op: 'NEW', depth: '#modulL', regions: regionAt('Kaseta: rura szkic', [25.7, 0, D.kz0]) });
   // wystepy osi (kropla - ostrze w strone czola, czyli w dol przy druku), poglebienie pod leb ISO 7380 i ciasny otwor M3
-  const kropla = (y, R) => { const P = []; for (let f = 45; f >= -225; f -= 15) P.push([R * Math.cos(f * d2r), y, D.zc + R * Math.sin(f * d2r)]); P.push([0, y, D.zc + R * Math.SQRT2]); return P; };
+  // kropla przycieta na czole kasety (wystep stoi na stole), wysokosc tylko do wnetrza sciany - nic nie wystaje poza obrys
+  const kropla = (y, R) => { const P = []; for (let f = 45; f >= -225; f -= 15) P.push([R * Math.cos(f * d2r), y, D.zc + R * Math.sin(f * d2r)]); P.push([0, y, D.zc + R * Math.SQRT2]); return P.map(([x, yy, z]) => [x, yy, Math.min(z, D.kz0 - 0.05)]); };
   const yWexpr = '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy';
   for (const [nm, sg] of [['gora', 1], ['dol', -1]]) {
     const y = sg * D.yW;
     await planeY(`Kaseta: pl. wystepu ${nm}`, yWexpr, sg);
     await sketchW(`Kaseta: wystep ${nm} szkic`, qFace(`Kaseta: pl. wystepu ${nm}`), (W) => W.poly(kropla(y, 9.6)));
-    await ext(`Kaseta: wystep osi ${nm}`, `Kaseta: wystep ${nm} szkic`, sg > 0 ? UP : DOWN, { op: 'ADD', depth: '3.8 mm', scope: K });
+    await ext(`Kaseta: wystep osi ${nm}`, `Kaseta: wystep ${nm} szkic`, sg > 0 ? UP : DOWN, { op: 'ADD', depth: '2.05 mm', scope: K });
     // szczelina ogranicznika na wylot (luk wokol osi) i kanal montazowy kolka od tylu (0.8 mm w scianie)
     const g0 = D.dogAng - D.stop - D.dogHalf, g1 = D.dogAng + D.stop + D.dogHalf, r0 = D.dogR - D.dogD / 2 - 0.3, r1 = D.dogR + D.dogD / 2 + 0.3;
     await sketchW(`Kaseta: szczelina ogranicznika ${nm} szkic`, qFace(`Kaseta: pl. wystepu ${nm}`), (W) => {
@@ -454,10 +455,10 @@ OS.kaseta = async () => {
   await planeY('Kaseta: pl. szczeliny', '20 mm', -1);
   await sketchW('Kaseta: szczelina serwa szkic', qFace('Kaseta: pl. szczeliny'), (W) => W.poly([[-6.6, -20, D.sPrzod + 0.2], [6.6, -20, D.sPrzod + 0.2], [6.6, -20, -85], [-6.6, -20, -85]]));
   await ext('Kaseta: szczelina serwa', 'Kaseta: szczelina serwa szkic', DOWN, { op: 'REMOVE', depth: '20 mm', scope: K });
-  // otwor dolny (przegub H, przyrzad centrowania) i otwory gorne (wkret srodkowy i M2 orczyka)
+  // otwory dolne (przeguby C i H od spodu, przyrzad centrowania) i otwory gorne (wkret srodkowy i M2 orczyka)
   await planeY('Kaseta: pl. dolu', '#kasetaOD / 2', -1);
-  await sketchW('Kaseta: otwor dolny szkic', qFace('Kaseta: pl. dolu'), (W) => W.circle(W3(D.H0, -D.kOR), 8.5));
-  await ext('Kaseta: otwor dolny', 'Kaseta: otwor dolny szkic', UP, { op: 'REMOVE', depth: '6 mm', scope: K });
+  await sketchW('Kaseta: otwor dolny szkic', qFace('Kaseta: pl. dolu'), (W) => { W.circle(W3(D.H0, -D.kOR), 8.5); W.circle(W3(D.C0, -D.kOR), 8.5); });
+  await ext('Kaseta: otwor dolny', 'Kaseta: otwor dolny szkic', UP, { op: 'REMOVE', depth: '6 mm', scope: K, regions: allRegions('Kaseta: otwor dolny szkic') });
   await planeY('Kaseta: pl. gory', '#kasetaOD / 2', 1);
   await sketchW('Kaseta: otwory gorne szkic', qFace('Kaseta: pl. gory'), (W) => { W.pas(W3(D.S, D.kOR), W3(D.M2, D.kOR), 9); W.circle(W3(D.S, D.kOR), 9); W.circle(W3(D.M2, D.kOR), 9); });
   await ext('Kaseta: otwory gorne', 'Kaseta: otwory gorne szkic', DOWN, { op: 'REMOVE', depth: '6 mm', scope: K, regions: allRegions('Kaseta: otwory gorne szkic') });
@@ -466,7 +467,7 @@ OS.kaseta = async () => {
   await sketchW('Kaseta: wybranie C szkic', qFace('Kaseta: pl. wybrania C'), (W) => W.poly([[21.5, 0.6, -35.0], [24.8, 0.6, -31.7], [24.8, 0.6, -22.4], [21.5, 0.6, -22.4]]));
   await ext('Kaseta: wybranie C', 'Kaseta: wybranie C szkic', DOWN, { op: 'REMOVE', depth: '4.2 mm', scope: K });
   await planeY('Kaseta: pl. wybrania H', '6.4 mm', 1);
-  await sketchW('Kaseta: wybranie H szkic', qFace('Kaseta: pl. wybrania H'), (W) => W.poly([[-21.0, 6.4, -55.2], [-25.0, 6.4, -51.2], [-25.0, 6.4, -44.6], [-21.0, 6.4, -44.6]]));
+  await sketchW('Kaseta: wybranie H szkic', qFace('Kaseta: pl. wybrania H'), (W) => W.poly([[-21.0, 6.4, -55.5], [-25.3, 6.4, -51.2], [-25.3, 6.4, -44.2], [-21.0, 6.4, -44.2]]));
   await ext('Kaseta: wybranie H', 'Kaseta: wybranie H szkic', DOWN, { op: 'REMOVE', depth: '11.2 mm', scope: K });
   // pogrubienie sciany na zewnatrz przy wybraniu H (za gniazdem), spod 45 st.
   await sketchW('Kaseta: pogrubienie H szkic', qFace('Kaseta: pl. wybrania H'), (W) => W.poly([[-25.5, 6.4, -43.9], [-27.25, 6.4, -43.9], [-28.6, 6.4, -45.25], [-28.6, 6.4, -56.5], [-25.5, 6.4, -56.5]]));
@@ -480,12 +481,13 @@ OS.kaseta = async () => {
   const zA = -37.4, zB = -43.4, span = 34;
   for (const a of [45, 225]) {
     const a0 = a - span / 2, a1 = a + span / 2;
+    // szczelina pod ramieniem skosna 45 st. (ramie drukuje sie jak nawis 45 st., a ugiecie do srodka jej nie zamyka)
+    const zaR = (r) => zA - (D.kOR - r), gS = 0.8 * Math.SQRT2, Qs = rz(a0);
+    await planeAngle(`Kaseta: pl. szczeliny zaczepu ${a}`, 'Wspolne: os Z', qStd('Front'), deg(a0));
+    await sketchW(`Kaseta: szczelina skosna zaczepu ${a} szkic`, qFace(`Kaseta: pl. szczeliny zaczepu ${a}`), (W) => W.poly([Qs(23.9, zaR(23.9)), Qs(28.2, zaR(28.2)), Qs(28.2, zaR(28.2) + gS), Qs(23.9, zaR(23.9) + gS)]));
+    await revolve(`Kaseta: szczelina skosna zaczepu ${a}`, `Kaseta: szczelina skosna zaczepu ${a} szkic`, 'Wspolne: os Z', { op: 'REMOVE', angle: deg(span + 2.5), scope: K });
+    // szczelina nad ramieniem (most podparty z obu stron), wolny koniec i pocienienie ramienia od srodka do 2 mm
     await planeZ(`Kaseta: pl. zaczepu ${a}`, `${-zA - 0.8} mm`, -1);
-    // szczeliny wokol ramienia (przod, tyl, wolny koniec) i pocienienie od srodka do 2 mm
-    await sketchW(`Kaseta: szczeliny zaczepu ${a} szkic`, qFace(`Kaseta: pl. zaczepu ${a}`), (W) => {
-      W.poly(ringArc(23.5, 28, a0, a1 + 2.5, zA + 0.8));
-    });
-    await ext(`Kaseta: szczelina przednia zaczepu ${a}`, `Kaseta: szczeliny zaczepu ${a} szkic`, BACK, { op: 'REMOVE', depth: '0.8 mm', scope: K });
     await planeZ(`Kaseta: pl. tylu zaczepu ${a}`, `${-zB} mm`, -1);
     await sketchW(`Kaseta: szczelina tylna zaczepu ${a} szkic`, qFace(`Kaseta: pl. tylu zaczepu ${a}`), (W) => W.poly(ringArc(23.5, 28, a0, a1 + 2.5, zB)));
     await ext(`Kaseta: szczelina tylna zaczepu ${a}`, `Kaseta: szczelina tylna zaczepu ${a} szkic`, BACK, { op: 'REMOVE', depth: '0.8 mm', scope: K });
@@ -745,6 +747,109 @@ OS.probka = async () => {
 return 'v22 ok ' + JSON.stringify({ C0: D.C0, H0: D.H0, L: D.ciegno, dog: D.dog, yW: D.yW });
 })();
 
+// ===================== v2.2: nazwy czesci i zlozenie =====================
+(() => {
+const OS = window.OS, D = OS.D;
+const { req, base, F } = OS;
+
+// ---------- nazwy czesci (dopasowanie po srodku prostopadloscianu otaczajacego) ----------
+OS.NAZWY = [
+  ['Gniazdo', [0, 0, -22.1], 74], ['Nakretka', [0, 0, -27.7], 74], ['Kaseta', [-0.2, 0, -38.0]], ['Jarzmo z miska', [7.9, 0, -23.6]],
+  ['Ciegno', [-0.9, 2.5, -38.4]], ['Ramie orczyka', [-4.4, -2.5, -53.6]], ['Tulejka przegubu korby', [7.4, -2.1, -36.1]], ['Tulejka przegubu ramienia', [-9.2, -2.1, -40.6]],
+  ['Sanki serwa', [0, -19.9, -61.0]], ['Pokrywa tylna', [0, -5.4, -77.3]], ['PODGLAD pileczka 40.5', [0, 0, -12]], ['PODGLAD SG90', [0, -19, -63]], ['PODGLAD orczyk SG90', [-2.4, -3.8, -58.5]],
+  ['Przyrzad do wklejania pileczki', [130, 0, -4.3]], ['Przyrzad centrowania orczyka', [-6, -15.8, -40.6]],
+  ['Probka gwintu - gniazdo', [-140, 0, -7.5], 63.8], ['Probka gwintu - nakretka', [-140, 0, -7.5], 74],
+];
+OS.nazwy = async () => {
+  const parts = await (await req(`/api/v10/parts/d/${OS.did}/w/${OS.wid}/e/${OS.eid}`)).json();
+  const C = [];
+  for (const p of parts) {
+    const b = await (await req(`/api/v10/parts/d/${OS.did}/w/${OS.wid}/e/${OS.eid}/partid/${encodeURIComponent(p.partId)}/boundingboxes`)).json();
+    C.push([p.partId, [(b.lowX + b.highX) * 500, (b.lowY + b.highY) * 500, (b.lowZ + b.highZ) * 500, (b.highX - b.lowX) * 1000]]);
+  }
+  OS.PID = {};
+  for (const [name, c, dx] of OS.NAZWY) {
+    let best = null, bd = 1e9; for (const [pid, m] of C) { const d = Math.hypot(m[0] - c[0], m[1] - c[1], m[2] - c[2]) + (dx ? Math.abs(m[3] - dx) * 10 : 0); if (d < bd) { bd = d; best = pid; } }
+    OS.PID[name] = best;
+    await req(`/api/v10/metadata/d/${OS.did}/w/${OS.wid}/e/${OS.eid}/p/${encodeURIComponent(best)}`, { method: 'POST',
+      body: JSON.stringify({ jsonType: 'metadata-part', partId: best, properties: [{ propertyId: '57f3fb8efa3416c06701d60d', value: name }] }) });
+    OS.log.push(`nazwa ${name} -> ${best} (odl. ${bd.toFixed(1)})`);
+  }
+};
+
+// ---------- zlozenie (Assembly): grupy + lacznik na krawedziach otworow osi + mate'y ----------
+// Gniazdo trzeba potem unieruchomic recznie (PPM na "Gniazdo" -> Fix) - REST API nie ma tej operacji.
+OS.zlozenie = async (name = 'Oko F v2.2 - zlozenie') => {
+  const P = OS.PID;
+  const r0 = await req(`/api/v10/assemblies/d/${OS.did}/w/${OS.wid}`, { method: 'POST', body: JSON.stringify({ name }) });
+  OS.AID = (await r0.json()).id;
+  const A = `/api/v10/assemblies/d/${OS.did}/w/${OS.wid}/e/${OS.AID}`;
+  const lista = ['Gniazdo', 'Nakretka', 'Kaseta', 'Sanki serwa', 'Jarzmo z miska', 'PODGLAD pileczka 40.5', 'Ciegno', 'Ramie orczyka', 'Tulejka przegubu korby',
+    'Tulejka przegubu ramienia', 'Pokrywa tylna', 'PODGLAD SG90', 'PODGLAD orczyk SG90'];
+  for (const n of lista) await req(A + '/instances', { method: 'POST', body: JSON.stringify({ documentId: OS.did, elementId: OS.eid, partId: P[n], isAssembly: false, isWholePartStudio: false }) });
+  const g = await (await req(A)).json();
+  const I = {}; for (const inst of g.rootAssembly.instances) { const n = lista.find((k) => P[k] === inst.partId); if (n) I[n] = inst.id; }
+  const postF = async (feature) => { const r = await req(A + '/features', { method: 'POST', body: JSON.stringify({ feature }) }); const j = await r.json();
+    OS.log.push(feature.name + ': ' + (j.featureState ? j.featureState.featureStatus : r.status)); return j.feature && j.feature.featureId; };
+  const occ = (n) => ({ btType: 'BTMIndividualOccurrenceQuery-626', path: [I[n]] });
+  const group = (nm, ns) => postF({ btType: 'BTMMateGroup-65', featureType: 'mateGroup', name: nm, parameters: [{ btType: 'BTMParameterQueryWithOccurrenceList-67', parameterId: 'occurrencesQuery', queries: ns.map(occ) }] });
+  await group('Grupa: modul nieruchomy', ['Gniazdo', 'Nakretka', 'Kaseta', 'Sanki serwa', 'PODGLAD SG90', 'Pokrywa tylna']);
+  await group('Grupa: jarzmo z pileczka', ['Jarzmo z miska', 'PODGLAD pileczka 40.5']);
+  await group('Grupa: ramie z orczykiem', ['Ramie orczyka', 'PODGLAD orczyk SG90']);
+  await group('Grupa: ciegno z tulejkami', ['Ciegno', 'Tulejka przegubu korby', 'Tulejka przegubu ramienia']);
+  // krawedzie kolowe otworow (srodek, promien) -> lacznik w srodku, os Z wzdluz osi otworu, przesuniety do y = 0
+  const circ = async (part, r, Pt) => {
+    const j = await (await req(`${base}/bodydetails?partIds=${encodeURIComponent(P[part])}`)).json();
+    let best = null, bd = 1e9;
+    for (const e of j.bodies[0].edges.filter((x) => x.curve && x.curve.type === 'CIRCLE')) { const o = e.curve.origin;
+      const d = Math.hypot(o.x * 1000 - Pt[0], o.y * 1000 - Pt[1], o.z * 1000 - Pt[2]) + Math.abs(e.curve.radius * 1000 - r) * 10; if (d < bd) { bd = d; best = e; } }
+    return { id: best.id, y: best.curve.origin.y * 1000 };
+  };
+  const E = {
+    tA: ['Kaseta', await circ('Kaseta', 1.3, [0, D.yW, D.zc])], jA: ['Jarzmo z miska', await circ('Jarzmo z miska', 1.65, [0, D.yW - 0.3, D.zc])],
+    jC: ['Jarzmo z miska', await circ('Jarzmo z miska', 3.0, [D.C0[0], -0.5, D.C0[1]])], cC: ['Ciegno', await circ('Ciegno', 1.65, [D.C0[0], -0.3, D.C0[1]])],
+    cH: ['Ciegno', await circ('Ciegno', 1.65, [D.H0[0], -0.3, D.H0[1]])], rH: ['Ramie orczyka', await circ('Ramie orczyka', 3.0, [D.H0[0], -0.5, D.H0[1]])],
+    rS: ['Ramie orczyka', await circ('Ramie orczyka', 1.4, [D.S[0], -0.5, D.S[1]])], sS: ['PODGLAD SG90', await circ('PODGLAD SG90', 2.4, [D.S[0], -4.5, D.S[1]])],
+  };
+  const MC = {};
+  const mcFeature = (k, flip) => ({ btType: 'BTMMateConnector-66', featureType: 'mateConnector', name: 'MC ' + k, parameters: [
+    { btType: 'BTMParameterEnum-145', parameterId: 'originType', enumName: 'Origin type', value: 'ON_ENTITY' },
+    { btType: 'BTMParameterQueryWithOccurrenceList-67', parameterId: 'originQuery', queries: [{ btType: 'BTMInferredQueryWithOccurrence-1083', path: [I[E[k][0]]], deterministicIds: [E[k][1].id], inferenceType: 'CENTER' }] },
+    { btType: 'BTMParameterBoolean-144', parameterId: 'flipPrimary', value: flip },
+    { btType: 'BTMParameterBoolean-144', parameterId: 'transform', value: true },
+    { btType: 'BTMParameterQuantity-147', parameterId: 'translationX', expression: '0 mm' }, { btType: 'BTMParameterQuantity-147', parameterId: 'translationY', expression: '0 mm' },
+    { btType: 'BTMParameterQuantity-147', parameterId: 'translationZ', expression: `${(-E[k][1].y).toFixed(4)} mm` }] });
+  for (const k of Object.keys(E)) MC[k] = await postF(mcFeature(k, true));
+  const q = (k) => ({ btType: 'BTMFeatureQueryWithOccurrence-157', path: [], featureId: MC[k], queryData: '' });
+  const mate = (nm, type, a, b, extra = []) => postF({ btType: 'BTMMate-64', featureType: 'mate', name: nm, parameters: [
+    { btType: 'BTMParameterEnum-145', parameterId: 'mateType', enumName: 'Mate type', value: type },
+    { btType: 'BTMParameterQueryWithOccurrenceList-67', parameterId: 'mateConnectorsQuery', queries: [q(a), q(b)] }, ...extra] });
+  // limity: samo 'expression' bez 'value' daje w Onshape zakres 0..0 i blokuje Animate - trzeba podac tez wartosc w radianach
+  const lim = [{ btType: 'BTMParameterBoolean-144', parameterId: 'limitsEnabled', value: true },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-33 deg', value: -33 * Math.PI / 180, isNull: false },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '33 deg', value: 33 * Math.PI / 180, isNull: false }];
+  // limit walu serwa -37..+30: przy oku +-33 serwo ma -34.2..+27.3, druga galaz czworoboku zaczyna sie od -40.9 - limit ja wyklucza,
+  // wiec przeciaganie pileczki zawsze prowadzi naped wlasciwa droga. C obrotowy (ciegno tylko w plaszczyznie), H kulowy (bez przewiazania).
+  const limS = [{ btType: 'BTMParameterBoolean-144', parameterId: 'limitsEnabled', value: true },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-37 deg', value: -37 * Math.PI / 180, isNull: false },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '30 deg', value: 30 * Math.PI / 180, isNull: false }];
+  const pary = [['Os oka 2 x M3 (ogranicznik +-33)', 'REVOLUTE', 'tA', 'jA', lim], ['Wal serwa - ramie orczyka (limit -37..+30, blokuje druga galaz czworoboku)', 'REVOLUTE', 'sS', 'rS', limS],
+    ['Przegub C: korba - ciegno', 'REVOLUTE', 'jC', 'cC'], ['Przegub H: ciegno - ramie', 'BALL', 'cH', 'rH']];
+  for (const p of pary) await mate(...p);
+  // os Z kazdego lacznika ma wskazywac +Y; jesli wyszla -Y, odwroc lacznik (kierunek krawedzi zalezy od jej parametryzacji)
+  const g2 = await (await req(A + '?includeMateFeatures=true')).json();
+  const zy = {};
+  g2.rootAssembly.features.filter((f) => f.featureType === 'mate').forEach((f, i) => f.featureData.matedEntities.forEach((m, j2) => { zy[[pary[i][2], pary[i][3]][j2]] = m.mateConnectorCS.zAxis[1]; }));
+  const feats = (await (await req(A + '/features')).json()).features;
+  for (const k of Object.keys(zy)) if (zy[k] < 0) {
+    const f = feats.find((x) => x.featureId === MC[k]); f.parameters.find((x) => x.parameterId === 'flipPrimary').value = false;
+    await req(A + '/features/featureid/' + encodeURIComponent(f.featureId), { method: 'POST', body: JSON.stringify({ feature: f }) });
+    OS.log.push('odwrocony ' + k);
+  }
+};
+return 'v2c ok';
+})();
+
 
 // ===================== uruchomienie =====================
-window.OS.all = () => window.OS.run(['zmienne', 'wspolne', 'gniazdo', 'nakretka', 'kaseta', 'jarzmo', 'naped', 'sanki', 'pokrywa', 'podglad', 'przyrzady', 'probka']);
+window.OS.all = () => window.OS.run(['zmienne', 'wspolne', 'gniazdo', 'nakretka', 'kaseta', 'jarzmo', 'naped', 'sanki', 'pokrywa', 'podglad', 'przyrzady', 'probka', 'nazwy']);
