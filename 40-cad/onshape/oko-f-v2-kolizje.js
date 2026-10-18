@@ -1,5 +1,5 @@
-// Sprawdzenie ruchu i kolizji modulu oka F v2 na siatkach z Onshape (w przegladarce, bez FeatureScriptu).
-// Uzycie: po wklejeniu oko-f-v2-build.js (w otwartym Part Studio "Oko F v2") wklej ten plik i uruchom:
+// Sprawdzenie ruchu i kolizji modulu oka F v2.1 na siatkach z Onshape (w przegladarce, bez FeatureScriptu).
+// Uzycie: po wklejeniu oko-f-v2-build.js (w otwartym Part Studio "Oko F v2.1") wklej ten plik i uruchom:
 //   await OS.siatki();                     // pobiera siatki czesci (tessellatedfaces, tolerancja 0.03 mm)
 //   const r = await OS.runSim([-33, -30, -20, 0, 20, 30, 33]);   // ok. 30-40 s na kat
 // Wynik: dla kazdej pary czesci najmniejszy odstep [mm] i liczba punktow jednej czesci wewnatrz drugiej.
@@ -9,7 +9,7 @@ const OS = window.OS, D = OS.D, d2r = Math.PI / 180;
 
 OS.siatki = async () => {
   const ids = OS.PID; // nazwa czesci -> partId (z OS.nazwy)
-  const map = { Tuleja: 'Tuleja modulu', Jarzmo: 'Jarzmo', Ciegno: 'Ciegno', Ramie: 'Ramie orczyka', TulejkaC: 'Tulejka przegubu korby',
+  const map = { Tuleja: 'Obudowa', Jarzmo: 'Jarzmo z miska', Ciegno: 'Ciegno', Ramie: 'Ramie orczyka', TulejkaC: 'Tulejka przegubu korby',
     TulejkaH: 'Tulejka przegubu ramienia', Pokrywa: 'Pokrywa tylna', Pileczka: 'PODGLAD pileczka 40.5', SG90: 'PODGLAD SG90', Orczyk: 'PODGLAD orczyk SG90' };
   OS.mesh = {};
   for (const [k, n] of Object.entries(map)) {

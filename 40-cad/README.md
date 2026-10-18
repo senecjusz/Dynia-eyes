@@ -7,7 +7,7 @@
 | `step/` | Eksporty STEP z Onshape (do wymiany i archiwum) |
 | `stl/` | Gotowe STL do druku (tylko aktualna wersja) |
 | `3mf/` | Eksport 3MF z Onshape / projekty ze slicera |
-| `onshape/` | Skrypt budujący model w Onshape przez REST API |
+| `onshape/` | Skrypty budujące model w Onshape przez REST API |
 | `archiwum/` | Stare wersje – **nie drukować** |
 
 Nazwy plików: `<element>-v<wersja>`, np. `oko-male-uchwyt-v2.stl`.
@@ -16,65 +16,87 @@ Nazwy plików: `<element>-v<wersja>`, np. `oko-male-uchwyt-v2.stl`.
 
 | Element | Link |
 |---|---|
-| Małe oko, wariant F **v2 (do review)** – dokument **SimpleEye**, gałąź **v2**, Part Studio **Oko F v2**, Variable Studio **Zmienne v2**, Assembly **Oko F v2 - zlozenie** | [Part Studio](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/8083c4aa68dac2ff3dcc33d3/e/55797b2a8c74e36981a8e30d), [Assembly](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/8083c4aa68dac2ff3dcc33d3/e/d93dceae16d5a9f4a5bd58e9) |
+| Małe oko, wariant F **v2.1 (do review)** – dokument **SimpleEye**, gałąź **v2**, Part Studio **Oko F v2.1**, Variable Studio **Zmienne v2**, Assembly **Oko F v2.1 - zlozenie** | [Part Studio](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/8083c4aa68dac2ff3dcc33d3/e/77278efdbb90d7fd3f42dfa8), [Assembly](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/8083c4aa68dac2ff3dcc33d3/e/03c2a390f18fde7668b5a2ee) |
+| Małe oko, wariant F **v2** (bagnet, jarzmo z kołkiem) – wersja dokumentu **„v2 do review”** | [Part Studio](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/v/72db7c584de41f36a24f1eff/e/55797b2a8c74e36981a8e30d), [Assembly](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/v/72db7c584de41f36a24f1eff/e/d93dceae16d5a9f4a5bd58e9) |
 | Małe oko, wariant F **v1.1** (gniazdo, nakrętka, moduł oka) – dokument **SimpleEye**, Part Studio **Oko F v1.1** | [Onshape](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/3a55ebced85399a96c2abb04/e/e16c6f06fdebaa87e0db8e02) |
 
-Poprzedni stan (v1) jest zapisany w Onshape jako wersja dokumentu **„v1”**, a jego pliki są w [`archiwum/v1/`](archiwum/v1/). Stan v1.1 to wersja **„v1.1”** (gałąź Main), a v2 to gałąź **v2** z wersją **„v2 do review”**.
+Historia w Onshape:
+- v1 to wersja dokumentu **„v1”**, a jej pliki są w [`archiwum/v1/`](archiwum/v1/).
+- v1.1 to wersja **„v1.1”** (gałąź Main).
+- v2 to wersja **„v2 do review”** w gałęzi **v2**. W gałęzi v2 (workspace) zostały już tylko elementy v2.1.
+- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi.
 
-## Oko F v2 – do review (gałąź v2)
+## Oko F v2.1 – do review (gałąź v2)
 
-Plan, połączenia, zmienne, kinematyka, wyniki kolizji i lista niepewności są w [`30-projekt/plan-v2-modul-oka.md`](../30-projekt/plan-v2-modul-oka.md). Model budują skrypty [`onshape/oko-f-v2-build.js`](onshape/oko-f-v2-build.js) i [`onshape/oko-f-v2-kolizje.js`](onshape/oko-f-v2-kolizje.js) (sprawdzenie ruchu na siatkach).
+Bez bagnetu (jedna Obudowa), piłeczka wklejona w jarzmo z miską. Plan, połączenia, zmienne, kinematyka, wyniki kolizji, odstępstwa i lista niepewności są w [`30-projekt/plan-v2-modul-oka.md`](../30-projekt/plan-v2-modul-oka.md).
+
+Skrypty:
+- [`onshape/oko-f-v2.1-build.js`](onshape/oko-f-v2.1-build.js) buduje model,
+- [`onshape/oko-f-v2-kolizje.js`](onshape/oko-f-v2-kolizje.js) sprawdza ruch na siatkach.
+
+Skrypt v2 ([`onshape/oko-f-v2-build.js`](onshape/oko-f-v2-build.js)) jest zachowany dla wersji „v2 do review”.
+
+Wymiary: otwór w dyni **Ø57**, rant Ø63, nakrętka Ø66, ścianka dyni 15–25 mm, długość modułu 77,5 mm, gałka wystaje ok. 8 mm.
 
 ### Do druku (PLA, bez podpór)
 
-STL i 3MF eksportuje użytkownik: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm. Nazwy plików mają sufiks `-v2`.
+STL i 3MF eksportuje użytkownik: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm. Nazwy plików mają sufiks `-v2.1`. Wszystkie części mieszczą się na A1 mini.
 
-| Część | Szt. | Plik | Ułożenie na stole |
-|---|---|---|---|
-| Gniazdo | 1 | `gniazdo-v2.stl` | Płaskim wierzchem rantu do stołu |
-| Nakretka | 1 | `nakretka-v2.stl` | Tyłem (strona z wycięciami na klucz) do stołu |
-| Tuleja modulu | 1 | `modul-tuleja-v2.stl` | Czołem do stołu |
-| Jarzmo | 1 | `modul-jarzmo-v2.stl` | Płaską ścianą pierścienia do stołu, od strony bez korby (korba to pionowe żebro). Brim |
-| Ciegno | 1 | `modul-ciegno-v2.stl` | Spodem do stołu, podniesienia do góry |
-| Ramie orczyka | 1 | `modul-ramie-orczyka-v2.stl` | Wierzchem do stołu (kieszeń orczyka do góry) |
-| Tulejka przegubu | 2 | `modul-tulejka-v2.stl` | Kołnierzem do stołu |
-| Pokrywa tylna | 1 | `modul-pokrywa-v2.stl` | Tylną ścianą do stołu |
-| Przyrzad wiercenia A, B | 1+1 | `przyrzad-wiercenia-a-v2.stl`, `-b-v2.stl` | Zewnętrzną ścianą do stołu |
-| Przyrzad centrowania orczyka | 1 | `przyrzad-orczyka-v2.stl` | Podstawą do stołu |
+| Część | Szt. | Plik | Wymiary [mm] | Ułożenie na stole |
+|---|---|---|---|---|
+| Obudowa | 1 | `obudowa-v2.1.stl` | 63 × 63 × 78 | Płaskim wierzchem rantu do stołu |
+| Nakretka | 1 | `nakretka-v2.1.stl` | Ø66 × 10 | Tyłem (strona z wycięciami na klucz) do stołu |
+| Jarzmo z miska | 1 | `jarzmo-z-miska-v2.1.stl` | 28 × 47 × 34 | Płaskim bokiem miski do stołu, od strony bez korby (korba to pionowe żebro). Brim |
+| Ciegno | 1 | `ciegno-v2.1.stl` | 25 × 13 × 4,5 | Spodem do stołu, podniesienia do góry |
+| Ramie orczyka | 1 | `ramie-orczyka-v2.1.stl` | 35 × 19 × 4 | Wierzchem do stołu (kieszeń orczyka do góry) |
+| Tulejka przegubu | 2 | `tulejka-v2.1.stl` | Ø8 × 3,5 | Kołnierzem do stołu |
+| Pokrywa tylna | 1 | `pokrywa-v2.1.stl` | 64 × 44 × 8 | Tylną ścianą do stołu |
+| Przyrzad do wklejania pileczki | 1 | `przyrzad-wklejania-v2.1.stl` | 62 × 28 × 32 | Dnem (z otworem-celownikiem) do stołu, czasza do góry |
+| Przyrzad centrowania orczyka | 1 | `przyrzad-orczyka-v2.1.stl` | 28 × 20 × 12 | Podstawą do stołu |
 
-Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
+Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.** Jarzmo z miską najlepiej drukować na czarno: z ukosu widać przy piłeczce brzeg miski.
 
 ### Elementy złączne
 
 | Element | Szt. | Gdzie |
 |---|---|---|
-| M3×8 z **niskim łbem** (ISO 7380 albo DIN 7984) | 2 | Oś oka (DIN 912 się nie mieści) |
+| M3×5 z **niskim łbem** (ISO 7380) | 2 | Oś oka (dłuższa śruba weszłaby w piłeczkę, łeb DIN 912 się nie mieści) |
 | M3×8 DIN 912 | 4 | 2 przeguby (od dołu) i pokrywa tylna |
-| Wkładka M3 do wtapiania (otwór Ø4, dł. 4) | 4 | 2 w cięgnie, 2 w uszach tulei |
-| M3×35–40 | 2 | Przyrząd wiercenia |
+| M3×10 DIN 912 | 2 | Przyrząd do wklejania (trzyma jarzmo na czas klejenia) |
+| Wkładka M3 do wtapiania (otwór Ø4, dł. 4) | 4 | 2 w cięgnie, 2 w występach obudowy |
 | M2×6 | 1 | Ramię do orczyka (otwór 13 mm) |
 | Wkręty z kompletu SG90 | 3 | 2 uszy serwa i wkręt środkowy orczyka |
-
-Piłeczka: 2 otwory Ø3,3 (bieguny) i otwór Ø4,2 z boku. Wiercić w przyrządzie, a przez otwór na górze przyrządu zaznaczyć markerem miejsce źrenicy.
+| Klej CA (najlepiej żel) | – | Piłeczka w misce |
 
 ### Kolejność składania
 
-1. Wtopić wkładki w cięgno (od góry) i w uszy tulei.
-2. Jarzmo z piłeczką (kołek w otworze Ø4,2) wsunąć **od przodu** tulei. Kołki ogranicznika idą kanałami w występach osi. Wkręcić 2 śruby osi.
-3. SG90 wsunąć **od tyłu**, przednim uchem na słupek. Przykręcić ucho wkrętem z kompletu przez otwór w górze tulei.
-4. Pokrywę tylną przykręcić 2 × M3, przykręcić tylne ucho, kabel przepleść między kołkami pokrywy.
-5. Serwo ustawić na środek (strona ESP32) i założyć przyrząd centrowania od dołu: trzpienie wchodzą w otwory korby i ramienia. Orczyk z ramieniem nasadzić na wałek, przykręcić M2 i wkręt środkowy, zdjąć przyrząd.
-6. Cięgno włożyć między korbę a ramię. Tulejki z kołnierzem od dołu przez otwory w spodzie tulei, potem śruby M3×8 do oporu.
+1. Wtopić wkładki w cięgno (od góry) i w 2 występy z tyłu obudowy.
+2. **Wklejanie piłeczki:**
+   - piłeczkę włożyć źrenicą w dół do czaszy przyrządu, tak żeby źrenica była widoczna w otworze-celowniku Ø3,
+   - na pas miski nałożyć klej,
+   - jarzmo nałożyć oczkami między słupki i przykręcić 2 × M3×10,
+   - po związaniu kleju odkręcić.
+3. **Przegub C:** tulejkę z kołnierzem włożyć od dołu w otwór korby, nałożyć cięgno i wkręcić M3×8 do oporu we wkładkę.
+4. Jarzmo z piłeczką i cięgnem wsunąć **od tyłu** obudowy, piłeczką do otworu w rancie (GÓRA do góry). Kołki ogranicznika wchodzą kanałami w występach osi. Wkręcić 2 × M3×5 od góry i od dołu.
+5. SG90 wsunąć **od tyłu**, przednim uchem na słupek. Ucho przykręcić wkrętem z kompletu przez otwór w górze obudowy.
+6. Serwo ustawić na środek (strona ESP32). Od dołu założyć przyrząd centrowania: trzpień przez otwór dolny wchodzi w otwór ramienia. Orczyk z ramieniem nasadzić na wałek, przykręcić M2 i wkręt środkowy przez otwory w górze, zdjąć przyrząd.
+7. **Przegub H:** przez otwór dolny włożyć tulejkę w ramię, nasunąć cięgno, wkręcić M3×8 do oporu.
+8. Pokrywę tylną przykręcić 2 × M3×8, przykręcić tylne ucho, kabel przepleść między kołkami pokrywy.
+9. **W dyni (rodzic):**
+   - obudowę włożyć od zewnątrz w otwór Ø57, strzałką GÓRA do góry,
+   - od środka nakręcić nakrętkę, aż ząbki rantu wejdą w skórkę,
+   - syn wpina wtyczkę serwa.
 
 ### Assembly
 
-- Grupy: moduł nieruchomy, jarzmo z piłeczką, ramię z orczykiem, cięgno z tulejkami.
+- Grupy: moduł nieruchomy (obudowa, nakrętka, SG90, pokrywa), jarzmo z piłeczką, ramię z orczykiem, cięgno z tulejkami.
 - Mate'y:
   - oś oka: Revolute z limitem ±33°,
   - wałek serwa: Revolute,
   - przegub C: Cylindrical,
   - przegub H: Ball.
-- Tuleja jest unieruchomiona (Fix). Oko można obracać, przeciągając piłeczkę.
+- Obudowa jest unieruchomiona (Fix). Oko można obracać, przeciągając piłeczkę.
+
 Uwaga: konto Onshape jest na planie Free, więc dokumenty są **publiczne**.
 
 ## Oko F v1.1 – co się zmieniło względem v1 (po review)
