@@ -699,14 +699,15 @@ OS.zlozenie = async (name = 'Oko F v2.1 - zlozenie') => {
   const mate = (nm, type, a, b, extra = []) => postF({ btType: 'BTMMate-64', featureType: 'mate', name: nm, parameters: [
     { btType: 'BTMParameterEnum-145', parameterId: 'mateType', enumName: 'Mate type', value: type },
     { btType: 'BTMParameterQueryWithOccurrenceList-67', parameterId: 'mateConnectorsQuery', queries: [q(a), q(b)] }, ...extra] });
+  // limity: samo 'expression' bez 'value' daje w Onshape zakres 0..0 i blokuje Animate - trzeba podac tez wartosc w radianach
   const lim = [{ btType: 'BTMParameterBoolean-144', parameterId: 'limitsEnabled', value: true },
-    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-33 deg', isNull: false },
-    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '33 deg', isNull: false }];
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-33 deg', value: -33 * Math.PI / 180, isNull: false },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '33 deg', value: 33 * Math.PI / 180, isNull: false }];
   // limit walu serwa -37..+30: przy oku +-33 serwo ma -34.2..+27.3, druga galaz czworoboku zaczyna sie od -40.9 - limit ja wyklucza,
   // wiec przeciaganie pileczki zawsze prowadzi naped wlasciwa droga. C obrotowy (ciegno tylko w plaszczyznie), H kulowy (bez przewiazania).
   const limS = [{ btType: 'BTMParameterBoolean-144', parameterId: 'limitsEnabled', value: true },
-    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-37 deg', isNull: false },
-    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '30 deg', isNull: false }];
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-37 deg', value: -37 * Math.PI / 180, isNull: false },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '30 deg', value: 30 * Math.PI / 180, isNull: false }];
   const pary = [['Os oka 2 x M3 (ogranicznik +-33)', 'REVOLUTE', 'tA', 'jA', lim], ['Wal serwa - ramie orczyka (limit -37..+30, blokuje druga galaz czworoboku)', 'REVOLUTE', 'sS', 'rS', limS],
     ['Przegub C: korba - ciegno', 'REVOLUTE', 'jC', 'cC'], ['Przegub H: ciegno - ramie', 'BALL', 'cH', 'rH']];
   for (const p of pary) await mate(...p);

@@ -96,7 +96,7 @@ Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
   - przegub C: Revolute,
   - przegub H: Ball.
 - Obudowa jest unieruchomiona (Fix).
-- **Ruch:** przeciągnij piłeczkę myszką, a jarzmo, cięgno, ramię i orczyk ruszą razem z nią. Możesz też kliknąć prawym przyciskiem mate „Os oka 2 x M3 (ogranicznik +-33)”, wybrać **Animate** i nacisnąć ▶ (zakres −33…33° podstawia się z limitów).
+- **Ruch:** przeciągnij piłeczkę myszką, a jarzmo, cięgno, ramię i orczyk ruszą razem z nią. Możesz też kliknąć prawym przyciskiem mate „Os oka 2 x M3 (ogranicznik +-33)”, wybrać **Animate** i nacisnąć ▶ (zakres −33…33° podstawia się z limitów). Żeby widzieć napęd: PPM na „Obudowa”, „Nakretka” i „Pokrywa tylna” → Hide, widok Back (Shift+2), w Animate najlepiej 66 kroków.
 
 Uwaga: konto Onshape jest na planie Free, więc dokumenty są **publiczne**.
 
