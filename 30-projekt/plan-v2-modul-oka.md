@@ -112,6 +112,9 @@ Skrypt [`40-cad/onshape/oko-f-v2-kolizje.js`](../40-cad/onshape/oko-f-v2-kolizje
 - Cięgno od jarzma i od ramienia dzieli 0,2 mm (szczelina warstw).
 - Na ograniczniku ±33° ruch blokuje kołek w rowku. Najbliższe miejsca: cięgno – tuleja 0,32, ramię – tuleja 0,47, żebro korby – tuleja 0,22 mm.
 - Kołnierze tulejek dotykają korby i ramienia, tak jak zaprojektowano.
+- **Dopasowania nieruchome:**
+  - tuleja w gnieździe (pozycja ZAMKNIĘTE): najmniej 0,25 mm (zaczep w rowku), bez przenikań,
+  - nakrętka na gnieździe: najmniej 0,27 mm (gwint), bez przenikań.
 
 ## Druk (DFAM)
 
