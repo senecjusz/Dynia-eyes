@@ -1,5 +1,5 @@
 // Sprawdzenie ruchu i kolizji modulu oka F v2.1 na siatkach z Onshape (w przegladarce, bez FeatureScriptu).
-// Uzycie: po wklejeniu oko-f-v2-build.js (w otwartym Part Studio "Oko F v2.1") wklej ten plik i uruchom:
+// Uzycie: po wklejeniu oko-f-v2.1-build.js (w otwartym Part Studio "Oko F v2.1") wklej ten plik i uruchom:
 //   await OS.siatki();                     // pobiera siatki czesci (tessellatedfaces, tolerancja 0.03 mm)
 //   const r = await OS.runSim([-33, -30, -20, 0, 20, 30, 33]);   // ok. 30-40 s na kat
 // Wynik: dla kazdej pary czesci najmniejszy odstep [mm] i liczba punktow jednej czesci wewnatrz drugiej.
