@@ -25,3 +25,6 @@
 - Próbka gwintu v2.2 (luz 0,3, flanki 45°, pogłębiony zarys): **luz na wydruku OK**.
 - Review v2.2 (Opus + Codex): pierwsza wersja, którą da się złożyć; do poprawy luz sanek, fazki, zaczepy (kolizja z otworem H, cienki pasek), ucha pod wkładki. Zlecone jako v2.3.
 - Do sprawdzenia po wydruku modułu: napęd symetryczny (pomysł użytkownika), widelec do wyjmowania kasety, zacisk kabla, orczyk.
+
+## 2026-10-18 – review v2.3 (SolidCraft)
+- Opus + Codex: przeniesienie geometrii z Onshape poprawne (< 0,1 mm), kinematyka i ruch OK; do poprawy: klin w otworze H, błona w przyrządzie, nieszczelne siatki z eksportu SolidCraft, cienkie ścianki przy H, brak fazek. Zlecone jako v2.4.
