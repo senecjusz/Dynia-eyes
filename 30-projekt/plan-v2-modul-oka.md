@@ -1,4 +1,92 @@
-# Moduł małego oka v2.2: gniazdo + kaseta (do review)
+# Moduł małego oka: gniazdo + kaseta (aktualnie v2.4, do review)
+
+Aktualne dane są w sekcji **v2.4** poniżej. Sekcje v2.2 i v2.3 zostają jako historia; ich liczby (gwint 45° skok 5, rozstaw, luzy) zastępuje v2.4.
+
+## v2.4 w SolidCraft (do review)
+
+Model: `40-cad/solidcraft/oko-f-v2.4.solidcraft` (zasady budowy, parametry i ograniczenia w `40-cad/solidcraft/README.md`). Eksport: `40-cad/3mf/Oko F v2.4/`, 19 plików, **wszystkie siatki szczelne** (kontrola `40-cad/narzedzia/sprawdz_siatki.js`).
+
+**Łańcuch średnic (jeden obowiązujący):**
+
+| | Wymiar |
+|---|---|
+| Otwór w dyni | Ø63,5 (otwornica 2½"); przy Ø63 luz 0, przy Ø64 0,5/str. – sprawdzić otwór po wierceniu |
+| Kaseta | Ø48,5 / **Ø54,5**, fazka czoła 0,6 × 45° |
+| Gniazdo | otwór **Ø55,0** (luz 0,25/str.), fazka tylnej krawędzi otworu 0,6 × 45° |
+| Gwint gniazda | **ISO M63×3** (flanki 60°), od z −35,7 do −15; rdzeń gwintu Ø59,62; faza początku zwoju 1 × 45° (w profilu) |
+| Rura gniazda za gwintem | Ø59,0 (`gwintRdzen`; to nie jest rdzeń gwintu) |
+| Nakrętka | Ø74 × 7, gwint **M63.6×3** (`luzGwint` 0,3 promieniowo, ok. 0,15 na flance), otwór D1 = **Ø60,35** (`nakretkaOtwor`), w złożeniu obrócona o **24°** (środek okna bez kolizji 8–40°, zapas ±16°) |
+| Próbki gwintu | pierścień 15 mm M63×3 + nakrętki testowe M63.9×3 (luz 0,45) i M64.2×3 (luz 0,6) |
+| Rant | Ø74, ząbki 8 × (1 mm, 2–3,25 mm od otworu) |
+
+`gwintH` usunięty (głębokość zarysu wynika z ISO: 1,69 mm w gnieździe). **Druk gwintu:** warstwa **0,12–0,16 mm** w strefie gwintu (zmienna wysokość warstwy w Bambu Studio), bo dolne flanki 60° stoją 30° od poziomu.
+
+**Zmiany v2.4 (review v2.3):**
+1. Otwory dolne C i H przebite do **y −19,75** (było −21,25), bez klina ścianki.
+2. Przyrząd do wklejania bez błony: walec wnęki wchodzi 0,2 mm w stożek, a stożek zaczyna się 0,5 mm niżej. Gniazda kołków 0,3/str.
+3. Zaczepy i okienka obrócone o kolejne −5°: zaczepy 33° / 213°, haczyki i okienka **47° / 227°**. Mostek przy otworze H zniknął, materiał między szczeliną zaczepu a otworem H ma ok. 2,9 mm. Wybranie H jest współosiowe ze ścianką (r 25,25 przy końcu gniazda, r 25,8 za z −47,1), pogrubienie H od **z −46,5** (0,8 za gniazdem) do r 29,6. **Ścianka ≥ 2,0 mm w całym obszarze.**
+4. Fazki 0,6 × 45° na czole kasety i tylnej krawędzi otworu gniazda.
+5. Gwint: faza początku zwoju 1 × 45°, nakrętka w fazie (24°), trzecia nakrętka testowa 0,45.
+6. Trzpień przyrządu centrowania Ø5,4 (luz 0,3/str. w otworze ramienia Ø6,0) z fazką wejścia 0,5.
+7. Parametry `luzOsiowy`, `luzSanki`, `fazkaCzola`, `fazaZwoju`, `luzTrzpien`, `dnoWkretu`, `otworDolnyD` sterują geometrią. Co nie jest sparametryzowane: README SolidCraft.
+8. **Widelec do zaczepów:** półpierścień r 31–34 × 2,5 mm z 2 bolcami 3 × 2,7 w okienkach 47° i 227° oraz uchwytami na palce. Bolce są 0,35 od haczyków, a ściśnięcie uchwytów o ok. 1,1 mm na stronę zwalnia oba zaczepy. Zakłada się go z boku, rozginając końce o ok. 0,9 mm.
+9. Sanki: dno pod otworem wkrętu ucha SG90 0,6 mm.
+10. Siatki szczelne (wyżej).
+11. Nakrętka **bez radełka** i bez faz otworu: inaczej SolidCraft nie liczy gwintu wewnętrznego. Chwyt dają 6 wycięć na klucz.
+
+**Złożenie i znaki kątów (jedna konwencja, SolidCraft):** jointy „as built”:
+- oś oka: obrót, limit ±33°,
+- wałek serwa: obrót, limit −30…+37°,
+- przegub C: obrotowy, przegub H: kulowy.
+
+Kąt oka dodatni = obrót wokół +Y (prawoskrętnie). Ta sama konwencja obowiązuje w tabeli serwa poniżej i w firmware.
+
+| Oko | Serwo |
+|---|---|
+| +30° | −25,6° |
+| −30° | +29,8° |
+| +33° (stop) | −27,3° |
+| −33° (stop) | +34,2° |
+
+(W sekcji v2.2 niżej znaki są w konwencji Onshape, czyli odwrotne.)
+
+**Rozmieszczenie oczu w dyni R 150:** poziomo **≥ 125 mm**, pionowo **≥ 145 mm**.
+
+**Tabela luzów v2.4** (SolidCraft `inspect.clearance` co 3° w ±33°; pary z kasetą, wsuwanie i części od spodu na siatkach STL: odległość punkt–trójkąt + test wnętrza):
+
+| Para | Pasowanie | Nominalnie | Zmierzone |
+|---|---|---|---|
+| Oczko jarzma – występ kasety | osiowe | 0,3 (`luzOsiowy`) | 0,29–0,30 |
+| Kołek ogranicznika – szczelina / kanał | stop | 0,3 | 0,30; styk przy ±33°, kolizja przy ±34° |
+| Ramię – kaseta | ruchome | ≥ 0,5 | **0,76 przy ±30°**; **0,26 przy +33° (stop)** – patrz niepewności |
+| Cięgno – kaseta | ruchome | ≥ 0,5 | 0,51 (−33°), ≥ 0,98 przy +33° |
+| Tulejka C / H – kaseta | ruchome | ≥ 0,5 | 0,60 / 0,83 |
+| Cięgno – ramię, cięgno – jarzmo | warstwy | 0,2 | 0,20 |
+| Jarzmo – piłeczka | klej | 0,5 | 0,50 |
+| Cięgno / tulejka C / ramię – piłeczka | ruchome | ≥ 0,5 | 0,79 / 1,21 / 1,76 |
+| Ramię – SG90 | ruchome | ≥ 0,5 | 1,30 |
+| Kaseta – gniazdo (wsuwanie) | ślizgowe | 0,25 | 0,235 na całej drodze; haczyki uginają się na ostatnich 6 mm, w okienkach bez kontaktu |
+| Żebro – rowek | ślizgowe | 0,3 bok / 0,35 promień. | + skosy 0,8 |
+| Jarzmo z piłeczką przez kasetę (od tyłu) | wsuwanie | ≥ 0,25 | 0,29 |
+| Sanki z SG90 (od tyłu) | wsuwanie | 0,25 (`luzSanki`) | 0,28; na końcu SG90 0,20 od końca szczeliny |
+| **Tulejka C / H od spodu przez otwór dolny** | wsuwanie | 0,25 (Ø8 w Ø8,5) | **0,21–0,23**, bez kolizji na całej drodze |
+| **Śruba DIN 912 M3 (łeb Ø5,5) od spodu** | wsuwanie | – | 1,45 |
+| **Trzpień przyrządu centrowania od spodu** | wsuwanie | – | 1,5 w otworze kasety; płytka 0,40 pod kasetą; w ramieniu 0,3/str. |
+| Widelec – gniazdo / – haczyki | narzędzie | – | 0,75 / 0,35 |
+| Gwint gniazdo – nakrętka | ISO 60° | 0,3 promieniowo | ok. 0,15 na flance; faza 24°, zapas ±16° |
+| Jarzmo w przyrządzie do wklejania | ustalenie | 0,2 oczko / 0,3 kołek | 0,20 (oczko w kieszeni podstawy); piłeczka styka się ze stożkiem (centrowanie) |
+
+**Czego nie jestem pewien (v2.4):**
+1. **Ramię–kaseta przy ograniczniku +33°: 0,26.** Przy ściance ≥ 2 i pogrubieniu od z ≤ −46,5 piasta ramienia przy +33° wchodzi w pas za końcem gniazda. W zakresie pracy ±30° jest 0,76. Do wyboru:
+   - zostawić (stop jest twardy, ramię tam tylko dochodzi),
+   - pogrubienie od z −46,0 (0,3 od końca gniazda), co daje ok. 0,5.
+2. Gwint 60° (nawis, luz na flance 0,15): rozstrzygnie próbka z trzema nakrętkami.
+3. Widelec: siła rozgięcia przy zakładaniu i zwalnianiu do sprawdzenia na wydruku.
+4. SG90: model ma 11,8 mm szerokości, szczelina 12,2. Egzemplarz 12,2 (dane producenta) nie miałby luzu. Zmierzyć posiadane serwo.
+5. Zaczepy (siła ok. 8 N), zacisk kabla 1,0 / 1,4 i klej: bez zmian od v2.3, do sprawdzenia na wydruku.
+6. Ogranicznik pracuje na ok. 1,3 mm kołka (1,6 minus luz osiowy 0,3).
+
+# Historia: moduł v2.2 (gniazdo + kaseta)
 
 Zlecenie v2.2 po review v2.1d (Opus + Codex): modułu v2.1d nie dało się złożyć, więc zmieniona jest koncepcja. Wymaganie użytkownika: **w dyni nic się nie skręca, wkłada się gotowy moduł**.
 
@@ -206,7 +294,7 @@ Każda część ma płaską stronę na stół i nic nie wystaje poza nią. Anali
 
 | Kierunek | Rozstaw | Co ogranicza |
 |---|---|---|
-| Poziomo | **≥ 115 mm** | tył kaset (Ø54,5) na głębokości 77,5; tył jest okrągły, bez spłaszczeń, więc bez nożowych krawędzi |
+| Poziomo | **≥ 125 mm** (v2.2 zakładało 115 – za mało, review v2.2) | tył kaset (Ø54,5) na głębokości 77,5; tył jest okrągły, bez spłaszczeń, więc bez nożowych krawędzi |
 | Pionowo | **≥ 145 mm** | serwo i występ pokrywy wystają w dół do −38 mm |
 
 Przy mniejszej dyni rozstawy rosną.
