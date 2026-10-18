@@ -41,7 +41,7 @@ Pamięć agenta jest lokalna na każdym komputerze, więc najważniejsze prefere
 
 ## Gdzie jest prawda o modelu
 
-- **Onshape** (dokument SimpleEye, gałęzie i wersje, np. „v2.1c do review”) to źródło prawdy o geometrii.
+- **SolidCraft** (`40-cad/solidcraft/*.solidcraft`, od v2.3) to źródło prawdy o geometrii. Onshape (dokument SimpleEye, wersje do v2.2) jest w zapasie.
 - W repo są tylko eksporty (`40-cad/stl`, `40-cad/3mf`, `40-cad/step`), skrypty budujące i opisy (`40-cad/README.md`, `30-projekt/plan-*.md`).
 
 ## Proces wersji
@@ -77,7 +77,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 | Ślizgowe: wsuwanie (kaseta w gniazdo, sanki, prowadnice) | **0,25–0,3 mm** + fazki wejściowe | review v2.2 (0,06 mm = zacięcie) |
 | Obrotowe na śrubie lub tulejce (przeguby, oś) | 0,2 mm, luz osiowy 0,2–0,3 mm | v2.x |
 | Ruchome części obok siebie (cięgno, ramię, jarzmo) | ≥ 0,5 mm w całym zakresie ruchu, ≥ 0,2 mm po uwzględnieniu luzów przegubów | review v1.1, v2.2 |
-| Gwint drukowany (flanki 45°, zazębienie ~1,7 mm) | **0,3 mm** | próbka v2.2 OK; 0,5 za luźno, 0,3 przy flankach 62° za ciasno |
+| Gwint drukowany ISO 60° (M63×3, zazębienie ~1,2–1,3 mm) | **0,45 mm** (domyślnie; 0,3 i 0,6 jako próbki) | review v2.4: 0,3 przy 60° ≈ ciasny jak v1.1; 45°/0,3 (v2.2) było OK; 0,5 przy 45° za luźno |
 | Wcisk (np. tulejka w otwór) | 0 do −0,05 mm | do próby |
 | Szczelina na klej wypełniający | 0,5 mm | v2.1b |
 | Otwory M3 | ciasny Ø2,6, luźny Ø3,3; wkładka: głębokość = długość wkładki + ≥ 0,6 mm dna | v2.x, review v2.1d |

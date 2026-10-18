@@ -1,4 +1,5 @@
 # Review projektu CAD – lista kontrolna
+n> **Uwaga:** lista ma wartości historyczne (bagnet, ±40°, Ø64/72/43). Aktualne wymiary są w `30-projekt/plan-v2-modul-oka.md` i `40-cad/solidcraft/README.md`; obowiązują zasady z AGENTS.md (luzy, review).
 
 Każdy projekt mechanizmu (FeatureScript / Onshape / STL) przechodzi **ostre review przed pierwszym wydrukiem**. Review robi ktoś, kto nie projektował: inna sesja albo subagent, zawsze z wnioskami na piśmie.
 
