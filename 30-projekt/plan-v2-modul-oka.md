@@ -216,7 +216,7 @@ Przy mniejszej dyni rozstawy rosną.
 1. **Zaczepy.** Ramię 2 × 6 mm, długość ok. 15 mm, ugięcie 0,8 mm (odkształcenie ok. 1,2%). Klik i siła wyjęcia nie są sprawdzone na wydruku. Jeśli za twardo, można pocienić ramię (rozmiar w skrypcie).
 2. **Gwint skok 5, luz 0,3.** Nowa próbka gwintu: wydrukować przed gniazdem. Jeśli za luźno albo za ciasno, zmienić `luzGwint`.
 3. **Śruby osi skrócone do 4 mm.** Ucięta końcówka ma zadziory i trzeba je zeszlifować. Z M3 grzybkowej ISO 7380 (łeb 1,65) zostaje pogłębienie 1,7. DIN 912 (łeb 3 mm) się nie zmieści.
-4. **Animate w Assembly.** Mate'y są OK, a ruch został sprawdzony symulacją. Odtwarzania nie widziałem, bo panel przeglądarki był ukryty: do obejrzenia przez użytkownika.
+4. **Animate w Assembly** działa (sprawdzone na żywo): przy ukrytym gnieździe, nakrętce, kasecie i pokrywie, w widoku z góry, jarzmo, cięgno i ramię chodzą razem w zakresie ±33°. Eksport 3MF dla recenzentów jest w `40-cad/3mf/Oko F v2.2/`.
 5. **Kabel i wtyczka.** Taśma 3,5 × 1,4 i wtyczka 15 × 8 × 2,5 są przyjęte, nie mierzone. Przewężenie 1,0 zaciska taśmę 1,4: sprawdzić pociągnięciem.
 6. **Wymiary SG90 i orczyka** są założone (do pomiaru i wpisania w zmienne).
 7. **Klej akrylowy 2K** w szczelinie 0,5 na pasie 8 mm nie jest sprawdzony.
