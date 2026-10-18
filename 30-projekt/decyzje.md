@@ -9,7 +9,7 @@
 | 2026-10-17 | Punkt wyjścia: moduł-rurka (68percentwater), mocowanie gwintem | Mały otwór w dyni, montaż bez narzędzi przez syna |
 | 2026-10-17 | Poziomy = złożoność, nie mechanizm; duże oko w podpoziomach 2a/2b/2c | Każdy krok daje działające oko; mechanizm dobieramy w analizach |
 | 2026-10-17 | Moduł oka wpinany bagnetem w gniazdo osadzone w dyni; mocowanie gniazda do ustalenia | Montaż modułu bez narzędzi, wymuszona pionowa oś oka |
-| 2026-10-17 | Mocowanie małego oka: gniazdo z rantem + nakrętka (rodzic), moduł na bagnet (syn) | Najbezpieczniejsze; dziecko robi tylko prostą, nie do pomylenia czynność |
+| 2026-10-17 | Mocowanie małego oka: gniazdo z rantem + nakrętka (rodzic), moduł na bagnet (syn); wymiary rantu i napędu zaktualizowane w v1.1 (patrz niżej) | Najbezpieczniejsze; dziecko robi tylko prostą, nie do pomylenia czynność |
 | 2026-10-17 | Drukowany klucz nasadowy do nakrętki gniazda, pod grzechotkę 3/8" | Syn może sam dokręcić gniazdo; jeden klucz do wszystkich oczu |
 | 2026-10-17 | Model oka F v1 w Onshape (SimpleEye) ze zwykłych operacji + zmienne `#…`, wszystkie części w jednym Part Studio w pozycji złożonej | Użytkownik może sam edytować drzewo; jedno miejsce do sprawdzania kolizji i luzów |
 | 2026-10-17 | Gwint gniazda/nakrętki: trapezowy, prawy, skok 3 mm, luz 0,3 mm, od 14 do 45 mm pod powierzchnią | Docisk ścianki 15–35 mm; prawy = dokręcanie „normalnie” patrząc od środka dyni |
@@ -27,3 +27,6 @@
 | 2026-10-18 | Firmware od początku na ESP32, z kalibracją serw przez stronę w telefonie (Wi-Fi, zapis w pamięci) | Kalibracja to największe ryzyko; radar LD2450 później bez migracji |
 | 2026-10-18 | Zamówić radar HLK-LD2450 | Dostawa kilka dni; śledzenie przez duże oko to wtedy jeden wieczór |
 | 2026-10-18 | Drukarki: X1C w Warszawie (wydruki próbne w tygodniu), A1 mini w Kobyłce (weekendy, małe części) | Logistyka między dwoma miejscami |
+| 2026-10-18 | v1.1 małego oka: napęd korba 22 \/ cięgno 16 \/ drukowane ramię orczyka 22 mm, ±30° (start ±25°), piłeczka 39,5–40,5, rant Ø68×1,5; drukowana testowo bez poprawek z review | Usuwa martwy punkt z v1 (przy orczyku 13–14 mm blokada ~20°); poprawki review → v2 |
+| 2026-10-18 | Zasada DFAM: każda część z płaską stroną na stół, nic nie wystaje poza nią | Jarzmo v1/v1.1 nie leżało płasko |
+| 2026-10-18 | v2 modułu oka ze śrubami zlecona nowej sesji (brief 30-projekt/brief-v2-modul-oka.md) | Po review v1.1 |
