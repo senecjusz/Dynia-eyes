@@ -6,7 +6,7 @@ Dla orkiestratora, który przejmuje projekt w Warszawie. Zasady pracy: `AGENTS.m
 
 - **Małe oko, moduł v2.4** gotowy i po review (Opus + Codex): nadaje się do wydruku testowego po drobnych poprawkach v2.5. Połączone wnioski: `20-analizy/review/2026-10-18-v2.4-polaczone.md`.
 - **Źródło prawdy o modelu:** `40-cad/solidcraft/oko-f-v2.4.solidcraft` (SolidCraft 0.15). Onshape (dokument SimpleEye, gałąź v2, wersja „v2.2 do review”) jest w zapasie.
-- **Historia wersji:** v1 → v1.1 (wydruk testowy) → v2 → v2.1 → v2.1b/c/d → v2.2 (pierwsza składalna, gniazdo + kaseta) → v2.3 (SolidCraft) → v2.4 (w toku). Każda wersja przeszła review Opus + Codex.
+- **Historia wersji:** v1 → v1.1 (wydruk testowy) → v2 → v2.1 → v2.1b/c/d → v2.2 (pierwsza składalna, gniazdo + kaseta) → v2.3 (SolidCraft) → v2.4 (po review) → v2.5 (do zrobienia). Każda wersja przeszła review Opus + Codex.
 - **Wydruki:**
   - próbka gwintu 45° v2.2: luz OK,
   - próbka gwintu ISO M63×3 (v2.3/v2.4): do wydruku (nakrętki z luzem 0,3 / 0,45 / 0,6).
