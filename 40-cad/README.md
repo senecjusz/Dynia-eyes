@@ -24,7 +24,7 @@ Historia w Onshape:
 - v1 to wersja dokumentu **„v1”**, a jej pliki są w [`archiwum/v1/`](archiwum/v1/).
 - v1.1 to wersja **„v1.1”** (gałąź Main).
 - v2 to wersja **„v2 do review”** w gałęzi **v2**. W gałęzi v2 (workspace) zostały już tylko elementy v2.1.
-- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi, a v2.1b (klej 0,5 mm, napęd w Assembly) to wersja **„v2.1b do review”**.
+- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi, v2.1b (klej 0,5 mm, napęd w Assembly) to wersje **„v2.1b do review”** i **„v2.1b animacja”**, a **v2.1c** (po wydruku v1.1: jarzmo bez podpór, luz gwintu 0,5 z Próbką gwintu, kabel SG90) to wersja **„v2.1c do review”**.
 
 ## Oko F v2.1 – do review (gałąź v2)
 
@@ -40,19 +40,20 @@ Wymiary: otwór w dyni **Ø57**, rant Ø63, nakrętka Ø66, ścianka dyni 15–2
 
 ### Do druku (PLA, bez podpór)
 
-STL i 3MF eksportuje użytkownik: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm. Nazwy plików mają sufiks `-v2.1`. Wszystkie części mieszczą się na A1 mini.
+STL i 3MF eksportuje użytkownik: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm. Nazwy plików mają sufiks `-v2.1c`. Wszystkie części mieszczą się na A1 mini.
 
 | Część | Szt. | Plik | Wymiary [mm] | Ułożenie na stole |
 |---|---|---|---|---|
-| Obudowa | 1 | `obudowa-v2.1.stl` | 63 × 63 × 78 | Płaskim wierzchem rantu do stołu |
-| Nakretka | 1 | `nakretka-v2.1.stl` | Ø66 × 10 | Tyłem (strona z wycięciami na klucz) do stołu |
-| Jarzmo z miska | 1 | `jarzmo-z-miska-v2.1.stl` | 28 × 47 × 34 | Płaskim bokiem miski do stołu, od strony bez korby (korba to pionowe żebro). Brim |
-| Ciegno | 1 | `ciegno-v2.1.stl` | 25 × 13 × 4,5 | Spodem do stołu, podniesienia do góry |
-| Ramie orczyka | 1 | `ramie-orczyka-v2.1.stl` | 35 × 19 × 4 | Wierzchem do stołu (kieszeń orczyka do góry) |
-| Tulejka przegubu | 2 | `tulejka-v2.1.stl` | Ø8 × 3,5 | Kołnierzem do stołu |
-| Pokrywa tylna | 1 | `pokrywa-v2.1.stl` | 64 × 44 × 8 | Tylną ścianą do stołu |
-| Przyrzad do wklejania pileczki | 1 | `przyrzad-wklejania-v2.1.stl` | 62 × 28 × 32 | Dnem (z otworem-celownikiem) do stołu, czasza do góry |
-| Przyrzad centrowania orczyka | 1 | `przyrzad-orczyka-v2.1.stl` | 28 × 20 × 12 | Podstawą do stołu |
+| Probka gwintu - obudowa, Probka gwintu - nakretka | 1+1 | `probka-gwintu-obudowa-v2.1c.stl`, `probka-gwintu-nakretka-v2.1c.stl` | Ø55 × 14, Ø62 × 7 | **Drukować najpierw**, tymi samymi ustawieniami co obudowę i nakrętkę: pierścień na czole, nakrętka płasko. Jeśli nakrętka idzie za ciężko albo lata, zmienić `luzGwint` (teraz 0,5) |
+| Obudowa | 1 | `obudowa-v2.1c.stl` | 63 × 63 × 78 | Płaskim wierzchem rantu do stołu |
+| Nakretka | 1 | `nakretka-v2.1c.stl` | Ø66 × 10 | Tyłem (strona z wycięciami na klucz) do stołu |
+| Jarzmo z miska | 1 | `jarzmo-z-miska-v2.1c.stl` | 28 × 47 × 34 | Płaskim bokiem miski do stołu, **od strony bez korby** (wysokość 26 mm; korba z piastą C to pionowe żebro do góry). Bez podpór: sprawdzone na siatce, jedyne nawisy to mostki nad poziomymi otworami Ø6 i Ø3,3. Brim zalecany |
+| Ciegno | 1 | `ciegno-v2.1c.stl` | 25 × 13 × 4,5 | Spodem do stołu, podniesienia do góry |
+| Ramie orczyka | 1 | `ramie-orczyka-v2.1c.stl` | 35 × 19 × 4 | Wierzchem do stołu (kieszeń orczyka do góry) |
+| Tulejka przegubu | 2 | `tulejka-v2.1c.stl` | Ø8 × 3,5 | Kołnierzem do stołu |
+| Pokrywa tylna | 1 | `pokrywa-v2.1c.stl` | 64 × 44 × 8 | Tylną ścianą do stołu |
+| Przyrzad do wklejania pileczki | 1 | `przyrzad-wklejania-v2.1c.stl` | 62 × 28 × 32 | Dnem (z otworem-celownikiem) do stołu, czasza do góry |
+| Przyrzad centrowania orczyka | 1 | `przyrzad-orczyka-v2.1c.stl` | 28 × 20 × 12 | Podstawą do stołu |
 
 Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.** Jarzmo z miską najlepiej drukować na czarno: z ukosu widać przy piłeczce brzeg miski.
 
@@ -70,10 +71,11 @@ Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
 
 ### Kolejność składania
 
+0. Najpierw wydrukować i sprawdzić **Próbkę gwintu** (pierścień + kawałek nakrętki).
 1. Wtopić wkładki w cięgno (od góry) i w 2 występy z tyłu obudowy.
 2. **Wklejanie piłeczki:**
    - piłeczkę włożyć źrenicą w dół do czaszy przyrządu, tak żeby źrenica była widoczna w otworze-celowniku Ø3,
-   - na pas miski nałożyć klej, **z dala od otworów osi** (końcówki śrub osi wchodzą 0,15 mm w szczelinę),
+   - na pas miski nałożyć klej, **z dala od otworów osi** (klej nie może zalać otworów oczek),
    - jarzmo nałożyć oczkami między słupki i przykręcić 2 × M3×10,
    - po związaniu kleju odkręcić.
 3. **Przegub C:** tulejkę z kołnierzem włożyć od dołu w otwór korby, nałożyć cięgno i wkręcić M3×8 do oporu we wkładkę.
@@ -81,7 +83,7 @@ Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
 5. SG90 wsunąć **od tyłu**, przednim uchem na słupek. Ucho przykręcić wkrętem z kompletu przez otwór w górze obudowy.
 6. Serwo ustawić na środek (strona ESP32). Od dołu założyć przyrząd centrowania: trzpień przez otwór dolny wchodzi w otwór ramienia. Orczyk z ramieniem nasadzić na wałek, przykręcić M2 i wkręt środkowy przez otwory w górze, zdjąć przyrząd.
 7. **Przegub H:** przez otwór dolny włożyć tulejkę w ramię, nasunąć cięgno, wkręcić M3×8 do oporu.
-8. Pokrywę tylną przykręcić 2 × M3×8, przykręcić tylne ucho, kabel przepleść między kołkami pokrywy.
+8. Wtyczkę serwa przeciągnąć przez szeroką część otworu w pokrywie (od środka na zewnątrz), pokrywę przykręcić 2 × M3×8, przykręcić tylne ucho. Taśmę kabla wcisnąć w wąską szczelinę pod otworem (odciążenie).
 9. **W dyni (rodzic):**
    - obudowę włożyć od zewnątrz w otwór Ø57, strzałką GÓRA do góry,
    - od środka nakręcić nakrętkę, aż ząbki rantu wejdą w skórkę,

@@ -1,14 +1,19 @@
-# Moduł małego oka v2.1b: plan i stan po budowie (do review)
+# Moduł małego oka v2.1c: plan i stan po budowie (do review)
 
 Na podstawie [briefu v2](brief-v2-modul-oka.md) i poprawek po review v2 (18.10): **bez bagnetu**, **piłeczka wklejona w miskę**, **mniejsza średnica**. Wartości, których nie zmierzono, są zmiennymi (lista niżej).
 
-**Onshape:** dokument SimpleEye, gałąź **v2**. Wersja **„v2.1b do review”**. Wcześniejsze wersje „v2.1 do review”, „v2 do review”, „v1.1” i „v1” zostają w historii bez zmian.
+**Onshape:** dokument SimpleEye, gałąź **v2**. Wersja **„v2.1c do review”**. Wcześniejsze wersje „v2.1b do review”, „v2.1b animacja”, „v2.1 do review”, „v2 do review”, „v1.1” i „v1” zostają w historii bez zmian.
+
+**v2.1c względem v2.1b** (po wydruku testowym v1.1):
+- **jarzmo drukuje się bez podpór:** leży płaskim bokiem miski (strona bez korby); korba zrośnięta z miską na całej szerokości pasa; piasta C Ø10 (ścianka wokół tulejki 2 mm zamiast 1,2) w kształcie kropli z bokami 45°; oczka 2,4 mm (`oczkoT`); jedyne nawisy to mostki nad poziomymi otworami Ø6 i Ø3,3,
+- **gwint:** `luzGwint` 0,5 (v1.1 z 0,3 była za ciasna) i nowe części **Probka gwintu** (pierścień z gwintem obudowy + kawałek nakrętki) do kalibracji przed drukiem obudowy,
+- **kabel SG90:** taśma wychodzi u dołu krótszego boku od strony wałka i idzie prosto do tyłu; w pokrywie otwór w kształcie dziurki od klucza przepuszcza wtyczkę 3-pin przy założonej pokrywie, a wąska szczelina zaciska taśmę.
 
 **v2.1b względem v2.1:**
 - szczelina na klej 0,5 mm (zmienna `klej`) pod klej wypełniający (akrylowy dwuskładnikowy),
 - przyrząd do wklejania sterowany zmiennymi, a jego czasza nie zależy od kleju,
 - Assembly: przeciąganie piłeczki prowadzi cały napęd (limit wałka serwa, przegub C obrotowy).
-- Part Studio **Oko F v2.1**: wszystkie części w pozycji złożonej, 207 operacji w 11 folderach.
+- Part Studio **Oko F v2.1**: wszystkie części w pozycji złożonej, 230 operacji w 12 folderach.
 - Variable Studio **Zmienne v2**: 42 zmienne v2.1.
 - Assembly **Oko F v2.1 - zlozenie**: ruch ±33°. Przeciągnięcie piłeczki albo Animate na mate'cie osi oka porusza cały napęd.
 
@@ -43,18 +48,19 @@ Stan v2 (bagnet, jarzmo z kołkiem, przyrząd wiercenia) jest w wersji „v2 do 
 |---|---|---|
 | Obudowa | 1 | Rant Ø63 (płaski wierzch, pod spodem dopasowany do dyni R 150, fazka, 8 ząbków przeciw obracaniu), część w otworze Ø56,2 × 15, rura Ø52,5 z gwintem. W środku: występy osi z rowkiem ogranicznika i kanałem montażowym od tyłu, pogłębienia i ciasne otwory osi, słupek przedniego ucha SG90 z podporą 45°, szczelina na serwo, otwory montażowe (dolny do przegubu H, górne do wkrętów ucha i orczyka), 2 występy z wkładkami na pokrywę, spłaszczenia tyłu, wybranie w ściance na przegub H |
 | Nakretka | 1 | Ø66 × 7. Czoło stożkowe pod wewnętrzną ściankę dyni, radełko, 6 wycięć na klucz. Gwint = zwój obudowy odsunięty o `#luzGwint` |
-| Jarzmo z miska | 1 | Pas kulisty (wnętrze Ø41,5 = piłeczka 40,5 + 2 × 0,5 kleju, ścianka 2,5, szerokość 8) w płaszczyźnie odchylonej o 60° od osi z tyłu w bok. Oczka na osi z luźnymi otworami M3 i kołkami ogranicznika. Korba zrośnięta z miską |
+| Jarzmo z miska | 1 | Pas kulisty (wnętrze Ø41,5 = piłeczka 40,5 + 2 × 0,5 kleju, ścianka 2,5, szerokość 8) w płaszczyźnie odchylonej o 60° od osi z tyłu w bok. Oczka 2,4 mm na osi z luźnymi otworami M3 i kołkami ogranicznika. Korba zrośnięta z miską na całej szerokości pasa, piasta C Ø10 (kropla ostrzem w stronę stołu, spłaszczona 4,15 mm od osi po stronie ściany obudowy) |
 | Ciegno | 1 | Otwory Ø3,3, wkładki M3 od góry w podniesieniach |
 | Ramie orczyka | 1 | Kieszeń na orczyk od spodu, otwór M2 13 mm od osi, otwór na tulejkę w H |
 | Tulejka przegubu korby / ramienia | 2 | Ø5,6 × 2,7 z kołnierzem Ø8 × 0,8, otwór Ø3,3 |
-| Pokrywa tylna | 1 | Zamyka tył, słupek tylnego ucha SG90, 3 kołki na kabel (odciążenie), spłaszczenia jak w obudowie |
+| Pokrywa tylna | 1 | Zamyka tył, słupek tylnego ucha SG90, spłaszczenia jak w obudowie. Otwór na kabel w kształcie dziurki od klucza: szeroka część 9 × 3,4 na wtyczkę 3-pin (8 × 2,5), pod nią szczelina 3,8 × 1,2 zaciskająca taśmę; od środka 2 prowadnice taśmy |
+| Probka gwintu - obudowa / - nakretka | 1+1 | Pierścień 14 mm z gwintem obudowy (ta sama ścianka, skok, profil, faza zwoju) i kawałek nakrętki Ø62 × 7 z tym samym `#luzGwint`. Do wydrukowania przed obudową |
 | Przyrzad do wklejania pileczki | 1 | Czasza na przednią połowę piłeczki (Ø40,9, niezależnie od kleju) z otworem-celownikiem Ø3 na źrenicę. Dwa słupki (wewnętrzna ściana jak występy osi w obudowie) z otworami M3 trzymają jarzmo w tym samym położeniu co w obudowie |
 | Przyrzad centrowania orczyka | 1 | Płytka pod obudową z trzpieniem Ø5,8 przez otwór dolny do otworu ramienia (H) |
-| PODGLAD pileczka 40.5 / SG90 / orczyk SG90 | – | Tylko do sprawdzania kolizji |
+| PODGLAD pileczka 40.5 / SG90 / orczyk SG90 | – | Tylko do sprawdzania kolizji. SG90 ma taśmę kabla 3,5 × 1,4 wychodzącą u dołu krótszego boku od strony wałka, przez pokrywę na zewnątrz |
 
 ## Foldery w drzewie operacji
 
-Wspolne · **Obudowa** (podfoldery: rant i przod · gwint · os i ograniczniki · mocowanie serwa · otwory i pokrywa · splaszczenia i wybranie) · Nakretka · Jarzmo z miska · Ciegno · Ramie orczyka · Tulejki · Pokrywa tylna · PODGLAD (nie drukowac) · Przyrzad do wklejania pileczki · Przyrzad centrowania orczyka.
+Wspolne · **Obudowa** (podfoldery: rant i przod · gwint · os i ograniczniki · mocowanie serwa · otwory i pokrywa · splaszczenia i wybranie) · Nakretka · Jarzmo z miska · Ciegno · Ramie orczyka · Tulejki · Pokrywa tylna · PODGLAD (nie drukowac) · Przyrzad do wklejania pileczki · Przyrzad centrowania orczyka · Probka gwintu (do kalibracji luzu).
 
 Każda operacja ma nazwę `Część: co robi`, np. `Obudowa: rowek ogranicznika gora`, `Jarzmo: kolek ogranicznika dol`. Płaszczyzny i szkice są ukryte.
 
@@ -62,10 +68,10 @@ Każda operacja ma nazwę `Część: co robi`, np. `Obudowa: rowek ogranicznika 
 
 | Grupa | Zmienne |
 |---|---|
-| Piłeczka i miska | `kulaDmax` 40,5, `klej` 0,5, `jarzmoT` 2,5, `jarzmoW` 8, `oczkoT` 2, `luzOsiowy` 0,3 |
+| Piłeczka i miska | `kulaDmax` 40,5, `klej` 0,5, `jarzmoT` 2,5, `jarzmoW` 8, `oczkoT` 2,4, `luzOsiowy` 0,3 |
 | Obudowa | `modulID` 48,5, `sciankaM` 2, `modulL` 77,5, `rantD` 63, `rantT` 1,5, `kolnierzykD` 41, `przodD` 56,2, `przodL` 15 |
-| Gwint i nakrętka | `gwintSkok` 3, `luzGwint` 0,3, `dociskMin` 15, `dociskMax` 25, `nakretkaH` 7, `nakretkaD` 66, `nakretkaZ` 22 (tylko podgląd) |
-| Śruby i wkładki | `m3Ciasny` 2,6, `m3Luzny` 3,3, `lebD` 6,2, `lebH` 2,5, `wkladkaD` 4, `wkladkaL` 4, `tulejkaD` 5,6, `luzPrzegub` 0,2, `kolnierzD` 8, `kolnierzH` 0,8, `plytaT` 2,5, `m2Otwor` 2,2, `serwoWkret` 1,8 |
+| Gwint i nakrętka | `gwintSkok` 3, `luzGwint` 0,5, `dociskMin` 15, `dociskMax` 25, `nakretkaH` 7, `nakretkaD` 66, `nakretkaZ` 22 (tylko podgląd) |
+| Śruby i wkładki | `m3Ciasny` 2,6, `m3Luzny` 3,3, `lebD` 6,2, `lebH` 1,9, `wkladkaD` 4, `wkladkaL` 4, `tulejkaD` 5,6, `luzPrzegub` 0,2, `kolnierzD` 8, `kolnierzH` 0,8, `plytaT` 2,5, `m2Otwor` 2,2, `serwoWkret` 1,8 |
 | SG90 (do pomiaru) | `servoH` 30,5, `servoSpodY` −33,5, `servoUcho` 15,9 |
 | Wyliczane | `hornTop`, `modulOD` (52,5), `gwintD` (54,9), `gniazdoL` (koniec gwintu, 35,73), `nakretkaOtwor` (53,1) |
 
@@ -81,7 +87,7 @@ Ich zmiana wymaga ponownego uruchomienia sekcji skryptu.
 
 | Para | Jak | Śruba | Ciasno | Luźno |
 |---|---|---|---|---|
-| Obudowa ↔ jarzmo z miską (oś oka) | 2 śruby od góry i od dołu, łeb w pogłębieniu Ø6,2 × 2,5. Końcówka wystaje 0,15 mm z oczka w szczelinę kleju, 0,35 mm przed piłeczką | 2 × **M3×5 z niskim łbem** (ISO 7380) | występ obudowy Ø2,6 | oczko jarzma Ø3,3; luz osiowy 0,3 z każdej strony |
+| Obudowa ↔ jarzmo z miską (oś oka) | 2 śruby od góry i od dołu, łeb w pogłębieniu Ø6,2 × 1,9. Śruba trzyma się na 2,75 mm w występie, a końcówka kończy się w oczku, 0,95 mm przed piłeczką | 2 × **M3×5 z niskim łbem** (ISO 7380) | występ obudowy Ø2,6 | oczko jarzma Ø3,3; luz osiowy 0,3 z każdej strony |
 | Jarzmo ↔ piłeczka | klej wypełniający (akrylowy 2K) w szczelinie 0,5 mm w misce, z daleka od otworów osi; ustawienie źrenicy w przyrządzie do wklejania | – | – | – |
 | Jarzmo ↔ obudowa (ograniczniki) | kołek Ø1,4 na każdym oczku w łukowym rowku występu, stop przy ±33°. Kanał montażowy prowadzi kołek od tyłu | – | – | – |
 | Korba ↔ cięgno (C) | śruba od dołu przez tulejkę z kołnierzem, dokręcona do oporu | M3×8 DIN 912 | wkładka M3 w cięgnie | korba na tulejce (Ø6,0 / Ø5,6), luz osiowy 0,2 |
@@ -90,7 +96,7 @@ Ich zmiana wymaga ponownego uruchomienia sekcji skryptu.
 | SG90 ↔ obudowa / pokrywa | przednie ucho na słupku obudowy, tylne na słupku pokrywy | wkręty z kompletu SG90 | Ø1,8 | – |
 | Pokrywa ↔ obudowa | 2 śruby w występach obudowy | 2 × M3×8 | wkładki M3 w obudowie | pokrywa Ø3,3 |
 | Obudowa ↔ dynia | obudowa od zewnątrz w otworze Ø57, rant z ząbkami na skórce, nakrętka od środka | – | – | – |
-| Obudowa ↔ nakrętka | gwint 45°, skok 3, faza początku zwoju | – | – | luz 0,3 (odsunięcie ścian) |
+| Obudowa ↔ nakrętka | gwint 45°, skok 3, faza początku zwoju | – | – | luz 0,5 (odsunięcie ścian), sprawdzany na Próbce gwintu |
 | Przyrząd do wklejania ↔ jarzmo | 2 śruby w słupkach jak oś oka | 2 × M3×10 DIN 912 | słupek Ø2,6 | oczko Ø3,3 |
 
 ## Kinematyka
@@ -120,17 +126,19 @@ Skrypt [`40-cad/onshape/oko-f-v2-kolizje.js`](../40-cad/onshape/oko-f-v2-kolizje
 | cięgno – obudowa | 0,52 mm |
 | tulejka H – obudowa | 0,60 mm |
 | tulejka C – obudowa | 0,57 mm |
+| korba (piasta C) – obudowa | 0,54 mm |
 | łby śrub – obudowa, jarzmo, ramię | ≥ 0,66 mm |
 | ramię – SG90 | 1,29 mm |
 | piłeczka – obudowa | 2,56 mm |
-| piłeczka – miska (szczelina kleju) | 0,5 mm |
+| piłeczka – miska (szczelina kleju) | 0,46 mm (0,5 – dokładność siatki) |
+| kabel – pokrywa (prowadnice) | 0,55 mm |
 | piłeczka – cięgno | 0,82 mm |
 | cięgno – jarzmo, cięgno – ramię | 0,2 mm (szczelina warstw) |
 
 - Przy ±33° ruch blokuje kołek ogranicznika w rowku, a przy 0° miska ma 0,2 mm do występów.
 - Kołnierze tulejek dotykają korby i ramienia, tak jak zaprojektowano.
 - **Dopasowania nieruchome:**
-  - nakrętka na obudowie: najmniej 0,27 mm (gwint), bez przenikań,
+  - nakrętka na obudowie i w Próbce gwintu: najmniej 0,47 mm (gwint, `luzGwint` 0,5), bez przenikań,
   - piłeczka w przyrządzie do wklejania: 0,18 mm,
   - jarzmo w przyrządzie: 0,3 mm. Wcześniej krawędź kieszeni oczek dotykała pierścienia, więc kieszenie poszerzyłem do |y| 18,4.
 - **Brzeg miski patrząc na wprost:** schowany za kołnierzykiem Ø41 w całym zakresie ±33°. Zostaje tylko szczelina 0,25 mm między piłeczką Ø40,5 a kołnierzykiem. Najbardziej wysunięty punkt miski leży 6–8 mm za rantem, na promieniu 20,5.
@@ -138,6 +146,7 @@ Skrypt [`40-cad/onshape/oko-f-v2-kolizje.js`](../40-cad/onshape/oko-f-v2-kolizje
 ## Druk (DFAM)
 
 Każda część ma płaską stronę na stół i nic nie wystaje poza nią. Podpory nie są potrzebne:
+- **jarzmo z miską** leży bokiem miski bez korby (płaszczyzna pasa, s = +4 mm). Sprawdzone na siatce: żadna ściana nie jest bardziej nawisowa niż 45°, poza mostkami nad poziomymi otworami (otwór tulejki Ø6 na wysokości ~24 mm i otwory osi Ø3,3) – razem ok. 25 mm². Korba to pionowe żebro 2,5 mm, wysokość części 26 mm,
 - otwory poziome mają kształt kropli,
 - słupek serwa ma podporę 45°,
 - występy pokrywy, faza gwintu i wybranie w ściance mają skosy 45°.
@@ -154,13 +163,14 @@ Ułożenie części jest w [`40-cad/README.md`](../40-cad/README.md). Wszystkie 
 ## Czego nie jestem pewien
 
 1. **Śruby osi M3×5 z niskim łbem (ISO 7380).** DIN 912 nie mieści się w pogłębieniu, a M3×8 weszłaby w piłeczkę. Jeśli w warsztacie ich nie ma, można skrócić M3×8 i zeszlifować łeb do 2,5 mm.
-2. **Klej.** Akrylowy 2K w szczelinie 0,5 mm na pasie 8 mm nie jest sprawdzony na tej piłeczce (materiał nieznany). Jeśli puści, można zwiększyć `jarzmoW` (szersza miska). Kleju nie nakładać w pobliżu otworów osi: końcówki śrub M3×5 wchodzą 0,15 mm w szczelinę i zastygły klej by je zablokował.
+2. **Klej.** Akrylowy 2K w szczelinie 0,5 mm na pasie 8 mm nie jest sprawdzony na tej piłeczce (materiał nieznany). Jeśli puści, można zwiększyć `jarzmoW` (szersza miska). Kleju nie nakładać w pobliżu otworów osi, żeby nie zalał otworów oczek (końcówki śrub kończą się 0,45 mm przed wnętrzem miski).
    - **Mniejsza piłeczka w przyrządzie.** Czasza ma Ø40,9, więc piłeczka 39,5 leży w niej 0,7 mm bliżej przodu niż środek jarzma. Wklejona tak będzie lekko „bić” przy obrocie. Dla mniejszych piłeczek trzeba zmniejszyć czaszę (szkic `Przyrzad wklejania: czasza szkic`).
 3. **Widok z ukosu.** Patrząc pod kątem do osi, przy piłeczce otwiera się sierp (ok. 2 mm przy 10°), przez który widać brzeg miski i wnętrze. To geometria otworu, nie kolizja. Najprościej wydrukować jarzmo z miską (i najlepiej obudowę) na czarno.
 4. **Wymiary SG90 i orczyka są założone** (jak w v2): wysokość 30,5 do wierzchu orczyka, uszy 15,9 od spodu, orczyk jednoramienny z otworem 13 mm. Trzeba je zmierzyć i wpisać w zmienne.
 5. **Przegub H składany przez otwór dolny w dyni.** Wymaga krótkiego klucza imbusowego i tulejki wkładanej od dołu, co może być niewygodne. Można go też złożyć przed włożeniem modułu do dyni (kolejność w README).
 6. **Spłaszczenia tyłu i rozstaw 105 mm** policzone dla dyni o promieniu 150 mm. W mniejszej dyni nakrętki Ø66 mogą się stykać.
-7. **Kabel serwa** wychodzi pod pokrywą między kołkami. Nie sprawdzałem, czy wtyczka przejdzie przez szczelinę przy założonej pokrywie.
+7. **Kabel serwa.** Wymiary taśmy (3,5 × 1,4) i wtyczki (15 × 8 × 2,5) są przyjęte, nie mierzone. Wtyczka przechodzi przez szeroką część otworu (9 × 3,4) przy założonej pokrywie; po przeciągnięciu taśmę wciska się w szczelinę 1,2 pod spodem (zgięcie w S, promień ok. 3,9 mm). Jeśli taśma jest grubsza, szczelinę trzeba poszerzyć.
 8. **Przyrząd centrowania** nie usuwa skoku wielowypustu orczyka (~14°), więc kalibracja środka na stronie ESP32 nadal jest potrzebna.
-9. **Gwint drukowany** (45°, skok 3, luz 0,3) nie był jeszcze drukowany w tej średnicy. Luz można zmienić zmienną `luzGwint`.
-10. **Luzów na eksporcie 3MF nie mierzyłem**, bo eksport robi użytkownik.
+9. **Gwint drukowany** (45°, skok 3, luz 0,5). Najpierw wydrukować Próbkę gwintu (te same ustawienia co obudowa). Jeśli nakrętka nadal idzie ciężko albo lata, zmienić `luzGwint` (zmienia nakrętkę i próbkę naraz).
+10. **Piasta C jarzma** ma ściankę 2 mm wokół tulejki, ale po stronie ściany obudowy jest spłaszczona do 1,15 mm (inaczej przy +33° dotyka ściany). Piasta H na ramieniu orczyka została Ø8,4 (ścianka 1,2) – nie zmieniałem, bo ramię nie było częścią tej poprawki.
+11. **Luzów na eksporcie 3MF nie mierzyłem**, bo eksport robi użytkownik.

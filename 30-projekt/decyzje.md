@@ -47,3 +47,6 @@
 | 2026-10-18 | Assembly: wałek serwa z limitem −37…+30°, przegub C Revolute, H Ball | Bez limitu solver wpadał w drugą gałąź czworoboku (ramię 68°); Cylindrical w C pozwalał cięgnu się przechylać |
 | 2026-10-18 | Luz gwintu drukowanego 0,5 mm (zamiast 0,3) i próbka gwintu przed drukiem obudowy | Nakrętka v1.1 po wydruku była za ciasna |
 | 2026-10-18 | Cienkie elementy wymagające podpór niedopuszczalne; jarzmo/miska ze ściankami ≥ 2–2,4 mm i płaską stroną na stół | Jarzmo v1.1 pękało przy zdejmowaniu podpór |
+| 2026-10-18 | v2.1c (wersja „v2.1c do review”): jarzmo drukowane płaskim bokiem miski bez podpór; korba zrośnięta z miską na całej szerokości pasa; piasta C Ø10 jako kropla 45° (spłaszczona po stronie ściany); oczka 2,4 mm; pogłębienie łba osi 1,9 | Wydruk v1.1: jarzmo bez płaskiej strony pękało przy odrywaniu podpór; ścianka wokół tulejki była 1,2 mm |
+| 2026-10-18 | `luzGwint` 0,5 i osobne części „Probka gwintu” (pierścień 14 mm + kawałek nakrętki) drukowane przed obudową | Nakrętka v1.1 z luzem 0,3 była po wydruku za ciasna |
+| 2026-10-18 | Kabel SG90: taśma prosto do tyłu z dołu krótszego boku od strony wałka; pokrywa z otworem w kształcie dziurki od klucza (9 × 3,4 na wtyczkę 3-pin, szczelina 1,2 zaciska taśmę) i prowadnicami zamiast kołków | Kabel wychodzi przy wałku; wtyczka musi przejść przy założonej pokrywie |

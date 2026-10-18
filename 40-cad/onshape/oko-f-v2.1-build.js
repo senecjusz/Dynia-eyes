@@ -1,4 +1,4 @@
-// Budowa modelu "Oko F v2.1b" (modul malego oka: jednoczesciowa obudowa bez bagnetu, pileczka wklejona w jarzmo z miska,
+// Budowa modelu "Oko F v2.1c" (modul malego oka: jednoczesciowa obudowa bez bagnetu, pileczka wklejona w jarzmo z miska,
 // przeguby na srubach M3) w Onshape ze zwyklych operacji (Variable Studio, Plane, Sketch, Extrude, Revolve, Helix,
 // Sweep, Chamfer, Move face, Boolean) przez REST API w sesji przegladarki (cookie + X-XSRF-TOKEN), bez kluczy API.
 //
@@ -215,7 +215,7 @@ const r2d = 180 / Math.PI, d2r = Math.PI / 180;
 
 // ---------- liczby (zgodne z domyslnymi zmiennymi) ----------
 const D = {};
-D.zc = -12; D.Rb = 20.25; D.kulaR = 20.25; D.klej = 0.5;                    // srodek pileczki 12 mm pod wierzchem rantu (gałka wystaje ~8 mm)
+D.zc = -12; D.Rb = 20.25; D.kulaR = 20.25; D.klej = 0.5; D.oczkoT = 2.4;                    // srodek pileczki 12 mm pod wierzchem rantu (gałka wystaje ~8 mm)
 D.hTop = -3;                                 // wierzch orczyka
 D.mIR = 24.25; D.mOR = 26.25;                // obudowa: wnetrze 48.5, rdzen gwintu 52.5
 D.gTop = 27.45;                              // szczyt gwintu (54.9)
@@ -287,12 +287,12 @@ OS.VARS = [
   ['klej', '0.5 mm', 'szczelina na klej wypelniajacy (akrylowy 2K), pileczka 39.5-40.5'],
   ['jarzmoT', '2.5 mm', 'grubosc promieniowa miski (pierscienia jarzma)'],
   ['jarzmoW', '8 mm', 'szerokosc miski (grubosc na stole)'],
-  ['oczkoT', '2 mm', 'grubosc oczka jarzma na osi'],
+  ['oczkoT', '2.4 mm', 'grubosc oczka jarzma na osi (min. 2-2.4 po wydruku v1.1)'],
   ['luzOsiowy', '0.3 mm', 'luz osiowy oczko - wystep obudowy'],
   ['modulID', '48.5 mm', 'wnetrze obudowy (z kinematyki napedu)'],
   ['sciankaM', '2 mm', 'scianka obudowy pod gwintem'],
   ['gwintSkok', '3 mm', 'skok gwintu (profil liczony pod 3 mm)'],
-  ['luzGwint', '0.3 mm', 'luz gwintu nakretki (odsuniecie scian)'],
+  ['luzGwint', '0.5 mm', 'luz gwintu nakretki (odsuniecie scian); v1.1 z 0.3 byla za ciasna - kalibrowac Probka gwintu'],
   ['rantD', '63 mm', 'srednica rantu'],
   ['rantT', '1.5 mm', 'grubosc plaskiej czesci rantu'],
   ['kolnierzykD', '41 mm', 'otwor w rancie (zaslania brzeg miski)'],
@@ -307,7 +307,7 @@ OS.VARS = [
   ['m3Ciasny', '2.6 mm', 'otwor M3 ciasny (sruba wkreca sie w plastik)'],
   ['m3Luzny', '3.3 mm', 'otwor M3 luzny (obrot na srubie)'],
   ['lebD', '6.2 mm', 'poglebienie pod leb sruby osi (ISO 7380 M3x5)'],
-  ['lebH', '2.5 mm', 'glebokosc poglebienia pod leb sruby osi'],
+  ['lebH', '1.9 mm', 'glebokosc poglebienia pod leb sruby osi (ISO 7380 k=1.65)'],
   ['wkladkaD', '4 mm', 'otwor pod wkladke M3 do wtapiania'],
   ['wkladkaL', '4 mm', 'dlugosc wkladki M3'],
   ['tulejkaD', '5.6 mm', 'srednica tulejki przegubu'],
@@ -374,7 +374,7 @@ OS.obudowa = async () => {
   await revolve('Obudowa: faza poczatku gwintu', 'Obudowa: faza poczatku gwintu szkic', 'Wspolne: os Z', { op: 'REMOVE', full: true, scope: O });
   // wystepy osi (kropla), rowek ogranicznika z kanalem montazowym od tylu, poglebienie i otwor ciasny M3
   const kropla = (y) => { const P = []; for (let f = 45; f >= -225; f -= 15) P.push([5 * Math.cos(f * d2r), y, D.zc + 5 * Math.sin(f * d2r)]); P.push([0, y, D.zc + 5 * Math.SQRT2]); return P; };
-  const yW = D.kulaR + D.klej + 2 + 0.3, yWexpr = '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy';
+  const yW = D.kulaR + D.klej + D.oczkoT + 0.3, yWexpr = '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy';
   for (const [nm, sg] of [['gora', 1], ['dol', -1]]) {
     const y = sg * yW;
     await planeY(`Obudowa: pl. wystepu ${nm}`, yWexpr, sg);
@@ -491,14 +491,26 @@ OS.jarzmo = async () => {
   }
   await sketchW('Jarzmo: otwory osi szkic', qStd('Front'), (W) => W.circle(W3(A, 0), 3.3, '#m3Luzny'));
   await ext('Jarzmo: otwory osi', 'Jarzmo: otwory osi szkic', null, { op: 'REMOVE', depth: '60 mm', sym: true, scope: J });
-  // korba zrosnieta z miska
   const yk = D.hTop;
+  // korba zrosnieta z miska na calej szerokosci pasa (luk do plaszczyzny stolu s = jW/2), piasta C fi 10 (scianka 2 mm wokol otworu 6)
+  // jako kropla z ostrzem w dol, do stolu (boki 45 st.) - jarzmo drukuje sie bez podpor, lezac bokiem miski bez korby
+  const s0 = D.jW / 2, pAng = (r) => 60 + Math.asin(s0 / r) * r2d, Rk = 5, dn = [n[0], n[1]];
+  const rotV = (v, a) => [v[0] * Math.cos(a) - v[1] * Math.sin(a), v[0] * Math.sin(a) + v[1] * Math.cos(a)];
+  // splaszczenie piasty od strony sciany obudowy przy +33 st. (4.15 mm od osi otworu -> luz 0.5 do sciany)
+  const wK = [Math.cos(D.stop * d2r), -Math.sin(D.stop * d2r)], hK = 4.15;
+  const clipK = (P) => { const f = (p) => (p[0] - C0[0]) * wK[0] + (p[2] - C0[1]) * wK[1] - hK; const o = [];
+    for (let i = 0; i < P.length; i++) { const a = P[i], b = P[(i + 1) % P.length], fa = f(a), fb = f(b); if (fa <= 0) o.push(a);
+      if ((fa < 0) !== (fb < 0)) { const t = fa / (fa - fb); o.push([a[0] + t * (b[0] - a[0]), yk, a[2] + t * (b[2] - a[2])]); } } return o; };
+  const kroplaK = () => { const P = [[C0[0] + Math.SQRT2 * Rk * dn[0], yk, C0[1] + Math.SQRT2 * Rk * dn[1]]];
+    for (let i = 0; i <= 24; i++) { const v = rotV(dn, (45 + 270 * i / 24) * d2r); P.push([C0[0] + Rk * v[0], yk, C0[1] + Rk * v[1]]); } return clipK(P); };
   await sketchW('Jarzmo: korba szkic', qFace('Wspolne: pl. orczyka'), (W) => {
-    W.poly([...arcPts(A, 20.75, 62, 13, 16, yk), psiPt(26.4, 13, yk), psiPt(28.0, 20, yk), psiPt(23.4, 30, yk), ...arcPts(A, 23.4, 30, 62, 10, yk)]);
-    W.circle(W3(C0, yk), 8.4);
+    W.poly([...arcPts(A, 20.75, pAng(20.75), 13, 18, yk), psiPt(26.4, 13, yk), psiPt(28.0, 20, yk), psiPt(23.4, 30, yk), ...arcPts(A, 23.4, 30, pAng(23.4), 12, yk)]);
+    W.poly(kroplaK());
   });
   await ext('Jarzmo: korba', 'Jarzmo: korba szkic', UP, { op: 'ADD', depth: '#plytaT', scope: J, regions: allRegions('Jarzmo: korba szkic') });
   await sketchW('Jarzmo: otwor korby szkic', qFace('Wspolne: pl. orczyka'), (W) => W.circle(W3(C0, yk), 6, '#tulejkaD + 2 * #luzPrzegub'));
+  // ponowne wyciecie wnetrza miski: ostrze kropli piasty nie moze wejsc w szczeline kleju
+  await revolve('Jarzmo: wnetrze miski', 'Jarzmo: powloka szkic', 'Wspolne: os oka', { op: 'REMOVE', full: true, scope: J, regions: regionAt('Jarzmo: powloka szkic', [0, 0, zc - 10]) });
   await ext('Jarzmo: otwor korby', 'Jarzmo: otwor korby szkic', UP, { op: 'REMOVE', depth: '#plytaT', scope: J });
 };
 
@@ -548,14 +560,17 @@ OS.pokrywa = async () => {
   await ext(PK, 'Pokrywa: szkic', BACK, { op: 'NEW', depth: '3 mm', regions: allRegions('Pokrywa: szkic') });
   await sketchW('Pokrywa: splaszczenia szkic', qFace('Obudowa: pl. konca'), (W) => { W.poly([[22, -40, z], [32, -40, z], [32, 30, z], [22, 30, z]]); W.poly([[-32, -40, z], [-22, -40, z], [-22, 30, z], [-32, 30, z]]); });
   await ext('Pokrywa: splaszczenia', 'Pokrywa: splaszczenia szkic', BACK, { op: 'REMOVE', depth: '3 mm', scope: PK, regions: allRegions('Pokrywa: splaszczenia szkic') });
-  await sketchW('Pokrywa: otwory szkic', qFace('Obudowa: pl. konca'), (W) => { for (const a of [40, 140]) W.circle(pXY(21.4, a, z), 3.3, '#m3Luzny'); W.poly([[-2.2, -38.5, z], [2.2, -38.5, z], [2.2, -34.5, z], [-2.2, -34.5, z]]); });
+  // otwory srub + dziurka od klucza: szeroka czesc 9 x 3.4 przepuszcza wtyczke 3-pin (8 x 2.5) przy zalozonej pokrywie, waska szczelina 1.2 zaciska tasme kabla
+  await sketchW('Pokrywa: otwory szkic', qFace('Obudowa: pl. konca'), (W) => { for (const a of [40, 140]) W.circle(pXY(21.4, a, z), 3.3, '#m3Luzny');
+    W.poly([[-4.5, -30.4, z], [4.5, -30.4, z], [4.5, -33.8, z], [1.9, -33.8, z], [1.9, -35.0, z], [-1.9, -35.0, z], [-1.9, -33.8, z], [-4.5, -33.8, z]]); });
   await ext('Pokrywa: otwory', 'Pokrywa: otwory szkic', BACK, { op: 'REMOVE', depth: '3 mm', scope: PK, regions: allRegions('Pokrywa: otwory szkic') });
   await sketchW('Pokrywa: slupek szkic', qFace('Obudowa: pl. uszu serwa'), (W) => W.poly([[-4, D.sUcho, D.sTyl - 0.3], [4, D.sUcho, D.sTyl - 0.3], [4, D.sUcho, z], [-4, D.sUcho, z]]));
   await ext('Pokrywa: slupek', 'Pokrywa: slupek szkic', DOWN, { op: 'ADD', depth: '6.4 mm', scope: PK });
   await sketchW('Pokrywa: otwor ucha szkic', qFace('Obudowa: pl. uszu serwa'), (W) => W.circle([0, D.sUcho, D.uchoT], 1.8, '#serwoWkret'));
   await ext('Pokrywa: otwor ucha', 'Pokrywa: otwor ucha szkic', DOWN, { op: 'REMOVE', depth: '6.4 mm', scope: PK });
-  await sketchW('Pokrywa: kolki kabla szkic', qFace('Obudowa: pl. konca'), (W) => { W.circle([-3.5, -27.5, z], 3); W.circle([3.5, -27.5, z], 3); W.circle([0, -31.5, z], 3); });
-  await ext('Pokrywa: kolki kabla', 'Pokrywa: kolki kabla szkic', FWD, { op: 'ADD', depth: '4 mm', scope: PK, regions: allRegions('Pokrywa: kolki kabla szkic') });
+  // prowadnice tasmy kabla od serwa do dziurki od klucza
+  await sketchW('Pokrywa: prowadnice kabla szkic', qFace('Obudowa: pl. konca'), (W) => { W.poly([[2.3, -35.0, z], [3.5, -35.0, z], [3.5, -29.5, z], [2.3, -29.5, z]]); W.poly([[-3.5, -35.0, z], [-2.3, -35.0, z], [-2.3, -29.5, z], [-3.5, -29.5, z]]); });
+  await ext('Pokrywa: prowadnice kabla', 'Pokrywa: prowadnice kabla szkic', FWD, { op: 'ADD', depth: '3.5 mm', scope: PK, regions: allRegions('Pokrywa: prowadnice kabla szkic') });
 };
 
 // ---------- Podglad ----------
@@ -575,9 +590,10 @@ OS.podglad = async () => {
   await planeOff('Podglad: pl. walka', 'Podglad: pl. wierzchu serwa', '4 mm', true);
   await sketchW('Podglad: SG90 walek szkic', qFace('Podglad: pl. walka'), (W) => W.circle(W3(S, D.sSpod + 26.7), 4.8));
   await ext('Podglad: SG90 walek', 'Podglad: SG90 walek szkic', UP, { op: 'ADD', depth: '2.3 mm', scope: SG });
-  await planeOff('Podglad: pl. kabla', 'Podglad: pl. spodu serwa', '4 mm', true);
-  await sketchW('Podglad: SG90 kabel szkic', qFace('Podglad: pl. kabla'), (W) => W.poly([[-1.6, D.sSpod + 4, D.sTyl + 0.5], [1.6, D.sSpod + 4, D.sTyl + 0.5], [1.6, D.sSpod + 4, D.sTyl - 1.2], [-1.6, D.sSpod + 4, D.sTyl - 1.2]]));
-  await ext('Podglad: SG90 kabel', 'Podglad: SG90 kabel szkic', UP, { op: 'ADD', depth: '1.2 mm', scope: SG });
+  // kabel SG90: tasma 3.5 x 1.4 wychodzi u dolu krotszego boku od strony walka i idzie prosto do tylu przez pokrywe
+  await planeOff('Podglad: pl. kabla', 'Podglad: pl. spodu serwa', '0.7 mm', true);
+  await sketchW('Podglad: SG90 kabel szkic', qFace('Podglad: pl. kabla'), (W) => W.poly([[-1.75, D.sSpod + 0.7, D.sTyl + 0.5], [1.75, D.sSpod + 0.7, D.sTyl + 0.5], [1.75, D.sSpod + 0.7, D.zEnd - 4], [-1.75, D.sSpod + 0.7, D.zEnd - 4]]));
+  await ext('Podglad: SG90 kabel', 'Podglad: SG90 kabel szkic', UP, { op: 'ADD', depth: '1.4 mm', scope: SG });
   const tip = add2(S, D.dirR, 17.5), yo = D.hTop - 1.5;
   await sketchW('Podglad: orczyk szkic', qFace('Ramie: pl. dolu'), (W) => { W.circle(W3(S, yo), 7); W.pas(W3(S, yo), W3(tip, yo), 4.8); W.circle(W3(tip, yo), 4); });
   await ext('PODGLAD orczyk', 'Podglad: orczyk szkic', UP, { op: 'NEW', depth: '1.5 mm', regions: allRegions('Podglad: orczyk szkic') });
@@ -587,7 +603,7 @@ OS.podglad = async () => {
 OS.przyrzady = async () => {
   // przyrzad do wklejania: czasza na przod pileczki (zrenica w otworze Ø3 na osi), dwa slupki na sruby osi trzymaja jarzmo jak w obudowie
   const J = D.J, PW = 'Przyrzad wklejania', zb = J[2] + 24.5;
-  const yp = D.kulaR + D.klej + 2 + 0.3;      // wewnetrzna sciana slupkow = jak wystepy osi w obudowie (czasza: pileczka + 0.4, niezaleznie od kleju)
+  const yp = D.kulaR + D.klej + D.oczkoT + 0.3;      // wewnetrzna sciana slupkow = jak wystepy osi w obudowie (czasza: pileczka + 0.4, niezaleznie od kleju)
   await planeZ('Przyrzad wklejania: pl. srodka', mm(-J[2]), -1);
   await sketchW('Przyrzad wklejania: podstawa szkic', qFace('Przyrzad wklejania: pl. srodka'), (W) => W.poly([[J[0] - 14, -31, J[2]], [J[0] + 14, -31, J[2]], [J[0] + 14, 31, J[2]], [J[0] - 14, 31, J[2]]]));
   await ext(PW, 'Przyrzad wklejania: podstawa szkic', FWD, { op: 'NEW', depth: '24.5 mm' });
@@ -620,6 +636,39 @@ OS.przyrzady = async () => {
   await sketchW('Przyrzad orczyka: trzpien szkic', qFace('Przyrzad orczyka: pl. podstawy'), (W) => W.circle(W3(D.H0, yb), 5.8));
   await ext('Przyrzad orczyka: trzpien', 'Przyrzad orczyka: trzpien szkic', UP, { op: 'ADD', depth: mm(-yb - 1.5), scope: PO });
 };
+// ---------- Probka gwintu (do kalibracji luzu przed drukiem obudowy) ----------
+OS.probka = async () => {
+  const { sketchW, ext, planeZ, regionAt, allRegions, qFace, qStd, qBody, qNearEdge, revolve, helix, sweep, chamfer, moveFaceOffset, booleanOp, FWD, BACK, F } = OS;
+  const D = OS.D, xs = -130, L = 14, PG = 'Probka gwintu: pierscien', PN = 'Probka gwintu: nakretka';
+  // pierscien: ta sama scianka i gwint co obudowa, dlugosc 14 mm, os w (x -130, y 0)
+  await sketchW('Probka gwintu: pierscien szkic', qStd('Top'), (W) => { W.circle([xs, 0, 0], 52.5, '#modulOD'); W.circle([xs, 0, 0], 48.5, '#modulID'); });
+  await ext(PG, 'Probka gwintu: pierscien szkic', BACK, { op: 'NEW', depth: `${L} mm`, regions: regionAt('Probka gwintu: pierscien szkic', [xs + 25.2, 0, 0]) });
+  const z0 = -(L + 3);
+  await planeZ('Probka gwintu: pl. startu helisy', `${L + 3} mm`, -1);
+  await sketchW('Probka gwintu: okrag helisy', qFace('Probka gwintu: pl. startu helisy'), (W) => W.circle([xs, 0, z0], 52.5, '#modulOD'));
+  await helix('Probka gwintu: helisa', 'Probka gwintu: okrag helisy', '#gwintSkok', `${L + 6} mm`);
+  await sketchW('Probka gwintu: profil', qStd('Front'), (W) => W.poly([[xs + D.mOR - 0.4, 0, z0 - 1.4], [xs + D.mOR, 0, z0 - 1.4], [xs + D.gTop, 0, z0 - 0.2], [xs + D.gTop, 0, z0 + 0.2], [xs + D.mOR, 0, z0 + 1.4], [xs + D.mOR - 0.4, 0, z0 + 1.4]]));
+  await sweep('Probka gwintu: gwint', 'Probka gwintu: profil', 'Probka gwintu: helisa', 'ADD', PG);
+  // przyciecie zwoju do dlugosci pierscienia
+  await sketchW('Probka gwintu: przyciecie szkic', qStd('Top'), (W) => W.circle([xs, 0, 0], 70));
+  await ext('Probka gwintu: przyciecie przod', 'Probka gwintu: przyciecie szkic', FWD, { op: 'REMOVE', depth: '6 mm', scope: PG });
+  await planeZ('Probka gwintu: pl. konca', `${L} mm`, -1);
+  await sketchW('Probka gwintu: przyciecie tyl szkic', qFace('Probka gwintu: pl. konca'), (W) => W.circle([xs, 0, -L], 70));
+  await ext('Probka gwintu: przyciecie tyl', 'Probka gwintu: przyciecie tyl szkic', BACK, { op: 'REMOVE', depth: '6 mm', scope: PG });
+  // faza 45 st. na poczatku zwoju (od strony z = 0, tak jak wkrecana nakretka)
+  await sketchW('Probka gwintu: os', qStd('Front'), (W) => W.line([xs, 0, 5], [xs, 0, -20], true));
+  await sketchW('Probka gwintu: faza szkic', qStd('Front'), (W) => W.poly([[xs + D.mOR, 0, 0.01], [xs + 29, 0, 0.01], [xs + 29, 0, -2.74]]));
+  await revolve('Probka gwintu: faza', 'Probka gwintu: faza szkic', 'Probka gwintu: os', { op: 'REMOVE', full: true, scope: PG });
+  // kawalek nakretki: ten sam otwor (#nakretkaOtwor) i gwint z luzem #luzGwint, wysokosc #nakretkaH, na pierscieniu
+  await planeZ('Probka gwintu: pl. nakretki', '3.5 mm', -1);
+  await sketchW('Probka gwintu: nakretka szkic', qFace('Probka gwintu: pl. nakretki'), (W) => { W.circle([xs, 0, -3.5], 62); W.circle([xs, 0, -3.5], 53.5, '#nakretkaOtwor'); });
+  await ext(PN, 'Probka gwintu: nakretka szkic', BACK, { op: 'NEW', depth: '#nakretkaH', regions: regionAt('Probka gwintu: nakretka szkic', [xs + 29, 0, -3.5]) });
+  await chamfer('Probka gwintu: fazy nakretki', [qNearEdge(PN, [xs + 26.75, 0, -3.5], true), qNearEdge(PN, [xs + 26.75, 0, -10.5], true)], '1 mm');
+  await sweep('Probka gwintu: narzedzie gwintu', 'Probka gwintu: profil', 'Probka gwintu: helisa', 'NEW');
+  await moveFaceOffset('Probka gwintu: luz gwintu', [`query=qOwnedByBody(qCreatedBy(makeId("${F['Probka gwintu: narzedzie gwintu']}"), EntityType.BODY), EntityType.FACE);`], '#luzGwint');
+  await booleanOp('Probka gwintu: gwint nakretki', 'SUBTRACTION', [qBody('Probka gwintu: narzedzie gwintu')], [qBody(PN)]);
+};
+
 return 'v21 ok ' + JSON.stringify({ C0: D.C0, H0: D.H0, L: D.ciegno, M2: D.M2, dog: D.dog });
 })();
 
@@ -634,17 +683,18 @@ OS.NAZWY = [
   ['Ramie orczyka', [-4, -2.5, -54]], ['Tulejka przegubu korby', [7.4, -2.1, -36.1]], ['Tulejka przegubu ramienia', [-9.2, -2.1, -40.6]],
   ['Pokrywa tylna', [0, -5.9, -76.3]], ['PODGLAD pileczka 40.5', [0, 0, -12]], ['PODGLAD SG90', [0, -19, -60.6]], ['PODGLAD orczyk SG90', [-2.4, -3.8, -58.5]],
   ['Przyrzad do wklejania pileczki', [130, 0, -3.2]], ['Przyrzad centrowania orczyka', [-5, -15.3, -40.6]],
+  ['Probka gwintu - obudowa', [-130, 0, -7], 56.4], ['Probka gwintu - nakretka', [-130, 0, -7], 62],
 ];
 OS.nazwy = async () => {
   const parts = await (await req(`/api/v10/parts/d/${OS.did}/w/${OS.wid}/e/${OS.eid}`)).json();
   const C = [];
   for (const p of parts) {
     const b = await (await req(`/api/v10/parts/d/${OS.did}/w/${OS.wid}/e/${OS.eid}/partid/${encodeURIComponent(p.partId)}/boundingboxes`)).json();
-    C.push([p.partId, [(b.lowX + b.highX) * 500, (b.lowY + b.highY) * 500, (b.lowZ + b.highZ) * 500]]);
+    C.push([p.partId, [(b.lowX + b.highX) * 500, (b.lowY + b.highY) * 500, (b.lowZ + b.highZ) * 500, (b.highX - b.lowX) * 1000]]);
   }
   OS.PID = {};
-  for (const [name, c] of OS.NAZWY) {
-    let best = null, bd = 1e9; for (const [pid, m] of C) { const d = Math.hypot(m[0] - c[0], m[1] - c[1], m[2] - c[2]); if (d < bd) { bd = d; best = pid; } }
+  for (const [name, c, dx] of OS.NAZWY) {
+    let best = null, bd = 1e9; for (const [pid, m] of C) { const d = Math.hypot(m[0] - c[0], m[1] - c[1], m[2] - c[2]) + (dx ? Math.abs(m[3] - dx) * 10 : 0); if (d < bd) { bd = d; best = pid; } }
     OS.PID[name] = best;
     await req(`/api/v10/metadata/d/${OS.did}/w/${OS.wid}/e/${OS.eid}/p/${encodeURIComponent(best)}`, { method: 'POST',
       body: JSON.stringify({ jsonType: 'metadata-part', partId: best, properties: [{ propertyId: '57f3fb8efa3416c06701d60d', value: name }] }) });
@@ -727,4 +777,4 @@ return 'v2c ok';
 
 
 // ===================== uruchomienie =====================
-window.OS.all = () => window.OS.run(['zmienne', 'wspolne', 'obudowa', 'nakretka', 'jarzmo', 'naped', 'pokrywa', 'podglad', 'przyrzady', 'nazwy']);
+window.OS.all = () => window.OS.run(['zmienne', 'wspolne', 'obudowa', 'nakretka', 'jarzmo', 'naped', 'pokrywa', 'podglad', 'przyrzady', 'probka', 'nazwy']);
