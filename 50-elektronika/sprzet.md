@@ -15,7 +15,8 @@
 | Arduino Uno, Arduino Mega, ESP32, Raspberry Pi | ✓ | Zapas, gdyby Nano nie wystarczyło (pamięć) – PCA9685 przez I²C działa z każdym |
 | Powerbank Baseus Airpow PPAP20K, 20 000 mAh, 3 porty | 1 | Główne zasilanie (propozycja) |
 | Powerbank Manta MPB2001S Sunny, 20 000 mAh, 2 porty | 1 | Zapas na zmianę |
-| Przepusty kablowe szczelne | ✓ | Do pudełka elektroniki – rozmiar do podania |
+| Przepusty kablowe szczelne **PG9** | ✓ | Do pudełka elektroniki (kabel Ø ~4–8 mm, otwór montażowy ~15,2 mm) |
+| Otwornice: **45, 50, 56, 62 mm** (stałe), **nastawna do 64 mm**, maks. **80 mm** | ✓ | Otwory w dyni – projektować pod te średnice |
 | Drukarki 3D: Bambu Lab **A1 mini** (stół 180 × 180 × 180) i **X1 Carbon** (256 × 256 × 256) | 2 | Duże części (pudełko-wieża) na X1C |
 | Śruby M3 / M4 / M5, 8–50 mm, nakrętki | komplet | Można zakładać dowolną potrzebną śrubę i nakrętkę (M5 bez najkrótszych 6 mm) |
 | Wkładki gwintowane do wtapiania | komplet (M2–M5, „chyba cały set”) | Do gwintów wielokrotnie skręcanych; wymiary otworu wg konkretnej wkładki – zmierzyć przed drukiem finalnym |
