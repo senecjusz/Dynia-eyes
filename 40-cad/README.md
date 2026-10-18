@@ -57,7 +57,7 @@ Eksport robi użytkownik: prawy przycisk na części → Export…
 - **3MF**, rozdzielczość **Custom**,
 - Distance tolerance `0.00001` (0,01 mm), Angular tolerance `3`.
 
-Onshape nazywa pliki **`Oko F v2.2 - <nazwa części>.3mf`**: tych nazw używamy (`40-cad/3mf/`). Wszystkie części mieszczą się na A1 mini.
+Eksport v2.2 (całe Part Studio, opcja „Export unique parts as individual files”) jest w [`3mf/Oko F v2.2/`](3mf/Oko%20F%20v2.2/): 17 plików **`Oko F v2.2 - <nazwa części>.3mf`**, w tym 3 podglądy. Wszystkie części mieszczą się na A1 mini.
 
 | Część | Szt. | Wymiary [mm] | Ułożenie na stole |
 |---|---|---|---|
