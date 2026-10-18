@@ -11,7 +11,7 @@
 - **`00-inbox/`**: na początku sesji sprawdzić, czy coś jest. Jeśli tak – przejrzeć i rozłożyć (inspiracje → `10-inspiracje/` z notatką `.md`, analizy → `20-analizy/` itd.), potem poinformować użytkownika, co gdzie trafiło.
 - Każda istotna decyzja → wiersz w `30-projekt/decyzje.md`.
 - Postęp prac z synem → wpis w `70-budowa/dziennik.md`.
-- **Modele 3D powstają w SolidCraft** (od 18.10, `C:Program FilesSolidCraft`, praca agenta przez `solidcraft-cli`; skrypty i plik `.solidcraft` w `40-cad/solidcraft/`). Onshape (dokument SimpleEye) jest w zapasie. Eksporty w `40-cad/3mf/`, opis w `40-cad/README.md`.
+- **Modele 3D powstają w SolidCraft** (od 18.10, `C:\Program Files\SolidCraft`, praca agenta przez `solidcraft-cli`; skrypty i plik `.solidcraft` w `40-cad/solidcraft/`). Onshape (dokument SimpleEye) jest w zapasie. Eksporty w `40-cad/3mf/`, opis w `40-cad/README.md`.
 
 ## Zasady projektowe
 
