@@ -45,3 +45,5 @@
 | 2026-10-18 | Oś oka: 2 × M3×5 ISO 7380 (koniec 0,35 mm przed piłeczką); wybranie 0,6 mm w ściance na przegub H | Dłuższa śruba weszłaby w piłeczkę; przy −33° ramię i cięgno dotykały ścianki |
 | 2026-10-18 | v2.1b: szczelina na klej 0,5 mm (klej wypełniający, akrylowy 2K); czasza przyrządu = piłeczka + 0,4 niezależnie od kleju; wersja „v2.1b do review” | Decyzja użytkownika; 0,2 mm za mało dla piłeczek 39,5–40,5 |
 | 2026-10-18 | Assembly: wałek serwa z limitem −37…+30°, przegub C Revolute, H Ball | Bez limitu solver wpadał w drugą gałąź czworoboku (ramię 68°); Cylindrical w C pozwalał cięgnu się przechylać |
+| 2026-10-18 | Luz gwintu drukowanego 0,5 mm (zamiast 0,3) i próbka gwintu przed drukiem obudowy | Nakrętka v1.1 po wydruku była za ciasna |
+| 2026-10-18 | Cienkie elementy wymagające podpór niedopuszczalne; jarzmo/miska ze ściankami ≥ 2–2,4 mm i płaską stroną na stół | Jarzmo v1.1 pękało przy zdejmowaniu podpór |

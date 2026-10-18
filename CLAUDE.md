@@ -1,6 +1,6 @@
 # Kontekst projektu dla Claude
 
-- Projekt hobbystyczny: dynia na Halloween z ruchomymi oczami, robiona z synem użytkownika. Komunikacja po polsku.
+- Projekt hobbystyczny: dynia na Halloween z ruchomymi oczami, robiona z synem użytkownika. Komunikacja po polsku. Instrukcje wspólne dla wszystkich agentów (także Codex): `AGENTS.md`.
 - Dwa komputery: Windows (Kobyłka, weekendy) i Linux Omarchy (Warszawa). Wszystko, co ma działać na obu, musi być przenośne (skrypty bash/Python zamiast PowerShella, ścieżki względne).
 - Na początku każdej sesji: `git pull`; na końcu: commit + `git push`.
 - Dostęp do GitHuba wyłącznie przez deploy key tego repo (`core.sshCommand` w lokalnym configu). Nie używać innych poświadczeń.
