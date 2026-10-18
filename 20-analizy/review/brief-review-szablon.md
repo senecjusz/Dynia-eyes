@@ -1,4 +1,4 @@
-Jesteś recenzentem ADWERSARYJNYM. Robisz PEŁNE review wersji v2.4 modułu małego oka do prawdziwej dyni: całej wersji, nie tylko zmian. Przeczytaj AGENTS.md (zasady dla recenzenta) i CLAUDE.md. Pracujesz TYLKO DO ODCZYTU: nie zmieniaj repo, skrypty uruchamiaj z katalogu tymczasowego. Odpowiadaj po polsku, zwięźle.
+Jesteś recenzentem ADWERSARYJNYM. Robisz PEŁNE review wersji v2.4 modułu małego oka do prawdziwej dyni: całej wersji, nie tylko zmian. Przeczytaj AGENTS.md (zasady projektu i zasady dla recenzenta). Pracujesz TYLKO DO ODCZYTU: nie zmieniaj repo, skrypty uruchamiaj z katalogu tymczasowego. Odpowiadaj po polsku, zwięźle.
 
 Materiały:
 - 30-projekt/plan-v2-modul-oka.md (opis v2.2 i v2.4 oraz TABELA LUZÓW v2.4), 40-cad/solidcraft/README.md (model w SolidCraft 0.15: parametry, komponenty, jointy),

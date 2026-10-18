@@ -3,7 +3,7 @@
 
 ## Zadanie
 
-Zrób **v2 modułu małego oka**: ta sama koncepcja co v1.1 (`40-cad/`, `40-cad/README.md`), ale **złożona na śrubach M3** i z poprawkami poniżej. Zacznij od `git pull` i `CLAUDE.md`.
+Zrób **v2 modułu małego oka**: ta sama koncepcja co v1.1 (`40-cad/`, `40-cad/README.md`), ale **złożona na śrubach M3** i z poprawkami poniżej. Zacznij od `git pull` i `AGENTS.md`.
 
 ## Bez zmian względem v1.1
 
@@ -24,7 +24,7 @@ Zrób **v2 modułu małego oka**: ta sama koncepcja co v1.1 (`40-cad/`, `40-cad/
 7. **Krótsze gniazdo** (ścianka dyni + nakrętka). Dwa sąsiednie moduły w rozstawie 105–115 mm po powierzchni dyni nie mogą kolidować w środku.
 8. **Rant i nakrętka dopasowane do krzywizny dyni**, ząbki dalej od krawędzi otworu.
 9. **Druk:**
-   - **zasada: każda część ma płaską stronę na stół, nic nie wystaje poza nią** (patrz CLAUDE.md, DFAM),
+   - **zasada: każda część ma płaską stronę na stół, nic nie wystaje poza nią** (patrz AGENTS.md, DFAM),
    - bez nawisów słupków serwa i chwytu,
    - flanki gwintu ≤ 45° i fazowany początek zwoju,
    - jarzmo leży płasko,
@@ -50,7 +50,7 @@ Czego nie wiadomo: przyjmij rozsądną wartość jako zmienną i zapisz to w pod
 
 ## Jak pracujesz
 
-- Onshape: wymagania struktury i zasady API są w `CLAUDE.md`. **Ten sam dokument (SimpleEye), nowa gałąź „v2” od wersji v1.1**, a v1 i v1.1 zostają nietknięte w historii.
+- Onshape: wymagania struktury i zasady API są w `AGENTS.md`. **Ten sam dokument (SimpleEye), nowa gałąź „v2” od wersji v1.1**, a v1 i v1.1 zostają nietknięte w historii.
 - **Najpierw plan dla użytkownika:** lista Partów i sposób łączenia każdej pary części. Budujesz dopiero po akceptacji.
 - Assembly z ruchem ±30° i podglądem prawdziwego SG90 (korpus, uszy, kabel, orczyk), bez kolizji.
 - Eksport 3MF robi użytkownik. Ty mierzysz na nim luzy.
