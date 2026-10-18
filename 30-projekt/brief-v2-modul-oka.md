@@ -50,7 +50,7 @@ Czego nie wiadomo: przyjmij rozsądną wartość jako zmienną i zapisz to w pod
 
 ## Jak pracujesz
 
-- Onshape: wymagania struktury i zasady API są w `CLAUDE.md`. Nowy dokument, a v1 i v1.1 zostają nietknięte.
+- Onshape: wymagania struktury i zasady API są w `CLAUDE.md`. **Ten sam dokument (SimpleEye), nowa gałąź „v2” od wersji v1.1**, a v1 i v1.1 zostają nietknięte w historii.
 - **Najpierw plan dla użytkownika:** lista Partów i sposób łączenia każdej pary części. Budujesz dopiero po akceptacji.
 - Assembly z ruchem ±30° i podglądem prawdziwego SG90 (korpus, uszy, kabel, orczyk), bez kolizji.
 - Eksport 3MF robi użytkownik. Ty mierzysz na nim luzy.
