@@ -55,3 +55,4 @@
 | 2026-10-18 | v2.2: gniazdo w dyni + kaseta (kompletny moduł skręcony na stole) wsuwana osiowo, z żebrem (pozycja GÓRA) i 2 sprężystymi zaczepami; otwór Ø62 | W dyni nic się nie skręca (v2.1d nie dało się złożyć); syn wkłada moduł sam |
 | 2026-10-18 | Zakres pracy oka ±30°, ograniczniki ±33° jako stop | Przy ±33° napęd na granicy (review v2.1d) |
 | 2026-10-18 | Gwint: luz 0,3 przy flankach 45° i głębszy zarys (~1,6–1,8 mm) | Próbka v2.1 (luz 0,5) za luźna: ~1,3 mm luzu |
+| 2026-10-18 | CAD zostaje w Onshape. Fusion 360 odpada (tylko Windows). SolidCraft (open source, klon Fusion z MCP, Win+Linux) – wrócić, gdy projekt się ustabilizuje | Praca na dwóch komputerach (Windows + Linux); SolidCraft v0.14 jest jeszcze za młody |
