@@ -69,3 +69,4 @@
 | 2026-10-18 | Gwint gniazda i nakrętki: natywny ISO **M63×3** (flanki 60°) zamiast 45° skok 5; nakrętka M63.6×3 (luz 0,3 promieniowo), do porównania próbka M64.2×3 (0,6); najpierw próbka gwintu | Własny zwój 45° zawiesza SolidCraft 0.15 (#2079, #1856); natywny Thread liczy się w ~10 s |
 | 2026-10-18 | Pilotaż SolidCraft 0.15 (CLI) dla v2.3, Onshape w zapasie | Onshape zablokował API (429, Retry-After ~7 h) |
 | 2026-10-18 | Gwint gniazda i nakrętki w SolidCraft: ISO M63×3 (60°) zamiast 45°; nowa próbka przed drukiem | Własna helisa zawiesza SolidCraft (znane błędy), natywny gwint ISO działa |
+| 2026-10-18 | SolidCraft głównym narzędziem CAD, dopóki daje oczekiwane wyniki; Onshape w zapasie | Pilotaż etapu 1 (gniazdo, kaseta, gwint ISO) zaakceptowany przez użytkownika |
