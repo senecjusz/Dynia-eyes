@@ -115,6 +115,15 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 - **Parametry w Variable Studio** (luzy, średnice otworów pod śruby i wkładki, średnica piłeczki), do których odwołują się szkice i operacje.
 - FeatureScript tylko tam, gdzie natywne narzędzia nie wystarczają (np. gwint drukowany), jako mała, pojedyncza operacja.
 
+**Dyscyplina modelowania (wnioski z v2.4 w SolidCrafcie).** Tamten model miał 200 operacji, bo powstał jako łańcuch atomowych par szkic+wyciągnięcie: 94 szkice na 94 wyciągnięcia, **zero** odbić lustrowych przy 23 parach góra/dół, jeden szyk, dwie fazki. Takiego drzewa nie da się czytać ani poprawiać. Obowiązuje więc:
+
+- **Symetria przez `Mirror`**, nigdy przez ręczne powtórzenie operacji. Każda para góra/dół, lewo/prawo to jedno odbicie.
+- **Powtórzenia przez szyk** (`Circular`/`Linear Pattern`): ząbki pierścienia, zaczepy, haczyki, wycięcia na klucz, radełko. Jeśli szyk nie przechodzi, zgłosić to orkiestratorowi, a nie kopiować ręcznie.
+- **Fazki i zaokrąglenia jako `Chamfer` / `Fillet` na krawędziach**, nie jako dodatkowe cięcia.
+- **Jeden szkic, wiele profili** – otwory i szczeliny na tej samej płaszczyźnie w jednym szkicu i jednej operacji, nie po jednej na każdy otwór.
+- **`Hole` do otworów** pod śruby i wkładki, nie okrąg plus wyciągnięcie.
+- **Budżet: ≤ 15 operacji na część.** Przekroczenie oznacza, że część jest modelowana atomowo – zatrzymać się i zgłosić.
+
 ## Praca w SolidCraft (główne CAD od 18.10)
 
 - Wersja 0.15.0 jest na Windows (Kobyłka, `C:\Program Files\SolidCraft`) i jako Linux AppImage (Warszawa). Model źródłowy to `40-cad/solidcraft/*.solidcraft`.
@@ -128,9 +137,30 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 
 ## Praca z API Onshape (plan Free)
 
-- Tylko sesja przeglądarki (cookie + X-XSRF-TOKEN). **Bez kluczy API ani OAuth**, bo te zużywają roczny limit 2 500 wywołań.
-- Drobne zmiany zamiast przebudowy całości, najwyżej jedna sekcja naraz. `GET /features` raz, trzymać w pamięci.
-- **Drzewo operacji (`GET …/features`) pobierać raz na sesję**, odświeżać tylko po błędzie. 18.10 zbyt częste pobieranie drzewa (~270 operacji) skończyło się blokadą 429 z `Retry-After` ~7 h.
-- Przerwa 300–500 ms po każdym zapytaniu. Przy 429: odczekać `Retry-After`, ponowić najwyżej 3 razy. Przy 402: stop i informacja dla użytkownika.
-- Eksporty (3MF, STL, STEP) robi użytkownik ręcznie: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm.
-- Po każdej sekcji zapis postępu (log, mapa nazwa operacji → featureId).
+Wszystkie liczby niżej są **zmierzone 18.10 na dokumencie SimpleEye**, nie wzięte z dokumentacji.
+
+**Dostęp.** Tylko sesja przeglądarki (cookie + `X-XSRF-TOKEN`), zwykły `fetch` z kontekstu strony `cad.onshape.com`. Bez kluczy API i bez OAuth.
+
+**Limity.** Dwa niezależne:
+
+| | Limit | Jak go widać |
+|---|---|---|
+| Okno czasowe, per endpoint | `/features` ≈ **100**, pozostałe endpointy ≈ **3 000** | nagłówek `X-Rate-Limit-Remaining` w **każdej** odpowiedzi |
+| Rok, per użytkownik | **2 500** (plan Free) | niewidoczny; wyczerpanie objawia się dopiero kodem **402** |
+
+- **`/features` jest jedynym wąskim endpointem** – trzydzieści razy ciaśniejszy od pozostałych. Cały budżet planować wokół niego. To on wywołał blokadę 429 z `Retry-After` ~7 h.
+- **Czytać `X-Rate-Limit-Remaining` przy każdej odpowiedzi** i zwalniać przed zerem. Przy `0` następne wywołanie dostanie 429. Nie stosować pauz „na wyczucie" – serwer podaje stan licznika darmo.
+- Przy **429**: czekać dokładnie tyle sekund, ile mówi `Retry-After` (to czas do zerowania okna, nie kara – eskalacji nie ma). Przy **402**: stop i informacja dla użytkownika, pula roczna wyczerpana.
+
+**Oszczędne wzorce wywołań.**
+
+- **Drzewo pobierać raz na sesję**, mapę `nazwa operacji → featureId` trzymać lokalnie. Kluczem ważności cache'u jest `sourceMicroversion` z odpowiedzi: zmienił się – ktoś edytował, cache nieważny.
+- **Obcinać payload:** `?noSketchGeometry=true&includeGeometryIds=false`. Zmierzone na drzewie 271 operacji: **2 518 246 B → 1 049 711 B** (−58%), ta sama zawartość, 240 ms.
+- **Zmieniać pojedynczą operację, nie przebudowywać:** `POST /api/v12/partstudios/d/{did}/w/{wid}/e/{eid}/features/featureid/{fid}`. Bez pobierania drzewa. **Pułapka:** w ciele musi być `featureId` identyczny z tym w URL oraz `featureType` i `name` – pominięcie tych dwóch ustawia nazwę i typ na pusty łańcuch.
+- **Przed zapisem** wysyłać `sourceMicroversion` i `rejectMicroversionSkew`, żeby nie nadpisać zmiany innej sesji. Przy dwóch komputerach to nie teoria.
+- **Żadnych wywołań API w pętli** po częściach, konfiguracjach czy właściwościach. Śledzenie zależności przez `qCreatedBy` jest O(n²) po liczbie operacji – przy 271 operacjach nie wchodzi w grę.
+- **Ciężkie obliczenia i inspekcje robić FeatureScriptem wewnątrz dokumentu** – wykonuje się na serwerze Onshape i **nie liczy się do puli rocznej**. Z zastrzeżeniem reguły wyżej: FeatureScript do liczenia i sprawdzania, nie do generowania geometrii.
+
+**Eksporty** (3MF, STL, STEP) robi użytkownik ręcznie: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm.
+
+**Po każdej sekcji** zapis postępu: log i mapa `nazwa operacji → featureId`.
