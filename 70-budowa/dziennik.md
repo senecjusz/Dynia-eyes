@@ -28,3 +28,7 @@
 
 ## 2026-10-18 – review v2.3 (SolidCraft)
 - Opus + Codex: przeniesienie geometrii z Onshape poprawne (< 0,1 mm), kinematyka i ruch OK; do poprawy: klin w otworze H, błona w przyrządzie, nieszczelne siatki z eksportu SolidCraft, cienkie ścianki przy H, brak fazek. Zlecone jako v2.4.
+
+## 2026-10-18 – review v2.4 i przekazanie
+- Review v2.4 (Opus + Codex): do wydruku testowego po drobnych poprawkach (v2.5: prowadnica sanek w eksporcie, naroże sanek vs tulejka H, otwory dolne Ø8,7, domyślna nakrętka 0,45, parametry, orientacja siatek, dokumenty). Ramię przy stopie 0,26 zaakceptowane, firmware ≤ ±30°.
+- Orkiestracja przeniesiona do Warszawy (Omarchy). Stan: `30-projekt/stan-projektu.md`.

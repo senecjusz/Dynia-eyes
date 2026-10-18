@@ -38,7 +38,7 @@
   - **Własna helisa (gwint) zawiesza program**, więc używamy natywnego Thread (ISO).
   - **Eksport 3MF potrafi dać nieszczelne siatki**: otwarte krawędzie, krawędzie z więcej niż 2 trójkątami.
   - **Cięcia stykające się dokładnie na ścianie zostawiają błony.** Cięcie zaczynać z zakładką 0,1 mm.
-- **Po każdym eksporcie obowiązkowo:** automatyczne sprawdzenie szczelności siatek i symulacja wsuwania wszystkich wkładanych części (tulejki, śruby, trzpienie przyrządów), nie tylko ruchu.
+- **Po każdym eksporcie obowiązkowo:** automatyczne sprawdzenie siatek (szczelność, orientacja trójkątów, **liczba brył w modelu = w 3MF** – v2.4 zgubił bryłę) i symulacja wsuwania wszystkich wkładanych części (tulejki, śruby, trzpienie) **także względem sąsiednich części**, nie tylko obudowy.
 - Parametry muszą być podpięte do operacji, a nie wpisane liczbą obok.
 
 ## Praca z API Onshape (plan Free)
