@@ -16,9 +16,65 @@ Nazwy plików: `<element>-v<wersja>`, np. `oko-male-uchwyt-v2.stl`.
 
 | Element | Link |
 |---|---|
+| Małe oko, wariant F **v2 (do review)** – dokument **SimpleEye**, gałąź **v2**, Part Studio **Oko F v2**, Variable Studio **Zmienne v2**, Assembly **Oko F v2 - zlozenie** | [Part Studio](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/8083c4aa68dac2ff3dcc33d3/e/55797b2a8c74e36981a8e30d), [Assembly](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/8083c4aa68dac2ff3dcc33d3/e/d93dceae16d5a9f4a5bd58e9) |
 | Małe oko, wariant F **v1.1** (gniazdo, nakrętka, moduł oka) – dokument **SimpleEye**, Part Studio **Oko F v1.1** | [Onshape](https://cad.onshape.com/documents/5bf3e9f6848edf7f1b0019a9/w/3a55ebced85399a96c2abb04/e/e16c6f06fdebaa87e0db8e02) |
 
-Poprzedni stan (v1) jest zapisany w Onshape jako wersja dokumentu **„v1”**, a jego pliki są w [`archiwum/v1/`](archiwum/v1/).
+Poprzedni stan (v1) jest zapisany w Onshape jako wersja dokumentu **„v1”**, a jego pliki są w [`archiwum/v1/`](archiwum/v1/). Stan v1.1 to wersja **„v1.1”** (gałąź Main), a v2 to gałąź **v2** z wersją **„v2 do review”**.
+
+## Oko F v2 – do review (gałąź v2)
+
+Plan, połączenia, zmienne, kinematyka, wyniki kolizji i lista niepewności są w [`30-projekt/plan-v2-modul-oka.md`](../30-projekt/plan-v2-modul-oka.md). Model budują skrypty [`onshape/oko-f-v2-build.js`](onshape/oko-f-v2-build.js) i [`onshape/oko-f-v2-kolizje.js`](onshape/oko-f-v2-kolizje.js) (sprawdzenie ruchu na siatkach).
+
+### Do druku (PLA, bez podpór)
+
+STL i 3MF eksportuje użytkownik: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm. Nazwy plików mają sufiks `-v2`.
+
+| Część | Szt. | Plik | Ułożenie na stole |
+|---|---|---|---|
+| Gniazdo | 1 | `gniazdo-v2.stl` | Płaskim wierzchem rantu do stołu |
+| Nakretka | 1 | `nakretka-v2.stl` | Tyłem (strona z wycięciami na klucz) do stołu |
+| Tuleja modulu | 1 | `modul-tuleja-v2.stl` | Czołem do stołu |
+| Jarzmo | 1 | `modul-jarzmo-v2.stl` | Płaską ścianą pierścienia do stołu, od strony bez korby (korba to pionowe żebro). Brim |
+| Ciegno | 1 | `modul-ciegno-v2.stl` | Spodem do stołu, podniesienia do góry |
+| Ramie orczyka | 1 | `modul-ramie-orczyka-v2.stl` | Wierzchem do stołu (kieszeń orczyka do góry) |
+| Tulejka przegubu | 2 | `modul-tulejka-v2.stl` | Kołnierzem do stołu |
+| Pokrywa tylna | 1 | `modul-pokrywa-v2.stl` | Tylną ścianą do stołu |
+| Przyrzad wiercenia A, B | 1+1 | `przyrzad-wiercenia-a-v2.stl`, `-b-v2.stl` | Zewnętrzną ścianą do stołu |
+| Przyrzad centrowania orczyka | 1 | `przyrzad-orczyka-v2.stl` | Podstawą do stołu |
+
+Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
+
+### Elementy złączne
+
+| Element | Szt. | Gdzie |
+|---|---|---|
+| M3×8 z **niskim łbem** (ISO 7380 albo DIN 7984) | 2 | Oś oka (DIN 912 się nie mieści) |
+| M3×8 DIN 912 | 4 | 2 przeguby (od dołu) i pokrywa tylna |
+| Wkładka M3 do wtapiania (otwór Ø4, dł. 4) | 4 | 2 w cięgnie, 2 w uszach tulei |
+| M3×35–40 | 2 | Przyrząd wiercenia |
+| M2×6 | 1 | Ramię do orczyka (otwór 13 mm) |
+| Wkręty z kompletu SG90 | 3 | 2 uszy serwa i wkręt środkowy orczyka |
+
+Piłeczka: 2 otwory Ø3,3 (bieguny) i otwór Ø4,2 z boku. Wiercić w przyrządzie, a przez otwór na górze przyrządu zaznaczyć markerem miejsce źrenicy.
+
+### Kolejność składania
+
+1. Wtopić wkładki w cięgno (od góry) i w uszy tulei.
+2. Jarzmo z piłeczką (kołek w otworze Ø4,2) wsunąć **od przodu** tulei. Kołki ogranicznika idą kanałami w występach osi. Wkręcić 2 śruby osi.
+3. SG90 wsunąć **od tyłu**, przednim uchem na słupek. Przykręcić ucho wkrętem z kompletu przez otwór w górze tulei.
+4. Pokrywę tylną przykręcić 2 × M3, przykręcić tylne ucho, kabel przepleść między kołkami pokrywy.
+5. Serwo ustawić na środek (strona ESP32) i założyć przyrząd centrowania od dołu: trzpienie wchodzą w otwory korby i ramienia. Orczyk z ramieniem nasadzić na wałek, przykręcić M2 i wkręt środkowy, zdjąć przyrząd.
+6. Cięgno włożyć między korbę a ramię. Tulejki z kołnierzem od dołu przez otwory w spodzie tulei, potem śruby M3×8 do oporu.
+
+### Assembly
+
+- Grupy: moduł nieruchomy, jarzmo z piłeczką, ramię z orczykiem, cięgno z tulejkami.
+- Mate'y:
+  - oś oka: Revolute z limitem ±33°,
+  - wałek serwa: Revolute,
+  - przegub C: Cylindrical,
+  - przegub H: Ball.
+- Tuleja jest unieruchomiona (Fix). Oko można obracać, przeciągając piłeczkę.
 Uwaga: konto Onshape jest na planie Free, więc dokumenty są **publiczne**.
 
 ## Oko F v1.1 – co się zmieniło względem v1 (po review)
