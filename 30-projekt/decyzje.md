@@ -77,3 +77,4 @@
 | 2026-10-18 | v2.4: zaczepy 33°/213°, haczyki i okienka 47°/227° (−5° od v2.3); wybranie H współosiowe (r 25,25 / 25,8), pogrubienie H od z −46,5 | Usunięcie mostka przy otworze H i ścianka ≥ 2 wszędzie (review v2.3) |
 | 2026-10-18 | v2.4: nakrętka bez radełka i faz otworu, obrócona o 24° (faza gwintu); gwint zawsze ostatnią operacją | Ograniczenie SolidCraft 0.15: radełko + czoło stożkowe psują gwint wewnętrzny |
 | 2026-10-18 | Eksport 3MF zawsze przez `40-cad/narzedzia/napraw_siatki.js` + `sprawdz_siatki.js` (0 błędów) | Review v2.3: nieszczelne siatki z SolidCraft |
+| 2026-10-18 | v2.4: luz ramię–kaseta 0,26 mm przy stopie +33° akceptowany; w razie potrzeby zakres pracy w firmware ±25° | Dotyczy tylko stopu; różnica ±25/±30° dla efektu nieistotna (użytkownik) |
