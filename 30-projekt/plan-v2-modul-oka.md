@@ -240,3 +240,45 @@ Model: `40-cad/solidcraft/oko-f-v2.3.solidcraft` (opis i ograniczenia w `40-cad/
 | Probka gwintu - nakretka luz 0.6 | pierścień 7 mm, M64.2×3 | 0,60 / ~0,30 | 1,04 mm |
 
   Wybrać nakrętkę, która wchodzi palcami bez luzu wyczuwalnego osiowo. Wynik wpisać w `luzGwint` i do tabeli luzów w AGENTS.md.
+
+## v2.3 w SolidCraft: komplet części, złożenie, sprawdzenie (gotowe do review)
+
+Model `40-cad/solidcraft/oko-f-v2.3.solidcraft`: 17 części, każda jako osobny komponent, oś czasu w folderach. Eksport 3MF: `40-cad/3mf/Oko F v2.3/` (17 plików).
+
+**Zmiany v2.3 względem v2.2:**
+- luz kaseta–gniazdo 0,25/str. (gniazdo Ø55,0, gwint ISO M63×3, patrz wyżej),
+- żebro ze skosami bocznymi na wejściu, rowek z fazkami 0,8,
+- gniazdo dłuższe o 2 mm, pasek za okienkami 3,5,
+- zaczepy i okienka obrócone o −7°: haczyki 52° i 232°, 2,9° od otworu H,
+- otwory wkładek w uchach i pokrywie na r 29,5, skos ucha wyżej o 1 mm (ścianka 2,0 / 2,05),
+- sanki 0,25 nad ścianką kasety,
+- wybranie H: płytkie (−24,45) + głębokie, a po symulacji poszerzone do −24,95 (z −43,6…−51,2), do −25,2 przy końcu gniazda i do −25,6 w pogrubieniu. Ścianka ≥ 2,05.
+
+**Złożenie (jointy „as built”):** gniazdo nieruchome, sztywno z nakrętką, kasetą, sankami, pokrywą i SG90. Oś oka: obrót z limitem ±33°. Wałek serwa: obrót z limitem **−30…+37°**, bo w SolidCraft znak kąta jest odwrotny niż w Onshape: oko +30° to serwo −25,6°. Przegub C obrotowy, H kulowy. Badanie ruchu „Ruch oka +-33”.
+
+**Tabela luzów (zmierzone w SolidCraft `inspect.clearance` co 3° i na siatkach STL):**
+
+| Para | Pasowanie | Nominalnie | Zmierzone |
+|---|---|---|---|
+| Oczko jarzma – występ kasety | osiowe na osi | 0,3 | 0,27–0,30 w ±32° |
+| Kołek ogranicznika – szczelina / kanał | ograniczenie ruchu | 0,3 | 0,30; styk przy ±33° (stop), przy ±34° kolizja |
+| Ramię – kaseta | ruchome obok siebie | ≥ 0,5 | **0,61** przy +33°, 0,80 przy ±31,5° |
+| Cięgno – kaseta | ruchome | ≥ 0,5 | **0,51** przy −33° |
+| Tulejka C / H – kaseta | ruchome | ≥ 0,5 | 0,60 / 1,00 |
+| Cięgno – ramię, cięgno – jarzmo | warstwy | 0,2 | 0,20 |
+| Jarzmo – piłeczka | klej | 0,5 | 0,49 |
+| Cięgno / tulejka C / ramię – piłeczka | ruchome | ≥ 0,5 | 0,79 / 1,21 / 1,76 |
+| Ramię – SG90 | ruchome | ≥ 0,5 | 1,30 |
+| Korba, ramię na tulejce | obrotowe | 0,2 | Ø6,0/Ø5,6; kołnierze oparte (projekt) |
+| Kaseta – gniazdo (wsuwanie) | ślizgowe | 0,25 | 0,24 na całej drodze; haczyki uginają się 0,75 na ostatnich 6 mm, w okienkach bez kontaktu (osiowo 0,2) |
+| Żebro – rowek | ślizgowe | 0,3 bok, 0,35 promień. | jak nominalnie + fazki 0,8 |
+| Jarzmo z piłeczką przez kasetę (od tyłu) | wsuwanie | ≥ 0,25 | ≥ 0,28 |
+| Sanki z SG90 do kasety (od tyłu) | wsuwanie | 0,25 | 0,28; na końcu przód SG90 0,20 od końca szczeliny |
+| Gwint gniazdo – nakrętka | gwint ISO 60° | 0,3 promieniowo | ~0,15 na flance (próbka z 0,6 do porównania) |
+| Jarzmo w przyrządzie do wklejania | ustalenie | 0,2 | 0,17; piłeczka styka się ze stożkiem (centrowanie) |
+
+**Czego nie jestem pewien (nowe w v2.3):**
+1. Gwint 60°: nawis dolnych flank i luz na flance tylko 0,15. Rozstrzygnie próbka.
+2. Wybranie H ma ściankę 2,05 mm przy końcu gniazda (z −44,6…−45,9), bez pogrubienia z zewnątrz.
+3. SolidCraft czasem pomija część cięcia i zgłasza tylko ostrzeżenie (tak było z wnętrzem miski: korba wchodziła w szczelinę kleju). Po każdej zmianie sprawdzać luzy, nie ufać samemu brakowi błędów.
+4. Pozostałe niepewności v2.2 bez zmian (SG90, kabel, klej, zaczepy, przyrząd orczyka bez ustalenia).

@@ -1,12 +1,13 @@
 # 40 – CAD i druk 3D
 
-Źródłem prawdy są dokumenty w **Onshape** – tu trzymamy eksporty i linki.
+Od v2.3 źródłem prawdy jest model **SolidCraft** [`solidcraft/oko-f-v2.3.solidcraft`](solidcraft/) (opis w [`solidcraft/README.md`](solidcraft/README.md)). Wcześniejsze wersje są w **Onshape** – tu trzymamy eksporty i linki.
 
 | Folder | Zawartość |
 |---|---|
 | `step/` | Eksporty STEP z Onshape (do wymiany i archiwum) |
 | `stl/` | Gotowe STL do druku (tylko aktualna wersja) |
 | `3mf/` | Eksport 3MF z Onshape / projekty ze slicera |
+| `solidcraft/` | Model SolidCraft v2.3 (`.solidcraft`), zrzuty, opis i ograniczenia |
 | `onshape/` | Skrypty budujące model w Onshape przez REST API |
 | `archiwum/` | Stare wersje – **nie drukować** |
 

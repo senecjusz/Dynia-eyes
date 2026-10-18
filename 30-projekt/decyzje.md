@@ -70,3 +70,5 @@
 | 2026-10-18 | Pilotaż SolidCraft 0.15 (CLI) dla v2.3, Onshape w zapasie | Onshape zablokował API (429, Retry-After ~7 h) |
 | 2026-10-18 | Gwint gniazda i nakrętki w SolidCraft: ISO M63×3 (60°) zamiast 45°; nowa próbka przed drukiem | Własna helisa zawiesza SolidCraft (znane błędy), natywny gwint ISO działa |
 | 2026-10-18 | SolidCraft głównym narzędziem CAD, dopóki daje oczekiwane wyniki; Onshape w zapasie | Pilotaż etapu 1 (gniazdo, kaseta, gwint ISO) zaakceptowany przez użytkownika |
+| 2026-10-18 | SolidCraft głównym narzędziem CAD (Onshape zapasowo); v2.3 kompletna w `40-cad/solidcraft/oko-f-v2.3.solidcraft` | Decyzja użytkownika po etapie 1 |
+| 2026-10-18 | v2.3: wybranie H poszerzone (−24,95 / −25,2 / −25,6), ścianka ≥ 2,05 | Symulacja: ramię–kaseta 0,32 i cięgno–kaseta 0,41 przy ±33° po zmianach v2.3; teraz 0,61 / 0,51 |

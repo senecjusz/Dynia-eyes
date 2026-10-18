@@ -1,4 +1,4 @@
-# SolidCraft: Oko F v2.3 (pilotaż, etap 1)
+# SolidCraft: Oko F v2.3 (komplet, do review)
 
 Model budowany **na żywo w aplikacji** SolidCraft 0.15.0 (Windows i Linux), sterowanej przez `solidcraft.exe --control 7878` i `solidcraft-cli mcp --connect 127.0.0.1:7878`. Onshape zostaje jako zapas.
 
@@ -6,11 +6,11 @@ Model budowany **na żywo w aplikacji** SolidCraft 0.15.0 (Windows i Linux), ste
 |---|---|
 | `oko-f-v2.3.solidcraft` | model: **źródło prawdy**, otwierać w SolidCraft (File → Open) |
 | `../3mf/Oko F v2.3/` | 3MF do druku: próbka gwintu gniazda, nakrętka (luz 0,3), nakrętka testowa (luz 0,6) |
-| `png/` | zrzuty: `iso`, `tyl`, `przekroj` (płaszczyzna YZ przez oś) |
+| `png/` | zrzuty: `iso`, `tyl`, `przekroj` (gniazdo z nakrętką i kaseta), `zlozenie-iso`, `naped-plus33` |
 
 Układ jak w Onshape: oś modułu Z (+Z na zewnątrz dyni, z = 0 to wierzch rantu), oś oka Y (+Y = GÓRA).
 
-## Co jest w etapie 1
+## Części (etap 1: gniazdo, kaseta, gwint)
 
 - **Parametry** (Parameters, 42): łańcuch średnic jak w v2.2, ale `luzKaseta` 0,25. Daje to gniazdo Ø55,0, rdzeń Ø59,0, gwint Ø63,0 (luz 0,25/str. w otworze Ø63,5) i nakrętkę Ø59,6. Nowe parametry: `luzSanki` 0,25, `fazkaWej` 0,8, `zaczepyL` 9, `gniazdoKoniec` 45,7, `dyniaR` 150.
 - **Komponent Gniazdo**:
@@ -30,6 +30,15 @@ Układ jak w Onshape: oś modułu Z (+Z na zewnątrz dyni, z = 0 to wierzch rant
   - ucha z otworami wkładek na r 29,5 i skosem wyżej o 1 mm: ścianka 2,0 mm do brzegu i 2,05 mm do skosu (v2.3; w v2.2 było 1,34).
 - Oś czasu: foldery według części (Gniazdo, Kaseta z podfolderami), nazwy operacji po polsku. 0 błędów.
 
+## Części (etap 2)
+
+Jarzmo z miską (pas kulisty z obrotu profilu wokół osi pasa, bez biegunów sfery), cięgno, ramię orczyka, 2 tulejki, sanki serwa, pokrywa tylna, przyrząd do wklejania piłeczki (wnęka: walec + stożek 90° jako wyciągnięcie z pochyleniem), przyrząd centrowania orczyka, podglądy: piłeczka 40,5, SG90 z kablem, orczyk. Każda część to osobny komponent. Eksport 3MF: `../3mf/Oko F v2.3/`.
+
+## Złożenie i sprawdzenie
+
+- Jointy „as built”: oś oka (obrót, ±33°), wałek serwa (obrót, −30…+37°: znak kąta odwrotny niż w Onshape), przegub C (obrót), H (kulowy), grupy sztywne. Badanie ruchu „Ruch oka +-33”.
+- Luzy: `inspect.clearance` co 3° w całym zakresie (szybkie, ok. 50 ms na parę). Pary z kasetą, których SolidCraft nie mierzy, i wsuwanie liczone na siatkach STL (odległość punkt–trójkąt i test wnętrza w obie strony). Tabela luzów: `30-projekt/plan-v2-modul-oka.md`.
+
 ## Ograniczenia SolidCraft 0.15 (wyniki pilotażu)
 
 - **Gwint:** tylko natywny `Thread` (ISO, flanki 60°, średnica i skok dowolne, np. `M63.6x3`), liczy się w ok. 10 s. Własny zarys 45° (sweep po helisie, `coil`) się nie da: każda operacja logiczna ze zwojem trwa ponad 4 minuty albo zawiesza okno (GitHub #2079, #1856, #2038).
@@ -40,4 +49,8 @@ Układ jak w Onshape: oś modułu Z (+Z na zewnątrz dyni, z = 0 to wierzch rant
 - **Łuki w szkicu:** koniec łuku liczony z kąta nie trafia w koniec linii. Linie trzeba dołączać do końców łuków przez odwołanie (`a1.end`).
 - **Brak eksportu historii** (`solidcraft-cli script`) dla modelu z komponentami (SolidCraft #886). Historię widać tylko w aplikacji.
 - **Eksport 3MF:** bez ustawienia dokładności. Domyślna siatka ma krok ok. 3°, odchyłkę cięciwy ok. 0,01 mm na Ø54,5, czyli wystarczająco.
+- **Cięcie pominięte z ostrzeżeniem, nie błędem** („Boolean retry: not verified … that part is ignored”): tak zniknęło cięcie wnętrza miski. Po każdej operacji sprawdzać ostrzeżenia i luzy.
+- **Cięcie zaczynające się na ścianie** (np. szczelina od płaszczyzny spodu występu) zostawia **błonę zerowej grubości** w B-rep i w siatce. Cięcia zaczynać 0,1 mm przed ścianą (`start_offset`). `face.delete` jej nie usuwa („not implemented”).
+- **Bieguny i osie obrotu na ścianach** (sfera, wierzchołek stożka) psują późniejsze sumy i cięcia. Profile obracać tak, żeby nie dotykały osi albo zastąpić obrót wyciągnięciem.
+- **`motion.interference` z kasetą** przekracza budżet obliczeń, a działa dla prostych par. **`inspect.clearance`** odmawia pary jarzmo–kaseta („shared part malformed”).
 - **Działa dobrze:** parametry z wyrażeniami, wymiary szkicu z parametrów, szyk kołowy prostych operacji, fazki (`chamfer`) na krawędzi wskazanej punktem, przekrój (`inspect.section`), zrzuty, foldery osi czasu, zapis i odczyt. Są też jointy, `motion.study` i `inspect.clearance` (do sprawdzenia w etapie 2).
