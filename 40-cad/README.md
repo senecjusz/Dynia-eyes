@@ -24,7 +24,7 @@ Historia w Onshape:
 - v1 to wersja dokumentu **„v1”**, a jej pliki są w [`archiwum/v1/`](archiwum/v1/).
 - v1.1 to wersja **„v1.1”** (gałąź Main).
 - v2 to wersja **„v2 do review”** w gałęzi **v2**. W gałęzi v2 (workspace) zostały już tylko elementy v2.1.
-- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi, v2.1b (klej 0,5 mm, napęd w Assembly) to wersje **„v2.1b do review”** i **„v2.1b animacja”**, a **v2.1c** (po wydruku v1.1: jarzmo bez podpór, luz gwintu 0,5 z Próbką gwintu, kabel SG90) to wersja **„v2.1c do review”**.
+- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi, v2.1b (klej 0,5 mm, napęd w Assembly) to wersje **„v2.1b do review”** i **„v2.1b animacja”**, **v2.1c** (po wydruku v1.1: jarzmo bez podpór, luz gwintu 0,5 z Próbką gwintu, kabel SG90) to wersja **„v2.1c do review”**, a **v2.1d** (otwór pod stałą otwornicę Ø56) to wersja **„v2.1d do review”**.
 
 ## Oko F v2.1 – do review (gałąź v2)
 
@@ -36,7 +36,7 @@ Skrypty:
 
 Skrypt v2 ([`onshape/oko-f-v2-build.js`](onshape/oko-f-v2-build.js)) jest zachowany dla wersji „v2 do review”.
 
-Wymiary: otwór w dyni **Ø57**, rant Ø63, nakrętka Ø66, ścianka dyni 15–25 mm, długość modułu 77,5 mm, gałka wystaje ok. 8 mm.
+Wymiary: otwór w dyni **Ø56** (stała otwornica; część w otworze Ø55,6, gwint Ø54,9), rant Ø63, nakrętka Ø66, ścianka dyni 15–25 mm, długość modułu 77,5 mm, gałka wystaje ok. 8 mm.
 
 ### Do druku (PLA, bez podpór)
 
@@ -80,14 +80,12 @@ Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
    - po związaniu kleju odkręcić.
 3. **Przegub C:** tulejkę z kołnierzem włożyć od dołu w otwór korby, nałożyć cięgno i wkręcić M3×8 do oporu we wkładkę.
 4. Jarzmo z piłeczką i cięgnem wsunąć **od tyłu** obudowy, piłeczką do otworu w rancie (GÓRA do góry). Kołki ogranicznika wchodzą kanałami w występach osi. Wkręcić 2 × M3×5 od góry i od dołu.
-5. SG90 wsunąć **od tyłu**, przednim uchem na słupek. Ucho przykręcić wkrętem z kompletu przez otwór w górze obudowy.
-6. Serwo ustawić na środek (strona ESP32). Od dołu założyć przyrząd centrowania: trzpień przez otwór dolny wchodzi w otwór ramienia. Orczyk z ramieniem nasadzić na wałek, przykręcić M2 i wkręt środkowy przez otwory w górze, zdjąć przyrząd.
-7. **Przegub H:** przez otwór dolny włożyć tulejkę w ramię, nasunąć cięgno, wkręcić M3×8 do oporu.
-8. Wtyczkę serwa przeciągnąć przez szeroką część otworu w pokrywie (od środka na zewnątrz), pokrywę przykręcić 2 × M3×8, przykręcić tylne ucho. Taśmę kabla wcisnąć w wąską szczelinę pod otworem (odciążenie).
-9. **W dyni (rodzic):**
-   - obudowę włożyć od zewnątrz w otwór Ø57, strzałką GÓRA do góry,
-   - od środka nakręcić nakrętkę, aż ząbki rantu wejdą w skórkę,
-   - syn wpina wtyczkę serwa.
+5. **W dyni (rodzic):** obudowę z jarzmem i piłeczką włożyć od zewnątrz w otwór **Ø56** (stała otwornica), strzałką GÓRA do góry. Od środka nakręcić nakrętkę, aż ząbki rantu wejdą w skórkę.
+   Serwo i pokrywę montuje się dopiero teraz, od środka dyni: korpus SG90 i dolny występ pokrywy wystają poza Ø56, więc z nimi obudowa nie przeszłaby przez otwór.
+6. SG90 wsunąć **od tyłu**, przednim uchem na słupek. Ucho przykręcić wkrętem z kompletu przez otwór w górze obudowy.
+7. Serwo ustawić na środek (strona ESP32). Od dołu założyć przyrząd centrowania: trzpień przez otwór dolny wchodzi w otwór ramienia. Orczyk z ramieniem nasadzić na wałek, przykręcić M2 i wkręt środkowy przez otwory w górze, zdjąć przyrząd.
+8. **Przegub H:** przez otwór dolny włożyć tulejkę w ramię, nasunąć cięgno, wkręcić M3×8 do oporu.
+9. Wtyczkę serwa przeciągnąć przez szeroką część otworu w pokrywie (od środka na zewnątrz), pokrywę przykręcić 2 × M3×8, przykręcić tylne ucho. Taśmę kabla wcisnąć w wąską szczelinę pod otworem (odciążenie). Syn wpina wtyczkę serwa.
 
 ### Assembly
 

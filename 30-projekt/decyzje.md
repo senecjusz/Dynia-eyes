@@ -51,3 +51,4 @@
 | 2026-10-18 | `luzGwint` 0,5 i osobne części „Probka gwintu” (pierścień 14 mm + kawałek nakrętki) drukowane przed obudową | Nakrętka v1.1 z luzem 0,3 była po wydruku za ciasna |
 | 2026-10-18 | Kabel SG90: taśma prosto do tyłu z dołu krótszego boku od strony wałka; pokrywa z otworem w kształcie dziurki od klucza (9 × 3,4 na wtyczkę 3-pin, szczelina 1,2 zaciska taśmę) i prowadnicami zamiast kołków | Kabel wychodzi przy wałku; wtyczka musi przejść przy założonej pokrywie |
 | 2026-10-18 | Otwór małego oka pod stałą otwornicę Ø56 mm (część w otworze Ø~55,6) | Otwornica 57 niedostępna; stała daje równiejszy otwór niż nastawna |
+| 2026-10-18 | v2.1d: otwór w dyni pod stałą otwornicę Ø56; część obudowy w otworze Ø55,6 (luz 0,2/str.), gwint Ø54,9 (0,55/str.), rant Ø63 bez zmian; serwo i pokrywa montowane od środka dyni po założeniu obudowy | Otwornicy Ø57 nie ma; serwo i występ pokrywy wystają poza Ø56 |

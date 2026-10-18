@@ -1,4 +1,4 @@
-// Budowa modelu "Oko F v2.1c" (modul malego oka: jednoczesciowa obudowa bez bagnetu, pileczka wklejona w jarzmo z miska,
+// Budowa modelu "Oko F v2.1d" (modul malego oka: jednoczesciowa obudowa bez bagnetu, pileczka wklejona w jarzmo z miska,
 // przeguby na srubach M3) w Onshape ze zwyklych operacji (Variable Studio, Plane, Sketch, Extrude, Revolve, Helix,
 // Sweep, Chamfer, Move face, Boolean) przez REST API w sesji przegladarki (cookie + X-XSRF-TOKEN), bez kluczy API.
 //
@@ -219,7 +219,7 @@ D.zc = -12; D.Rb = 20.25; D.kulaR = 20.25; D.klej = 0.5; D.oczkoT = 2.4;        
 D.hTop = -3;                                 // wierzch orczyka
 D.mIR = 24.25; D.mOR = 26.25;                // obudowa: wnetrze 48.5, rdzen gwintu 52.5
 D.gTop = 27.45;                              // szczyt gwintu (54.9)
-D.pR = 28.1;                                 // przod w otworze (56.2), otwor w dyni 57
+D.pR = 27.8;                                 // przod w otworze (55.6), otwor w dyni 56 (stala otwornica)
 D.gL = 35.73;                                // koniec gwintu = krzywizna 2.73 + docisk 25 + nakretka 7 + 1
 D.zEnd = -77.5;                              // koniec obudowy
 // naped (czworobok): A os oka, C korba, H ramie orczyka, S wal serwa (x, z)
@@ -296,7 +296,7 @@ OS.VARS = [
   ['rantD', '63 mm', 'srednica rantu'],
   ['rantT', '1.5 mm', 'grubosc plaskiej czesci rantu'],
   ['kolnierzykD', '41 mm', 'otwor w rancie (zaslania brzeg miski)'],
-  ['przodD', '56.2 mm', 'czesc obudowy w otworze dyni (otwornica 57)'],
+  ['przodD', '55.6 mm', 'czesc obudowy w otworze dyni (stala otwornica 56)'],
   ['przodL', '15 mm', 'dlugosc czesci w otworze'],
   ['dociskMin', '15 mm', 'najciensza scianka dyni'],
   ['dociskMax', '25 mm', 'najgrubsza scianka dyni'],
@@ -347,11 +347,11 @@ OS.obudowa = async () => {
   const O = 'Obudowa: rant';
   await sketchW('Obudowa: rant szkic', qStd('Top'), (W) => { W.circle([0, 0, 0], 63, '#rantD'); W.circle([0, 0, 0], 41, '#kolnierzykD'); });
   await ext(O, 'Obudowa: rant szkic', BACK, { op: 'NEW', depth: '#rantT', regions: regionAt('Obudowa: rant szkic', [30, 0, 0]) });
-  await sketchW('Obudowa: przod szkic', qStd('Top'), (W) => { W.circle([0, 0, 0], 56.2, '#przodD'); W.circle([0, 0, 0], 48.5, '#modulID'); });
+  await sketchW('Obudowa: przod szkic', qStd('Top'), (W) => { W.circle([0, 0, 0], 55.6, '#przodD'); W.circle([0, 0, 0], 48.5, '#modulID'); });
   await ext('Obudowa: przod', 'Obudowa: przod szkic', BACK, { op: 'ADD', depth: '#przodL', scope: O, regions: regionAt('Obudowa: przod szkic', [26, 0, 0]) });
   await sketchW('Obudowa: rura szkic', qStd('Top'), (W) => { W.circle([0, 0, 0], 52.5, '#modulOD'); W.circle([0, 0, 0], 48.5, '#modulID'); });
   await ext('Obudowa: rura', 'Obudowa: rura szkic', BACK, { op: 'ADD', depth: '#modulL', scope: O, regions: regionAt('Obudowa: rura szkic', [25.2, 0, 0]) });
-  // rant dopasowany do krzywizny dyni (R 150) od r 28 do 31.5, fazka i zabki (>= 1 mm od krawedzi otworu 57)
+  // rant dopasowany do krzywizny dyni (R 150) od r 28 do 31.5, fazka i zabki (1.5 mm od krawedzi otworu 56)
   await sketchW('Obudowa: dopasowanie rantu szkic', qStd('Front'), (W) => W.poly([[28, 0, -1.4], [31.5, 0, -1.4], [31.5, 0, -D.sag(31.5)], [28, 0, -D.sag(28)]]));
   await revolve('Obudowa: dopasowanie rantu', 'Obudowa: dopasowanie rantu szkic', 'Wspolne: os Z', { op: 'ADD', full: true, scope: O });
   await chamfer('Obudowa: fazka rantu', [qNearEdge(O, [31.5, 0, 0])], '1 mm');
