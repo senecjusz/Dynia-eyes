@@ -52,3 +52,6 @@
 | 2026-10-18 | Kabel SG90: taśma prosto do tyłu z dołu krótszego boku od strony wałka; pokrywa z otworem w kształcie dziurki od klucza (9 × 3,4 na wtyczkę 3-pin, szczelina 1,2 zaciska taśmę) i prowadnicami zamiast kołków | Kabel wychodzi przy wałku; wtyczka musi przejść przy założonej pokrywie |
 | 2026-10-18 | Otwór małego oka pod stałą otwornicę Ø56 mm (część w otworze Ø~55,6) | Otwornica 57 niedostępna; stała daje równiejszy otwór niż nastawna |
 | 2026-10-18 | v2.1d: otwór w dyni pod stałą otwornicę Ø56; część obudowy w otworze Ø55,6 (luz 0,2/str.), gwint Ø54,9 (0,55/str.), rant Ø63 bez zmian; serwo i pokrywa montowane od środka dyni po założeniu obudowy | Otwornicy Ø57 nie ma; serwo i występ pokrywy wystają poza Ø56 |
+| 2026-10-18 | v2.2: gniazdo w dyni + kaseta (kompletny moduł skręcony na stole) wsuwana osiowo, z żebrem (pozycja GÓRA) i 2 sprężystymi zaczepami; otwór Ø62 | W dyni nic się nie skręca (v2.1d nie dało się złożyć); syn wkłada moduł sam |
+| 2026-10-18 | Zakres pracy oka ±30°, ograniczniki ±33° jako stop | Przy ±33° napęd na granicy (review v2.1d) |
+| 2026-10-18 | Gwint: luz 0,3 przy flankach 45° i głębszy zarys (~1,6–1,8 mm) | Próbka v2.1 (luz 0,5) za luźna: ~1,3 mm luzu |

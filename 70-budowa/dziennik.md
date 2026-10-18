@@ -15,3 +15,8 @@
 - **Nakrętka za ciasna**, praktycznie bez luzu: w modelu 0,3 mm, a na siatce ~0,29 mm. Prawdziwy wydruk zjada więcej.
 - **Kabel SG90 wychodzi u dołu krótszego boku korpusu, od strony wałka.** W v1/v1.1 serwo by się przez niego nie zmieściło.
 - Wnioski przekazane do v2.1c: jarzmo bez podpór, ścianki ≥ 2–2,4 mm, `luzGwint` 0,5 + próbka gwintu, kanał na kabel.
+
+## 2026-10-18 – review v2.1d i próbka gwintu
+- Review v2.1d (Opus + Codex): modułu nie da się złożyć (słupek SG90 i występy pokrywy blokują piłeczkę), wtyczka nie przechodzi przez pokrywę, montaż w dyni niewykonalny narzędziem.
+- Próbka gwintu v2.1 (luz 0,5): za luźna, ~1,3 mm luzu całkowitego.
+- Decyzja: v2.2 = gniazdo + kaseta na zaczepy (zlecone sesji v2).
