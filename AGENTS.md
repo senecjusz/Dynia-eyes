@@ -45,6 +45,7 @@ Każdy etap kończy się zapisem w repo (dziennik, decyzje albo plan).
 
 ## Zasady dla recenzenta
 
+- **Review zawsze pełne**, całej wersji, a nie tylko zmian. Review jest tanie w porównaniu z błędnym wydrukiem.
 - Wagi uwag: **KRYTYCZNE** (nie zadziała albo test nic nie wykaże), **WAŻNE**, **DROBNE**.
 - **Liczby zamiast opinii:** wymiary, luzy, kąty, policzone albo zmierzone na siatkach.
 - Dla każdej uwagi podaj: miejsce, scenariusz porażki, poprawkę albo test i pewność.
