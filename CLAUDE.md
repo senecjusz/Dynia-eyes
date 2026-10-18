@@ -30,10 +30,22 @@
 - **Parametry w Variable Studio** (luzy, średnice otworów pod śruby i wkładki, średnica piłeczki), do których odwołują się szkice i operacje.
 - FeatureScript tylko tam, gdzie natywne narzędzia nie wystarczają (np. gwint drukowany), jako mała, pojedyncza operacja.
 
+## Praca w SolidCraft (główne CAD od 18.10)
+
+- Wersja 0.15.0 jest na Windows (Kobyłka, `C:\Program Files\SolidCraft`) i jako Linux AppImage (Warszawa). Model źródłowy to `40-cad/solidcraft/*.solidcraft`.
+- Agent pracuje na żywo w aplikacji: `solidcraft.exe --control 7878` i `solidcraft-cli mcp --connect 127.0.0.1:7878`. Bez GUI zostaje `solidcraft-cli run/eval/snapshot/exec`.
+- **Znane problemy:**
+  - **Własna helisa (gwint) zawiesza program**, więc używamy natywnego Thread (ISO).
+  - **Eksport 3MF potrafi dać nieszczelne siatki**: otwarte krawędzie, krawędzie z więcej niż 2 trójkątami.
+  - **Cięcia stykające się dokładnie na ścianie zostawiają błony.** Cięcie zaczynać z zakładką 0,1 mm.
+- **Po każdym eksporcie obowiązkowo:** automatyczne sprawdzenie szczelności siatek i symulacja wsuwania wszystkich wkładanych części (tulejki, śruby, trzpienie przyrządów), nie tylko ruchu.
+- Parametry muszą być podpięte do operacji, a nie wpisane liczbą obok.
+
 ## Praca z API Onshape (plan Free)
 
 - Tylko sesja przeglądarki (cookie + X-XSRF-TOKEN). **Bez kluczy API ani OAuth**, bo te zużywają roczny limit 2 500 wywołań.
 - Drobne zmiany zamiast przebudowy całości, najwyżej jedna sekcja naraz. `GET /features` raz, trzymać w pamięci.
+- **Drzewo operacji (`GET …/features`) pobierać raz na sesję**, odświeżać tylko po błędzie. 18.10 zbyt częste pobieranie drzewa (~270 operacji) skończyło się blokadą 429 z `Retry-After` ~7 h.
 - Przerwa 300–500 ms po każdym zapytaniu. Przy 429: odczekać `Retry-After`, ponowić najwyżej 3 razy. Przy 402: stop i informacja dla użytkownika.
 - Eksporty (3MF, STL, STEP) robi użytkownik ręcznie: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm.
 - Po każdej sekcji zapis postępu (log, mapa nazwa operacji → featureId).

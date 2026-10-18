@@ -7,7 +7,19 @@ Instrukcje dla agentów AI pracujących w tym repozytorium (Claude, Codex i inne
 - **Zawsze po polsku**: odpowiedzi, dokumenty, opisy commitów, komentarze w plikach `.md`.
 - Krótko i konkretnie. Bez zbędnego kontekstu i powtarzania tego, co jest w repo.
 
+## Preferencje użytkownika
+
+Pamięć agenta jest lokalna na każdym komputerze, więc najważniejsze preferencje są zapisane tutaj:
+- Doświadczony konstruktor i drukarz 3D. Nie tłumacz podstaw, podawaj liczby.
+- **Krótko, bez zbędnych informacji.** Brief dla agenta zawiera tylko to, co dotyczy zadania.
+- **Najpierw rozmowa, potem zapis:** decyzje zapisuj do repo dopiero po zgodzie, a agentów i review uruchamiaj dopiero na gotową pracę.
+- Model w CAD ma być czytelny i poprawialny: osobne części, nazwane operacje, parametry.
+- Dostęp do GitHuba tylko przez deploy key tego repo (osobny klucz na każdy komputer).
+- Często pracuje zdalnie, z telefonu (Remote Control). Wtedy wysyłaj zrzuty i pisz krótkie raporty.
+
 ## Najpierw przeczytaj
+
+- `30-projekt/stan-projektu.md`: aktualny stan, aktywne sesje, następne kroki.
 
 - `CLAUDE.md`: zasady projektu, ograniczenia projektowe (druk 3D, śruby M3/M4/M5, DFAM), struktura Onshape, praca z API Onshape. Obowiązuje wszystkich agentów, nie tylko Claude.
 - `README.md` i README w folderach: układ repo i co gdzie trafia.
