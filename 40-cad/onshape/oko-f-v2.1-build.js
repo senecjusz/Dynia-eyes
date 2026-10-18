@@ -1,4 +1,4 @@
-// Budowa modelu "Oko F v2.1" (modul malego oka: jednoczesciowa obudowa bez bagnetu, pileczka wklejona w jarzmo z miska,
+// Budowa modelu "Oko F v2.1b" (modul malego oka: jednoczesciowa obudowa bez bagnetu, pileczka wklejona w jarzmo z miska,
 // przeguby na srubach M3) w Onshape ze zwyklych operacji (Variable Studio, Plane, Sketch, Extrude, Revolve, Helix,
 // Sweep, Chamfer, Move face, Boolean) przez REST API w sesji przegladarki (cookie + X-XSRF-TOKEN), bez kluczy API.
 //
@@ -215,7 +215,7 @@ const r2d = 180 / Math.PI, d2r = Math.PI / 180;
 
 // ---------- liczby (zgodne z domyslnymi zmiennymi) ----------
 const D = {};
-D.zc = -12; D.Rb = 20.25;                    // srodek pileczki 12 mm pod wierzchem rantu (gałka wystaje ~8 mm)
+D.zc = -12; D.Rb = 20.25; D.kulaR = 20.25; D.klej = 0.5;                    // srodek pileczki 12 mm pod wierzchem rantu (gałka wystaje ~8 mm)
 D.hTop = -3;                                 // wierzch orczyka
 D.mIR = 24.25; D.mOR = 26.25;                // obudowa: wnetrze 48.5, rdzen gwintu 52.5
 D.gTop = 27.45;                              // szczyt gwintu (54.9)
@@ -284,7 +284,7 @@ Object.assign(OS, { sketchW, ext, regionAt, allRegions, planeY, planeZ, planeX, 
 // ---------- zmienne ----------
 OS.VARS = [
   ['kulaDmax', '40.5 mm', 'najwieksza pileczka'],
-  ['klej', '0.2 mm', 'szczelina na klej cyjanoakrylowy (wypelnia roznice do 39.5)'],
+  ['klej', '0.5 mm', 'szczelina na klej wypelniajacy (akrylowy 2K), pileczka 39.5-40.5'],
   ['jarzmoT', '2.5 mm', 'grubosc promieniowa miski (pierscienia jarzma)'],
   ['jarzmoW', '8 mm', 'szerokosc miski (grubosc na stole)'],
   ['oczkoT', '2 mm', 'grubosc oczka jarzma na osi'],
@@ -374,7 +374,7 @@ OS.obudowa = async () => {
   await revolve('Obudowa: faza poczatku gwintu', 'Obudowa: faza poczatku gwintu szkic', 'Wspolne: os Z', { op: 'REMOVE', full: true, scope: O });
   // wystepy osi (kropla), rowek ogranicznika z kanalem montazowym od tylu, poglebienie i otwor ciasny M3
   const kropla = (y) => { const P = []; for (let f = 45; f >= -225; f -= 15) P.push([5 * Math.cos(f * d2r), y, D.zc + 5 * Math.sin(f * d2r)]); P.push([0, y, D.zc + 5 * Math.SQRT2]); return P; };
-  const yW = 22.75, yWexpr = '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy';
+  const yW = D.kulaR + D.klej + 2 + 0.3, yWexpr = '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy';
   for (const [nm, sg] of [['gora', 1], ['dol', -1]]) {
     const y = sg * yW;
     await planeY(`Obudowa: pl. wystepu ${nm}`, yWexpr, sg);
@@ -587,25 +587,26 @@ OS.podglad = async () => {
 OS.przyrzady = async () => {
   // przyrzad do wklejania: czasza na przod pileczki (zrenica w otworze Ø3 na osi), dwa slupki na sruby osi trzymaja jarzmo jak w obudowie
   const J = D.J, PW = 'Przyrzad wklejania', zb = J[2] + 24.5;
+  const yp = D.kulaR + D.klej + 2 + 0.3;      // wewnetrzna sciana slupkow = jak wystepy osi w obudowie (czasza: pileczka + 0.4, niezaleznie od kleju)
   await planeZ('Przyrzad wklejania: pl. srodka', mm(-J[2]), -1);
   await sketchW('Przyrzad wklejania: podstawa szkic', qFace('Przyrzad wklejania: pl. srodka'), (W) => W.poly([[J[0] - 14, -31, J[2]], [J[0] + 14, -31, J[2]], [J[0] + 14, 31, J[2]], [J[0] - 14, 31, J[2]]]));
   await ext(PW, 'Przyrzad wklejania: podstawa szkic', FWD, { op: 'NEW', depth: '24.5 mm' });
   await planeX('Przyrzad wklejania: pl. osi', mm(J[0]), 1);
   await sketchW('Przyrzad wklejania: os', qFace('Przyrzad wklejania: pl. osi'), (W) => W.line([J[0], -35, J[2]], [J[0], 35, J[2]], true));
-  await sketchW('Przyrzad wklejania: czasza szkic', qFace('Przyrzad wklejania: pl. osi'), (W) => { W.circle(J, 40.9, '#kulaDmax + 2 * #klej'); W.line([J[0], -25, J[2]], [J[0], 25, J[2]]); });
+  await sketchW('Przyrzad wklejania: czasza szkic', qFace('Przyrzad wklejania: pl. osi'), (W) => { W.circle(J, 40.9, '#kulaDmax + 0.4 mm'); W.line([J[0], -25, J[2]], [J[0], 25, J[2]]); });
   await revolve('Przyrzad wklejania: czasza', 'Przyrzad wklejania: czasza szkic', 'Przyrzad wklejania: os', { op: 'REMOVE', full: true, scope: PW, regions: regionAt('Przyrzad wklejania: czasza szkic', [J[0], 0, J[2] + 10]) });
-  // podstawa w osi Y wyzej niz pileczka: zostaja slupki |y| 22.75..31, srodek (|y| < 22.75) obnizony do polowy kuli
-  await sketchW('Przyrzad wklejania: kieszenie oczek szkic', qFace('Przyrzad wklejania: pl. srodka'), (W) => { W.poly([[J[0] - 9, 18.4, J[2]], [J[0] + 9, 18.4, J[2]], [J[0] + 9, 22.75, J[2]], [J[0] - 9, 22.75, J[2]]]); W.poly([[J[0] - 9, -22.75, J[2]], [J[0] + 9, -22.75, J[2]], [J[0] + 9, -18.4, J[2]], [J[0] - 9, -18.4, J[2]]]); });
+  // podstawa w osi Y wyzej niz pileczka: zostaja slupki |y| yp..31, srodek (|y| < yp) obnizony do polowy kuli
+  await sketchW('Przyrzad wklejania: kieszenie oczek szkic', qFace('Przyrzad wklejania: pl. srodka'), (W) => { W.poly([[J[0] - 9, 18.4, J[2]], [J[0] + 9, 18.4, J[2]], [J[0] + 9, yp, J[2]], [J[0] - 9, yp, J[2]]]); W.poly([[J[0] - 9, -yp, J[2]], [J[0] + 9, -yp, J[2]], [J[0] + 9, -18.4, J[2]], [J[0] - 9, -18.4, J[2]]]); });
   await ext('Przyrzad wklejania: kieszenie oczek', 'Przyrzad wklejania: kieszenie oczek szkic', FWD, { op: 'REMOVE', depth: '7 mm', scope: PW, regions: allRegions('Przyrzad wklejania: kieszenie oczek szkic') });
-  await sketchW('Przyrzad wklejania: slupki szkic', qFace('Przyrzad wklejania: pl. srodka'), (W) => { W.poly([[J[0] - 6, 22.75, J[2]], [J[0] + 6, 22.75, J[2]], [J[0] + 6, 31, J[2]], [J[0] - 6, 31, J[2]]]); W.poly([[J[0] - 6, -31, J[2]], [J[0] + 6, -31, J[2]], [J[0] + 6, -22.75, J[2]], [J[0] - 6, -22.75, J[2]]]); });
+  await sketchW('Przyrzad wklejania: slupki szkic', qFace('Przyrzad wklejania: pl. srodka'), (W) => { W.poly([[J[0] - 6, yp, J[2]], [J[0] + 6, yp, J[2]], [J[0] + 6, 31, J[2]], [J[0] - 6, 31, J[2]]]); W.poly([[J[0] - 6, -31, J[2]], [J[0] + 6, -31, J[2]], [J[0] + 6, -yp, J[2]], [J[0] - 6, -yp, J[2]]]); });
   await ext('Przyrzad wklejania: slupki', 'Przyrzad wklejania: slupki szkic', BACK, { op: 'ADD', depth: '7 mm', scope: PW, regions: allRegions('Przyrzad wklejania: slupki szkic') });
   await sketchW('Przyrzad wklejania: otwory srub szkic', qStd('Front'), (W) => { W.circle([J[0], 0, J[2]], 2.6, '#m3Ciasny'); });
   await ext('Przyrzad wklejania: otwory srub', 'Przyrzad wklejania: otwory srub szkic', null, { op: 'REMOVE', depth: '70 mm', sym: true, scope: PW });
-  await planeY('Przyrzad wklejania: pl. slupka gora', '22.75 mm', 1);
-  await sketchW('Przyrzad wklejania: miejsce na kolek gora szkic', qFace('Przyrzad wklejania: pl. slupka gora'), (W) => W.circle([J[0], 22.75, J[2]], 9.5));
+  await planeY('Przyrzad wklejania: pl. slupka gora', '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy', 1);
+  await sketchW('Przyrzad wklejania: miejsce na kolek gora szkic', qFace('Przyrzad wklejania: pl. slupka gora'), (W) => W.circle([J[0], yp, J[2]], 9.5));
   await ext('Przyrzad wklejania: miejsce na kolek gora', 'Przyrzad wklejania: miejsce na kolek gora szkic', UP, { op: 'REMOVE', depth: '1 mm', scope: PW });
-  await planeY('Przyrzad wklejania: pl. slupka dol', '22.75 mm', -1);
-  await sketchW('Przyrzad wklejania: miejsce na kolek dol szkic', qFace('Przyrzad wklejania: pl. slupka dol'), (W) => W.circle([J[0], -22.75, J[2]], 9.5));
+  await planeY('Przyrzad wklejania: pl. slupka dol', '#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy', -1);
+  await sketchW('Przyrzad wklejania: miejsce na kolek dol szkic', qFace('Przyrzad wklejania: pl. slupka dol'), (W) => W.circle([J[0], -yp, J[2]], 9.5));
   await ext('Przyrzad wklejania: miejsce na kolek dol', 'Przyrzad wklejania: miejsce na kolek dol szkic', DOWN, { op: 'REMOVE', depth: '1 mm', scope: PW });
   await planeZ('Przyrzad wklejania: pl. dna', mm(zb), 1);
   await sketchW('Przyrzad wklejania: celownik szkic', qFace('Przyrzad wklejania: pl. dna'), (W) => W.circle([J[0], 0, zb], 3));
@@ -680,7 +681,7 @@ OS.zlozenie = async (name = 'Oko F v2.1 - zlozenie') => {
     return { id: best.id, y: best.curve.origin.y * 1000 };
   };
   const E = {
-    tA: ['Obudowa', await circ('Obudowa', 1.3, [0, 22.75, D.zc])], jA: ['Jarzmo z miska', await circ('Jarzmo z miska', 1.65, [0, 22.45, D.zc])],
+    tA: ['Obudowa', await circ('Obudowa', 1.3, [0, D.kulaR + D.klej + 2.3, D.zc])], jA: ['Jarzmo z miska', await circ('Jarzmo z miska', 1.65, [0, D.kulaR + D.klej + 2, D.zc])],
     jC: ['Jarzmo z miska', await circ('Jarzmo z miska', 3.0, [D.C0[0], -0.5, D.C0[1]])], cC: ['Ciegno', await circ('Ciegno', 1.65, [D.C0[0], -0.3, D.C0[1]])],
     cH: ['Ciegno', await circ('Ciegno', 1.65, [D.H0[0], -0.3, D.H0[1]])], rH: ['Ramie orczyka', await circ('Ramie orczyka', 3.0, [D.H0[0], -0.5, D.H0[1]])],
     rS: ['Ramie orczyka', await circ('Ramie orczyka', 1.4, [D.S[0], -0.5, D.S[1]])], sS: ['PODGLAD SG90', await circ('PODGLAD SG90', 2.4, [D.S[0], -4.5, D.S[1]])],
@@ -701,8 +702,13 @@ OS.zlozenie = async (name = 'Oko F v2.1 - zlozenie') => {
   const lim = [{ btType: 'BTMParameterBoolean-144', parameterId: 'limitsEnabled', value: true },
     { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-33 deg', isNull: false },
     { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '33 deg', isNull: false }];
-  const pary = [['Os oka 2 x M3 (ogranicznik +-33)', 'REVOLUTE', 'tA', 'jA', lim], ['Wal serwa - ramie orczyka', 'REVOLUTE', 'sS', 'rS'],
-    ['Przegub C: korba - ciegno', 'CYLINDRICAL', 'jC', 'cC'], ['Przegub H: ciegno - ramie', 'BALL', 'cH', 'rH']];
+  // limit walu serwa -37..+30: przy oku +-33 serwo ma -34.2..+27.3, druga galaz czworoboku zaczyna sie od -40.9 - limit ja wyklucza,
+  // wiec przeciaganie pileczki zawsze prowadzi naped wlasciwa droga. C obrotowy (ciegno tylko w plaszczyznie), H kulowy (bez przewiazania).
+  const limS = [{ btType: 'BTMParameterBoolean-144', parameterId: 'limitsEnabled', value: true },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMin', expression: '-37 deg', isNull: false },
+    { btType: 'BTMParameterNullableQuantity-807', parameterId: 'limitAxialZMax', expression: '30 deg', isNull: false }];
+  const pary = [['Os oka 2 x M3 (ogranicznik +-33)', 'REVOLUTE', 'tA', 'jA', lim], ['Wal serwa - ramie orczyka (limit -37..+30, blokuje druga galaz czworoboku)', 'REVOLUTE', 'sS', 'rS', limS],
+    ['Przegub C: korba - ciegno', 'REVOLUTE', 'jC', 'cC'], ['Przegub H: ciegno - ramie', 'BALL', 'cH', 'rH']];
   for (const p of pary) await mate(...p);
   // os Z kazdego lacznika ma wskazywac +Y; jesli wyszla -Y, odwroc lacznik (kierunek krawedzi zalezy od jej parametryzacji)
   const g2 = await (await req(A + '?includeMateFeatures=true')).json();

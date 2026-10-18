@@ -43,3 +43,5 @@
 | 2026-10-18 | Miska = pas kulisty 8 mm (wnętrze Ø40,9, klej 0,2) z tyłu piłeczki w płaszczyźnie odchylonej o 60°, korba zrośnięta; przyrząd do wklejania ustawia źrenicę | Pełna półkula łamie DFAM (oczka poza płaską stroną) i zajmuje miejsce cięgna |
 | 2026-10-18 | Wnętrze zostaje Ø48,5; napęd v2.1: korba 25,25 @17°, cięgno 17,21, ramię 27 @200°, wałek serwa 54 mm za osią oka; kąt przenoszenia ≥ 44° przy ±30° | W mniejszej rurze czworobok z łbami M3 i tulejkami nie mieści się (≤ ~30° kąta przenoszenia albo kolizje) |
 | 2026-10-18 | Oś oka: 2 × M3×5 ISO 7380 (koniec 0,35 mm przed piłeczką); wybranie 0,6 mm w ściance na przegub H | Dłuższa śruba weszłaby w piłeczkę; przy −33° ramię i cięgno dotykały ścianki |
+| 2026-10-18 | v2.1b: szczelina na klej 0,5 mm (klej wypełniający, akrylowy 2K); czasza przyrządu = piłeczka + 0,4 niezależnie od kleju; wersja „v2.1b do review” | Decyzja użytkownika; 0,2 mm za mało dla piłeczek 39,5–40,5 |
+| 2026-10-18 | Assembly: wałek serwa z limitem −37…+30°, przegub C Revolute, H Ball | Bez limitu solver wpadał w drugą gałąź czworoboku (ramię 68°); Cylindrical w C pozwalał cięgnu się przechylać |

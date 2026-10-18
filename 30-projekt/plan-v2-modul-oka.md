@@ -1,11 +1,16 @@
-# Moduł małego oka v2.1: plan i stan po budowie (do review)
+# Moduł małego oka v2.1b: plan i stan po budowie (do review)
 
 Na podstawie [briefu v2](brief-v2-modul-oka.md) i poprawek po review v2 (18.10): **bez bagnetu**, **piłeczka wklejona w miskę**, **mniejsza średnica**. Wartości, których nie zmierzono, są zmiennymi (lista niżej).
 
-**Onshape:** dokument SimpleEye, gałąź **v2**. Wersja **„v2.1 do review”**. Wcześniejsze wersje „v2 do review”, „v1.1” i „v1” zostają w historii bez zmian.
+**Onshape:** dokument SimpleEye, gałąź **v2**. Wersja **„v2.1b do review”**. Wcześniejsze wersje „v2.1 do review”, „v2 do review”, „v1.1” i „v1” zostają w historii bez zmian.
+
+**v2.1b względem v2.1:**
+- szczelina na klej 0,5 mm (zmienna `klej`) pod klej wypełniający (akrylowy dwuskładnikowy),
+- przyrząd do wklejania sterowany zmiennymi, a jego czasza nie zależy od kleju,
+- Assembly: przeciąganie piłeczki prowadzi cały napęd (limit wałka serwa, przegub C obrotowy).
 - Part Studio **Oko F v2.1**: wszystkie części w pozycji złożonej, 207 operacji w 11 folderach.
 - Variable Studio **Zmienne v2**: 42 zmienne v2.1.
-- Assembly **Oko F v2.1 - zlozenie**: ruch ±33°.
+- Assembly **Oko F v2.1 - zlozenie**: ruch ±33°. Przeciągnięcie piłeczki albo Animate na mate'cie osi oka porusza cały napęd.
 
 Stan v2 (bagnet, jarzmo z kołkiem, przyrząd wiercenia) jest w wersji „v2 do review” i w historii gita tego pliku.
 
@@ -14,7 +19,7 @@ Stan v2 (bagnet, jarzmo z kołkiem, przyrząd wiercenia) jest w wersji „v2 do 
 | | v2 | v2.1 |
 |---|---|---|
 | Mocowanie w dyni | gniazdo + tuleja na bagnet | **jedna Obudowa**: rodzic wkłada ją od zewnątrz i od środka dokręca nakrętkę; syn wpina tylko wtyczkę serwa |
-| Piłeczka | jarzmo C, siodło, kołek Ø4, wiercenie w przyrządzie | **wklejona (klej CA) w Miskę** – pas kulisty 8 mm z tyłu piłeczki, zrośnięty z korbą |
+| Piłeczka | jarzmo C, siodło, kołek Ø4, wiercenie w przyrządzie | **wklejona (klej akrylowy 2K) w Miskę** – pas kulisty 8 mm z tyłu piłeczki, zrośnięty z korbą |
 | Otwór w dyni | Ø64 | **Ø57** (otwornica 57; część w otworze Ø56,2) |
 | Rant | Ø68 | **Ø63**, otwór kołnierzyka Ø41 |
 | Nakrętka | Ø72 | **Ø66** |
@@ -38,12 +43,12 @@ Stan v2 (bagnet, jarzmo z kołkiem, przyrząd wiercenia) jest w wersji „v2 do 
 |---|---|---|
 | Obudowa | 1 | Rant Ø63 (płaski wierzch, pod spodem dopasowany do dyni R 150, fazka, 8 ząbków przeciw obracaniu), część w otworze Ø56,2 × 15, rura Ø52,5 z gwintem. W środku: występy osi z rowkiem ogranicznika i kanałem montażowym od tyłu, pogłębienia i ciasne otwory osi, słupek przedniego ucha SG90 z podporą 45°, szczelina na serwo, otwory montażowe (dolny do przegubu H, górne do wkrętów ucha i orczyka), 2 występy z wkładkami na pokrywę, spłaszczenia tyłu, wybranie w ściance na przegub H |
 | Nakretka | 1 | Ø66 × 7. Czoło stożkowe pod wewnętrzną ściankę dyni, radełko, 6 wycięć na klucz. Gwint = zwój obudowy odsunięty o `#luzGwint` |
-| Jarzmo z miska | 1 | Pas kulisty (wnętrze Ø40,9 = piłeczka 40,5 + 2 × 0,2 kleju, ścianka 2,5, szerokość 8) w płaszczyźnie odchylonej o 60° od osi z tyłu w bok. Oczka na osi z luźnymi otworami M3 i kołkami ogranicznika. Korba zrośnięta z miską |
+| Jarzmo z miska | 1 | Pas kulisty (wnętrze Ø41,5 = piłeczka 40,5 + 2 × 0,5 kleju, ścianka 2,5, szerokość 8) w płaszczyźnie odchylonej o 60° od osi z tyłu w bok. Oczka na osi z luźnymi otworami M3 i kołkami ogranicznika. Korba zrośnięta z miską |
 | Ciegno | 1 | Otwory Ø3,3, wkładki M3 od góry w podniesieniach |
 | Ramie orczyka | 1 | Kieszeń na orczyk od spodu, otwór M2 13 mm od osi, otwór na tulejkę w H |
 | Tulejka przegubu korby / ramienia | 2 | Ø5,6 × 2,7 z kołnierzem Ø8 × 0,8, otwór Ø3,3 |
 | Pokrywa tylna | 1 | Zamyka tył, słupek tylnego ucha SG90, 3 kołki na kabel (odciążenie), spłaszczenia jak w obudowie |
-| Przyrzad do wklejania pileczki | 1 | Czasza na przednią połowę piłeczki z otworem-celownikiem Ø3 na źrenicę. Dwa słupki z otworami M3 trzymają jarzmo w tym samym położeniu co w obudowie |
+| Przyrzad do wklejania pileczki | 1 | Czasza na przednią połowę piłeczki (Ø40,9, niezależnie od kleju) z otworem-celownikiem Ø3 na źrenicę. Dwa słupki (wewnętrzna ściana jak występy osi w obudowie) z otworami M3 trzymają jarzmo w tym samym położeniu co w obudowie |
 | Przyrzad centrowania orczyka | 1 | Płytka pod obudową z trzpieniem Ø5,8 przez otwór dolny do otworu ramienia (H) |
 | PODGLAD pileczka 40.5 / SG90 / orczyk SG90 | – | Tylko do sprawdzania kolizji |
 
@@ -57,7 +62,7 @@ Każda operacja ma nazwę `Część: co robi`, np. `Obudowa: rowek ogranicznika 
 
 | Grupa | Zmienne |
 |---|---|
-| Piłeczka i miska | `kulaDmax` 40,5, `klej` 0,2, `jarzmoT` 2,5, `jarzmoW` 8, `oczkoT` 2, `luzOsiowy` 0,3 |
+| Piłeczka i miska | `kulaDmax` 40,5, `klej` 0,5, `jarzmoT` 2,5, `jarzmoW` 8, `oczkoT` 2, `luzOsiowy` 0,3 |
 | Obudowa | `modulID` 48,5, `sciankaM` 2, `modulL` 77,5, `rantD` 63, `rantT` 1,5, `kolnierzykD` 41, `przodD` 56,2, `przodL` 15 |
 | Gwint i nakrętka | `gwintSkok` 3, `luzGwint` 0,3, `dociskMin` 15, `dociskMax` 25, `nakretkaH` 7, `nakretkaD` 66, `nakretkaZ` 22 (tylko podgląd) |
 | Śruby i wkładki | `m3Ciasny` 2,6, `m3Luzny` 3,3, `lebD` 6,2, `lebH` 2,5, `wkladkaD` 4, `wkladkaL` 4, `tulejkaD` 5,6, `luzPrzegub` 0,2, `kolnierzD` 8, `kolnierzH` 0,8, `plytaT` 2,5, `m2Otwor` 2,2, `serwoWkret` 1,8 |
@@ -76,8 +81,8 @@ Ich zmiana wymaga ponownego uruchomienia sekcji skryptu.
 
 | Para | Jak | Śruba | Ciasno | Luźno |
 |---|---|---|---|---|
-| Obudowa ↔ jarzmo z miską (oś oka) | 2 śruby od góry i od dołu, łeb w pogłębieniu Ø6,2 × 2,5. Końcówka kończy się w oczku, 0,35 mm przed piłeczką | 2 × **M3×5 z niskim łbem** (ISO 7380) | występ obudowy Ø2,6 | oczko jarzma Ø3,3; luz osiowy 0,3 z każdej strony |
-| Jarzmo ↔ piłeczka | klej CA w szczelinie 0,2 mm w misce; ustawienie źrenicy w przyrządzie do wklejania | – | – | – |
+| Obudowa ↔ jarzmo z miską (oś oka) | 2 śruby od góry i od dołu, łeb w pogłębieniu Ø6,2 × 2,5. Końcówka wystaje 0,15 mm z oczka w szczelinę kleju, 0,35 mm przed piłeczką | 2 × **M3×5 z niskim łbem** (ISO 7380) | występ obudowy Ø2,6 | oczko jarzma Ø3,3; luz osiowy 0,3 z każdej strony |
+| Jarzmo ↔ piłeczka | klej wypełniający (akrylowy 2K) w szczelinie 0,5 mm w misce, z daleka od otworów osi; ustawienie źrenicy w przyrządzie do wklejania | – | – | – |
 | Jarzmo ↔ obudowa (ograniczniki) | kołek Ø1,4 na każdym oczku w łukowym rowku występu, stop przy ±33°. Kanał montażowy prowadzi kołek od tyłu | – | – | – |
 | Korba ↔ cięgno (C) | śruba od dołu przez tulejkę z kołnierzem, dokręcona do oporu | M3×8 DIN 912 | wkładka M3 w cięgnie | korba na tulejce (Ø6,0 / Ø5,6), luz osiowy 0,2 |
 | Cięgno ↔ ramię (H) | jak w C, przez otwór dolny obudowy | M3×8 DIN 912 | wkładka M3 w cięgnie | ramię na tulejce |
@@ -118,6 +123,7 @@ Skrypt [`40-cad/onshape/oko-f-v2-kolizje.js`](../40-cad/onshape/oko-f-v2-kolizje
 | łby śrub – obudowa, jarzmo, ramię | ≥ 0,66 mm |
 | ramię – SG90 | 1,29 mm |
 | piłeczka – obudowa | 2,56 mm |
+| piłeczka – miska (szczelina kleju) | 0,5 mm |
 | piłeczka – cięgno | 0,82 mm |
 | cięgno – jarzmo, cięgno – ramię | 0,2 mm (szczelina warstw) |
 
@@ -148,7 +154,8 @@ Ułożenie części jest w [`40-cad/README.md`](../40-cad/README.md). Wszystkie 
 ## Czego nie jestem pewien
 
 1. **Śruby osi M3×5 z niskim łbem (ISO 7380).** DIN 912 nie mieści się w pogłębieniu, a M3×8 weszłaby w piłeczkę. Jeśli w warsztacie ich nie ma, można skrócić M3×8 i zeszlifować łeb do 2,5 mm.
-2. **Klej.** CA w szczelinie 0,2 mm na pasie 8 mm nie jest sprawdzony na tej piłeczce (materiał nieznany). Jeśli puści, można zwiększyć `jarzmoW` (miska szersza) albo `klej` i użyć żelu CA lub epoksydu.
+2. **Klej.** Akrylowy 2K w szczelinie 0,5 mm na pasie 8 mm nie jest sprawdzony na tej piłeczce (materiał nieznany). Jeśli puści, można zwiększyć `jarzmoW` (szersza miska). Kleju nie nakładać w pobliżu otworów osi: końcówki śrub M3×5 wchodzą 0,15 mm w szczelinę i zastygły klej by je zablokował.
+   - **Mniejsza piłeczka w przyrządzie.** Czasza ma Ø40,9, więc piłeczka 39,5 leży w niej 0,7 mm bliżej przodu niż środek jarzma. Wklejona tak będzie lekko „bić” przy obrocie. Dla mniejszych piłeczek trzeba zmniejszyć czaszę (szkic `Przyrzad wklejania: czasza szkic`).
 3. **Widok z ukosu.** Patrząc pod kątem do osi, przy piłeczce otwiera się sierp (ok. 2 mm przy 10°), przez który widać brzeg miski i wnętrze. To geometria otworu, nie kolizja. Najprościej wydrukować jarzmo z miską (i najlepiej obudowę) na czarno.
 4. **Wymiary SG90 i orczyka są założone** (jak w v2): wysokość 30,5 do wierzchu orczyka, uszy 15,9 od spodu, orczyk jednoramienny z otworem 13 mm. Trzeba je zmierzyć i wpisać w zmienne.
 5. **Przegub H składany przez otwór dolny w dyni.** Wymaga krótkiego klucza imbusowego i tulejki wkładanej od dołu, co może być niewygodne. Można go też złożyć przed włożeniem modułu do dyni (kolejność w README).

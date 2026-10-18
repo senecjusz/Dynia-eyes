@@ -24,7 +24,7 @@ Historia w Onshape:
 - v1 to wersja dokumentu **„v1”**, a jej pliki są w [`archiwum/v1/`](archiwum/v1/).
 - v1.1 to wersja **„v1.1”** (gałąź Main).
 - v2 to wersja **„v2 do review”** w gałęzi **v2**. W gałęzi v2 (workspace) zostały już tylko elementy v2.1.
-- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi.
+- v2.1 to wersja **„v2.1 do review”** w tej samej gałęzi, a v2.1b (klej 0,5 mm, napęd w Assembly) to wersja **„v2.1b do review”**.
 
 ## Oko F v2.1 – do review (gałąź v2)
 
@@ -66,14 +66,14 @@ Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
 | Wkładka M3 do wtapiania (otwór Ø4, dł. 4) | 4 | 2 w cięgnie, 2 w występach obudowy |
 | M2×6 | 1 | Ramię do orczyka (otwór 13 mm) |
 | Wkręty z kompletu SG90 | 3 | 2 uszy serwa i wkręt środkowy orczyka |
-| Klej CA (najlepiej żel) | – | Piłeczka w misce |
+| Klej wypełniający, akrylowy dwuskładnikowy | – | Piłeczka w misce (szczelina 0,5 mm) |
 
 ### Kolejność składania
 
 1. Wtopić wkładki w cięgno (od góry) i w 2 występy z tyłu obudowy.
 2. **Wklejanie piłeczki:**
    - piłeczkę włożyć źrenicą w dół do czaszy przyrządu, tak żeby źrenica była widoczna w otworze-celowniku Ø3,
-   - na pas miski nałożyć klej,
+   - na pas miski nałożyć klej, **z dala od otworów osi** (końcówki śrub osi wchodzą 0,15 mm w szczelinę),
    - jarzmo nałożyć oczkami między słupki i przykręcić 2 × M3×10,
    - po związaniu kleju odkręcić.
 3. **Przegub C:** tulejkę z kołnierzem włożyć od dołu w otwór korby, nałożyć cięgno i wkręcić M3×8 do oporu we wkładkę.
@@ -92,10 +92,11 @@ Części `PODGLAD …` służą tylko do sprawdzania kolizji. **Nie drukować.**
 - Grupy: moduł nieruchomy (obudowa, nakrętka, SG90, pokrywa), jarzmo z piłeczką, ramię z orczykiem, cięgno z tulejkami.
 - Mate'y:
   - oś oka: Revolute z limitem ±33°,
-  - wałek serwa: Revolute,
-  - przegub C: Cylindrical,
+  - wałek serwa: Revolute z limitem −37…+30° (wyklucza drugie położenie czworoboku, w którym ramię stoi pod 68°),
+  - przegub C: Revolute,
   - przegub H: Ball.
-- Obudowa jest unieruchomiona (Fix). Oko można obracać, przeciągając piłeczkę.
+- Obudowa jest unieruchomiona (Fix).
+- **Ruch:** przeciągnij piłeczkę myszką, a jarzmo, cięgno, ramię i orczyk ruszą razem z nią. Możesz też kliknąć prawym przyciskiem mate „Os oka 2 x M3 (ogranicznik +-33)”, wybrać **Animate** i nacisnąć ▶ (zakres −33…33° podstawia się z limitów).
 
 Uwaga: konto Onshape jest na planie Free, więc dokumenty są **publiczne**.
 
