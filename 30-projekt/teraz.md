@@ -75,7 +75,6 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 ## Parking
 
 - `AGENTS.md`: stan OK z odpowiedzi zapisu nie wyłapuje ostrzeżeń (np. „missing selection”); kontrola musi czytać też ikony ostrzeżeń w drzewie.
-- Sesja wykonawcy: logowanie do Onshape w jej przeglądarce i zapis plików z worktree (propozycja w rozmowie 19.10).
 - `30-projekt/plan-powrot-do-onshape.md`: obaj recenzenci uznali go za nie do realizacji; dopisać adnotację albo usunąć.
 - Dublety w `30-projekt/decyzje.md`.
 - Śruby osi ISO 7380 M3: skrócić do 4 mm albo kupić M3×5/6.

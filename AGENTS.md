@@ -35,8 +35,8 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 
 ## Role
 
-- **Orkiestrator (jeden):** rozmawia z użytkownikiem, pisze briefy, zatwierdza plany drzewa, przyjmuje części po własnym sprawdzeniu dowodów, zleca review i łączy wyniki. Prowadzi `teraz.md`, `decyzje.md` i `70-budowa/dziennik.md`. Sam nie projektuje w CAD.
-- **Wykonawca:** jeden na zadanie. Pracuje według briefu. Przed budową każdej części wysyła orkiestratorowi plan drzewa. Po zakończeniu zapisuje raport i się zatrzymuje. Nie uruchamia review i nie zaczyna kolejnej wersji bez zlecenia. Commituje tylko pliki wskazane w briefie (`git add` po nazwach, nigdy `git commit -a`).
+- **Orkiestrator (jeden):** rozmawia z użytkownikiem, pisze briefy i przed zleceniem commituje wszystko, czego wykonawca potrzebuje, oraz sprawdza logowanie do Onshape. Scala gałąź wykonawcy z `main` po odbiorze. Ponadto zatwierdza plany drzewa, przyjmuje części po własnym sprawdzeniu dowodów, zleca review i łączy wyniki. Prowadzi `teraz.md`, `decyzje.md` i `70-budowa/dziennik.md`. Sam nie projektuje w CAD.
+- **Wykonawca:** stała sesja „Wykonawca CAD”, widoczna dla użytkownika i używana do kolejnych zadań. Pracuje według briefu w swoim worktree i commituje na swoją gałąź; nie zapisuje w głównym katalogu repo. Na starcie zadania sprawdza, że Onshape w jego przeglądarce jest zalogowany; jeśli nie, pisze o tym w swoim wątku i czeka. Przed budową każdej części wysyła orkiestratorowi plan drzewa. Po zakończeniu zapisuje raport i się zatrzymuje. Nie uruchamia review i nie zaczyna kolejnej wersji bez zlecenia. Commituje tylko pliki wskazane w briefie (`git add` po nazwach, nigdy `git commit -a`).
 - **Recenzenci:** dwóch niezależnych, z różnych rodzin modeli: **Opus** (Anthropic) i **Codex / „Astra”** (OpenAI). Każdy osobno, na tym samym briefie. Tylko do odczytu: bez `git pull`, commitów, pushy i porządków w repo.
 
 ## Projekt
