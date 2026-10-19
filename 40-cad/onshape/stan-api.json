@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
- "zapis": "2026-10-19T11:17Z, wykonawca CAD: budowa zakonczona, runda K1-K9, K11 zaliczona; raport weryfikacja-probka-gwintu-45.md",
+ "zapis": "2026-10-20T01:11Z, wykonawca CAD: E3.5 - dokument i zmienne",
  "sumaWywolanRok": {
   "total": 131,
   "features": 70,
@@ -2600,5 +2600,87 @@
   "Pierscien: gwint": "F0tFoD7g7lPRJ0I_3",
   "Nakretka: wyciecie karbu": "FPOl9cUGw7DSYq7_3",
   "Nakretka: karby": "FN0IJELDsaqlHno_3"
+ },
+ "e35": {
+  "zadanie": "E3.5 probka gniazd wkladek M3 (brief 30-projekt/brief-e3.5-probka-wkladek-m3.md, plan 40-cad/onshape/e3.5-plan.md zatwierdzony)",
+  "budzet": {
+   "total": 60,
+   "getFeatures": 3
+  },
+  "n": {
+   "total": 7,
+   "features": 0,
+   "getFeatures": 0
+  },
+  "rokPrzed": 412,
+  "doc": {
+   "did": "fa14c453e24a3fc9b2d88164",
+   "wid": "cbb2de31db378a243d8df7fc",
+   "name": "Probka wkladek M3",
+   "folder": "TMP 9c2284e725d1d7ce61562333",
+   "isPublic": true,
+   "elementy": {
+    "Part Studio 1": "859f51106a4cb6d1ca79942a",
+    "Assembly 1": "7b5be6f379f43d537e2dfed6",
+    "BOM : Assembly 1": "89795a5f319c50ea70487d1e",
+    "Zmienne E3.5": "c11e098d55a939c33d7244b2"
+   }
+  },
+  "zmienne": "28 zmiennych (plan), zapis dwuetapowy 204/204; pierwszy zapis jednym krokiem = 400",
+  "czasy": [
+   {
+    "etap": "dokument",
+    "start": "2026-10-19T23:09:26Z",
+    "koniec": "2026-10-19T23:09:30Z"
+   },
+   {
+    "etap": "zmienne",
+    "start": "2026-10-19T23:09:44Z",
+    "koniec": "2026-10-19T23:10:04Z"
+   }
+  ],
+  "log": [
+   [
+    "2026-10-19T23:09:29Z",
+    "POST /documents (TMP, isPublic)",
+    200,
+    200
+   ],
+   [
+    "2026-10-19T23:09:29Z",
+    "GET elements",
+    200,
+    9000
+   ],
+   [
+    "2026-10-19T23:09:46Z",
+    "POST variablestudio",
+    200,
+    3000
+   ],
+   [
+    "2026-10-19T23:09:47Z",
+    "POST variables (jeden krok)",
+    400,
+    2999
+   ],
+   {
+    "t": "2026-10-19T23:10:02Z",
+    "uwaga": "BLAD WYKONAWCY: jedno GET /variables wyslane fetch-em z pominieciem bramki (diagnoza 400); doliczone do licznika"
+   },
+   [
+    "2026-10-19T23:10:03Z",
+    "POST variables krok 1 (liczby)",
+    204,
+    2998
+   ],
+   [
+    "2026-10-19T23:10:03Z",
+    "POST variables krok 2 (wyrazenia)",
+    204,
+    2997
+   ]
+  ],
+  "stop": null
  }
 }
