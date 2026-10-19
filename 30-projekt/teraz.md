@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E2.1, brief wykonawcy v2.5 (moduł, 10 części). Równolegle E2.0: wydruk próbki gwintu (użytkownik, koniec ok. 15:10).
+**Bieżące zadanie:** E2.1–E2.5, budowa modułu v2.5 w Onshape (wykonawca CAD).
 
 ```mermaid
 flowchart TD
@@ -34,9 +34,9 @@ flowchart TD
   classDef zrobione fill:#cdeccd,stroke:#3a7d3a,color:#000
   classDef teraz fill:#ffe7a3,stroke:#b8860b,color:#000,stroke-width:2px
   classDef czeka fill:#eeeeee,stroke:#888,color:#000
-  class E1_1,E1_2 zrobione
-  class E2_0 teraz
-  class E2_1,E2_2,E2_3,E2_4,E2_5,E2_6,E2_7,E3_2,E3_3 czeka
+  class E1_1,E1_2,E2_0 zrobione
+  class E2_1 teraz
+  class E2_2,E2_3,E2_4,E2_5,E2_6,E2_7,E3_2,E3_3 czeka
 ```
 
 Kolory: zielone zrobione, żółte bieżące, szare czeka.
@@ -52,7 +52,7 @@ Gotowe, gdy wykonawca ma sprawdzalne zasady, które nie pozwalają zablokować A
 
 Gotowe, gdy v2.5 jest w SimpleEye, przeszła kontrolę wyjścia i review, a 3MF leży w `40-cad/3mf/`.
 
-- [ ] E2.0 Model gotowy 19.10 w dokumencie „Probka gwintu 45” (TMP), weryfikacja `40-cad/onshape/weryfikacja-probka-gwintu-45.md`; czeka na eksport 3MF, wydruk i ocenę użytkownika. Próbka gwintu 45°, skok 5: pierścień i nakrętki z luzem 0,2 / 0,25 / 0,3 / 0,35 / 0,4, zaprojektowane przez wykonawcę w nowym dokumencie Onshape w folderze TMP (pilotaż zasad), wydruk na docelowej drukarce, wybór luzu dla gniazda i nakrętki v2.5. Brief: `30-projekt/brief-e2.0-probka-gwintu-45.md`.
+- [x] E2.0 Wynik: `luzGwint` = 0,20 (dziennik 19.10). Model gotowy 19.10 w dokumencie „Probka gwintu 45” (TMP), weryfikacja `40-cad/onshape/weryfikacja-probka-gwintu-45.md`; czeka na eksport 3MF, wydruk i ocenę użytkownika. Próbka gwintu 45°, skok 5: pierścień i nakrętki z luzem 0,2 / 0,25 / 0,3 / 0,35 / 0,4, zaprojektowane przez wykonawcę w nowym dokumencie Onshape w folderze TMP (pilotaż zasad), wydruk na docelowej drukarce, wybór luzu dla gniazda i nakrętki v2.5. Brief: `30-projekt/brief-e2.0-probka-gwintu-45.md`.
 - [ ] E2.1 Brief wykonawcy v2.5: `30-projekt/brief-e2.1-v2.5-modul.md` (decyzje z 19.10 w `decyzje.md`). Pokazany użytkownikowi przed wysłaniem.
 - [ ] E2.2 Wykonawca, przed pierwszym zapisem modelu: nowy generator szkiców (wymiary `#zmienna`, więzy do layoutu, bez `Fix`; klasa `Sk` z v2.2 emituje gotowe współrzędne i się nie nadaje), bramka `req()` z twardym stopem i test progu, test znacznika szkicu na jednym szkicu zapisanym przez API. W `40-cad/onshape/oko-f-v2.2-build.js`: usunąć `fs()` i `sleep(350)`, `sketchW()` przerobić na jeden POST na szkic, w `circ()` jeden odczyt `bodydetails` zamiast ośmiu, `OS.zmienne()` wysyła zmienne raz, nie przyrostowo, stan z `localStorage` przenieść do `40-cad/onshape/stan-api.json`, sprawdzenie znacznika szkicu po każdym szkicu.
 - [ ] E2.3 Wykonawca: plan drzewa każdej części; zatwierdza orkiestrator.

@@ -90,7 +90,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 | Ślizgowe: wsuwanie (kaseta w gniazdo, sanki, prowadnice) | **0,25–0,3 mm** + fazki wejściowe | review v2.2 |
 | Obrotowe na śrubie lub tulejce (przeguby, oś) | 0,2 mm, luz osiowy 0,2–0,3 mm | v2.x |
 | Ruchome części obok siebie (cięgno, ramię, jarzmo) | ≥ 0,5 mm w całym zakresie ruchu, ≥ 0,2 mm po uwzględnieniu luzów przegubów | review v1.1, v2.2 |
-| Gwint drukowany (gniazdo, nakrętka) | profil i luz według pierścieni testowych (`teraz.md`, E2.0) | do próby |
+| Gwint drukowany 45°, skok 5 (gniazdo, nakrętka) | **0,20 mm** | próbka E2.0, 19.10 |
 | Wcisk (np. tulejka w otwór) | 0 do −0,05 mm | do próby |
 | Szczelina na klej wypełniający | 0,5 mm | v2.1b |
 | Otwory M3 | ciasny Ø2,6, luźny Ø3,3; wkładka: głębokość = długość wkładki + ≥ 0,6 mm dna | v2.x, review v2.1d |

@@ -36,3 +36,7 @@
 ## 2026-10-19 – próbka gwintu ISO 60° w PETG
 - Próbka ISO M63×3 (v2.4, model z SolidCrafta) wydrukowana w PETG: gwint wyszedł kiepsko. Nie wiadomo, czy winny jest profil 60°, czy model z SolidCrafta.
 - Decyzja użytkownika: nowy zestaw próbek 45°, skok 5, luzy 0,2 / 0,25 / 0,3 / 0,35 / 0,4, zaprojektowany w Onshape (zadanie E2.0, zarazem pilotaż nowych zasad pracy w Onshape).
+
+## 2026-10-19 – wydruk próbki gwintu 45° (E2.0)
+- Trzpień + nakrętki 45°, skok 5, wydruk na X1C. Luz poprzeczny suwmiarką (skrajne dociśnięcie w obie strony, błąd pomiaru ±0,15–0,20 mm): nakrętka 0,20 → ok. 0,5 mm, pasuje dobrze; nakrętka 0,25 → ok. 1,15 mm, za luźna. Nakrętek 0,30–0,40 nie mierzono.
+- Decyzja: `luzGwint` = 0,20 dla gniazda i nakrętki v2.5.

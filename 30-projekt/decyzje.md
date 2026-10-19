@@ -83,3 +83,4 @@
 | 2026-10-19 | v2.5: gwint 45°, skok 5, rdzeń Ø58,9, gwint Ø62,9, `luzGwint` jako zmienna (start 0,3, wartość po próbce E2.0); nakrętka z powrotem z radełkiem | Profil 45° wydrukował się dobrze w v2.2, ISO 60° w PETG kiepsko; radełko usunięto tylko przez ograniczenie SolidCrafta |
 | 2026-10-19 | v2.5: szczelina SG90 na 12,2 + `luzSanki` (rozrzut serw), mniejsze serwo dociska wkręt ucha | Projekt na rozrzut wymiarów zamiast pomiaru jednego egzemplarza |
 | 2026-10-19 | v2.5 w nowym dokumencie Onshape „Oko F v2.5”, w folderze obok SimpleEye; SimpleEye zostaje archiwum | Stary dokument (271 operacji, atomowy) jest nieutrzymywalny |
+| 2026-10-19 | `luzGwint` = 0,20 (gwint 45°, skok 5) dla gniazda i nakrętki v2.5 | Próbka E2.0: 0,20 → luz poprzeczny ok. 0,5 mm, pasuje; 0,25 → ok. 1,15 mm, za luźno |
