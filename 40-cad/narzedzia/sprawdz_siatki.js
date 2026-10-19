@@ -2,6 +2,7 @@
 // Uzycie: node sprawdz_siatki.js <plik lub folder> [tolerancja_mm=0.0001] [--gdzie]
 // Dla kazdego pliku: liczba trojkatow, otwarte krawedzie (1 trojkat), krawedzie nierozmaitosciowe (>2 trojkaty),
 // trojkaty zdegenerowane (pole < 1e-9 mm2). Wynik OK tylko przy samych zerach. Kod wyjscia 1, gdy cos jest nie tak.
+// 3MF: wspolrzedne przeliczane na mm wg atrybutu unit modelu (Onshape zapisuje unit="meter"); STL zakladany w mm.
 const fs = require('fs'), path = require('path'), zlib = require('zlib');
 function unzip3mf(buf) { // minimalny czytnik ZIP: szuka pliku .model
   let out = [];
@@ -15,6 +16,7 @@ function unzip3mf(buf) { // minimalny czytnik ZIP: szuka pliku .model
   }
   return out;
 }
+const JEDNOSTKI = new Map();
 function trianglesFrom(file) {
   const T = [];
   if (file.toLowerCase().endsWith('.stl')) {
@@ -22,9 +24,13 @@ function trianglesFrom(file) {
     for (let i = 0; i < n; i++) { const t = []; for (let k = 0; k < 9; k++) t.push(b.readFloatLE(84 + i * 50 + 12 + 4 * k)); T.push(t); }
     return T;
   }
+  const MM = { micron: 0.001, millimeter: 1, centimeter: 10, inch: 25.4, foot: 304.8, meter: 1000 };
   for (const x of unzip3mf(fs.readFileSync(file))) {
+    const u = (x.match(/<model[^>]*\bunit="([^"]+)"/) || [])[1] || 'millimeter';
+    if (!(u in MM)) throw new Error(path.basename(file) + ': nieznana jednostka 3MF ' + u);
+    const s = MM[u]; JEDNOSTKI.set(path.basename(file), u);
     for (const mesh of x.split('<mesh').slice(1)) {
-      const V = [...mesh.matchAll(/<vertex[^>]*x="([^"]+)"[^>]*y="([^"]+)"[^>]*z="([^"]+)"/g)].map(m => [+m[1], +m[2], +m[3]]);
+      const V = [...mesh.matchAll(/<vertex[^>]*x="([^"]+)"[^>]*y="([^"]+)"[^>]*z="([^"]+)"/g)].map(m => [s * m[1], s * m[2], s * m[3]]);
       for (const m of mesh.matchAll(/<triangle[^>]*v1="(\d+)"[^>]*v2="(\d+)"[^>]*v3="(\d+)"/g)) T.push([...V[+m[1]], ...V[+m[2]], ...V[+m[3]]]);
     }
   }
@@ -45,13 +51,13 @@ function check(file, tol) {
   }
   let open = 0, nonman = 0; const gdzie = new Map();
   for (const [k, v] of E) { if (v === 1) open++; else if (v > 2) nonman++; else continue;
-    const m = P.get(k).map(x => Math.round(x)).join(','); gdzie.set(m, (gdzie.get(m) || 0) + 1); }
+    const m = P.get(k).map(x => x.toFixed(2)).join(','); gdzie.set(m, (gdzie.get(m) || 0) + 1); }
   return { tri: T.length, open, nonman, deg, gdzie };
 }
 const [arg, tolS] = process.argv.slice(2).filter(a => a !== '--gdzie'); const tol = +(tolS || 0.0001);
 const files = fs.statSync(arg).isDirectory() ? fs.readdirSync(arg).filter(f => /\.(3mf|stl)$/i.test(f)).map(f => path.join(arg, f)) : [arg];
 let bad = 0;
 for (const f of files) { const r = check(f, tol); const ok = !r.open && !r.nonman && !r.deg; if (!ok) bad++;
-  console.log((ok ? 'OK   ' : 'BLAD ') + path.basename(f) + `  trojkatow ${r.tri}, otwarte ${r.open}, >2 ${r.nonman}, zdegenerowane ${r.deg}`);
+  console.log((ok ? 'OK   ' : 'BLAD ') + path.basename(f) + `  trojkatow ${r.tri}, otwarte ${r.open}, >2 ${r.nonman}, zdegenerowane ${r.deg}` + (JEDNOSTKI.has(path.basename(f)) ? `, jednostka ${JEDNOSTKI.get(path.basename(f))}` : ''));
   if (process.argv.includes('--gdzie') && !ok) console.log('   miejsca (x,y,z mm: liczba):', [...r.gdzie].sort((a, b) => b[1] - a[1]).slice(0, 25).map(([m, n]) => m + ':' + n).join('  ')); }
 process.exit(bad ? 1 : 0);
