@@ -4,7 +4,9 @@
 
 | Część | Ilość | Uwagi |
 |---|---|---|
-| Arduino Nano 3.0 (ATmega328, CH340, USB-C, zlutowany) | 1 | Na Windowsie może być potrzebny sterownik CH340 |
+| **ESP32-C3 SuperMini (V1601)** – kontroler | 1 | Wi-Fi (kalibracja przez telefon), I²C do PCA9685 (typowo GPIO8 SDA / GPIO9 SCL), drugi sprzętowy UART na radar LD2450, USB w układzie. Logika 3,3 V. Piny startowe 2, 8, 9 – nie ciągnąć do masy przy starcie. Piny do wlutowania |
+| NodeMCU v3 LoLin (ESP8266, CH340G) – zapas | 1 | Wi-Fi, ale jeden sprzętowy UART (zajęty przez USB) – słabo pod radar LD2450 |
+| Arduino Nano 3.0 (ATmega328, CH340, USB-C, zlutowany) – zapas | 1 | Bez Wi-Fi. Na Windowsie może być potrzebny sterownik CH340 |
 | Sterownik serw PCA9685, 16 kanałów, I²C | 1 | Steruje wszystkimi serwami, Nano wysyła tylko komendy |
 | Serwo SG90 9 g | 8 | 4 szt. od MicroChipCompany + 4 szt. od OMEGA_ZONE. **Kabel wychodzi u dołu krótszego boku, od strony wałka** – uwzględniać w CAD |
 | Czujnik ruchu PIR HC-SR501 | 1 | Wystarczy do „ktoś podszedł → oczy się budzą”, nie do śledzenia kierunku |
