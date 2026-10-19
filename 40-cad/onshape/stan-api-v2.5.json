@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T13:33Z, po Kasecie; Jarzmo: szkic profilu pasa zapisany (OK), stop - panel przegladarki ukryty (kontrola znacznika niemozliwa)",
+ "zapis": "2026-10-19T14:05Z, po Jarzmie (16 operacji OK)",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 148,
-  "features": 106,
+  "total": 167,
+  "features": 122,
   "getFeatures": 0
  },
  "budzet": {
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "e3c814ce1f0280d3eb96e626",
+ "mv": "a19c0ee7dd5c9ee3ad14ac8a",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -126,7 +126,23 @@
   "Kaseta: pogrubienie H": "F9wKLVylNPbGcHj_3",
   "Kaseta: wybranie H szkic": "FgvJmHWRorIWsLP_3",
   "Kaseta: wybranie H": "FOf4g7gmmS0wxYr_3",
-  "Jarzmo: profil pasa": "Fmw07QNbMsQeyy0_3"
+  "Jarzmo: profil pasa": "Fmw07QNbMsQeyy0_3",
+  "Jarzmo: pas miski": "FAeM2kD5hpbzPPy_3",
+  "Jarzmo: pl. przycięcia": "FMDIhP3S4iZaAqJ_4",
+  "Jarzmo: przycięcie szkic": "FOHROFQDcixvVcK_4",
+  "Jarzmo: przycięcie": "FWuHNcrlzJMkTE5_4",
+  "Jarzmo: pl. oczka": "FK9aZoxKZkUReFZ_4",
+  "Jarzmo: oczko szkic": "FG3ozWcBJzTkpQC_4",
+  "Jarzmo: oczko": "FuzN8h5tJpqie9u_4",
+  "Jarzmo: pl. kołka": "FAdOopktXIy3eca_4",
+  "Jarzmo: kołek szkic": "FwBe6fzjgzIPPUi_4",
+  "Jarzmo: kołek ogranicznika": "FCmvxOUgx2ShU5w_4",
+  "Jarzmo: przycięcie, oczko i kołek dół": "Fwd4PpMT8LDu1eC_4",
+  "Jarzmo: otwory osi": "F7LmGMRHdVNyedb_4",
+  "Jarzmo: pl. korby": "F8wGTHh0s8ugRkB_4",
+  "Jarzmo: korba szkic": "FI0kaoEcnqtWg47_4",
+  "Jarzmo: korba": "FBrvWH631fQKXnd_4",
+  "Jarzmo: otwór korby": "F1XaNNQgNftp24h_4"
  },
  "szkice": [
   {
@@ -404,8 +420,42 @@
   {
    "nazwa": "Jarzmo: profil pasa",
    "featureId": "Fmw07QNbMsQeyy0_3",
-   "wynik": "BRAK KONTROLI",
-   "blad": "wiersz nie pojawil sie w 5 s (panel ukryty, lista wirtualizowana)"
+   "dataId": "MICdVLnqRHiLA4e2u",
+   "podpowiedz": "Jarzmo: profil pasa [Sketch]",
+   "niedookreslony": false,
+   "uwaga": "profil pasa odczytany po przerwie (karta hidden)"
+  },
+  {
+   "nazwa": "Jarzmo: przycięcie szkic",
+   "featureId": "FOHROFQDcixvVcK_4",
+   "dataId": "M3lUmuMA59dVBCyux",
+   "podpowiedz": "Jarzmo: przycięcie szkic [Sketch]",
+   "niedookreslony": false,
+   "uwaga": null
+  },
+  {
+   "nazwa": "Jarzmo: oczko szkic",
+   "featureId": "FG3ozWcBJzTkpQC_4",
+   "dataId": "MWehIQVUx4YblzYAQ",
+   "podpowiedz": "Jarzmo: oczko szkic [Sketch]",
+   "niedookreslony": false,
+   "uwaga": null
+  },
+  {
+   "nazwa": "Jarzmo: kołek szkic",
+   "featureId": "FwBe6fzjgzIPPUi_4",
+   "dataId": "MJMA+v8MaElprTOX7",
+   "podpowiedz": "Jarzmo: kołek szkic [Sketch]",
+   "niedookreslony": false,
+   "uwaga": null
+  },
+  {
+   "nazwa": "Jarzmo: korba szkic",
+   "featureId": "FI0kaoEcnqtWg47_4",
+   "dataId": "M9e/tuF1vAMt/uRTR",
+   "podpowiedz": "Jarzmo: korba szkic [Sketch]",
+   "niedookreslony": false,
+   "uwaga": null
   }
  ],
  "czasy": [
@@ -470,17 +520,16 @@
    5
   ],
   [
-   "Jarzmo (przerwane)",
-   "2026-10-19T13:31:20Z",
-   8788,
-   1
+   "Jarzmo",
+   "2026-10-19T13:57:01Z",
+   12374,
+   16
   ]
  ],
  "foldery": [
   "Layout (1)",
   "Gniazdo (23)",
-  "Nakrętka (13)",
-  "Kaseta: do zalozenia (58 operacji)"
+  "Nakrętka (13)"
  ],
  "pomiary": [
   {
@@ -648,6 +697,36 @@
     139.8
    ],
    "sciany": 135
+  },
+  {
+   "czesc": "Jarzmo z miską",
+   "bryly": 4,
+   "id": "R5CD",
+   "sfery": [
+    20.75,
+    23.25
+   ],
+   "walceR": [
+    1.3,
+    1.65,
+    2.3,
+    3,
+    5,
+    20.9,
+    23.4
+   ],
+   "plaszczyznyY": [
+    -24.75,
+    -23.15,
+    -20.8,
+    -3,
+    -0.5,
+    20.8,
+    23.15,
+    24.75
+   ],
+   "sciany": 38,
+   "zgodnosc": "pas R20.75/23.25, oczka i kolki +-20.8..+-24.75, korba y -3..-0.5, otwory 3.3 i 6.0; korba uproszczona (bez malego trojkata miedzy kropla piasty a paskiem, v2.4 punkty 35-38)"
   }
  ],
  "ustalenia": [
@@ -698,7 +777,30 @@
   {
    "t": "2026-10-19T13:31:30Z",
    "uwaga": "Jarzmo: kontrola szkicu przerwana - panel ukryty"
+  },
+  {
+   "t": "2026-10-19T13:57Z",
+   "uwaga": "Jarzmo wznowione (pomijanie zapisanych operacji), 16 operacji OK przy karcie hidden"
   }
  ],
- "stop": "panel przegladarki ukryty: wiersz \"Jarzmo: profil pasa\" (Fmw07QNbMsQeyy0_3) nie pojawil sie w 5 s; czekam na uzytkownika"
+ "stop": null,
+ "folderyDoZalozenia": {
+  "Kaseta": {
+   "pierwsza": "Kaseta: profil rury",
+   "ostatnia": "Kaseta: wybranie H",
+   "operacji": 58
+  },
+  "Jarzmo z miską": {
+   "pierwsza": "Jarzmo: profil pasa",
+   "ostatnia": "Jarzmo: otwór korby",
+   "operacji": 17
+  }
+ },
+ "widocznosc": {
+  "t": "2026-10-19T14:04Z",
+  "tabs_context": "hidden, 1 karta (seed), aktywna",
+  "visibilityState": "hidden",
+  "javascript_tool": "ta sama karta seed (Oko F v2.5), G zywy",
+  "zalogowany": "tak (GET currentmicroversion 200)"
+ }
 }

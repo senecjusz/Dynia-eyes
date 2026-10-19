@@ -799,3 +799,153 @@ G.jarzmo = () => G.bryla('Jarzmo', async () => {
 });
 return 'jarzmo ok';
 })();
+
+// ===================== v2.5: Sanki, Ramie, Ciegno, Tulejki, Pokrywa =====================
+(() => {
+const G = window.G; const L = 'LENGTH', A = 'ANGLE';
+G.ZM.reszta = [
+ ['sankiOparcieY', L, '22.2 mm', 22.2, 'oparcie sanek nad scianka kasety (y)'], ['sankiSpodY', L, '#sankiOparcieY - #luzSanki', 21.95, ''], ['slupkiH', L, '4.35 mm', 4.35, ''], ['prowadnicaH', L, '1.7 mm', 1.7, ''],
+ ['sankiPolSzer', L, '9.6 mm', 9.6, ''], ['sankiZ1', L, '44.6 mm', 44.6, ''], ['sankiZ2', L, '49.2 mm', 49.2, ''], ['sankiZ3', L, '72.1 mm', 72.1, ''], ['sankiZ4', L, '77.4 mm', 77.4, ''],
+ ['sankiProwZ1', L, '48.9 mm', 48.9, ''], ['sankiProwZ2', L, '72.4 mm', 72.4, ''], ['prowadnicaWewX', L, '#szczelinaSG90 / 2', 6.35, ''], ['fazkaSanek', L, '1 mm', 1, 'naroze sanek (tulejka H)'],
+ ['sankiGoraY', L, '#sankiSpodY - #slupkiH', 17.6, ''], ['sankiOtwor1Z', L, '46.75 mm', 46.75, ''], ['sg90UchaRozstaw', L, '27.8 mm', 27.8, ''], ['sankiOtwor2Z', L, '#sankiOtwor1Z + #sg90UchaRozstaw', 74.55, ''],
+ ['serwoWkret', L, '1.8 mm', 1.8, ''], ['dnoWkretu', L, '0.6 mm', 0.6, ''], ['sankiOtworGl', L, '#slupkiH - #dnoWkretu', 3.75, ''],
+ ['ramieRo', L, '5.5 mm', 5.5, ''], ['ramieRh', L, '5 mm', 5, ''], ['ramaY', L, '4.5 mm', 4.5, ''], ['ramaH', L, '1.6 mm', 1.6, ''], ['ramaR', L, '5.2 mm', 5.2, ''], ['ramaRamieR', L, '3.5 mm', 3.5, ''],
+ ['orczykRamieL', L, '17.5 mm', 17.5, ''], ['kieszenR', L, '3.7 mm', 3.7, ''], ['kieszenR0', L, '2.6 mm', 2.6, ''], ['kieszenR1', L, '2.3 mm', 2.3, ''], ['kieszenGl', L, '#ramaH - #ramaZakladka', 1.5, ''], ['ramaZakladka', L, '0.1 mm', 0.1, ''],
+ ['m2L', L, '13 mm', 13, 'wkret M2 od osi orczyka'], ['m2Otwor', L, '2.2 mm', 2.2, ''], ['wkretOrczykaD', L, '2.8 mm', 2.8, ''],
+ ['ciegnoR', L, '4.2 mm', 4.2, ''], ['ciegnoY', L, '0.3 mm', 0.3, ''], ['podniesienieR', L, '3.8 mm', 3.8, ''], ['podniesienieY', L, '2.1 mm', 2.1, ''], ['ciegnoDno', L, '1 mm', 1, ''],
+ ['podniesienieH', L, '#wkladkaL + #wkladkaZapas + #ciegnoDno - #plytaT + #ramaZakladka', 3.2, ''], ['ciegnoWkladkiY', L, '5.4 mm', 5.4, ''], ['ciegnoWkladkaGl', L, '#wkladkaL + #wkladkaZapas', 4.6, ''],
+ ['kolnierzD', L, '8 mm', 8, ''], ['kolnierzH', L, '0.8 mm', 0.8, ''], ['tulejkaY', L, '3.8 mm', 3.8, ''], ['tulejkaKoniecY', L, '0.3 mm', 0.3, ''], ['tulejkaL', L, '#tulejkaY - #tulejkaKoniecY', 3.5, ''],
+ ['pokrywaT', L, '3 mm', 3, ''], ['pokrywaUchoR', L, '4.01 mm', 4.01, ''], ['pokrywaUchoR0', L, '25 mm', 25, ''], ['pokrywaEX', L, '#uchoR2 * cos(#uchoKat)', 25.662, ''], ['pokrywaEY', L, '#uchoR2 * sin(#uchoKat)', 21.533, ''],
+ ['jezykPolSzer', L, '9 mm', 9, ''], ['jezykY1', L, '20 mm', 20, ''], ['jezykY2', L, '38 mm', 38, ''], ['oknoPolSzer', L, '4.5 mm', 4.5, ''], ['oknoY1', L, '30.4 mm', 30.4, ''], ['oknoY2', L, '33.8 mm', 33.8, ''],
+ ['zaciskPolSzer', L, '1.9 mm', 1.9, ''], ['zaciskTasmy', L, '1 mm', 1, 'zacisk tasmy kabla 1.4'], ['zaciskY', L, '#oknoY2 + #zaciskTasmy', 34.8, ''],
+ ['prowKablaX1', L, '4.7 mm', 4.7, ''], ['prowKablaX2', L, '5.9 mm', 5.9, ''], ['prowKablaY1', L, '29.5 mm', 29.5, ''], ['prowKablaY2', L, '36 mm', 36, ''], ['prowKablaH', L, '4 mm', 4, ''], ['prowKablaZakladka', L, '0.5 mm', 0.5, ''],
+ ['prowKablaZ', L, '#kasetaTylZ + #prowKablaZakladka', 78, ''],
+];
+const lay = (v) => G.q.vtx('Layout: osie i punkty', v);
+const DIST = (s, a, q, expr) => s.con('DISTANCE', [G.pstr('localFirst', a), G.pq('externalSecond', q), { btType: 'BTMParameterEnum-145', parameterId: 'direction', enumName: 'DimensionDirection', value: 'MINIMUM' }, G.pn('length', expr)]);
+const prost = (s, ids, pts, d) => { s.poly(ids, pts); s.H(ids[0]); s.V(ids[1]); s.H(ids[2]); s.V(ids[3]); s.dx(ids[0] + '.start', d[0]); s.dx(ids[1] + '.start', d[1]); s.dy(ids[0] + '.start', d[2]); s.dy(ids[2] + '.start', d[3]); };
+// stadion: luki w a i b (punkty zewn.), styczne; wynik: obszar
+const stadion = (s, pre, ca, ra, cb, rb, qa, qb, exprA, exprB) => {
+  const ang = Math.atan2(cb[1] - ca[1], cb[0] - ca[0]) * 180 / Math.PI; const p = (c, r, a) => [c[0] + r * Math.cos(a * Math.PI / 180), c[1] + r * Math.sin(a * Math.PI / 180)];
+  s.arc(pre + 'A', ca, ra, ang + 90, ang + 270); s.arc(pre + 'B', cb, rb, ang - 90, ang + 90);
+  s.line(pre + 't1', p(ca, ra, ang + 270), p(cb, rb, ang - 90)); s.line(pre + 't2', p(cb, rb, ang + 90), p(ca, ra, ang + 90));
+  s.co(pre + 'A.end', pre + 't1.start'); s.co(pre + 't1.end', pre + 'B.start'); s.co(pre + 'B.end', pre + 't2.start'); s.co(pre + 't2.end', pre + 'A.start');
+  s.coExt(pre + 'A.center', qa); s.coExt(pre + 'B.center', qb); s.ra(pre + 'A', exprA); s.ra(pre + 'B', exprB);
+  s.tan(pre + 't1', pre + 'A'); s.tan(pre + 't1', pre + 'B'); s.tan(pre + 't2', pre + 'A'); s.tan(pre + 't2', pre + 'B'); };
+G.sanki = () => G.bryla('Sanki serwa', async () => {
+  await G.plOffset('Sanki: pl. spodu', G.q.std('Front'), '#sankiSpodY');
+  const s = new G.Sk('Sanki: słupki szkic', G.q.plane('Sanki: pl. spodu'));
+  s.poly(['f1', 'f2', 'f3', 'f4', 'f5'], [[-8.6, -44.6], [9.6, -44.6], [9.6, -49.2], [-9.6, -49.2], [-9.6, -45.6]]); s.H('f1'); s.V('f2'); s.H('f3'); s.V('f4');
+  s.dx('f1.start', '#sankiPolSzer - #fazkaSanek'); s.dy('f1.start', '#sankiZ1'); s.dx('f2.start', '#sankiPolSzer'); s.dy('f3.start', '#sankiZ2'); s.dx('f4.start', '#sankiPolSzer'); s.dy('f5.start', '#sankiZ1 + #fazkaSanek');
+  prost(s, ['b1', 'b2', 'b3', 'b4'], [[-9.6, -77.4], [9.6, -77.4], [9.6, -72.1], [-9.6, -72.1]], ['#sankiPolSzer', '#sankiPolSzer', '#sankiZ4', '#sankiZ3']);
+  await G.zapiszSzkic(s.feature());
+  await G.ext('Sanki: słupki', 'Sanki: słupki szkic', { op: 'NEW', depth: '#slupkiH', opp: true });
+  const p = new G.Sk('Sanki: prowadnice szkic', G.q.plane('Sanki: pl. spodu'));
+  prost(p, ['p1', 'p2', 'p3', 'p4'], [[6.35, -72.4], [9.6, -72.4], [9.6, -48.9], [6.35, -48.9]], ['#prowadnicaWewX', '#sankiPolSzer', '#sankiProwZ2', '#sankiProwZ1']);
+  prost(p, ['q1', 'q2', 'q3', 'q4'], [[-9.6, -72.4], [-6.35, -72.4], [-6.35, -48.9], [-9.6, -48.9]], ['#sankiPolSzer', '#prowadnicaWewX', '#sankiProwZ2', '#sankiProwZ1']);
+  await G.zapiszSzkic(p.feature());
+  await G.ext('Sanki: prowadnice', 'Sanki: prowadnice szkic', { op: 'ADD', depth: '#prowadnicaH', opp: true, scope: [G.q.body('Sanki: słupki')] });
+  await G.plOffset('Sanki: pl. góry', G.q.std('Front'), '#sankiGoraY');
+  const o = new G.Sk('Sanki: otwory uszu szkic', G.q.plane('Sanki: pl. góry'));
+  o.point('u1', [0, -46.75]); o.point('u2', [0, -74.55]); o.coExt('u1', G.q.std('Right')); o.coExt('u2', G.q.std('Right')); o.dy('u1', '#sankiOtwor1Z'); o.dy('u2', '#sankiOtwor2Z');
+  await G.zapiszSzkic(o.feature());
+  await G.op('Sanki: otwory uszu', 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', G.q.vtx('Sanki: otwory uszu szkic', 'u1'), G.q.vtx('Sanki: otwory uszu szkic', 'u2')), G.pe('hole', 'endStyle', 'BLIND'),
+    G.pn('holeDiameter', '#serwoWkret'), G.pn('holeDepth', '#sankiOtworGl'), G.pb('oppositeDirection', true), G.pq('scope', G.q.body('Sanki: słupki'))]);
+});
+G.ramie = () => G.bryla('Ramię orczyka', async () => {
+  const s = new G.Sk('Ramię: płyta szkic', G.q.plane('Jarzmo: pl. korby'));
+  stadion(s, 'r', [0, -66], 5.5, [-9.235, -40.628], 5, lay('lOko.end'), lay('lCH.end'), '#ramieRo', '#ramieRh');
+  await G.zapiszSzkic(s.feature());
+  await G.ext('Ramię: płyta', 'Ramię: płyta szkic', { op: 'NEW', depth: '#plytaT', opp: true });
+  const R = [G.q.body('Ramię: płyta')];
+  await G.plOffset('Ramię: pl. ramy', G.q.std('Front'), '#ramaY');
+  const r = new G.Sk('Ramię: rama orczyka szkic', G.q.plane('Ramię: pl. ramy'));
+  r.line('oH', [0, -66], [-9.235, -40.628], true); r.coExt('oH.start', lay('lOko.end')); r.coExt('oH.end', lay('lCH.end'));
+  r.point('pT', [-5.985, -49.555]); r.co('pT', 'oH'); DIST(r, 'pT', lay('lOko.end'), '#orczykRamieL');
+  r.point('pM2', [-4.446, -53.784]); r.co('pM2', 'oH'); DIST(r, 'pM2', lay('lOko.end'), '#m2L');
+  r.circle('cR', [0, -66], 10.4); r.coExt('cR.center', lay('lOko.end')); r.ra('cR', '#ramaR');
+  r.circle('cO', [0, -66], 7, true); r.coExt('cO.center', lay('lOko.end')); r.ra('cO', '#ramaRamieR');
+  r.circle('cT', [-5.985, -49.555], 7); r.co('cT.center', 'pT'); r.ra('cT', '#ramaRamieR');
+  r.line('m1', [3.289, -64.803], [0.304, -48.358]); r.line('m2', [-12.274, -50.752], [-3.289, -67.197]);
+  r.co('m1.start', 'cO'); r.co('m1.end', 'cT'); r.tan('m1', 'cO'); r.tan('m1', 'cT'); r.co('m2.start', 'cT'); r.co('m2.end', 'cO'); r.tan('m2', 'cO'); r.tan('m2', 'cT');
+  await G.zapiszSzkic(r.feature());
+  await G.ext('Ramię: rama orczyka', 'Ramię: rama orczyka szkic', { op: 'ADD', depth: '#ramaH', opp: true, scope: R });
+  const k = new G.Sk('Ramię: kieszeń orczyka szkic', G.q.plane('Ramię: pl. ramy'));
+  k.circle('kO', [0, -66], 7.4); k.coExt('kO.center', lay('lOko.end')); k.ra('kO', '#kieszenR');
+  k.circle('k0', [0, -66], 5.2, true); k.coExt('k0.center', lay('lOko.end')); k.ra('k0', '#kieszenR0');
+  k.circle('kT', [-5.985, -49.555], 4.6); k.coExt('kT.center', G.q.vtx('Ramię: rama orczyka szkic', 'pT')); k.ra('kT', '#kieszenR1');
+  k.line('n1', [2.443, -65.111], [-3.824, -48.769]); k.line('n2', [-8.146, -50.341], [-2.443, -66.889]);
+  k.co('n1.start', 'k0'); k.co('n1.end', 'kT'); k.tan('n1', 'k0'); k.tan('n1', 'kT'); k.co('n2.start', 'kT'); k.co('n2.end', 'k0'); k.tan('n2', 'k0'); k.tan('n2', 'kT');
+  await G.zapiszSzkic(k.feature());
+  await G.ext('Ramię: kieszeń orczyka', 'Ramię: kieszeń orczyka szkic', { op: 'REMOVE', depth: '#kieszenGl', opp: true, scope: R });
+  const H = (n, loc, d, opp) => G.op(n, 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', loc), G.pe('hole', 'endStyle', 'THROUGH'), G.pn('holeDiameter', d), G.pb('oppositeDirection', opp), G.pq('scope', ...R)]);
+  await H('Ramię: otwór wkrętu orczyka', lay('lOko.end'), '#wkretOrczykaD', true);
+  await H('Ramię: otwór M2', G.q.vtx('Ramię: rama orczyka szkic', 'pM2'), '#m2Otwor', false);
+  await H('Ramię: otwór przegubu', lay('lCH.end'), '#otworPrzegubuD', true);
+});
+G.ciegno = () => G.bryla('Cięgno', async () => {
+  await G.plOffset('Cięgno: pl. płyty', G.q.std('Front'), '#ciegnoY');
+  const s = new G.Sk('Cięgno: płyta szkic', G.q.plane('Cięgno: pl. płyty'));
+  stadion(s, 'c', [7.382, -36.147], 4.2, [-9.235, -40.628], 4.2, lay('lCH.start'), lay('lCH.end'), '#ciegnoR', '#ciegnoR');
+  await G.zapiszSzkic(s.feature());
+  await G.ext('Cięgno: płyta', 'Cięgno: płyta szkic', { op: 'NEW', depth: '#plytaT', opp: true });
+  const C = [G.q.body('Cięgno: płyta')];
+  await G.plOffset('Cięgno: pl. podniesień', G.q.std('Front'), '#podniesienieY', true);
+  const p = new G.Sk('Cięgno: podniesienia szkic', G.q.plane('Cięgno: pl. podniesień'));
+  p.circle('pC', [7.382, -36.147], 7.6); p.circle('pH', [-9.235, -40.628], 7.6); p.coExt('pC.center', lay('lCH.start')); p.coExt('pH.center', lay('lCH.end')); p.ra('pC', '#podniesienieR'); p.ra('pH', '#podniesienieR');
+  await G.zapiszSzkic(p.feature());
+  await G.ext('Cięgno: podniesienia', 'Cięgno: podniesienia szkic', { op: 'ADD', depth: '#podniesienieH', opp: true, scope: C });
+  await G.plOffset('Cięgno: pl. wkładek', G.q.std('Front'), '#ciegnoWkladkiY', true);
+  const w = new G.Sk('Cięgno: wkładki szkic', G.q.plane('Cięgno: pl. wkładek'));
+  w.point('wC', [7.382, -36.147]); w.point('wH', [-9.235, -40.628]); w.coExt('wC', lay('lCH.start')); w.coExt('wH', lay('lCH.end'));
+  await G.zapiszSzkic(w.feature());
+  await G.op('Cięgno: otwory i wkładki', 'hole', [G.pe('hole', 'style', 'C_BORE'), G.pq('locations', G.q.vtx('Cięgno: wkładki szkic', 'wC'), G.q.vtx('Cięgno: wkładki szkic', 'wH')), G.pe('hole', 'endStyle', 'THROUGH'),
+    G.pn('holeDiameter', '#m3Luzny'), G.pn('cBoreDiameter', '#wkladkaD'), G.pn('cBoreDepth', '#ciegnoWkladkaGl'), G.pb('oppositeDirection', true), G.pq('scope', ...C)]);
+});
+G.tulejki = () => G.bryla('Tulejki', async () => {
+  await G.plOffset('Tulejki: pl. kołnierza', G.q.std('Front'), '#tulejkaY');
+  const k = new G.Sk('Tulejka korby: kołnierz szkic', G.q.plane('Tulejki: pl. kołnierza'));
+  k.circle('kk', [7.382, -36.147], 8); k.coExt('kk.center', lay('lCH.start')); k.fi('kk', '#kolnierzD');
+  await G.zapiszSzkic(k.feature());
+  await G.ext('Tulejka korby: kołnierz', 'Tulejka korby: kołnierz szkic', { op: 'NEW', depth: '#kolnierzH', opp: true });
+  const T = [G.q.body('Tulejka korby: kołnierz')];
+  const t = new G.Sk('Tulejka korby: trzon szkic', G.q.plane('Tulejki: pl. kołnierza'));
+  t.circle('tt', [7.382, -36.147], 5.6); t.coExt('tt.center', lay('lCH.start')); t.fi('tt', '#tulejkaD');
+  await G.zapiszSzkic(t.feature());
+  await G.ext('Tulejka korby: trzon', 'Tulejka korby: trzon szkic', { op: 'ADD', depth: '#tulejkaL', opp: true, scope: T });
+  await G.op('Tulejka korby: otwór', 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', lay('lCH.start')), G.pe('hole', 'endStyle', 'THROUGH'), G.pn('holeDiameter', '#m3Luzny'), G.pb('oppositeDirection', true), G.pq('scope', ...T)]);
+  await G.op('Tulejka ramienia: kopia C→H', 'transform', [G.pq('entities', G.q.body('Tulejka korby: kołnierz')), G.pe('transform', 'transformType', 'TRANSLATION_ENTITY'),
+    G.pq('transformLine', G.q.ent('Layout: osie i punkty', 'lCH')), G.pb('oppositeDirectionEntity', false), G.pb('makeCopy', true)]);
+});
+G.pokrywa = () => G.bryla('Pokrywa tylna', async () => {
+  const s = new G.Sk('Pokrywa: płyta szkic', G.q.plane('Kaseta: pl. tyłu'));
+  s.circle('pk', [0, 0], 54.5); s.naOrigin('pk.center'); s.ra('pk', '#kasetaODR');
+  const ucho = (pre, sx) => { const E = [sx * 25.662, 21.533], M = [sx * 19.151, 16.07];
+    s.line(pre + 'o', [0, 0], E, true); s.naOrigin(pre + 'o.start'); s.dx(pre + 'o.end', '#pokrywaEX'); s.dy(pre + 'o.end', '#pokrywaEY');
+    s.circle(pre + 'E', E, 8.02); s.co(pre + 'E.center', pre + 'o.end'); s.ra(pre + 'E', '#pokrywaUchoR');
+    s.circle(pre + 'M', M, 8.02, true); s.co(pre + 'M.center', pre + 'o'); DIST(s, pre + 'M.center', G.q.origin, '#pokrywaUchoR0'); s.eq(pre + 'M', pre + 'E');
+    const n = [-Math.sin(40 * Math.PI / 180) * sx, Math.cos(40 * Math.PI / 180)]; const r = 4.01;
+    s.line(pre + 't1', [M[0] + r * n[0], M[1] + r * n[1]], [E[0] + r * n[0], E[1] + r * n[1]]); s.line(pre + 't2', [M[0] - r * n[0], M[1] - r * n[1]], [E[0] - r * n[0], E[1] - r * n[1]]);
+    for (const t of ['t1', 't2']) { s.co(pre + t + '.start', pre + 'M'); s.co(pre + t + '.end', pre + 'E'); s.tan(pre + t, pre + 'M'); s.tan(pre + t, pre + 'E'); } };
+  ucho('uP', 1); ucho('uL', -1);
+  prost(s, ['j1', 'j2', 'j3', 'j4'], [[-9, -38], [9, -38], [9, -20], [-9, -20]], ['#jezykPolSzer', '#jezykPolSzer', '#jezykY2', '#jezykY1']);
+  await G.zapiszSzkic(s.feature());
+  await G.ext('Pokrywa: płyta', 'Pokrywa: płyta szkic', { op: 'NEW', depth: '#pokrywaT', opp: true });
+  const P = [G.q.body('Pokrywa: płyta')];
+  const o = new G.Sk('Pokrywa: okno wtyczki szkic', G.q.plane('Kaseta: pl. tyłu'));
+  o.poly(['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8'], [[-4.5, -30.4], [4.5, -30.4], [4.5, -33.8], [1.9, -33.8], [1.9, -34.8], [-1.9, -34.8], [-1.9, -33.8], [-4.5, -33.8]]);
+  o.H('w1'); o.V('w2'); o.H('w3'); o.V('w4'); o.H('w5'); o.V('w6'); o.H('w7'); o.V('w8');
+  o.dx('w1.start', '#oknoPolSzer'); o.dx('w2.start', '#oknoPolSzer'); o.dy('w1.start', '#oknoY1'); o.dy('w3.start', '#oknoY2'); o.dx('w4.start', '#zaciskPolSzer'); o.dy('w5.start', '#zaciskY'); o.dx('w6.start', '#zaciskPolSzer'); o.dy('w8.start', '#oknoY2');
+  await G.zapiszSzkic(o.feature());
+  await G.ext('Pokrywa: okno wtyczki z zaciskiem', 'Pokrywa: okno wtyczki szkic', { op: 'REMOVE', through: true, opp: true, scope: P });
+  await G.op('Pokrywa: otwory śrub', 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', G.q.vtx('Kaseta: wkładki szkic', 'pW1'), G.q.vtx('Kaseta: wkładki szkic', 'pW2')), G.pe('hole', 'endStyle', 'THROUGH'),
+    G.pn('holeDiameter', '#m3Luzny'), G.pb('oppositeDirection', false), G.pq('scope', ...P)]);
+  await G.plOffset('Pokrywa: pl. prowadnic kabla', G.q.std('Top'), '#prowKablaZ', true);
+  const k = new G.Sk('Pokrywa: prowadnice kabla szkic', G.q.plane('Pokrywa: pl. prowadnic kabla'));
+  prost(k, ['a1', 'a2', 'a3', 'a4'], [[4.7, -36], [5.9, -36], [5.9, -29.5], [4.7, -29.5]], ['#prowKablaX1', '#prowKablaX2', '#prowKablaY2', '#prowKablaY1']);
+  prost(k, ['c1', 'c2', 'c3', 'c4'], [[-5.9, -36], [-4.7, -36], [-4.7, -29.5], [-5.9, -29.5]], ['#prowKablaX2', '#prowKablaX1', '#prowKablaY2', '#prowKablaY1']);
+  await G.zapiszSzkic(k.feature());
+  await G.ext('Pokrywa: prowadnice kabla', 'Pokrywa: prowadnice kabla szkic', { op: 'ADD', depth: '#prowKablaH', scope: P });
+});
+return 'reszta ok';
+})();
