@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T15:25Z, wykonawca CAD: E2.1 zakonczone, decyzje K3/K6 zapisane; czekam na zlecenie",
+ "zapis": "2026-10-19T17:45Z, wykonawca CAD: E2.1b zakonczone - nazwy czesci, kontrola eksportu recznego, raport 40-cad/onshape/e2.1b-eksport.md",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,7 +10,7 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 247,
+  "total": 253,
   "features": 174,
   "getFeatures": 2
  },
@@ -1389,6 +1389,54 @@
   {
    "t": "2026-10-19T15:05Z",
    "uwaga": "K1/K2/K11 skan drzewa w karcie (wszystkie foldery rozwiniete, lista wirtualizowana przewijana): 154 operacje, 0 bledow/ostrzezen, 53 szkice = 53 w JSON, 0 niedookreslonych, foldery zgodne"
+  },
+  [
+   "2026-10-19T17:02Z",
+   "GET /parts (E2.1b)",
+   200,
+   null
+  ],
+  [
+   "2026-10-19T17:02Z",
+   "GET /translations/translationformats",
+   200,
+   null
+  ],
+  [
+   "2026-10-19T17:03Z",
+   "POST /metadata (nazwy 10 czesci, zbiorczo) SUCCEEDED",
+   200,
+   null
+  ],
+  [
+   "2026-10-19T17:03Z",
+   "GET /parts (kontrola nazw)",
+   200,
+   null
+  ],
+  {
+   "t": "2026-10-19T17:10Z",
+   "uwaga": "karta przeszla na odbiornik localhost (window.open w tej samej karcie), stan w pamieci utracony; n odtworzone z pliku + 4 = 251"
+  },
+  [
+   "2026-10-19T15:09:13Z",
+   "POST /partstudios/.../translations (3MF RGED) odczyt startowy",
+   200,
+   10
+  ],
+  [
+   "2026-10-19T15:09:24Z",
+   "GET /translations/{id} -> FAILED Invalid 3MF detail parameters",
+   200,
+   240
+  ],
+  {
+   "t": "2026-10-19T15:10:12Z",
+   "blokada": "remaining 10 <= prog 20 (POST /partstudios/d/{id}/w/{id}/e/{id}/translations)"
+  },
+  {
+   "t": "2026-10-19T17:45Z",
+   "uwaga": "E2.1b: kontrola plikow eksportu recznego bez wywolan API; poprawka sprawdz_siatki.js (unit 3MF)"
   }
  ],
  "stop": null,
@@ -1548,5 +1596,72 @@
    "K3: instanceCount 2 w parach 180 st. = stala dozwolona (orkiestrator 19.10)",
    "K6: nie scalac w E2.1 (orkiestrator 19.10)"
   ]
+ },
+ "e21b": {
+  "brief": "30-projekt/brief-e2.1b-nazwy-eksport.md",
+  "budzet": {
+   "total": 80,
+   "getFeatures": 2,
+   "limitBramki": {
+    "total": 327,
+    "getFeatures": 4
+   }
+  },
+  "start": {
+   "total": 247,
+   "getFeatures": 2
+  },
+  "nazwy": {
+   "JID": "Gniazdo",
+   "JsD": "Nakrętka",
+   "RNBD": "Kaseta",
+   "R5CD": "Jarzmo z miską",
+   "RbDD": "Sanki serwa",
+   "RmDD": "Ramię orczyka",
+   "R5DD": "Cięgno",
+   "RGED": "Tulejka przegubu korby",
+   "RNED": "Tulejka przegubu ramienia",
+   "RQED": "Pokrywa tylna"
+  },
+  "listaCzesciPo": "10 brył o nazwach folderów, każda raz; dodatkowo JRD \"Curve 1\" (bodyType wire, helisa gwintu) - bez masy, nie eksportowana",
+  "formaty": "translationformats: 3MF validDestinationFormat=true",
+  "transfer": "fetch z karty Onshape do localhost blokowany (CSP); window.open otworzyl odbiornik w tej samej karcie -> utrata stanu w pamieci, bramka wstrzyknieta ponownie z n=251",
+  "eksport": {
+   "proba1": {
+    "t": "2026-10-19T15:08Z",
+    "czesc": "RGED Tulejka przegubu korby",
+    "body": {
+     "formatName": "3MF",
+     "resolution": "custom",
+     "angularTolerance": "3 * pi/180 (radiany - blad)",
+     "distanceTolerance": 1e-05
+    },
+    "wynik": "FAILED: Invalid 3MF detail parameters",
+    "remainingPOSTtranslations": 10
+   },
+   "parametryZDialoguUI": "3MF Custom: distanceTolerance (m), angularTolerance (deg), maximumChordLength (m); domyslnie 0.00012 / 6.25 / 10",
+   "proba2": "zablokowana przez bramke przed wyslaniem (remaining 10 <= 20) - stop pracy wg zasady 3",
+   "transfer": "z karty Onshape nie da sie wyslac pliku do localhost (CSP connect-src i frame-src); zostaje pobranie przez przegladarke (zgoda uzytkownika) albo przenoszenie base64 przez wyjscie narzedzia"
+  },
+  "decyzja": "orkiestrator: progu bramki nie obnizamy; eksport reczny przez uzytkownika (3MF Custom 0.00001 m / 3 deg / 10 m)",
+  "kontrola": {
+   "pliki": "/home/rkp/Projects/010-Eye-pumpkin/Dynia-eyes/40-cad/3mf/Oko F v2.5/ (glowny katalog, tylko odczyt)",
+   "sprawdzSiatki": "10/10 OK po poprawce jednostek; Nakretka 2 zdegenerowane przy scalaniu 0.0001 mm (sliver < 0.1 um), OK przy 0.00001 mm",
+   "objetosciProc": {
+    "Gniazdo": 0.016,
+    "Nakretka": -0.094,
+    "Kaseta": -0.047,
+    "Jarzmo": 0.01,
+    "Sanki": 0.001,
+    "Ramie": -0.017,
+    "Ciegno": -0.025,
+    "TulejkaC": -0.048,
+    "TulejkaH": -0.048,
+    "Pokrywa": -0.031
+   },
+   "teselacja": "walce 120 segmentow (3 st.), strzalka 0.008-0.0095 mm",
+   "jednostka3MF": "meter"
+  },
+  "wywolania": 6
  }
 }
