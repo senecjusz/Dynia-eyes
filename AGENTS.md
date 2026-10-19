@@ -1,166 +1,190 @@
 # AGENTS.md
 
-Instrukcje dla agentów AI pracujących w tym repozytorium (Claude, Codex i inne).
+Instrukcje dla agentów AI pracujących w tym repozytorium (Claude, Codex i inne). Plik zawiera tylko instrukcje. Uzasadnienia, pomiary i historia są w `30-projekt/decyzje.md` i `20-analizy/`.
 
-## Komunikacja
+Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commitów.
 
-- **Zawsze po polsku**: odpowiedzi, dokumenty, opisy commitów, komentarze w plikach `.md`.
-- Krótko i konkretnie. Bez zbędnego kontekstu i powtarzania tego, co jest w repo.
+## Kogo co dotyczy
+
+- **Orkiestrator** (agent, który rozmawia z użytkownikiem): cały plik, w szczególności „Rozmowa z użytkownikiem”.
+- **Wykonawca i recenzent:** brief od orkiestratora jest poleceniem. Działają bez parafrazy i bez czekania na potwierdzenie użytkownika. Raport zapisują do pliku wskazanego w briefie. Nie obowiązuje ich „Rozmowa z użytkownikiem”.
+- **Praca wykonawca–orkiestrator idzie bez użytkownika:** orkiestrator zatwierdza plany drzewa, sprawdza dowody i zwraca części do poprawki. Użytkownika angażuje na starcie zadania (brief), przy decyzjach projektowych i na granicy wersji (review).
+
+## Najpierw przeczytaj
+
+1. `30-projekt/teraz.md`: epiki, bieżące zadanie, parking. Jedyna agenda projektu.
+2. `30-projekt/decyzje.md`: co ustalono. Nie zmieniaj bez zgody użytkownika.
+3. `30-projekt/stan-projektu.md`: stan projektu.
+4. `README.md` i README w folderach: układ repo i co gdzie trafia. Trzymaj się ich.
+
+## Rozmowa z użytkownikiem (orkiestrator)
+
+- **Najpierw parafraza.** Na każde polecenie najpierw powiedz własnymi słowami, jak je rozumiesz: co zrobisz, czego nie zrobisz i co będzie wynikiem. Działaj dopiero po potwierdzeniu.
+- **Bieżące zadanie z `teraz.md`.** Na starcie sesji powtórz je jednym zdaniem; w każdej odpowiedzi podaj, na którym zadaniu jesteśmy. Cel i kolejność zmienia tylko użytkownik. Zmianę zapisz w `teraz.md` i zaproponuj nową sesję.
+- **Tematy poboczne na parking.** Własny pomysł, ryzyko albo wątek z repo zgłoś jedną linijką jako propozycję wpisu do „Parkingu” w `teraz.md`. Nie rozwijaj go. Bez alarmów terminowych i szacunków, o które nikt nie prosił.
+- **Format odpowiedzi:** zadanie → co zrobione → wynik → najwyżej jedno pytanie albo następny ruch. Do 10 linii; dłużej tylko, gdy użytkownik prosi o raport albo zestawienie. Nigdy lista „mam też zrobić…?”.
+- **Po korekcie użytkownika** następna odpowiedź ma do 5 linii i robi wyłącznie to, o co prosił. Do końca zadania bez nowych propozycji.
+- **„Informacyjnie” = jedna linijka potwierdzenia**, bez analizy.
+- **Zamknięte decyzje są zamknięte.** Co jest w `decyzje.md` albo co użytkownik powiedział w sesji, przyjmuj jako fakt. Przy sprzeczności albo nowym dowodzie zadaj jedno pytanie: „To przeczy X – zmieniasz decyzję?”.
+- **Fakt przed rekomendacją.** Cenę, limit, wydajność sprawdź przed poleceniem albo nazwij założeniem. Oddzielaj pomiar, interpretację i założenie.
+- **Zapis do repo:** zmianę pokaż (treść albo diff) przed commitem; commit i push dopiero po „ok”. Na początku sesji `git pull`.
+- **Brief do wykonawcy i recenzenta:** pytania i zakres obejmują bieżące zadanie. Materiał obejmuje cały kontekst potrzebny do oceny, także pełną rozmowę, gdy oceniane są intencje użytkownika. Brief pokaż użytkownikowi przed wysłaniem. Surowe raporty zapisuj do pliku; w rozmowie podaj ścieżkę i to, co dotyczy zadania.
+- **`00-inbox/`:** na starcie sesji jedna linijka, czy coś w nim jest. Rozkładanie plików to osobne zadanie w `teraz.md`.
+- **Procesy:** każde polecenie z limitem czasu obejmującym procesy potomne. Na koniec zadania wypisz, co działa w tle. Testy na narzędziach użytkownika (codex, gh) tylko za jego zgodą i nigdy w tle.
+
+## Role
+
+- **Orkiestrator (jeden):** rozmawia z użytkownikiem, pisze briefy, zatwierdza plany drzewa, przyjmuje części po własnym sprawdzeniu dowodów, zleca review i łączy wyniki. Prowadzi `teraz.md`, `decyzje.md` i `70-budowa/dziennik.md`. Sam nie projektuje w CAD.
+- **Wykonawca:** jeden na zadanie. Pracuje według briefu. Przed budową każdej części wysyła orkiestratorowi plan drzewa. Po zakończeniu zapisuje raport i się zatrzymuje. Nie uruchamia review i nie zaczyna kolejnej wersji bez zlecenia. Commituje tylko pliki wskazane w briefie (`git add` po nazwach, nigdy `git commit -a`).
+- **Recenzenci:** dwóch niezależnych, z różnych rodzin modeli: **Opus** (Anthropic) i **Codex / „Astra”** (OpenAI). Każdy osobno, na tym samym briefie. Tylko do odczytu: bez `git pull`, commitów, pushy i porządków w repo.
 
 ## Projekt
 
 - Projekt hobbystyczny: dynia na Halloween z ruchomymi oczami, robiona z synem użytkownika.
-- Dwa komputery: Windows (Kobyłka, weekendy) i Linux Omarchy (Warszawa). Wszystko, co ma działać na obu, musi być przenośne (skrypty bash/Python zamiast PowerShella, ścieżki względne).
-- Dostęp do GitHuba wyłącznie przez deploy key tego repo (`core.sshCommand` w lokalnym configu). Nie używać innych poświadczeń.
-
-## Preferencje użytkownika
-
-Pamięć agenta jest lokalna na każdym komputerze, więc najważniejsze preferencje są zapisane tutaj:
-- Doświadczony konstruktor i drukarz 3D. Nie tłumacz podstaw, podawaj liczby.
-- **Krótko, bez zbędnych informacji.** Brief dla agenta zawiera tylko to, co dotyczy zadania.
-- **Najpierw rozmowa, potem zapis:** decyzje zapisuj do repo dopiero po zgodzie, a agentów i review uruchamiaj dopiero na gotową pracę.
-- Model w CAD ma być czytelny i poprawialny: osobne części, nazwane operacje, parametry.
-- Dostęp do GitHuba tylko przez deploy key tego repo (osobny klucz na każdy komputer).
-- Często pracuje zdalnie, z telefonu (Remote Control). Wtedy wysyłaj zrzuty i pisz krótkie raporty.
-
-## Najpierw przeczytaj
-
-- `30-projekt/stan-projektu.md`: aktualny stan, aktywne sesje, następne kroki.
-
-- `README.md` i README w folderach: układ repo i co gdzie trafia.
-- `30-projekt/decyzje.md`: co już ustalono. Nie zmieniaj tego bez zgody użytkownika.
-
-## Zasady pracy
-
-- **Najpierw rozmowa, potem zapis:** przy decyzjach projektowych proponuj w rozmowie, a do repo zapisuj dopiero to, na co użytkownik się zgodził.
-- **Commituj tylko własne pliki** (`git add` po nazwach, nigdy `git commit -a`). W repo pracuje równolegle kilka sesji.
-- Na początku `git pull`, na końcu commit + `git push`.
-- Recenzent (review) pracuje tylko do odczytu i niczego nie zmienia w repo.
-- W razie niepewności: pytaj, zamiast zgadywać.
-
-## Podział ról
-
-- **Orkiestrator (jeden):** rozmawia z użytkownikiem, zleca pracę wykonawcom, uruchamia review, łączy wyniki i przekazuje wykonawcy uwagi zatwierdzone przez użytkownika. Pilnuje dokumentacji: decyzje, dziennik, plan. Sam nie projektuje w CAD.
-- **Wykonawcy:** jeden na zadanie (np. moduł oka w Onshape). Pracują według briefu, przed budową pokazują plan, po zakończeniu się zatrzymują i zgłaszają gotowość do review. Nie uruchamiają review sami i nie zaczynają kolejnej wersji bez zlecenia.
-- **Recenzenci:** dwóch niezależnych, z **różnych rodzin modeli**: **Opus** (Anthropic) i **Codex / „Astra”** (OpenAI). Pracują tylko do odczytu, każdy osobno, na tym samym briefie review.
-
-## Gdzie jest prawda o modelu
-
-- **SolidCraft** (`40-cad/solidcraft/*.solidcraft`, od v2.3) to źródło prawdy o geometrii. Onshape (dokument SimpleEye, wersje do v2.2) jest w zapasie.
-- W repo są tylko eksporty (`40-cad/stl`, `40-cad/3mf`, `40-cad/step`), skrypty budujące i opisy (`40-cad/README.md`, `30-projekt/plan-*.md`).
+- Użytkownik to doświadczony konstruktor i drukarz 3D: nie tłumacz podstaw, podawaj liczby. Często pracuje z telefonu: wtedy wysyłaj zrzuty i pisz krótkie raporty.
+- Dwa komputery: Windows (Kobyłka, weekendy) i Linux Omarchy (Warszawa). Skrypty mają być przenośne (bash/Python, ścieżki względne).
+- GitHub wyłącznie przez deploy key tego repo (`core.sshCommand` w lokalnym configu, osobny klucz na każdy komputer). Nie używać innych poświadczeń.
+- **Źródło prawdy o geometrii:** Onshape, dokument SimpleEye. `40-cad/solidcraft/` to archiwum v2.3/v2.4, tylko do odczytu. W repo są eksporty (`40-cad/3mf`, `40-cad/stl`, `40-cad/step`), skrypty (`40-cad/onshape/`) i opisy (`40-cad/README.md`).
+- Każda decyzja projektowa: wiersz w `30-projekt/decyzje.md`. Postęp prac z synem: wpis w `70-budowa/dziennik.md`.
 
 ## Proces wersji
 
-1. Projekt (wykonawca), potem zgłoszenie „gotowe do review”.
-2. Review dwoma recenzentami (zleca orkiestrator).
-3. Orkiestrator łączy wyniki, a użytkownik decyduje, co poprawić teraz, a co w następnej wersji.
-4. Poprawki (wykonawca).
-5. Wydruk testowy (użytkownik).
-6. Uwagi z wydruku → **zawsze wpis w `70-budowa/dziennik.md`** i wnioski do następnej wersji.
-
-Każdy etap kończy się zapisem w repo (dziennik, decyzje albo plan).
+1. Budowa (wykonawca) z kontrolą szkiców i rundą weryfikacji modelu; przyjęcie przez orkiestratora.
+2. Eksport 3MF (użytkownik) i kontrola po eksporcie (wykonawca).
+3. Review dwoma recenzentami (zleca orkiestrator).
+4. Orkiestrator łączy wyniki, użytkownik decyduje, co poprawić teraz, a co w następnej wersji.
+5. Poprawki (wykonawca), znowu z kontrolą i rundą weryfikacji.
+6. Wydruk testowy (użytkownik).
+7. Uwagi z wydruku: wpis w `70-budowa/dziennik.md` i wnioski do następnej wersji.
 
 ## Zasady dla recenzenta
 
-- **Review zawsze pełne**, całej wersji, a nie tylko zmian. Review jest tanie w porównaniu z błędnym wydrukiem.
+- **Review zawsze pełne**, całej wersji, a nie tylko zmian.
 - Wagi uwag: **KRYTYCZNE** (nie zadziała albo test nic nie wykaże), **WAŻNE**, **DROBNE**.
 - **Liczby zamiast opinii:** wymiary, luzy, kąty, policzone albo zmierzone na siatkach.
-- Dla każdej uwagi podaj: miejsce, scenariusz porażki, poprawkę albo test i pewność.
-- Na końcu **werdykt jednym zdaniem:** czy wersja nadaje się do wydruku testowego.
+- Dla każdej uwagi: miejsce, scenariusz porażki, poprawka albo test, pewność.
+- Na końcu **werdykt jednym zdaniem**: czy wersja nadaje się do wydruku testowego.
 - Lista kontrolna: `30-projekt/review-cad.md`.
 
-## Projektowanie: luzy montażowe (obowiązkowe)
+## Zasady projektowe
 
-Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają albo są skręcane, **musi mieć luz policzony i zapisany już przy projektowaniu**, a nie odkryty dopiero w review albo na wydruku.
+- **Preferujemy części drukowane w 3D** zamiast rzemiosła (drut, kołki, gwoździe, klej). Rozwiązania „craftowe” tylko w ostateczności.
+- **Łączenia i osie: zwykłe śruby M3 / M4 / M5 z nakrętkami** (komplet 8–50 mm, dowolna potrzebna długość; przy częstym montażu wkładka gwintowana albo nakrętka w kieszeni zamiast gwintu w plastiku), a nie drukowane czopy ani klej. Otwór ciasny w części nieruchomej, luźny w ruchomej. Szczegóły: `20-analizy/2026-10-17-mocowanie-pileczki-sruby.md`.
+- **Projektuj pod druk 3D od początku (DFAM):** każda część ma co najmniej jedną płaską stronę na stół i nic nie wystaje poza tę płaszczyznę. Bez wiszących płyt, nawisy ≤ 45° albo fazki. Podpory tylko w ostateczności i zawsze opisane w README.
+- Zanim zaczniesz projektować mechanizm, sprawdź, czy są analizy połączeń i mocowań. Jeśli ich brakuje, najpierw ustal je z użytkownikiem.
+- Przed proponowaniem zakupów zapytaj, czy coś już jest: użytkownik ma dobrze wyposażony warsztat Arduino/ESP32.
+- Drukarki: Bambu Lab A1 mini (180 mm, Kobyłka, weekendy) i X1 Carbon (256 mm, Warszawa, cały tydzień). Części większe niż 180 mm projektuj pod X1C.
+- Kontroler: **ESP32** z kalibracją serw przez stronę w telefonie; Nano jako zapas.
 
-- **Wykonawca** dla każdej pary podaje w planie: rodzaj pasowania, luz nominalny i luz na siatce po eksporcie. Luz trzyma jako **zmienną** w Variable Studio. Przy ruchu i wsuwaniu sprawdza go symulacją na całej drodze, łącznie z łbami śrub, kablem i realnym SG90.
-- **Recenzent** sprawdza tabelę luzów i zgłasza każdą parę bez luzu albo z luzem poniżej wartości z tabeli.
-- Wartości startowe dla **PLA na Bambu A1 mini / X1C** (na stronę, czyli promieniowo). Korygować po próbkach i zapisywać korekty w tej tabeli:
+## Luzy montażowe (obowiązkowe)
+
+Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają albo są skręcane, ma luz policzony i zapisany już przy projektowaniu.
+
+- **Wykonawca** dla każdej pary podaje w planie: rodzaj pasowania, luz nominalny i luz na siatce po eksporcie. Luz trzyma jako **zmienną** w Variable Studio. Przy ruchu i wsuwaniu sprawdza go symulacją na całej drodze, łącznie z łbami śrub, kablem i realnym SG90, także względem sąsiednich części.
+- **Recenzent** zgłasza każdą parę bez luzu albo z luzem poniżej wartości z tabeli.
+- Wartości startowe dla **Bambu A1 mini / X1C**, niezależnie od materiału (PLA, PETG), na stronę, czyli promieniowo. Korekty po próbkach zapisuj w tej tabeli.
 
 | Pasowanie | Luz | Źródło |
 |---|---|---|
-| Ślizgowe: wsuwanie (kaseta w gniazdo, sanki, prowadnice) | **0,25–0,3 mm** + fazki wejściowe | review v2.2 (0,06 mm = zacięcie) |
+| Ślizgowe: wsuwanie (kaseta w gniazdo, sanki, prowadnice) | **0,25–0,3 mm** + fazki wejściowe | review v2.2 |
 | Obrotowe na śrubie lub tulejce (przeguby, oś) | 0,2 mm, luz osiowy 0,2–0,3 mm | v2.x |
 | Ruchome części obok siebie (cięgno, ramię, jarzmo) | ≥ 0,5 mm w całym zakresie ruchu, ≥ 0,2 mm po uwzględnieniu luzów przegubów | review v1.1, v2.2 |
-| Gwint drukowany ISO 60° (M63×3, zazębienie ~1,2–1,3 mm) | **0,45 mm** (domyślnie; 0,3 i 0,6 jako próbki) | review v2.4: 0,3 przy 60° ≈ ciasny jak v1.1; 45°/0,3 (v2.2) było OK; 0,5 przy 45° za luźno |
+| Gwint drukowany (gniazdo, nakrętka) | profil i luz według pierścieni testowych (`teraz.md`, E2.0) | do próby |
 | Wcisk (np. tulejka w otwór) | 0 do −0,05 mm | do próby |
 | Szczelina na klej wypełniający | 0,5 mm | v2.1b |
 | Otwory M3 | ciasny Ø2,6, luźny Ø3,3; wkładka: głębokość = długość wkładki + ≥ 0,6 mm dna | v2.x, review v2.1d |
 
 - **Najpierw próbka:** nowe pasowanie (gwint, zatrzask, prowadnica) najpierw drukujemy jako krótką próbkę (~20–30 min), a dopiero potem całą część.
-- **Eksport do pomiaru luzów:** 3MF z dokładną siatką (Custom, kąt 3°, odchyłka 0,01 mm). Zgrubna siatka zjada luzy.
 
-## Organizacja
+## Modelowanie w Onshape (wykonawca CAD)
 
-- Układ folderów i ich przeznaczenie: `README.md` oraz `README.md` w każdym folderze – trzymać się ich.
-- **`00-inbox/`**: na początku sesji sprawdzić, czy coś jest. Jeśli tak – przejrzeć i rozłożyć (inspiracje → `10-inspiracje/` z notatką `.md`, analizy → `20-analizy/` itd.), potem poinformować użytkownika, co gdzie trafiło.
-- Każda istotna decyzja → wiersz w `30-projekt/decyzje.md`.
-- Postęp prac z synem → wpis w `70-budowa/dziennik.md`.
-- **Modele 3D powstają w SolidCraft** (od 18.10, `C:\Program Files\SolidCraft`, praca agenta przez `solidcraft-cli`; skrypty i plik `.solidcraft` w `40-cad/solidcraft/`). Onshape (dokument SimpleEye) jest w zapasie. Eksporty w `40-cad/3mf/`, opis w `40-cad/README.md`.
+**Struktura.**
 
-## Zasady projektowe
+- **Każda część to osobny Part** z czytelną nazwą (Gniazdo, Nakrętka, Kaseta, Jarzmo, Cięgno, Klucz…). Części łączymy w **Assembly** z mate'ami, żeby sprawdzić ruch i kolizje.
+- **Natywne operacje Onshape** (szkice, Extrude, Revolve, Hole, Mirror, Pattern, Chamfer, Fillet) z nazwami „Część: co robi”, np. `Kaseta: otwór osi góra`. Foldery według części zakłada się w interfejsie (REST API ich nie tworzy): wykonawca zgłasza to jako krok ręczny.
+- **Parametry w Variable Studio** (luzy, średnice otworów pod śruby i wkładki, średnica piłeczki, rozstawy).
+- **FeatureScript** tylko tam, gdzie natywne operacje nie wystarczają (np. gwint drukowany), jako mała, pojedyncza operacja w drzewie. Nigdy jedna operacja generująca całą część.
 
-- **Preferujemy części drukowane w 3D** zamiast rzemiosła (drut, kołki, gwoździe, klej). Rozwiązania „craftowe” z researchu traktujemy jako ostateczność.
-- **Łączenia i osie: zwykłe śruby M3 / M4 / M5 z nakrętkami** (komplet 8–50 mm, można zakładać dowolną potrzebną; przy częstym montażu wkładka gwintowana do wtapiania albo nakrętka w kieszeni zamiast gwintu w plastiku), a nie drukowane czopy ani klej. Otwory: ciasny w części nieruchomej, luźny w ruchomej. Szczegóły w `20-analizy/2026-10-17-mocowanie-pileczki-sruby.md`.
-- **Projektuj pod druk 3D od początku (DFAM):** każda część ma co najmniej jedną płaską stronę na stół, a żaden element (oczko, kołek, korba) nie wystaje poza tę płaszczyznę. Przykład: jarzmo ma tę samą szerokość co oczka i leży płasko jedną stroną. Bez wiszących płyt, nawisy ≤ 45° albo fazki. Podpory tylko w ostateczności i zawsze opisane w README.
-- Zanim zaczniesz projektować mechanizm w CAD, sprawdź, czy są analizy połączeń i mocowań. Jeśli ich brakuje, najpierw je ustal z użytkownikiem.
-- Użytkownik ma dobrze wyposażony warsztat Arduino/ESP32 z wieloma modułami – przed proponowaniem zakupów pytać, czy coś już jest.
-- Drukarki: Bambu Lab A1 mini (180 mm, w Kobyłce – weekendy) i X1 Carbon (256 mm, w Warszawie – dostępna cały tydzień). Części większe niż 180 mm projektować pod X1C.
-- Kontroler: **ESP32** (od 18.10), z kalibracją serw przez stronę w telefonie; Nano jako zapas.
+**Kolejność budowy części.** Plan drzewa z punktami 1–4 zatwierdza orkiestrator przed pierwszym zapisem.
 
-## Struktura projektu w Onshape (wymaganie użytkownika)
+1. **Zmienne najpierw.** Lista parametrów wejściowych i zależności między nimi, w Variable Studio, zanim powstanie operacja, która ich używa. W planie lista dozwolonych stałych (np. `0`, `90 deg`, `180 deg`, `360 deg`); każda inna liczba w drzewie musi być zmienną.
+2. **Szkic layoutu na górze drzewa:** osie, okręgi bazowe, płaszczyzny podziału, zwymiarowane wyrażeniami `#zmienna`.
+3. **Szkice części zwymiarowane do layoutu** i płaszczyzn, nie do ścian powstałych w późniejszych operacjach. Położenie i rozmiar każdej encji wynikają z wymiarów `#zmienna` i więzów z layoutem. Skrypt może podać współrzędne startowe, ale nie może na nich polegać. **Więz `Fix` jest zakazany.** Szkic ma być w pełni zdefiniowany.
+4. **Operacje bryłowe**, a na końcu drzewa fazki i zaokrąglenia.
 
-- **Każda część to osobny Part** z czytelną nazwą (Gniazdo, Nakrętka, Tuleja modułu, Jarzmo, Cięgno, Klucz…). Części łączymy w **Assembly** z mate'ami, żeby sprawdzić ruch i kolizje.
-- **Drzewo operacji ma być czytelne:** natywne operacje Onshape (szkice, Extrude, Revolve, Hole…) z nazwami mówiącymi, co robią, pogrupowane w **foldery według części**. Nie jedna wielka operacja FeatureScript, która generuje wszystko, bo takiego modelu nie da się przeanalizować ani poprawić ręcznie.
-- **Parametry w Variable Studio** (luzy, średnice otworów pod śruby i wkładki, średnica piłeczki), do których odwołują się szkice i operacje.
-- FeatureScript tylko tam, gdzie natywne narzędzia nie wystarczają (np. gwint drukowany), jako mała, pojedyncza operacja.
+**Dyscyplina operacji.**
 
-**Dyscyplina modelowania (wnioski z v2.4 w SolidCrafcie).** Tamten model miał 200 operacji, bo powstał jako łańcuch atomowych par szkic+wyciągnięcie: 94 szkice na 94 wyciągnięcia, **zero** odbić lustrowych przy 23 parach góra/dół, jeden szyk, dwie fazki. Takiego drzewa nie da się czytać ani poprawiać. Obowiązuje więc:
-
-- **Symetria przez `Mirror`**, nigdy przez ręczne powtórzenie operacji. Każda para góra/dół, lewo/prawo to jedno odbicie.
-- **Powtórzenia przez szyk** (`Circular`/`Linear Pattern`): ząbki pierścienia, zaczepy, haczyki, wycięcia na klucz, radełko. Jeśli szyk nie przechodzi, zgłosić to orkiestratorowi, a nie kopiować ręcznie.
+- **Symetria przez `Mirror`**, nigdy przez ręczne powtórzenie operacji. Każda para góra/dół, lewo/prawo to jedno odbicie. Pary obrócone o 180° to szyk kołowy ×2, nie odbicie.
+- **Powtórzenia tego samego profilu przez szyk** (`Circular`/`Linear Pattern`): ząbki, zaczepy, haczyki, wycięcia na klucz, radełko. Jeśli szyk nie przechodzi, zgłoś to orkiestratorowi, a nie kopiuj ręcznie.
 - **Fazki i zaokrąglenia jako `Chamfer` / `Fillet` na krawędziach**, nie jako dodatkowe cięcia.
-- **Jeden szkic, wiele profili** – otwory i szczeliny na tej samej płaszczyźnie w jednym szkicu i jednej operacji, nie po jednej na każdy otwór.
-- **`Hole` do otworów** pod śruby i wkładki, nie okrąg plus wyciągnięcie.
-- **Budżet: ≤ 15 operacji na część.** Przekroczenie oznacza, że część jest modelowana atomowo – zatrzymać się i zgłosić.
+- **Ograniczaj liczbę szkiców.** Z jednego szkicu można wyciągać różne obszary w kilku operacjach. Przed założeniem nowego szkicu sprawdź, czy profil da się dodać do istniejącego szkicu na tej płaszczyźnie albo do szkicu layoutu. Nowy szkic tylko na nowej płaszczyźnie albo dla profilu, którego nie da się dodać do istniejącego. W planie drzewa każdy szkic ma podane, do czego służy i które operacje z niego korzystają.
+- **`Hole` do otworów** pod śruby i wkładki, nie okrąg plus wyciągnięcie; `Hole` ma pierwszeństwo przed grupowaniem profili.
+- **Budżet: ≤ 15 operacji bryłowych na część** (szkiców nie liczymy, pilnuje ich K6). Przekroczenie wymaga uzasadnienia w planie drzewa i zgody orkiestratora.
 
-## Praca w SolidCraft (główne CAD od 18.10)
+**Dowód zamiast deklaracji.** Zdanie wykonawcy „sprawdziłem” nie jest dowodem. Dowodem jest wynik odczytu zapisany przez kod i powtórzony przez orkiestratora. Bez dowodu część nie jest przyjęta.
 
-- Wersja 0.15.0 jest na Windows (Kobyłka, `C:\Program Files\SolidCraft`) i jako Linux AppImage (Warszawa). Model źródłowy to `40-cad/solidcraft/*.solidcraft`.
-- Agent pracuje na żywo w aplikacji: `solidcraft.exe --control 7878` i `solidcraft-cli mcp --connect 127.0.0.1:7878`. Bez GUI zostaje `solidcraft-cli run/eval/snapshot/exec`.
-- **Znane problemy:**
-  - **Własna helisa (gwint) zawiesza program**, więc używamy natywnego Thread (ISO).
-  - **Eksport 3MF potrafi dać nieszczelne siatki**: otwarte krawędzie, krawędzie z więcej niż 2 trójkątami.
-  - **Cięcia stykające się dokładnie na ścianie zostawiają błony.** Cięcie zaczynać z zakładką 0,1 mm.
-- **Po każdym eksporcie obowiązkowo:** automatyczne sprawdzenie siatek (szczelność, orientacja trójkątów, **liczba brył w modelu = w 3MF** – v2.4 zgubił bryłę) i symulacja wsuwania wszystkich wkładanych części (tulejki, śruby, trzpienie) **także względem sąsiednich części**, nie tylko obudowy.
-- Parametry muszą być podpięte do operacji, a nie wpisane liczbą obok.
+**Kontrola szkicu na bieżąco.** Po każdym utworzeniu lub edycji szkicu jego stan odczytuje się w drzewie operacji, w otwartej karcie Onshape, bez wywołań API.
+
+0. **Test znacznika przed budową.** Na jednym szkicu zapisanym przez API wykonawca sprawdza, że znacznik pojawia się przy szkicu niedookreślonym i znika po dodaniu wymiaru, i mierzy czas odświeżenia drzewa po zapisie. Wynik i czas zapisuje w pliku stanu. Bez tego testu nie wolno opierać się na znaczniku.
+1. **Sprawdzenie w skrypcie.** Funkcja, która tworzy albo edytuje szkic, zaraz po zapisie odpytuje drzewo, aż pojawi się wiersz tego szkicu w aktualnym stanie (limit czasu z testu w punkcie 0; to nie jest pauza z zasady 7 API). Wiersz dopasowuje po identyfikatorze (`data-id`), nie po nazwie. Szkic niedookreślony, brak wiersza albo przekroczony limit czasu = wyjątek i stop budowy. Nie ma ścieżki do kolejnej operacji, która omija ten krok.
+2. **Ślad w pliku.** Każde sprawdzenie, także z wynikiem pozytywnym, zapisuje się w `40-cad/onshape/stan-api.json`: nazwa szkicu, `featureId`, `data-id`, dosłowna podpowiedź z drzewa, czas i `sourceMicroversion`. Szkic bez wpisu albo z wpisem „not fully defined” = część nieprzyjęta.
+3. **Niezależne sprawdzenie orkiestratora.** Przed przyjęciem części orkiestrator sam odczytuje znaczniki na całym drzewie (K2) i sam liczy z JSON drzewa K3 i K4. Porównuje wynik z plikiem stanu. Rozbieżność = zwrot do wykonawcy.
+
+**Jak odczytać znacznik.** Wiersz szkicu w drzewie to `.os-list-item-label`. Szkic niedookreślony ma w nim ikonę `svg-icon-list-underdefined-overlay` (niebieskie kółko z minusem) i podpowiedź kończącą się na „is not fully defined”. Odczyt w konsoli strony, wszystkie szkice z wynikiem:
+
+```js
+[...document.querySelectorAll('.os-list-item-label')]
+  .filter(r => r.querySelector('use[*|href*="sketch-button"]'))
+  .map(r => ({ id: r.dataset.id, tytul: r.getAttribute('data-bs-original-title'),
+               niedookreslony: !!r.querySelector('use[*|href*="underdefined"]') }))
+```
+
+**Runda weryfikacji modelu** przed zgłoszeniem „gotowe do review”. Wynik to plik `40-cad/onshape/weryfikacja-<wersja>.md` z wynikiem każdego punktu i surowymi danymi, z których go policzono. Orkiestrator powtarza K1–K8 na własnym odczycie i porównuje z raportem. Dane: odczyt drzewa i zmiennych Variable Studio przez API (w budżecie) oraz odczyt drzewa w karcie.
+
+| # | Kryterium | Jak sprawdzić |
+|---|---|---|
+| K1 | Każdy `featureStatus` = `OK` | `featureStates` z `GET /features` |
+| K2 | Żaden szkic nie jest niedookreślony; liczba wierszy szkiców w drzewie = liczba szkiców w JSON | znacznik w drzewie, całe drzewo (przewinąć, rozwinąć foldery) |
+| K3 | Po usunięciu nazw `#zmiennych` z każdego wyrażenia w operacjach i wymiarach szkiców zostają tylko stałe z listy dozwolonych (`#a + 4.7 mm` nie przechodzi) | JSON drzewa i Variable Studio; każdy wyjątek zatwierdzony w planie |
+| K4 | Zero więzów `Fix`; każda encja szkicu związana wymiarem `#zmienna` albo więzem z layoutem | `constraints` w JSON szkiców |
+| K5 | Każda para i powtórzenie z planu to `Mirror` albo szyk; część z parami i bez nich jest odrzucona | JSON drzewa wobec planu |
+| K6 | Operacje bryłowe na część wobec budżetu; wypisane szkice użyte przez jedną operację, każdy z uzasadnieniem w planie, inaczej zwrot | JSON drzewa wobec planu |
+| K7 | Zmienne i layout stoją przed operacjami, które ich używają | kolejność w JSON drzewa |
+| K8 | Szkice leżą na płaszczyznach, szkicach albo wczesnych operacjach, nie na ścianach z późnych operacji | `sketchPlane` w JSON; każdy wyjątek zatwierdzony w planie |
+| K9 | Test zginania: plan podaje dla 3–5 kluczowych zmiennych wartości min i max i oczekiwany efekt (który wymiar, o ile). Wykonawca zmienia każdą zmienną, sprawdza `featureStates` = `OK`, mierzy wymiary brył i porównuje z oczekiwanym, potem przywraca wartości | Variable Studio, `featureStates`, `boundingboxes` przez API, w budżecie; bez endpointu FeatureScript |
+| K10 | Nazwy operacji i zmiennych mówią, co robią | użytkownik |
 
 ## Praca z API Onshape (plan Free)
 
-Wszystkie liczby niżej są **zmierzone 18.10 na dokumencie SimpleEye**, nie wzięte z dokumentacji.
-
 **Dostęp.** Tylko sesja przeglądarki (cookie + `X-XSRF-TOKEN`), zwykły `fetch` z kontekstu strony `cad.onshape.com`. Bez kluczy API i bez OAuth.
 
-**Limity.** Dwa niezależne:
+**Limity.**
 
-| | Limit | Jak go widać |
-|---|---|---|
-| Okno czasowe, per endpoint | `/features` ≈ **100**, pozostałe endpointy ≈ **3 000** | nagłówek `X-Rate-Limit-Remaining` w **każdej** odpowiedzi |
-| Rok, per użytkownik | **2 500** (plan Free) | niewidoczny; wyczerpanie objawia się dopiero kodem **402** |
+- Każda odpowiedź niesie nagłówek `X-Rate-Limit-Remaining`: stan licznika danego endpointu po tym wywołaniu. `/features` ma najniższy licznik.
+- 429 oznacza blokadę endpointu na wiele godzin (`Retry-After` 7–20 h). 402 oznacza wyczerpanie puli rocznej planu Free.
+- Nie wiadomo, czy `/features/featureid/{fid}` i `/features` w Assembly dzielą licznik z `/features` Part Studio: wykonawca odczytuje licznik przy pierwszym wywołaniu każdego z nich i zapisuje wynik w pliku stanu.
 
-- **`/features` jest jedynym wąskim endpointem** – trzydzieści razy ciaśniejszy od pozostałych. Cały budżet planować wokół niego. To on wywołał blokadę 429 z `Retry-After` ~7 h.
-- **Czytać `X-Rate-Limit-Remaining` przy każdej odpowiedzi** i zwalniać przed zerem. Przy `0` następne wywołanie dostanie 429. Nie stosować pauz „na wyczucie" – serwer podaje stan licznika darmo.
-- Przy **429**: czekać dokładnie tyle sekund, ile mówi `Retry-After` (to czas do zerowania okna, nie kara – eskalacji nie ma). Przy **402**: stop i informacja dla użytkownika, pula roczna wyczerpana.
+**Twarde zasady dla wykonawcy.**
+
+1. **Jedna bramka na wszystkie żądania.** Każde wywołanie przechodzi przez jedną funkcję `req()`. Pierwsze wywołanie każdego endpointu w sesji to odczyt startowy, który ustala licznik. Dalej bramka przed wysłaniem sprawdza ostatni odczyt licznika dla tego endpointu; przy `remaining ≤ 20` albo braku nagłówka w poprzedniej odpowiedzi rzuca wyjątek i nie wysyła. Test przed budową: próg ustawiony na bieżący `remaining` musi rzucić wyjątek.
+2. **Jedno żądanie naraz**, bez równoległości.
+3. **429, 402 albo wyjątek bramki = stop całej pracy** i raport do orkiestratora. Bez ponawiania i bez czekania w skrypcie.
+4. **Zakaz endpointu `/featurescript`.** FeatureScript wolno tylko jako operację w drzewie, gdy natywne operacje nie wystarczają.
+5. **Budżet w żądaniach HTTP, nie w operacjach.** Plan wersji podaje budżet wywołań; jego wyczerpanie = stop i raport. Przed każdą sekcją lista wywołań porównana z `remaining − 20`. Szkic to jeden POST: nie tworzyć pustego szkicu po to, żeby odczytać macierz płaszczyzny; transformację liczyć lokalnie. W budżecie także odczyty kontrolne, test zginania i usuwanie błędnych operacji.
+6. **Nie wysyłać ponownie operacji, które się nie zmieniły.** Poprawka to edycja jednej operacji (`.../features/featureid/{fid}`), nie ponowne uruchomienie sekcji.
+7. **Bez pauz na wyczucie** (`sleep`); tempo wyznacza licznik.
+8. **Stan w pliku w repo, nie w `localStorage`:** `40-cad/onshape/stan-api.json` po każdej sekcji: log wywołań, odczyty liczników, mapa `nazwa operacji → featureId`, wyniki kontroli szkiców i suma wywołań w roku. Orkiestrator podaje tę sumę użytkownikowi przy każdym review.
+9. **Plan drzewa każdej części** (lista operacji: typ, nazwa, użyte zmienne, szkice i ich użycie, Mirror i szyki) zatwierdza orkiestrator przed pierwszym zapisem tej części.
 
 **Oszczędne wzorce wywołań.**
 
-- **Drzewo pobierać raz na sesję**, mapę `nazwa operacji → featureId` trzymać lokalnie. Kluczem ważności cache'u jest `sourceMicroversion` z odpowiedzi: zmienił się – ktoś edytował, cache nieważny.
-- **Obcinać payload:** `?noSketchGeometry=true&includeGeometryIds=false`. Zmierzone na drzewie 271 operacji: **2 518 246 B → 1 049 711 B** (−58%), ta sama zawartość, 240 ms.
-- **Zmieniać pojedynczą operację, nie przebudowywać:** `POST /api/v12/partstudios/d/{did}/w/{wid}/e/{eid}/features/featureid/{fid}`. Bez pobierania drzewa. **Pułapka:** w ciele musi być `featureId` identyczny z tym w URL oraz `featureType` i `name` – pominięcie tych dwóch ustawia nazwę i typ na pusty łańcuch.
-- **Przed zapisem** wysyłać `sourceMicroversion` i `rejectMicroversionSkew`, żeby nie nadpisać zmiany innej sesji. Przy dwóch komputerach to nie teoria.
-- **Żadnych wywołań API w pętli** po częściach, konfiguracjach czy właściwościach. Śledzenie zależności przez `qCreatedBy` jest O(n²) po liczbie operacji – przy 271 operacjach nie wchodzi w grę.
-- **Ciężkie obliczenia i inspekcje robić FeatureScriptem wewnątrz dokumentu** – wykonuje się na serwerze Onshape i **nie liczy się do puli rocznej**. Z zastrzeżeniem reguły wyżej: FeatureScript do liczenia i sprawdzania, nie do generowania geometrii.
+- **Drzewo pobieraj na początku sesji i przy odbiorze części**, mapę `nazwa operacji → featureId` trzymaj w pliku stanu. Własne zapisy też zmieniają `sourceMicroversion`: aktualizuj ją z odpowiedzi zapisu. Inna rozbieżność oznacza cudzą edycję: stop i pytanie do orkiestratora.
+- **Obcinaj payload:** `?noSketchGeometry=true&includeGeometryIds=false`, chyba że potrzebne są encje szkiców (K4, K6).
+- **Zmiana pojedynczej operacji:** `POST /api/v12/partstudios/d/{did}/w/{wid}/e/{eid}/features/featureid/{fid}`. W ciele musi być `featureId` identyczny z tym w URL oraz `featureType` i `name`; bez tych dwóch nazwa i typ staną się pustym łańcuchem.
+- **Przy każdym zapisie** wysyłaj `sourceMicroversion` i `rejectMicroversionSkew`.
+- **Nie powtarzaj odczytów tych samych danych**; trzymaj je w cache, używaj odczytów zbiorczych tam, gdzie endpoint je obsługuje. Zmienne wysyłaj raz, nie przyrostowo po jednej.
 
-**Eksporty** (3MF, STL, STEP) robi użytkownik ręcznie: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm.
+## Eksport i kontrola po eksporcie
 
-**Po każdej sekcji** zapis postępu: log i mapa `nazwa operacji → featureId`.
+- **Eksport** (3MF, STL, STEP) robi użytkownik ręcznie: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm.
+- **Po każdym eksporcie** wykonawca uruchamia `40-cad/narzedzia/sprawdz_siatki.js`: szczelność, orientacja trójkątów, **liczba brył w modelu = w 3MF**, 0 błędów. Przy błędach `napraw_siatki.js` i ponowne sprawdzenie. Do tego symulacja wsuwania wszystkich wkładanych części (tulejki, śruby, trzpienie) także względem sąsiednich części.

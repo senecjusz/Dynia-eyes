@@ -5,7 +5,7 @@ Dla orkiestratora, który przejmuje projekt w Warszawie. Zasady pracy: `AGENTS.m
 ## Gdzie jesteśmy
 
 - **Małe oko, moduł v2.4** gotowy i po review (Opus + Codex): nadaje się do wydruku testowego po drobnych poprawkach v2.5. Połączone wnioski: `20-analizy/review/2026-10-18-v2.4-polaczone.md`.
-- **Źródło prawdy o modelu:** `40-cad/solidcraft/oko-f-v2.4.solidcraft` (SolidCraft 0.15). Onshape (dokument SimpleEye, gałąź v2, wersja „v2.2 do review”) jest w zapasie.
+- **Źródło prawdy o modelu (od 19.10):** Onshape, dokument SimpleEye; v2.5 powstaje w nim przez przebudowę. `40-cad/solidcraft/oko-f-v2.4.solidcraft` to archiwum i wzorzec wymiarów v2.4.
 - **Historia wersji:** v1 → v1.1 (wydruk testowy) → v2 → v2.1 → v2.1b/c/d → v2.2 (pierwsza składalna, gniazdo + kaseta) → v2.3 (SolidCraft) → v2.4 (po review) → v2.5 (do zrobienia). Każda wersja przeszła review Opus + Codex.
 - **Wydruki:**
   - próbka gwintu 45° v2.2: luz OK,
@@ -13,22 +13,7 @@ Dla orkiestratora, który przejmuje projekt w Warszawie. Zasady pracy: `AGENTS.m
 
 ## Następne kroki
 
-1. **v2.5:** poprawki 1–7 z `20-analizy/review/2026-10-18-v2.4-polaczone.md` (do zlecenia nowemu wykonawcy w Warszawie, w SolidCraft AppImage). Potem review dwoma recenzentami (`20-analizy/review/`).
-2. **Użytkownik:** wydruk próbek gwintu (0,3 / 0,45 / 0,6) i pomiary SG90, taśmy kabla i wkrętów uszu.
-3. Wydruk testowy całego modułu v2.5.
-4. Po teście: decyzja o serii ~10 modułów, rozmieszczenie w dyni (poziomo ≥ 125 mm, pionowo ≥ 145 mm, otwór Ø63,5).
-5. Równolegle:
-   - firmware na ESP32 z kalibracją przez telefon,
-   - pudełko na elektronikę w dyni,
-   - duże oko (analiza w `20-analizy/2026-10-18-duze-oko-jedna-noc.md`, do omówienia).
-
-## Otwarte sprawy
-
-- Pomiary SG90, orczyka, taśmy i wtyczki kabla (wymiary w modelu są założone).
-- Śruby osi ISO 7380 M3: skrócić do 4 mm albo kupić M3×5/6.
-- Drukowany widelec do zwalniania zaczepów (w v2.4).
-- Napęd symetryczny (pomysł użytkownika) do rozważenia po wydruku modułu.
-- Kopia pełnego researchu Gemini na dysk sieciowy (gdy serwer wróci).
+Epiki, bieżące zadanie i parking: `30-projekt/teraz.md`. Tam jest jedyna agenda projektu.
 
 ## Sesje Claude (komputer w Kobyłce)
 

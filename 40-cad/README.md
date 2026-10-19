@@ -1,13 +1,13 @@
 # 40 – CAD i druk 3D
 
-Od v2.3 źródłem prawdy jest model **SolidCraft**; aktualnie [`solidcraft/oko-f-v2.4.solidcraft`](solidcraft/) (opis w [`solidcraft/README.md`](solidcraft/README.md)). Wcześniejsze wersje są w **Onshape** – tu trzymamy eksporty i linki.
+Źródłem prawdy o geometrii jest **Onshape** (dokument SimpleEye); tu trzymamy eksporty, skrypty i linki. v2.3 i v2.4 powstały w SolidCrafcie: [`solidcraft/`](solidcraft/) to archiwum tylko do odczytu.
 
 | Folder | Zawartość |
 |---|---|
 | `step/` | Eksporty STEP z Onshape (do wymiany i archiwum) |
 | `stl/` | Gotowe STL do druku (tylko aktualna wersja) |
 | `3mf/` | Eksport 3MF z Onshape / projekty ze slicera |
-| `solidcraft/` | Modele SolidCraft (`.solidcraft`), zrzuty, opis, zasady budowy i ograniczenia |
+| `solidcraft/` | Archiwum v2.3/v2.4 z SolidCrafta, tylko do odczytu |
 | `narzedzia/` | Kontrola i naprawa siatek 3MF przed drukiem (`sprawdz_siatki.js`, `napraw_siatki.js`) |
 | `onshape/` | Skrypty budujące model w Onshape przez REST API |
 | `archiwum/` | Stare wersje – **nie drukować** |
@@ -53,7 +53,7 @@ Skrypty v2.1 i v2 zostają dla starszych wersji.
 - ścianka dyni 15–25 mm,
 - rozstaw oczu: poziomo ≥ 115 mm, pionowo ≥ 145 mm.
 
-### Do druku (PLA, bez podpór)
+### Do druku (bez podpór)
 
 Eksport robi użytkownik: prawy przycisk na części → Export…
 - **3MF**, rozdzielczość **Custom**,

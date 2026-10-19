@@ -78,3 +78,4 @@
 | 2026-10-18 | v2.4: nakrętka bez radełka i faz otworu, obrócona o 24° (faza gwintu); gwint zawsze ostatnią operacją | Ograniczenie SolidCraft 0.15: radełko + czoło stożkowe psują gwint wewnętrzny |
 | 2026-10-18 | Eksport 3MF zawsze przez `40-cad/narzedzia/napraw_siatki.js` + `sprawdz_siatki.js` (0 błędów) | Review v2.3: nieszczelne siatki z SolidCraft |
 | 2026-10-18 | v2.4: luz ramię–kaseta 0,26 mm przy stopie +33° akceptowany; w razie potrzeby zakres pracy w firmware ±25° | Dotyczy tylko stopu; różnica ±25/±30° dla efektu nieistotna (użytkownik) |
+| 2026-10-19 | Onshape (SimpleEye) wraca jako główne CAD; v2.5 małego oka powstaje w nim przez przebudowę według tabeli „Do v2.5” i `AGENTS.md`; SolidCraft zostaje archiwum v2.3/v2.4 | SolidCraft 0.15 przelicza całe drzewo przy każdej zmianie (~350 s przy 200 operacjach); blokada Onshape 18.10 była limitem okna (429), nie puli rocznej |
