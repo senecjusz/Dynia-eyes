@@ -67,6 +67,7 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 - [ ] E3.1 Instrukcja montażu: `70-budowa/montaz-v2.5.md` (galeria części, lista śrub, kroki z obrazkami Blendera; po review nietechnicznym).
 - [ ] E3.2 Wydruk i montaż modułu v2.5 (19.10: wydrukowane gniazdo, nakrętka, ramię, cięgno, tulejki, pokrywa).
 - [x] E3.4 Test elektroniki (19.10): ESP32-C3 SuperMini + PCA9685 + 1 × SG90; Blink, skan I²C (0x40) i ruch ±30° zaliczone. Połączenia i szkice: `50-elektronika/polaczenia.md`.
+- [ ] E3.5 Próbka gniazd wkładek M3 (Ø4,0–4,8) w Onshape, wydruk i wybór `wkladkaD`. Brief: `30-projekt/brief-e3.5-probka-wkladek-m3.md`.
 - [ ] E3.3 Wpis w dzienniku i wnioski do następnej wersji.
 
 ## Epiki później
@@ -81,6 +82,7 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 - `AGENTS.md`: stan OK z odpowiedzi zapisu nie wyłapuje ostrzeżeń (np. „missing selection”); kontrola musi czytać też ikony ostrzeżeń w drzewie.
 - `30-projekt/plan-powrot-do-onshape.md`: obaj recenzenci uznali go za nie do realizacji; dopisać adnotację albo usunąć.
 - Dublety w `30-projekt/decyzje.md`.
+- `wkladkaD` 4,0 → 4,4 w Kasecie i Cięgnie (decyzja 20.10, do następnej wersji modelu).
 - Oś oka: zamówione M3×6 (19.10); przy M3×6 otwory Ø4 w biegunach piłeczki albo pogłębienie łba w modelu (`lebH`) – do decyzji po teście.
 - Napęd symetryczny (pomysł użytkownika), po wydruku modułu.
 - Kopia researchu Gemini na dysk sieciowy.

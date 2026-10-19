@@ -85,3 +85,4 @@
 | 2026-10-19 | v2.5 w nowym dokumencie Onshape „Oko F v2.5”, w folderze obok SimpleEye; SimpleEye zostaje archiwum | Stary dokument (271 operacji, atomowy) jest nieutrzymywalny |
 | 2026-10-19 | `luzGwint` = 0,20 (gwint 45°, skok 5) dla gniazda i nakrętki v2.5 | Próbka E2.0: 0,20 → luz poprzeczny ok. 0,5 mm, pasuje; 0,25 → ok. 1,15 mm, za luźno |
 | 2026-10-19 | Kontroler: ESP32-C3 SuperMini; NodeMCU ESP8266 i Arduino Nano jako zapas | Zgodne z decyzją „firmware na ESP32”: Wi-Fi do kalibracji, drugi UART na radar LD2450, mały rozmiar |
+| 2026-10-20 | `wkladkaD` 4,0 → 4,4 (gniazda wkładek M3 w Kasecie i Cięgnie) | Wkładki M3×4×5 (długość 4, Ø5, podwójne radełko, z zestawu 360 szt.) w Ø4,0 wypychają plastik i rozdymają piasty Cięgna. Punkt odniesienia: karta Ruthex RX-M3x5x4 o tych samych wymiarach (otwór Ø4,4, głębokość ≥ 5, ścianka ≥ 1,3; Cięgno 1,6, Kaseta 1,8). Nasze wkładki nie mają stopnia prowadzącego jak Ruthex, więc Ø4,4 sprawdzić próbką |
