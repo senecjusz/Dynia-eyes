@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T13:13Z, po Layout i Gniazdo",
+ "zapis": "2026-10-19T13:33Z, po Kasecie; Jarzmo: szkic profilu pasa zapisany (OK), stop - panel przegladarki ukryty (kontrola znacznika niemozliwa)",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 39,
-  "features": 25,
+  "total": 148,
+  "features": 106,
   "getFeatures": 0
  },
  "budzet": {
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "80aac1ce75e850edb7ea73c3",
+ "mv": "e3c814ce1f0280d3eb96e626",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -54,7 +54,79 @@
   "Gniazdo: żebro szkic": "FD5Z6KsRVgE76ZP_1",
   "Gniazdo: żebro": "Fgywfi7HmlKpKj0_1",
   "Gniazdo: strzałka GÓRA szkic": "Fu7aQGenM7nrbB4_1",
-  "Gniazdo: strzałka GÓRA": "F5PwW7Ahut99vBI_1"
+  "Gniazdo: strzałka GÓRA": "F5PwW7Ahut99vBI_1",
+  "Nakrętka: przekrój": "FdK36M4plKgHh1o_1",
+  "Nakrętka: korpus": "FB8ns3g0uqLIsrd_1",
+  "Nakrętka: czoło szkic": "FNimqkqfy4AZSbM_2",
+  "Nakrętka: czoło pod dynię": "FC0n09Vc18033aT_2",
+  "Nakrętka: pl. tyłu": "FxmPGtpj0aALZs2_2",
+  "Nakrętka: radełko szkic": "FMjCOYt05Va0MKn_2",
+  "Nakrętka: rowek radełka": "FXdnZYy6T9fPlLA_2",
+  "Nakrętka: radełko": "Fjet4mzkIOU54YW_2",
+  "Nakrętka: klucz szkic": "F3H2kXV1Pjklvpq_2",
+  "Nakrętka: wycięcie na klucz": "FWpKXmY3jl26pOW_2",
+  "Nakrętka: wycięcia na klucz": "F1laSm5geh8HzIH_2",
+  "Nakrętka: narzędzie gwintu": "FwGCUK5QD6cstgy_2",
+  "Nakrętka: gwint": "FR2JL7GJ2wqBMtB_3",
+  "Kaseta: profil rury": "FBOaAsA6waOCCAJ_2",
+  "Kaseta: rura": "FCppYfwuMUT7ybj_2",
+  "Kaseta: pl. występu": "FCTYbR1Ef9L6N5Z_3",
+  "Kaseta: występ szkic": "FnKju8VrIEGY6RM_3",
+  "Kaseta: występ osi": "FbdT0ANQLDQ67cP_3",
+  "Kaseta: szczelina stopu szkic": "FDNIdSkthancyDm_3",
+  "Kaseta: szczelina stopu": "FRW1EejsxIZQYzB_3",
+  "Kaseta: kanał kołka szkic": "FZI0cMKg0xVaHHX_3",
+  "Kaseta: kanał kołka": "Fxoxv3RnE73AJsf_3",
+  "Kaseta: pl. otworów osi": "F1UqAr5nJ8YdMaq_3",
+  "Kaseta: oś szkic": "FNJMMUJjBWQuOzY_3",
+  "Kaseta: oś, stop i kanał dół": "F2gnAD1KEsiCues_3",
+  "Kaseta: pl. otworów osi dół": "F48pTWP08gHK0vX_3",
+  "Kaseta: oś dół szkic": "FjjWeuusXBpVbWi_3",
+  "Kaseta: otwory osi": "FdfSu6NqSNfaWTj_3",
+  "Kaseta: pl. okna SG90": "FzR58kf9QuDCuVP_3",
+  "Kaseta: okno SG90 szkic": "FZ3z3nUGSRpvBkZ_3",
+  "Kaseta: okno SG90": "FhNAfVy63LzYxa7_3",
+  "Kaseta: otwory dolne szkic": "FVLa0krASL6tcVf_3",
+  "Kaseta: otwory dolne": "F3DCiGpQpZL1Evy_3",
+  "Kaseta: otwór górny szkic": "F1i64cGZQmJBHV0_3",
+  "Kaseta: otwór górny": "FCJCknveA4MuMb8_3",
+  "Kaseta: pl. wybrania C": "FqUt1BWWcVjIQaW_3",
+  "Kaseta: wybranie C szkic": "Fr4pPXijBO0VSEt_3",
+  "Kaseta: wybranie C": "FfVMcyI6CkDocly_3",
+  "Kaseta: pl. rowka": "FOZx21G886GWSoo_3",
+  "Kaseta: rowek szkic": "F3C4fwcxdx928pw_3",
+  "Kaseta: rowek": "F5RP0jaRxKy91Ek_3",
+  "Kaseta: pl. fazek rowka": "FB7QxthjYUdDhzG_3",
+  "Kaseta: fazki rowka szkic": "F55BmyX89Ri93bX_3",
+  "Kaseta: fazki wejścia rowka": "Fw9XDgdA2nuL0UP_3",
+  "Kaseta: pl. ucha": "FUSHYUeHHIoDXRC_3",
+  "Kaseta: ucho szkic": "FzZQWxD45NRuHiT_3",
+  "Kaseta: ucho pokrywy": "FcvkI6O2ToDvL4v_3",
+  "Kaseta: ucho pokrywy 140": "FGl6xv7WWavCmWd_3",
+  "Kaseta: pl. tyłu": "F06YAfdDaBMikhu_3",
+  "Kaseta: wkładki szkic": "FdfXmovFGBpCK53_3",
+  "Kaseta: otwory wkładek": "FNOUuTfmPjqbvI9_3",
+  "Kaseta: pl. końca zaczepu": "F4aYU8vTwJvl331_3",
+  "Kaseta: koniec zaczepu szkic": "FCiTPOMxjWdCdpj_3",
+  "Kaseta: koniec zaczepu": "F1xi0EwamX444Vw_3",
+  "Kaseta: pl. pocienienia zaczepu": "FGdJolwuZTMlLCp_3",
+  "Kaseta: pocienienie zaczepu szkic": "Fn7Psu09lxyx2SW_3",
+  "Kaseta: pocienienie zaczepu": "F4TGhlxVQetiQvg_3",
+  "Kaseta: pl. szczeliny skośnej": "Fu7ub3CMSBXiC6c_3",
+  "Kaseta: szczelina skośna szkic": "FuzhS4OgzstvJrt_3",
+  "Kaseta: szczelina skośna zaczepu": "FmTfpbgSdEx96tx_3",
+  "Kaseta: pl. szczeliny tylnej": "F36xCsDe6cxCjjs_3",
+  "Kaseta: szczelina tylna szkic": "FRXTLu84ZNQo2kS_3",
+  "Kaseta: szczelina tylna zaczepu": "FiocMw7Sr6Us2Ek_3",
+  "Kaseta: haczyk szkic": "F0hWfaWejIOCIQL_3",
+  "Kaseta: haczyk": "FimLxX9FO9jfN1Z_3",
+  "Kaseta: zaczep 213": "FPs4Bw3paoAdPHm_3",
+  "Kaseta: pl. H": "F8vZfBSc0eRTjFI_3",
+  "Kaseta: pogrubienie H szkic": "Fpzv4zBYuPfVcXY_3",
+  "Kaseta: pogrubienie H": "F9wKLVylNPbGcHj_3",
+  "Kaseta: wybranie H szkic": "FgvJmHWRorIWsLP_3",
+  "Kaseta: wybranie H": "FOf4g7gmmS0wxYr_3",
+  "Jarzmo: profil pasa": "Fmw07QNbMsQeyy0_3"
  },
  "szkice": [
   {
@@ -128,6 +200,212 @@
    "podpowiedz": "Gniazdo: strzałka GÓRA szkic [Sketch]",
    "niedookreslony": false,
    "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Nakrętka: przekrój",
+   "featureId": "FdK36M4plKgHh1o_1",
+   "dataId": "MKVGFKMHFyvqi3Sn6",
+   "podpowiedz": "Nakrętka: przekrój [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Nakrętka: czoło szkic",
+   "featureId": "FNimqkqfy4AZSbM_2",
+   "dataId": "MtuWD6br4CL4LID+P",
+   "podpowiedz": "Nakrętka: czoło szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Nakrętka: radełko szkic",
+   "featureId": "FMjCOYt05Va0MKn_2",
+   "dataId": "MpLPvur1wPA77ACAT",
+   "podpowiedz": "Nakrętka: radełko szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Nakrętka: klucz szkic",
+   "featureId": "F3H2kXV1Pjklvpq_2",
+   "dataId": "MQwi5Lq8BKte0Dl5p",
+   "podpowiedz": "Nakrętka: klucz szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: profil rury",
+   "featureId": "FBOaAsA6waOCCAJ_2",
+   "dataId": "MN4aycXYXJjvE9RpN",
+   "podpowiedz": "Kaseta: profil rury [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: występ szkic",
+   "featureId": "FnKju8VrIEGY6RM_3",
+   "dataId": "MIO90WUJMnBqEzHku",
+   "podpowiedz": "Kaseta: występ szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: szczelina stopu szkic",
+   "featureId": "FDNIdSkthancyDm_3",
+   "dataId": "MI0CGss0BqT8Z1TNi",
+   "podpowiedz": "Kaseta: szczelina stopu szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: kanał kołka szkic",
+   "featureId": "FZI0cMKg0xVaHHX_3",
+   "dataId": "MjRstoYs44jO9BVYz",
+   "podpowiedz": "Kaseta: kanał kołka szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: oś szkic",
+   "featureId": "FNJMMUJjBWQuOzY_3",
+   "dataId": "MT1VE2xXkbUIUZFZ1",
+   "podpowiedz": "Kaseta: oś szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: oś dół szkic",
+   "featureId": "FjjWeuusXBpVbWi_3",
+   "dataId": "M7lna5B+reTjaxQx1",
+   "podpowiedz": "Kaseta: oś dół szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: okno SG90 szkic",
+   "featureId": "FZ3z3nUGSRpvBkZ_3",
+   "dataId": "M7vuIl60+r7XrUXej",
+   "podpowiedz": "Kaseta: okno SG90 szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: otwory dolne szkic",
+   "featureId": "FVLa0krASL6tcVf_3",
+   "dataId": "MgAriswNngNuauWWC",
+   "podpowiedz": "Kaseta: otwory dolne szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: otwór górny szkic",
+   "featureId": "F1i64cGZQmJBHV0_3",
+   "dataId": "Mck4/M0FpqKCAz1BK",
+   "podpowiedz": "Kaseta: otwór górny szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: wybranie C szkic",
+   "featureId": "Fr4pPXijBO0VSEt_3",
+   "dataId": "M7c5P12qfheyzLsPM",
+   "podpowiedz": "Kaseta: wybranie C szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: rowek szkic",
+   "featureId": "F3C4fwcxdx928pw_3",
+   "dataId": "MBlfkSpYk1fBSJMsp",
+   "podpowiedz": "Kaseta: rowek szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: fazki rowka szkic",
+   "featureId": "F55BmyX89Ri93bX_3",
+   "dataId": "MYwDdHHI5/a20svVV",
+   "podpowiedz": "Kaseta: fazki rowka szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: ucho szkic",
+   "featureId": "FzZQWxD45NRuHiT_3",
+   "dataId": "MN3+uARqJF7rsfbnx",
+   "podpowiedz": "Kaseta: ucho szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: wkładki szkic",
+   "featureId": "FdfXmovFGBpCK53_3",
+   "dataId": "MYzdR1zB6hrMyw9xq",
+   "podpowiedz": "Kaseta: wkładki szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: koniec zaczepu szkic",
+   "featureId": "FCiTPOMxjWdCdpj_3",
+   "dataId": "M3/GQDcZzAlaqaPEp",
+   "podpowiedz": "Kaseta: koniec zaczepu szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: pocienienie zaczepu szkic",
+   "featureId": "Fn7Psu09lxyx2SW_3",
+   "dataId": "MHipEHf1dXAR+2wgY",
+   "podpowiedz": "Kaseta: pocienienie zaczepu szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: szczelina skośna szkic",
+   "featureId": "FuzhS4OgzstvJrt_3",
+   "dataId": "MSy68tg/7S6hq2c/h",
+   "podpowiedz": "Kaseta: szczelina skośna szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: szczelina tylna szkic",
+   "featureId": "FRXTLu84ZNQo2kS_3",
+   "dataId": "MnKSO+IMIdNzgEOuC",
+   "podpowiedz": "Kaseta: szczelina tylna szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: haczyk szkic",
+   "featureId": "F0hWfaWejIOCIQL_3",
+   "dataId": "M7wDXP/+qR4mOdAFW",
+   "podpowiedz": "Kaseta: haczyk szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: pogrubienie H szkic",
+   "featureId": "Fpzv4zBYuPfVcXY_3",
+   "dataId": "MmprHYZla+Xb+/QV6",
+   "podpowiedz": "Kaseta: pogrubienie H szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Kaseta: wybranie H szkic",
+   "featureId": "FgvJmHWRorIWsLP_3",
+   "dataId": "MflldAEKRKR/uDSzu",
+   "podpowiedz": "Kaseta: wybranie H szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Jarzmo: profil pasa",
+   "featureId": "Fmw07QNbMsQeyy0_3",
+   "wynik": "BRAK KONTROLI",
+   "blad": "wiersz nie pojawil sie w 5 s (panel ukryty, lista wirtualizowana)"
   }
  ],
  "czasy": [
@@ -154,11 +432,55 @@
    "2026-10-19T13:11:32Z",
    3389,
    7
+  ],
+  [
+   "Nakrętka",
+   "2026-10-19T13:14:30Z",
+   5941,
+   11
+  ],
+  [
+   "Kaseta A",
+   "2026-10-19T13:20:03Z",
+   8264,
+   12
+  ],
+  [
+   "Kaseta B",
+   "2026-10-19T13:25:22Z",
+   12610,
+   16
+  ],
+  [
+   "Kaseta C",
+   "2026-10-19T13:26:04Z",
+   4389,
+   7
+  ],
+  [
+   "Kaseta D (zaczep)",
+   "2026-10-19T13:26:09Z",
+   9881,
+   15
+  ],
+  [
+   "Kaseta E (H)",
+   "2026-10-19T13:26:19Z",
+   3215,
+   5
+  ],
+  [
+   "Jarzmo (przerwane)",
+   "2026-10-19T13:31:20Z",
+   8788,
+   1
   ]
  ],
  "foldery": [
   "Layout (1)",
-  "Gniazdo (23)"
+  "Gniazdo (23)",
+  "Nakrętka (13)",
+  "Kaseta: do zalozenia (58 operacji)"
  ],
  "pomiary": [
   {
@@ -218,18 +540,165 @@
    },
    "sciany": 76,
    "zgodnosc": "zgodne z planem i v2.4 (poza zmianami v2.5: gwint 45, rura = rdzen 58.9)"
+  },
+  {
+   "czesc": "Nakrętka",
+   "bryly": 2,
+   "walceR": [
+    31.75,
+    37
+   ],
+   "plaszczyznyZ": [
+    -31,
+    -28.4
+   ],
+   "radelko_y": [
+    -0.7,
+    0.7
+   ],
+   "klucz_y": [
+    -2,
+    2
+   ],
+   "uwaga": "przy luzGwint 0.3; od 13:25 luzGwint 0.20 (oczekiwane R 31.65 i pasek otworu R 29.65)"
+  },
+  {
+   "czesc": "Kaseta",
+   "bryly": 3,
+   "bbox": {
+    "x": [
+     -29.6,
+     28.234
+    ],
+    "y": [
+     -27.25,
+     27.25
+    ],
+    "z": [
+     -77.5,
+     -1.5
+    ]
+   },
+   "walceR": [
+    1.3,
+    2,
+    3.1,
+    4.35,
+    4.5,
+    5.1,
+    8.3,
+    9.6,
+    24.25,
+    25.2,
+    25.25,
+    25.8,
+    27.25,
+    29.6
+   ],
+   "plaszczyznyY": [
+    -25.55,
+    -25.05,
+    -23.45,
+    -3.6,
+    0.6,
+    23.45,
+    25.05,
+    25.55
+   ],
+   "plaszczyznyZ": [
+    -77.5,
+    -64.7,
+    -57,
+    -49.2,
+    -47.1,
+    -46.7,
+    -44.3,
+    -44.25,
+    -44.2,
+    -43.6,
+    -43.4,
+    -42,
+    -36.7,
+    -36.6,
+    -22.4,
+    -1.5
+   ],
+   "haczyki_az": [
+    [
+     44.1,
+     49.9
+    ],
+    [
+     224.1,
+     229.9
+    ]
+   ],
+   "ucha_az": [
+    [
+     32.4,
+     47.6
+    ],
+    [
+     132.4,
+     147.6
+    ]
+   ],
+   "rowek_az": [
+    130.2,
+    139.8
+   ],
+   "sciany": 135
   }
  ],
  "ustalenia": [
   "LINE_ANGLE (cPlane): os x szkicu ma azymut 180 deg - kat, os y = +Z (pomiar okienka 19.10 13:10); kat plaszczyzny dla azymutu phi = '180 deg - #phi'",
   "plaszczyzna OFFSET z oppositeDirection: zachowuje uklad osi bazy (zebro na 135 deg, pomiar)",
   "helisa z pl. offset Top -41.7 (opposite) idzie w +Z, CW = gwint prawoskretny (jak E2.0)",
-  "fazki w profilach szkicow (jak E2.0): Chamfer wymaga zapytan krawedzi z liczbami (K3)"
+  "fazki w profilach szkicow (jak E2.0): Chamfer wymaga zapytan krawedzi z liczbami (K3)",
+  "Hole: glebokosci od pierwszego styku z czescia; domyslny kierunek przeciwny do normalnej plaszczyzny szkicu",
+  "Mirror/szyk nie wzoruje Hole ('Could not pattern selected features'); para otworow = jeden Hole z 2 punktami (pl. dolna z flipNormal)",
+  "Variable Studio liczy zmienne po kolei (odwolanie do zmiennej zdefiniowanej nizej = 'Variable not found')",
+  "Blad 'did not regenerate properly' moze nie miec ikony w drzewie; kontrola po operacji czyta tez tekst podpowiedzi",
+  "Szyk FEATURE z operacjami REMOVE na tej samej bryle wymaga fullFeaturePattern (Reapply features)",
+  "Zapis Variable Studio zmienia microversion dokumentu: przed zapisem operacji odswiezyc (409 bez tego)"
  ],
  "log": [
   {
    "t": "2026-10-19T13:10:40Z",
    "uwaga": "pl. zaczepów: kat #haczykKat dal okienko na 133 deg; edycja featureid: kat '180 deg - #haczykKat' -> 47 deg (pomiar)"
+  },
+  {
+   "t": "2026-10-19T13:14:51Z",
+   "uwaga": "Nakretka: wyciecia na klucz ERROR; edycja: fullFeaturePattern"
+  },
+  {
+   "t": "2026-10-19T13:20:21Z",
+   "uwaga": "Hole osi: kierunek na zewnatrz; edycja: oppositeDirection"
+  },
+  {
+   "t": "2026-10-19T13:20:52Z",
+   "uwaga": "lebGl, otworOsiGl przeliczone (Hole mierzy od styku)"
+  },
+  {
+   "t": "2026-10-19T13:21:15Z",
+   "uwaga": "Variable Studio: kolejnosc zmiennych"
+  },
+  {
+   "t": "2026-10-19T13:22:26Z",
+   "uwaga": "Mirror Hole: ERROR; operacja testowa usunieta (DELETE 200)"
+  },
+  {
+   "t": "2026-10-19T13:23:00Z",
+   "uwaga": "otwory osi: jeden Hole z 2 punktami; stary Hole usuniety"
+  },
+  {
+   "t": "2026-10-19T13:25:20Z",
+   "uwaga": "luzGwint = 0.20 mm (decyzja uzytkownika)"
+  },
+  {
+   "t": "2026-10-19T13:31:30Z",
+   "uwaga": "Jarzmo: kontrola szkicu przerwana - panel ukryty"
   }
- ]
+ ],
+ "stop": "panel przegladarki ukryty: wiersz \"Jarzmo: profil pasa\" (Fmw07QNbMsQeyy0_3) nie pojawil sie w 5 s; czekam na uzytkownika"
 }
