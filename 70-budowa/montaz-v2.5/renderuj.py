@@ -55,7 +55,7 @@ SRUBY = {
     "pokr_p": ((UCHO[0], UCHO[1], -80.5), (0, 0, 1), "din912", 8),
     "pokr_l": ((-UCHO[0], UCHO[1], -80.5), (0, 0, 1), "din912", 8),
     "m2": ((-4.446, -0.5, -53.784), (0, -1, 0), "m2", 6),
-    "orczyk": ((0, -0.5, -66), (0, -1, 0), "m2", 4),
+    "orczyk": ((0, -0.5, -66), (0, -1, 0), "m2", 6),
     "ucho_p": ((0, -15.1, -46.75), (0, -1, 0), "m2", 6),
     "ucho_t": ((0, -15.1, -74.55), (0, -1, 0), "m2", 6),
 }
@@ -120,8 +120,13 @@ KROKI = [
     dict(id="05_ramie_orczyka", cam=TYL_GORA, groups=[
         g("glass", ["K"]),
         g("old", ["J", "P", "S", "SG"], ["os_gora", "os_dol", "ucho_p", "ucho_t"]),
-        g("aux", ["PC"]),
-        g("new", ["R", "O"], ["m2", "orczyk"], offset=(0, 3, -55))]),
+        g("new", ["R", "O"], ["m2"], offset=(0, 3, -55))]),
+    dict(id="05b_przyrzad_centrowania", cam=TYL_DOL, groups=[
+        g("glass", ["K"]),
+        g("old", ["J", "P", "S", "SG"], ["os_gora", "os_dol", "ucho_p", "ucho_t"]),
+        g("old", ["R", "O"], ["m2"], offset=(0, 3, 0), arrow=False),
+        g("aux", ["PC"], offset=(0, -45, 0)),
+        g("new", sruby=["orczyk"], offset=(0, 30, 0))]),
     dict(id="06_ciegno", cam=TYL_GORA, groups=[
         g("glass", ["K"]),
         g("old", ["J", "P", "S", "SG", "R", "O"], ["os_gora", "os_dol", "ucho_p", "ucho_t", "m2", "orczyk"]),
@@ -441,14 +446,14 @@ def render_step(step, cache):
             make_obj(f"{gi}_{w}", vb, f, color_for(gr["role"], "metal"), smooth=True)
             pts += vb
         all_pts += pts
-        if gr["role"] == "new" and gr["arrow"]:
+        if gr["role"] in ("new", "aux") and gr["arrow"]:
             groups_pts.append((gr, pts))
         elif gr["role"] != "new":
             old_pts += pts
 
     # strzałki ruchu: od czoła odsuniętej części w stronę złożenia
     for gr, pts in groups_pts:
-        if not pts:
+        if not pts or not any(gr["offset"]):
             continue
         mv = -vec_to_blender(gr["offset"], flip)
         dist = mv.length
@@ -509,9 +514,381 @@ def render_step(step, cache):
     print("ZAPISANO", scene.render.filepath, flush=True)
 
 
+# ---------------------------------------------------------------- części osobno (--czesci)
+# Obrazki „Części i ich miejsca” i miniatury galerii. Blender zapisuje surowy render i plik JSON
+# z położeniem punktów (kotwic) w pikselach; podpisy i linie dokłada podpisz.py (SVG -> PNG).
+# Kotwice w układzie modelu (mm, przed obrotem instancji). Strona podpisu: "L" albo "P".
+
+WIDE = (1800, 1000)
+KOLOR_CZESCI = (0.32, 0.56, 0.88)
+
+
+def inst(part, rot=(), podpis=None, kolor=None):
+    return dict(part=part, rot=list(rot), podpis=podpis, kolor=kolor)
+
+
+C3 = (C_PT[0], C_PT[1])
+H3 = (H_PT[0], H_PT[1])
+
+CZESCI = [
+    dict(id="czesc_kaseta_tyl", cam=(-0.9, 1.6, 0.9), inst=[inst("K")], kotwice=[
+        ("ucho|z otworem na wkładkę", 0, (-22.6, 19.0, -77.5), "A"),
+        ("ucho|(drugie)", 0, (22.6, 19.0, -77.5), "A"),
+        ("rowek na żebro Gniazda|płytki rowek wzdłuż Kasety", 0, (-18.6, 18.6, -30.0), "A"),
+        ("otwór górny|owalny, na wkręt środkowy", 0, (-2.2, 27.25, -60.0), "A"),
+        ("zagłębienie na łeb|śruby osi (u góry i u dołu)", 0, (0.0, 28.0, -12.0), "A"),
+        ("tylna ściana|strona Pokrywy", 0, (-24.2, -8.8, -77.5), "A"),
+        ("łukowa szczelina|tu chodzi kołek Jarzma", 0, (-4.5, 27.25, -17.5), "A"),
+        ("szczelina na serwo|w spodzie Kasety", 0, (5.0, -26.0, -77.5), "A"),
+    ]),
+    dict(id="czesc_kaseta_spod", cam=(-1.0, 0.8, -1.4), inst=[inst("K")], kotwice=[
+        ("zaczep z haczykiem|sprężysty języczek; drugi", 0, (-19.27, -20.66, -40.0), "A"),
+        ("", 0, None, None),
+        ("otwór dolny pod korbą", 0, (C3[0], -26.2, C3[1]), "A"),
+        ("otwór dolny pod Ramieniem", 0, (H3[0], -25.6, H3[1]), "A"),
+        ("szczelina na serwo", 0, (0.0, -27.0, -62.0), "A"),
+        ("zagłębienie na łeb|śruby osi (dolne)", 0, (0.0, -28.0, -12.0), "A"),
+    ]),
+    dict(id="czesc_jarzmo", cam=(1.6, 1.1, 0.7), inst=[inst("J")], kotwice=[
+        ("oczko|ucho z otworem na oś", 0, (0.0, 23.0, -12.0), "L"),
+        ("oczko|(dolne)", 0, (0.0, -23.0, -12.0), "L"),
+        ("kołek|zatrzymuje obrót oka;|u góry i u dołu", 0, (0.0, 24.75, -18.7), "P"),
+        ("pas miski|obręcz, tu idzie klej", 0, (18.9, 6.0, -22.9), "P"),
+        ("korba|ramię z otworem,|wystaje do tyłu", 0, (C3[0] + 3.5, -0.5, C3[1] - 2.0), "P"),
+    ]),
+    dict(id="czesc_sanki", cam=(1.3, 1.2, 1.0), inst=[inst("S")], kotwice=[
+        ("słupek przedni|w stronę oka;|tu leży ucho serwa", 0, (-6.0, -17.6, -47.0), "A"),
+        ("słupek tylny|drugie ucho serwa", 0, (6.0, -17.6, -75.0), "A"),
+        ("otwór na wkręt|(w każdym słupku)", 0, (0.0, -17.6, -74.55), "A"),
+        ("prowadnica|(po obu stronach)", 0, (8.0, -20.25, -60.0), "A"),
+    ]),
+    dict(id="czesc_ramie", cam=(0.25, 0.35, 1.0), inst=[
+        inst("R", podpis="wierzch"), inst("R", rot=[("z", 180)], podpis="spód (strona serwa)")], kotwice=[
+        ("otwór na wkręt środkowy|nad wałkiem serwa", 0, (0.0, -0.5, -66.0), "L"),
+        ("otwór na wkręt M2×6|dźwigienka do Ramienia", 0, (-4.446, -0.5, -53.784), "L"),
+        ("otwór przegubu|tu wchodzi Tulejka ramienia", 0, (H3[0], -0.5, H3[1]), "L"),
+        ("kieszeń na dźwigienkę", 1, (-3.0, -4.5, -58.0), "P"),
+    ]),
+    dict(id="czesc_ciegno", cam=(0.5, 0.8, 1.0), inst=[inst("C")], kotwice=[
+        ("podniesienie|gniazdo na wkładkę;|koniec do korby Jarzma", 0, (C3[0], 5.3, C3[1] - 2.9), "A"),
+        ("podniesienie|gniazdo na wkładkę;|koniec do Ramienia", 0, (H3[0], 5.3, H3[1] + 2.9), "A"),
+    ]),
+    dict(id="czesc_tulejka", cam=(0.9, 0.9, 0.6), inst=[inst("TC")], kotwice=[
+        ("kołnierz|szerszy brzeg, do łba śruby", 0, (C3[0] + 4.0, -3.4, C3[1]), "P"),
+        ("trzon|wchodzi w otwór korby|albo Ramienia", 0, (C3[0] + 2.8, -1.5, C3[1]), "L"),
+        ("otwór na śrubę M3×8", 0, (C3[0], -0.3, C3[1] - 1.65), "L"),
+    ]),
+    dict(id="czesc_pokrywa", cam=(0.0, 1.0, 0.25), inst=[
+        inst("PT", podpis="od zewnątrz (do Ciebie)"),
+        inst("PT", rot=[("y", 180)], podpis="od środka (do serwa)")], kotwice=[
+        ("ucho z otworem na śrubę|(2 szt., do góry)", 0, (22.6, 19.0, -80.5), "L"),
+        ("język|dolny występ, zakrywa Sanki", 0, (0.0, -25.0, -80.5), "L"),
+        ("okno na wtyczkę serwa", 0, (3.0, -31.0, -80.5), "L"),
+        ("prowadnice kabla|i zacisk (zbliżenie niżej)", 1, (5.3, -33.0, -74.0), "P"),
+    ]),
+    dict(id="czesc_pokrywa_kabel", cam=(0.35, 1.0, 0.6), inst=[inst("PT", rot=[("y", 180)])],
+         kadr=[(-14.0, -40.0, -80.5), (14.0, -22.0, -74.0)], kotwice=[
+        ("okno na wtyczkę serwa", 0, (3.2, -30.4, -77.5), "A"),
+        ("zacisk kabla|wąska szpara pod oknem", 0, (0.0, -34.3, -77.5), "A"),
+        ("prowadnica kabla", 0, (5.3, -32.0, -74.0), "A"),
+        ("prowadnica kabla", 0, (-5.3, -32.0, -74.0), "A"),
+    ]),
+    dict(id="czesc_gniazdo", cam=(0.45, 1.0, 0.45), inst=[
+        inst("G", rot=[("y", 180)], podpis="od zewnątrz dyni"),
+        inst("G", podpis="od środka dyni")], kotwice=[
+        ("rant|opiera się o skórkę", 0, (-26.0, -25.0, 0.0), "A"),
+        ("strzałka GÓRA", 0, (0.0, 33.0, 0.0), "A"),
+        ("ząbki pod rantem|wbijają się w skórkę", 0, (-34.4, -5.0, -4.0), "A"),
+        ("gwint|na Nakrętkę", 1, (0.0, 31.5, -25.0), "A"),
+        ("okienko zaczepu|(2 szt.)", 1, (18.75, 20.1, -40.2), "A!"),
+        ("żebro|listwa w środku,|pasuje w rowek Kasety", 1, (-18.95, 18.95, -45.4), "A"),
+        ("kołnierzyk|tu opiera się czoło Kasety", 1, (14.0, -14.0, -3.0), "A!"),
+    ]),
+    dict(id="czesc_nakretka", cam=(0.5, 1.0, 0.6), inst=[
+        inst("N", rot=[("y", 180)], podpis="od strony dyni"),
+        inst("N", podpis="od strony Ciebie")], kotwice=[
+        ("czoło zaokrąglone|do ścianki dyni", 0, (0.0, -33.5, -24.5), "A"),
+        ("radełko|rowki pod palce", 0, (-37.0, 0.0, -27.5), "A"),
+        ("wycięcie na klucz|(6 szt.)", 1, (17.5, 30.3, -28.4), "A"),
+    ]),
+    dict(id="czesc_serwo", cam=(1.2, 1.2, 1.0), inst=[
+        inst("SG", podpis="serwo SG90", kolor=(0.20, 0.25, 0.65)),
+        inst("O", podpis="dźwigienka (orczyk)", kolor=(0.55, 0.55, 0.55))], kotwice=[
+        ("wałek|ząbkowany trzpień;|na niego wchodzi dźwigienka", 0, (0.0, -4.5, -66.0), "L"),
+        ("ucho serwa|płaski występ na wkręt (2 szt.)", 0, (0.0, -15.1, -46.0), "L"),
+        ("ucho serwa", 0, (0.0, -15.1, -75.5), "L"),
+        ("kabel|wychodzi z tyłu, nisko", 0, (0.0, -31.4, -80.0), "L"),
+        ("otwór na środku|na wkręt środkowy", 1, (0.0, -3.0, -66.0), "P"),
+        ("ramię dźwigienki|z otworkami", 1, (-3.0, -3.0, -56.0), "P"),
+    ]),
+    dict(id="czesc_przyrzad_klejenia", cam=(1.2, 1.4, 0.8), inst=[inst("PW", rot=[("x", 90), ("y", 180)])], kotwice=[
+        ("stożek|tu leży piłeczka", 0, (130.0, -9.0, 1.0), "A"),
+        ("okienko na źrenicę|na dnie stożka, widać je od spodu", 0, (130.0, 0.0, 2.5), "A"),
+        ("słupek|(2 szt.)", 0, (124.0, -28.0, -21.5), "A"),
+        ("gniazdo na kołek|wąskie wycięcie na górze słupka", 0, (130.0, -26.0, -21.5), "A"),
+        ("tu przylega oczko Jarzma", 0, (130.0, -23.35, -8.0), "A"),
+        ("otwór na śrubę M3×10|wkręcasz od zewnątrz słupka", 0, (130.0, 31.0, -12.0), "A"),
+    ]),
+    dict(id="czesc_przyrzad_centrowania", cam=(1.2, 1.4, 0.5), inst=[inst("PC")], kotwice=[
+        ("płytka|przykładasz pod Kasetę", 0, (-15.0, -27.65, -46.0), "A"),
+        ("trzpień|przez dolny otwór Kasety|do otworu w Ramieniu", 0, (H3[0] + 2.7, -12.0, H3[1]), "A"),
+    ]),
+    dict(id="czesc_widelec", cam=(0.4, 1.0, 1.2), inst=[inst("WD")], kotwice=[
+        ("bolec|wchodzi w okienko Gniazda", 0, (20.1, 21.6, -41.45), "A"),
+        ("bolec", 0, (-20.1, -21.6, -41.45), "A"),
+        ("uchwyt|tu ściskasz palcami", 0, (25.9, 27.8, -41.45), "A"),
+        ("uchwyt", 0, (-25.9, -27.8, -41.45), "A"),
+    ]),
+]
+
+# miniatury galerii: (id, [(część albo "sruba:<typ>", kolor)], kamera, stała skala kadru w mm albo None)
+SG_KOLOR = (0.20, 0.25, 0.65)
+MINIATURY = [
+    ("min_G", [("G", None)], (0.6, -1.0, 0.5), None),
+    ("min_N", [("N", None)], (0.6, 1.0, 0.6), None),
+    ("min_K", [("K", None)], (1.2, 1.4, 0.8), None),
+    ("min_J", [("J", None)], (1.6, 1.1, 0.7), None),
+    ("min_S", [("S", None)], (1.3, 1.2, 1.0), None),
+    ("min_R", [("R", None)], (0.6, 0.6, 1.0), None),
+    ("min_C", [("C", None)], (0.6, 0.8, 1.0), None),
+    ("min_TC", [("TC", None)], (0.9, 0.9, 0.6), None),
+    ("min_TH", [("TH", None)], (0.9, 0.9, 0.6), None),
+    ("min_PT", [("PT", None)], (0.6, 1.4, 0.5), None),
+    ("min_PW", [("PW", None)], (1.2, 1.4, 0.8), None),
+    ("min_PC", [("PC", None)], (1.2, 1.4, 0.5), None),
+    ("min_WD", [("WD", None)], (0.4, 1.0, 1.2), None),
+    ("min_SG", [("SG", SG_KOLOR), ("O", (0.55, 0.55, 0.55))], (1.0, 1.2, 1.5), None),
+    ("min_P", [("P", (0.97, 0.97, 0.97))], (1.0, 1.0, 0.6), None),
+    ("min_m3x4", [("sruba:m3x4", None)], (1.0, 1.0, 0.45), 15.0),
+    ("min_m3x8", [("sruba:m3x8", None)], (1.0, 1.0, 0.45), 15.0),
+    ("min_m3x10", [("sruba:m3x10", None)], (1.0, 1.0, 0.45), 15.0),
+    ("min_m2x6", [("sruba:m2x6", None)], (1.0, 1.0, 0.45), 15.0),
+    ("min_m2x5", [("sruba:m2x5", None)], (1.0, 1.0, 0.45), 15.0),
+    ("min_wkladka", [("sruba:wkladka", None)], (1.0, 1.0, 0.45), 15.0),
+]
+PLIKI["WD"] = "Oko F v2.4 - Widelec do zaczepow"
+
+
+def lathe(prof, seg=48):
+    """prof: zamknięty wielobok (r, z) w płaszczyźnie osiowej; oś obrotu = Z Blendera."""
+    m = len(prof)
+    verts, faces = [], []
+    for s in range(seg):
+        t = 2 * math.pi * s / seg
+        c, si = math.cos(t), math.sin(t)
+        verts += [(r * c, r * si, z) for r, z in prof]
+    for s in range(seg):
+        n = (s + 1) % seg
+        for i in range(m):
+            j = (i + 1) % m
+            faces.append([s * m + i, s * m + j, n * m + j, n * m + i])
+    return verts, faces
+
+
+def gwint(r_maj, r_min, z0, z1, skok):
+    """Profil trzonu z rowkami (pierścienie zamiast helisy), od z0 w dół do z1 (z1 < z0)."""
+    pts = [(0.001, z0), (r_maj, z0)]
+    z = z0
+    while z - skok > z1:
+        pts += [(r_maj, z - skok * 0.2), (r_min, z - skok * 0.5), (r_maj, z - skok * 0.8)]
+        z -= skok
+    pts += [(r_maj * 0.85, z1), (0.001, z1)]
+    return pts
+
+
+def prism(cx, cy, z0, h, r, n, rot=0.0):
+    verts = []
+    for z in (z0, z0 + h):
+        for i in range(n):
+            t = rot + 2 * math.pi * i / n
+            verts.append((cx + r * math.cos(t), cy + r * math.sin(t), z))
+    faces = [[i, (i + 1) % n, n + (i + 1) % n, n + i] for i in range(n)]
+    faces += [list(range(n - 1, -1, -1)), list(range(n, 2 * n))]
+    return verts, faces
+
+
+def box(cx, cy, z0, dx, dy, h):
+    v, f = prism(0, 0, z0, h, math.hypot(dx, dy) / 2, 4, math.atan2(dy, dx))
+    return [(x + cx, y + cy, z) for x, y, z in v], f
+
+
+def sruba_galeria(typ):
+    """Śruby z listy, w Blenderze pionowo: łeb na górze (z > 0), trzon w dół. Zwraca [(v, f, rola)]."""
+    out = []
+    if typ == "wkladka":
+        prof = [(1.5, 0), (2.3, 0), (2.3, -0.6), (2.05, -0.9), (2.4, -1.3), (2.4, -1.9), (2.05, -2.2),
+                (2.4, -2.6), (2.4, -3.2), (2.05, -3.5), (2.2, -4.0), (1.5, -4.0)]
+        out.append((*lathe(prof, 40), "metal"))
+        return out
+    if typ.startswith("m3"):
+        L = {"m3x4": 4, "m3x8": 8, "m3x10": 10}[typ]
+        out.append((*lathe(gwint(1.5, 1.2, 0.0, -L, 0.5), 32), "metal"))
+        if typ == "m3x4":  # ISO 7380: łeb płaski, okrągły
+            prof = [(0.001, 0), (2.85, 0), (2.85, 0.35), (2.5, 1.1), (1.7, 1.55), (0.001, 1.65)]
+            out.append((*lathe(prof, 48), "metal"))
+            out.append((*prism(0, 0, 1.0, 0.7, 1.15, 6), "dziura"))
+        else:  # DIN 912: łeb walcowy, wysoki
+            prof = [(0.001, 0), (2.75, 0), (2.75, 2.75), (2.5, 3.0), (0.001, 3.0)]
+            out.append((*lathe(prof, 48), "metal"))
+            out.append((*prism(0, 0, 1.6, 1.45, 1.44, 6), "dziura"))
+        return out
+    L = {"m2x6": 6, "m2x5": 5}[typ]
+    out.append((*lathe(gwint(1.0, 0.7, 0.0, -L, 0.45), 32), "metal"))
+    prof = [(0.001, 0), (1.9, 0), (1.9, 0.6), (1.6, 1.2), (0.001, 1.3)]
+    out.append((*lathe(prof, 48), "metal"))
+    out.append((*box(0, 0, 0.95, 2.0, 0.45, 0.4), "dziura"))
+    out.append((*box(0, 0, 0.95, 0.45, 2.0, 0.4), "dziura"))
+    return out
+
+
+def rot_model(verts, rot):
+    if not rot:
+        return verts
+    from mathutils import Matrix
+    M = Matrix.Identity(3)
+    for ax, deg in rot:
+        M = Matrix.Rotation(math.radians(deg), 3, ax.upper()) @ M
+    return [tuple(M @ Vector(v)) for v in verts]
+
+
+def kamera(scene, pts, cvec, fill_w=1.0, fill_h=1.0, skala=None):
+    lo, hi = bbox(pts)
+    center = (lo + hi) / 2
+    cdir = Vector(cvec).normalized()
+    cam_data = bpy.data.cameras.new("kamera")
+    cam_data.type = "ORTHO"
+    cam = bpy.data.objects.new("kamera", cam_data)
+    scene.collection.objects.link(cam)
+    rot = cdir.to_track_quat("Z", "Y")
+    right = rot @ Vector((1, 0, 0))
+    up = rot @ Vector((0, 1, 0))
+    w = max(abs((p - center).dot(right)) for p in map(Vector, pts)) * 2
+    h = max(abs((p - center).dot(up)) for p in map(Vector, pts)) * 2
+    aspect = scene.render.resolution_x / scene.render.resolution_y
+    cam_data.ortho_scale = skala if skala else max(w / fill_w, h / fill_h * aspect) * 1.06
+    cam_data.clip_start = 1
+    cam_data.clip_end = 5000
+    cam.location = center + cdir * 800
+    cam.rotation_mode = "QUATERNION"
+    cam.rotation_quaternion = rot
+    scene.camera = cam
+    for name, vec, energy in (("klucz", cdir + up * 0.9 - right * 0.7, 3.2), ("wypelnienie", cdir - up * 0.3 + right * 0.9, 1.0)):
+        ld = bpy.data.lights.new(name, "SUN")
+        ld.energy = energy
+        ld.angle = math.radians(8)
+        lo_ = bpy.data.objects.new(name, ld)
+        scene.collection.objects.link(lo_)
+        lo_.rotation_mode = "QUATERNION"
+        lo_.rotation_quaternion = vec.normalized().to_track_quat("Z", "Y")
+    return cam, cdir, right, up
+
+
+def px(scene, cam, co):
+    from bpy_extras.object_utils import world_to_camera_view
+    v = world_to_camera_view(scene, cam, Vector(co))
+    return round(v.x * scene.render.resolution_x, 1), round((1 - v.y) * scene.render.resolution_y, 1)
+
+
+def render_czesc(cz, cache):
+    import json
+    clear_scene()
+    scene = bpy.context.scene
+    scene.render.resolution_x, scene.render.resolution_y = (WIDE[0] // 2, WIDE[1] // 2) if SZYBKO else WIDE
+    cdir0 = Vector(cz["cam"]).normalized()
+    right0 = cdir0.to_track_quat("Z", "Y") @ Vector((1, 0, 0))
+    objs, all_pts, cur = [], [], 0.0
+    for k, it in enumerate(cz["inst"]):
+        v, f = cache[it["part"]]
+        vb = [Vector(p) for p in to_blender(rot_model(v, it["rot"]), (0, 0, 0), False)]
+        lo, hi = bbox(vb)
+        c = (lo + hi) / 2
+        ext = max(abs((p - c).dot(right0)) for p in vb)
+        shift = right0 * (cur + ext) - c if k else -c
+        cur = (cur + 2 * ext + max(hi - lo) * 0.25) if k else (ext + max(hi - lo) * 0.25)
+        vb = [tuple(p + shift) for p in vb]
+        rgb = it["kolor"] or KOLOR_CZESCI
+        ob = make_obj(f"i{k}", vb, f, material("cz_%d_%d_%d" % tuple(int(x * 100) for x in rgb), rgb))
+        objs.append((ob, it, shift))
+        all_pts += vb
+    kadr = all_pts
+    if cz.get("kadr"):
+        ob0, it0, sh0 = objs[0]
+        lo_, hi_ = cz["kadr"]
+        rog = [(x, y, z) for x in (lo_[0], hi_[0]) for y in (lo_[1], hi_[1]) for z in (lo_[2], hi_[2])]
+        kadr = [tuple(Vector(q) + sh0) for q in to_blender(rot_model(rog, it0["rot"]), (0, 0, 0), False)]
+    cam, cdir, right, up = kamera(scene, kadr, cz["cam"], fill_w=0.50, fill_h=0.84)
+    bpy.context.view_layer.update()
+    dg = bpy.context.evaluated_depsgraph_get()
+    wynik = dict(id=cz["id"], W=scene.render.resolution_x, H=scene.render.resolution_y, kotwice=[], podpisy=[])
+    for tekst, k, p, strona in cz["kotwice"]:
+        if p is None:
+            continue
+        ob, it, shift = objs[k]
+        q = Vector(to_blender(rot_model([p], it["rot"]), (0, 0, 0), False)[0]) + shift
+        ok, loc, _, _ = ob.closest_point_on_mesh(q)
+        if ok and (loc - q).length < 1.0:  # punkt na powierzchni; środek otworu zostaje na miejscu
+            q = loc
+        hit, hloc, _, _, _, _ = scene.ray_cast(dg, q + cdir * 700, -cdir)
+        widoczna = (not hit) or (hloc - q).dot(cdir) < 0.6 or strona.endswith("!")
+        strona = strona.rstrip("!")
+        wynik["kotwice"].append(dict(tekst=tekst, strona=strona, xy=px(scene, cam, q), widoczna=widoczna))
+        if not widoczna:
+            print("ZASŁONIĘTA", cz["id"], tekst.split("|")[0], flush=True)
+    for ob, it, shift in objs:
+        if it["podpis"]:
+            pts = [Vector(v.co) for v in ob.data.vertices]
+            ys = [px(scene, cam, p)[1] for p in pts]
+            xs = [px(scene, cam, p)[0] for p in pts]
+            wynik["podpisy"].append(dict(tekst=it["podpis"], xy=((min(xs) + max(xs)) / 2, max(ys) + 20)))
+    scene.render.filepath = os.path.join(OUT_DIR, cz["id"] + ".png")
+    bpy.ops.render.render(write_still=True)
+    with open(os.path.join(OUT_DIR, cz["id"] + ".json"), "w", encoding="utf-8") as fh:
+        json.dump(wynik, fh, ensure_ascii=False, indent=1)
+    print("ZAPISANO", scene.render.filepath, flush=True)
+
+
+def render_miniatura(mid, items, cvec, skala, cache):
+    clear_scene()
+    scene = bpy.context.scene
+    scene.render.resolution_x = scene.render.resolution_y = 250 if SZYBKO else 500
+    pts = []
+    for key, rgb in items:
+        if key.startswith("sruba:"):
+            for v, f, rola in sruba_galeria(key[6:]):
+                mat = (material("new_metal", KOLORY["new_metal"], metal=0.6, rough=0.35) if rola == "metal"
+                       else material("dziura", (0.04, 0.04, 0.04), rough=0.8))
+                make_obj(mid + rola, v, f, mat, smooth=(rola == "metal"))
+                pts += v
+            continue
+        v, f = cache[key]
+        vb = to_blender(v, (0, 0, 0), False)
+        rgb = rgb or KOLOR_CZESCI
+        make_obj(mid + key, vb, f, material("cz_%d_%d_%d" % tuple(int(x * 100) for x in rgb), rgb))
+        pts += vb
+    if skala:  # śruby: kadr wyśrodkowany na osi, łeb zawsze na tej samej wysokości
+        pts = pts + [(0, 0, -11.0), (0, 0, 3.5)]
+    kamera(scene, pts, cvec, skala=skala)
+    scene.render.filepath = os.path.join(OUT_DIR, mid + ".png")
+    bpy.ops.render.render(write_still=True)
+    print("ZAPISANO", scene.render.filepath, flush=True)
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     setup_render(bpy.context.scene)
+    if "--czesci" in argv:
+        potrzebne = {it["part"] for cz in CZESCI for it in cz["inst"]}
+        potrzebne |= {k for m in MINIATURY for k, _ in m[1] if not k.startswith("sruba:")}
+        cache = {}
+        for key in sorted(potrzebne):
+            cache[key] = load_stl(os.path.join(STL_DIR, PLIKI[key] + ".stl"))
+        for cz in CZESCI:
+            if not WYBRANE or any(cz["id"].startswith(w) for w in WYBRANE):
+                render_czesc(cz, cache)
+        for m in MINIATURY:
+            if not WYBRANE or any(m[0].startswith(w) for w in WYBRANE):
+                render_miniatura(*m, cache)
+        return
     potrzebne = set()
     kroki = [k for k in KROKI if not WYBRANE or any(k["id"].startswith(w) for w in WYBRANE)]
     for k in kroki:

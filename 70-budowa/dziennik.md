@@ -40,3 +40,8 @@
 ## 2026-10-19 – wydruk próbki gwintu 45° (E2.0)
 - Trzpień + nakrętki 45°, skok 5, wydruk na X1C. Luz poprzeczny suwmiarką (skrajne dociśnięcie w obie strony, błąd pomiaru ±0,15–0,20 mm): nakrętka 0,20 → ok. 0,5 mm, pasuje dobrze; nakrętka 0,25 → ok. 1,15 mm, za luźna. Nakrętek 0,30–0,40 nie mierzono.
 - Decyzja: `luzGwint` = 0,20 dla gniazda i nakrętki v2.5.
+
+## 2026-10-19 – v2.5 w Onshape i pierwsza partia druku
+- Model v2.5 zbudowany od nowa w Onshape (wykonawca CAD w osobnej sesji), review Opus + Codex, poprawki E2.1c, eksport 10 części.
+- Wydrukowane: gniazdo, nakrętka, ramię, cięgno, 2 tulejki, pokrywa. Do druku: kaseta, jarzmo z miską, sanki serwa, przyrządy.
+- ESP32-C3 SuperMini przylutowany do listew.

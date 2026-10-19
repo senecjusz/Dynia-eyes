@@ -4,7 +4,7 @@ Dla orkiestratora, który przejmuje projekt w Warszawie. Zasady pracy: `AGENTS.m
 
 ## Gdzie jesteśmy
 
-- **Małe oko, moduł v2.4** gotowy i po review (Opus + Codex): nadaje się do wydruku testowego po drobnych poprawkach v2.5. Połączone wnioski: `20-analizy/review/2026-10-18-v2.4-polaczone.md`.
+- **Małe oko, moduł v2.5** (19.10): model parametryczny w Onshape, dokument „Oko F v2.5”; po review i poprawkach E2.1c wszystkie 10 części do druku (`40-cad/3mf/Oko F v2.5/`). Instrukcja montażu: `70-budowa/montaz-v2.5.md`. Kontroler: ESP32-C3 SuperMini.
 - **Źródło prawdy o modelu (od 19.10):** Onshape, dokument SimpleEye; v2.5 powstaje w nim przez przebudowę. `40-cad/solidcraft/oko-f-v2.4.solidcraft` to archiwum i wzorzec wymiarów v2.4.
 - **Historia wersji:** v1 → v1.1 (wydruk testowy) → v2 → v2.1 → v2.1b/c/d → v2.2 (pierwsza składalna, gniazdo + kaseta) → v2.3 (SolidCraft) → v2.4 (po review) → v2.5 (do zrobienia). Każda wersja przeszła review Opus + Codex.
 - **Wydruki:**

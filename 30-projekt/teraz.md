@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E2.1–E2.5, budowa modułu v2.5 w Onshape (wykonawca CAD).
+**Bieżące zadanie:** E3.2, wydruk i montaż modułu v2.5 na stole; E3.4 test elektroniki.
 
 ```mermaid
 flowchart TD
@@ -53,19 +53,20 @@ Gotowe, gdy wykonawca ma sprawdzalne zasady, które nie pozwalają zablokować A
 Gotowe, gdy v2.5 jest w SimpleEye, przeszła kontrolę wyjścia i review, a 3MF leży w `40-cad/3mf/`.
 
 - [x] E2.0 Wynik: `luzGwint` = 0,20 (dziennik 19.10). Model gotowy 19.10 w dokumencie „Probka gwintu 45” (TMP), weryfikacja `40-cad/onshape/weryfikacja-probka-gwintu-45.md`; czeka na eksport 3MF, wydruk i ocenę użytkownika. Próbka gwintu 45°, skok 5: pierścień i nakrętki z luzem 0,2 / 0,25 / 0,3 / 0,35 / 0,4, zaprojektowane przez wykonawcę w nowym dokumencie Onshape w folderze TMP (pilotaż zasad), wydruk na docelowej drukarce, wybór luzu dla gniazda i nakrętki v2.5. Brief: `30-projekt/brief-e2.0-probka-gwintu-45.md`.
-- [ ] E2.1 Brief wykonawcy v2.5: `30-projekt/brief-e2.1-v2.5-modul.md` (decyzje z 19.10 w `decyzje.md`). Pokazany użytkownikowi przed wysłaniem.
-- [ ] E2.2 Wykonawca, przed pierwszym zapisem modelu: nowy generator szkiców (wymiary `#zmienna`, więzy do layoutu, bez `Fix`; klasa `Sk` z v2.2 emituje gotowe współrzędne i się nie nadaje), bramka `req()` z twardym stopem i test progu, test znacznika szkicu na jednym szkicu zapisanym przez API. W `40-cad/onshape/oko-f-v2.2-build.js`: usunąć `fs()` i `sleep(350)`, `sketchW()` przerobić na jeden POST na szkic, w `circ()` jeden odczyt `bodydetails` zamiast ośmiu, `OS.zmienne()` wysyła zmienne raz, nie przyrostowo, stan z `localStorage` przenieść do `40-cad/onshape/stan-api.json`, sprawdzenie znacznika szkicu po każdym szkicu.
-- [ ] E2.3 Wykonawca: plan drzewa każdej części; zatwierdza orkiestrator.
-- [ ] E2.4 Wykonawca: budowa części i poprawki 1–7.
-- [ ] E2.5 Runda weryfikacji modelu K1–K10 (wykonawca) i niezależne sprawdzenie K1–K8 przez orkiestratora.
-- [ ] E2.6 Eksport 3MF (użytkownik), kontrola siatek, luzy z tabeli, wsuwanie z sąsiednimi częściami (wykonawca).
-- [ ] E2.7 Review dwoma recenzentami.
+- [x] E2.1 Model v2.5 w nowym dokumencie Onshape „Oko F v2.5” (folder Halloween): 10 części, 11 folderów; spis elementów v2.4, plan, weryfikacja K1–K11 (`40-cad/onshape/e2.1-*.md`, `weryfikacja-v2.5.md`). Otwarte: K6 (53 szkice zamiast 40) i ukrycie płaszczyzn/szkiców – osobne zadanie.
+- [x] E2.1b Nazwy części i eksport 3MF (eksport ręczny przez użytkownika; API ma za niski licznik eksportu), `40-cad/onshape/e2.1b-eksport.md`.
+- [x] E2.1d Review v2.5 (Opus, Codex): `20-analizy/review/2026-10-19-v2.5-*.md`.
+- [x] E2.1c Poprawki po review: szczelina zaczepu 213°, kula jarzma (klej 0,5), fazka sanek 2 mm; testy na siatkach zaliczone (`40-cad/onshape/e2.1c-poprawki.md`). Wszystkie 10 części do druku.
+- [ ] E2.2 Porządki w modelu: scalenie szkiców (K6), ukrycie płaszczyzn i szkiców po użyciu.
+- [ ] E2.3 Złożenie (Assembly) z mate'ami w Onshape, ruch ±33°, wsuwanie.
 
 ## E3: Wydruk testowy i wnioski
 
 Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/dziennik.md`.
 
-- [ ] E3.2 Wydruk i montaż modułu v2.5.
+- [ ] E3.1 Instrukcja montażu: `70-budowa/montaz-v2.5.md` (galeria części, lista śrub, kroki z obrazkami Blendera; po review nietechnicznym).
+- [ ] E3.2 Wydruk i montaż modułu v2.5 (19.10: wydrukowane gniazdo, nakrętka, ramię, cięgno, tulejki, pokrywa).
+- [ ] E3.4 Test elektroniki: ESP32-C3 SuperMini + PCA9685 + 1 serwo, program testowy (środek 1500 µs, ruch ±30°); wymaga arduino-cli z obsługą ESP32.
 - [ ] E3.3 Wpis w dzienniku i wnioski do następnej wersji.
 
 ## Epiki później
@@ -74,9 +75,12 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 
 ## Parking
 
+- `AGENTS.md` (wnioski 19.10, do zatwierdzenia): status OK szyku nie dowodzi powielenia wszystkich operacji; po eksporcie test symetrii (obrót/odbicie) i porównanie powierzchni z poprzednią wersją; kontrola szkicu przez filtr nazw w drzewie; ukrywanie płaszczyzn i szkiców po użyciu; zlecenia dla agentów jako osobne, widoczne sesje.
+- Instrukcja montażu: kolejność przyrządu centrowania przy Ramieniu (plan v2.2: przyrząd przed Ramieniem); śruby M2/M3 użytkownika mają łby krzyżakowe – poprawić nazwy i wkrętak PH1.
+- Eksport 3MF: Bambu nie pokazuje „ę” w nazwie obiektu.
 - `AGENTS.md`: stan OK z odpowiedzi zapisu nie wyłapuje ostrzeżeń (np. „missing selection”); kontrola musi czytać też ikony ostrzeżeń w drzewie.
 - `30-projekt/plan-powrot-do-onshape.md`: obaj recenzenci uznali go za nie do realizacji; dopisać adnotację albo usunąć.
 - Dublety w `30-projekt/decyzje.md`.
-- Śruby osi ISO 7380 M3: skrócić do 4 mm albo kupić M3×5/6.
+- Oś oka: zamówione M3×6 (19.10); przy M3×6 otwory Ø4 w biegunach piłeczki albo pogłębienie łba w modelu (`lebH`) – do decyzji po teście.
 - Napęd symetryczny (pomysł użytkownika), po wydruku modułu.
 - Kopia researchu Gemini na dysk sieciowy.
