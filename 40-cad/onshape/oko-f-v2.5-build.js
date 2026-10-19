@@ -124,6 +124,14 @@ G.czekajNaWiersz = (fid, warunek, limitMs) => new Promise((ok, zle) => {
   const tm = setTimeout(() => { obs.disconnect(); zle(new Error(`limit ${limitMs} ms: wiersz ${fid} = ${JSON.stringify(G.wiersz(fid))}`)); }, limitMs);
   if (!sprawdz()) obs.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
 });
+// 19.10: lista drzewa jest wirtualizowana (zwiniety folder / wiersz poza oknem = brak w DOM); przed stopem skan przewijanej listy
+// karta ukryta (regula orkiestratora): jedno ponowienie po 15 s, potem stop
+G.czekajNaWiersz = ((czekaj) => async (fid, warunek, limitMs) => { try { return await czekaj(fid, warunek, limitMs); } catch (e) {
+  if (document.visibilityState === 'hidden') { G.log.push({ t: new Date().toISOString(), uwaga: 'wiersz ' + fid + ' brak, karta hidden: ponowienie po 15 s' }); await new Promise((r) => setTimeout(r, 15000)); try { return await czekaj(fid, warunek, limitMs); } catch (e2) { G.stop = 'karta hidden: wiersz ' + fid + ' brak po ponowieniu'; throw e2; } }
+  let el = document.querySelector('.os-list-item[feature-id]'); while (el && !(el.scrollHeight > el.clientHeight + 5 && /auto|scroll/.test(getComputedStyle(el).overflowY))) el = el.parentElement;
+  if (!el) throw e; const t0 = performance.now();
+  for (let y = 0; y <= el.scrollHeight; y += Math.max(100, el.clientHeight / 2)) { el.scrollTop = y; await new Promise((r) => setTimeout(r, 300)); const w = G.wiersz(fid); if (w && warunek(w)) { G.log.push({ t: new Date().toISOString(), uwaga: 'wiersz ' + fid + ' znaleziony skanem listy' }); return { w, ms: Math.round(performance.now() - t0) }; } }
+  throw e; } })(G.czekajNaWiersz);
 
 // ===================== zapis szkicu z kontrola znacznika =====================
 // kontekst dokumentu (ustawiany po otwarciu Part Studio; eid z URL karty, bez wywolania API)
@@ -405,11 +413,15 @@ G.layout = () => G.bryla('Layout', async () => {
 G.gniazdoA = () => G.bryla('Gniazdo A', async () => {
   const p = new G.Sk('Gniazdo: profil', G.q.std('Front'));
   const ids = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12', 'g13'];
-  p.poly(ids, [[20.5, 0], [36, 0], [37, -1], [37, -4.635], [31.75, -3.399], [31.5, -3.399], [31.5, -15], [29.45, -15], [29.45, -45.7], [28.1, -45.7], [27.5, -45.1], [27.5, -1.5], [20.5, -1.5]]);
+  // poprawka 19.10: spod rantu = luk R #dyniaR (srodek na osi), nie cieciwa
+  const pts = [[20.5, 0], [36, 0], [37, -1], [37, -4.635], [31.75, -3.399], [31.5, -3.399], [31.5, -15], [29.45, -15], [29.45, -45.7], [28.1, -45.7], [27.5, -45.1], [27.5, -1.5], [20.5, -1.5]];
+  const cD = [0, -150], kat = (c, q) => Math.atan2(q[1] - c[1], q[0] - c[0]) * 180 / Math.PI;
+  ids.forEach((id, i) => { if (id === 'g4') p.arc('g4', cD, 150, kat(cD, pts[3]), kat(cD, pts[4])); else p.line(id, pts[i], pts[(i + 1) % 13]); });
+  ids.forEach((id, i) => p.co(id + '.end', ids[(i + 1) % 13] + '.start'));
   p.H('g1'); p.V('g3'); p.H('g5'); p.V('g6'); p.H('g7'); p.V('g8'); p.H('g9'); p.V('g11'); p.H('g12'); p.V('g13');
   p.coExt('g1.start', G.q.std('Top'));
   p.dx('g1.start', '#kolnierzykR'); p.dx('g2.start', '#rantR - #fazkaRantu'); p.dx('g3.start', '#rantR'); p.dy('g3.start', '#fazkaRantu');
-  p.dy('g4.start', '#rantSag1'); p.dx('g5.start', '#otworR'); p.dy('g5.start', '#rantSag2'); p.dx('g6.start', '#przodR'); p.dy('g7.start', '#przodL');
+  p.coExt('g4.center', G.q.std('Right')); p.dy('g4.center', '#dyniaR'); p.ra('g4', '#dyniaR'); p.dx('g5.start', '#otworR'); p.dx('g6.start', '#przodR'); p.dy('g7.start', '#przodL');
   p.dx('g8.start', '#gwintRdzenR'); p.dy('g9.start', '#gniazdoKoniec'); p.dx('g10.start', '#gniazdoIDR + #fazkaCzola'); p.dx('g11.start', '#gniazdoIDR');
   p.dy('g11.start', '#gniazdoKoniec - #fazkaCzola'); p.dy('g12.start', '#rantT');
   await G.zapiszSzkic(p.feature());
@@ -493,8 +505,11 @@ G.nakretka = () => G.bryla('Nakrętka', async () => {
   await G.zapiszSzkic(s.feature());
   await G.rev('Nakrętka: korpus', G.q.region('Nakrętka: przekrój'), { op: 'NEW' });
   const c = new G.Sk('Nakrętka: czoło szkic', G.q.std('Front'));
-  c.poly(['c1', 'c2', 'c3'], [[29.75, -24], [38, -24], [38, -26.2]]); c.H('c1'); c.V('c2');
-  c.dx('c1.start', '#nakretkaOtworR'); c.dy('c1.start', '#nakretkaZ'); c.dx('c2.start', '#nakretkaZewR'); c.dy('c3.start', '#nakretkaZ + #nakretkaCzoloSpad');
+  // poprawka 19.10: czolo = luk R #nakretkaCzoloR (srodek na osi), nie cieciwa
+  const cN = [0, -(24 + Math.sqrt(130 ** 2 - 29.65 ** 2))], zE = cN[1] + Math.sqrt(130 ** 2 - 38 ** 2), kc = (q) => Math.atan2(q[1] - cN[1], q[0] - cN[0]) * 180 / Math.PI;
+  c.line('c1', [29.65, -24], [38, -24]); c.line('c2', [38, -24], [38, zE]); c.arc('c3', cN, 130, kc([38, zE]), kc([29.65, -24]));
+  c.co('c1.end', 'c2.start'); c.co('c2.end', 'c3.start'); c.co('c3.end', 'c1.start'); c.H('c1'); c.V('c2');
+  c.dx('c1.start', '#nakretkaOtworR'); c.dy('c1.start', '#nakretkaZ'); c.dx('c2.start', '#nakretkaZewR'); c.coExt('c3.center', G.q.std('Right')); c.ra('c3', '#nakretkaCzoloR');
   await G.zapiszSzkic(c.feature());
   await G.rev('Nakrętka: czoło pod dynię', G.q.region('Nakrętka: czoło szkic'), { op: 'REMOVE', scope: [G.q.body('Nakrętka: korpus')] });
   await G.plOffset('Nakrętka: pl. tyłu', G.q.std('Top'), '#nakretkaTylZ', true);
@@ -793,7 +808,8 @@ G.jarzmo = () => G.bryla('Jarzmo', async () => {
   b.dx('lC.end', '#kP20x'); b.dy('lC.end', '#kP20z'); b.dx('lD.end', '#kP21x'); b.dy('lD.end', '#kP21z');
   b.circle('kC', [7.382, -36.147], 10); b.coExt('kC.center', G.q.vtx('Layout: osie i punkty', 'lCH.start')); b.ra('kC', '#korbaPiastaR');
   await G.zapiszSzkic(b.feature());
-  await G.ext('Jarzmo: korba', 'Jarzmo: korba szkic', { op: 'ADD', depth: '#plytaT', opp: true, scope: J() });
+  // poprawka 19.10: wszystkie obszary szkicu (filterInnerLoops=true pomijal obszar wspolny petli 1 i okregu piasty)
+  await G.ext('Jarzmo: korba', 'Jarzmo: korba szkic', { op: 'ADD', depth: '#plytaT', opp: true, scope: J(), regions: `query=qSketchRegion(makeId("${G.fid('Jarzmo: korba szkic')}"), false);` });
   await G.op('Jarzmo: otwór korby', 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', G.q.vtx('Layout: osie i punkty', 'lCH.start')), G.pe('hole', 'endStyle', 'THROUGH'),
     G.pn('holeDiameter', '#otworPrzegubuD'), G.pb('oppositeDirection', true), G.pq('scope', ...J())]);
 });
@@ -812,7 +828,7 @@ G.ZM.reszta = [
  ['ramieRo', L, '5.5 mm', 5.5, ''], ['ramieRh', L, '5 mm', 5, ''], ['ramaY', L, '4.5 mm', 4.5, ''], ['ramaH', L, '1.6 mm', 1.6, ''], ['ramaR', L, '5.2 mm', 5.2, ''], ['ramaRamieR', L, '3.5 mm', 3.5, ''],
  ['orczykRamieL', L, '17.5 mm', 17.5, ''], ['kieszenR', L, '3.7 mm', 3.7, ''], ['kieszenR0', L, '2.6 mm', 2.6, ''], ['kieszenR1', L, '2.3 mm', 2.3, ''], ['ramaZakladka', L, '0.1 mm', 0.1, ''], ['kieszenGl', L, '#ramaH - #ramaZakladka', 1.5, ''],
  ['m2L', L, '13 mm', 13, 'wkret M2 od osi orczyka'], ['m2Otwor', L, '2.2 mm', 2.2, ''], ['wkretOrczykaD', L, '2.8 mm', 2.8, ''],
- ['ciegnoR', L, '4.2 mm', 4.2, ''], ['ciegnoY', L, '0.3 mm', 0.3, ''], ['podniesienieR', L, '3.8 mm', 3.8, ''], ['podniesienieY', L, '2.1 mm', 2.1, ''], ['ciegnoDno', L, '1 mm', 1, ''],
+ ['ciegnoR', L, '4.2 mm', 4.2, ''], ['ciegnoY', L, '0.3 mm', 0.3, ''], ['podniesienieR', L, '3.8 mm', 3.8, ''], ['podniesienieY', L, '#plytaT - #ciegnoY - #ramaZakladka', 2.1, 'gora plyty ciegna - zakladka (K9 19.10)'], ['ciegnoDno', L, '1 mm', 1, ''],
  ['podniesienieH', L, '#wkladkaL + #wkladkaZapas + #ciegnoDno - #plytaT + #ramaZakladka', 3.2, ''], ['ciegnoWkladkiY', L, '5.4 mm', 5.4, ''], ['ciegnoWkladkaGl', L, '#wkladkaL + #wkladkaZapas', 4.6, ''],
  ['kolnierzD', L, '8 mm', 8, ''], ['kolnierzH', L, '0.8 mm', 0.8, ''], ['tulejkaY', L, '3.8 mm', 3.8, ''], ['tulejkaKoniecY', L, '0.3 mm', 0.3, ''], ['tulejkaL', L, '#tulejkaY - #tulejkaKoniecY', 3.5, ''],
  ['pokrywaT', L, '3 mm', 3, ''], ['pokrywaUchoR', L, '4.01 mm', 4.01, ''], ['pokrywaUchoR0', L, '25 mm', 25, ''], ['pokrywaEX', L, '#uchoR2 * cos(#uchoKat)', 25.662, ''], ['pokrywaEY', L, '#uchoR2 * sin(#uchoKat)', 21.533, ''],
@@ -820,11 +836,23 @@ G.ZM.reszta = [
  ['zaciskPolSzer', L, '1.9 mm', 1.9, ''], ['zaciskTasmy', L, '1 mm', 1, 'zacisk tasmy kabla 1.4'], ['zaciskY', L, '#oknoY2 + #zaciskTasmy', 34.8, ''],
  ['prowKablaX1', L, '4.7 mm', 4.7, ''], ['prowKablaX2', L, '5.9 mm', 5.9, ''], ['prowKablaY1', L, '29.5 mm', 29.5, ''], ['prowKablaY2', L, '36 mm', 36, ''], ['prowKablaH', L, '4 mm', 4, ''], ['prowKablaZakladka', L, '0.5 mm', 0.5, ''],
  ['prowKablaZ', L, '#kasetaTylZ + #prowKablaZakladka', 78, ''],
+ // poprawka 19.10 (blad odczytu v2.4): pas o stalej pol-szerokosci wzdluz osi zamiast stycznych
+ ['ramiePolSzer', L, '4 mm', 4, 'pol szerokosci plyty ramienia (v2.4)'], ['kieszenPolSzer', L, '2.6 mm', 2.6, 'pol szerokosci kieszeni orczyka (v2.4)'], ['ciegnoPolSzer', L, '3.5 mm', 3.5, 'pol szerokosci ciegna (v2.4)'],
 ];
 const lay = (v) => G.q.vtx('Layout: osie i punkty', v);
 const DIST = (s, a, q, expr) => s.con('DISTANCE', [G.pstr('localFirst', a), G.pq('externalSecond', q), { btType: 'BTMParameterEnum-145', parameterId: 'direction', enumName: 'DimensionDirection', value: 'MINIMUM' }, G.pn('length', expr)]);
 const prost = (s, ids, pts, d) => { s.poly(ids, pts); s.H(ids[0]); s.V(ids[1]); s.H(ids[2]); s.V(ids[3]); s.dx(ids[0] + '.start', d[0]); s.dx(ids[1] + '.start', d[1]); s.dy(ids[0] + '.start', d[2]); s.dy(ids[2] + '.start', d[3]); };
-// stadion: luki w a i b (punkty zewn.), styczne; wynik: obszar
+// kosc (poprawka 19.10, jak v2.4): okregi w a i b, pas o pol-szerokosci w wzdluz osi a-b (linie rownolegle do osi), konce odcinkow na okregach
+const dLL = (s, a, b, expr) => s.con('DISTANCE', [G.pstr('localFirst', a), G.pstr('localSecond', b), { btType: 'BTMParameterEnum-145', parameterId: 'direction', enumName: 'DimensionDirection', value: 'MINIMUM' }, G.pn('length', expr)]);
+const kosc = (s, ca, ra, cb, rb, qa, qb, eRa, eRb, eW, w) => {
+  const ang = Math.atan2(cb[1] - ca[1], cb[0] - ca[0]); const n = [-Math.sin(ang), Math.cos(ang)], d = [Math.cos(ang), Math.sin(ang)];
+  s.line('ax', ca, cb, true); s.coExt('ax.start', qa); s.coExt('ax.end', qb);
+  s.circle('oA', ca, 2 * ra); s.circle('oB', cb, 2 * rb); s.coExt('oA.center', qa); s.coExt('oB.center', qb); s.ra('oA', eRa); s.ra('oB', eRb);
+  const k1 = Math.sqrt(ra * ra - w * w), k2 = Math.sqrt(rb * rb - w * w);
+  const P = (c, k, sg, sd) => [c[0] + sg * n[0] * w + sd * d[0] * k, c[1] + sg * n[1] * w + sd * d[1] * k];
+  s.line('b1', P(ca, k1, 1, 1), P(cb, k2, 1, -1)); s.line('b2', P(ca, k1, -1, 1), P(cb, k2, -1, -1));
+  for (const b of ['b1', 'b2']) { s.par(b, 'ax'); dLL(s, b, 'ax', eW); s.co(b + '.start', 'oA'); s.co(b + '.end', 'oB'); } };
+// stadion (styczne) - nieuzywany od 19.10, zostawiony dla historii
 const stadion = (s, pre, ca, ra, cb, rb, qa, qb, exprA, exprB) => {
   const ang = Math.atan2(cb[1] - ca[1], cb[0] - ca[0]) * 180 / Math.PI; const p = (c, r, a) => [c[0] + r * Math.cos(a * Math.PI / 180), c[1] + r * Math.sin(a * Math.PI / 180)];
   s.arc(pre + 'A', ca, ra, ang + 90, ang + 270); s.arc(pre + 'B', cb, rb, ang - 90, ang + 90);
@@ -850,11 +878,11 @@ G.sanki = () => G.bryla('Sanki serwa', async () => {
   o.point('u1', [0, -46.75]); o.point('u2', [0, -74.55]); o.coExt('u1', G.q.std('Right')); o.coExt('u2', G.q.std('Right')); o.dy('u1', '#sankiOtwor1Z'); o.dy('u2', '#sankiOtwor2Z');
   await G.zapiszSzkic(o.feature());
   await G.op('Sanki: otwory uszu', 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', G.q.vtx('Sanki: otwory uszu szkic', 'u1'), G.q.vtx('Sanki: otwory uszu szkic', 'u2')), G.pe('hole', 'endStyle', 'BLIND'),
-    G.pn('holeDiameter', '#serwoWkret'), G.pn('holeDepth', '#sankiOtworGl'), G.pb('oppositeDirection', true), G.pq('scope', G.q.body('Sanki: słupki'))]);
+    G.pn('holeDiameter', '#serwoWkret'), G.pn('holeDepth', '#sankiOtworGl'), G.pe('hole', 'tipAngleStyle', 'FLAT'), G.pb('oppositeDirection', true), G.pq('scope', G.q.body('Sanki: słupki'))]); // FLAT 19.10: dno 0.6 pod calym otworem
 });
 G.ramie = () => G.bryla('Ramię orczyka', async () => {
   const s = new G.Sk('Ramię: płyta szkic', G.q.plane('Jarzmo: pl. korby'));
-  stadion(s, 'r', [0, -66], 5.5, [-9.235, -40.628], 5, lay('lOko.end'), lay('lCH.end'), '#ramieRo', '#ramieRh');
+  kosc(s, [0, -66], 5.5, [-9.235, -40.628], 5, lay('lOko.end'), lay('lCH.end'), '#ramieRo', '#ramieRh', '#ramiePolSzer', 4);
   await G.zapiszSzkic(s.feature());
   await G.ext('Ramię: płyta', 'Ramię: płyta szkic', { op: 'NEW', depth: '#plytaT', opp: true });
   const R = [G.q.body('Ramię: płyta')];
@@ -871,11 +899,14 @@ G.ramie = () => G.bryla('Ramię orczyka', async () => {
   await G.zapiszSzkic(r.feature());
   await G.ext('Ramię: rama orczyka', 'Ramię: rama orczyka szkic', { op: 'ADD', depth: '#ramaH', opp: true, scope: R });
   const k = new G.Sk('Ramię: kieszeń orczyka szkic', G.q.plane('Ramię: pl. ramy'));
+  // poprawka 19.10 (jak v2.4): prostokat 2 x kieszenPolSzer od O do T + okregi R kieszenR w O i R kieszenR1 w T
+  const pT = G.q.vtx('Ramię: rama orczyka szkic', 'pT');
+  k.line('ax', [0, -66], [-9.235, -40.628], true); k.coExt('ax.start', lay('lOko.end')); k.coExt('ax.end', lay('lCH.end'));
   k.circle('kO', [0, -66], 7.4); k.coExt('kO.center', lay('lOko.end')); k.ra('kO', '#kieszenR');
-  k.circle('k0', [0, -66], 5.2, true); k.coExt('k0.center', lay('lOko.end')); k.ra('k0', '#kieszenR0');
-  k.circle('kT', [-5.985, -49.555], 4.6); k.coExt('kT.center', G.q.vtx('Ramię: rama orczyka szkic', 'pT')); k.ra('kT', '#kieszenR1');
-  k.line('n1', [2.443, -65.111], [-3.824, -48.769]); k.line('n2', [-8.146, -50.341], [-2.443, -66.889]);
-  k.co('n1.start', 'k0'); k.co('n1.end', 'kT'); k.tan('n1', 'k0'); k.tan('n1', 'kT'); k.co('n2.start', 'kT'); k.co('n2.end', 'k0'); k.tan('n2', 'k0'); k.tan('n2', 'kT');
+  k.circle('kT', [-5.985, -49.555], 4.6); k.coExt('kT.center', pT); k.ra('kT', '#kieszenR1');
+  k.poly(['q1', 'q2', 'q3', 'q4'], [[-2.443, -66.889], [2.443, -65.111], [-3.542, -48.666], [-8.429, -50.445]]);
+  k.perp('q1', 'ax'); k.par('q2', 'ax'); k.perp('q3', 'ax'); k.par('q4', 'ax'); dLL(k, 'q2', 'ax', '#kieszenPolSzer'); dLL(k, 'q4', 'ax', '#kieszenPolSzer');
+  k.con('COINCIDENT', [G.pstr('localFirst', 'q1'), G.pq('externalSecond', lay('lOko.end'))]); k.con('COINCIDENT', [G.pstr('localFirst', 'q3'), G.pq('externalSecond', pT)]);
   await G.zapiszSzkic(k.feature());
   await G.ext('Ramię: kieszeń orczyka', 'Ramię: kieszeń orczyka szkic', { op: 'REMOVE', depth: '#kieszenGl', opp: true, scope: R });
   const H = (n, loc, d, opp) => G.op(n, 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', loc), G.pe('hole', 'endStyle', 'THROUGH'), G.pn('holeDiameter', d), G.pb('oppositeDirection', opp), G.pq('scope', ...R)]);
@@ -886,7 +917,7 @@ G.ramie = () => G.bryla('Ramię orczyka', async () => {
 G.ciegno = () => G.bryla('Cięgno', async () => {
   await G.plOffset('Cięgno: pl. płyty', G.q.std('Front'), '#ciegnoY');
   const s = new G.Sk('Cięgno: płyta szkic', G.q.plane('Cięgno: pl. płyty'));
-  stadion(s, 'c', [7.382, -36.147], 4.2, [-9.235, -40.628], 4.2, lay('lCH.start'), lay('lCH.end'), '#ciegnoR', '#ciegnoR');
+  kosc(s, [7.382, -36.147], 4.2, [-9.235, -40.628], 4.2, lay('lCH.start'), lay('lCH.end'), '#ciegnoR', '#ciegnoR', '#ciegnoPolSzer', 3.5);
   await G.zapiszSzkic(s.feature());
   await G.ext('Cięgno: płyta', 'Cięgno: płyta szkic', { op: 'NEW', depth: '#plytaT', opp: true });
   const C = [G.q.body('Cięgno: płyta')];

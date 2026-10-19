@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:58Z, wykonawca CAD: luki R130/R150 poprawione, bilans objetosci wszystkich czesci; nastepnie K9",
+ "zapis": "2026-10-19T15:15Z, wykonawca CAD: weryfikacja v2.5 zakonczona, raport 40-cad/onshape/weryfikacja-v2.5.md",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,9 +10,9 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 240,
-  "features": 173,
-  "getFeatures": 1
+  "total": 247,
+  "features": 174,
+  "getFeatures": 2
  },
  "budzet": {
   "total": 260,
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "fe201c8da3cd408f83474fbe",
+ "mv": "95ea37eb5a2d7c8851d4c68a",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -1339,7 +1339,57 @@
    "GET bodydetails",
    200,
    463
-  ]
+  ],
+  [
+   "2026-10-19T14:44Z",
+   "POST variables K9 stan min (luzSanki 0.15, otworDolnyD 8.5, plytaT 2, luzGwint 0.15, nakretkaH 6)",
+   204,
+   3000
+  ],
+  [
+   "2026-10-19T14:44Z",
+   "GET bodydetails K9 min",
+   200,
+   462
+  ],
+  {
+   "t": "2026-10-19T14:45Z",
+   "uwaga": "K9 min: 12 bryl - Ciegno rozpadlo sie (podniesienieY stale 2.1); poprawka podniesienieY = #plytaT - #ciegnoY - #ramaZakladka"
+  },
+  [
+   "2026-10-19T14:46Z",
+   "POST variables K9 stan max (0.4, 9, 3, 0.3, 8) + poprawka podniesienieY",
+   204,
+   2999
+  ],
+  [
+   "2026-10-19T14:46Z",
+   "GET bodydetails K9 max",
+   200,
+   461
+  ],
+  [
+   "2026-10-19T14:48Z",
+   "POST variables przywrocenie",
+   204,
+   2999
+  ],
+  [
+   "2026-10-19T14:48Z",
+   "GET massproperties kontrola po przywroceniu",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T14:48:25Z",
+   "GET /features (K1, K3-K8)",
+   200,
+   93
+  ],
+  {
+   "t": "2026-10-19T15:05Z",
+   "uwaga": "K1/K2/K11 skan drzewa w karcie (wszystkie foldery rozwiniete, lista wirtualizowana przewijana): 154 operacje, 0 bledow/ostrzezen, 53 szkice = 53 w JSON, 0 niedookreslonych, foldery zgodne"
+  }
  ],
  "stop": null,
  "folderyDoZalozenia": {},
@@ -1359,7 +1409,7 @@
   "Fazki w profilach szkicow (rant, czolo kasety, otwor gniazda, zebro, faza zwoju) i fazki wejscia rowka jako ciecie - jak E2.0; Chamfer wymagalby zapytan krawedzi z liczbami (K3)"
  ],
  "weryfikacja": {
-  "t": "2026-10-19T14:58Z",
+  "t": "2026-10-19T15:15Z",
   "zrobione": [
    "K1: featureStatus wszystkich operacji OK (GET /features, wywolanie 224) i ikony w drzewie bez bledow po poprawkach",
    "porownanie objetosci, obrysu i genusu z 3MF v2.4 dla 10 brył (obrysy zgodne do 0.01 mm, genus zgodny)",
@@ -1367,7 +1417,8 @@
    "Jarzmo poprawione: 1825.1 mm3 = v2.4 1819.2 + 5.6 (pelny okrag piasty w v2.5) + 0.3",
    "Sanki 1057.7 wyjasnione: slupki 826.85 + 2 prowadnice 2x126.52 - otwory 19.09 - stozki 0.92 - fazka 2.18 = 1057.71; v2.4 3MF bez jednej prowadnicy (943.5 policzone, 944.16 siatka); po FLAT oczekiwane 1058.63",
    "Kaseta: okno SG90 bez zmian (2x(12.7/2+0.25)=13.2); Ø8.5->8.7 -17.4 (siatka v2.4), stozki wkladek -10.1, luki cieciw walcow v2.4 +43.0 -> +15.5 wobec +29.2, reszta 13.7 (0.04%)",
-   "Nakretka v2.4: przekroj w strefie czystej 1308.4 mm2 (rowek ISO 131.7), w strefie klucza 1217.8"
+   "Nakretka v2.4: przekroj w strefie czystej 1308.4 mm2 (rowek ISO 131.7), w strefie klucza 1217.8",
+   "K1-K11 i raport weryfikacja-v2.5.md"
   ],
   "objetosciV25": {
    "Gniazdo": 32576.96,
@@ -1392,12 +1443,10 @@
    "Tulejki": 76.75,
    "Pokrywa": 7959.9
   },
-  "wTrakcie": "K9 zbiorczy (2 stany, 5 zmiennych naraz)",
+  "wTrakcie": null,
   "zostalo": [
-   "K9",
-   "GET /features: K1, K3-K8",
-   "K2 i K11 w karcie",
-   "raport + commit"
+   "decyzja orkiestratora: K6 scalenie szkicow (53 vs 40), K3 instanceCount 2",
+   "K10 uzytkownik"
   ],
   "bilans": {
    "Sanki": "+114.5 = 2. prowadnica +126.53 (zgubiona w 3MF v2.4) - zwezenie prowadnicy 6.1->6.35 -9.73 + otwory plytsze 3.85->3.75 i FLAT +0.51 - fazka 1x45 -2.18 + siatka v2.4 -0.65; dno otworow 0.60 (plaszczyzna y -21.35)",
@@ -1409,6 +1458,91 @@
    "Ciegno": "+0.1",
    "Tulejki": "0",
    "Pokrywa": "+3.4 (siatka)"
+  },
+  "k9": {
+   "tryb": "zbiorczy: 2 stany x 5 zmiennych naraz (decyzja orkiestratora, budzet)",
+   "min": {
+    "mods": {
+     "luzSanki": 0.15,
+     "otworDolnyD": 8.5,
+     "plytaT": 2,
+     "luzGwint": 0.15,
+     "nakretkaH": 6
+    },
+    "sankiProwX": 6.25,
+    "kasetaOknoX": 6.4,
+    "kasetaOtworyR": 4.25,
+    "korbaY": -1,
+    "nakretkaR": [
+     29.6,
+     31.6
+    ],
+    "nakretkaTylZ": -30,
+    "gniazdoKoniecZ": -44.7,
+    "bryly": 12,
+    "uwaga": "Ciegno rozpadniete (podniesienieY stale)"
+   },
+   "max": {
+    "mods": {
+     "luzSanki": 0.4,
+     "otworDolnyD": 9,
+     "plytaT": 3,
+     "luzGwint": 0.3,
+     "nakretkaH": 8
+    },
+    "sankiProwX": 6.5,
+    "kasetaOknoX": 6.9,
+    "kasetaOtworyR": 4.5,
+    "korbaY": 0,
+    "nakretkaR": [
+     31.75
+    ],
+    "nakretkaTylZ": -32,
+    "gniazdoKoniecZ": -46.7,
+    "bryly": 10,
+    "ciegnoPlaszczyznyY": [
+     -0.3,
+     0.7,
+     2.7,
+     5.3
+    ]
+   },
+   "przywrocenie": "objetosci identyczne jak przed testem"
+  },
+  "k1k11": {
+   "operacje": 154,
+   "bledy": 0,
+   "ostrzezenia": 0,
+   "szkiceDrzewo": 53,
+   "szkiceJSON": 53,
+   "niedookreslone": 0,
+   "fix": 0,
+   "k3wyjatki": [
+    [
+     "Gniazdo: okienka",
+     "instanceCount",
+     "2"
+    ],
+    [
+     "Kaseta: zaczep 213",
+     "instanceCount",
+     "2"
+    ]
+   ],
+   "k6bryloweOperacje": {
+    "Gniazdo": 10,
+    "Nakretka": 8,
+    "Kaseta": 23,
+    "Jarzmo": 8,
+    "Sanki": 3,
+    "Ramie": 6,
+    "Ciegno": 3,
+    "Tulejki": 4,
+    "Pokrywa": 4
+   },
+   "k6szkice": "53 wobec 40 w planie - otwarte",
+   "k8": "0 szkicow na scianach",
+   "k11": "wszystkie operacje w folderach swoich bryl"
   }
  }
 }
