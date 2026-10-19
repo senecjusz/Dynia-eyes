@@ -1,0 +1,2604 @@
+{
+ "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
+ "zapis": "2026-10-19T11:17Z, wykonawca CAD: budowa zakonczona, runda K1-K9, K11 zaliczona; raport weryfikacja-probka-gwintu-45.md",
+ "sumaWywolanRok": {
+  "total": 131,
+  "features": 70,
+  "getFeatures": 4,
+  "uwaga": "suma od poczatku prowadzenia tego pliku (19.10.2026); features = cala rodzina /features (GET+POST+DELETE); wczesniejsze wywolania z v2.x nie sa tu policzone"
+ },
+ "budzetZadania": {
+  "getFeatures": 30,
+  "total": 200,
+  "zuzyteGetFeatures": 4,
+  "zuzyteTotal": 131,
+  "zrodlo": "brief E2.0 (szesc brył): <=30 GET /features, <=200 lacznie; bramka G.BUDZET w karcie = {features:200,total:200,getFeatures:30}"
+ },
+ "liczniki": {
+  "uwaga": "licznik X-Rate-Limit-Remaining jest osobny dla metody: GET /features = 98 (najnizszy), POST /features = 3000, POST /features/featureid = 3000 (odczyt startowy), DELETE /features/featureid = 2999. Klucz bramki zawiera metode.",
+  "GET /features": 95,
+  "POST /features": 2997,
+  "POST /features/featureid": 3000,
+  "DELETE /features/featureid": 2999,
+  "GET /globaltreenodes/magic": 3000,
+  "POST /documents": 200,
+  "GET /documents/currentmicroversion": 400,
+  "GET /parts": 500,
+  "GET /partstudios/bodydetails": 485,
+  "GET /partstudios/featurespecs": 100,
+  "POST /elements/configuration": 3000,
+  "POST /variables/variablestudio": 2999,
+  "POST /variables/variables": 2994,
+  "GET /globaltreenodes/magic/{id}": 3000,
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/features": 96,
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features": 2991,
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": 3000,
+  "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": 2999,
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/featurespecs": 99,
+  "POST /elements/d/{id}/w/{id}/e/{id}/configuration": 3000,
+  "POST /variables/d/{id}/w/{id}/variablestudio": 2999,
+  "POST /variables/d/{id}/w/{id}/e/{id}/variables": 2999,
+  "GET /documents/d/{id}/w/{id}/currentmicroversion": 399,
+  "GET /parts/d/{id}/w/{id}/e/{id}": 500,
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails": 497,
+  "POST /partstudios/d/{id}/w/{id}": 3000,
+  "GET /variables/d/{id}/w/{id}/e/{id}/variablestudioreferences": 3000,
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/JOD/boundingboxes": 500,
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes": 498,
+  "GET /parts/partid/boundingboxes": 494
+ },
+ "uwagi": [
+  "POST /documents z przerwanego podejscia (09:51) = 409, tresc odpowiedzi nie zapisana; ponowny POST z isPublic:true (plan Free) = 200.",
+  "data-id wiersza drzewa != featureId; dopasowanie przez .os-list-item[feature-id] (G.wiersz w probka-gwintu-45.js poprawione).",
+  "19.10 10:21 (poprzednie podejscie, po zapisie pliku): 2 operacje (Nakretka: wyciecie karbu, karby), GET /features x2, GET /parts, GET bodydetails; pomiar L020: mandrel zMin = -2.4 (przyciecie dolu nie zadzialalo) - wada odrzuconej wersji, do sprawdzenia w nowej (K9: zMin trzpienia = trzpienZ)",
+  "Part Studio 1 zawiera odrzucona wersje z konfiguracja (19 operacji, 2 czesci + helisa); usuniecie i nowe Part Studio w etapie 2 wg briefu. Variable Studio \"Zmienne\" (80fda8e447cad8db7e704e83) ma 38 zmiennych starego planu: w etapie 2 lista zastapiona nowa."
+ ],
+ "rem": {
+  "GET /globaltreenodes/magic/{id}": {
+   "remaining": 3000,
+   "t": "2026-10-19T09:58:24.856Z"
+  },
+  "POST /documents": {
+   "remaining": 200,
+   "t": "2026-10-19T09:58:33.576Z"
+  },
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
+   "remaining": 96,
+   "t": "2026-10-19T10:21:32.582Z"
+  },
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features": {
+   "remaining": 2991,
+   "t": "2026-10-19T11:08:03.073Z"
+  },
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": {
+   "remaining": 3000,
+   "t": "2026-10-19T10:02:11.373Z"
+  },
+  "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": {
+   "remaining": 2999,
+   "t": "2026-10-19T10:02:25.929Z"
+  },
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/featurespecs": {
+   "remaining": 99,
+   "t": "2026-10-19T11:04:12.447Z"
+  },
+  "POST /elements/d/{id}/w/{id}/e/{id}/configuration": {
+   "remaining": 3000,
+   "t": "2026-10-19T10:15:13.899Z"
+  },
+  "POST /variables/d/{id}/w/{id}/variablestudio": {
+   "remaining": 2999,
+   "t": "2026-10-19T10:15:24.090Z"
+  },
+  "POST /variables/d/{id}/w/{id}/e/{id}/variables": {
+   "remaining": 2999,
+   "t": "2026-10-19T11:04:53.803Z"
+  },
+  "GET /documents/d/{id}/w/{id}/currentmicroversion": {
+   "remaining": 399,
+   "t": "2026-10-19T11:08:29.876Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}": {
+   "remaining": 500,
+   "t": "2026-10-19T10:21:53.008Z"
+  },
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails": {
+   "remaining": 497,
+   "t": "2026-10-19T11:08:30.750Z"
+  },
+  "POST /partstudios/d/{id}/w/{id}": {
+   "remaining": 3000,
+   "t": "2026-10-19T11:03:51.096Z"
+  },
+  "GET /variables/d/{id}/w/{id}/e/{id}/variablestudioreferences": {
+   "remaining": 3000,
+   "t": "2026-10-19T11:04:58.864Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes": {
+   "remaining": 498,
+   "t": "2026-10-19T11:08:30.988Z"
+  }
+ },
+ "n": {
+  "total": 131,
+  "features": 70
+ },
+ "fetches": 131,
+ "stop": null,
+ "F": {
+  "Layout: oś Z i przekrój trzpienia": "FKX7149eFPuojet_0",
+  "Layout: okrąg helisy": "FyGoqw56hHO3sG8_0",
+  "Wspólne: helisa": "FmkwHcr9jfttVtg_0",
+  "Wspólne: profil gwintu": "FwY5TopCyhJrAwb_0",
+  "Wspólne: karb": "F00IBdRAEiJutQN_0",
+  "Wspólne: zwój gwintu": "FTGucPig6ANCXcc_0",
+  "Nakrętka 0.20: przekrój": "FBFjdouXDsaoaMT_1",
+  "Nakrętka 0.20: korpus": "FjKRWKKirrLGsXS_1",
+  "Nakrętka 0.20: gwint": "FCL851X6XUz5Vir_2",
+  "Nakrętka 0.20: karb": "Fh4uWcmqMD6RuqX_2",
+  "Nakrętka 0.25: przekrój": "Frm5yJi7gg4hWSY_2",
+  "Nakrętka 0.25: korpus": "FN4r9cal5n2KD3j_2",
+  "Nakrętka 0.25: gwint": "FsOOwqUGRbefxyt_3",
+  "Nakrętka 0.25: karb": "FxlEEoKr9MYVbCy_3",
+  "Nakrętka 0.25: karby": "FDFLN3wrJOEwaw3_3",
+  "Nakrętka 0.30: przekrój": "FjIrARsWsYSca1v_3",
+  "Nakrętka 0.30: korpus": "FxZpZGyKidZSxOq_3",
+  "Nakrętka 0.30: gwint": "FdBqoBhpCDlor1d_4",
+  "Nakrętka 0.30: karb": "FlTijavH8vyzkJy_4",
+  "Nakrętka 0.30: karby": "F2KvTiCGrl53ae3_4",
+  "Nakrętka 0.35: przekrój": "FI9XcbFrsyLe3Vl_4",
+  "Nakrętka 0.35: korpus": "FMZJ5LmnDy5SjL4_4",
+  "Nakrętka 0.35: gwint": "FRw9G4uzYm83wk8_5",
+  "Nakrętka 0.35: karb": "Fz7oX4H9CitXRn3_5",
+  "Nakrętka 0.35: karby": "F37SpEaMCiRJJiu_5",
+  "Nakrętka 0.40: przekrój": "FfGwZmgbDTToxwh_5",
+  "Nakrętka 0.40: korpus": "Fwuv9sCxscYICUS_5",
+  "Nakrętka 0.40: gwint": "FEjcDCy88mARMRf_6",
+  "Nakrętka 0.40: karb": "FJZJzES69g8tpsg_6",
+  "Nakrętka 0.40: karby": "F59GHELAqIwPp3q_6",
+  "Trzpień: przycięcie końców zwoju i faza": "FheP31PTSMPCqVB_6",
+  "Trzpień: rdzeń": "FA2cL7SyrPFuaNY_6",
+  "Trzpień: gwint": "Ftf5yX2HeFynrca_7",
+  "Trzpień: przycięcie końców zwoju i faza wejścia": "Flg735lxEyVx9pT_7"
+ },
+ "mv": "8154f65402e2bd176544c1dc",
+ "log": [
+  {
+   "t": "2026-10-19T09:50:51.573Z",
+   "k": "GET /globaltreenodes/magic/{id}",
+   "method": "GET",
+   "path": "/api/v10/globaltreenodes/magic/1",
+   "status": 200,
+   "remaining": 3000,
+   "odczytStartowy": true,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T09:50:56.492Z",
+   "k": "GET /globaltreenodes/magic/{id}",
+   "blokada": "remaining 3000 <= prog 3000 (GET /globaltreenodes/magic/{id})"
+  },
+  {
+   "t": "2026-10-19T09:50:56.492Z",
+   "k": "GET /globaltreenodes/magic/{id}",
+   "blokada": "brak X-Rate-Limit-Remaining w poprzedniej odpowiedzi (GET /globaltreenodes/magic/{id})"
+  },
+  {
+   "t": "2026-10-19T09:51:29.268Z",
+   "k": "POST /documents",
+   "method": "POST",
+   "path": "/api/v10/documents",
+   "status": 409,
+   "remaining": 200,
+   "odczytStartowy": true,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T09:58:24.857Z",
+   "k": "GET /globaltreenodes/magic/{id}",
+   "method": "GET",
+   "path": "/api/v10/globaltreenodes/magic/1",
+   "status": 200,
+   "remaining": 3000,
+   "odczytStartowy": false,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T09:58:33.576Z",
+   "k": "POST /documents",
+   "method": "POST",
+   "path": "/api/v10/documents",
+   "status": 200,
+   "remaining": 200,
+   "odczytStartowy": false,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T10:00:40.175Z",
+   "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+   "method": "GET",
+   "path": "/api/v12/partstudios/d/c6697bd7b3b9a1043b66ae1f/w/6446e4139a3cb81b769891c3/e/48e0e2a459d9a63fd7817860/features",
+   "status": 200,
+   "remaining": 98,
+   "odczytStartowy": true,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T10:00:40.175Z",
+   "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+   "blokada": "remaining 98 <= prog 98 (GET /partstudios/d/{id}/w/{id}/e/{id}/features)"
+  },
+  {
+   "t": "2026-10-19T10:00:40.175Z",
+   "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+   "blokada": "brak X-Rate-Limit-Remaining w poprzedniej odpowiedzi (GET /partstudios/d/{id}/w/{id}/e/{id}/features)"
+  },
+  {
+   "t": "2026-10-19T10:01:00.278Z",
+   "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   "method": "POST",
+   "path": "/api/v12/partstudios/d/c6697bd7b3b9a1043b66ae1f/w/6446e4139a3cb81b769891c3/e/48e0e2a459d9a63fd7817860/features",
+   "status": 200,
+   "remaining": 3000,
+   "odczytStartowy": true,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T10:02:11.406Z",
+   "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+   "method": "POST",
+   "path": "/api/v12/partstudios/d/c6697bd7b3b9a1043b66ae1f/w/6446e4139a3cb81b769891c3/e/48e0e2a459d9a63fd7817860/features/featureid/FI8egzRX2KFXewU_0",
+   "status": 200,
+   "remaining": 3000,
+   "odczytStartowy": true,
+   "retryAfter": null
+  },
+  {
+   "t": "2026-10-19T10:02:25.930Z",
+   "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+   "method": "DELETE",
+   "path": "/api/v12/partstudios/d/c6697bd7b3b9a1043b66ae1f/w/6446e4139a3cb81b769891c3/e/48e0e2a459d9a63fd7817860/features/featureid/FI8egzRX2KFXewU_0",
+   "status": 200,
+   "remaining": 2999,
+   "odczytStartowy": true,
+   "retryAfter": null
+  },
+  [
+   "2026-10-19T10:14:48.250Z",
+   "GET /[object%20Object]/featurespecs",
+   400,
+   null,
+   true
+  ],
+  {
+   "t": "2026-10-19T10:15:01.674Z",
+   "uwaga": "blad wykonawcy: helper ps nadpisal G.ps, 1 zadanie GET /[object Object]/featurespecs = 400; poprawione"
+  },
+  [
+   "2026-10-19T10:15:03.510Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/featurespecs",
+   200,
+   100,
+   true
+  ],
+  [
+   "2026-10-19T10:15:13.899Z",
+   "POST /elements/d/{id}/w/{id}/e/{id}/configuration",
+   200,
+   3000,
+   true
+  ],
+  [
+   "2026-10-19T10:15:24.091Z",
+   "POST /variables/d/{id}/w/{id}/variablestudio",
+   200,
+   2999,
+   true
+  ],
+  [
+   "2026-10-19T10:15:40.181Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   400,
+   2998,
+   true
+  ],
+  [
+   "2026-10-19T10:16:04.424Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2997,
+   false
+  ],
+  [
+   "2026-10-19T10:16:04.975Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2996,
+   false
+  ],
+  [
+   "2026-10-19T10:16:15.144Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400,
+   true
+  ],
+  [
+   "2026-10-19T10:16:15.370Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   400,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:16:15.400Z",
+   "uwaga": "luzGwint pierwsza proba 400: wartosci konfigurowane nie moga miec parameterId; poprawione"
+  },
+  [
+   "2026-10-19T10:16:22.554Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:16:22.554Z",
+   "operacja": "luzGwint",
+   "featureId": "F8pq2hDXbRxnzAN_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:16:28.447Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2998,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:16:28.447Z",
+   "operacja": "nrLuzu",
+   "featureId": "FXP8dqltZx15MVm_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:16:40.639Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:16:40.639Z",
+   "operacja": "Layout: os Z i przekroj pierscienia",
+   "featureId": "FW01AJ0wqzZOlX1_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:16:52.909Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2996,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:16:52.909Z",
+   "operacja": "Gwint: profil",
+   "featureId": "FkgT4xvRnBYFfbN_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:17:00.933Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2995,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:17:00.933Z",
+   "operacja": "Gwint: okrag helisy i przyciecie dolu",
+   "featureId": "FiRjjcrr9KCKdnB_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:17:10.948Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2994,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:17:10.948Z",
+   "operacja": "Gwint: przyciecie gory i faza wejscia [szkic]",
+   "featureId": "FV7KdVgm3AvMqxA_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:17:23.121Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:17:23.121Z",
+   "operacja": "Nakretka: przekroj",
+   "featureId": "FZsqi8234N94iKe_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:17:29.339Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:17:29.339Z",
+   "operacja": "Nakretka: pl. czola",
+   "featureId": "FkiDDxMQCFMuMIB_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:17:38.473Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2998,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:17:38.473Z",
+   "operacja": "Nakretka: karb",
+   "featureId": "Fry964fDTF2YbhM_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:18:06.720Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:18:06.720Z",
+   "operacja": "Pierscien: korpus",
+   "featureId": "FMRJdODXQ4stLkp_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:18:19.960Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2996,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:18:19.960Z",
+   "operacja": "Gwint: helisa",
+   "featureId": "FuEFrrqMeKM1yzS_1",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:18:27.041Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:18:27.041Z",
+   "operacja": "Gwint: zwoj",
+   "featureId": "FXwL9DqhH6xLSEi_1",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:18:35.925Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:18:35.925Z",
+   "operacja": "Nakretka: korpus",
+   "featureId": "FG0ThBEjgAaSxVA_2",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:18:45.291Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2998,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:18:45.291Z",
+   "operacja": "Nakretka: gwint",
+   "featureId": "FbzyR5m9ZRlySBG_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:18:54.800Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:18:54.800Z",
+   "operacja": "Gwint: przyciecie dolu",
+   "featureId": "FubsDqjfAN9kA5p_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:19:02.116Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2996,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:19:02.116Z",
+   "operacja": "Gwint: przyciecie gory i faza wejscia",
+   "featureId": "FAdJ8eZuoV4H2HI_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:19:08.625Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2995,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:19:08.625Z",
+   "operacja": "Pierscien: gwint",
+   "featureId": "F0tFoD7g7lPRJ0I_3",
+   "featureStatus": "OK"
+  },
+  {
+   "t": "2026-10-19T10:20:07.422Z",
+   "uwaga": "mapa F: szkic S4 i Revolve maja te sama nazwe; szkic pod kluczem \"[szkic]\""
+  },
+  [
+   "2026-10-19T10:20:16.519Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:20:16.519Z",
+   "operacja": "Nakretka: wyciecie karbu",
+   "featureId": "FPOl9cUGw7DSYq7_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:20:26.393Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:20:26.393Z",
+   "operacja": "Nakretka: karby",
+   "featureId": "FN0IJELDsaqlHno_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:21:05.514Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   97,
+   false
+  ],
+  [
+   "2026-10-19T10:21:32.583Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   96,
+   false
+  ],
+  [
+   "2026-10-19T10:21:53.008Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}",
+   200,
+   500,
+   true
+  ],
+  [
+   "2026-10-19T10:21:53.303Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   500,
+   true
+  ],
+  {
+   "t": "2026-10-19T10:28:00Z",
+   "uwaga": "etap 1b (test folderow): wykonawca po przerwaniu; bramka G zastana w karcie (n=40, stop=null, GET /features remaining 96) - nowszy stan niz plik (n=34), wiec uzyta zywa bramka zamiast ponownego wstrzykniecia"
+  },
+  [
+   "2026-10-19T10:28:50.564Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400,
+   false
+  ],
+  [
+   "2026-10-19T10:28:57.091Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:28:57.091Z",
+   "operacja": "Test folderu: szkic A",
+   "featureId": "FTiFD1D39EpEQof_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:29:27.054Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   399,
+   false
+  ],
+  [
+   "2026-10-19T10:29:37.574Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:29:37.574Z",
+   "operacja": "Test folderu: szkic B",
+   "featureId": "FwVlDdGnvlkrDh3_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:30:41.471Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:30:41.471Z",
+   "operacja": "Test folderu: szkic C",
+   "featureId": "FrgRzjv1pyHmy51_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:32:41.946Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:32:41.946Z",
+   "operacja": "Test folderu: szkic D",
+   "featureId": "FNAURxakidcsc1j_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:33:30.757Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:33:30.757Z",
+   "operacja": "Test folderu: szkic E",
+   "featureId": "F8uSgNBSg39w8W6_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:34:37.857Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:34:37.857Z",
+   "operacja": "Test folderu: szkic F",
+   "featureId": "F214ECIHjzqhoTy_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T10:34:38.304Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999,
+   false
+  ],
+  {
+   "t": "2026-10-19T10:34:38.304Z",
+   "operacja": "Test folderu: szkic G",
+   "featureId": "Fw43l1Yp41fDnZ1_3",
+   "featureStatus": "OK"
+  },
+  {
+   "t": "2026-10-19T10:36:00Z",
+   "uwaga": "szkice testowe A-G usuniete w UI (Delete na folderze), bez DELETE przez API"
+  },
+  [
+   "2026-10-19T10:36:19.968Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400,
+   false
+  ],
+  {
+   "t": "2026-10-19T11:03:30Z",
+   "uwaga": "etap 2: bramka wstrzyknieta w nowej sesji przegladarki (po zalogowaniu uzytkownika), liczniki z pliku; BUDZET {features:200,total:200,getFeatures:30}"
+  },
+  [
+   "2026-10-19T11:03:51.097Z",
+   "POST /partstudios/d/{id}/w/{id}",
+   200,
+   3000
+  ],
+  {
+   "t": "2026-10-19T11:04:00Z",
+   "uwaga": "DELETE /elements Part Studio 1 zablokowane przez klasyfikator uprawnien harnessu (nie wyslane); Part Studio 1 zostaje do recznego usuniecia"
+  },
+  [
+   "2026-10-19T11:04:13.699Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/featurespecs",
+   200,
+   99
+  ],
+  [
+   "2026-10-19T11:04:34.508Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   400,
+   2999
+  ],
+  {
+   "t": "2026-10-19T11:04:53.018Z",
+   "uwaga": "POST variables 400: cialo [{variables:[...]}] zle, poprawnie sama tablica"
+  },
+  [
+   "2026-10-19T11:04:53.410Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   3000
+  ],
+  [
+   "2026-10-19T11:04:53.804Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2999
+  ],
+  [
+   "2026-10-19T11:04:58.864Z",
+   "GET /variables/d/{id}/w/{id}/e/{id}/variablestudioreferences",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T11:05:03.454Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T11:05:04.580Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2998
+  ],
+  {
+   "t": "2026-10-19T11:05:04.580Z",
+   "operacja": "Layout: oś Z i przekrój trzpienia",
+   "featureId": "FKX7149eFPuojet_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:05:05.127Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997
+  ],
+  {
+   "t": "2026-10-19T11:05:05.127Z",
+   "operacja": "Layout: okrąg helisy",
+   "featureId": "FyGoqw56hHO3sG8_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:05:05.588Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2996
+  ],
+  {
+   "t": "2026-10-19T11:05:05.588Z",
+   "operacja": "Wspólne: helisa",
+   "featureId": "FmkwHcr9jfttVtg_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:05:06.063Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2995
+  ],
+  {
+   "t": "2026-10-19T11:05:06.063Z",
+   "operacja": "Wspólne: profil gwintu",
+   "featureId": "FwY5TopCyhJrAwb_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:05:06.618Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2994
+  ],
+  {
+   "t": "2026-10-19T11:05:06.618Z",
+   "operacja": "Wspólne: karb",
+   "featureId": "F00IBdRAEiJutQN_0",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:05:07.605Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2993
+  ],
+  {
+   "t": "2026-10-19T11:05:07.606Z",
+   "operacja": "Wspólne: zwój gwintu",
+   "featureId": "FTGucPig6ANCXcc_0",
+   "featureStatus": "OK"
+  },
+  {
+   "t": "2026-10-19T11:05:30Z",
+   "uwaga": "UI: folder 'Wspólne: oś i gwint' (6 operacji), pasek wycofania poza folderem (DOM: wciecie 0)"
+  },
+  [
+   "2026-10-19T11:05:38.841Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   399
+  ],
+  [
+   "2026-10-19T11:05:39.128Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   499
+  ],
+  [
+   "2026-10-19T11:05:39.372Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/JOD/boundingboxes",
+   200,
+   500
+  ],
+  [
+   "2026-10-19T11:07:08.207Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000
+  ],
+  {
+   "t": "2026-10-19T11:07:08.207Z",
+   "operacja": "Nakrętka 0.20: przekrój",
+   "featureId": "FBFjdouXDsaoaMT_1",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:07:08.759Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T11:07:08.759Z",
+   "operacja": "Nakrętka 0.20: korpus",
+   "featureId": "FjKRWKKirrLGsXS_1",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:07:09.104Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   400,
+   2998
+  ],
+  {
+   "t": "2026-10-19T11:07:27.730Z",
+   "uwaga": "Nakretka 0.20: gwint HTTP 400 (operationType SUBTRACT nie pasuje do BooleanOperationType); poprawka: SUBTRACTION; dokonczenie bryly od tej operacji"
+  },
+  [
+   "2026-10-19T11:07:28.934Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997
+  ],
+  {
+   "t": "2026-10-19T11:07:28.934Z",
+   "operacja": "Nakrętka 0.20: gwint",
+   "featureId": "FCL851X6XUz5Vir_2",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:07:29.382Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2996
+  ],
+  {
+   "t": "2026-10-19T11:07:29.382Z",
+   "operacja": "Nakrętka 0.20: karb",
+   "featureId": "Fh4uWcmqMD6RuqX_2",
+   "featureStatus": "OK"
+  },
+  {
+   "t": "2026-10-19T11:07:40Z",
+   "uwaga": "UI: folder 'Nakrętka 0.20' (4 operacje)"
+  },
+  [
+   "2026-10-19T11:07:47.711Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T11:07:48.226Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   498
+  ],
+  [
+   "2026-10-19T11:07:48.441Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes",
+   200,
+   499
+  ],
+  [
+   "2026-10-19T11:08:00.337Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2995
+  ],
+  {
+   "t": "2026-10-19T11:08:00.337Z",
+   "operacja": "Nakrętka 0.25: przekrój",
+   "featureId": "Frm5yJi7gg4hWSY_2",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:08:00.876Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2994
+  ],
+  {
+   "t": "2026-10-19T11:08:00.876Z",
+   "operacja": "Nakrętka 0.25: korpus",
+   "featureId": "FN4r9cal5n2KD3j_2",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:08:02.221Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2993
+  ],
+  {
+   "t": "2026-10-19T11:08:02.221Z",
+   "operacja": "Nakrętka 0.25: gwint",
+   "featureId": "FsOOwqUGRbefxyt_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:08:02.682Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2992
+  ],
+  {
+   "t": "2026-10-19T11:08:02.682Z",
+   "operacja": "Nakrętka 0.25: karb",
+   "featureId": "FxlEEoKr9MYVbCy_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:08:03.112Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2991
+  ],
+  {
+   "t": "2026-10-19T11:08:03.112Z",
+   "operacja": "Nakrętka 0.25: karby",
+   "featureId": "FDFLN3wrJOEwaw3_3",
+   "featureStatus": "OK"
+  },
+  {
+   "t": "2026-10-19T11:08:40Z",
+   "uwaga": "UI: folder 'Nakrętka 0.25' (5 operacji); odczyt DOM przed utworzeniem folderu pokazal wciecie 0, zrzut po nim: folder jest"
+  },
+  [
+   "2026-10-19T11:08:29.876Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   399
+  ],
+  [
+   "2026-10-19T11:08:30.752Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   497
+  ],
+  [
+   "2026-10-19T11:08:30.988Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes",
+   200,
+   498
+  ],
+  {
+   "t": "2026-10-19T11:09:20.385Z",
+   "uwaga": "STOP wykonawcy: rozbieznosc z planem (Nakretka 0.25 bez walca otworu; dla 0.40 odchylka 0.066 mm > 0.05)"
+  },
+  {
+   "t": "2026-10-19T11:11:10.248Z",
+   "uwaga": "decyzja orkiestratora (a): R otworu nakretki = max(29.45+L, 29.35+1.414L), walec otworu znika dla L>=0.2415; budowa dalej, stop zdjety"
+  },
+  [
+   "2026-10-19T11:11:10.518Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000
+  ],
+  {
+   "t": "2026-10-19T11:11:10.518Z",
+   "operacja": "Nakrętka 0.30: przekrój",
+   "featureId": "FjIrARsWsYSca1v_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:11.169Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T11:11:11.169Z",
+   "operacja": "Nakrętka 0.30: korpus",
+   "featureId": "FxZpZGyKidZSxOq_3",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:12.466Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2998
+  ],
+  {
+   "t": "2026-10-19T11:11:12.466Z",
+   "operacja": "Nakrętka 0.30: gwint",
+   "featureId": "FdBqoBhpCDlor1d_4",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:12.956Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997
+  ],
+  {
+   "t": "2026-10-19T11:11:12.956Z",
+   "operacja": "Nakrętka 0.30: karb",
+   "featureId": "FlTijavH8vyzkJy_4",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:13.421Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2996
+  ],
+  {
+   "t": "2026-10-19T11:11:13.421Z",
+   "operacja": "Nakrętka 0.30: karby",
+   "featureId": "F2KvTiCGrl53ae3_4",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:28.760Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T11:11:29.222Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   496
+  ],
+  [
+   "2026-10-19T11:11:29.444Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes",
+   200,
+   497
+  ],
+  [
+   "2026-10-19T11:11:42.388Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2995
+  ],
+  {
+   "t": "2026-10-19T11:11:42.388Z",
+   "operacja": "Nakrętka 0.35: przekrój",
+   "featureId": "FI9XcbFrsyLe3Vl_4",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:42.989Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2994
+  ],
+  {
+   "t": "2026-10-19T11:11:42.989Z",
+   "operacja": "Nakrętka 0.35: korpus",
+   "featureId": "FMZJ5LmnDy5SjL4_4",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:44.199Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2993
+  ],
+  {
+   "t": "2026-10-19T11:11:44.199Z",
+   "operacja": "Nakrętka 0.35: gwint",
+   "featureId": "FRw9G4uzYm83wk8_5",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:44.664Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2992
+  ],
+  {
+   "t": "2026-10-19T11:11:44.664Z",
+   "operacja": "Nakrętka 0.35: karb",
+   "featureId": "Fz7oX4H9CitXRn3_5",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:11:45.100Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2991
+  ],
+  {
+   "t": "2026-10-19T11:11:45.100Z",
+   "operacja": "Nakrętka 0.35: karby",
+   "featureId": "F37SpEaMCiRJJiu_5",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:00.905Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   399
+  ],
+  [
+   "2026-10-19T11:12:01.426Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   495
+  ],
+  [
+   "2026-10-19T11:12:01.673Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes",
+   200,
+   496
+  ],
+  [
+   "2026-10-19T11:12:06.016Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2990
+  ],
+  {
+   "t": "2026-10-19T11:12:06.016Z",
+   "operacja": "Nakrętka 0.40: przekrój",
+   "featureId": "FfGwZmgbDTToxwh_5",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:06.481Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2989
+  ],
+  {
+   "t": "2026-10-19T11:12:06.481Z",
+   "operacja": "Nakrętka 0.40: korpus",
+   "featureId": "Fwuv9sCxscYICUS_5",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:07.723Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2988
+  ],
+  {
+   "t": "2026-10-19T11:12:07.723Z",
+   "operacja": "Nakrętka 0.40: gwint",
+   "featureId": "FEjcDCy88mARMRf_6",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:08.194Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2987
+  ],
+  {
+   "t": "2026-10-19T11:12:08.194Z",
+   "operacja": "Nakrętka 0.40: karb",
+   "featureId": "FJZJzES69g8tpsg_6",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:08.739Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2986
+  ],
+  {
+   "t": "2026-10-19T11:12:08.739Z",
+   "operacja": "Nakrętka 0.40: karby",
+   "featureId": "F59GHELAqIwPp3q_6",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:22.975Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   398
+  ],
+  [
+   "2026-10-19T11:12:23.560Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   494
+  ],
+  [
+   "2026-10-19T11:12:23.787Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes",
+   200,
+   495
+  ],
+  [
+   "2026-10-19T11:12:28.890Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   3000
+  ],
+  {
+   "t": "2026-10-19T11:12:28.890Z",
+   "operacja": "Trzpień: przycięcie końców zwoju i faza",
+   "featureId": "FheP31PTSMPCqVB_6",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:29.369Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T11:12:29.369Z",
+   "operacja": "Trzpień: rdzeń",
+   "featureId": "FA2cL7SyrPFuaNY_6",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:30.199Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2998
+  ],
+  {
+   "t": "2026-10-19T11:12:30.199Z",
+   "operacja": "Trzpień: gwint",
+   "featureId": "Ftf5yX2HeFynrca_7",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:30.736Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   2997
+  ],
+  {
+   "t": "2026-10-19T11:12:30.736Z",
+   "operacja": "Trzpień: przycięcie końców zwoju i faza wejścia",
+   "featureId": "Flg735lxEyVx9pT_7",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:12:56.476Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T11:12:57.038Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   493
+  ],
+  [
+   "2026-10-19T11:12:57.297Z",
+   "GET /parts/d/{id}/w/{id}/e/{id}/partid/{id}/boundingboxes",
+   200,
+   494
+  ],
+  [
+   "2026-10-19T11:13:44.634Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+   200,
+   95
+  ],
+  {
+   "t": "2026-10-19T11:13:50Z",
+   "uwaga": "GET /features: featureStates = {} (puste); K1 sprawdzone ikonami stanu w drzewie karty"
+  },
+  {
+   "t": "2026-10-19T11:14:08.736Z",
+   "uwaga": "K1: ostrzezenie '1 missing selection' w 'Trzpien: przyciecie...faza wejscia' (zakres rdzen + zwoj; zwoj zuzyty przez UNION), mimo featureStatus OK w odpowiedzi zapisu; edycja featureid: zakres tylko 'Trzpien: rdzen'"
+  },
+  [
+   "2026-10-19T11:14:08.922Z",
+   "GET /documents/d/{id}/w/{id}/currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T11:14:09.329Z",
+   "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+   200,
+   3000
+  ],
+  {
+   "t": "2026-10-19T11:14:09.329Z",
+   "operacja": "Trzpień: przycięcie końców zwoju i faza wejścia (edycja)",
+   "featureId": "Flg735lxEyVx9pT_7",
+   "featureStatus": "OK"
+  },
+  [
+   "2026-10-19T11:14:18.345Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   492
+  ],
+  [
+   "2026-10-19T11:15:41.906Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   3000
+  ],
+  [
+   "2026-10-19T11:15:47.948Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   491
+  ],
+  [
+   "2026-10-19T11:15:48.338Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2999
+  ],
+  [
+   "2026-10-19T11:15:54.341Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   490
+  ],
+  [
+   "2026-10-19T11:15:54.850Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2998
+  ],
+  [
+   "2026-10-19T11:15:59.880Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   489
+  ],
+  [
+   "2026-10-19T11:16:00.461Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2997
+  ],
+  [
+   "2026-10-19T11:16:05.488Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   488
+  ],
+  [
+   "2026-10-19T11:16:06.172Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2996
+  ],
+  [
+   "2026-10-19T11:16:11.497Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   487
+  ],
+  [
+   "2026-10-19T11:16:11.895Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2995
+  ],
+  [
+   "2026-10-19T11:16:16.890Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   486
+  ],
+  [
+   "2026-10-19T11:16:17.629Z",
+   "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+   204,
+   2994
+  ],
+  [
+   "2026-10-19T11:16:22.663Z",
+   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+   200,
+   485
+  ]
+ ],
+ "szkice": [
+  {
+   "nazwa": "Layout: os Z i przekroj pierscienia",
+   "featureId": "FW01AJ0wqzZOlX1_0",
+   "dataId": "M8yV/TCb/v2g70vp8",
+   "podpowiedz": "Layout: os Z i przekroj pierscienia [Sketch]",
+   "niedookreslony": false,
+   "t": "2026-10-19T10:16:40.639Z",
+   "sourceMicroversion": "9b7de29ecaf2d88306396e1b"
+  },
+  {
+   "nazwa": "Gwint: profil",
+   "featureId": "FkgT4xvRnBYFfbN_0",
+   "dataId": "MS2JmkrZ5Xij9ieYh",
+   "podpowiedz": "Gwint: profil [Sketch]",
+   "niedookreslony": false,
+   "t": "2026-10-19T10:16:52.909Z",
+   "sourceMicroversion": "98ad24ef7f73b9dddc356720"
+  },
+  {
+   "nazwa": "Gwint: okrag helisy i przyciecie dolu",
+   "featureId": "FiRjjcrr9KCKdnB_0",
+   "dataId": "MmRSWW1X/hyBj5Sfn",
+   "podpowiedz": "Gwint: okrag helisy i przyciecie dolu [Sketch]",
+   "niedookreslony": false,
+   "t": "2026-10-19T10:17:00.933Z",
+   "sourceMicroversion": "e9cbfeed5bed61cae3c0fcbe"
+  },
+  {
+   "nazwa": "Gwint: przyciecie gory i faza wejscia",
+   "featureId": "FV7KdVgm3AvMqxA_0",
+   "dataId": "M4VyGRu1oq7pAGGBR",
+   "podpowiedz": "Gwint: przyciecie gory i faza wejscia [Sketch]",
+   "niedookreslony": false,
+   "t": "2026-10-19T10:17:10.948Z",
+   "sourceMicroversion": "72170e8c8f8b2eae1190a301"
+  },
+  {
+   "nazwa": "Nakretka: przekroj",
+   "featureId": "FZsqi8234N94iKe_0",
+   "dataId": "MmD7gBrAsK56B5ozM",
+   "podpowiedz": "Nakretka: przekroj [Sketch]",
+   "niedookreslony": false,
+   "t": "2026-10-19T10:17:23.121Z",
+   "sourceMicroversion": "a80dc3593222687cceb0f8a5"
+  },
+  {
+   "nazwa": "Nakretka: karb",
+   "featureId": "Fry964fDTF2YbhM_0",
+   "dataId": "MxD3P0OIC2r1+W2sZ",
+   "podpowiedz": "Nakretka: karb [Sketch]",
+   "niedookreslony": false,
+   "t": "2026-10-19T10:17:38.473Z",
+   "sourceMicroversion": "42faa2e9b92e0181d9652426"
+  },
+  {
+   "t": "2026-10-19T10:28:57.125Z",
+   "nazwa": "Test folderu: szkic A",
+   "featureId": "FTiFD1D39EpEQof_3",
+   "dataId": "Md/Qm6qTLeaK3XoXm",
+   "podpowiedz": "Test folderu: szkic A [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 31,
+   "featureStatus": "OK",
+   "sourceMicroversion": "288f015dd6e089bc282d786b",
+   "usuniety": true
+  },
+  {
+   "t": "2026-10-19T10:29:37.575Z",
+   "nazwa": "Test folderu: szkic B",
+   "featureId": "FwVlDdGnvlkrDh3_3",
+   "dataId": "M5jct+mtxq0KqvBB7",
+   "podpowiedz": "Test folderu: szkic B [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0,
+   "featureStatus": "OK",
+   "sourceMicroversion": "c698e664ed55e0a5b7fa75dc",
+   "usuniety": true
+  },
+  {
+   "t": "2026-10-19T10:30:41.471Z",
+   "nazwa": "Test folderu: szkic C",
+   "featureId": "FrgRzjv1pyHmy51_3",
+   "dataId": "MPf2MHHX9jYLTZ/RE",
+   "podpowiedz": "Test folderu: szkic C [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0,
+   "featureStatus": "OK",
+   "sourceMicroversion": "a158b266e2e0757d35703a74",
+   "usuniety": true
+  },
+  {
+   "t": "2026-10-19T10:32:41.969Z",
+   "nazwa": "Test folderu: szkic D",
+   "featureId": "FNAURxakidcsc1j_3",
+   "dataId": "MlwWB1jBfXblnTWnT",
+   "podpowiedz": "Test folderu: szkic D [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 21,
+   "featureStatus": "OK",
+   "sourceMicroversion": "39912fdde2bb196abbe1de3f",
+   "usuniety": true
+  },
+  {
+   "t": "2026-10-19T10:33:30.757Z",
+   "nazwa": "Test folderu: szkic E",
+   "featureId": "F8uSgNBSg39w8W6_3",
+   "dataId": "MjYD4R0V2NYj6/pRC",
+   "podpowiedz": "Test folderu: szkic E [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0,
+   "featureStatus": "OK",
+   "sourceMicroversion": "bf9c8cb94f820b805434857f",
+   "usuniety": true
+  },
+  {
+   "t": "2026-10-19T10:34:37.880Z",
+   "nazwa": "Test folderu: szkic F",
+   "featureId": "F214ECIHjzqhoTy_3",
+   "dataId": "MKMHExCtK+UVLNVFC",
+   "podpowiedz": "Test folderu: szkic F [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 21,
+   "featureStatus": "OK",
+   "sourceMicroversion": "306034fc4c82ad024e9af87a",
+   "usuniety": true
+  },
+  {
+   "t": "2026-10-19T10:34:38.321Z",
+   "nazwa": "Test folderu: szkic G",
+   "featureId": "Fw43l1Yp41fDnZ1_3",
+   "dataId": "Mhhs3Qi+TF2zF3l9O",
+   "podpowiedz": "Test folderu: szkic G [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 15,
+   "featureStatus": "OK",
+   "sourceMicroversion": "a506849bda871ca92614e790",
+   "usuniety": true
+  },
+  {
+   "nazwa": "Layout: oś Z i przekrój trzpienia",
+   "featureId": "FKX7149eFPuojet_0",
+   "dataId": "MFCaPLUqjc5GyGQJg",
+   "podpowiedz": "Layout: oś Z i przekrój trzpienia [Sketch]",
+   "niedookreslony": false,
+   "ms": 0,
+   "t": "2026-10-19T11:05:04.581Z",
+   "mv": "3faaa1375368efa6f7457889"
+  },
+  {
+   "nazwa": "Layout: okrąg helisy",
+   "featureId": "FyGoqw56hHO3sG8_0",
+   "dataId": "MsfGhsExfB9TstsLK",
+   "podpowiedz": "Layout: okrąg helisy [Sketch]",
+   "niedookreslony": false,
+   "ms": 0,
+   "t": "2026-10-19T11:05:05.127Z",
+   "mv": "b9db4e064f6691e8878a1810"
+  },
+  {
+   "nazwa": "Wspólne: profil gwintu",
+   "featureId": "FwY5TopCyhJrAwb_0",
+   "dataId": "MCgMNEHqRCs0ByHp+",
+   "podpowiedz": "Wspólne: profil gwintu [Sketch]",
+   "niedookreslony": false,
+   "ms": 18,
+   "t": "2026-10-19T11:05:06.083Z",
+   "mv": "2d1fe70458db4c6523d8d16a"
+  },
+  {
+   "nazwa": "Wspólne: karb",
+   "featureId": "F00IBdRAEiJutQN_0",
+   "dataId": "MxDyRdcdOJCtO2x+E",
+   "podpowiedz": "Wspólne: karb [Sketch]",
+   "niedookreslony": false,
+   "ms": 0,
+   "t": "2026-10-19T11:05:06.619Z",
+   "mv": "527f94199bfaf3d6e504e464"
+  },
+  {
+   "nazwa": "Nakrętka 0.20: przekrój",
+   "featureId": "FBFjdouXDsaoaMT_1",
+   "dataId": "MPTHBAzPRZEbDFfHz",
+   "podpowiedz": "Nakrętka 0.20: przekrój [Sketch]",
+   "niedookreslony": false,
+   "ms": 1,
+   "t": "2026-10-19T11:07:08.208Z",
+   "mv": "efce690d9a9d9f1a81973032"
+  },
+  {
+   "nazwa": "Nakrętka 0.25: przekrój",
+   "featureId": "Frm5yJi7gg4hWSY_2",
+   "dataId": "MChqJ8EFO3RRX1y3Y",
+   "podpowiedz": "Nakrętka 0.25: przekrój [Sketch]",
+   "niedookreslony": false,
+   "ms": 1,
+   "t": "2026-10-19T11:08:00.337Z",
+   "mv": "610529708a844997ec2c1731"
+  },
+  {
+   "nazwa": "Nakrętka 0.30: przekrój",
+   "featureId": "FjIrARsWsYSca1v_3",
+   "dataId": "MvHC5j7UWz0/4KZPf",
+   "podpowiedz": "Nakrętka 0.30: przekrój [Sketch]",
+   "niedookreslony": false,
+   "ms": 27,
+   "t": "2026-10-19T11:11:10.548Z",
+   "mv": "249ed72af3451b5db3ec32c6"
+  },
+  {
+   "nazwa": "Nakrętka 0.35: przekrój",
+   "featureId": "FI9XcbFrsyLe3Vl_4",
+   "dataId": "M72oG0GXMIaYA2XK3",
+   "podpowiedz": "Nakrętka 0.35: przekrój [Sketch]",
+   "niedookreslony": false,
+   "ms": 0,
+   "t": "2026-10-19T11:11:42.388Z",
+   "mv": "404699ab0e0df6ff3dd25f78"
+  },
+  {
+   "nazwa": "Nakrętka 0.40: przekrój",
+   "featureId": "FfGwZmgbDTToxwh_5",
+   "dataId": "M5LiWqBm+ugoybMLK",
+   "podpowiedz": "Nakrętka 0.40: przekrój [Sketch]",
+   "niedookreslony": false,
+   "ms": 0,
+   "t": "2026-10-19T11:12:06.016Z",
+   "mv": "ad33b9673db9197f32d17263"
+  },
+  {
+   "nazwa": "Trzpień: przycięcie końców zwoju i faza",
+   "featureId": "FheP31PTSMPCqVB_6",
+   "dataId": "MDqsVc4/+sSXVKGyM",
+   "podpowiedz": "Trzpień: przycięcie końców zwoju i faza [Sketch]",
+   "niedookreslony": false,
+   "ms": 0,
+   "t": "2026-10-19T11:12:28.890Z",
+   "mv": "0ab53c5150df158416b349f3"
+  }
+ ],
+ "testBramki": {
+  "t": "2026-10-19T10:00:40.175Z",
+  "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+  "remaining": 98,
+  "prog": 98,
+  "wyjatek": true,
+  "komunikat": "BRAMKA: remaining 98 <= prog 98 (GET /partstudios/d/{id}/w/{id}/e/{id}/features)",
+  "wyslano": 0,
+  "policzono": 0,
+  "brakNaglowkaWyjatek": true,
+  "brakNaglowkaKomunikat": "BRAMKA: brak X-Rate-Limit-Remaining w poprzedniej odpowiedzi (GET /partstudios/d/{id}/w/{id}/e/{id}/features)",
+  "wyslanoRazem": 0,
+  "zaliczony": true
+ },
+ "testZnacznika": {
+  "krok1": {
+   "t": "2026-10-19T10:01:57.773Z",
+   "opis": "nowy szkic: okrag c1, srodek COINCIDENT z Origin, bez wymiaru srednicy",
+   "featureId": "FI8egzRX2KFXewU_0",
+   "featureStatus": "OK",
+   "sourceMicroversion": "004f7f501d46b9c3c22687ed",
+   "wiersz": {
+    "featureId": "FI8egzRX2KFXewU_0",
+    "id": "MVP82vX7OKkc0SU78",
+    "tytul": "Test: znacznik [Sketch] is not fully defined",
+    "tekst": "Test: znacznik",
+    "szkic": true,
+    "niedookreslony": true
+   },
+   "uwaga": "pomiar czasu nieudany: oczekiwano .os-list-item-label[data-id=featureId]; data-id wiersza != featureId (limit 30 s minal). featureId jest w atrybucie feature-id rodzica .os-list-item"
+  },
+  "krok2": {
+   "t": "2026-10-19T10:02:11.407Z",
+   "opis": "edycja featureid: dodany DIAMETER c1 = 10 mm",
+   "featureId": "FI8egzRX2KFXewU_0",
+   "featureStatus": "OK",
+   "sourceMicroversion": "7b1179636cc9f57cb8fc8063",
+   "msPost": 282,
+   "przed": {
+    "featureId": "FI8egzRX2KFXewU_0",
+    "id": "MVP82vX7OKkc0SU78",
+    "tytul": "Test: znacznik [Sketch] is not fully defined",
+    "tekst": "Test: znacznik",
+    "szkic": true,
+    "niedookreslony": true
+   },
+   "po": {
+    "featureId": "FI8egzRX2KFXewU_0",
+    "id": "MVP82vX7OKkc0SU78",
+    "tytul": "Test: znacznik [Sketch]",
+    "tekst": "Test: znacznik",
+    "szkic": true,
+    "niedookreslony": false
+   },
+   "msZnikniecieZnacznikaOdOdpowiedzi": 0,
+   "blad": null
+  },
+  "krok3": {
+   "t": "2026-10-19T10:02:25.942Z",
+   "opis": "DELETE featureid szkicu testowego",
+   "status": 200,
+   "remaining": 2999,
+   "msOdpowiedzOdWysylki": 337,
+   "msZnikniecieWierszaOdWysylki": 349,
+   "blad": null,
+   "sourceMicroversion": "c9d35ad6af98063c4bda3c26",
+   "wierszPo": null,
+   "szkiceWDrzewie": []
+  },
+  "wynik": {
+   "znacznikPrzyNiedookreslonym": true,
+   "znikaPoDodaniuWymiaru": true,
+   "dataIdRownaFeatureId": false,
+   "dopasowanie": ".os-list-item[feature-id=<featureId>] -> atrybut data-id -> .os-list-item-label[data-id] wewnatrz",
+   "czasOdswiezenia": "edycja: 0 ms od odpowiedzi (282 ms od wysylki); usuniecie: 12 ms od odpowiedzi (349 ms od wysylki); utworzenie: nie zmierzone (blad dopasowania)",
+   "limitMs": 5000,
+   "zaliczony": true
+  }
+ },
+ "LIMIT_ZNACZNIKA_MS": 5000,
+ "doc": {
+  "did": "c6697bd7b3b9a1043b66ae1f",
+  "wid": "6446e4139a3cb81b769891c3",
+  "name": "Probka gwintu 45",
+  "public": true,
+  "eid": "48e0e2a459d9a63fd7817860",
+  "element": "Part Studio 1",
+  "url": "https://cad.onshape.com/documents/c6697bd7b3b9a1043b66ae1f/w/6446e4139a3cb81b769891c3/e/48e0e2a459d9a63fd7817860"
+ },
+ "tmp": [
+  {
+   "id": "9c2284e725d1d7ce61562333",
+   "name": "TMP",
+   "jsonType": "folder",
+   "resourceType": "folder"
+  }
+ ],
+ "testBramkiPoprzedni": {
+  "t": "2026-10-19T09:50:56.492Z",
+  "k": "GET /globaltreenodes/magic/{id}",
+  "remaining": 3000,
+  "prog": 3000,
+  "wyjatek": true,
+  "wyslanoRazem": 0,
+  "zaliczony": true,
+  "uwaga": "z przerwanego podejscia w tej samej karcie (przed nawigacja)"
+ },
+ "etap2": {
+  "konfiguracja": {
+   "parameterId": "Luz",
+   "enumName": "Luz_conf",
+   "opcje": [
+    "L020=0.20",
+    "L025=0.25",
+    "L030=0.30",
+    "L035=0.35",
+    "L040=0.40"
+   ]
+  },
+  "vs": {
+   "id": "80fda8e447cad8db7e704e83",
+   "name": "Zmienne",
+   "type": "Variable Studio"
+  },
+  "zmienne": {
+   "vs": "80fda8e447cad8db7e704e83",
+   "liczba": 50,
+   "zapis1": 204,
+   "zapis2": 204,
+   "t": "2026-10-19T11:04:53.804Z"
+  },
+  "czasy": [
+   {
+    "bryla": "Wspólne: oś i gwint",
+    "start": "2026-10-19T11:05:03.454Z",
+    "msSkryptu": 4152,
+    "operacje": 6,
+    "koniecZFolderemIPomiarem": "2026-10-19T11:05:39.372Z"
+   },
+   {
+    "bryla": "Nakrętka 0.20",
+    "start": "2026-10-19T11:07:07.856Z",
+    "msSkryptu": 1248,
+    "msDokonczenia": 1652,
+    "operacje": 4,
+    "uwaga": "2 + 2 operacje (po poprawce enuma Boolean)",
+    "koniecZFolderemIPomiarem": "2026-10-19T11:07:48.441Z"
+   },
+   {
+    "bryla": "Nakrętka 0.25",
+    "start": "2026-10-19T11:07:59.838Z",
+    "msSkryptu": 3275,
+    "operacje": 5,
+    "koniecZFolderemIPomiarem": "2026-10-19T11:08:30.988Z"
+   },
+   {
+    "bryla": "Nakrętka 0.30",
+    "start": "2026-10-19T11:11:10.248Z",
+    "msSkryptu": 3173,
+    "operacje": 5,
+    "koniecZFolderemIPomiarem": "2026-10-19T11:11:29.444Z"
+   },
+   {
+    "bryla": "Nakrętka 0.35",
+    "start": "2026-10-19T11:11:41.930Z",
+    "msSkryptu": 3170,
+    "operacje": 5,
+    "koniecZFolderemIPomiarem": "2026-10-19T11:12:01.673Z"
+   },
+   {
+    "bryla": "Nakrętka 0.40",
+    "start": "2026-10-19T11:12:05.710Z",
+    "msSkryptu": 3029,
+    "operacje": 5,
+    "koniecZFolderemIPomiarem": "2026-10-19T11:12:23.787Z"
+   },
+   {
+    "bryla": "Trzpień",
+    "start": "2026-10-19T11:12:28.556Z",
+    "msSkryptu": 2180,
+    "operacje": 4,
+    "koniecZFolderemIPomiarem": "2026-10-19T11:12:57.297Z"
+   }
+  ],
+  "pomiary": [
+   {
+    "bryla": "Wspólne: zwój gwintu",
+    "t": "2026-10-19T11:05:39.372Z",
+    "bbox": {
+     "x": [
+      -31.459,
+      31.459
+     ],
+     "y": [
+      -36.324,
+      36.324
+     ],
+     "z": [
+      -2.409,
+      61.748
+     ]
+    },
+    "ciala": [
+     {
+      "id": "JOD",
+      "sc": 8,
+      "walceR": [
+       29.05,
+       31.45
+      ],
+      "zPl": []
+     }
+    ],
+    "wynik": {
+     "walceR": [
+      29.05,
+      31.45
+     ],
+     "czolaProfilu": [
+      {
+       "o": [
+        30.25,
+        0,
+        0
+       ],
+       "n": [
+        0,
+        -1,
+        0
+       ]
+      },
+      {
+       "o": [
+        9.348,
+        -28.769,
+        59
+       ],
+       "n": [
+        -0.9511,
+        -0.309,
+        0
+       ]
+      }
+     ],
+     "zZbodydetails": [
+      -2.4,
+      61.4
+     ],
+     "bboxNieCiasny": "y +/-36.324 > R 31.45; z.max 61.748",
+     "zgodnosc": "R 29.05/31.45 = oczekiwane; czolo startu z=0 (Front), czolo konca z=59 = #helisaH -> z -2.4/61.4 = oczekiwane"
+    }
+   },
+   {
+    "bryla": "Nakrętka 0.20",
+    "t": "2026-10-19T11:07:48.441Z",
+    "bbox": {
+     "x": [
+      -37,
+      36.992
+     ],
+     "y": [
+      -37,
+      37
+     ],
+     "z": [
+      6.214,
+      16.786
+     ]
+    },
+    "ciala": [
+     {
+      "id": "JRD",
+      "sc": 12,
+      "walceR": [
+       29.65,
+       31.65,
+       37
+      ],
+      "zPl": [
+       8,
+       15
+      ]
+     },
+     {
+      "id": "JOD",
+      "sc": 8,
+      "walceR": [
+       29.05,
+       31.45
+      ],
+      "zPl": []
+     }
+    ],
+    "wynik": {
+     "zgodnosc": true,
+     "maxOdchylkaMm": 0,
+     "uwaga": "z 8/15, R 29.65/31.65/37, xMax 36.992 (karb); bbox z nie ciasny"
+    }
+   },
+   {
+    "bryla": "Nakrętka 0.25",
+    "t": "2026-10-19T11:08:30.988Z",
+    "bbox": {
+     "x": [
+      -37,
+      36.992
+     ],
+     "y": [
+      -37,
+      37
+     ],
+     "z": [
+      15.212,
+      25.788
+     ]
+    },
+    "ciala": [
+     {
+      "id": "JaD",
+      "sc": 15,
+      "walceR": [
+       31.7,
+       37
+      ],
+      "zPl": [
+       17,
+       24
+      ]
+     },
+     {
+      "id": "JRD",
+      "sc": 12,
+      "walceR": [
+       29.65,
+       31.65,
+       37
+      ],
+      "zPl": [
+       8,
+       15
+      ]
+     },
+     {
+      "id": "JOD",
+      "sc": 8,
+      "walceR": [
+       29.05,
+       31.45
+      ],
+      "zPl": []
+     }
+    ],
+    "wynik": {
+     "zgodnosc": true,
+     "ściany": 15,
+     "z": [
+      17,
+      24
+     ],
+     "walceR": [
+      31.7,
+      37
+     ],
+     "brakWalca": 29.7,
+     "bbox": {
+      "xMax": 36.992,
+      "xy": 37
+     },
+     "analiza": "otwor R 29.70 zjedzony: szerokosc osiowa narzedzia z offsetem L na R=29.45+L = 4.8 + 0.828*L >= skok 5 dla L >= 0.2415; wewnetrzna srednica nakretki = grzbiet flank R = 29.35 + 1.414*L (0.25: 29.704, 0.30: 29.774, 0.35: 29.845, 0.40: 29.916) zamiast 29.45 + L; odchylka 0.004/0.024/0.045/0.066 mm; nakretka 0.20: pasek otworu 0.034 mm osiowo",
+     "decyzja": "orkiestrator (a): przyjete; oczekiwane R otworu = max(29.45+L, 29.35+1.414L), walec otworu znika dla L>=0.2415; sciany 7+4n",
+     "maxOdchylkaMm": 0
+    }
+   },
+   {
+    "bryla": "Nakrętka 0.30",
+    "bbox": {
+     "x": [
+      -37,
+      36.992
+     ],
+     "y": [
+      -37,
+      37
+     ],
+     "z": [
+      24.209,
+      34.791
+     ]
+    },
+    "oczekiwane": {
+     "z": [
+      26,
+      33
+     ],
+     "walceR": [
+      31.75,
+      37
+     ],
+     "sciany": 19
+    },
+    "wynik": {
+     "id": "JkD",
+     "z": [
+      26,
+      33
+     ],
+     "walceR": [
+      31.75,
+      37
+     ],
+     "sciany": 19,
+     "maxOdchylkaMm": 0,
+     "zgodnosc": true
+    },
+    "t": "2026-10-19T11:11:29.444Z"
+   },
+   {
+    "bryla": "Nakrętka 0.35",
+    "bbox": {
+     "x": [
+      -37,
+      36.992
+     ],
+     "y": [
+      -37,
+      37
+     ],
+     "z": [
+      33.206,
+      43.794
+     ]
+    },
+    "oczekiwane": {
+     "z": [
+      35,
+      42
+     ],
+     "walceR": [
+      31.8,
+      37
+     ],
+     "sciany": 23
+    },
+    "wynik": {
+     "id": "JuD",
+     "z": [
+      35,
+      42
+     ],
+     "walceR": [
+      31.8,
+      37
+     ],
+     "sciany": 23,
+     "maxOdchylkaMm": 0,
+     "zgodnosc": true
+    },
+    "t": "2026-10-19T11:12:01.673Z"
+   },
+   {
+    "bryla": "Nakrętka 0.40",
+    "bbox": {
+     "x": [
+      -37,
+      36.992
+     ],
+     "y": [
+      -37,
+      37
+     ],
+     "z": [
+      42.203,
+      52.797
+     ]
+    },
+    "oczekiwane": {
+     "z": [
+      44,
+      51
+     ],
+     "walceR": [
+      31.85,
+      37
+     ],
+     "sciany": 27
+    },
+    "wynik": {
+     "id": "J4D",
+     "z": [
+      44,
+      51
+     ],
+     "walceR": [
+      31.85,
+      37
+     ],
+     "sciany": 27,
+     "maxOdchylkaMm": 0,
+     "zgodnosc": true
+    },
+    "t": "2026-10-19T11:12:23.787Z"
+   },
+   {
+    "bryla": "Trzpień",
+    "t": "2026-10-19T11:12:57.297Z",
+    "bbox": {
+     "x": [
+      -32.45,
+      31.925
+     ],
+     "y": [
+      -36.315,
+      36.315
+     ],
+     "z": [
+      2.686,
+      56.293
+     ]
+    },
+    "oczekiwane": {
+     "z": [
+      5,
+      54
+     ],
+     "walceR": [
+      27.45,
+      29.45,
+      31.45
+     ],
+     "brakWalca": 29.05,
+     "brylSolid": 6
+    },
+    "wynik": {
+     "id": "RCBD",
+     "sciany": 8,
+     "z": [
+      5,
+      54
+     ],
+     "walceR": [
+      27.45,
+      29.45,
+      31.45
+     ],
+     "typy": {
+      "cylinder": 3,
+      "plane": 2,
+      "other": 2,
+      "cone": 1
+     },
+     "stozek": "polkat 45 deg, os -Z",
+     "brylSolid": 6,
+     "zgodnosc": true
+    }
+   },
+   {
+    "bryla": "Trzpień (po poprawce zakresu)",
+    "t": "2026-10-19T11:14:18.345Z",
+    "wynik": {
+     "id": "RCBD",
+     "sciany": 8,
+     "z": [
+      5,
+      54
+     ],
+     "walceR": [
+      27.45,
+      29.45,
+      31.45
+     ],
+     "brylSolid": 6,
+     "zgodnosc": true
+    }
+   }
+  ],
+  "nowePS": {
+   "id": "3011db72b94295d3b75ca7d2",
+   "name": "Probka gwintu 45"
+  },
+  "partStudio1": "nieusuniete: DELETE /elements zablokowane przez klasyfikator uprawnien; decyzja orkiestratora: do recznego usuniecia przez uzytkownika",
+  "weryfikacja": {
+   "t": "2026-10-19T11:17Z",
+   "raport": "40-cad/onshape/weryfikacja-probka-gwintu-45.md",
+   "K1": "drzewo w karcie: 34 operacje, 7 folderow bez ikon ostrzezenia/bledu (po poprawce zakresu); API featureStates puste",
+   "K2": {
+    "szkiceJSON": 10,
+    "wierszeWDrzewie": 10,
+    "niedookreslone": 0
+   },
+   "K3": {
+    "wyrazen": 91,
+    "zle": 0,
+    "staleWDrzewie": [
+     "0 deg",
+     "360 deg"
+    ]
+   },
+   "K4": {
+    "fix": 0
+   },
+   "K6": {
+    "Wspólne": 1,
+    "Nakrętka 0.20": 3,
+    "Nakrętka 0.25": 4,
+    "Nakrętka 0.30": 4,
+    "Nakrętka 0.35": 4,
+    "Nakrętka 0.40": 4,
+    "Trzpień": "3 + Sweep z folderu Wspólne = 4"
+   },
+   "K8": "10 szkicow: 7 na Front, 3 na Top",
+   "K11": "34/34 operacji z wcieciem 19 px (w folderach), pasek wycofania poza folderami",
+   "K9": [
+    {
+     "zm": "nakretkaH 5 mm",
+     "trzpienZ": [
+      5,
+      44
+     ],
+     "nakretkiZ": [
+      8,
+      15,
+      22,
+      29,
+      36
+     ],
+     "ok": true
+    },
+    {
+     "zm": "nakretkaH 10 mm",
+     "trzpienZ": [
+      5,
+      69
+     ],
+     "nakretkiZ": [
+      8,
+      20,
+      32,
+      44,
+      56
+     ],
+     "ok": true
+    },
+    {
+     "zm": "gwintRdzenD 56.9 mm",
+     "trzR": [
+      27.45,
+      28.45,
+      30.45
+     ],
+     "n020R": [
+      28.65,
+      30.65,
+      37
+     ],
+     "n030R": [
+      30.75,
+      37
+     ],
+     "ok": true
+    },
+    {
+     "zm": "gwintRdzenD 60.9 mm",
+     "trzR": [
+      27.45,
+      30.45,
+      32.45
+     ],
+     "n020R": [
+      30.65,
+      32.65,
+      37
+     ],
+     "n030R": [
+      32.75,
+      37
+     ],
+     "ok": true
+    },
+    {
+     "zm": "luzNakretka3 0.1 mm",
+     "n030R": [
+      29.55,
+      31.55,
+      37
+     ],
+     "n025R": [
+      31.7,
+      37
+     ],
+     "n035R": [
+      31.8,
+      37
+     ],
+     "ok": true
+    },
+    {
+     "zm": "luzNakretka3 0.6 mm",
+     "n030R": [
+      32.05,
+      37
+     ],
+     "ok": true
+    },
+    {
+     "zm": "przywrocenie",
+     "trzR": [
+      27.45,
+      29.45,
+      31.45
+     ],
+     "trzZ": [
+      5,
+      54
+     ],
+     "nakR": [
+      [
+       29.65,
+       31.65,
+       37
+      ],
+      [
+       31.7,
+       37
+      ],
+      [
+       31.75,
+       37
+      ],
+      [
+       31.8,
+       37
+      ],
+      [
+       31.85,
+       37
+      ]
+     ],
+     "ok": true
+    }
+   ]
+  }
+ },
+ "testFolderu": {
+  "dokument": "Probka gwintu 45, Part Studio 1 (odrzucona wersja z konfiguracja; do usuniecia w etapie 2), elementy testowe dopisane na koncu drzewa i usuniete",
+  "kroki": [
+   {
+    "t": "2026-10-19T10:28:57Z",
+    "krok": 1,
+    "opis": "API: szkic A (POST /features)",
+    "wynik": "na koncu drzewa za 'Nakretka: karby', przed paskiem wycofania",
+    "featureId": "FTiFD1D39EpEQof_3"
+   },
+   {
+    "t": "2026-10-19T10:29:27Z",
+    "krok": 2,
+    "opis": "UI: prawy klik na A > Add selection to folder... > nazwa 'Test folderu' > Enter",
+    "wynik": "folder 'Test folderu (1)' z A; pasek wycofania za folderem (poza nim)",
+    "mvPrzed": "288f015dd6e089bc282d786b",
+    "mvPo": "e347ebc969722b0122994a46"
+   },
+   {
+    "t": "2026-10-19T10:29:37Z",
+    "krok": 3,
+    "opis": "API: szkic B ze starym sourceMicroversion (sprzed folderu), rejectMicroversionSkew=true, folder zwiniety",
+    "wynik": "zapis przyjety (200, OK); B ZA folderem, poza nim",
+    "featureId": "FwVlDdGnvlkrDh3_3"
+   },
+   {
+    "t": "2026-10-19T10:30:25Z",
+    "krok": 4,
+    "opis": "UI: przeciagniecie B na wiersz zwinietego folderu",
+    "wynik": "B w folderze, ale NA POCZATKU (kolejnosc B, A) = zmiana kolejnosci drzewa",
+    "czas": "1 przeciagniecie ok. 2 s, drzewo odswiezone < 5 s"
+   },
+   {
+    "t": "2026-10-19T10:30:41Z",
+    "krok": 5,
+    "opis": "API: szkic C przy ROZWINIETYM folderze",
+    "wynik": "C za folderem, poza nim (wciecie 0 px)",
+    "featureId": "FrgRzjv1pyHmy51_3"
+   },
+   {
+    "t": "2026-10-19T10:32:06Z",
+    "krok": 6,
+    "opis": "UI: przeciagniecie C na dolna polowe wiersza A (ostatni w folderze)",
+    "wynik": "C na koncu folderu, kolejnosc B, A, C",
+    "uwaga": "pierwsza proba przy pozostawionym zaznaczeniu 'Nakretka: karby' przeniosla tez ten wiersz do folderu; cofniete Ctrl+Z (DOM: drzewo jak przed przeciagnieciem)"
+   },
+   {
+    "t": "2026-10-19T10:32:41Z",
+    "krok": 7,
+    "opis": "UI: pasek wycofania przeciagniety do folderu miedzy A i C; potem API: szkic D",
+    "wynik": "D w folderze tuz przed paskiem: API wstawia operacje w miejscu paska wycofania",
+    "featureId": "FNAURxakidcsc1j_3"
+   },
+   {
+    "t": "2026-10-19T10:33:30Z",
+    "krok": 8,
+    "opis": "UI: pasek pod C (ostatni wiersz folderu)",
+    "wynik": "pasek na koncu drzewa, ale W folderze (wciecie 19 px)"
+   },
+   {
+    "t": "2026-10-19T10:33:30Z",
+    "krok": 9,
+    "opis": "API: szkic E przy pasku na koncu folderu",
+    "wynik": "E w folderze",
+    "featureId": "F8uSgNBSg39w8W6_3"
+   },
+   {
+    "t": "2026-10-19T10:34:20Z",
+    "krok": 10,
+    "opis": "UI: przeciagniecie paska w puste pole pod drzewem",
+    "wynik": "bez zmiany, pasek dalej w folderze"
+   },
+   {
+    "t": "2026-10-19T10:34:30Z",
+    "krok": 11,
+    "opis": "UI: prawy klik na folderze > Roll to end",
+    "wynik": "pasek na koncu drzewa POZA folderem (wciecie 0 px)"
+   },
+   {
+    "t": "2026-10-19T10:34:38Z",
+    "krok": 12,
+    "opis": "API: szkice F i G jednym uruchomieniem (jak bryla w etapie 2)",
+    "wynik": "F, G za folderem, poza nim",
+    "featureIds": [
+     "F214ECIHjzqhoTy_3",
+     "Fw43l1Yp41fDnZ1_3"
+    ]
+   },
+   {
+    "t": "2026-10-19T10:35:14Z",
+    "krok": 13,
+    "opis": "UI: klik w puste pole widoku, klik F, Shift+klik G, prawy klik > Add selection to folder... > 'Test folderu 2' > Enter, klik w puste pole",
+    "wynik": "folder 'Test folderu 2 (2)' z F, G w kolejnosci; pasek na koncu poza folderem",
+    "czas": "5 akcji UI, ok. 10-15 s"
+   },
+   {
+    "t": "2026-10-19T10:36:19Z",
+    "krok": 14,
+    "opis": "UI: prawy klik na folderze > Delete (oba foldery)",
+    "wynik": "folder usuniety razem z zawartoscia; drzewo = 23 operacje jak przed testem, ostatnia 'Nakretka: karby', pasek na koncu (wciecie 0 px)",
+    "mvPo": "761d0cdd1c9ebfda365b389d"
+   }
+  ],
+  "wynik": {
+   "gdzieLadujeZapisApi": "w miejscu paska wycofania. Domyslnie pasek jest na koncu drzewa poza folderami, wiec zapis trafia ZA ostatni folder, takze przy folderze rozwinietym (kroki 3, 5, 12). Pasek w folderze = zapis w folderze (kroki 7, 9).",
+   "procedura": "po uruchomieniu bryly: klik w puste pole widoku; klik pierwszej operacji bryly, Shift+klik ostatniej; prawy klik > Add selection to folder... > nazwa > Enter; klik w puste pole; odczyt DOM (wciecie 19 px dla wszystkich operacji bryly, pasek 0 px); zrzut",
+   "pojedynczaOperacja": "przeciagnac na DOLNA polowe ostatniego wiersza folderu (krok 6); NIE na wiersz folderu (krok 4: wstawia na poczatek)",
+   "pasekWycofania": "nie przeciagac do folderu; jesli sie tam znajdzie: prawy klik na folderze > Roll to end (krok 11)",
+   "pulapki": [
+    "przeciaganie przenosi wszystko, co jest zaznaczone: przed akcja klik w puste pole widoku",
+    "zrzut z karty bywa sprzed 1-2 s; stan drzewa potwierdzac odczytem DOM (.node-indent 19 px = w folderze)",
+    "zmiany w UI zmieniaja microversion dokumentu; zapis ze starym sourceMicroversion i rejectMicroversionSkew=true zostal przyjety (krok 3); po kazdej pracy w UI G.mv odswiezany przez GET currentmicroversion (licznik 400)",
+    "Delete na folderze usuwa folder z zawartoscia; Unpack folder zostawia operacje",
+    "panel Configurations zajmuje pol lewej kolumny; przeciagniety podzial w gore (y 237 -> 95), zeby widac bylo cale drzewo"
+   ],
+   "czas": "folder z zakresu: 5 akcji UI, ok. 10-15 s; przeniesienie pojedynczej operacji: 1 przeciagniecie ok. 2 s",
+   "wywolania": "POST /features x7 (szkice A-G), GET currentmicroversion x3; 0 GET /features, 0 DELETE przez API"
+  }
+ },
+ "etap1b": {
+  "stan": "zakonczony, czekam na zatwierdzenie planu",
+  "raport": "40-cad/onshape/e2.0-etap1b.md",
+  "t": "2026-10-19T10:45Z"
+ },
+ "F_etap1": {
+  "luzGwint": "F8pq2hDXbRxnzAN_0",
+  "nrLuzu": "FXP8dqltZx15MVm_0",
+  "Layout: os Z i przekroj pierscienia": "FW01AJ0wqzZOlX1_0",
+  "Gwint: profil": "FkgT4xvRnBYFfbN_0",
+  "Gwint: okrag helisy i przyciecie dolu": "FiRjjcrr9KCKdnB_0",
+  "Gwint: przyciecie gory i faza wejscia [szkic]": "FV7KdVgm3AvMqxA_0",
+  "Gwint: przyciecie gory i faza wejscia": "FAdJ8eZuoV4H2HI_3",
+  "Nakretka: przekroj": "FZsqi8234N94iKe_0",
+  "Nakretka: pl. czola": "FkiDDxMQCFMuMIB_0",
+  "Nakretka: karb": "Fry964fDTF2YbhM_0",
+  "Pierscien: korpus": "FMRJdODXQ4stLkp_0",
+  "Gwint: helisa": "FuEFrrqMeKM1yzS_1",
+  "Gwint: zwoj": "FXwL9DqhH6xLSEi_1",
+  "Nakretka: korpus": "FG0ThBEjgAaSxVA_2",
+  "Nakretka: gwint": "FbzyR5m9ZRlySBG_3",
+  "Gwint: przyciecie dolu": "FubsDqjfAN9kA5p_3",
+  "Pierscien: gwint": "F0tFoD7g7lPRJ0I_3",
+  "Nakretka: wyciecie karbu": "FPOl9cUGw7DSYq7_3",
+  "Nakretka: karby": "FN0IJELDsaqlHno_3"
+ }
+}

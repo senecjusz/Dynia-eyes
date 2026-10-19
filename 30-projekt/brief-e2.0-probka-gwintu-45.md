@@ -24,15 +24,13 @@ Wymiary bierz ze zmiennych, nie z tej tabeli wpisanej liczbą. Wzorzec poprzedni
 - Dokument **„Probka gwintu 45”** w folderze TMP (już istnieje). Obecne Part Studio 1 zawiera poprzednią, odrzuconą wersję z konfiguracją: usuń je i załóż nowe Part Studio „Probka gwintu 45”. Nie zmieniaj żadnego innego dokumentu.
 - Pracujesz w karcie `cad.onshape.com` w przeglądarce w aplikacji (sesja użytkownika, narzędzia `mcp__Claude_Browser__*`). Użytkownik patrzy na żywo.
 
-## Kolejność i punkty zatrzymania
+## Stan i kolejność
 
-**Etap 1 (stop po nim).** Bramka `req()` i test znacznika są już zaliczone (`40-cad/onshape/e2.0-etap1.md`); bramkę wstrzyknij ponownie z licznikami z pliku stanu.
-1. Test folderów: na jednym szkicu testowym załóż folder w interfejsie i sprawdź, gdzie trafia następna operacja zapisana przez API (do folderu czy za nim) i jak ją przenieść do folderu. Opisz procedurę krok po kroku, potem usuń elementy testowe.
-2. Nowy plan drzewa: sześć brył, foldery, zmienne, szkice z użyciem, operacje w kolejności z przypisaniem do folderów, budżet operacji na bryłę i budżet wywołań API.
-
-Zapisz wynik w `40-cad/onshape/e2.0-etap1b.md` i plik stanu, potem stop i zgłoś orkiestratorowi.
-
-**Etap 2 (po zatwierdzeniu planu):** budowa operacja po operacji z kontrolą każdej operacji i szkicu, folder po folderze, runda weryfikacji K1–K9 i K11, raport `40-cad/onshape/weryfikacja-probka-gwintu-45.md`. Potem stop i zgłoszenie „gotowe do eksportu”.
+- Etap 1 jest zrobiony: bramka `req()` i test znacznika (`40-cad/onshape/e2.0-etap1.md`), test folderów i **zatwierdzony plan sześciu brył** (`40-cad/onshape/e2.0-etap1b.md`). Skrypt z bramką i kontrolą szkicu: `40-cad/onshape/probka-gwintu-45.js`, stan: `40-cad/onshape/stan-api.json`.
+- **Teraz tylko budowa według zatwierdzonego planu**, bez nowych planów i dokumentów. Najpierw przygotowanie (nowe Part Studio, zmienne), potem folder po folderze, jedna bryła na uruchomienie skryptu.
+- **Po każdej bryle** napisz w swoim wątku 2–3 linie: bryła, pomiar wobec oczekiwanego, czas. Użytkownik czyta twój wątek i może ci przerwać albo coś zmienić; jego słowo jest ważniejsze niż ten brief.
+- Rozbieżność > 0,05 mm, błąd operacji albo coś niejasnego: stop, opis w wątku i wiadomość do orkiestratora.
+- Na końcu runda K1–K9 i K11, raport `40-cad/onshape/weryfikacja-probka-gwintu-45.md`, zgłoszenie „gotowe do eksportu” w wątku i do orkiestratora.
 
 ## Ograniczenia
 
