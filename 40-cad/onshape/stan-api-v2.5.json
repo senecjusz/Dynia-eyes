@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:25Z, po Pokrywie: 10 czesci zbudowanych",
+ "zapis": "2026-10-19T14:30Z, foldery zalozone (11), przed weryfikacja",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -699,7 +699,15 @@
  "foldery": [
   "Layout (1)",
   "Gniazdo (23)",
-  "Nakrętka (13)"
+  "Nakrętka (13)",
+  "Kaseta (58)",
+  "Jarzmo z miską (17)",
+  "Sanki serwa (8)",
+  "Ramię orczyka (10)",
+  "Cięgno (9)",
+  "Tulejka przegubu korby (6)",
+  "Tulejka przegubu ramienia (1)",
+  "Pokrywa tylna (8)"
  ],
  "pomiary": [
   {
@@ -1151,54 +1159,14 @@
   }
  ],
  "stop": null,
- "folderyDoZalozenia": {
-  "Kaseta": {
-   "pierwsza": "Kaseta: profil rury",
-   "ostatnia": "Kaseta: wybranie H",
-   "operacji": 58
-  },
-  "Jarzmo z miską": {
-   "pierwsza": "Jarzmo: profil pasa",
-   "ostatnia": "Jarzmo: otwór korby",
-   "operacji": 17
-  },
-  "Sanki serwa": {
-   "pierwsza": "Sanki: pl. spodu",
-   "ostatnia": "Sanki: otwory uszu",
-   "operacji": 8
-  },
-  "Ramię orczyka": {
-   "pierwsza": "Ramię: płyta szkic",
-   "ostatnia": "Ramię: otwór przegubu",
-   "operacji": 10
-  },
-  "Cięgno": {
-   "pierwsza": "Cięgno: pl. płyty",
-   "ostatnia": "Cięgno: otwory i wkładki",
-   "operacji": 9
-  },
-  "Tulejka przegubu korby": {
-   "pierwsza": "Tulejki: pl. kołnierza",
-   "ostatnia": "Tulejka korby: otwór",
-   "operacji": 6
-  },
-  "Tulejka przegubu ramienia": {
-   "pierwsza": "Tulejka ramienia: kopia C→H",
-   "ostatnia": "Tulejka ramienia: kopia C→H",
-   "operacji": 1
-  },
-  "Pokrywa tylna": {
-   "pierwsza": "Pokrywa: płyta szkic",
-   "ostatnia": "Pokrywa: prowadnice kabla",
-   "operacji": 8
-  }
- },
+ "folderyDoZalozenia": {},
  "widocznosc": {
   "t": "2026-10-19T14:04Z",
   "tabs_context": "hidden, 1 karta (seed), aktywna",
   "visibilityState": "hidden",
   "javascript_tool": "ta sama karta seed (Oko F v2.5), G zywy",
-  "zalogowany": "tak (GET currentmicroversion 200)"
+  "zalogowany": "tak (GET currentmicroversion 200)",
+  "t2": "2026-10-19T14:26Z: panel displayed; foldery zalozone w UI (Shift+klik, Add selection to folder); pasek wycofania poza folderami"
  },
  "odstepstwa": [
   "Sanki: fazka 1x45 naroza w profilu zamiast Chamfer (przyjete przez orkiestratora 14:20)",
