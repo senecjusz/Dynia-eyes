@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:45Z, wykonawca CAD: weryfikacja v2.5 w toku - Jarzmo poprawione, Sanki dno otworow, wyjasnienia objetosci",
+ "zapis": "2026-10-19T14:58Z, wykonawca CAD: luki R130/R150 poprawione, bilans objetosci wszystkich czesci; nastepnie K9",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 236,
-  "features": 171,
+  "total": 240,
+  "features": 173,
   "getFeatures": 1
  },
  "budzet": {
@@ -631,6 +631,28 @@
    "featureStatus": "OK",
    "sourceMicroversion": "00253cdfe90d59c9f1daf389",
    "uwaga": "edycja (poprawka odczytu v2.4)"
+  },
+  {
+   "t": "2026-10-19T14:38:30Z",
+   "nazwa": "Gniazdo: profil",
+   "featureId": "FgtYWJ3D5RAkxgp_0",
+   "dataId": "Mn7I0iXbpylgDAVZb",
+   "podpowiedz": "Gniazdo: profil [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "featureStatus": "OK",
+   "uwaga": "edycja: luk R #dyniaR (srodek na osi); odczyt po przewinieciu listy"
+  },
+  {
+   "t": "2026-10-19T14:39:26.122Z",
+   "nazwa": "Nakrętka: czoło szkic",
+   "featureId": "FNimqkqfy4AZSbM_2",
+   "dataId": "MtuWD6br4CL4LID+P",
+   "podpowiedz": "Nakrętka: czoło szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0,
+   "featureStatus": "OK",
+   "sourceMicroversion": "1f4de2d2306f6c91c15649f2",
+   "uwaga": "edycja: luk R #nakretkaCzoloR (srodek na osi)"
   }
  ],
  "czasy": [
@@ -1289,7 +1311,35 @@
   {
    "t": "2026-10-19T14:44Z",
    "uwaga": "wykryte odstepstwa od spisu (moje): Nakretka czolo = cieciwa (stozek) zamiast luku R130 (#18); Gniazdo spod rantu = cieciwa zamiast luku R150 (#1). Do poprawy edycja 2 szkicow."
-  }
+  },
+  [
+   "2026-10-19T14:38:19.522Z",
+   "POST featureid Gniazdo: profil (luk R150)",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T14:39Z",
+   "uwaga": "kontrola wiersza rozszerzona: przy braku wiersza w DOM skan przewijanej listy (wirtualizacja), zamiast stopu"
+  },
+  [
+   "2026-10-19T14:39:26Z",
+   "POST featureid Nakrętka: czoło szkic (luk R130)",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T14:40Z",
+   "GET massproperties",
+   200,
+   2997
+  ],
+  [
+   "2026-10-19T14:40Z",
+   "GET bodydetails",
+   200,
+   463
+  ]
  ],
  "stop": null,
  "folderyDoZalozenia": {},
@@ -1309,7 +1359,7 @@
   "Fazki w profilach szkicow (rant, czolo kasety, otwor gniazda, zebro, faza zwoju) i fazki wejscia rowka jako ciecie - jak E2.0; Chamfer wymagalby zapytan krawedzi z liczbami (K3)"
  ],
  "weryfikacja": {
-  "t": "2026-10-19T14:45Z",
+  "t": "2026-10-19T14:58Z",
   "zrobione": [
    "K1: featureStatus wszystkich operacji OK (GET /features, wywolanie 224) i ikony w drzewie bez bledow po poprawkach",
    "porownanie objetosci, obrysu i genusu z 3MF v2.4 dla 10 brył (obrysy zgodne do 0.01 mm, genus zgodny)",
@@ -1320,16 +1370,16 @@
    "Nakretka v2.4: przekroj w strefie czystej 1308.4 mm2 (rowek ISO 131.7), w strefie klucza 1217.8"
   ],
   "objetosciV25": {
-   "Gniazdo": 32595.5,
-   "Nakretka": 7305.8,
-   "Kaseta": 35086.1,
-   "Jarzmo": 1825.1,
-   "Sanki": 1057.7,
-   "Ramie": 793.8,
+   "Gniazdo": 32576.96,
+   "Nakretka": 7383.37,
+   "Kaseta": 35086.12,
+   "Jarzmo": 1825.14,
+   "Sanki": 1058.63,
+   "Ramie": 793.76,
    "Ciegno": 599.3,
-   "TulejkaC": 76.8,
-   "TulejkaH": 76.8,
-   "Pokrywa": 7963.3
+   "TulejkaC": 76.78,
+   "TulejkaH": 76.78,
+   "Pokrywa": 7963.33
   },
   "objetosciV24": {
    "Gniazdo": 32556.9,
@@ -1342,15 +1392,23 @@
    "Tulejki": 76.75,
    "Pokrywa": 7959.9
   },
-  "wTrakcie": "poprawka lukow R130 (Nakretka czolo) i R150 (Gniazdo rant), potem bilans Gniazdo i Nakretka",
+  "wTrakcie": "K9 zbiorczy (2 stany, 5 zmiennych naraz)",
   "zostalo": [
-   "luki R130/R150 + pomiar",
-   "bilans Gniazdo/Nakretka",
-   "K2 cale drzewo",
-   "K3-K8 z JSON (cache)",
-   "K9 ograniczony: 2 stany (wszystkie zmienne naraz) + przywrocenie = 5 wywolan",
-   "K11",
+   "K9",
+   "GET /features: K1, K3-K8",
+   "K2 i K11 w karcie",
    "raport + commit"
-  ]
+  ],
+  "bilans": {
+   "Sanki": "+114.5 = 2. prowadnica +126.53 (zgubiona w 3MF v2.4) - zwezenie prowadnicy 6.1->6.35 -9.73 + otwory plytsze 3.85->3.75 i FLAT +0.51 - fazka 1x45 -2.18 + siatka v2.4 -0.65; dno otworow 0.60 (plaszczyzna y -21.35)",
+   "Kaseta": "+29.2 = Ø8.5->8.7 -17.4 (siatka v2.4) - stozki wkladek 118 st. -10.1 + luki cieciw walcow siatki v2.4 +43.0 + reszta 13.7 (0.04%, dokladnosc siatki, przyjete przez orkiestratora); okno SG90 bez zmian 13.2",
+   "Gniazdo": "+20.1 = strefa gwintu -34..-15 +11.7 (grzbiet 45 st. 212.6 + rdzen 348.9 = 561.5 mm2/mm wobec ISO 558.6; v2.4 slab -16..-15 601.5) + koniec gwintu i rura +5.9 (rura R29.45 zamiast 29.5 -80.5, ogon grzbietu nad stozkiem przyciecia +77.3) + strefa A (Pappus 17312.0 wobec siatki 17306.3) +5.7 + reszta -3.1; analityka v2.5 = Onshape do 0.02%",
+   "Nakretka": "-382.1 = czolo R130 od krawedzi otworu (v2.4 od r 30.2 i 0.1 nad czolem) -136.8 + otwor R29.65 i gwint 45 st. z luzem 0.2 zamiast ISO -135.9 + radelko -90.2 + fazy otworu -22.0 + siatka v2.4 +2.7; analityka v2.5 7383.31 = Onshape 7383.37",
+   "Jarzmo": "+5.9 = pelny okrag piasty C +5.6 + 0.3",
+   "Ramie": "+0.1",
+   "Ciegno": "+0.1",
+   "Tulejki": "0",
+   "Pokrywa": "+3.4 (siatka)"
+  }
  }
 }
