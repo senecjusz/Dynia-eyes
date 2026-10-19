@@ -59,7 +59,7 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 ## Proces wersji
 
 1. Budowa (wykonawca) z kontrolą szkiców i rundą weryfikacji modelu; przyjęcie przez orkiestratora.
-2. Eksport 3MF (użytkownik) i kontrola po eksporcie (wykonawca).
+2. Eksport 3MF i kontrola po eksporcie (wykonawca, w ramach zlecenia); orkiestrator powtarza kontrolę siatek.
 3. Review dwoma recenzentami (zleca orkiestrator).
 4. Orkiestrator łączy wyniki, użytkownik decyduje, co poprawić teraz, a co w następnej wersji.
 5. Poprawki (wykonawca), znowu z kontrolą i rundą weryfikacji.
@@ -198,5 +198,5 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 
 ## Eksport i kontrola po eksporcie
 
-- **Eksport** (3MF, STL, STEP) robi użytkownik ręcznie: 3MF, rozdzielczość Custom, kąt 3°, odchyłka 0,01 mm.
+- **Eksport** robi wykonawca w ramach zlecenia, przez API, do `40-cad/3mf/<wersja>/`, jeden plik na część, nazwa pliku = nazwa części: 3MF, kąt 3°, odchyłka 0,01 mm (jeśli API nie daje 3MF, STL binarny z tymi samymi tolerancjami). Części mają nazwy jak ich foldery, zanim powstanie eksport.
 - **Po każdym eksporcie** wykonawca uruchamia `40-cad/narzedzia/sprawdz_siatki.js`: szczelność, orientacja trójkątów, **liczba brył w modelu = w 3MF**, 0 błędów. Przy błędach `napraw_siatki.js` i ponowne sprawdzenie. Do tego symulacja wsuwania wszystkich wkładanych części (tulejki, śruby, trzpienie) także względem sąsiednich części.
