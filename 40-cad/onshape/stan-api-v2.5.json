@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T17:45Z, wykonawca CAD: E2.1b zakonczone - nazwy czesci, kontrola eksportu recznego, raport 40-cad/onshape/e2.1b-eksport.md",
+ "zapis": "2026-10-19T19:45Z, wykonawca CAD: E2.1c zakonczone, raport 40-cad/onshape/e2.1c-poprawki.md",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,9 +10,9 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 253,
-  "features": 174,
-  "getFeatures": 2
+  "total": 281,
+  "features": 188,
+  "getFeatures": 4
  },
  "budzet": {
   "total": 260,
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "95ea37eb5a2d7c8851d4c68a",
+ "mv": "124421e41793600c0c4044a4",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -184,7 +184,9 @@
   "Pokrywa: otwory śrub": "FsMBpjAXTT7Lw5S_9",
   "Pokrywa: pl. prowadnic kabla": "FgDm3pElSLibwPX_9",
   "Pokrywa: prowadnice kabla szkic": "Fnbctpo8YmDhjDq_9",
-  "Pokrywa: prowadnice kabla": "FEUmqs4v1tJci38_9"
+  "Pokrywa: prowadnice kabla": "FEUmqs4v1tJci38_9",
+  "Jarzmo: kula wnętrza szkic": "FKces3sArMt63BH_9",
+  "Jarzmo: obcięcie kulą wnętrza": "FMPBtFC5z7zB7lA_9"
  },
  "szkice": [
   {
@@ -653,6 +655,39 @@
    "featureStatus": "OK",
    "sourceMicroversion": "1f4de2d2306f6c91c15649f2",
    "uwaga": "edycja: luk R #nakretkaCzoloR (srodek na osi)"
+  },
+  {
+   "t": "2026-10-19T17:26:28Z",
+   "nazwa": "Kaseta: szczelina skośna szkic",
+   "featureId": "FuzhS4OgzstvJrt_3",
+   "dataId": "MSy68tg/7S6hq2c/h",
+   "podpowiedz": "Kaseta: szczelina skośna szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "uwaga": "edycja 1 (os osR), odczyt po rozwinieciu folderu i skanie"
+  },
+  {
+   "t": "2026-10-19T17:29:45.869Z",
+   "nazwa": "Jarzmo: kula wnętrza szkic",
+   "featureId": "FKces3sArMt63BH_9",
+   "dataId": "MZRZ0f4CXvv8JT9fn",
+   "podpowiedz": "Jarzmo: kula wnętrza szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 6932,
+   "featureStatus": "OK",
+   "sourceMicroversion": "24ba16f9ee3ae7d1c846b16f",
+   "uwaga": "odczyt przez filtr drzewa"
+  },
+  {
+   "t": "2026-10-19T17:31:22.780Z",
+   "nazwa": "Kaseta: szczelina skośna szkic",
+   "featureId": "FuzhS4OgzstvJrt_3",
+   "dataId": "MSy68tg/7S6hq2c/h",
+   "podpowiedz": "Kaseta: szczelina skośna szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 6899,
+   "featureStatus": "OK",
+   "sourceMicroversion": "394d0bc4dcca97b1dea5023d",
+   "uwaga": "edycja 2 (profil odbity wiezem MIRROR), odczyt przez filtr drzewa"
   }
  ],
  "czasy": [
@@ -1437,7 +1472,187 @@
   {
    "t": "2026-10-19T17:45Z",
    "uwaga": "E2.1b: kontrola plikow eksportu recznego bez wywolan API; poprawka sprawdz_siatki.js (unit 3MF)"
-  }
+  },
+  [
+   "2026-10-19T17:19Z",
+   "GET featurespecs",
+   200,
+   97
+  ],
+  [
+   "2026-10-19T17:19Z",
+   "GET currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T17:19:15Z",
+   "POST featureid Kaseta: szczelina skośna szkic (+ os osR) OK",
+   200,
+   3000
+  ],
+  {
+   "t": "2026-10-19T17:19:35Z",
+   "uwaga": "kontrola wiersza: brak w DOM (folder Kaseta zwiniety, panel hidden); po rozwinieciu folderu panel znowu ukryty - lista nie renderuje sie; STOP wg polecenia orkiestratora"
+  },
+  {
+   "t": "2026-10-19T17:23Z",
+   "uwaga": "E2.1c: wstrzykniecie po odswiezeniu okna; panel wyswietlony (split view); kontrola wiersza przez filtr drzewa 'Filter by name or type' (propozycja uzytkownika, test OK)"
+  },
+  [
+   "2026-10-19T17:26:31Z",
+   "GET featurespecs",
+   200,
+   96
+  ],
+  [
+   "2026-10-19T17:26:31Z",
+   "GET currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T17:26:32Z",
+   "POST featureid Kaseta: szczelina skośna zaczepu (os osR) OK",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T17:26:34Z",
+   "GET bodydetails: stozki szczeliny tylko przy 33 st.",
+   200,
+   460
+  ],
+  [
+   "2026-10-19T17:26:58Z",
+   "GET /features (lista szyku poprawna, fullFeaturePattern true)",
+   200,
+   92
+  ],
+  [
+   "2026-10-19T17:28:04Z",
+   "GET featurespecs",
+   200,
+   95
+  ],
+  [
+   "2026-10-19T17:28:04Z",
+   "POST features Kaseta: szczelina skośna 213 (test A: szyk tylko szczeliny) ERROR 'Could not pattern selected features'",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T17:28:34Z",
+   "DELETE featureid test A",
+   200,
+   2999
+  ],
+  [
+   "2026-10-19T17:29:00Z",
+   "GET currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T17:29:00Z",
+   "POST features Jarzmo: kula wnętrza szkic OK",
+   200,
+   2998
+  ],
+  [
+   "2026-10-19T17:29:15Z",
+   "POST features Jarzmo: obcięcie kulą wnętrza ERROR (brak obszaru: linia osi konstrukcyjna)",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T17:29:32Z",
+   "POST featureid Jarzmo: kula wnętrza szkic (linia osi zwykla) OK",
+   200,
+   2999
+  ],
+  [
+   "2026-10-19T17:29:46Z",
+   "POST featureid Jarzmo: obcięcie kulą wnętrza OK",
+   200,
+   2998
+  ],
+  [
+   "2026-10-19T17:30:04Z",
+   "GET variables",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T17:30:06Z",
+   "POST variables fazkaSanek 2 mm",
+   204,
+   2997
+  ],
+  [
+   "2026-10-19T17:30:35Z",
+   "GET currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T17:30:36Z",
+   "POST featureid szkic szczeliny - HTTP 400 (typ wiezu SYMMETRIC; poprawnie MIRROR)",
+   400,
+   3000
+  ],
+  [
+   "2026-10-19T17:31:09Z",
+   "POST featureid Kaseta: szczelina skośna szkic (MIRROR) OK",
+   200,
+   2999
+  ],
+  [
+   "2026-10-19T17:31:24Z",
+   "POST featureid Kaseta: szczelina skośna zaczepu OK",
+   200,
+   2998
+  ],
+  [
+   "2026-10-19T17:31:32Z",
+   "POST featureid Kaseta: zaczep 213 (bez szczeliny) OK",
+   200,
+   2997
+  ],
+  [
+   "2026-10-19T17:31:39Z",
+   "GET bodydetails",
+   200,
+   459
+  ],
+  [
+   "2026-10-19T17:31:55Z",
+   "GET massproperties",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T17:33Z",
+   "GET /features (K3/K4/K8 zmienionych operacji)",
+   200,
+   91
+  ],
+  {
+   "t": "2026-10-19T17:35Z",
+   "uwaga": "UI: operacje kuli przeciagniete do folderu Jarzmo z miską (19) przy filtrze 'Jarzmo'"
+  },
+  [
+   "2026-10-19T17:36Z",
+   "GET massproperties (bez zmian po przeniesieniu)",
+   200,
+   2999
+  ],
+  [
+   "2026-10-19T17:36Z",
+   "GET /parts (nazwy zachowane, nowe partId)",
+   200,
+   null
+  ]
  ],
  "stop": null,
  "folderyDoZalozenia": {},
@@ -1663,5 +1878,154 @@
    "jednostka3MF": "meter"
   },
   "wywolania": 6
+ },
+ "e21c": {
+  "brief": "30-projekt/brief-e2.1c-poprawki-v2.5.md",
+  "budzet": {
+   "total": 40,
+   "getFeatures": 2,
+   "limitBramki": {
+    "total": 293,
+    "getFeatures": 4
+   }
+  },
+  "start": {
+   "total": 253,
+   "getFeatures": 2
+  },
+  "plan": {
+   "1": "os obrotu szczeliny skosnej = linia osR w szkicu szczeliny; Revolve z osia osR",
+   "2": "polkole R #jarzmoRw na Front, Revolve REMOVE wokol osZ, zakres jarzmo",
+   "3": "fazkaSanek 1 -> 2 mm (VS)"
+  },
+  "zrobione": [
+   "1: szczelina skosna 33/213 jednym Revolve (profil odbity wiezem MIRROR wzgledem osR), szczelina usunieta z szyku",
+   "2: Jarzmo obciete kula R #jarzmoRw (szkic polkola na Front + Revolve REMOVE)",
+   "3: fazkaSanek 2 mm",
+   "operacje kuli w folderze Jarzmo z miską (19), K3/K4/K8 na zmienionych operacjach OK, nazwy czesci zachowane, objetosci bez zmian po przeniesieniu"
+  ],
+  "niezrobione": [
+   "eksport 3MF Kaseta, Jarzmo, Sanki (uzytkownik) i testy na siatkach"
+  ],
+  "czasy": [
+   {
+    "poprawka": "1 os osR (bez efektu)",
+    "start": "17:26:28.980Z",
+    "koniec": "17:26:34.126Z",
+    "ms": 5146
+   },
+   {
+    "poprawka": "1 test A osobny szyk (ERROR)",
+    "start": "17:28:02.592Z",
+    "koniec": "17:28:04.536Z",
+    "ms": 1944
+   },
+   {
+    "poprawka": "2 kula jarzma",
+    "start": "17:28:59.972Z",
+    "koniec": "17:29:15.071Z",
+    "ms": 15099
+   },
+   {
+    "poprawka": "2 kula jarzma (poprawka szkicu)",
+    "start": "17:29:31.490Z",
+    "koniec": "17:29:53.862Z",
+    "ms": 22372
+   },
+   {
+    "poprawka": "3 fazka sanek",
+    "start": "17:30:04.345Z",
+    "koniec": "17:30:06.376Z",
+    "ms": 2031
+   },
+   {
+    "poprawka": "1 SYMMETRIC (HTTP 400)",
+    "start": "17:30:35.541Z",
+    "koniec": "17:30:36.191Z",
+    "ms": 650
+   },
+   {
+    "poprawka": "1 MIRROR + jeden Revolve + szyk + pomiar",
+    "start": "17:31:07.804Z",
+    "koniec": "17:31:39.832Z",
+    "ms": 32028
+   }
+  ],
+  "pomiary": {
+   "kasetaStozkiSzczeliny": [
+    {
+     "r": 28.2,
+     "pole": 47.387,
+     "az": 33.7
+    },
+    {
+     "r": 23.9,
+     "pole": 46.856,
+     "az": 33.0
+    },
+    {
+     "r": 28.2,
+     "pole": 47.387,
+     "az": -146.3
+    },
+    {
+     "r": 23.9,
+     "pole": 46.856,
+     "az": -147.0
+    }
+   ],
+   "jarzmoSfera": [
+    [
+     20.75,
+     512.938
+    ],
+    [
+     20.75,
+     9.013
+    ],
+    [
+     23.25,
+     486.413
+    ]
+   ],
+   "jarzmoMinR": 20.75,
+   "sankiFazka": {
+    "x": [
+     -9.6,
+     -7.6
+    ],
+    "z": [
+     -46.6,
+     -44.6
+    ],
+    "pole": 12.304
+   },
+   "luzKolnierzaH": 0.295,
+   "V": {
+    "Gniazdo": 32576.96,
+    "Nakretka": 7383.37,
+    "Kaseta": 35048.59,
+    "Jarzmo": 1822.63,
+    "Sanki": 1052.11,
+    "Ramie": 793.76,
+    "Ciegno": 599.3,
+    "TulejkaC": 76.78,
+    "TulejkaH": 76.78,
+    "Pokrywa": 7963.33
+   }
+  },
+  "partIdPoPrzeniesieniu": {
+   "JID": "Gniazdo",
+   "JsD": "Nakrętka",
+   "RNBD": "Kaseta",
+   "R5CD": "Jarzmo z miską",
+   "RfDD": "Sanki serwa",
+   "RqDD": "Ramię orczyka",
+   "R9DD": "Cięgno",
+   "RKED": "Tulejka przegubu korby",
+   "RRED": "Tulejka przegubu ramienia",
+   "RUED": "Pokrywa tylna"
+  },
+  "wywolania": 28
  }
 }

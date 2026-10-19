@@ -711,8 +711,13 @@ G.kasetaD = () => G.bryla('Kaseta D (zaczep)', async () => {
   const s = new G.Sk('Kaseta: szczelina skośna szkic', G.q.plane('Kaseta: pl. szczeliny skośnej'));
   s.poly(['s1', 's2', 's3', 's4'], [[23.9, -40.75], [28.2, -36.45], [28.2, -35.319], [23.9, -39.619]]); s.V('s2'); s.V('s4');
   s.dx('s1.start', '#skosR1'); s.dy('s1.start', '#skosZ1'); s.dx('s2.start', '#skosR2'); s.dy('s2.start', '#skosZ2'); s.dy('s3.start', '#skosZ3'); s.dy('s4.start', '#skosZ4');
+  // E2.1c: Onshape nie powiela tego Revolve w szyku (ERROR "Could not pattern selected features", w szyku zbiorczym ukryty statusem OK).
+  // Szczelina 213 st.: drugi profil odbity wiezem MIRROR (Symmetric) wzgledem osi osR w tym szkicu; jeden Revolve wycina obie.
+  s.line('osR', [0, -40.75], [0, -35.319], true); s.coExt('osR.start', G.osZ()); s.coExt('osR.end', G.osZ()); s.dy('osR.start', '#skosZ1'); s.dy('osR.end', '#skosZ3');
+  s.poly(['t1', 't2', 't3', 't4'], [[-23.9, -40.75], [-28.2, -36.45], [-28.2, -35.319], [-23.9, -39.619]]);
+  for (let i = 1; i <= 4; i++) s.con('MIRROR', [G.pstr('localFirst', `s${i}.start`), G.pstr('localSecond', `t${i}.start`), G.pstr('localMirror', 'osR')]);
   await G.zapiszSzkic(s.feature());
-  await G.rev('Kaseta: szczelina skośna zaczepu', G.q.region('Kaseta: szczelina skośna szkic'), { op: 'REMOVE', angle: '#zaczepSkosRozw', scope: K() });
+  await G.rev('Kaseta: szczelina skośna zaczepu', G.q.region('Kaseta: szczelina skośna szkic'), { op: 'REMOVE', angle: '#zaczepSkosRozw', scope: K(), axisQ: G.q.ent('Kaseta: szczelina skośna szkic', 'osR') });
   await G.plOffset('Kaseta: pl. szczeliny tylnej', G.q.std('Top'), '#zaczepTylZ', true);
   await G.zapiszSzkic(G.wycinek('Kaseta: szczelina tylna szkic', G.q.plane('Kaseta: pl. szczeliny tylnej'), 23.5, 28, 16, 52.4, { r1: 'zaczepR1', r2: 'zaczepR2', x1o: 'ztX1o', x2o: 'ztX2o', x1i: 'ztX1i', x2i: 'ztX2i' }).feature());
   await G.ext('Kaseta: szczelina tylna zaczepu', 'Kaseta: szczelina tylna szkic', { op: 'REMOVE', depth: '#zaczepTylGl', opp: true, scope: K() });
@@ -722,7 +727,7 @@ G.kasetaD = () => G.bryla('Kaseta D (zaczep)', async () => {
   await G.zapiszSzkic(h.feature());
   await G.ext('Kaseta: haczyk', 'Kaseta: haczyk szkic', { op: 'ADD', depth: '#haczykSzer', sym: true, scope: K() });
   await G.op('Kaseta: zaczep 213', 'circularPattern', [G.pe('circularPattern', 'patternType', 'FEATURE'), { btType: 'BTMParameterFeatureList-1749', parameterId: 'instanceFunction',
-    featureIds: ['Kaseta: koniec zaczepu', 'Kaseta: pocienienie zaczepu', 'Kaseta: szczelina skośna zaczepu', 'Kaseta: szczelina tylna zaczepu', 'Kaseta: haczyk'].map(G.fid) },
+    featureIds: ['Kaseta: koniec zaczepu', 'Kaseta: pocienienie zaczepu', 'Kaseta: szczelina tylna zaczepu', 'Kaseta: haczyk'].map(G.fid) },   // szczelina skosna poza szykiem (E2.1c)
     G.pq('axis', G.osZ()), G.pn('angle', '360 deg'), G.pn('instanceCount', '2', true), G.pb('equalSpace', true), G.pb('fullFeaturePattern', true)]);
 });
 G.kasetaE = () => G.bryla('Kaseta E (H)', async () => {
@@ -812,6 +817,13 @@ G.jarzmo = () => G.bryla('Jarzmo', async () => {
   await G.ext('Jarzmo: korba', 'Jarzmo: korba szkic', { op: 'ADD', depth: '#plytaT', opp: true, scope: J(), regions: `query=qSketchRegion(makeId("${G.fid('Jarzmo: korba szkic')}"), false);` });
   await G.op('Jarzmo: otwór korby', 'hole', [G.pe('hole', 'style', 'SIMPLE'), G.pq('locations', G.q.vtx('Layout: osie i punkty', 'lCH.start')), G.pe('hole', 'endStyle', 'THROUGH'),
     G.pn('holeDiameter', '#otworPrzegubuD'), G.pb('oppositeDirection', true), G.pq('scope', ...J())]);
+  // E2.1c: obciecie jarzma kula wnetrza R #jarzmoRw (kulaDmax/2 + klej) wokol srodka oka, jak w v2.4 (szczelina klejowa przy piascie C)
+  const kk = new G.Sk('Jarzmo: kula wnętrza szkic', G.q.std('Front'));
+  kk.arc('kula', [0, -12], 20.75, -90, 90); kk.line('osK', [0, 8.75], [0, -32.75]);
+  kk.co('kula.end', 'osK.start'); kk.co('osK.end', 'kula.start'); kk.coExt('kula.center', G.oko()); kk.ra('kula', '#jarzmoRw');
+  kk.coExt('osK.start', G.osZ()); kk.coExt('osK.end', G.osZ());
+  await G.zapiszSzkic(kk.feature());
+  await G.rev('Jarzmo: obcięcie kulą wnętrza', G.q.region('Jarzmo: kula wnętrza szkic'), { op: 'REMOVE', scope: J() });
 });
 return 'jarzmo ok';
 })();
@@ -822,7 +834,7 @@ const G = window.G; const L = 'LENGTH', A = 'ANGLE';
 G.ZM.reszta = [
  ['sankiOparcieY', L, '22.2 mm', 22.2, 'oparcie sanek nad scianka kasety (y)'], ['sankiSpodY', L, '#sankiOparcieY - #luzSanki', 21.95, ''], ['slupkiH', L, '4.35 mm', 4.35, ''], ['prowadnicaH', L, '1.7 mm', 1.7, ''],
  ['sankiPolSzer', L, '9.6 mm', 9.6, ''], ['sankiZ1', L, '44.6 mm', 44.6, ''], ['sankiZ2', L, '49.2 mm', 49.2, ''], ['sankiZ3', L, '72.1 mm', 72.1, ''], ['sankiZ4', L, '77.4 mm', 77.4, ''],
- ['sankiProwZ1', L, '48.9 mm', 48.9, ''], ['sankiProwZ2', L, '72.4 mm', 72.4, ''], ['prowadnicaWewX', L, '#szczelinaSG90 / 2', 6.35, ''], ['fazkaSanek', L, '1 mm', 1, 'naroze sanek (tulejka H)'],
+ ['sankiProwZ1', L, '48.9 mm', 48.9, ''], ['sankiProwZ2', L, '72.4 mm', 72.4, ''], ['prowadnicaWewX', L, '#szczelinaSG90 / 2', 6.35, ''], ['fazkaSanek', L, '2 mm', 2, 'naroze sanek (tulejka H): luz kolnierza Ø8 >= 0.25 (E2.1c)'],
  ['sankiGoraY', L, '#sankiSpodY - #slupkiH', 17.6, ''], ['sankiOtwor1Z', L, '46.75 mm', 46.75, ''], ['sg90UchaRozstaw', L, '27.8 mm', 27.8, ''], ['sankiOtwor2Z', L, '#sankiOtwor1Z + #sg90UchaRozstaw', 74.55, ''],
  ['serwoWkret', L, '1.8 mm', 1.8, ''], ['dnoWkretu', L, '0.6 mm', 0.6, ''], ['sankiOtworGl', L, '#slupkiH - #dnoWkretu', 3.75, ''],
  ['ramieRo', L, '5.5 mm', 5.5, ''], ['ramieRh', L, '5 mm', 5, ''], ['ramaY', L, '4.5 mm', 4.5, ''], ['ramaH', L, '1.6 mm', 1.6, ''], ['ramaR', L, '5.2 mm', 5.2, ''], ['ramaRamieR', L, '3.5 mm', 3.5, ''],
