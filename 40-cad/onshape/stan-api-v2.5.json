@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:30Z, foldery zalozone (11), przed weryfikacja",
+ "zapis": "2026-10-19T14:25Z, wykonawca CAD: weryfikacja v2.5 w toku (porownanie z v2.4, poprawka Ramie/Ciegno, sledztwo Jarzmo)",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,9 +10,9 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 223,
-  "features": 165,
-  "getFeatures": 0
+  "total": 233,
+  "features": 169,
+  "getFeatures": 1
  },
  "budzet": {
   "total": 260,
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "7f81208ef1ddcaf7f3de382e",
+ "mv": "00253cdfe90d59c9f1daf389",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -596,6 +596,41 @@
    "dataId": "M5skFCc5w03UIdxWo",
    "podpowiedz": "Pokrywa: prowadnice kabla szkic [Sketch]",
    "niedookreslony": false
+  },
+  {
+   "t": "2026-10-19T14:22:46.838Z",
+   "nazwa": "Ramię: płyta szkic",
+   "featureId": "FFS9klGCoweXOPi_5",
+   "dataId": "M+4C7YXVhQM7HU3Md",
+   "podpowiedz": "Ramię: płyta szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "featureStatus": "OK",
+   "sourceMicroversion": "7e8c1875e925b6b9bbe2ec07",
+   "uwaga": "edycja (poprawka odczytu v2.4); odczyt po rozwinieciu folderu Ramie orczyka - stop z limitu 5000 ms: folder zwiniety, wiersza nie bylo w DOM"
+  },
+  {
+   "t": "2026-10-19T14:22:47.534Z",
+   "nazwa": "Ramię: kieszeń orczyka szkic",
+   "featureId": "FV9o098j4f0x2Tx_6",
+   "dataId": "MEtHSsutaagqLLZPu",
+   "podpowiedz": "Ramię: kieszeń orczyka szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0,
+   "featureStatus": "OK",
+   "sourceMicroversion": "b35b934cf8a3a979ad45bd5f",
+   "uwaga": "edycja (poprawka odczytu v2.4)"
+  },
+  {
+   "t": "2026-10-19T14:22:48.258Z",
+   "nazwa": "Cięgno: płyta szkic",
+   "featureId": "F6IvVypU0Sxuf4f_6",
+   "dataId": "Mvqi2vzZatL4QPRtK",
+   "podpowiedz": "Cięgno: płyta szkic [Sketch] (Hidden)",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0,
+   "featureStatus": "OK",
+   "sourceMicroversion": "00253cdfe90d59c9f1daf389",
+   "uwaga": "edycja (poprawka odczytu v2.4)"
   }
  ],
  "czasy": [
@@ -1156,7 +1191,75 @@
   {
    "t": "2026-10-19T14:12Z",
    "uwaga": "Jarzmo: korba - przywrocona petla 2 (v2.4 p.35-60), edycja szkicu featureid, szkic w pelni zdefiniowany, 47 scian"
-  }
+  },
+  [
+   "2026-10-19T14:09:45.445Z",
+   "GET /features",
+   200,
+   94
+  ],
+  [
+   "2026-10-19T14:09:45.766Z",
+   "GET massproperties",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T14:09:45.954Z",
+   "GET /parts",
+   200,
+   500
+  ],
+  {
+   "t": "2026-10-19T14:15Z",
+   "uwaga": "porownanie z siatka 3MF v2.4: Ramie +18.5% i Ciegno +8.2% - blad odczytu v2.4 w spisie (v2.4: pas o stalej pol-szerokosci 4.0 / 3.5 wzdluz osi + okregi koncowe, nie styczne; kieszen: prostokat 2x2.6 O-T + R3.7 + R2.3, nie zbieznosc)"
+  },
+  [
+   "2026-10-19T14:19:53.792Z",
+   "POST variables (+ramiePolSzer 4, kieszenPolSzer 2.6, ciegnoPolSzer 3.5)",
+   204,
+   3000
+  ],
+  [
+   "2026-10-19T14:19:53.990Z",
+   "GET currentmicroversion",
+   200,
+   400
+  ],
+  [
+   "2026-10-19T14:19:57.310Z",
+   "POST featureid Ramię: płyta szkic",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T14:22:46.838Z",
+   "uwaga": "stop 'brak wiersza w drzewie: Ramię: płyta szkic' - przyczyna: zwiniete foldery Ramie/Ciegno (karta widoczna); po rozwinieciu wiersz jest, szkic w pelni zdefiniowany; stop skasowany, kontynuacja"
+  },
+  [
+   "2026-10-19T14:22:47.533Z",
+   "POST featureid Ramię: kieszeń orczyka szkic",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T14:22:48.257Z",
+   "POST featureid Cięgno: płyta szkic",
+   200,
+   2999
+  ],
+  [
+   "2026-10-19T14:22:53.969Z",
+   "GET massproperties (odpowiedz stracona - blad skryptu)",
+   200,
+   3000
+  ],
+  [
+   "2026-10-19T14:23:06.024Z",
+   "GET massproperties",
+   200,
+   2999
+  ]
  ],
  "stop": null,
  "folderyDoZalozenia": {},
@@ -1174,5 +1277,45 @@
   "Ramie: kieszen z pl. ramy y -4.5 na 1.5 zamiast z -4.6 na 1.6 (to samo dno -3.0; zgoda jw.)",
   "Kaseta: para otworow osi = jeden Hole z 2 punktami (Onshape nie wzoruje Hole przez Mirror)",
   "Fazki w profilach szkicow (rant, czolo kasety, otwor gniazda, zebro, faza zwoju) i fazki wejscia rowka jako ciecie - jak E2.0; Chamfer wymagalby zapytan krawedzi z liczbami (K3)"
- ]
+ ],
+ "weryfikacja": {
+  "t": "2026-10-19T14:25Z",
+  "zrobione": [
+   "K1: featureStatus wszystkich operacji OK (GET /features, wywolanie 224) i ikony w drzewie bez bledow po poprawkach",
+   "porownanie objetosci, obrysu i genusu z 3MF v2.4 dla 10 brył (obrysy zgodne do 0.01 mm, genus zgodny)",
+   "Ramie i Ciegno poprawione (edycja 3 szkicow): 793.8 / 599.3 mm3 wobec v2.4 793.7 / 599.2"
+  ],
+  "objetosciV25": {
+   "Gniazdo": 32595.5,
+   "Nakretka": 7305.8,
+   "Kaseta": 35086.1,
+   "Jarzmo": 1793.5,
+   "Sanki": 1057.7,
+   "Ramie": 793.8,
+   "Ciegno": 599.3,
+   "TulejkaC": 76.8,
+   "TulejkaH": 76.8,
+   "Pokrywa": 7963.3
+  },
+  "objetosciV24": {
+   "Gniazdo": 32556.9,
+   "Nakretka": 7765.5,
+   "Kaseta": 35056.9,
+   "Jarzmo": 1819.2,
+   "Sanki": 944.2,
+   "Ramie": 793.7,
+   "Ciegno": 599.2,
+   "Tulejki": 76.75,
+   "Pokrywa": 7959.9
+  },
+  "wTrakcie": "Jarzmo -31 mm3: sciany korby y=-3 / -0.5 maja 63.56 / 62.05 mm2 wobec oczekiwanych 76.23 / 74.71 (raster) -> brak ~12.7 mm2 w profilu korby x 2.5 mm = ~31.7 mm3; szukam brakujacego obszaru szkicu",
+  "zostalo": [
+   "Jarzmo: poprawka brakujacego obszaru korby",
+   "K2 cale drzewo",
+   "K3-K8 z JSON drzewa (wywolanie 224, cache)",
+   "K9 test zginania (~14 wywolan)",
+   "K11 foldery",
+   "raport weryfikacja-v2.5.md + commit"
+  ]
+ }
 }
