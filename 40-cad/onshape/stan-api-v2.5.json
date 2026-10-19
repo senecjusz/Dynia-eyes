@@ -1,0 +1,235 @@
+{
+ "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
+ "zapis": "2026-10-19T13:13Z, po Layout i Gniazdo",
+ "doc": {
+  "did": "21ca65b874071b352b43ebad",
+  "wid": "5ed8f87ee8cf1ca54beed33d",
+  "partStudio": "9d9b9bf39092450926884f94",
+  "variableStudio": "3841c2c5dff187c0b03d76ab",
+  "nazwa": "Oko F v2.5",
+  "folder": "Halloween"
+ },
+ "n": {
+  "total": 39,
+  "features": 25,
+  "getFeatures": 0
+ },
+ "budzet": {
+  "total": 260,
+  "getFeatures": 8,
+  "zrodlo": "e2.1-plan.md"
+ },
+ "liczniki": {
+  "GET /features": 95,
+  "POST /features": 2992,
+  "POST /features/featureid": 2997,
+  "GET featurespecs": 98,
+  "POST variables": 2999,
+  "GET currentmicroversion": 400,
+  "GET bodydetails": 481,
+  "GET boundingboxes": 499
+ },
+ "mv": "80aac1ce75e850edb7ea73c3",
+ "F": {
+  "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
+  "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
+  "Gniazdo: korpus": "FbU1IJmVVRRKTNg_0",
+  "Gniazdo: ząbek szkic": "F1lTLnq82NvoBOg_1",
+  "Gniazdo: ząbek": "FGURKIVaoWBmqCx_1",
+  "Gniazdo: ząbki": "Fwh0JeLtyLyV1cU_1",
+  "Gniazdo: pl. początku helisy": "FQHw4I5Ga9SbwMI_1",
+  "Gniazdo: okrąg helisy": "FonbGaC6r753wBo_1",
+  "Gniazdo: helisa": "FTwHkFss5GqpQCO_1",
+  "Gniazdo: profil gwintu": "F8yLNpOFQo2cFZM_1",
+  "Gniazdo: zwój gwintu": "FOeJXZkJVutVTAM_1",
+  "Gniazdo: gwint": "Fuab1DDEOJeYDrr_2",
+  "Gniazdo: przycięcie końca zwoju": "FTnWzuuSTcHPacj_1",
+  "Gniazdo: przycięcie końca zwoju i faza": "FWY3p9CFqO7q9lM_1",
+  "Gniazdo: pl. zaczepów": "FqQleTTtGpgTW7z_1",
+  "Gniazdo: okienko szkic": "F5sh9EUuOKbBwUI_1",
+  "Gniazdo: okienko": "F1l1CgqmVf9s7Mm_1",
+  "Gniazdo: okienka": "FtbME7zjmUDeCqJ_1",
+  "Gniazdo: pl. prostopadła do żebra": "FGyXKIZnsCnEkIP_1",
+  "Gniazdo: pl. styczna żebra": "FFJl2Ij06Nls5xN_1",
+  "Gniazdo: żebro szkic": "FD5Z6KsRVgE76ZP_1",
+  "Gniazdo: żebro": "Fgywfi7HmlKpKj0_1",
+  "Gniazdo: strzałka GÓRA szkic": "Fu7aQGenM7nrbB4_1",
+  "Gniazdo: strzałka GÓRA": "F5PwW7Ahut99vBI_1"
+ },
+ "szkice": [
+  {
+   "nazwa": "Layout: osie i punkty",
+   "featureId": "FJFemNF9Bt6mPQT_0",
+   "dataId": "MZBScpo9emUev9nhj",
+   "podpowiedz": "Layout: osie i punkty [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: profil",
+   "featureId": "FgtYWJ3D5RAkxgp_0",
+   "dataId": "Mn7I0iXbpylgDAVZb",
+   "podpowiedz": "Gniazdo: profil [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: ząbek szkic (zapisany jako 'Gniazdo: ząbek', nazwa zmieniona w UI)",
+   "featureId": "F1lTLnq82NvoBOg_1",
+   "dataId": "M09HjqqfrhnHjwDgA",
+   "podpowiedz": "Gniazdo: ząbek [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: okrąg helisy",
+   "featureId": "FonbGaC6r753wBo_1",
+   "dataId": "MPf5pfN28eJQ42/sO",
+   "podpowiedz": "Gniazdo: okrąg helisy [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: profil gwintu",
+   "featureId": "F8yLNpOFQo2cFZM_1",
+   "dataId": "MSAR+PRFqd9xEubbY",
+   "podpowiedz": "Gniazdo: profil gwintu [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: przycięcie końca zwoju",
+   "featureId": "FTnWzuuSTcHPacj_1",
+   "dataId": "MAN7zyOPhCnumixBC",
+   "podpowiedz": "Gniazdo: przycięcie końca zwoju [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: okienko szkic",
+   "featureId": "F5sh9EUuOKbBwUI_1",
+   "dataId": "M6eFpEZceQu2Qyp6m",
+   "podpowiedz": "Gniazdo: okienko szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: żebro szkic",
+   "featureId": "FD5Z6KsRVgE76ZP_1",
+   "dataId": "Mhg1TSpC+qHEfR5iF",
+   "podpowiedz": "Gniazdo: żebro szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  },
+  {
+   "nazwa": "Gniazdo: strzałka GÓRA szkic",
+   "featureId": "Fu7aQGenM7nrbB4_1",
+   "dataId": "MoD6G3zNqICSLavuB",
+   "podpowiedz": "Gniazdo: strzałka GÓRA szkic [Sketch]",
+   "niedookreslony": false,
+   "msOdOdpowiedzi": 0
+  }
+ ],
+ "czasy": [
+  [
+   "Layout",
+   "2026-10-19T13:09:21Z",
+   984,
+   1
+  ],
+  [
+   "Gniazdo A",
+   "2026-10-19T13:09:26Z",
+   6920,
+   12
+  ],
+  [
+   "Gniazdo B1 okienko",
+   "2026-10-19T13:10:28Z",
+   1344,
+   3
+  ],
+  [
+   "Gniazdo B2",
+   "2026-10-19T13:11:32Z",
+   3389,
+   7
+  ]
+ ],
+ "foldery": [
+  "Layout (1)",
+  "Gniazdo (23)"
+ ],
+ "pomiary": [
+  {
+   "czesc": "Gniazdo",
+   "bryly": 1,
+   "bbox": {
+    "x": [
+     -37,
+     37
+    ],
+    "y": [
+     -37,
+     37
+    ],
+    "z": [
+     -45.7,
+     0
+    ]
+   },
+   "walceR": [
+    20.5,
+    27.5,
+    29.45,
+    31.45,
+    31.5,
+    33.75,
+    35,
+    37
+   ],
+   "plaszczyznyZ": [
+    -45.7,
+    -45.4,
+    -42.2,
+    -38.7,
+    -38.2,
+    -15,
+    -5.1,
+    -3.399,
+    -1.5,
+    -0.5,
+    0
+   ],
+   "okienka_az": [
+    [
+     40.1,
+     53.9
+    ],
+    [
+     220.1,
+     233.9
+    ]
+   ],
+   "zebro": {
+    "az": 135,
+    "r_wewn": 26.6,
+    "szer": 4.0
+   },
+   "sciany": 76,
+   "zgodnosc": "zgodne z planem i v2.4 (poza zmianami v2.5: gwint 45, rura = rdzen 58.9)"
+  }
+ ],
+ "ustalenia": [
+  "LINE_ANGLE (cPlane): os x szkicu ma azymut 180 deg - kat, os y = +Z (pomiar okienka 19.10 13:10); kat plaszczyzny dla azymutu phi = '180 deg - #phi'",
+  "plaszczyzna OFFSET z oppositeDirection: zachowuje uklad osi bazy (zebro na 135 deg, pomiar)",
+  "helisa z pl. offset Top -41.7 (opposite) idzie w +Z, CW = gwint prawoskretny (jak E2.0)",
+  "fazki w profilach szkicow (jak E2.0): Chamfer wymaga zapytan krawedzi z liczbami (K3)"
+ ],
+ "log": [
+  {
+   "t": "2026-10-19T13:10:40Z",
+   "uwaga": "pl. zaczepów: kat #haczykKat dal okienko na 133 deg; edycja featureid: kat '180 deg - #haczykKat' -> 47 deg (pomiar)"
+  }
+ ]
+}
