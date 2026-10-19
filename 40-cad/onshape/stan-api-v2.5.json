@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T19:33Z, wykonawca CAD: E2.1c - trzy poprawki wykonane i zmierzone; zostalo: foldery, K na zmienionych operacjach, raport",
+ "zapis": "2026-10-19T19:45Z, wykonawca CAD: E2.1c zakonczone, raport 40-cad/onshape/e2.1c-poprawki.md",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,9 +10,9 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 278,
-  "features": 187,
-  "getFeatures": 3
+  "total": 281,
+  "features": 188,
+  "getFeatures": 4
  },
  "budzet": {
   "total": 260,
@@ -1630,6 +1630,28 @@
    "GET massproperties",
    200,
    3000
+  ],
+  [
+   "2026-10-19T17:33Z",
+   "GET /features (K3/K4/K8 zmienionych operacji)",
+   200,
+   91
+  ],
+  {
+   "t": "2026-10-19T17:35Z",
+   "uwaga": "UI: operacje kuli przeciagniete do folderu Jarzmo z miską (19) przy filtrze 'Jarzmo'"
+  },
+  [
+   "2026-10-19T17:36Z",
+   "GET massproperties (bez zmian po przeniesieniu)",
+   200,
+   2999
+  ],
+  [
+   "2026-10-19T17:36Z",
+   "GET /parts (nazwy zachowane, nowe partId)",
+   200,
+   null
   ]
  ],
  "stop": null,
@@ -1879,12 +1901,11 @@
   "zrobione": [
    "1: szczelina skosna 33/213 jednym Revolve (profil odbity wiezem MIRROR wzgledem osR), szczelina usunieta z szyku",
    "2: Jarzmo obciete kula R #jarzmoRw (szkic polkola na Front + Revolve REMOVE)",
-   "3: fazkaSanek 2 mm"
+   "3: fazkaSanek 2 mm",
+   "operacje kuli w folderze Jarzmo z miską (19), K3/K4/K8 na zmienionych operacjach OK, nazwy czesci zachowane, objetosci bez zmian po przeniesieniu"
   ],
   "niezrobione": [
-   "operacje kuli jarzma do folderu Jarzmo (UI)",
-   "K na zmienionych operacjach (GET /features)",
-   "raport"
+   "eksport 3MF Kaseta, Jarzmo, Sanki (uzytkownik) i testy na siatkach"
   ],
   "czasy": [
    {
@@ -1992,6 +2013,19 @@
     "TulejkaH": 76.78,
     "Pokrywa": 7963.33
    }
-  }
+  },
+  "partIdPoPrzeniesieniu": {
+   "JID": "Gniazdo",
+   "JsD": "Nakrętka",
+   "RNBD": "Kaseta",
+   "R5CD": "Jarzmo z miską",
+   "RfDD": "Sanki serwa",
+   "RqDD": "Ramię orczyka",
+   "R9DD": "Cięgno",
+   "RKED": "Tulejka przegubu korby",
+   "RRED": "Tulejka przegubu ramienia",
+   "RUED": "Pokrywa tylna"
+  },
+  "wywolania": 28
  }
 }
