@@ -810,7 +810,7 @@ G.ZM.reszta = [
  ['sankiGoraY', L, '#sankiSpodY - #slupkiH', 17.6, ''], ['sankiOtwor1Z', L, '46.75 mm', 46.75, ''], ['sg90UchaRozstaw', L, '27.8 mm', 27.8, ''], ['sankiOtwor2Z', L, '#sankiOtwor1Z + #sg90UchaRozstaw', 74.55, ''],
  ['serwoWkret', L, '1.8 mm', 1.8, ''], ['dnoWkretu', L, '0.6 mm', 0.6, ''], ['sankiOtworGl', L, '#slupkiH - #dnoWkretu', 3.75, ''],
  ['ramieRo', L, '5.5 mm', 5.5, ''], ['ramieRh', L, '5 mm', 5, ''], ['ramaY', L, '4.5 mm', 4.5, ''], ['ramaH', L, '1.6 mm', 1.6, ''], ['ramaR', L, '5.2 mm', 5.2, ''], ['ramaRamieR', L, '3.5 mm', 3.5, ''],
- ['orczykRamieL', L, '17.5 mm', 17.5, ''], ['kieszenR', L, '3.7 mm', 3.7, ''], ['kieszenR0', L, '2.6 mm', 2.6, ''], ['kieszenR1', L, '2.3 mm', 2.3, ''], ['kieszenGl', L, '#ramaH - #ramaZakladka', 1.5, ''], ['ramaZakladka', L, '0.1 mm', 0.1, ''],
+ ['orczykRamieL', L, '17.5 mm', 17.5, ''], ['kieszenR', L, '3.7 mm', 3.7, ''], ['kieszenR0', L, '2.6 mm', 2.6, ''], ['kieszenR1', L, '2.3 mm', 2.3, ''], ['ramaZakladka', L, '0.1 mm', 0.1, ''], ['kieszenGl', L, '#ramaH - #ramaZakladka', 1.5, ''],
  ['m2L', L, '13 mm', 13, 'wkret M2 od osi orczyka'], ['m2Otwor', L, '2.2 mm', 2.2, ''], ['wkretOrczykaD', L, '2.8 mm', 2.8, ''],
  ['ciegnoR', L, '4.2 mm', 4.2, ''], ['ciegnoY', L, '0.3 mm', 0.3, ''], ['podniesienieR', L, '3.8 mm', 3.8, ''], ['podniesienieY', L, '2.1 mm', 2.1, ''], ['ciegnoDno', L, '1 mm', 1, ''],
  ['podniesienieH', L, '#wkladkaL + #wkladkaZapas + #ciegnoDno - #plytaT + #ramaZakladka', 3.2, ''], ['ciegnoWkladkiY', L, '5.4 mm', 5.4, ''], ['ciegnoWkladkaGl', L, '#wkladkaL + #wkladkaZapas', 4.6, ''],
@@ -948,4 +948,20 @@ G.pokrywa = () => G.bryla('Pokrywa tylna', async () => {
   await G.ext('Pokrywa: prowadnice kabla', 'Pokrywa: prowadnice kabla szkic', { op: 'ADD', depth: '#prowKablaH', scope: P });
 });
 return 'reszta ok';
+})();
+
+// ===================== v2.5: Jarzmo – korba, petla 2 (kropla piasty C, v2.4 p.35-60), przywrocona 19.10 na polecenie orkiestratora =====================
+(() => {
+const G = window.G; const L = 'LENGTH', A = 'ANGLE';
+G.ZM.jarzmo.push(['korbaP35R', L, '21.072 mm', 21.072, 'kropla piasty C (v2.4 p.35)'], ['korbaKat35', A, '58.8 deg', 58.8, ''], ['korbaKat36', A, '72.5 deg', 72.5, ''], ['korbaKat38', A, '77.87 deg', 77.87, ''], ['kP39Kat', A, '138.7 deg', 138.7, ''],
+  ['kP35x', L, '#korbaP35R * cos(#korbaKat35)', 10.917, ''], ['kP35z', L, '#oczkoZ + #korbaP35R * sin(#korbaKat35)', 30.023, ''], ['kP36x', L, '#korbaR1 * cos(#korbaKat36)', 6.285, ''], ['kP38x', L, '#korbaR1 * cos(#korbaKat38)', 4.39, ''],
+  ['kP39x', L, '#cX + #korbaPiastaR * cos(#kP39Kat)', 3.624, '']);
+// dopisywane do szkicu "Jarzmo: korba szkic" (edycja featureid), po petli 1 i okregu kC:
+G.korbaPetla2 = (b, lay) => {
+  b.arc('kA', [7.382, -36.147], 5, 138.7, 375); b.arc('kE', [0, -12], 20.9, -77.87, -72.5);
+  b.line('m1', [12.212, -34.853], [10.917, -30.023]); b.line('m2', [10.917, -30.023], [6.285, -31.933]); b.line('m3', [4.39, -32.433], [3.624, -32.85]);
+  b.co('kA.end', 'm1.start'); b.co('m1.end', 'm2.start'); b.co('m2.end', 'kE.end'); b.co('kE.start', 'm3.start'); b.co('m3.end', 'kA.start');
+  b.coExt('kA.center', lay('lCH.start')); b.coExt('kE.center', G.oko()); b.ra('kA', '#korbaPiastaR'); b.ra('kE', '#korbaR1'); b.tan('m1', 'kA');
+  b.dx('m1.end', '#kP35x'); b.dy('m1.end', '#kP35z'); b.dx('kE.end', '#kP36x'); b.dx('kE.start', '#kP38x'); b.dx('kA.start', '#kP39x'); };
+return 'korba petla 2';
 })();

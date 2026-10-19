@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:05Z, po Jarzmie (16 operacji OK)",
+ "zapis": "2026-10-19T14:15Z, po Sankach; korba z petla 2; nakretka zmierzona przy luzGwint 0.20",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 167,
-  "features": 122,
+  "total": 184,
+  "features": 131,
   "getFeatures": 0
  },
  "budzet": {
@@ -524,6 +524,12 @@
    "2026-10-19T13:57:01Z",
    12374,
    16
+  ],
+  [
+   "Sanki serwa",
+   "2026-10-19T14:10Z",
+   null,
+   8
   ]
  ],
  "foldery": [
@@ -727,6 +733,84 @@
    ],
    "sciany": 38,
    "zgodnosc": "pas R20.75/23.25, oczka i kolki +-20.8..+-24.75, korba y -3..-0.5, otwory 3.3 i 6.0; korba uproszczona (bez malego trojkata miedzy kropla piasty a paskiem, v2.4 punkty 35-38)"
+  },
+  {
+   "czesc": "Nakrętka (luzGwint 0.20)",
+   "walceR": [
+    29.65,
+    31.65,
+    37
+   ],
+   "plaszczyznyZ": [
+    -31,
+    -28.4
+   ],
+   "sciany": 128,
+   "zgodnosc": "dno rowka R31.65 = gwintR + 0.20, pasek otworu R29.65 = gwintRdzenR + 0.20 (L < 0.2415)"
+  },
+  {
+   "czesc": "Jarzmo: oczka i kolki",
+   "oczko": {
+    "y": [
+     20.8,
+     23.15
+    ],
+    "grubosc": 2.35,
+    "wzor": "oczkoT 2.4 - oczkoZakladka 0.05; czolo 23.15 = wystepY - luzOsiowy (0.3 do wystepu)"
+   },
+   "kolek": {
+    "y": [
+     23.05,
+     24.75
+    ],
+    "wzor": "kolekH 1.7 od kolekY = 23.15 - 0.1 (zakladka w oczku); ponad oczko 1.6"
+   },
+   "dol": "symetrycznie (Mirror Front)"
+  },
+  {
+   "czesc": "Jarzmo z miską (korba z petla 2)",
+   "sciany": 47,
+   "walceR": [
+    1.3,
+    1.65,
+    2.3,
+    3,
+    5,
+    20.9,
+    23.4
+   ],
+   "plaszczyznyY": [
+    -24.75,
+    -23.15,
+    -20.8,
+    -3,
+    -0.5,
+    20.8,
+    23.15,
+    24.75
+   ],
+   "zgodnosc": "korba zrosnieta z miska jak v2.4 (petle 1 i 2)"
+  },
+  {
+   "czesc": "Sanki serwa",
+   "bryly_w_PS": 5,
+   "jedna_bryla": true,
+   "plaszczyznyY": [
+    -21.95,
+    -20.25,
+    -17.6
+   ],
+   "plaszczyznyZ": [
+    -77.4,
+    -72.1,
+    -49.2,
+    -44.6
+   ],
+   "walceR": [
+    0.9
+   ],
+   "sciany": 18,
+   "zgodnosc": "jedna bryla (review #1), szczelina 12.7, fazka 1 mm w profilu naroza przedniego lewego"
   }
  ],
  "ustalenia": [
@@ -781,6 +865,10 @@
   {
    "t": "2026-10-19T13:57Z",
    "uwaga": "Jarzmo wznowione (pomijanie zapisanych operacji), 16 operacji OK przy karcie hidden"
+  },
+  {
+   "t": "2026-10-19T14:12Z",
+   "uwaga": "Jarzmo: korba - przywrocona petla 2 (v2.4 p.35-60), edycja szkicu featureid, szkic w pelni zdefiniowany, 47 scian"
   }
  ],
  "stop": null,
@@ -794,6 +882,11 @@
    "pierwsza": "Jarzmo: profil pasa",
    "ostatnia": "Jarzmo: otwór korby",
    "operacji": 17
+  },
+  "Sanki serwa": {
+   "pierwsza": "Sanki: pl. spodu",
+   "ostatnia": "Sanki: otwory uszu",
+   "operacji": 8
   }
  },
  "widocznosc": {
