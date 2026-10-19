@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:25Z, wykonawca CAD: weryfikacja v2.5 w toku (porownanie z v2.4, poprawka Ramie/Ciegno, sledztwo Jarzmo)",
+ "zapis": "2026-10-19T14:45Z, wykonawca CAD: weryfikacja v2.5 w toku - Jarzmo poprawione, Sanki dno otworow, wyjasnienia objetosci",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 233,
-  "features": 169,
+  "total": 236,
+  "features": 171,
   "getFeatures": 1
  },
  "budzet": {
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "00253cdfe90d59c9f1daf389",
+ "mv": "fe201c8da3cd408f83474fbe",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -1259,7 +1259,37 @@
    "GET massproperties",
    200,
    2999
-  ]
+  ],
+  [
+   "2026-10-19T14:25:32.564Z",
+   "POST featureid Jarzmo: korba (qSketchRegion false)",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T14:26Z",
+   "uwaga": "Jarzmo -31 mm3 rozstrzygniete: sciana korby y=-3 miala petle wewnetrzna (lD, lB, R3, R5 gora piasty, R20.9) = obszar wspolny petli 1 i okregu piasty kC pominiety przez qSketchRegion(..., true) (filterInnerLoops). Edycja ekstruzji: qSketchRegion(szkic, false). Stop 'brak wiersza' = wiersz poza wirtualizowana lista (folder zwiniety), po rozwinieciu brak bledu."
+  },
+  [
+   "2026-10-19T14:26:10Z",
+   "GET massproperties",
+   200,
+   2998
+  ],
+  {
+   "t": "2026-10-19T14:29:16.329Z",
+   "uwaga": "Sanki: otwory uszu - edycja featureid tipAngleStyle FLAT: domyslny czubek 118 st. (stozek 0.541) zostawial dno 0.059 mm pod czubkiem zamiast dnoWkretu 0.6"
+  },
+  [
+   "2026-10-19T14:29:16.329Z",
+   "POST featureid Sanki: otwory uszu",
+   200,
+   2999
+  ],
+  {
+   "t": "2026-10-19T14:44Z",
+   "uwaga": "wykryte odstepstwa od spisu (moje): Nakretka czolo = cieciwa (stozek) zamiast luku R130 (#18); Gniazdo spod rantu = cieciwa zamiast luku R150 (#1). Do poprawy edycja 2 szkicow."
+  }
  ],
  "stop": null,
  "folderyDoZalozenia": {},
@@ -1279,17 +1309,21 @@
   "Fazki w profilach szkicow (rant, czolo kasety, otwor gniazda, zebro, faza zwoju) i fazki wejscia rowka jako ciecie - jak E2.0; Chamfer wymagalby zapytan krawedzi z liczbami (K3)"
  ],
  "weryfikacja": {
-  "t": "2026-10-19T14:25Z",
+  "t": "2026-10-19T14:45Z",
   "zrobione": [
    "K1: featureStatus wszystkich operacji OK (GET /features, wywolanie 224) i ikony w drzewie bez bledow po poprawkach",
    "porownanie objetosci, obrysu i genusu z 3MF v2.4 dla 10 brył (obrysy zgodne do 0.01 mm, genus zgodny)",
-   "Ramie i Ciegno poprawione (edycja 3 szkicow): 793.8 / 599.3 mm3 wobec v2.4 793.7 / 599.2"
+   "Ramie i Ciegno poprawione (edycja 3 szkicow): 793.8 / 599.3 mm3 wobec v2.4 793.7 / 599.2",
+   "Jarzmo poprawione: 1825.1 mm3 = v2.4 1819.2 + 5.6 (pelny okrag piasty w v2.5) + 0.3",
+   "Sanki 1057.7 wyjasnione: slupki 826.85 + 2 prowadnice 2x126.52 - otwory 19.09 - stozki 0.92 - fazka 2.18 = 1057.71; v2.4 3MF bez jednej prowadnicy (943.5 policzone, 944.16 siatka); po FLAT oczekiwane 1058.63",
+   "Kaseta: okno SG90 bez zmian (2x(12.7/2+0.25)=13.2); Ø8.5->8.7 -17.4 (siatka v2.4), stozki wkladek -10.1, luki cieciw walcow v2.4 +43.0 -> +15.5 wobec +29.2, reszta 13.7 (0.04%)",
+   "Nakretka v2.4: przekroj w strefie czystej 1308.4 mm2 (rowek ISO 131.7), w strefie klucza 1217.8"
   ],
   "objetosciV25": {
    "Gniazdo": 32595.5,
    "Nakretka": 7305.8,
    "Kaseta": 35086.1,
-   "Jarzmo": 1793.5,
+   "Jarzmo": 1825.1,
    "Sanki": 1057.7,
    "Ramie": 793.8,
    "Ciegno": 599.3,
@@ -1308,14 +1342,15 @@
    "Tulejki": 76.75,
    "Pokrywa": 7959.9
   },
-  "wTrakcie": "Jarzmo -31 mm3: sciany korby y=-3 / -0.5 maja 63.56 / 62.05 mm2 wobec oczekiwanych 76.23 / 74.71 (raster) -> brak ~12.7 mm2 w profilu korby x 2.5 mm = ~31.7 mm3; szukam brakujacego obszaru szkicu",
+  "wTrakcie": "poprawka lukow R130 (Nakretka czolo) i R150 (Gniazdo rant), potem bilans Gniazdo i Nakretka",
   "zostalo": [
-   "Jarzmo: poprawka brakujacego obszaru korby",
+   "luki R130/R150 + pomiar",
+   "bilans Gniazdo/Nakretka",
    "K2 cale drzewo",
-   "K3-K8 z JSON drzewa (wywolanie 224, cache)",
-   "K9 test zginania (~14 wywolan)",
-   "K11 foldery",
-   "raport weryfikacja-v2.5.md + commit"
+   "K3-K8 z JSON (cache)",
+   "K9 ograniczony: 2 stany (wszystkie zmienne naraz) + przywrocenie = 5 wywolan",
+   "K11",
+   "raport + commit"
   ]
  }
 }
