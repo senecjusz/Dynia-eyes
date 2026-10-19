@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:20Z, po Ramieniu, Ciegnie i Tulejkach",
+ "zapis": "2026-10-19T14:25Z, po Pokrywie: 10 czesci zbudowanych",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 214,
-  "features": 157,
+  "total": 223,
+  "features": 165,
   "getFeatures": 0
  },
  "budzet": {
@@ -176,7 +176,15 @@
   "Tulejka korby: trzon szkic": "FICAyliLUtWlXBb_8",
   "Tulejka korby: trzon": "FvoTlwAHMrqXoJd_8",
   "Tulejka korby: otwór": "F8DIAq7Rqm7EDWC_8",
-  "Tulejka ramienia: kopia C→H": "FaNeKGh6xkcX0m3_8"
+  "Tulejka ramienia: kopia C→H": "FaNeKGh6xkcX0m3_8",
+  "Pokrywa: płyta szkic": "F5ou0YaVhTAkiqe_8",
+  "Pokrywa: płyta": "Fe6IpdPyoS353FA_8",
+  "Pokrywa: okno wtyczki szkic": "FprYFykIliGhhIv_9",
+  "Pokrywa: okno wtyczki z zaciskiem": "FWQeDSiHPlbn5aP_9",
+  "Pokrywa: otwory śrub": "FsMBpjAXTT7Lw5S_9",
+  "Pokrywa: pl. prowadnic kabla": "FgDm3pElSLibwPX_9",
+  "Pokrywa: prowadnice kabla szkic": "Fnbctpo8YmDhjDq_9",
+  "Pokrywa: prowadnice kabla": "FEUmqs4v1tJci38_9"
  },
  "szkice": [
   {
@@ -567,6 +575,27 @@
    "dataId": "MdUTm6uI4z8r7gz2k",
    "podpowiedz": "Tulejka korby: trzon szkic [Sketch]",
    "niedookreslony": false
+  },
+  {
+   "nazwa": "Pokrywa: płyta szkic",
+   "featureId": "F5ou0YaVhTAkiqe_8",
+   "dataId": "MKT/kBA7NECcq8uZs",
+   "podpowiedz": "Pokrywa: płyta szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Pokrywa: okno wtyczki szkic",
+   "featureId": "FprYFykIliGhhIv_9",
+   "dataId": "M8R43QPMgwKkwYanI",
+   "podpowiedz": "Pokrywa: okno wtyczki szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Pokrywa: prowadnice kabla szkic",
+   "featureId": "Fnbctpo8YmDhjDq_9",
+   "dataId": "M5skFCc5w03UIdxWo",
+   "podpowiedz": "Pokrywa: prowadnice kabla szkic [Sketch]",
+   "niedookreslony": false
   }
  ],
  "czasy": [
@@ -659,6 +688,12 @@
    "2026-10-19T14:04:59Z",
    4089,
    7
+  ],
+  [
+   "Pokrywa tylna",
+   "2026-10-19T14:05:53Z",
+   4842,
+   8
   ]
  ],
  "foldery": [
@@ -1021,6 +1056,40 @@
     }
    ],
    "zgodnosc": "kolnierz 8 x 0.8, trzon 5.6 do y -0.3, otwor 3.3; tulejka H = kopia C->H (Transform TRANSLATION_ENTITY po lCH)"
+  },
+  {
+   "czesc": "Pokrywa tylna",
+   "bryly_w_PS": 10,
+   "sciany": 34,
+   "walceR": [
+    1.65,
+    4.01,
+    27.25
+   ],
+   "plaszczyznyZ": [
+    -80.5,
+    -77.5,
+    -74
+   ],
+   "plaszczyznyY": [
+    -38,
+    -36,
+    -34.8,
+    -33.8,
+    -30.4,
+    -29.5
+   ],
+   "otwory_xy": [
+    [
+     -22.6,
+     18.96
+    ],
+    [
+     22.6,
+     18.96
+    ]
+   ],
+   "zgodnosc": "plyta 3 mm za kaseta, ucha R4.01 na r 33.5 (40/140), okno 9 x 3.4 + zacisk 3.8 x 1.0, prowadnice kabla 1.2 x 6.5 x 4"
   }
  ],
  "ustalenia": [
@@ -1117,6 +1186,11 @@
    "pierwsza": "Tulejka ramienia: kopia C→H",
    "ostatnia": "Tulejka ramienia: kopia C→H",
    "operacji": 1
+  },
+  "Pokrywa tylna": {
+   "pierwsza": "Pokrywa: płyta szkic",
+   "ostatnia": "Pokrywa: prowadnice kabla",
+   "operacji": 8
   }
  },
  "widocznosc": {
