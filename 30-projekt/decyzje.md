@@ -82,3 +82,4 @@
 | 2026-10-19 | v2.5 w Onshape: najpierw 10 części modułu (gniazdo, nakrętka, kaseta, jarzmo z miską, sanki, ramię, cięgno, 2 tulejki, pokrywa), przyrządy i widelec później | Moduł jest potrzebny do wydruku testowego |
 | 2026-10-19 | v2.5: gwint 45°, skok 5, rdzeń Ø58,9, gwint Ø62,9, `luzGwint` jako zmienna (start 0,3, wartość po próbce E2.0); nakrętka z powrotem z radełkiem | Profil 45° wydrukował się dobrze w v2.2, ISO 60° w PETG kiepsko; radełko usunięto tylko przez ograniczenie SolidCrafta |
 | 2026-10-19 | v2.5: szczelina SG90 na 12,2 + `luzSanki` (rozrzut serw), mniejsze serwo dociska wkręt ucha | Projekt na rozrzut wymiarów zamiast pomiaru jednego egzemplarza |
+| 2026-10-19 | v2.5 w nowym dokumencie Onshape „Oko F v2.5”, w folderze obok SimpleEye; SimpleEye zostaje archiwum | Stary dokument (271 operacji, atomowy) jest nieutrzymywalny |

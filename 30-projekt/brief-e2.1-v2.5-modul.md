@@ -30,11 +30,11 @@ Co najmniej: `luzGwint`, `luzSanki` (0,25), `luzOsiowy` (0,3), luz kaseta–gnia
 
 ## Gdzie
 
-Dokument **SimpleEye**, nowa gałąź **„v2.5”** z wersji „v2.2 do review” (did `5bf3e9f6848edf7f1b0019a9`). W niej nowe Part Studio „Oko F v2.5” i Variable Studio „Zmienne v2.5”. Nie zmieniaj gałęzi v2 ani istniejących elementów.
+Nowy dokument Onshape **„Oko F v2.5”** w tym samym folderze co dokument SimpleEye (did `5bf3e9f6848edf7f1b0019a9`; folder ustal przez API). W nim Part Studio „Oko F v2.5” i Variable Studio „Zmienne v2.5”. SimpleEye tylko do odczytu, niczego w nim nie zmieniaj.
 
 ## Etapy i zatrzymania
 
-**Etap 1 (stop):** sprawdź logowanie do Onshape, utwórz gałąź i puste elementy. Potem dwa pliki:
+**Etap 1 (stop):** sprawdź logowanie do Onshape, utwórz dokument i puste elementy. Potem dwa pliki:
 1. **Specyfikacja `40-cad/onshape/e2.1-specyfikacja.md`:** dla każdej z 10 części każdy element z v2.4 (każda operacja z `document.json`, np. otwory śrub, pogłębienia, wkładki, kieszenie, szczeliny, fazki, zaczepy, prowadnice kabla) w wierszu: nazwa w v2.4 → do czego służy → wymiary i parametry → jak powstanie w v2.5 (albo: usunięte, dlaczego). Pokrycie musi być pełne: każda operacja v2.4 tych 10 części ma swój wiersz; podaj liczbę operacji v2.4 i liczbę wierszy.
 2. **Plan `40-cad/onshape/e2.1-plan.md`:** lista zmiennych, tabela części z operacjami bryłowymi i szkicami (krótko), kolejność, budżet wywołań API, odstępstwa od zasad.
 
