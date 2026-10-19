@@ -79,3 +79,6 @@
 | 2026-10-18 | Eksport 3MF zawsze przez `40-cad/narzedzia/napraw_siatki.js` + `sprawdz_siatki.js` (0 błędów) | Review v2.3: nieszczelne siatki z SolidCraft |
 | 2026-10-18 | v2.4: luz ramię–kaseta 0,26 mm przy stopie +33° akceptowany; w razie potrzeby zakres pracy w firmware ±25° | Dotyczy tylko stopu; różnica ±25/±30° dla efektu nieistotna (użytkownik) |
 | 2026-10-19 | Onshape (SimpleEye) wraca jako główne CAD; v2.5 małego oka powstaje w nim przez przebudowę według tabeli „Do v2.5” i `AGENTS.md`; SolidCraft zostaje archiwum v2.3/v2.4 | SolidCraft 0.15 przelicza całe drzewo przy każdej zmianie (~350 s przy 200 operacjach); blokada Onshape 18.10 była limitem okna (429), nie puli rocznej |
+| 2026-10-19 | v2.5 w Onshape: najpierw 10 części modułu (gniazdo, nakrętka, kaseta, jarzmo z miską, sanki, ramię, cięgno, 2 tulejki, pokrywa), przyrządy i widelec później | Moduł jest potrzebny do wydruku testowego |
+| 2026-10-19 | v2.5: gwint 45°, skok 5, rdzeń Ø58,9, gwint Ø62,9, `luzGwint` jako zmienna (start 0,3, wartość po próbce E2.0); nakrętka z powrotem z radełkiem | Profil 45° wydrukował się dobrze w v2.2, ISO 60° w PETG kiepsko; radełko usunięto tylko przez ograniczenie SolidCrafta |
+| 2026-10-19 | v2.5: szczelina SG90 na 12,2 + `luzSanki` (rozrzut serw), mniejsze serwo dociska wkręt ucha | Projekt na rozrzut wymiarów zamiast pomiaru jednego egzemplarza |

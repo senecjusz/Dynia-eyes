@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E2.0, eksport 3MF i wydruk próbki gwintu (użytkownik).
+**Bieżące zadanie:** E2.1, brief wykonawcy v2.5 (moduł, 10 części). Równolegle E2.0: wydruk próbki gwintu (użytkownik, koniec ok. 15:10).
 
 ```mermaid
 flowchart TD
@@ -53,7 +53,7 @@ Gotowe, gdy wykonawca ma sprawdzalne zasady, które nie pozwalają zablokować A
 Gotowe, gdy v2.5 jest w SimpleEye, przeszła kontrolę wyjścia i review, a 3MF leży w `40-cad/3mf/`.
 
 - [ ] E2.0 Model gotowy 19.10 w dokumencie „Probka gwintu 45” (TMP), weryfikacja `40-cad/onshape/weryfikacja-probka-gwintu-45.md`; czeka na eksport 3MF, wydruk i ocenę użytkownika. Próbka gwintu 45°, skok 5: pierścień i nakrętki z luzem 0,2 / 0,25 / 0,3 / 0,35 / 0,4, zaprojektowane przez wykonawcę w nowym dokumencie Onshape w folderze TMP (pilotaż zasad), wydruk na docelowej drukarce, wybór luzu dla gniazda i nakrętki v2.5. Brief: `30-projekt/brief-e2.0-probka-gwintu-45.md`.
-- [ ] E2.1 Brief wykonawcy: przebudowa według tabeli „Do v2.5” (`20-analizy/review/2026-10-18-v2.4-polaczone.md`), wzorzec wymiarów v2.4 z SolidCrafta. Pokazany użytkownikowi przed wysłaniem.
+- [ ] E2.1 Brief wykonawcy v2.5: `30-projekt/brief-e2.1-v2.5-modul.md` (decyzje z 19.10 w `decyzje.md`). Pokazany użytkownikowi przed wysłaniem.
 - [ ] E2.2 Wykonawca, przed pierwszym zapisem modelu: nowy generator szkiców (wymiary `#zmienna`, więzy do layoutu, bez `Fix`; klasa `Sk` z v2.2 emituje gotowe współrzędne i się nie nadaje), bramka `req()` z twardym stopem i test progu, test znacznika szkicu na jednym szkicu zapisanym przez API. W `40-cad/onshape/oko-f-v2.2-build.js`: usunąć `fs()` i `sleep(350)`, `sketchW()` przerobić na jeden POST na szkic, w `circ()` jeden odczyt `bodydetails` zamiast ośmiu, `OS.zmienne()` wysyła zmienne raz, nie przyrostowo, stan z `localStorage` przenieść do `40-cad/onshape/stan-api.json`, sprawdzenie znacznika szkicu po każdym szkicu.
 - [ ] E2.3 Wykonawca: plan drzewa każdej części; zatwierdza orkiestrator.
 - [ ] E2.4 Wykonawca: budowa części i poprawki 1–7.
