@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E3.2, wydruk i montaż modułu v2.5 na stole; E3.4 test elektroniki.
+**Bieżące zadanie:** E3.2, wydruk i montaż modułu v2.5 na stole.
 
 ```mermaid
 flowchart TD
@@ -66,7 +66,7 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 
 - [ ] E3.1 Instrukcja montażu: `70-budowa/montaz-v2.5.md` (galeria części, lista śrub, kroki z obrazkami Blendera; po review nietechnicznym).
 - [ ] E3.2 Wydruk i montaż modułu v2.5 (19.10: wydrukowane gniazdo, nakrętka, ramię, cięgno, tulejki, pokrywa).
-- [ ] E3.4 Test elektroniki: ESP32-C3 SuperMini + PCA9685 + 1 serwo, program testowy (środek 1500 µs, ruch ±30°); wymaga arduino-cli z obsługą ESP32.
+- [x] E3.4 Test elektroniki (19.10): ESP32-C3 SuperMini + PCA9685 + 1 × SG90; Blink, skan I²C (0x40) i ruch ±30° zaliczone. Połączenia i szkice: `50-elektronika/polaczenia.md`.
 - [ ] E3.3 Wpis w dzienniku i wnioski do następnej wersji.
 
 ## Epiki później

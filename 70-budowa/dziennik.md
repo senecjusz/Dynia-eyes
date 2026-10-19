@@ -45,3 +45,7 @@
 - Model v2.5 zbudowany od nowa w Onshape (wykonawca CAD w osobnej sesji), review Opus + Codex, poprawki E2.1c, eksport 10 części.
 - Wydrukowane: gniazdo, nakrętka, ramię, cięgno, 2 tulejki, pokrywa. Do druku: kaseta, jarzmo z miską, sanki serwa, przyrządy.
 - ESP32-C3 SuperMini przylutowany do listew.
+
+## 2026-10-19 – test elektroniki (E3.4)
+- ESP32-C3 SuperMini + PCA9685 + 1 × SG90 na płytce stykowej, zasilanie z USB. Blink, skan I²C (PCA9685 pod 0x40) i ruch serwa ±30° w pętli działają. Połączenia i szkice: `50-elektronika/polaczenia.md`.
+- Pierwsze podłączenie USB: błąd enumeracji (-71); po ponownym podłączeniu płytka wstała.
