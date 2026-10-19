@@ -1,11 +1,12 @@
 {
  "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
- "zapis": "2026-10-20T01:11Z, wykonawca CAD: E3.5 - dokument i zmienne",
+ "zapis": "2026-10-20T01:16Z, wykonawca CAD: E3.5 zbudowane i zweryfikowane, gotowe do eksportu",
  "sumaWywolanRok": {
   "total": 131,
   "features": 70,
   "getFeatures": 4,
-  "uwaga": "suma od poczatku prowadzenia tego pliku (19.10.2026); features = cala rodzina /features (GET+POST+DELETE); wczesniejsze wywolania z v2.x nie sa tu policzone"
+  "uwaga": "suma od poczatku prowadzenia tego pliku (19.10.2026); features = cala rodzina /features (GET+POST+DELETE); wczesniejsze wywolania z v2.x nie sa tu policzone",
+  "uwagaE35": "E3.5: 31 wywolan; suma w roku (oba pliki stanu) 412 + 31 = 443"
  },
  "budzetZadania": {
   "getFeatures": 30,
@@ -2608,9 +2609,9 @@
    "getFeatures": 3
   },
   "n": {
-   "total": 7,
-   "features": 0,
-   "getFeatures": 0
+   "total": 31,
+   "features": 12,
+   "getFeatures": 1
   },
   "rokPrzed": 412,
   "doc": {
@@ -2623,7 +2624,8 @@
     "Part Studio 1": "859f51106a4cb6d1ca79942a",
     "Assembly 1": "7b5be6f379f43d537e2dfed6",
     "BOM : Assembly 1": "89795a5f319c50ea70487d1e",
-    "Zmienne E3.5": "c11e098d55a939c33d7244b2"
+    "Zmienne E3.5": "c11e098d55a939c33d7244b2",
+    "Probka wkladek M3 (Part Studio, dawniej Part Studio 1)": "859f51106a4cb6d1ca79942a"
    }
   },
   "zmienne": "28 zmiennych (plan), zapis dwuetapowy 204/204; pierwszy zapis jednym krokiem = 400",
@@ -2637,6 +2639,32 @@
     "etap": "zmienne",
     "start": "2026-10-19T23:09:44Z",
     "koniec": "2026-10-19T23:10:04Z"
+   },
+   {
+    "etap": "A: plaszczyzna, S1, listwa, piasta, szyk",
+    "start": "2026-10-19T23:12:10Z",
+    "koniec": "2026-10-19T23:12:13Z",
+    "ms": 3024
+   },
+   {
+    "etap": "B: S2, gniazda 1-5",
+    "start": "2026-10-19T23:12:24Z",
+    "koniec": "2026-10-19T23:12:27Z",
+    "ms": 2929
+   },
+   {
+    "etap": "nazwa czesci i pomiar",
+    "start": "2026-10-19T23:12:44Z",
+    "koniec": "2026-10-19T23:12:46Z"
+   },
+   {
+    "etap": "K1-K8",
+    "koniec": "2026-10-19T23:14:14Z"
+   },
+   {
+    "etap": "K9",
+    "start": "2026-10-19T23:14:48Z",
+    "koniec": "2026-10-19T23:15:01Z"
    }
   ],
   "log": [
@@ -2679,8 +2707,217 @@
     "POST variables krok 2 (wyrazenia)",
     204,
     2997
+   ],
+   {
+    "t": "2026-10-19T23:11:00Z",
+    "uwaga": "UI: zmiana nazwy Part Studio 1 -> Probka wkladek M3"
+   },
+   {
+    "t": "2026-10-19T23:11:55Z",
+    "uwaga": "bramka wstrzyknieta w Part Studio, n = 7"
+   },
+   [
+    "2026-10-19T23:11:56Z",
+    "GET featurespecs",
+    200,
+    94
+   ],
+   [
+    "2026-10-19T23:11:57Z",
+    "GET currentmicroversion",
+    200,
+    400
+   ],
+   [
+    "2026-10-19T23:12:11Z",
+    "POST features: pl. góry piast, S1, listwa, piasta, piasty ×5 (5 x OK)",
+    200,
+    2996
+   ],
+   [
+    "2026-10-19T23:12:27Z",
+    "POST features: S2, gniazda 1-5 (6 x OK)",
+    200,
+    2990
+   ],
+   [
+    "2026-10-19T23:12:44Z",
+    "GET parts",
+    200,
+    500
+   ],
+   [
+    "2026-10-19T23:12:45Z",
+    "POST metadata nazwa czesci SUCCEEDED",
+    200,
+    500
+   ],
+   [
+    "2026-10-19T23:12:45Z",
+    "GET bodydetails",
+    200,
+    458
+   ],
+   [
+    "2026-10-19T23:12:45Z",
+    "GET massproperties",
+    200,
+    3000
+   ],
+   {
+    "t": "2026-10-19T23:13:30Z",
+    "uwaga": "UI: folder 'Probka wkladek M3 (11)' (Add selection to folder, potem Rename)"
+   },
+   [
+    "2026-10-19T23:14:13Z",
+    "GET /features (K1-K8)",
+    200,
+    100
+   ],
+   [
+    "2026-10-19T23:14:48Z",
+    "K9: POST variables min + bodydetails",
+    204,
+    457
+   ],
+   [
+    "2026-10-19T23:14:52Z",
+    "K9: POST variables max + bodydetails",
+    204,
+    456
+   ],
+   [
+    "2026-10-19T23:14:55Z",
+    "K9: POST variables przywrocenie",
+    204,
+    2998
+   ],
+   [
+    "2026-10-19T23:15:01Z",
+    "GET massproperties (po przywroceniu)",
+    200,
+    3000
    ]
   ],
-  "stop": null
+  "stop": null,
+  "rokPo": 443,
+  "F": {
+   "Probka: pl. góry piast": "FOJkuoPmDSpD09d_0",
+   "Probka: listwa i piasta szkic": "FE2rFaFThQDyEmm_0",
+   "Probka: listwa": "FpsyG23z8oyNrzX_0",
+   "Probka: piasta": "FOWD2198XCipLry_1",
+   "Probka: piasty ×5": "FOZ6NiLWXwIBSpj_1",
+   "Probka: gniazda szkic": "FG6g0QOPS2FvSwy_1",
+   "Probka: gniazdo 1 Ø4,0": "FvjlSLKOsG88CW2_1",
+   "Probka: gniazdo 2 Ø4,2": "FEmjKEpc5mRisA0_1",
+   "Probka: gniazdo 3 Ø4,4": "FLIOMBKnlOj9F9Z_1",
+   "Probka: gniazdo 4 Ø4,6": "Fjceb7C2szjodXO_1",
+   "Probka: gniazdo 5 Ø4,8": "F815GwC1PF1ff6U_1"
+  },
+  "czesc": {
+   "partId": "JID",
+   "nazwa": "Probka wkladek M3"
+  },
+  "szkice": [
+   {
+    "t": "2026-10-19T23:12:11.702Z",
+    "nazwa": "Probka: listwa i piasta szkic",
+    "featureId": "FE2rFaFThQDyEmm_0",
+    "dataId": "MpgvT12sEoPrEgei0",
+    "podpowiedz": "Probka: listwa i piasta szkic [Sketch]",
+    "niedookreslony": false,
+    "msOdOdpowiedzi": 0,
+    "featureStatus": "OK",
+    "sourceMicroversion": "ae8d4cfea8cf025ac1b489a9"
+   },
+   {
+    "t": "2026-10-19T23:12:24.975Z",
+    "nazwa": "Probka: gniazda szkic",
+    "featureId": "FG6g0QOPS2FvSwy_1",
+    "dataId": "MZfxELoYmjH7IRPES",
+    "podpowiedz": "Probka: gniazda szkic [Sketch]",
+    "niedookreslony": false,
+    "msOdOdpowiedzi": 0,
+    "featureStatus": "OK",
+    "sourceMicroversion": "d7cdb621b4fc12f4beb2dbac"
+   }
+  ],
+  "pomiary": {
+   "V": 1619.84,
+   "Vrachunek": 1619.83,
+   "obrys": {
+    "min": [
+     -6,
+     -4.5,
+     0
+    ],
+    "max": [
+     52.5,
+     4.5,
+     5.6
+    ]
+   },
+   "piastyR": 3.8,
+   "piastyX": [
+    0,
+    12,
+    24,
+    36,
+    48
+   ],
+   "pogR": [
+    2.0,
+    2.1,
+    2.2,
+    2.3,
+    2.4
+   ],
+   "pogZ": [
+    1.0,
+    5.6
+   ],
+   "otworR": 1.65,
+   "dnaGniazdPola": [
+    4.013,
+    5.301,
+    6.652,
+    8.066,
+    9.543
+   ],
+   "scian": 34
+  },
+  "k9": {
+   "min": {
+    "piastyOdstep": 10,
+    "wkladkaD3": 4.2,
+    "dlugosc": 50.5,
+    "piastyX": [
+     0,
+     10,
+     20,
+     30,
+     40
+    ],
+    "pogR3": 2.1,
+    "ciala": 1,
+    "bledy": 0
+   },
+   "max": {
+    "piastyOdstep": 14,
+    "wkladkaD3": 4.6,
+    "dlugosc": 66.5,
+    "piastyX": [
+     0,
+     14,
+     28,
+     42,
+     56
+    ],
+    "pogR3": 2.3,
+    "ciala": 1,
+    "bledy": 0
+   },
+   "przywrocenie": "V 1619.84 jak przed testem"
+  }
  }
 }
