@@ -30,6 +30,7 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 - **Zapis do repo:** zmianę pokaż (treść albo diff) przed commitem; commit i push dopiero po „ok”. Na początku sesji `git pull`.
 - **Brief do wykonawcy i recenzenta:** pytania i zakres obejmują bieżące zadanie. Materiał obejmuje cały kontekst potrzebny do oceny, także pełną rozmowę, gdy oceniane są intencje użytkownika. Brief pokaż użytkownikowi przed wysłaniem. Surowe raporty zapisuj do pliku; w rozmowie podaj ścieżkę i to, co dotyczy zadania.
 - **`00-inbox/`:** na starcie sesji jedna linijka, czy coś w nim jest. Rozkładanie plików to osobne zadanie w `teraz.md`.
+- **Stan pracy wykonawcy podajesz tylko po sprawdzeniu**: drzewo w karcie Onshape, plik stanu, czas ostatniego wywołania API. Po uruchomieniu wykonawcy sprawdzaj to sam co kilka minut. Brak postępu = mówisz to wprost i reagujesz, nie uspokajasz.
 - **Procesy:** każde polecenie z limitem czasu obejmującym procesy potomne. Na koniec zadania wypisz, co działa w tle. Testy na narzędziach użytkownika (codex, gh) tylko za jego zgodą i nigdy w tle.
 
 ## Role
@@ -101,7 +102,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 **Struktura.**
 
 - **Każda część to osobny Part** z czytelną nazwą (Gniazdo, Nakrętka, Kaseta, Jarzmo, Cięgno, Klucz…). Części łączymy w **Assembly** z mate'ami, żeby sprawdzić ruch i kolizje.
-- **Natywne operacje Onshape** (szkice, Extrude, Revolve, Hole, Mirror, Pattern, Chamfer, Fillet) z nazwami „Część: co robi”, np. `Kaseta: otwór osi góra`. Foldery według części zakłada się w interfejsie (REST API ich nie tworzy): wykonawca zgłasza to jako krok ręczny.
+- **Natywne operacje Onshape** (szkice, Extrude, Revolve, Hole, Mirror, Pattern, Chamfer, Fillet) z nazwami „Część: co robi”, np. `Kaseta: otwór osi góra`. **Każda bryła ma własny folder w drzewie**, a jej operacje trafiają do niego od razu po zapisie, nie na końcu budowy. Foldery zakłada się ręcznie w interfejsie (REST API ich nie tworzy). Bryłę sprawdza się i przyjmuje folder po folderze.
 - **Parametry w Variable Studio** (luzy, średnice otworów pod śruby i wkładki, średnica piłeczki, rozstawy).
 - **FeatureScript** tylko tam, gdzie natywne operacje nie wystarczają (np. gwint drukowany), jako mała, pojedyncza operacja w drzewie. Nigdy jedna operacja generująca całą część.
 
@@ -122,6 +123,8 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 - **Budżet: ≤ 15 operacji bryłowych na część** (szkiców nie liczymy, pilnuje ich K6). Przekroczenie wymaga uzasadnienia w planie drzewa i zgody orkiestratora.
 
 **Dowód zamiast deklaracji.** Zdanie wykonawcy „sprawdziłem” nie jest dowodem. Dowodem jest wynik odczytu zapisany przez kod i powtórzony przez orkiestratora. Bez dowodu część nie jest przyjęta.
+
+**Praca na żywo, operacja po operacji.** Użytkownik obserwuje dokument w trakcie budowy. Każdą operację zapisuj do modelu zaraz po przygotowaniu, jedną po drugiej, z otwartej karty dokumentu. Po każdej operacji, zanim zapiszesz następną, sprawdź ją: stan operacji z odpowiedzi zapisu = `OK`, a dla szkicu dodatkowo znacznik w drzewie (niżej). Błąd = stop i poprawa tej operacji, nie dalsza budowa. Nie przygotowuj całego modelu ani skryptu offline, żeby wysłać go na raz. Zrzut ekranu po każdym szkicu i każdej operacji bryłowej. Jeśli przez 5 minut nie wysyłasz żadnego zapisu, zapisz w pliku stanu, co robisz i dlaczego.
 
 **Kontrola szkicu na bieżąco.** Po każdym utworzeniu lub edycji szkicu jego stan odczytuje się w drzewie operacji, w otwartej karcie Onshape, bez wywołań API.
 
@@ -153,6 +156,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 | K8 | Szkice leżą na płaszczyznach, szkicach albo wczesnych operacjach, nie na ścianach z późnych operacji | `sketchPlane` w JSON; każdy wyjątek zatwierdzony w planie |
 | K9 | Test zginania: plan podaje dla 3–5 kluczowych zmiennych wartości min i max i oczekiwany efekt (który wymiar, o ile). Wykonawca zmienia każdą zmienną, sprawdza `featureStates` = `OK`, mierzy wymiary brył i porównuje z oczekiwanym, potem przywraca wartości | Variable Studio, `featureStates`, `boundingboxes` przez API, w budżecie; bez endpointu FeatureScript |
 | K10 | Nazwy operacji i zmiennych mówią, co robią | użytkownik |
+| K11 | Operacje każdej bryły leżą w jej folderze | drzewo w karcie |
 
 ## Praca z API Onshape (plan Free)
 

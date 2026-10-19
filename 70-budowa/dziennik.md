@@ -32,3 +32,7 @@
 ## 2026-10-18 – review v2.4 i przekazanie
 - Review v2.4 (Opus + Codex): do wydruku testowego po drobnych poprawkach (v2.5: prowadnica sanek w eksporcie, naroże sanek vs tulejka H, otwory dolne Ø8,7, domyślna nakrętka 0,45, parametry, orientacja siatek, dokumenty). Ramię przy stopie 0,26 zaakceptowane, firmware ≤ ±30°.
 - Orkiestracja przeniesiona do Warszawy (Omarchy). Stan: `30-projekt/stan-projektu.md`.
+
+## 2026-10-19 – próbka gwintu ISO 60° w PETG
+- Próbka ISO M63×3 (v2.4, model z SolidCrafta) wydrukowana w PETG: gwint wyszedł kiepsko. Nie wiadomo, czy winny jest profil 60°, czy model z SolidCrafta.
+- Decyzja użytkownika: nowy zestaw próbek 45°, skok 5, luzy 0,2 / 0,25 / 0,3 / 0,35 / 0,4, zaprojektowany w Onshape (zadanie E2.0, zarazem pilotaż nowych zasad pracy w Onshape).
