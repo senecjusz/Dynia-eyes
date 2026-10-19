@@ -11,7 +11,7 @@ Stan i log wywołań: `40-cad/onshape/stan-api-v2.5.json`. Skrypt: `40-cad/onsha
 |---|---|---|
 | K1 | zaliczone | 154 operacje, 0 ikon błędu i ostrzeżenia w drzewie; każdy zapis z `featureStatus` OK |
 | K2 | zaliczone | 53 wiersze szkiców w drzewie = 53 szkice w JSON, 0 niedookreślonych |
-| K3 | 2 wyjątki do decyzji | `instanceCount` = `2` w dwóch szykach 180° (para obrócona) |
+| K3 | zaliczone | `instanceCount` = `2` w dwóch szykach 180° przyjęte przez orkiestratora jako stała dozwolona (para z definicji) |
 | K4 | zaliczone | 0 więzów `Fix` |
 | K5 | zaliczone | 8 operacji Mirror/szyk, wszystkie pary i powtórzenia z planu |
 | K6 | **otwarte** | operacje bryłowe w budżecie (Kaseta 23 ≤ 24 zatwierdzone); **szkiców 53 wobec 40 w planie** – 12 grup szkiców na wspólnej płaszczyźnie |
@@ -167,7 +167,7 @@ Wszystkie „w pełni zdefiniowany”.
 | Gniazdo: okienka | `instanceCount` | `2` |
 | Kaseta: zaczep 213 | `instanceCount` | `2` |
 
-Oba to pary obrócone o 180° (AGENTS: „szyk kołowy ×2”). Liczba 2 wynika z definicji pary. **Do decyzji:** uznać `2` w `instanceCount` pary za stałą dozwoloną, albo wprowadzić zmienną `paraN = 2` (2 edycje).
+Oba to pary obrócone o 180° (AGENTS: „szyk kołowy ×2”). **Decyzja orkiestratora 19.10:** `2` w `instanceCount` pary 180° to stała dozwolona.
 
 ## K4 – więzy
 
@@ -221,7 +221,7 @@ Operacje bryłowe (bez szkiców, płaszczyzn i helisy):
 
 Wspólne płaszczyzny między częściami (Front dla Kasety i Jarzma; pl. zaczepów Gniazdo/Kaseta; pl. korby Jarzmo/Ramię; Kaseta: pl. tyłu z Pokrywą) nie dają się scalić, bo folder jest per bryła.
 
-**Status: otwarte.** Scalenie to około 12 edycji i usunięć szkiców. Nie mieści się w budżecie E2.1 (zostało 13 wywołań) i zmienia drzewo po review, więc decyzja należy do orkiestratora.
+**Status: otwarte.** Decyzja orkiestratora 19.10: nie scalać w E2.1 (12 edycji przy 13 wywołaniach nie zostawia zapasu, budżetu w trakcie zadania się nie zmienia). Scalenie szkiców to osobne zadanie z nowym budżetem.
 
 ## K7 – kolejność
 
@@ -283,4 +283,4 @@ Skan drzewa: każda z 154 operacji jest w folderze swojej bryły (prefiks nazwy 
 4. W liście części jest też „Curve 1” (helisa, bez masy); w 3MF się nie eksportuje.
 5. Zmienna `kieszenR0` (2,6) jest od poprawki kieszeni nieużywana (zastąpiona przez `kieszenPolSzer`).
 
-**Werdykt:** model v2.5 odpowiada v2.4 po wyjaśnionych zmianach i nadaje się do eksportu 3MF i review. Otwarte zostają K6 (53 szkice wobec 40, scalenie do decyzji) i K3 (`instanceCount` 2 w parach 180°, do decyzji).
+**Werdykt:** model v2.5 odpowiada v2.4 po wyjaśnionych zmianach i nadaje się do eksportu 3MF i review. Otwarte zostaje K6 (53 szkice wobec 40): scalenie jako osobne zadanie.

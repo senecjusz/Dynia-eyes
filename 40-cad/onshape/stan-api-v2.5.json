@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T15:15Z, wykonawca CAD: weryfikacja v2.5 zakonczona, raport 40-cad/onshape/weryfikacja-v2.5.md",
+ "zapis": "2026-10-19T15:25Z, wykonawca CAD: E2.1 zakonczone, decyzje K3/K6 zapisane; czekam na zlecenie",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -1445,7 +1445,7 @@
   },
   "wTrakcie": null,
   "zostalo": [
-   "decyzja orkiestratora: K6 scalenie szkicow (53 vs 40), K3 instanceCount 2",
+   "K6: scalenie szkicow - osobne zadanie z nowym budzetem (decyzja orkiestratora 19.10)",
    "K10 uzytkownik"
   ],
   "bilans": {
@@ -1543,6 +1543,10 @@
    "k6szkice": "53 wobec 40 w planie - otwarte",
    "k8": "0 szkicow na scianach",
    "k11": "wszystkie operacje w folderach swoich bryl"
-  }
+  },
+  "decyzje": [
+   "K3: instanceCount 2 w parach 180 st. = stala dozwolona (orkiestrator 19.10)",
+   "K6: nie scalac w E2.1 (orkiestrator 19.10)"
+  ]
  }
 }
