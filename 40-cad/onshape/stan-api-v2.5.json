@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.1 modul v2.5, etap 2 (budowa)",
- "zapis": "2026-10-19T14:15Z, po Sankach; korba z petla 2; nakretka zmierzona przy luzGwint 0.20",
+ "zapis": "2026-10-19T14:20Z, po Ramieniu, Ciegnie i Tulejkach",
  "doc": {
   "did": "21ca65b874071b352b43ebad",
   "wid": "5ed8f87ee8cf1ca54beed33d",
@@ -10,8 +10,8 @@
   "folder": "Halloween"
  },
  "n": {
-  "total": 184,
-  "features": 131,
+  "total": 214,
+  "features": 157,
   "getFeatures": 0
  },
  "budzet": {
@@ -29,7 +29,7 @@
   "GET bodydetails": 481,
   "GET boundingboxes": 499
  },
- "mv": "a19c0ee7dd5c9ee3ad14ac8a",
+ "mv": "7f81208ef1ddcaf7f3de382e",
  "F": {
   "Layout: osie i punkty": "FJFemNF9Bt6mPQT_0",
   "Gniazdo: profil": "FgtYWJ3D5RAkxgp_0",
@@ -142,7 +142,41 @@
   "Jarzmo: pl. korby": "F8wGTHh0s8ugRkB_4",
   "Jarzmo: korba szkic": "FI0kaoEcnqtWg47_4",
   "Jarzmo: korba": "FBrvWH631fQKXnd_4",
-  "Jarzmo: otwór korby": "F1XaNNQgNftp24h_4"
+  "Jarzmo: otwór korby": "F1XaNNQgNftp24h_4",
+  "Sanki: pl. spodu": "FXWzRpB3LdzkSmL_4",
+  "Sanki: słupki szkic": "FsJpQzAoOC1wlwk_4",
+  "Sanki: słupki": "FzUgvICBQuf2oPj_4",
+  "Sanki: prowadnice szkic": "FXgWDWanp2gdtnN_6",
+  "Sanki: prowadnice": "FF1qBIvNbzU2LYT_6",
+  "Sanki: pl. góry": "FVkXm7YahQvsebB_5",
+  "Sanki: otwory uszu szkic": "FZGlAgl4EwzhnbA_5",
+  "Sanki: otwory uszu": "Ff6CJ48y9UTniPg_5",
+  "Ramię: płyta szkic": "FFS9klGCoweXOPi_5",
+  "Ramię: płyta": "FhRDEAQD9NVldX1_5",
+  "Ramię: pl. ramy": "FPGWc7DdTd3Al7B_6",
+  "Ramię: rama orczyka szkic": "FKKOfkGMjg7LOF8_6",
+  "Ramię: rama orczyka": "FEuKgdugiylSH20_6",
+  "Ramię: kieszeń orczyka szkic": "FV9o098j4f0x2Tx_6",
+  "Ramię: kieszeń orczyka": "FNX5RzgZhziZ3Mc_6",
+  "Ramię: otwór wkrętu orczyka": "FBnGosHIfTbTgTh_6",
+  "Ramię: otwór M2": "Fvi7RrkNRMIeZmO_6",
+  "Ramię: otwór przegubu": "FKJQLFVx8OF7CFt_6",
+  "Cięgno: pl. płyty": "FuZByTS521XgVs4_6",
+  "Cięgno: płyta szkic": "F6IvVypU0Sxuf4f_6",
+  "Cięgno: płyta": "FFjQwRonoEa5dLG_6",
+  "Cięgno: pl. podniesień": "F9guXiRx57pRZ20_7",
+  "Cięgno: podniesienia szkic": "FvrJaxtRq1rMYW2_7",
+  "Cięgno: podniesienia": "FDEBVQyohL4V856_7",
+  "Cięgno: pl. wkładek": "FmHn00G6eiZybVN_7",
+  "Cięgno: wkładki szkic": "F59jc0f6xrJuqBG_7",
+  "Cięgno: otwory i wkładki": "FUdPw7nm83yGpjQ_7",
+  "Tulejki: pl. kołnierza": "FmSv52s1FiGjhqE_7",
+  "Tulejka korby: kołnierz szkic": "Fq3Y8To7XuTYmtO_7",
+  "Tulejka korby: kołnierz": "FExoyyqZlcAQbha_7",
+  "Tulejka korby: trzon szkic": "FICAyliLUtWlXBb_8",
+  "Tulejka korby: trzon": "FvoTlwAHMrqXoJd_8",
+  "Tulejka korby: otwór": "F8DIAq7Rqm7EDWC_8",
+  "Tulejka ramienia: kopia C→H": "FaNeKGh6xkcX0m3_8"
  },
  "szkice": [
   {
@@ -456,6 +490,83 @@
    "podpowiedz": "Jarzmo: korba szkic [Sketch]",
    "niedookreslony": false,
    "uwaga": null
+  },
+  {
+   "nazwa": "Sanki: słupki szkic",
+   "featureId": "FsJpQzAoOC1wlwk_4",
+   "dataId": "MySsJSTb/k0AWAXYE",
+   "podpowiedz": "Sanki: słupki szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Sanki: prowadnice szkic",
+   "featureId": "FXgWDWanp2gdtnN_6",
+   "dataId": "MBszy5GmfXdBehqvu",
+   "podpowiedz": "Sanki: prowadnice szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Sanki: otwory uszu szkic",
+   "featureId": "FZGlAgl4EwzhnbA_5",
+   "dataId": "MK/UiKWXMAoUor5k1",
+   "podpowiedz": "Sanki: otwory uszu szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Ramię: płyta szkic",
+   "featureId": "FFS9klGCoweXOPi_5",
+   "dataId": "M+4C7YXVhQM7HU3Md",
+   "podpowiedz": "Ramię: płyta szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Ramię: rama orczyka szkic",
+   "featureId": "FKKOfkGMjg7LOF8_6",
+   "dataId": "MecPYpzut2Lw4q/Lp",
+   "podpowiedz": "Ramię: rama orczyka szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Ramię: kieszeń orczyka szkic",
+   "featureId": "FV9o098j4f0x2Tx_6",
+   "dataId": "MEtHSsutaagqLLZPu",
+   "podpowiedz": "Ramię: kieszeń orczyka szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Cięgno: płyta szkic",
+   "featureId": "F6IvVypU0Sxuf4f_6",
+   "dataId": "Mvqi2vzZatL4QPRtK",
+   "podpowiedz": "Cięgno: płyta szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Cięgno: podniesienia szkic",
+   "featureId": "FvrJaxtRq1rMYW2_7",
+   "dataId": "MJ4/+v1Evf2Ke0+ys",
+   "podpowiedz": "Cięgno: podniesienia szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Cięgno: wkładki szkic",
+   "featureId": "F59jc0f6xrJuqBG_7",
+   "dataId": "MhHw7Ip+KGhPZC9RZ",
+   "podpowiedz": "Cięgno: wkładki szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Tulejka korby: kołnierz szkic",
+   "featureId": "Fq3Y8To7XuTYmtO_7",
+   "dataId": "M0aSD/btPbxcovy4A",
+   "podpowiedz": "Tulejka korby: kołnierz szkic [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "nazwa": "Tulejka korby: trzon szkic",
+   "featureId": "FICAyliLUtWlXBb_8",
+   "dataId": "MdUTm6uI4z8r7gz2k",
+   "podpowiedz": "Tulejka korby: trzon szkic [Sketch]",
+   "niedookreslony": false
   }
  ],
  "czasy": [
@@ -527,9 +638,27 @@
   ],
   [
    "Sanki serwa",
-   "2026-10-19T14:10Z",
-   null,
+   "2026-10-19T14:02:03Z",
+   7948,
    8
+  ],
+  [
+   "Ramię orczyka",
+   "2026-10-19T14:04:25Z",
+   5757,
+   10
+  ],
+  [
+   "Cięgno",
+   "2026-10-19T14:04:45Z",
+   5364,
+   9
+  ],
+  [
+   "Tulejki",
+   "2026-10-19T14:04:59Z",
+   4089,
+   7
   ]
  ],
  "foldery": [
@@ -811,6 +940,87 @@
    ],
    "sciany": 18,
    "zgodnosc": "jedna bryla (review #1), szczelina 12.7, fazka 1 mm w profilu naroza przedniego lewego"
+  },
+  {
+   "czesc": "Ramię orczyka",
+   "bryly_w_PS": 6,
+   "sciany": 19,
+   "walceR": [
+    1.1,
+    1.4,
+    2.3,
+    3,
+    3.5,
+    3.7,
+    5,
+    5.2,
+    5.5
+   ],
+   "plaszczyznyY": [
+    -4.5,
+    -3,
+    -0.5
+   ],
+   "zgodnosc": "plyta -3..-0.5, rama -4.5..-2.9 (zakladka 0.1), dno kieszeni y -3.0 = spod plyty (brak blony: w obszarze kieszeni material ciagly od -3.0 do -0.5; plaszczyzny Y tylko -4.5, -3, -0.5), otwory 2.8 / 2.2 (M2 13 mm od osi orczyka) / 6.0"
+  },
+  {
+   "czesc": "Cięgno",
+   "bryly_w_PS": 7,
+   "sciany": 16,
+   "walceR": [
+    1.65,
+    2,
+    3.8,
+    4.2
+   ],
+   "plaszczyznyY": [
+    -0.3,
+    0.7,
+    2.2,
+    5.3
+   ],
+   "zgodnosc": "plyta -0.3..2.2, podniesienia do 5.3, gniazda wkladek 4 do y 0.7 (dno 1.0 nad plyta), otwory 3.3 przelotowe"
+  },
+  {
+   "czesc": "Tulejki",
+   "bryly_w_PS": 9,
+   "tulejki": [
+    {
+     "os_xz": [
+      7.38,
+      -36.15
+     ],
+     "walceR": [
+      1.65,
+      2.8,
+      4
+     ],
+     "y": [
+      -3.8,
+      -3,
+      -0.3
+     ],
+     "sciany": 6
+    },
+    {
+     "os_xz": [
+      -9.24,
+      -40.63
+     ],
+     "walceR": [
+      1.65,
+      2.8,
+      4
+     ],
+     "y": [
+      -3.8,
+      -3,
+      -0.3
+     ],
+     "sciany": 6
+    }
+   ],
+   "zgodnosc": "kolnierz 8 x 0.8, trzon 5.6 do y -0.3, otwor 3.3; tulejka H = kopia C->H (Transform TRANSLATION_ENTITY po lCH)"
   }
  ],
  "ustalenia": [
@@ -887,6 +1097,26 @@
    "pierwsza": "Sanki: pl. spodu",
    "ostatnia": "Sanki: otwory uszu",
    "operacji": 8
+  },
+  "Ramię orczyka": {
+   "pierwsza": "Ramię: płyta szkic",
+   "ostatnia": "Ramię: otwór przegubu",
+   "operacji": 10
+  },
+  "Cięgno": {
+   "pierwsza": "Cięgno: pl. płyty",
+   "ostatnia": "Cięgno: otwory i wkładki",
+   "operacji": 9
+  },
+  "Tulejka przegubu korby": {
+   "pierwsza": "Tulejki: pl. kołnierza",
+   "ostatnia": "Tulejka korby: otwór",
+   "operacji": 6
+  },
+  "Tulejka przegubu ramienia": {
+   "pierwsza": "Tulejka ramienia: kopia C→H",
+   "ostatnia": "Tulejka ramienia: kopia C→H",
+   "operacji": 1
   }
  },
  "widocznosc": {
@@ -895,5 +1125,12 @@
   "visibilityState": "hidden",
   "javascript_tool": "ta sama karta seed (Oko F v2.5), G zywy",
   "zalogowany": "tak (GET currentmicroversion 200)"
- }
+ },
+ "odstepstwa": [
+  "Sanki: fazka 1x45 naroza w profilu zamiast Chamfer (przyjete przez orkiestratora 14:20)",
+  "Ramie: 3 operacje Hole (M2 z punktu szkicu ramy, przeciwny kierunek) zamiast 2 (zgoda orkiestratora pod warunkiem pomiaru: dno kieszeni -3.0, brak blony - potwierdzone)",
+  "Ramie: kieszen z pl. ramy y -4.5 na 1.5 zamiast z -4.6 na 1.6 (to samo dno -3.0; zgoda jw.)",
+  "Kaseta: para otworow osi = jeden Hole z 2 punktami (Onshape nie wzoruje Hole przez Mirror)",
+  "Fazki w profilach szkicow (rant, czolo kasety, otwor gniazda, zebro, faza zwoju) i fazki wejscia rowka jako ciecie - jak E2.0; Chamfer wymagalby zapytan krawedzi z liczbami (K3)"
+ ]
 }
