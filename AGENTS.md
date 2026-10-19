@@ -30,8 +30,16 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 - **Zapis do repo:** zmianę pokaż (treść albo diff) przed commitem; commit i push dopiero po „ok”. Na początku sesji `git pull`.
 - **Brief do wykonawcy i recenzenta:** pytania i zakres obejmują bieżące zadanie. Materiał obejmuje cały kontekst potrzebny do oceny, także pełną rozmowę, gdy oceniane są intencje użytkownika. Brief pokaż użytkownikowi przed wysłaniem. Surowe raporty zapisuj do pliku; w rozmowie podaj ścieżkę i to, co dotyczy zadania.
 - **`00-inbox/`:** na starcie sesji jedna linijka, czy coś w nim jest. Rozkładanie plików to osobne zadanie w `teraz.md`.
-- **Stan pracy wykonawcy podajesz tylko po sprawdzeniu**: drzewo w karcie Onshape, plik stanu, czas ostatniego wywołania API. Po uruchomieniu wykonawcy sprawdzaj to sam co kilka minut. Brak postępu = mówisz to wprost i reagujesz, nie uspokajasz.
 - **Procesy:** każde polecenie z limitem czasu obejmującym procesy potomne. Na koniec zadania wypisz, co działa w tle. Testy na narzędziach użytkownika (codex, gh) tylko za jego zgodą i nigdy w tle.
+
+## Nadzór nad wykonawcą (orkiestrator)
+
+- **Obserwacja w tle przez cały czas pracy wykonawcy:** `40-cad/narzedzia/pilnuj-wykonawcy.sh <worktree wykonawcy> <plik stanu> [minuty]`, uruchomiona w tle zaraz po zleceniu. Daje sygnał przy commicie wykonawcy, nowym „stop” w pliku stanu albo po 6 minutach bez zmiany pliku stanu. Po każdym sygnale sprawdzasz i uruchamiasz ją ponownie, aż do odbioru zadania. Bez działającej obserwacji nie obiecujesz użytkownikowi żadnego sprawdzenia.
+- **Przy commicie:** sprawdzasz w commicie i pliku stanu pomiary części wobec planu i poprzedniej wersji, odstępstwa i zużycie API. Dopiero potem podajesz użytkownikowi wynik, z hashem commita.
+- **Przy braku postępu:** sprawdzasz, czy sesja wykonawcy pracuje, czy czeka (status sesji, ostatnie działanie). Czeka na użytkownika = mówisz mu od razu, co ma zrobić. Pracuje bez zapisu dłużej niż 5 minut = żądasz zapisu stanu.
+- **Raport wykonawcy bez pokrycia w pliku stanu albo commicie nie jest dowodem.** Żądasz zapisu i commita, zanim przyjmiesz część albo przekażesz raport.
+- **Odstępstwa od planu oceniasz od razu.** Uproszczenie albo pominięty element bez zgody = zwrot do wykonawcy.
+- **Użytkownikowi podajesz tylko sprawdzone fakty.** Niesprawdzone nazywasz wprost niesprawdzonymi.
 
 ## Role
 
