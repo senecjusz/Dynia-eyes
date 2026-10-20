@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20, wykonawca CAD: E4.4 plan + rachunek ruchu stosu nakretki, 0 wywolan API",
+  "zapis": "2026-10-20, wykonawca CAD: E4.4 stop przed zapisem - microversion inna niz znana, pytanie do orkiestratora; 1 wywolanie",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -4206,7 +4206,9 @@
       "getFeatures": 0
     },
     "n": {
-      "total": 0
+      "total": 1,
+      "features": 0,
+      "getFeatures": 0
     },
     "logowanie": "2026-10-20 ~15:00Z karta na liscie dokumentow (zalogowana: XSRF, lista Owned by me); powrot do dokumentu Oko F v2.5",
     "stan": "plan wyslany do orkiestratora, bez zapisow w Onshape; czekam na decyzje (konflikt nakretki H ze scianka Kasety przy oku -33)",
@@ -4238,6 +4240,35 @@
         ]
       },
       "v2.6_piasta_R3.8_do_5.3": 0.02
-    }
+    },
+    "decyzja": "orkiestrator: wariant B (bez piasty, 1 podkladka na plycie, M3x12, wystaje 1.5); Kaseta bez zmian; warunek +-30 >= 0.5 po narozu",
+    "ruchB": {
+      "oko+-30_1podkl": {
+        "Kaseta": 0.787,
+        "Gniazdo": 4.314,
+        "Nakretka": 6.996,
+        "reszta": ">=8"
+      },
+      "oko+-33_1podkl": {
+        "Kaseta": 0.271,
+        "Gniazdo": 4.0,
+        "Nakretka": 6.183
+      },
+      "oko+-30_2podkl": {
+        "Kaseta": 0.645
+      }
+    },
+    "planB": "DELETE 3 operacje piasty; pl. wkladek -> Ciegno: pl. gory plyty (#plytaT - #ciegnoY); szkic -> otwory srub szkic; Hole SIMPLE THROUGH #m3Luzny \"Ciegno: otwory srub\"; VS: usun podniesienieY/H/R, ciegnoDno, ciegnoWkladkiY, ciegnoWkladkaGl",
+    "stop": {
+      "t": "2026-10-20 (E4.4)",
+      "powod": "currentmicroversion c301a06eb0fe62db5de9c780 inna niz ostatnia znana aa1de3ac7aa7e72a76b718a1 (po 98142c9) -> cudza edycja wg AGENTS.md; w widoku widoczne plaszczyzny Kaseta: pl. siedziska serwa i Gniazdo: pl. konca bruzdy (wczesniej ukryte)",
+      "zapisy": "brak"
+    },
+    "log": [
+      [
+        "GET /documents/currentmicroversion (odczyt startowy)",
+        200
+      ]
+    ]
   }
 }

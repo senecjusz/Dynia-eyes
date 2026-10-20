@@ -1,14 +1,17 @@
 # Odstep stosu podkladka+nakretka+koniec sruby (przeguby C i H Ciegna) od czesci v2.6 na calym ruchu oka.
-# Uzycie: python3 -I stos_nakretki.py <katalog z 3MF v2.6> <yGora piasty> <srubaL>
+# Uzycie: python3 -I stos_nakretki.py <katalog z 3MF v2.6> <y oparcia podkladki> <srubaL> [liczba podkladek: 0 = obwiednia 1 i 2] [kat oka max, deg]
 import sys, os, zipfile, re, math
 import numpy as np
 
 kat, yG, L = sys.argv[1], float(sys.argv[2]), float(sys.argv[3])
+NP = int(sys.argv[4]) if len(sys.argv) > 4 else 0
+KMAX = float(sys.argv[5]) if len(sys.argv) > 5 else 34.0
 TUL_Y = 3.8           # spod lba = -tulejkaY
 NAK_H, PODK, R_PODK, R_NAK, R_SR = 4.0, 0.5, 3.5, 6.35 / 2, 1.5
 yKon = -TUL_Y + L     # koniec sruby
 # obwiednia dwoch wariantow (1 i 2 podkladki): [y0, y1, R]
-STOS = [(yG, yG + 2 * PODK, R_PODK), (yG + PODK, yG + 2 * PODK + NAK_H, R_NAK), (yG + PODK + NAK_H, yKon, R_SR)]
+if NP: STOS = [(yG, yG + NP * PODK, R_PODK), (yG + NP * PODK, yG + NP * PODK + NAK_H, R_NAK), (yG + NP * PODK + NAK_H, yKon, R_SR)]
+else: STOS = [(yG, yG + 2 * PODK, R_PODK), (yG + PODK, yG + 2 * PODK + NAK_H, R_NAK), (yG + PODK + NAK_H, yKon, R_SR)]
 
 def siatka(plik):
     z = zipfile.ZipFile(plik); s = z.read([n for n in z.namelist() if n.endswith('.model')][0]).decode()
@@ -58,7 +61,7 @@ def H_od(C, Hpop):
 ruch = []
 for sgn in (1, -1):
     Hp = H0
-    for i in range(0, 34 * 4 + 1):
+    for i in range(0, int(round(KMAX * 4)) + 1):
         th = sgn * math.radians(i / 4)
         C = rot(C0, E, th); H = H_od(C, Hp); Hp = H
         fi = math.atan2(H[1] - S[1], H[0] - S[0]) - math.atan2(H0[1] - S[1], H0[0] - S[0])
@@ -95,6 +98,6 @@ for nazwa, P in czesci.items():
             if d < naj[0]: naj = (d, f'{nm} oko {math.degrees(th):+.1f} serwo {math.degrees(fi):+.1f}')
     wyn[nazwa] = naj
 print(f'piasta y {yG}, sruba M3x{L:g}: koniec y {yKon:.2f}; stos {STOS}')
-print('serwo zakres', round(min(math.degrees(r[3]) for r in ruch), 1), round(max(math.degrees(r[3]) for r in ruch), 1))
+print('liczba podkladek', NP or '1 i 2', 'oko max', KMAX); print('serwo zakres', round(min(math.degrees(r[3]) for r in ruch), 1), round(max(math.degrees(r[3]) for r in ruch), 1))
 for k, (d, gdzie) in sorted(wyn.items(), key=lambda x: (x[1][0] if x[1][0] is not None and not isinstance(x[1][0], str) else 1e9)):
     print(f'{k:20s} {d if isinstance(d, str) else round(d, 3)}  {gdzie or ""}')
