@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
- "zapis": "2026-10-20T10:35Z, wykonawca CAD: E4 Gniazdo i Ciegno zbudowane",
+ "zapis": "2026-10-20T10:47Z, wykonawca CAD: E4 wszystkie czesci zbudowane; dalej weryfikacja K1-K11 i raport",
  "sumaWywolanRok": {
   "total": 131,
   "features": 70,
@@ -2927,9 +2927,9 @@
    "getFeatures": 4
   },
   "n": {
-   "total": 14,
-   "features": 4,
-   "getFeatures": 0
+   "total": 55,
+   "features": 32,
+   "getFeatures": 1
   },
   "rokPrzed": 443,
   "doc": {
@@ -2945,7 +2945,7 @@
   },
   "plany": {
    "1 Gniazdo+Ciegno": "zatwierdzony (scope B1/B2 tylko Gniazdo), zbudowany",
-   "2-6 Kaseta, Klamra, Pokrywa, Sanki": "40-cad/onshape/e4-plan-2-kaseta-klamra-pokrywa-sanki.md (969d820), czeka na zatwierdzenie i D1-D3"
+   "2-6 Kaseta, Klamra, Pokrywa, Sanki": "zatwierdzony (D1 blok +-2.75 skos 45; D2 kanal kolka wypelniony; D3 Sanki przed Kaseta), zbudowany"
   },
   "zmienneZywe": {
    "luzGwint": "0.2 mm",
@@ -3028,6 +3028,88 @@
     "GET massproperties",
     200,
     null
+   ],
+   [
+    "08:36Z",
+    "DELETE x8 operacje Sanek",
+    200,
+    null
+   ],
+   [
+    "08:36Z",
+    "POST variables x2 (Kaseta/Klamra, -18 zmiennych Sanek)",
+    204,
+    null
+   ],
+   [
+    "08:37Z",
+    "GET currentmicroversion",
+    200,
+    null
+   ],
+   [
+    "08:37Z",
+    "POST featureid Kaseta: ucho szkic OK (stop 'brak wiersza' - folder zwiniety; po rozwinieciu w pelni zdefiniowany)",
+    200,
+    null
+   ],
+   [
+    "08:38Z",
+    "POST featureid otwor gorny szkic; POST features pl. bloku, blok szkic, blok serwa",
+    200,
+    null
+   ],
+   [
+    "08:39Z",
+    "POST features pl. siedziska, wkrety szkic, kanal wkretu, otwor wkretu przedniego",
+    200,
+    null
+   ],
+   [
+    "08:39Z",
+    "GET bodydetails",
+    200,
+    null
+   ],
+   [
+    "08:40Z",
+    "POST features Klamra H: profil szkic, Klamra H, otwor tylny, fazki",
+    200,
+    null
+   ],
+   [
+    "08:41Z",
+    "DELETE x5 Pokrywa; GET microversion; POST featureid Pokrywa: plyta szkic",
+    200,
+    null
+   ],
+   [
+    "08:42Z",
+    "GET /features (K3/K4 nowych operacji, zmienne nieuzywane)",
+    200,
+    null
+   ],
+   [
+    "08:42Z",
+    "POST variables (-21 nieuzywanych); GET microversion",
+    204,
+    null
+   ],
+   [
+    "08:43Z",
+    "GET parts; POST metadata Klamra H; GET bodydetails; GET massproperties",
+    200,
+    null
+   ],
+   {
+    "t": "08:45Z",
+    "uwaga": "UI: usuniety pusty folder Sanki serwa; 7 operacji Kasety do folderu Kaseta (65); folder Klamra H (4)"
+   },
+   [
+    "08:46Z",
+    "GET parts; GET massproperties (kontrola po przeniesieniu)",
+    200,
+    null
    ]
   ],
   "stop": null,
@@ -3035,7 +3117,21 @@
    "Gniazdo: pl. końca bruzdy": "F0fXoMpaCGVprwc_9",
    "Gniazdo: bruzda szkic": "FgFmXdujyjCMnMt_9",
    "Gniazdo: bruzda": "FuGH57nW2aWHF7e_9",
-   "Gniazdo: bruzda dół": "FSCW8adj0AA5Uud_9"
+   "Gniazdo: bruzda dół": "FSCW8adj0AA5Uud_9",
+   "Kaseta: pl. bloku serwa": "Fd5fmCsEgOs849l_9",
+   "Kaseta: blok serwa szkic": "Fyv4sgps7MGFryr_9",
+   "Kaseta: blok serwa": "FjRnzmU3UKl5ZiR_9",
+   "Kaseta: pl. siedziska serwa": "FSrhZ8cPVpNQwzY_9",
+   "Kaseta: wkręty serwa szkic": "FAlPtEGCBevAkYk_9",
+   "Kaseta: kanał wkrętu": "FKJzGbQ45ghU5aX_9",
+   "Kaseta: otwór wkrętu przedniego": "FlX1daOmTNlS84S_9",
+   "Klamra H: profil szkic": "FRgeypoK8tVSaGR_9",
+   "Klamra H": "FUr0bbYSepSFx8B_9",
+   "Klamra H: otwór wkrętu tylnego": "F00kn9eieL6kYsZ_10",
+   "Klamra H: fazki wejściowe": "F1WDG2lBcN2zQt4_10",
+   "Kaseta: ucho szkic (edycja)": "FzZQWxD45NRuHiT_3",
+   "Kaseta: otwór górny szkic (edycja)": "F1i64cGZQmJBHV0_3",
+   "Pokrywa: płyta szkic (edycja)": "F5ou0YaVhTAkiqe_8"
   },
   "szkice": [
    {
@@ -3048,6 +3144,66 @@
     "msOdOdpowiedzi": 0,
     "featureStatus": "OK",
     "sourceMicroversion": "78065e615eb3f4c51b61e444"
+   },
+   {
+    "t": "2026-10-20T08:38:10Z",
+    "nazwa": "Kaseta: ucho szkic",
+    "featureId": "FzZQWxD45NRuHiT_3",
+    "dataId": "MN3+uARqJF7rsfbnx",
+    "podpowiedz": "Kaseta: ucho szkic [Sketch] (Hidden)",
+    "niedookreslony": false,
+    "featureStatus": "OK",
+    "uwaga": "po rozwinieciu folderu Kaseta"
+   },
+   {
+    "t": "2026-10-20T08:38:11.329Z",
+    "nazwa": "Kaseta: otwór górny szkic",
+    "featureId": "F1i64cGZQmJBHV0_3",
+    "dataId": "Mck4/M0FpqKCAz1BK",
+    "podpowiedz": "Kaseta: otwór górny szkic [Sketch] (Hidden)",
+    "niedookreslony": false,
+    "featureStatus": "OK",
+    "sourceMicroversion": "919cd373d5ecfd12335c94a3"
+   },
+   {
+    "t": "2026-10-20T08:38:32.994Z",
+    "nazwa": "Kaseta: blok serwa szkic",
+    "featureId": "Fyv4sgps7MGFryr_9",
+    "dataId": "M4UnGXNdLlWUzfhAy",
+    "podpowiedz": "Kaseta: blok serwa szkic [Sketch]",
+    "niedookreslony": false,
+    "featureStatus": "OK",
+    "sourceMicroversion": "c834a4de4bb7ee33aa606094"
+   },
+   {
+    "t": "2026-10-20T08:39:15.787Z",
+    "nazwa": "Kaseta: wkręty serwa szkic",
+    "featureId": "FAlPtEGCBevAkYk_9",
+    "dataId": "Mw4jXvvYzngP7JfYK",
+    "podpowiedz": "Kaseta: wkręty serwa szkic [Sketch]",
+    "niedookreslony": false,
+    "featureStatus": "OK",
+    "sourceMicroversion": "c6806ae9677904751489f893"
+   },
+   {
+    "t": "2026-10-20T08:40:52.295Z",
+    "nazwa": "Klamra H: profil szkic",
+    "featureId": "FRgeypoK8tVSaGR_9",
+    "dataId": "MQiC+kdnLblVnhfQm",
+    "podpowiedz": "Klamra H: profil szkic [Sketch]",
+    "niedookreslony": false,
+    "featureStatus": "OK",
+    "sourceMicroversion": "d199c74c91056ca57c48632b"
+   },
+   {
+    "t": "2026-10-20T08:42:06.747Z",
+    "nazwa": "Pokrywa: płyta szkic",
+    "featureId": "F5ou0YaVhTAkiqe_8",
+    "dataId": "MKT/kBA7NECcq8uZs",
+    "podpowiedz": "Pokrywa: płyta szkic [Sketch] (Hidden)",
+    "niedookreslony": false,
+    "featureStatus": "OK",
+    "sourceMicroversion": "966005064eaf7e82975587b4"
    }
   ],
   "zmienne": "VS 391 zmiennych (dwuetapowo 204/204): rantD 67.5; zabekSzer 1.5, zabekH 1.3 (przed zabekR1); zabekR1 #przodD/2; zabekR2 #zabekR1+#zabekSzer; zabekZ #rantSag2+#zabekH; strzalkaOdstep 0.75 (przed strzalkaY); strzalkaY #rantR-#fazkaRantu-#strzalkaOdstep; wkladkaD 4.4; na koncu bruzdaGl 1.05, bruzdaR, bruzdaRw, bruzdaSzer, bruzdaPolSzer, bruzdaKoniec",
@@ -3068,10 +3224,27 @@
     "roznicaV": "-24.28 = 2 x pi/4 x (4.4^2-4^2) x 4.6"
    },
    "Kaseta": {
-    "V": 35015.7,
-    "uwaga": "stare ucha: wkladki teraz Ø4.4 (do przebudowy w zm. 6)"
+    "V": 35042.78,
+    "blok": "gora y -17.6 x +-2.75 z -45.2..-49.2; skos 45 (normalna 0,.707,.707) do sciany na z -37.75; boki x +-2.75",
+    "kanal": "x +-1.2, dno y -21.6, z -46.75..-49.2 (otwarty do tylu)",
+    "otworPrzedni": "R1.0 y -17.6..-23.6, dno plaskie, z -46.75",
+    "okno": "luki R4.5 w (0,-66), (0,-46.75), (-4.446,-53.784); z -42.25..-70.5, x -8.946..4.5",
+    "ucha": "+X i -X osobno: r 16.65..24.25, skos 45 z -72.3..-64.7, y +-3.8; gniazda wkladek R2.2 w x +-20.45, z -77.5..-72.9 + stozek do -71.58; scianki 1.6"
    },
-   "po przeniesieniu do folderu": "nazwy czesci bez zmian, nowe partId (Nakretka JzD, Kaseta RUBD, Jarzmo RADD, Sanki RmDD, Ramie RxDD, Ciegno REED, Tulejki RRED/RYED, Pokrywa RbED), objetosci bez zmian, 0 bledow"
+   "po przeniesieniu do folderu": "nazwy czesci bez zmian, nowe partId (Nakretka JzD, Kaseta RUBD, Jarzmo RADD, Sanki RmDD, Ramie RxDD, Ciegno REED, Tulejki RRED/RYED, Pokrywa RbED), objetosci bez zmian, 0 bledow",
+   "KlamraH": {
+    "V": 1134.48,
+    "partId": "RgED",
+    "obrys": "x +-9.6, y -30.5..-17.6, z -77.5..-72.1",
+    "fazki": "6 scian (R24 x2, R27.5 x2, boki lacznika x2) do z -72.5",
+    "otwor": "R1.0 y -17.6..-23.6 w z -74.55, dno plaskie"
+   },
+   "Pokrywa": {
+    "V": 6947.17,
+    "obrys": "R27.25, z -77.5..-80.5",
+    "otwory": "R1.65 w (+-20.45, 0) - oba osobno"
+   },
+   "folderyPoZmianach": "Layout 1, Gniazdo 27, Nakretka 13, Kaseta 65, Jarzmo 19, Ramie 10, Ciegno 9, Tulejka korby 6, Tulejka ramienia 1, Pokrywa 3, Klamra H 4; nazwy czesci zachowane; 0 bledow"
   },
   "czasy": [
    {
@@ -3081,7 +3254,54 @@
    {
     "etap": "Gniazdo: bruzdy (4 operacje)",
     "koniec": "2026-10-20T08:32:50Z"
+   },
+   {
+    "etap": "Sanki: usuniecie",
+    "koniec": "08:36:14Z"
+   },
+   {
+    "etap": "VS Kaseta/Klamra",
+    "koniec": "08:37:01Z"
+   },
+   {
+    "etap": "Kaseta (ucho, okno, blok, siedzisko, kanal, otwor)",
+    "start": "08:37:20Z",
+    "koniec": "08:39:30Z"
+   },
+   {
+    "etap": "Klamra H",
+    "start": "08:40:38Z",
+    "koniec": "08:41:15Z",
+    "ms": 36605
+   },
+   {
+    "etap": "Pokrywa",
+    "start": "08:41:49Z",
+    "koniec": "08:42:09Z"
    }
-  ]
+  ],
+  "mv": "9e410d5d009a6264287616c5",
+  "usuniete": {
+   "Sanki (8)": [
+    "Sanki: otwory uszu",
+    "Sanki: otwory uszu szkic",
+    "Sanki: pl. góry",
+    "Sanki: prowadnice",
+    "Sanki: prowadnice szkic",
+    "Sanki: słupki",
+    "Sanki: słupki szkic",
+    "Sanki: pl. spodu"
+   ],
+   "folder Sanki serwa (0)": "UI",
+   "Pokrywa (5)": [
+    "Pokrywa: prowadnice kabla",
+    "Pokrywa: prowadnice kabla szkic",
+    "Pokrywa: pl. prowadnic kabla",
+    "Pokrywa: okno wtyczki z zaciskiem",
+    "Pokrywa: okno wtyczki szkic"
+   ],
+   "zmienne Sanek (18)": "sankiOparcieY, sankiSpodY, slupkiH, prowadnicaH, sankiPolSzer, sankiZ1-Z4, sankiProwZ1/Z2, prowadnicaWewX, fazkaSanek, sankiGoraY, sankiOtwor1Z/2Z, serwoWkret, sankiOtworGl",
+   "zmienne Pokrywy i stare ucha (21)": "pokrywaUchoR, pokrywaUchoR0, jezyk*, okno*, zacisk*, prowKabla*, uchoR3, pokrywaEX, pokrywaEY"
+  }
  }
 }
