@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20T10:52Z, wykonawca CAD: E4 weryfikacja K1-K11 (raport weryfikacja-v2.6.md), 62/120 wywolan, rok 505",
+  "zapis": "2026-10-20T09:36Z, wykonawca CAD: poprawki v2.6 - STOP bramki przed zapisem (moj blad URL), nic nie zmienione w Onshape",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -3907,5 +3907,64 @@
       "GET /variables": 2962
     },
     "bramka": "G.req: jesli endpoint byl juz wywolany, a ostatni odczyt remaining jest null/undefined/NaN -> blokada(\"brak X-Rate-Limit-Remaining\") i wyjatek bez wysylania; remaining <= PROG 20 -> wyjatek; zadna odpowiedz E4 nie miala braku naglowka"
+  },
+  "v26poprawki": {
+    "zadanie": "poprawki v2.6 po review Fable i Astry (wiadomosc orkiestratora): wkretKanalGl 1.5 (+fazka 0.8 kanalu), uchoDno 1.6, blokZ2 48.7 / klamraZ1 72.6 wyrazeniami, bruzdaSzer 7.8 (bruzdaZapasKat)",
+    "stop": {
+      "t": "2026-10-20T09:34:23Z",
+      "powod": "BRAMKA: brak X-Rate-Limit-Remaining (GET /documents/currentmicroversion)",
+      "przyczyna": "moj blad: wywolanie 63 z G.ctx zamiast G.ctx() -> URL /documents/d/undefined/w/undefined/currentmicroversion, 404 bez naglowka; nastepne wywolanie tego endpointu bramka zablokowala zgodnie z zasada 1",
+      "ostatniaAkcja": "GET currentmicroversion (404), przed jakimkolwiek zapisem",
+      "zmianyWOnshape": "brak (mv aeb0ea414cfe70fc4e2e8b21 bez zmian)"
+    },
+    "n": {
+      "total": 63,
+      "features": 32,
+      "getFeatures": 1
+    },
+    "log": [
+      [
+        "09:34:12",
+        "GET /documents/currentmicroversion (URL z undefined)",
+        404,
+        null,
+        0
+      ],
+      [
+        "09:34:23",
+        "BLOKADA: brak X-Rate-Limit-Remaining (GET /documents/currentmicroversion)"
+      ]
+    ],
+    "planZmiennych": {
+      "krok1_liczby": {
+        "bruzdaZapasKat": "0.5 mm (nowa, przed bruzdaSzer)",
+        "wkretKanalGl": "1.5 mm",
+        "wkretKanalFazka": "0.8 mm (nowa)",
+        "sg90UchoKorpus": "2.65 mm (nowa: os otworu ucha - czolo korpusu SG90, 46.75->49.4 i 74.55->71.9)",
+        "luzKorpusSerwa": "0.7 mm (nowa)",
+        "uchoDno": "1.6 mm",
+        "blokZ2": "48.7 mm",
+        "klamraZ1": "72.6 mm",
+        "szczelinaSerwaZ": "48.7 mm (przeniesiona za blokZ2)"
+      },
+      "krok2_wyrazenia": {
+        "bruzdaSzer": "#lebD + 2 * (#luzKaseta + #luzRowek) + #bruzdaZapasKat",
+        "blokZ2": "#serwoUchoZ1 + #sg90UchoKorpus - #luzKorpusSerwa",
+        "szczelinaSerwaZ": "#blokZ2",
+        "klamraZ1": "#serwoUchoZ2 - #sg90UchoKorpus + #luzKorpusSerwa"
+      }
+    },
+    "skutkiPozaZleceniem": [
+      "szczelinaSerwaZ = #blokZ2: czolo bloku i koniec szczeliny SG90 w dolnej sciance to jedna plaszczyzna z -49.2 (bodydetails: x +-6.6, y -27.25..-17.6, 66.7 mm2); bez tego dol korpusu dalej opiera sie na -49.2 (zapas 0.2)",
+      "Klamra H: fazki wejsciowe (F1WDG2lBcN2zQt4_10) wybieraja krawedzie punktami na z -72.1; po klamraZ1 72.6 trzeba przesunac z w 6 zapytaniach na -72.6 (edycja jednej operacji)",
+      "kanal 1.5: wkret przedni wkrecany po wsunieciu serwa przez okno; wstepnie wkrecony (wystaje 3.5) nie przejdzie nad blokiem"
+    ],
+    "rachunki": {
+      "dnoUchaDoSkosu": "otwor 5.6: dno plaskie z -71.9, stozek do -70.58; skos ucha z = -72.3 + (x - 16.65); przy wewn. krawedzi x 18.25 skos -70.7 -> 1.2 w pionie, 0.85 prostopadle (>= uchoDnoMin 0.6); na osi 1.47",
+      "M3x8 przez Pokrywe 3": "koncowka z -72.5; dno plaskie -71.9 (0.6), stozek przy r 1.5 z -71.48 (0.98)",
+      "scianki przed/za otworami wkretow": "48.7 - 47.75 = 0.95; 73.55 - 72.6 = 0.95",
+      "bruzda 7.8 a okienka": "na r 26.5 bok 81.5-98.5 deg wobec okienek 40-54/220-234 i zebra 131-139: bez kolizji"
+    },
+    "dalej": "czekam na decyzje orkiestratora (zdjecie stopu bramki); po zgodzie: G.stop=null, odczyt startowy currentmicroversion poprawnym URL, 2 zapisy VS, edycja fazek Klamry, nowa fazka kanalu, GET /features (2/4), bodydetails, massproperties; ok. 9 wywolan"
   }
 }
