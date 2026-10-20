@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20T09:53Z, wykonawca CAD: surowe dane do odbioru K2-K4 w odbior-v2.6/, 77/120, rok 520",
+  "zapis": "2026-10-20T11:47Z, wykonawca CAD: poprawki v2.6 po review siatek, 85/120, GET /features 4/4, rok 528",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -4112,5 +4112,91 @@
       ],
       "transport": "wynik javascript_tool zapisany przez harness do pliku (features: gzip+base64, dlugosc po dekodowaniu zgodna co do znaku z odpowiedzia w karcie: 1107267)"
     }
+  },
+  "v26poprawki2": {
+    "zadanie": "poprawki v2.6 po review siatek Astry: bruzdaSzer 8.3 (bruzdaZapasKat 1.0), kanal 2.8 (fazka 0.6, wejscie +-2.0)",
+    "przebieg": "karta zastana na liscie dokumentow (stan G utracony); powrot do dokumentu, bramka wstrzyknieta z oko-f-v2.5-build.js l.11-177; n z pliku 77/36/3; BUDZET 120/4; G.rem od zera (odczyty startowe); mv zgodna 471acb6ad53591e7e13cdc4f",
+    "n": {
+      "total": 85,
+      "features": 38,
+      "getFeatures": 4
+    },
+    "log": [
+      [
+        "11:44:48",
+        "GET /documents/currentmicroversion",
+        200,
+        396,
+        1
+      ],
+      [
+        "11:44:48",
+        "GET /variables",
+        200,
+        2990,
+        1
+      ],
+      [
+        "11:44:50",
+        "POST /variables (bruzdaZapasKat 1, wkretKanalSzer 2.8, wkretKanalFazka 0.6)",
+        204,
+        3000,
+        1
+      ],
+      [
+        "11:44:50",
+        "GET /documents/currentmicroversion",
+        200,
+        395,
+        0
+      ],
+      [
+        "11:44:54",
+        "POST featureid Fqp410OxGn40AIJ_10 (fazka kanalu: x +-1.2 -> +-1.4) OK",
+        200,
+        2999,
+        1
+      ],
+      [
+        "11:45:05",
+        "GET /partstudios/features (noSketchGeometry)",
+        200,
+        96,
+        1
+      ],
+      [
+        "11:45:06",
+        "GET /partstudios/bodydetails",
+        200,
+        500,
+        1
+      ],
+      [
+        "11:45:06",
+        "GET /partstudios/massproperties",
+        200,
+        3000,
+        1
+      ]
+    ],
+    "pomiary": {
+      "bruzdy": "x +-4.15, R28.55, z -8.6..-45.7, obie; na r 26.5: 81.0-99.0 i 261.0-279.0 deg",
+      "kanal": "x +-1.4, dno -19.1, prosta do z -48.1, fazki 0.6 do -48.7 (wejscie x +-2.0, y -19.7)",
+      "sciankaBloku": "1.35 (0.75 na czole przy fazce)",
+      "V": {
+        "JID": 28880.39,
+        "JzD": 7383.37,
+        "RFED": 575.02,
+        "RNDD": 1822.63,
+        "RSED": 76.78,
+        "RUBD": 34984.42,
+        "RZED": 76.78,
+        "RcED": 6947.17,
+        "RhED": 1027.53,
+        "RyDD": 793.76
+      }
+    },
+    "mv": "aa1de3ac7aa7e72a76b718a1",
+    "rokPo": 528
   }
 }

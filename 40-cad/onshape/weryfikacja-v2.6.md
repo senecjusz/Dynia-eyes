@@ -230,3 +230,64 @@ partId części za folderem Kaseta zmieniły się po przeniesieniu fazki do fold
 - **Sesja Onshape:** wygasła raz („session has timed out”). Ponowne połączenie przeszło bez logowania.
 
 **API:** 75 wywołań (budżet 120), `GET /features` 2 (budżet 4). Suma w roku 443 + 75 = 518.
+
+## Poprawki po review siatek (Astra, 20.10.2026)
+
+Zlecenie orkiestratora, zatwierdzone przez użytkownika. Zapis zmiennych (jeden, same liczby) i edycja jednej operacji: fazka kanału przepięta na nowe krawędzie boczne.
+
+| Zmienna | Było | Jest | Skutek |
+|---|---|---|---|
+| `bruzdaZapasKat` | 0,5 mm | 1 mm | `bruzdaSzer` 7,8 → **8,3** |
+| `wkretKanalSzer` | 2,4 mm | 2,8 mm | kanał x ±1,4, luz 0,4/str. dla Ø2 |
+| `wkretKanalFazka` | 0,8 mm | 0,6 mm | szerokość wejścia bez zmian: x ±2,0 = 1,4 + 0,6 |
+
+**Operacja:** `Kaseta: fazka kanału wkrętu` (Fqp410OxGn40AIJ_10). Punkty krawędzi bocznych przesunięte z x ±1,2 na ±1,4; punkt krawędzi dna bez zmian.
+
+**Stan:**
+- `GET /features`: 159 operacji, `featureStates` puste (jak w E2.0);
+- w drzewie 0 ikon błędu i ostrzeżenia, 11 folderów (Kaseta 66, Klamra H 4);
+- 10 brył.
+
+### Pomiary (bodydetails)
+
+- **Bruzdy (+Y i −Y osobno):**
+  - boki x ±4,15 (szerokość 8,30), każdy 39,21 mm²;
+  - dno R28,55 bez zmian, 309,03 mm² każde, z −8,6…−45,7;
+  - ścianka pod bruzdą 0,90 bez zmian;
+  - łeb Ø6,2 ma 1,05 luzu na bok przy wycentrowaniu;
+  - kąty: na r 26,5 (`okienkoR1`) bruzdy zajmują 81,0–99,0° i 261,0–279,0°, na r 28,55 81,6–98,4°;
+  - odstęp do okienek (40–54° / 220–234°) wynosi 27,0°, do żebra (131–139°) 32,0°;
+  - ząbek na 90° (z −3,7…−4,7) i strzałka (z 0…−0,5) leżą przed końcem bruzdy (z −8,6).
+- **Kanał wkrętu przedniego:**
+  - boki x ±1,4 (szerokość 2,80), dno y −19,1 (głębokość 1,5 bez zmian);
+  - część prosta z −46,75…−48,1;
+  - fazki 0,6 × 45° do czoła z −48,7: wejście x ±2,0, dno wejścia y −19,7;
+  - otwór R1 y −17,6…−23,6, dno płaskie, bez zmian;
+  - siedzisko 11,86 mm².
+- **Ścianka boczna bloku przy kanale:** 2,75 − 1,4 = **1,35** w części prostej. Na samym czole, obok fazki, 2,75 − 2,0 = **0,75**.
+- **Montaż „wstępnie, ≤ 1,2 mm”:**
+  - końcówka y ≥ −18,8 wobec dna kanału −19,1 (0,3);
+  - w części prostej 0,4 na stronę;
+  - wejście x ±2,0 łapie przesunięcie boczne do 1,0 (końcówka Ø2).
+
+### Objętości 10 brył (mm³)
+
+| Część | przed | po | Δ | rachunek |
+|---|---|---|---|---|
+| Gniazdo | 28919,58 | 28880,39 | −39,19 | 2 bruzdy × 2 boki × 0,25 × 1,06 × 37,1 ≈ −39,3 |
+| Kaseta | 34984,71 | 34984,42 | −0,29 | kanał +0,4 × 1,5 × 1,35 ≈ −0,8, mniejsza fazka ≈ +0,5 |
+| Nakrętka | 7383,37 | 7383,37 | 0 | |
+| Jarzmo z miską | 1822,63 | 1822,63 | 0 | |
+| Ramię orczyka | 793,76 | 793,76 | 0 | |
+| Cięgno | 575,02 | 575,02 | 0 | |
+| Tulejki ×2 | 76,78 / 76,78 | 76,78 / 76,78 | 0 | |
+| Pokrywa tylna | 6947,17 | 6947,17 | 0 | |
+| Klamra H | 1027,53 | 1027,53 | 0 | |
+
+**Przebieg:**
+- Przed zmianami karta była na liście dokumentów: przeładowana poza moją pracą, a stan bramki w pamięci zniknął.
+- Wróciłem do dokumentu i wstrzyknąłem bramkę z `oko-f-v2.5-build.js` (linie 11–177).
+- Liczniki przeniosłem z `stan-api.json` (77/36/3), budżet 120 / 4. Każdy endpoint zaczął od odczytu startowego.
+- Microversion przed zapisem była zgodna z ostatnią znaną (471acb6a…), więc nikt inny nie edytował dokumentu.
+
+**API:** 85 wywołań (budżet 120), `GET /features` 4 (budżet 4, wyczerpany). Suma w roku 443 + 85 = 528.
