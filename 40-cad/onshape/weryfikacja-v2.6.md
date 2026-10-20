@@ -151,3 +151,82 @@ Stany min i max: 10 brył, 0 błędów w drzewie. Po przywróceniu objętości w
 4. **Eksport 3MF** robi użytkownik: Gniazdo, Cięgno, Kaseta, Klamra H, Pokrywa tylna; Custom 0,00001 m / 3° / 10 m.
 
 **Werdykt:** v2.6 zgodne z briefem i zatwierdzonymi planami, wszystkie pomiary w granicach. Pięć części jest gotowych do eksportu i review.
+
+## Poprawki po review Fable i Astry (20.10.2026)
+
+Zlecenie orkiestratora, zatwierdzone przez użytkownika. Zmienione zmienne, jedna nowa operacja (fazka kanału) i edycja zapytań fazek Klamry. Dwie zmiany poza listą zatwierdził orkiestrator: koniec szczeliny SG90 przesunięty razem z blokiem, fazki Klamry przepięte na nowe czoło.
+
+**Variable Studio:** dwa zapisy (najpierw liczby, potem wyrażenia), 384 zmienne.
+
+| Zmienna | Było | Jest | Wartość |
+|---|---|---|---|
+| `wkretKanalGl` | 4 mm | 1,5 mm | 1,5 |
+| `wkretKanalFazka` | – | 0,8 mm (nowa) | 0,8 |
+| `uchoDno` | `#wkladkaZapas` | 1,6 mm | 1,6 |
+| `sg90UchoKorpus` | – | 2,65 mm (nowa: oś ucha → czoło korpusu) | 2,65 |
+| `luzKorpusSerwa` | – | 0,7 mm (nowa) | 0,7 |
+| `blokZ2` | 49,2 mm | `#serwoUchoZ1 + #sg90UchoKorpus - #luzKorpusSerwa` | 48,7 |
+| `szczelinaSerwaZ` | 49,2 mm | `#blokZ2` (przeniesiona w VS za `blokZ2`) | 48,7 |
+| `klamraZ1` | 72,1 mm | `#serwoUchoZ2 - #sg90UchoKorpus + #luzKorpusSerwa` | 72,6 |
+| `bruzdaZapasKat` | – | 0,5 mm (nowa) | 0,5 |
+| `bruzdaSzer` | `#lebD + 2 * (#luzKaseta + #luzRowek)` | `… + #bruzdaZapasKat` | 7,8 |
+
+**Operacje:**
+- `Klamra H: fazki wejściowe`: edycja jednej operacji. Sześć punktów `qContainsPoint` przesuniętych z z −72,1 na −72,6.
+- Nowa operacja `Kaseta: fazka kanału wkrętu` (Chamfer, `#wkretKanalFazka`, 3 krawędzie na czole bloku). Leży w folderze Kaseta (66), na końcu.
+- Kaseta ma teraz 28 operacji bryłowych.
+
+**Stan:** wszystkie operacje OK (`GET /features`, `featureStates` puste), w drzewie 0 ikon błędu i ostrzeżenia, 10 brył.
+
+### Pomiary (bodydetails)
+
+- **Kanał wkrętu:**
+  - dno y −19,1, boki x ±1,2, część prosta z −46,75…−47,9;
+  - fazki 45° do czoła z −48,7: wejście x ±2,0, dno wejścia y −19,9;
+  - otwór R1 y −17,6…−23,6, dno płaskie;
+  - pełny obwód otworu y −19,1…−23,6, czyli 4,5 mm;
+  - siedzisko z −45,2…−48,7, 12,36 mm².
+- **Czoło bloku i koniec szczeliny SG90:** jedna płaszczyzna z −48,7 (x ±6,6, y −27,25…−17,6, 67,14 mm²). Na z −49,2 nie ma już żadnej ściany.
+- **Gniazda wkładek uch (+X i −X osobno):**
+  - walec R2,2 z −77,5…−71,9 (głębokość 5,6), stożek do −70,58;
+  - dno do skosu ucha: przy wewnętrznej krawędzi otworu (x 18,25) skos leży na z −70,7, czyli 1,2 nad dnem w pionie i 0,85 prostopadle (`uchoDnoMin` 0,6); na osi 1,47;
+  - M3×8 przez Pokrywę 3: końcówka na z −72,5, do dna płaskiego 0,6, do stożka przy r 1,5 0,98.
+- **Klamra H:** czoło z −72,6 (204,88 mm² po fazkach), tył −77,5, otwór R1 w z −74,55. Ścianka przed otworem 73,55 − 72,6 = **0,95**.
+- **Blok:** ścianka za otworem wkrętu przedniego 48,7 − 47,75 = **0,95**.
+- **Kieszeń korpusu SG90:** z −48,7…−72,6 = 23,9. Korpus 22,5 (z −49,4…−71,9) ma po **0,7** z każdej strony, także na końcu szczeliny.
+- **Bruzdy (+Y i −Y osobno):**
+  - boki x ±3,9 (szerokość 7,8), 39,16 mm² każdy;
+  - dno R28,55, 290,29 mm² każde, z −8,6…−45,7;
+  - na r 26,5 bruzda zajmuje 81,5–98,5° i 261,5–278,5°;
+  - okienka 40–54° / 220–234° i żebro 131–139° bez kolizji;
+  - łeb 6,2 ma po 0,8 luzu na bok.
+
+### Montaż wkrętu przedniego (wariant „wstępnie, ≤ 1,2 mm”)
+
+- **Wejście:** wkręt wkręcony w ucho tak, że wystaje ≤ 1,2 pod spodem ucha. Końcówka jest wtedy na y ≥ −18,8, a dno kanału na −19,1, więc zostaje **0,3**.
+- **Droga:** za blokiem końcówka jedzie nad ścianką (y −24,25), bez przeszkód. Fazka wejścia (x ±2,0, y −19,9) łapie przesunięcie boczne do 0,8 (korpus ma w szczelinie 0,5 na stronę). W części prostej kanału luz wynosi 0,2 na stronę.
+- **Koniec:** kanał kończy się na osi otworu (z −46,75). Po dokręceniu M2×6 (ucho 2,5) końcówka staje na y −21,1, czyli 2,0 w pełnym obwodzie. M2×8 staje na −23,1: 4,0 w pełnym obwodzie i 0,5 do dna.
+- **Wynik:** wariant „wstępnie, ≤ 1,2 mm” przechodzi.
+
+### Objętości 10 brył (mm³)
+
+| Część | przed poprawkami | po | Δ | rachunek |
+|---|---|---|---|---|
+| Gniazdo | 28958,71 | 28919,58 | −39,13 | 2 bruzdy × 0,5 × 1,05 × 37,1 ≈ −39 |
+| Kaseta | 35042,78 | 34984,71 | −58,07 | gniazda uch −30,4, blok i szczelina −0,5 mm, kanał płytszy + fazki |
+| Klamra H | 1134,48 | 1027,53 | −106,95 | 0,5 × przekrój 213,9 |
+| Nakrętka | 7383,37 | 7383,37 | 0 | |
+| Jarzmo z miską | 1822,63 | 1822,63 | 0 | |
+| Ramię orczyka | 793,76 | 793,76 | 0 | |
+| Cięgno | 575,02 | 575,02 | 0 | |
+| Tulejki ×2 | 76,78 / 76,78 | 76,78 / 76,78 | 0 | |
+| Pokrywa tylna | 6947,17 | 6947,17 | 0 | |
+
+partId części za folderem Kaseta zmieniły się po przeniesieniu fazki do folderu. Nazwy zostały.
+
+**Przebieg:**
+- **Stop bramki:** wywołanie 63 poszło na URL z „undefined” (mój błąd) i dało 404 bez nagłówka. Bramka zablokowała następne wywołanie. Stop zdjął orkiestrator, licznik endpointu zresetowałem.
+- **Przenoszenie w drzewie:** przy pierwszym przeciągnięciu była zaznaczona też płaszczyzna `Kaseta: pl. siedziska serwa`, która trafiła za szkic. Cofnąłem to (Ctrl+Z), kolejność przywrócona i potwierdzona.
+- **Sesja Onshape:** wygasła raz („session has timed out”). Ponowne połączenie przeszło bez logowania.
+
+**API:** 75 wywołań (budżet 120), `GET /features` 2 (budżet 4). Suma w roku 443 + 75 = 518.

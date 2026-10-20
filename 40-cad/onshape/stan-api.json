@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20T09:36Z, wykonawca CAD: poprawki v2.6 - STOP bramki przed zapisem (moj blad URL), nic nie zmienione w Onshape",
+  "zapis": "2026-10-20T09:52Z, wykonawca CAD: poprawki v2.6 zrobione, dopisek w weryfikacja-v2.6.md, 75/120, rok 518",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -3915,12 +3915,13 @@
       "powod": "BRAMKA: brak X-Rate-Limit-Remaining (GET /documents/currentmicroversion)",
       "przyczyna": "moj blad: wywolanie 63 z G.ctx zamiast G.ctx() -> URL /documents/d/undefined/w/undefined/currentmicroversion, 404 bez naglowka; nastepne wywolanie tego endpointu bramka zablokowala zgodnie z zasada 1",
       "ostatniaAkcja": "GET currentmicroversion (404), przed jakimkolwiek zapisem",
-      "zmianyWOnshape": "brak (mv aeb0ea414cfe70fc4e2e8b21 bez zmian)"
+      "zmianyWOnshape": "brak (mv aeb0ea414cfe70fc4e2e8b21 bez zmian)",
+      "zdjety": "2026-10-20T09:42:28Z, decyzja orkiestratora; reset G.rem tylko dla GET /documents/currentmicroversion (byl remaining null po 404), nastepne wywolanie = odczyt startowy (400)"
     },
     "n": {
-      "total": 63,
-      "features": 32,
-      "getFeatures": 1
+      "total": 75,
+      "features": 35,
+      "getFeatures": 2
     },
     "log": [
       [
@@ -3932,7 +3933,95 @@
       ],
       [
         "09:34:23",
-        "BLOKADA: brak X-Rate-Limit-Remaining (GET /documents/currentmicroversion)"
+        "BLOKADA: brak X-Rate-Limit-Remaining (GET /documents/currentmicroversion), wywolanie niewyslane"
+      ],
+      [
+        "09:42:28",
+        "GET /documents/currentmicroversion (odczyt startowy po resecie)",
+        200,
+        400,
+        1
+      ],
+      [
+        "09:42:44",
+        "POST /variables krok 1/2",
+        204,
+        3000,
+        0
+      ],
+      [
+        "09:42:44",
+        "GET /documents/currentmicroversion",
+        200,
+        399,
+        0
+      ],
+      [
+        "09:42:54",
+        "POST /variables krok 2/2",
+        204,
+        2999,
+        0
+      ],
+      [
+        "09:42:54",
+        "GET /documents/currentmicroversion",
+        200,
+        398,
+        0
+      ],
+      [
+        "09:43:06",
+        "POST /partstudios/features/featureid/F1WDG2lBcN2zQt4_10 (Klamra H: fazki wejsciowe, z -72.1 -> -72.6) OK",
+        200,
+        2998,
+        0
+      ],
+      [
+        "09:43:59",
+        "POST /partstudios/features (Kaseta: fazka kanalu wkretu Fqp410OxGn40AIJ_10) OK",
+        200,
+        3000,
+        0
+      ],
+      [
+        "09:44:13",
+        "GET /partstudios/features",
+        200,
+        98,
+        0
+      ],
+      [
+        "09:44:14",
+        "GET /partstudios/bodydetails",
+        200,
+        450,
+        0
+      ],
+      [
+        "09:44:14",
+        "GET /partstudios/massproperties",
+        200,
+        3000,
+        0
+      ],
+      [
+        "09:47",
+        "UI: fazka do folderu Kaseta; przypadkiem przeniesiona tez Kaseta: pl. siedziska serwa (ostrzezenia 4 operacji) -> Ctrl+Z, kolejnosc przywrocona, 0 ostrzezen"
+      ],
+      [
+        "09:47",
+        "GET /partstudios/massproperties",
+        200,
+        3000,
+        0
+      ],
+      [
+        "09:50",
+        "GET /partstudios/massproperties (kontrola po przeniesieniu: objetosci bez zmian; partId czesci za Kaseta: REED->RFED, RMDD->RNDD, RRED->RSED, RYED->RZED, RbED->RcED, RgED->RhED, RxDD->RyDD)",
+        200,
+        3000,
+        0
       ]
     ],
     "planZmiennych": {
@@ -3965,6 +4054,36 @@
       "scianki przed/za otworami wkretow": "48.7 - 47.75 = 0.95; 73.55 - 72.6 = 0.95",
       "bruzda 7.8 a okienka": "na r 26.5 bok 81.5-98.5 deg wobec okienek 40-54/220-234 i zebra 131-139: bez kolizji"
     },
-    "dalej": "czekam na decyzje orkiestratora (zdjecie stopu bramki); po zgodzie: G.stop=null, odczyt startowy currentmicroversion poprawnym URL, 2 zapisy VS, edycja fazek Klamry, nowa fazka kanalu, GET /features (2/4), bodydetails, massproperties; ok. 9 wywolan"
+    "dalej": "czekam na decyzje orkiestratora (zdjecie stopu bramki); po zgodzie: G.stop=null, odczyt startowy currentmicroversion poprawnym URL, 2 zapisy VS, edycja fazek Klamry, nowa fazka kanalu, GET /features (2/4), bodydetails, massproperties; ok. 9 wywolan",
+    "mv": "208431dd4e44d944b8be6f69",
+    "szkice": "bez nowych i edytowanych szkicow; wiersz F1WDG2lBcN2zQt4_10 i Fqp410OxGn40AIJ_10 w drzewie bez ostrzezen",
+    "uwagaSesja": "09:45Z Onshape: \"session has timed out. Your document is saved. Click here to reconnect\" (bez przekierowania na /signin); stan zapisany przed reconnect",
+    "F": {
+      "Kaseta: fazka kanału wkrętu": "Fqp410OxGn40AIJ_10",
+      "Klamra H: fazki wejściowe (edycja)": "F1WDG2lBcN2zQt4_10"
+    },
+    "pomiary": {
+      "V": {
+        "Gniazdo": 28919.58,
+        "Kaseta": 34984.71,
+        "Klamra H": 1027.53,
+        "Nakretka": 7383.37,
+        "Jarzmo": 1822.63,
+        "Ramie": 793.76,
+        "Ciegno": 575.02,
+        "Tulejki": [
+          76.78,
+          76.78
+        ],
+        "Pokrywa": 6947.17
+      },
+      "kanal": "dno y -19.1, x +-1.2, z -46.75..-47.9, fazki do z -48.7 (x +-2.0, y -19.9); otwor R1 y -17.6..-23.6",
+      "czoloBloku": "z -48.7 wspolne ze szczelina, x +-6.6, 67.14 mm2",
+      "ucha": "R2.2 z -77.5..-71.9, stozek do -70.578, oba",
+      "klamra": "czolo z -72.6 (204.88 mm2), otwor R1 z -74.55",
+      "bruzdy": "x +-3.9, R28.55, z -8.6..-45.7, obie"
+    },
+    "montaz": "wstepnie <=1.2: koncowka y>=-18.8 wobec dna -19.1 (0.3), 0.2/str., wejscie z fazka x +-2.0 y -19.9 -> wariant zostaje",
+    "rokPo": 518
   }
 }
