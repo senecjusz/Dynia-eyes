@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
- "zapis": "2026-10-20T01:16Z, wykonawca CAD: E3.5 zbudowane i zweryfikowane, gotowe do eksportu",
+ "zapis": "2026-10-20T10:41Z, wykonawca CAD: E4 - wersja v2.5, plan 1 wyslany",
  "sumaWywolanRok": {
   "total": 131,
   "features": 70,
@@ -2919,5 +2919,58 @@
    },
    "przywrocenie": "V 1619.84 jak przed testem"
   }
+ },
+ "e4": {
+  "zadanie": "E4 v2.6 (brief 30-projekt/brief-e4-v2.6.md)",
+  "budzet": {
+   "total": 120,
+   "getFeatures": 4
+  },
+  "n": {
+   "total": 2,
+   "features": 0,
+   "getFeatures": 0
+  },
+  "rokPrzed": 443,
+  "doc": {
+   "did": "21ca65b874071b352b43ebad",
+   "wid": "5ed8f87ee8cf1ca54beed33d",
+   "eid": "9d9b9bf39092450926884f94",
+   "vs": "3841c2c5dff187c0b03d76ab"
+  },
+  "wersja": {
+   "name": "v2.5",
+   "id": "bb09244e0f82f3195ab3952e",
+   "opis": "stan wydrukowany 19.10 (przed E4)"
+  },
+  "plany": {
+   "1 Gniazdo+Ciegno": "40-cad/onshape/e4-plan-1-gniazdo-ciegno.md (dcf0c15), czeka na zatwierdzenie"
+  },
+  "zmienneZywe": {
+   "luzGwint": "0.2 mm",
+   "wkladkaD": "4 mm",
+   "rantD": "74 mm",
+   "fazkaSanek": "2 mm",
+   "szczelinaSerwaPolSzer": "#szczelinaSG90 / 2 + #luzSanki (zalezy od zmiennych sanek - zostaja)"
+  },
+  "log": [
+   {
+    "t": "2026-10-20T08:40Z",
+    "uwaga": "bramka wstrzyknieta po zalogowaniu uzytkownika, BUDZET 120/4"
+   },
+   [
+    "2026-10-20T08:40Z",
+    "POST versions v2.5",
+    200,
+    null
+   ],
+   [
+    "2026-10-20T08:40Z",
+    "GET variables (382)",
+    200,
+    null
+   ]
+  ],
+  "stop": null
  }
 }
