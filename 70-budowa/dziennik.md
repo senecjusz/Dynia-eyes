@@ -49,3 +49,11 @@
 ## 2026-10-19 – test elektroniki (E3.4)
 - ESP32-C3 SuperMini + PCA9685 + 1 × SG90 na płytce stykowej, zasilanie z USB. Blink, skan I²C (PCA9685 pod 0x40) i ruch serwa ±30° w pętli działają. Połączenia i szkice: `50-elektronika/polaczenia.md`.
 - Pierwsze podłączenie USB: błąd enumeracji (-71); po ponownym podłączeniu płytka wstała.
+
+## 2026-10-20 – montaż v2.5: wkładki i piłeczka
+- Wkładki M3×4×5 (Ø5, zestaw 360 szt.) wtopione: w Kasecie dobrze; w Cięgnie (gniazdo Ø4,0) rozdęły piasty i Ramię nie wchodzi na Cięgno. Stopień prowadzący wkładki ma Ø4,0 i nie wchodzi w wydrukowany Ø4,0. Decyzja: `wkladkaD` 4,4 (E4.1); próbka gniazd Ø4,0–4,8 (E3.5) zbudowana, wydruk opcjonalny. Grot przy pierwszej wkładce 238 °C – za gorąco dla PLA, kolejne niżej.
+- Piłeczka (TK Gruppe, 40 mm, do ping-ponga; materiał nieznany) wklejona w Miskę klejem modelarskim: klej słabo przylgnął, całość łatwo odpadła. Druga próba: cyjanoakryl z primerem trzyma; dodatkowo oś oka na śrubach M3×10 wkręconych w nawiercone bieguny piłeczki. Na razie trzyma. Łby tych śrub wystają 0,75 mm na stronę ponad Kasetę i Kaseta nie wchodzi w Gniazdo → bruzdy w Gnieździe (E4.1). Decyzji o mocowaniu piłeczki brak.
+- Gniazdo: rant Ø74 wystaje za bardzo (5,25 mm poza otwór) → Ø67,5, ząbki przy ściance przodu (E4.1).
+- Sanki serwa: otwory na wkręty uszu wychodzą ok. 1 mm; okno Sanek nie ma miejsca na wyjście kabla (serwo trzeba wkładać ukośnie); Sanek nic nie trzyma od ściany do środka i wpadają do Kasety → osadzenie serwa na szynach z przednim wkrętem i klamrą H z tyłu (E4.2). Użytkownik złożył serwo wałkiem do przodu (model zakłada wałek z tyłu); w takim złożeniu kabel wychodzi z przodu, na zewnątrz Kasety, i okno w Pokrywie jest zbędne.
+- Ucha Pokrywy wystają poza obrys Kasety → do środka (E4.2b).
+- Instrukcja montażu: łączenie przegubów w środku rury jest niewykonalne; napęd skręcać na stole (E4.3).
