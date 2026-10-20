@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20, wykonawca CAD: E4.4 stop przed zapisem - microversion inna niz znana, pytanie do orkiestratora; 1 wywolanie",
+  "zapis": "2026-10-20, wykonawca CAD: E4.4 Ciegno v2.6b zbudowane, 13 wywolan, rok 541",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -4206,12 +4206,12 @@
       "getFeatures": 0
     },
     "n": {
-      "total": 1,
-      "features": 0,
-      "getFeatures": 0
+      "total": 13,
+      "features": 7,
+      "getFeatures": 1
     },
     "logowanie": "2026-10-20 ~15:00Z karta na liscie dokumentow (zalogowana: XSRF, lista Owned by me); powrot do dokumentu Oko F v2.5",
-    "stan": "plan wyslany do orkiestratora, bez zapisow w Onshape; czekam na decyzje (konflikt nakretki H ze scianka Kasety przy oku -33)",
+    "stan": "zbudowane",
     "kinematyka": "os oka Y przez (x 0, z -12), walek serwa (0, -66); C0 (7.382, -36.147) R 25.25, H0 (-9.235, -40.628) R 27.0, C-H 17.21; oko +-33 -> serwo -34.2/+27.3 (zgodne z briefem)",
     "ruch": {
       "narzedzie": "40-cad/narzedzia/stos_nakretki.py (siatki 40-cad/3mf/Oko F v2.6, eksport 13:55), obwiednia stosu: podkladki R3.5, nakretka R3.175 (naroze), sruba R1.5",
@@ -4262,13 +4262,132 @@
     "stop": {
       "t": "2026-10-20 (E4.4)",
       "powod": "currentmicroversion c301a06eb0fe62db5de9c780 inna niz ostatnia znana aa1de3ac7aa7e72a76b718a1 (po 98142c9) -> cudza edycja wg AGENTS.md; w widoku widoczne plaszczyzny Kaseta: pl. siedziska serwa i Gniazdo: pl. konca bruzdy (wczesniej ukryte)",
-      "zapisy": "brak"
+      "zapisy": "brak",
+      "rozstrzygniecie": "orkiestrator: +1 GET /features do porownania; drzewo = features.json + moja fazka, VS sha256 zgodny -> c301a06e przyjety"
     },
     "log": [
       [
-        "GET /documents/currentmicroversion (odczyt startowy)",
-        200
+        "17:10:41",
+        "GET /documents/currentmicroversion",
+        200,
+        400,
+        1
+      ],
+      [
+        "17:11:49",
+        "GET /partstudios/features -> odbior-v2.6/features-c301a06e.json",
+        200,
+        100,
+        1
+      ],
+      [
+        "17:12:08",
+        "GET /variables",
+        200,
+        3000,
+        1
+      ],
+      [
+        "17:12:41",
+        "DELETE featureid FDEBVQyohL4V856_7 (Ciegno: podniesienia)",
+        200,
+        3000,
+        1
+      ],
+      [
+        "17:12:42",
+        "DELETE featureid FvrJaxtRq1rMYW2_7 (podniesienia szkic)",
+        200,
+        2999,
+        0
+      ],
+      [
+        "17:12:42",
+        "DELETE featureid F9guXiRx57pRZ20_7 (pl. podniesien)",
+        200,
+        2998,
+        0
+      ],
+      [
+        "17:12:43",
+        "GET /documents/currentmicroversion",
+        200,
+        400,
+        0
+      ],
+      [
+        "17:12:43",
+        "POST featureid FmHn00G6eiZybVN_7 Ciegno: pl. gory plyty OK",
+        200,
+        2997,
+        1
+      ],
+      [
+        "17:12:44",
+        "POST featureid F59jc0f6xrJuqBG_7 Ciegno: otwory srub szkic OK",
+        200,
+        2996,
+        0
+      ],
+      [
+        "17:12:45",
+        "POST featureid FUdPw7nm83yGpjQ_7 Ciegno: otwory srub OK",
+        200,
+        2995,
+        0
+      ],
+      [
+        "17:12:56",
+        "POST /variables (-6 zmiennych, 378)",
+        204,
+        2994,
+        1
+      ],
+      [
+        "17:12:59",
+        "GET /partstudios/bodydetails",
+        200,
+        499,
+        1
+      ],
+      [
+        "17:13:00",
+        "GET /partstudios/massproperties",
+        200,
+        2999,
+        1
       ]
-    ]
+    ],
+    "szkice": [
+      {
+        "nazwa": "Cięgno: otwory śrub szkic",
+        "featureId": "F59jc0f6xrJuqBG_7",
+        "dataId": "MhHw7Ip+KGhPZC9RZ",
+        "podpowiedz": "Cięgno: otwory śrub szkic [Sketch] (Hidden)",
+        "niedookreslony": false
+      },
+      {
+        "nazwa": "Cięgno: płyta szkic",
+        "dataId": "Mvqi2vzZatL4QPRtK",
+        "niedookreslony": false
+      }
+    ],
+    "pomiary": {
+      "Ciegno": "V 407.99, plyta y -0.3..2.2, otwory R1.65 przelotowe w C i H",
+      "V": {
+        "JID": 28880.39,
+        "JzD": 7383.37,
+        "RFED": 407.99,
+        "RNDD": 1822.63,
+        "RNED": 76.78,
+        "RUBD": 34984.42,
+        "RUED": 76.78,
+        "RXED": 6947.17,
+        "RcED": 1027.53,
+        "RyDD": 793.76
+      }
+    },
+    "mv": "580c339a24ee05697ae87f5f",
+    "rokPo": 541
   }
 }

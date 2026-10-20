@@ -291,3 +291,87 @@ Zlecenie orkiestratora, zatwierdzone przez użytkownika. Zapis zmiennych (jeden,
 - Microversion przed zapisem była zgodna z ostatnią znaną (471acb6a…), więc nikt inny nie edytował dokumentu.
 
 **API:** 85 wywołań (budżet 120), `GET /features` 4 (budżet 4, wyczerpany). Suma w roku 443 + 85 = 528.
+
+## v2.6b Cięgno (E4.4, 20.10.2026)
+
+- **Brief:** `30-projekt/brief-e4.4-ciegno-nakretki.md`.
+- **Decyzja orkiestratora:** wariant B: bez piasty, nakrętka samohamująca M3 (DIN 985, h 4) z jedną podkładką (DIN 125, 0,5) na płycie, śruba M3×12. Kaseta bez zmian.
+
+**Stan wyjściowy:**
+- Przed zapisem microversion wynosiła c301a06e zamiast znanej aa1de3ac, więc zatrzymałem się (stop).
+- Pobrałem drzewo do porównania (budżet +1 GET /features od orkiestratora) i zapisałem je jako `odbior-v2.6/features-c301a06e.json`.
+- Wynik porównania:
+  - 159 operacji, ta sama kolejność, te same featureId, typy, nazwy, parametry i encje szkiców;
+  - jedyna różnica to moja edycja fazki kanału z poprawek po review siatek;
+  - Variable Studio: skrót SHA-256 listy [nazwa, wyrażenie] zgodny ze stanem po tych poprawkach.
+- Przyjąłem c301a06e jako stan wyjściowy. Prawdopodobnie zmieniła się tylko widoczność dwóch płaszczyzn.
+
+**Zmiany (tylko Cięgno):**
+
+| Operacja | Było | Jest |
+|---|---|---|
+| `Cięgno: pl. podniesień`, `podniesienia szkic`, `podniesienia` | piasty R3,8 do y 5,3 | usunięte (3 × DELETE) |
+| `Cięgno: pl. wkładek` → **`Cięgno: pl. góry płyty`** | offset `#ciegnoWkladkiY` (5,4) | offset `#plytaT - #ciegnoY` (y 2,2) |
+| `Cięgno: wkładki szkic` → **`Cięgno: otwory śrub szkic`** | – | tylko nazwa (punkty wC, wH zbieżne z `lCH` layoutu) |
+| `Cięgno: otwory i wkładki` → **`Cięgno: otwory śrub`** | C_BORE Ø3,3 + Ø4,4 × 4,6 | SIMPLE, THROUGH, Ø`#m3Luzny` |
+
+- **Usunięte zmienne:** `podniesienieR`, `podniesienieY`, `podniesienieH`, `ciegnoDno`, `ciegnoWkladkiY`, `ciegnoWkladkaGl`. Variable Studio ma teraz 378 zmiennych.
+- **Zostają:** `wkladkaD`, `wkladkaL`, `wkladkaZapas` (używa ich Kaseta) oraz `ramaZakladka` (używa jej `kieszenGl`).
+- Długości śruby nie zapisałem jako zmiennej, bo żadna operacja jej nie używa. Rachunek jest niżej.
+
+### Pomiary (bodydetails, massproperties)
+
+- **Cięgno:**
+  - płyta y −0,3…2,2 (bez zmian), końce R4,2 w C i H, wierzch 163,20 mm²;
+  - otwory R1,65 przelotowe: C (7,382; −36,147), H (−9,235; −40,628);
+  - **V 407,99** (= 163,197 × 2,5; było 575,02).
+- **Odstęp płyta–Ramię i płyta–korba:** 0,2 bez zmian (płyta na tym samym miejscu).
+- **Podkładka Ø7 (R3,5)** leży w całości na końcu płyty R4,2 (0,7 zapasu). Nakrętka po narożu ma R3,175.
+- **Pozostałe 9 brył:** objętości bez zmian (Gniazdo 28880,39, Kaseta 34984,42, Nakrętka 7383,37, Jarzmo 1822,63, Ramię 793,76, Tulejki 76,78 ×2, Pokrywa 6947,17, Klamra 1027,53). partId części za Cięgnem zmieniły się po usunięciu operacji, nazwy zostały.
+
+### Śruba i stos
+
+Łeb pod kołnierzem tulejki, spód łba na y −3,8. Tulejka ma 3,5 (do y −0,3), płyta Cięgna 2,5 (do y 2,2).
+
+| Wariant | Podkładki | Nakrętka y | Koniec M3×12 | Wystaje nad nakrętkę |
+|---|---|---|---|---|
+| **1 podkładka (zalecany)** | 2,2…2,7 | 2,7…6,7 | 8,2 | **1,5** (3 zwoje) |
+| 2 podkładki (niezalecany przy H) | 2,2…3,2 | 3,2…7,2 | 8,2 | 1,0 (2 zwoje) |
+
+M3×10 nie wystarczy: koniec śruby na y 6,2, a nakrętka sięga do 6,7. Zgodnie z decyzją zostaje M3×12.
+
+### Ruch (skrypt `40-cad/narzedzia/stos_nakretki.py`)
+
+- **Dane:** siatki v2.6 (eksport 13:55), czworobok: oś oka (0; −12), wałek (0; −66), C R25,25, H R27,0, C–H 17,21.
+- **Obwiednia stosu:** podkładka R3,5, nakrętka R3,175 po narożu, koniec śruby R1,5.
+- Jarzmo liczone w układzie Jarzma, Ramię w układzie Ramienia.
+
+| Zakres oka (serwo) | Kaseta | Gniazdo | Nakrętka | Jarzmo, Ramię, Klamra, Pokrywa |
+|---|---|---|---|---|
+| ±30° (−29,8 / +25,6), 1 podkładka | **0,79** (H, oko −30°) | 4,31 | 7,00 | ≥ 8 (nic w promieniu 12 od osi stosu) |
+| ±33° (−34,2 / +27,3), 1 podkładka | 0,27 (H, oko −33°) | 4,00 | 6,18 | ≥ 8 |
+| ±30°, 2 podkładki | 0,65 | – | – | – |
+
+- **Miejsce najmniejszego odstępu:** naroże nakrętki H przy wewnętrznej ściance Kasety (r 24,25), nad wybraniem H, które ma ±13° i chroni ścianę do y ≈ 5,3.
+- **Zakres pracy ±30°** (decyzja 18.10): 0,79 po narożu, czyli ≥ 0,5.
+- **Ogranicznik −33°** (tylko przy ręcznym skręceniu): 0,27 po narożu i 0,69 po płaskiej ściance. Bez kolizji.
+- **Dla porównania:** piasta v2.6 (R3,8 do y 5,3) miała w tym miejscu przy −33° tylko 0,02.
+- **Wariant 2 podkładek** jest niezalecany przy H, bo góra nakrętki stoi na y 7,2.
+
+### K1–K11 (Cięgno)
+
+| # | Wynik | Dane |
+|---|---|---|
+| K1 | zaliczone | 3 zapisy OK, 3 × DELETE 200; w drzewie 0 ikon błędu i ostrzeżenia; 10 brył |
+| K2 | zaliczone | folder Cięgno (6): 2 szkice (`płyta szkic`, `otwory śrub szkic`), oba w pełni zdefiniowane (znacznik w drzewie) |
+| K3 | zaliczone | wyrażenia: `#plytaT - #ciegnoY`, `#m3Luzny`; reszta bez zmian |
+| K4 | zaliczone | 0 Fix; punkty otworów zbieżne z końcami `lCH` layoutu |
+| K5 | zaliczone | oba otwory jedną operacją Hole (2 punkty) |
+| K6 | zaliczone | 2 operacje bryłowe (płyta, otwory), było 3 |
+| K7 | zaliczone | zmienne przed operacjami; płaszczyzna przed szkicem |
+| K8 | zaliczone | szkic na `Cięgno: pl. góry płyty` (offset Front) |
+| K9 | nie wykonane | budżet E4.4 ≤ 15; płaszczyzna zależy od `plytaT`/`ciegnoY`, otwór od `m3Luzny` (zmienne z K9 v2.5) |
+| K10 | do użytkownika | nowe nazwy: `pl. góry płyty`, `otwory śrub szkic`, `otwory śrub` |
+| K11 | zaliczone | 6 operacji w folderze Cięgno |
+
+**API (E4.4):** 13 wywołań (budżet 15 + 1 GET /features do porównania), `GET /features` 1. Suma w roku 528 + 13 = 541.
