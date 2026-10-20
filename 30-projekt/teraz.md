@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E3.2, wydruk i montaż modułu v2.5 na stole.
+**Bieżące zadanie:** E4, v2.6 (Gniazdo, Cięgno, Kaseta, Klamra H, Pokrywa) – budowa przez wykonawcę według `30-projekt/brief-e4-v2.6.md`, review, wydruk wieczorem 20.10.
 
 ```mermaid
 flowchart TD
@@ -67,8 +67,15 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 - [ ] E3.1 Instrukcja montażu: `70-budowa/montaz-v2.5.md` (galeria części, lista śrub, kroki z obrazkami Blendera; po review nietechnicznym).
 - [ ] E3.2 Wydruk i montaż modułu v2.5 (19.10: wydrukowane gniazdo, nakrętka, ramię, cięgno, tulejki, pokrywa).
 - [x] E3.4 Test elektroniki (19.10): ESP32-C3 SuperMini + PCA9685 + 1 × SG90; Blink, skan I²C (0x40) i ruch ±30° zaliczone. Połączenia i szkice: `50-elektronika/polaczenia.md`.
-- [ ] E3.5 Próbka gniazd wkładek M3 (Ø4,0–4,8) w Onshape, wydruk i wybór `wkladkaD`. Brief: `30-projekt/brief-e3.5-probka-wkladek-m3.md`.
+- [ ] E3.5 Próbka gniazd wkładek M3 (Ø4,0–4,8): model gotowy (dokument „Probka wkladek M3”, commit `c7e0350` na gałęzi wykonawcy; K2–K4 bez niezależnego odczytu orkiestratora). `wkladkaD` = 4,4 ustalone 20.10 pomiarem stopnia wkładki, więc wydruk próbki opcjonalny. Brief: `30-projekt/brief-e3.5-probka-wkladek-m3.md`.
 - [ ] E3.3 Wpis w dzienniku i wnioski do następnej wersji.
+
+## E4: v2.6 po montażu v2.5
+
+- [ ] E4.1 Gniazdo i Cięgno: `wkladkaD` 4,4 (rozdęte piasty Cięgna), rant Gniazda 67,5, ząbki przy ściance przodu, bruzdy pod łby śrub osi. Brief całego E4: `30-projekt/brief-e4-v2.6.md`.
+- [ ] E4.2 Kaseta, osadzenie serwa (zamiast luźnych Sanek, których nic nie trzymało i które wpadały do środka Kasety). **Najpierw decyzja użytkownika o kierunku serwa:** model v2.5 ma wałek (z −66) i wyjście kabla z tyłu Kasety; użytkownik złożył serwo wałkiem do przodu – wtedy wałek wypada ok. z −55,3, Ramię (27 mm) nie trafia nad przegub H i trzeba by przeprojektować napęd. Koncepcja: (a) przód: przednie ucho przykręcone wkrętem M2 do bloku na końcu szyn wzdłuż szczeliny (siedzisko uszu jak w Sankach, y −17,6); wkręt wstępnie w uchu, więc blok potrzebuje kanału od tyłu na jego końcówkę; dokręcany przez otwór montażowy w górnej ściance (owal ok. 9 mm, jak otwór górny, nad wkrętem przy z −46,75; łączy się z otworem górnym) – bez gniazda blokującego ucho, bo jego luz zależy od producenta serwa; blok nie może wejść na otwór dolny H i kołnierz tulejki H; (b) tył: klamra w przekroju H przykręcona na stole do tylnego ucha serwa – ramię wewnętrzne po ściance wewnętrznej, ramię zewnętrzne wystaje poza Kasetę po ściance zewnętrznej, oba szersze niż szczelina (13,2); łącznik w szczelinie (12,7, luz 0,25/str.), ściana Kasety (3,0) między ramionami z luzem ślizgowym 0,25–0,3 na stronę; grubość ramienia zewnętrznego uzgodnić z drogą kabla; druk profilem H na stole. Serwo z klamrą wsuwa się od tyłu; klamra blokuje ruch serwa do środka i na zewnątrz, wkręt przedni – osiowo; (c) otwory uszu: rozdzielić otwór przelotowy w uchu od otworu pod wkręt w bloku/klamrze (dziś drukowany Ø1,8 wychodzi ok. 1 mm), krótka próbka; (d) Pokrywa: okno na kabel, zacisk i język zbędne, jeśli kabel nie idzie przez Pokrywę – zależy od (kierunek serwa). Sanki znikają z listy części. Kontrola: przejście skręconego napędu przez tył Kasety i nasadzenie Ramienia na wałek. (e) Jarzmo wsuwane od przodu Kasety (krótsza droga, tył wolny dla szyn i klamry H): użytkownik przy montażu v2.5 włożył Jarzmo bez korzystania z kanałów kołków – luz wystarczył od przodu i od tyłu, kołki stoją w łukowych szczelinach. Kanały kołków są zbędne (do usunięcia albo pozostawienia – bez wpływu); sprawdzić przejście skręconego napędu od przodu.
+- [ ] E4.2b Mocowanie Pokrywy: ucha z wkładkami przenieść z zewnątrz Kasety (teraz wystają poza obrys, 40° i 140°, r do 33,7) do środka, po bokach, tam gdzie zaznaczył użytkownik (zdjęcia 20.10); w Pokrywie same otwory; poza obrys Kasety wystaje wtedy tylko klamra H z E4.2. Warunek: Jarzmo i napęd wsuwane od przodu (E4.2 e) – przy wsuwaniu od tyłu ucho po stronie korby (+X) zatrzymałoby Jarzmo (r 21,9–24,8; analiza Fable 5.8, Astra 13). Sprawdzić obwiednię wsuwania i ruch ±33°.
+- [ ] E4.3 Instrukcja montażu: napęd (Jarzmo, Cięgno, Ramię, tulejki, śruby przegubów) skręcany na stole, w Kasecie tylko Ramię na wałek i wkręt środkowy przez otwór górny; otwory dolne zostają (decyzja użytkownika). Przyrząd centrowania: jego trzpień nie wejdzie w otwór Ramienia zajęty przez tulejkę – nowy sposób ustawienia środka. Temperatura grota 210–215 °C dla PLA (238 °C rozlało piastę).
 
 ## Epiki później
 
@@ -82,7 +89,6 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 - `AGENTS.md`: stan OK z odpowiedzi zapisu nie wyłapuje ostrzeżeń (np. „missing selection”); kontrola musi czytać też ikony ostrzeżeń w drzewie.
 - `30-projekt/plan-powrot-do-onshape.md`: obaj recenzenci uznali go za nie do realizacji; dopisać adnotację albo usunąć.
 - Dublety w `30-projekt/decyzje.md`.
-- `wkladkaD` 4,0 → 4,4 w Kasecie i Cięgnie (decyzja 20.10, do następnej wersji modelu).
-- Oś oka: zamówione M3×6 (19.10); przy M3×6 otwory Ø4 w biegunach piłeczki albo pogłębienie łba w modelu (`lebH`) – do decyzji po teście.
+- Oś oka i piłeczka: użytkownik złożył v2.5 na M3×10 wkręconych w nawiercone bieguny + CA z primerem (trzyma). Do decyzji: piłeczka na śrubach jako rozwiązanie docelowe, dobór śrub (zamówione M3×6) i `lebH`; bruzdy w Gnieździe (E4.1) przyjmują wyższe łby.
 - Napęd symetryczny (pomysł użytkownika), po wydruku modułu.
 - Kopia researchu Gemini na dysk sieciowy.
