@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20T09:52Z, wykonawca CAD: poprawki v2.6 zrobione, dopisek w weryfikacja-v2.6.md, 75/120, rok 518",
+  "zapis": "2026-10-20T09:53Z, wykonawca CAD: surowe dane do odbioru K2-K4 w odbior-v2.6/, 77/120, rok 520",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -3919,9 +3919,9 @@
       "zdjety": "2026-10-20T09:42:28Z, decyzja orkiestratora; reset G.rem tylko dla GET /documents/currentmicroversion (byl remaining null po 404), nastepne wywolanie = odczyt startowy (400)"
     },
     "n": {
-      "total": 75,
-      "features": 35,
-      "getFeatures": 2
+      "total": 77,
+      "features": 36,
+      "getFeatures": 3
     },
     "log": [
       [
@@ -4022,6 +4022,24 @@
         200,
         3000,
         0
+      ],
+      [
+        "09:49:44",
+        "GET /partstudios/features?includeGeometryIds=false (z encjami szkicow) -> odbior-v2.6/features.json, sourceMicroversion 471acb6ad53591e7e13cdc4f",
+        200,
+        97,
+        0
+      ],
+      [
+        "09:51:14",
+        "UI: rozwiniete wszystkie 11 folderow; zapytanie znacznikow z AGENTS.md przy przewijaniu drzewa -> odbior-v2.6/znaczniki-szkicow.json (163 wiersze z data-id, 53 szkice)"
+      ],
+      [
+        "09:51:21",
+        "GET /variables -> odbior-v2.6/variable-studio.json (384 zmienne)",
+        200,
+        3000,
+        0
       ]
     ],
     "planZmiennych": {
@@ -4084,6 +4102,15 @@
       "bruzdy": "x +-3.9, R28.55, z -8.6..-45.7, obie"
     },
     "montaz": "wstepnie <=1.2: koncowka y>=-18.8 wobec dna -19.1 (0.3), 0.2/str., wejscie z fazka x +-2.0 y -19.9 -> wariant zostaje",
-    "rokPo": 518
+    "rokPo": 520,
+    "odbior": {
+      "katalog": "40-cad/onshape/odbior-v2.6/",
+      "pliki": [
+        "features.json",
+        "znaczniki-szkicow.json",
+        "variable-studio.json"
+      ],
+      "transport": "wynik javascript_tool zapisany przez harness do pliku (features: gzip+base64, dlugosc po dekodowaniu zgodna co do znaku z odpowiedzia w karcie: 1107267)"
+    }
   }
 }

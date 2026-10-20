@@ -1,0 +1,2695 @@
+[
+ {
+  "variableStudioReference": null,
+  "variables": [
+   {
+    "type": "LENGTH",
+    "name": "rantD",
+    "value": null,
+    "description": "srednica rantu gniazda (v2.6: grzybek 2 mm poza otwor 63.5)",
+    "expression": "67.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rantR",
+    "value": null,
+    "description": "",
+    "expression": "#rantD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rantT",
+    "value": null,
+    "description": "grubosc plaskiej czesci rantu i kolnierzyka",
+    "expression": "1.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworD",
+    "value": null,
+    "description": "otwor w dyni (otwornica 2 1/2\")",
+    "expression": "63.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworR",
+    "value": null,
+    "description": "",
+    "expression": "#otworD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "dyniaR",
+    "value": null,
+    "description": "promien dyni (dopasowanie rantu)",
+    "expression": "150 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rantSag1",
+    "value": null,
+    "description": "strzalka dyni na r rantu",
+    "expression": "#dyniaR - sqrt(#dyniaR ^ 2 - #rantR ^ 2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rantSag2",
+    "value": null,
+    "description": "strzalka dyni na r otworu",
+    "expression": "#dyniaR - sqrt(#dyniaR ^ 2 - #otworR ^ 2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolnierzykD",
+    "value": null,
+    "description": "otwor kolnierzyka",
+    "expression": "41 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolnierzykR",
+    "value": null,
+    "description": "",
+    "expression": "#kolnierzykD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przodD",
+    "value": null,
+    "description": "czesc gniazda w otworze dyni",
+    "expression": "63 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przodR",
+    "value": null,
+    "description": "",
+    "expression": "#przodD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przodL",
+    "value": null,
+    "description": "dlugosc czesci gniazda w otworze",
+    "expression": "15 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "dociskMin",
+    "value": null,
+    "description": "najciensza scianka dyni",
+    "expression": "15 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "dociskMax",
+    "value": null,
+    "description": "najgrubsza scianka dyni",
+    "expression": "25 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaH",
+    "value": null,
+    "description": "wysokosc nakretki",
+    "expression": "7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gniazdoZapas",
+    "value": null,
+    "description": "gwint za nakretka przy dociskMax",
+    "expression": "4.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gniazdoL",
+    "value": null,
+    "description": "koniec gwintu",
+    "expression": "#dociskMax + #nakretkaH + #gniazdoZapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepyL",
+    "value": null,
+    "description": "strefa zaczepow za gwintem",
+    "expression": "9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gniazdoKoniec",
+    "value": null,
+    "description": "dlugosc gniazda",
+    "expression": "#gniazdoL + #zaczepyL"
+   },
+   {
+    "type": "LENGTH",
+    "name": "fazkaRantu",
+    "value": null,
+    "description": "fazka krawedzi rantu",
+    "expression": "1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "fazkaCzola",
+    "value": null,
+    "description": "fazka czola kasety i otworu gniazda",
+    "expression": "0.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "modulID",
+    "value": null,
+    "description": "wnetrze kasety",
+    "expression": "48.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kasetaT",
+    "value": null,
+    "description": "scianka kasety",
+    "expression": "3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kasetaOD",
+    "value": null,
+    "description": "zewnatrz kasety",
+    "expression": "#modulID + 2 * #kasetaT"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzKaseta",
+    "value": null,
+    "description": "luz kaseta-gniazdo (wsuwanie)",
+    "expression": "0.25 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gniazdoID",
+    "value": null,
+    "description": "otwor gniazda",
+    "expression": "#kasetaOD + 2 * #luzKaseta"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gniazdoIDR",
+    "value": null,
+    "description": "",
+    "expression": "#gniazdoID / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "modulL",
+    "value": null,
+    "description": "dlugosc kasety",
+    "expression": "76 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zapas",
+    "value": null,
+    "description": "wyjscie narzedzi poza bryle",
+    "expression": "1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "osZL",
+    "value": null,
+    "description": "dlugosc osi Z w layoucie",
+    "expression": "#rantT + #modulL + 2 * #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoZ",
+    "value": null,
+    "description": "os oka: z",
+    "expression": "12 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "cX",
+    "value": null,
+    "description": "przegub C: x",
+    "expression": "7.382 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "cZ",
+    "value": null,
+    "description": "przegub C: z",
+    "expression": "36.147 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "hX",
+    "value": null,
+    "description": "przegub H: -x",
+    "expression": "9.235 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "hZ",
+    "value": null,
+    "description": "przegub H: z",
+    "expression": "40.628 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "orczykZ",
+    "value": null,
+    "description": "os orczyka SG90: z",
+    "expression": "66 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zabekSzer",
+    "value": null,
+    "description": "zabek: szerokosc promieniowa",
+    "expression": "1.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zabekH",
+    "value": null,
+    "description": "zabek: wysokosc od spodu rantu na r zabekR1",
+    "expression": "1.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zabekR1",
+    "value": null,
+    "description": "zabek: r wewn. = scianka przodu",
+    "expression": "#przodD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zabekR2",
+    "value": null,
+    "description": "zabek: r zewn.",
+    "expression": "#zabekR1 + #zabekSzer"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zabekZ",
+    "value": null,
+    "description": "zabek: dol = spod rantu na r zabekR1 + zabekH",
+    "expression": "#rantSag2 + #zabekH"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zabekKat",
+    "value": null,
+    "description": "zabek: szerokosc katowa",
+    "expression": "1.666 deg"
+   },
+   {
+    "type": "NUMBER",
+    "name": "zabkiN",
+    "value": null,
+    "description": "liczba zabkow",
+    "expression": "8"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintSkok",
+    "value": null,
+    "description": "skok gwintu 45",
+    "expression": "5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintH",
+    "value": null,
+    "description": "wysokosc zarysu",
+    "expression": "2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintCzolo",
+    "value": null,
+    "description": "czolo zeba osiowo",
+    "expression": "0.8 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "gwintKat",
+    "value": null,
+    "description": "kat flanki",
+    "expression": "45 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintZakladka",
+    "value": null,
+    "description": "wejscie zarysu w rdzen",
+    "expression": "0.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintPodstawa",
+    "value": null,
+    "description": "",
+    "expression": "#gwintCzolo + 2 * #gwintH * tan(#gwintKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintPolPodstawy",
+    "value": null,
+    "description": "",
+    "expression": "#gwintPodstawa / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintPolCzola",
+    "value": null,
+    "description": "",
+    "expression": "#gwintCzolo / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintRdzenD",
+    "value": null,
+    "description": "rdzen gwintu = rura gniazda",
+    "expression": "58.9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintRdzenR",
+    "value": null,
+    "description": "",
+    "expression": "#gwintRdzenD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintD",
+    "value": null,
+    "description": "",
+    "expression": "#gwintRdzenD + 2 * #gwintH"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintR",
+    "value": null,
+    "description": "",
+    "expression": "#gwintD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "gwintWewR",
+    "value": null,
+    "description": "",
+    "expression": "#gwintRdzenR - #gwintZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przycieciaR",
+    "value": null,
+    "description": "",
+    "expression": "#gwintR + #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "helisaZ",
+    "value": null,
+    "description": "poczatek helisy (z)",
+    "expression": "#gniazdoL + #gwintSkok"
+   },
+   {
+    "type": "LENGTH",
+    "name": "helisaH",
+    "value": null,
+    "description": "wysokosc helisy",
+    "expression": "#helisaZ - #przodL + #gwintSkok"
+   },
+   {
+    "type": "LENGTH",
+    "name": "fazaZwoju",
+    "value": null,
+    "description": "faza poczatku zwoju (od strony nakrecania)",
+    "expression": "1 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "fazaKat",
+    "value": null,
+    "description": "",
+    "expression": "45 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "trimZ1",
+    "value": null,
+    "description": "faza zwoju na rdzeniu",
+    "expression": "#gniazdoL - #fazaZwoju + #gwintH * tan(#fazaKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "trimZ2",
+    "value": null,
+    "description": "faza zwoju na r przyciecia",
+    "expression": "#gniazdoL - #fazaZwoju - #zapas * tan(#fazaKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzGwint",
+    "value": null,
+    "description": "luz gwintu nakretki: 0.20 po probce E2.0 (decyzja uzytkownika)",
+    "expression": "0.2 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "haczykKat",
+    "value": null,
+    "description": "haczyki i okienka 47/227",
+    "expression": "47 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "okienkoR1",
+    "value": null,
+    "description": "",
+    "expression": "26.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "okienkoR2",
+    "value": null,
+    "description": "",
+    "expression": "31 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "okienkoZ1",
+    "value": null,
+    "description": "",
+    "expression": "38.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "okienkoZ2",
+    "value": null,
+    "description": "",
+    "expression": "42.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "okienkoSzer",
+    "value": null,
+    "description": "",
+    "expression": "7 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zebroKat",
+    "value": null,
+    "description": "zebro / rowek",
+    "expression": "135 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zebroKatOs",
+    "value": null,
+    "description": "plaszczyzna prostopadla do promienia zebra",
+    "expression": "#zebroKat - 90 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroSzer",
+    "value": null,
+    "description": "",
+    "expression": "4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "#zebroSzer / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroWys",
+    "value": null,
+    "description": "wysokosc zebra w otworze",
+    "expression": "0.9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroZakladka",
+    "value": null,
+    "description": "",
+    "expression": "0.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroR",
+    "value": null,
+    "description": "",
+    "expression": "#gniazdoIDR - #zebroWys"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroH",
+    "value": null,
+    "description": "",
+    "expression": "#zebroWys + #zebroZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroZ1",
+    "value": null,
+    "description": "",
+    "expression": "38.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroZapas",
+    "value": null,
+    "description": "",
+    "expression": "0.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroZ2",
+    "value": null,
+    "description": "",
+    "expression": "#gniazdoKoniec - #zebroZapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "fazkaWej",
+    "value": null,
+    "description": "fazki wejsciowe zebra i rowka",
+    "expression": "0.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroFazaZ",
+    "value": null,
+    "description": "",
+    "expression": "#zebroZ2 - 2 * #fazkaWej"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroPolSzerFaza",
+    "value": null,
+    "description": "",
+    "expression": "#zebroPolSzer - #fazkaWej"
+   },
+   {
+    "type": "LENGTH",
+    "name": "strzalkaOdstep",
+    "value": null,
+    "description": "strzalka: odstep wierzcholka od fazki rantu",
+    "expression": "0.75 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "strzalkaY",
+    "value": null,
+    "description": "strzalka GORA: wierzcholek od rantu",
+    "expression": "#rantR - #fazkaRantu - #strzalkaOdstep"
+   },
+   {
+    "type": "LENGTH",
+    "name": "strzalkaH",
+    "value": null,
+    "description": "",
+    "expression": "3.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "strzalkaPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "2.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "strzalkaGl",
+    "value": null,
+    "description": "",
+    "expression": "0.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "strzalkaY2",
+    "value": null,
+    "description": "",
+    "expression": "#strzalkaY - #strzalkaH"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zebroRsrodek",
+    "value": null,
+    "description": "plaszczyzna styczna w srodku zebra",
+    "expression": "#zebroR + #zebroH / 2"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zebroKatPl",
+    "value": null,
+    "description": "kat LINE_ANGLE: os x szkicu na azymucie zebroKatOs (45)",
+    "expression": "180 deg - #zebroKatOs"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaD",
+    "value": null,
+    "description": "",
+    "expression": "74 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaR",
+    "value": null,
+    "description": "",
+    "expression": "#nakretkaD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaZ",
+    "value": null,
+    "description": "czolo nakretki (z)",
+    "expression": "24 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaTylZ",
+    "value": null,
+    "description": "",
+    "expression": "#nakretkaZ + #nakretkaH"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaFaza",
+    "value": null,
+    "description": "fazy otworu",
+    "expression": "1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaOtworR",
+    "value": null,
+    "description": "",
+    "expression": "#gwintRdzenR + #luzGwint"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaZewR",
+    "value": null,
+    "description": "",
+    "expression": "#nakretkaR + #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaCzoloR",
+    "value": null,
+    "description": "czolo pod dynie (wewn. powierzchnia)",
+    "expression": "130 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakretkaCzoloSpad",
+    "value": null,
+    "description": "",
+    "expression": "sqrt(#nakretkaCzoloR ^ 2 - #nakretkaOtworR ^ 2) - sqrt(#nakretkaCzoloR ^ 2 - #nakretkaZewR ^ 2)"
+   },
+   {
+    "type": "NUMBER",
+    "name": "kluczN",
+    "value": null,
+    "description": "",
+    "expression": "6"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kluczSzer",
+    "value": null,
+    "description": "",
+    "expression": "4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kluczPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "#kluczSzer / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kluczR1",
+    "value": null,
+    "description": "",
+    "expression": "33.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kluczH",
+    "value": null,
+    "description": "",
+    "expression": "2.6 mm"
+   },
+   {
+    "type": "NUMBER",
+    "name": "radelkoN",
+    "value": null,
+    "description": "radelko jak v2.2",
+    "expression": "24"
+   },
+   {
+    "type": "LENGTH",
+    "name": "radelkoSzer",
+    "value": null,
+    "description": "",
+    "expression": "1.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "radelkoPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "#radelkoSzer / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "radelkoGl",
+    "value": null,
+    "description": "",
+    "expression": "0.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "radelkoR1",
+    "value": null,
+    "description": "",
+    "expression": "#nakretkaR - #radelkoGl"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kasetaIDR",
+    "value": null,
+    "description": "",
+    "expression": "#modulID / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kasetaODR",
+    "value": null,
+    "description": "",
+    "expression": "#kasetaOD / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kasetaTylZ",
+    "value": null,
+    "description": "tyl kasety (z)",
+    "expression": "#rantT + #modulL"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kulaDmax",
+    "value": null,
+    "description": "najwieksza pileczka",
+    "expression": "40.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klej",
+    "value": null,
+    "description": "szczelina na klej",
+    "expression": "0.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoT",
+    "value": null,
+    "description": "grubosc oczka jarzma",
+    "expression": "2.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzOsiowy",
+    "value": null,
+    "description": "luz osiowy oczko-wystep",
+    "expression": "0.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wystepY",
+    "value": null,
+    "description": "czolo wystepu osi (y)",
+    "expression": "#kulaDmax / 2 + #klej + #oczkoT + #luzOsiowy"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wystepR",
+    "value": null,
+    "description": "promien kropli wystepu",
+    "expression": "9.6 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "wystepKat",
+    "value": null,
+    "description": "kat stycznych kropli",
+    "expression": "45 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wystepTx",
+    "value": null,
+    "description": "",
+    "expression": "#wystepR * sin(#wystepKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wystepOgon",
+    "value": null,
+    "description": "wierzcholek kropli (z)",
+    "expression": "1.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wystepH",
+    "value": null,
+    "description": "grubosc wystepu do scianki",
+    "expression": "2.05 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolekD",
+    "value": null,
+    "description": "kolek ogranicznika",
+    "expression": "2.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolekR",
+    "value": null,
+    "description": "promien kolka od osi oka",
+    "expression": "6.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzStop",
+    "value": null,
+    "description": "luz kolka w szczelinie",
+    "expression": "0.3 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "stopKat",
+    "value": null,
+    "description": "ogranicznik +-33",
+    "expression": "33 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaR1",
+    "value": null,
+    "description": "",
+    "expression": "#kolekR - #kolekD / 2 - #luzStop"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaR2",
+    "value": null,
+    "description": "",
+    "expression": "#kolekR + #kolekD / 2 + #luzStop"
+   },
+   {
+    "type": "ANGLE",
+    "name": "szczelinaKat",
+    "value": null,
+    "description": "kat konca szczeliny",
+    "expression": "#stopKat + asin(#kolekD / 2 / #kolekR)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaX1",
+    "value": null,
+    "description": "",
+    "expression": "#szczelinaR1 * sin(#szczelinaKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaX2",
+    "value": null,
+    "description": "",
+    "expression": "#szczelinaR2 * sin(#szczelinaKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaStopGl",
+    "value": null,
+    "description": "",
+    "expression": "6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kanalPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "#kolekD / 2 + #luzStop"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kanalZ1",
+    "value": null,
+    "description": "poczatek kanalu kolka (z)",
+    "expression": "17.9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kanalZ2",
+    "value": null,
+    "description": "",
+    "expression": "#kasetaTylZ + #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kanalGl",
+    "value": null,
+    "description": "",
+    "expression": "1.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworOsiY",
+    "value": null,
+    "description": "plaszczyzna otworow osi (y)",
+    "expression": "28 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "lebD",
+    "value": null,
+    "description": "pogl. pod leb ISO 7380 M3",
+    "expression": "6.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "lebH",
+    "value": null,
+    "description": "",
+    "expression": "1.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m3Ciasny",
+    "value": null,
+    "description": "",
+    "expression": "2.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m3Luzny",
+    "value": null,
+    "description": "",
+    "expression": "3.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "lebGl",
+    "value": null,
+    "description": "Hole mierzy od styku poglebienia z walcem kasety; dno na y = kasetaODR - lebH",
+    "expression": "#lebH - #kasetaODR + sqrt(#kasetaODR ^ 2 - (#lebD / 2) ^ 2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworOsiGl",
+    "value": null,
+    "description": "otwor osi do 1 mm za wystepem (od styku)",
+    "expression": "#lebGl + #otworOsiY - #wystepY - #lebH"
+   },
+   {
+    "type": "LENGTH",
+    "name": "sg90Szer",
+    "value": null,
+    "description": "SG90 szerokosc (producent)",
+    "expression": "12.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzSanki",
+    "value": null,
+    "description": "",
+    "expression": "0.25 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaSG90",
+    "value": null,
+    "description": "szczelina SG90 w sankach",
+    "expression": "#sg90Szer + 2 * #luzSanki"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaSerwaPolSzer",
+    "value": null,
+    "description": "okno SG90 w kasecie (pol)",
+    "expression": "#szczelinaSG90 / 2 + #luzSanki"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaSerwaY",
+    "value": null,
+    "description": "",
+    "expression": "20 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaSerwaGl",
+    "value": null,
+    "description": "",
+    "expression": "20 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworDolnyD",
+    "value": null,
+    "description": "otwory dolne C i H",
+    "expression": "8.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworDolnyY",
+    "value": null,
+    "description": "",
+    "expression": "28 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworDolnyGl",
+    "value": null,
+    "description": "do y -19.75",
+    "expression": "8.25 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m2X",
+    "value": null,
+    "description": "wkret M2 orczyka: -x",
+    "expression": "4.446 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m2Z",
+    "value": null,
+    "description": "wkret M2 orczyka: z",
+    "expression": "53.784 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworGornyR",
+    "value": null,
+    "description": "",
+    "expression": "4.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworGornyGl",
+    "value": null,
+    "description": "",
+    "expression": "6.75 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCY",
+    "value": null,
+    "description": "",
+    "expression": "0.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCGl",
+    "value": null,
+    "description": "",
+    "expression": "4.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCR1",
+    "value": null,
+    "description": "",
+    "expression": "21.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCR2",
+    "value": null,
+    "description": "",
+    "expression": "24.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCZ1",
+    "value": null,
+    "description": "",
+    "expression": "22.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCZ2",
+    "value": null,
+    "description": "",
+    "expression": "35 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wybranieCZs",
+    "value": null,
+    "description": "",
+    "expression": "#wybranieCZ2 - #wybranieCR2 + #wybranieCR1"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzRowek",
+    "value": null,
+    "description": "luz rowka na strone",
+    "expression": "0.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzRowekR",
+    "value": null,
+    "description": "luz rowka promieniowo",
+    "expression": "0.35 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekR1",
+    "value": null,
+    "description": "",
+    "expression": "#zebroR - #luzRowekR"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekR2",
+    "value": null,
+    "description": "",
+    "expression": "#kasetaODR + #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekZ1",
+    "value": null,
+    "description": "",
+    "expression": "#rantT - #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekZ2",
+    "value": null,
+    "description": "",
+    "expression": "#gniazdoKoniec + #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekSzer",
+    "value": null,
+    "description": "",
+    "expression": "#zebroSzer + 2 * #luzRowek"
+   },
+   {
+    "type": "ANGLE",
+    "name": "rowekKatPl",
+    "value": null,
+    "description": "",
+    "expression": "180 deg - #zebroKat"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaR",
+    "value": null,
+    "description": "",
+    "expression": "26.85 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaGl",
+    "value": null,
+    "description": "",
+    "expression": "1.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaX1",
+    "value": null,
+    "description": "",
+    "expression": "2.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaW",
+    "value": null,
+    "description": "",
+    "expression": "0.9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaZ1",
+    "value": null,
+    "description": "",
+    "expression": "1.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaL",
+    "value": null,
+    "description": "",
+    "expression": "1.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaX2",
+    "value": null,
+    "description": "",
+    "expression": "#rowekFazaX1 + #rowekFazaW"
+   },
+   {
+    "type": "LENGTH",
+    "name": "rowekFazaZ2",
+    "value": null,
+    "description": "",
+    "expression": "#rowekFazaZ1 + #rowekFazaL"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkladkaD",
+    "value": null,
+    "description": "gniazdo wkladki M3x4x5 (v2.6, decyzja 20.10)",
+    "expression": "4.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkladkaL",
+    "value": null,
+    "description": "",
+    "expression": "4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkladkaZapas",
+    "value": null,
+    "description": "",
+    "expression": "0.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepZ",
+    "value": null,
+    "description": "",
+    "expression": "36.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepL",
+    "value": null,
+    "description": "",
+    "expression": "7.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepR1",
+    "value": null,
+    "description": "",
+    "expression": "23.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepR2",
+    "value": null,
+    "description": "",
+    "expression": "28 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepKoniecKat1",
+    "value": null,
+    "description": "",
+    "expression": "50 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepKoniecKat2",
+    "value": null,
+    "description": "",
+    "expression": "52.5 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepCienZ",
+    "value": null,
+    "description": "",
+    "expression": "36.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepCienL",
+    "value": null,
+    "description": "",
+    "expression": "7.55 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepCienR",
+    "value": null,
+    "description": "",
+    "expression": "25.2 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepCienKat1",
+    "value": null,
+    "description": "",
+    "expression": "19 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepCienKat2",
+    "value": null,
+    "description": "",
+    "expression": "50.5 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepSkosKat",
+    "value": null,
+    "description": "",
+    "expression": "34.2 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepSkosKatPl",
+    "value": null,
+    "description": "",
+    "expression": "180 deg - #zaczepSkosKat"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepSkosRozw",
+    "value": null,
+    "description": "",
+    "expression": "36.4 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosR1",
+    "value": null,
+    "description": "",
+    "expression": "23.9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosR2",
+    "value": null,
+    "description": "",
+    "expression": "28.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosZ1",
+    "value": null,
+    "description": "",
+    "expression": "40.75 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosW",
+    "value": null,
+    "description": "",
+    "expression": "1.131 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosZ2",
+    "value": null,
+    "description": "",
+    "expression": "#skosZ1 - #skosR2 + #skosR1"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosZ3",
+    "value": null,
+    "description": "",
+    "expression": "#skosZ2 - #skosW"
+   },
+   {
+    "type": "LENGTH",
+    "name": "skosZ4",
+    "value": null,
+    "description": "",
+    "expression": "#skosZ1 - #skosW"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepTylZ",
+    "value": null,
+    "description": "",
+    "expression": "43.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zaczepTylGl",
+    "value": null,
+    "description": "",
+    "expression": "0.8 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepTylKat1",
+    "value": null,
+    "description": "",
+    "expression": "16 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "zaczepTylKat2",
+    "value": null,
+    "description": "",
+    "expression": "52.4 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "haczykR1",
+    "value": null,
+    "description": "",
+    "expression": "26.75 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "haczykR2",
+    "value": null,
+    "description": "",
+    "expression": "28.25 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "haczykZ1",
+    "value": null,
+    "description": "",
+    "expression": "38 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "haczykZ2",
+    "value": null,
+    "description": "",
+    "expression": "42 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "haczykNajazdZ",
+    "value": null,
+    "description": "",
+    "expression": "39.05 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "haczykSzer",
+    "value": null,
+    "description": "",
+    "expression": "2.8 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "hKat",
+    "value": null,
+    "description": "kierunek przegubu H",
+    "expression": "178 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "hKatPl",
+    "value": null,
+    "description": "",
+    "expression": "180 deg - #hKat"
+   },
+   {
+    "type": "ANGLE",
+    "name": "pogrubienieHKat",
+    "value": null,
+    "description": "",
+    "expression": "40 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pgR1",
+    "value": null,
+    "description": "",
+    "expression": "27 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pgR2",
+    "value": null,
+    "description": "",
+    "expression": "27.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pgR3",
+    "value": null,
+    "description": "",
+    "expression": "29.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pgZ1",
+    "value": null,
+    "description": "pogrubienie H od z",
+    "expression": "46.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pgZ2",
+    "value": null,
+    "description": "",
+    "expression": "#pgZ1 + #pgR3 - #pgR2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pgZ3",
+    "value": null,
+    "description": "",
+    "expression": "57 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "wybranieHKat",
+    "value": null,
+    "description": "",
+    "expression": "26 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whR1",
+    "value": null,
+    "description": "",
+    "expression": "21 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whR2",
+    "value": null,
+    "description": "",
+    "expression": "25.25 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whR3",
+    "value": null,
+    "description": "",
+    "expression": "25.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whZ1",
+    "value": null,
+    "description": "",
+    "expression": "43.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whZ2",
+    "value": null,
+    "description": "",
+    "expression": "47.1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whZ3",
+    "value": null,
+    "description": "",
+    "expression": "51.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "whZ4",
+    "value": null,
+    "description": "",
+    "expression": "#whZ3 + #whR3 - #whR1"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zkX1o",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR2 * cos(#zaczepKoniecKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zkX2o",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR2 * cos(#zaczepKoniecKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zkX1i",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR1 * cos(#zaczepKoniecKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zkX2i",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR1 * cos(#zaczepKoniecKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zcX1o",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepCienR * cos(#zaczepCienKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zcX2o",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepCienR * cos(#zaczepCienKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zcX1i",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR1 * cos(#zaczepCienKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "zcX2i",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR1 * cos(#zaczepCienKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ztX1o",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR2 * cos(#zaczepTylKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ztX2o",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR2 * cos(#zaczepTylKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ztX1i",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR1 * cos(#zaczepTylKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ztX2i",
+    "value": null,
+    "description": "",
+    "expression": "#zaczepR1 * cos(#zaczepTylKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "jarzmoT",
+    "value": null,
+    "description": "grubosc promieniowa miski",
+    "expression": "2.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "jarzmoW",
+    "value": null,
+    "description": "szerokosc miski",
+    "expression": "8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "jarzmoPolW",
+    "value": null,
+    "description": "",
+    "expression": "#jarzmoW / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "jarzmoRw",
+    "value": null,
+    "description": "",
+    "expression": "#kulaDmax / 2 + #klej"
+   },
+   {
+    "type": "LENGTH",
+    "name": "jarzmoRz",
+    "value": null,
+    "description": "",
+    "expression": "#jarzmoRw + #jarzmoT"
+   },
+   {
+    "type": "ANGLE",
+    "name": "pasKat",
+    "value": null,
+    "description": "os pasa w plaszczyznie XZ",
+    "expression": "60 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pasOsL",
+    "value": null,
+    "description": "",
+    "expression": "30 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pasOsX",
+    "value": null,
+    "description": "",
+    "expression": "#pasOsL * cos(#pasKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pasOsZ",
+    "value": null,
+    "description": "",
+    "expression": "#pasOsL * sin(#pasKat) - #oczkoZ"
+   },
+   {
+    "type": "ANGLE",
+    "name": "pasObrot",
+    "value": null,
+    "description": "",
+    "expression": "180 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przyciecieR",
+    "value": null,
+    "description": "",
+    "expression": "6.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przyciecieGl",
+    "value": null,
+    "description": "",
+    "expression": "5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "przyciecieY",
+    "value": null,
+    "description": "",
+    "expression": "#wystepY - #luzOsiowy"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoZakladka",
+    "value": null,
+    "description": "",
+    "expression": "0.05 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoY",
+    "value": null,
+    "description": "",
+    "expression": "#jarzmoRw + #oczkoZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoGl",
+    "value": null,
+    "description": "",
+    "expression": "#oczkoT - #oczkoZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoRamieB",
+    "value": null,
+    "description": "",
+    "expression": "4.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "oczkoTabR",
+    "value": null,
+    "description": "",
+    "expression": "2.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolekZ",
+    "value": null,
+    "description": "",
+    "expression": "#oczkoZ + #kolekR"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolekZakladka",
+    "value": null,
+    "description": "",
+    "expression": "0.1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolekY",
+    "value": null,
+    "description": "",
+    "expression": "#przyciecieY - #kolekZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolekH",
+    "value": null,
+    "description": "",
+    "expression": "1.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaR1",
+    "value": null,
+    "description": "",
+    "expression": "20.9 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaR2",
+    "value": null,
+    "description": "",
+    "expression": "23.4 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat1",
+    "value": null,
+    "description": "",
+    "expression": "19 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat1o",
+    "value": null,
+    "description": "",
+    "expression": "20.2 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat2",
+    "value": null,
+    "description": "",
+    "expression": "60 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat3",
+    "value": null,
+    "description": "",
+    "expression": "77 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaP20R",
+    "value": null,
+    "description": "",
+    "expression": "26.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaP21R",
+    "value": null,
+    "description": "",
+    "expression": "28 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaP21Kat",
+    "value": null,
+    "description": "",
+    "expression": "70 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP1x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaR1 * cos(#korbaKat1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP34x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaR2 * cos(#korbaKat1o)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP22x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaR2 * cos(#korbaKat2)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP19x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaR1 * cos(#korbaKat3)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP20x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaP20R * cos(#korbaKat3)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP20z",
+    "value": null,
+    "description": "",
+    "expression": "#oczkoZ + #korbaP20R * sin(#korbaKat3)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP21x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaP21R * cos(#korbaP21Kat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP21z",
+    "value": null,
+    "description": "",
+    "expression": "#oczkoZ + #korbaP21R * sin(#korbaP21Kat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaY",
+    "value": null,
+    "description": "",
+    "expression": "3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "plytaT",
+    "value": null,
+    "description": "korba, ciegno, ramie",
+    "expression": "2.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaPiastaR",
+    "value": null,
+    "description": "",
+    "expression": "5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "tulejkaD",
+    "value": null,
+    "description": "",
+    "expression": "5.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzPrzegub",
+    "value": null,
+    "description": "",
+    "expression": "0.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworPrzegubuD",
+    "value": null,
+    "description": "",
+    "expression": "#tulejkaD + 2 * #luzPrzegub"
+   },
+   {
+    "type": "LENGTH",
+    "name": "korbaP35R",
+    "value": null,
+    "description": "kropla piasty C (v2.4 p.35)",
+    "expression": "21.072 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat35",
+    "value": null,
+    "description": "",
+    "expression": "58.8 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat36",
+    "value": null,
+    "description": "",
+    "expression": "72.5 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "korbaKat38",
+    "value": null,
+    "description": "",
+    "expression": "77.87 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "kP39Kat",
+    "value": null,
+    "description": "",
+    "expression": "138.7 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP35x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaP35R * cos(#korbaKat35)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP35z",
+    "value": null,
+    "description": "",
+    "expression": "#oczkoZ + #korbaP35R * sin(#korbaKat35)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP36x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaR1 * cos(#korbaKat36)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP38x",
+    "value": null,
+    "description": "",
+    "expression": "#korbaR1 * cos(#korbaKat38)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kP39x",
+    "value": null,
+    "description": "",
+    "expression": "#cX + #korbaPiastaR * cos(#kP39Kat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "sg90UchaRozstaw",
+    "value": null,
+    "description": "",
+    "expression": "27.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "dnoWkretu",
+    "value": null,
+    "description": "",
+    "expression": "0.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramieRo",
+    "value": null,
+    "description": "",
+    "expression": "5.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramieRh",
+    "value": null,
+    "description": "",
+    "expression": "5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramaY",
+    "value": null,
+    "description": "",
+    "expression": "4.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramaH",
+    "value": null,
+    "description": "",
+    "expression": "1.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramaR",
+    "value": null,
+    "description": "",
+    "expression": "5.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramaRamieR",
+    "value": null,
+    "description": "",
+    "expression": "3.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "orczykRamieL",
+    "value": null,
+    "description": "",
+    "expression": "17.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kieszenR",
+    "value": null,
+    "description": "",
+    "expression": "3.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kieszenR0",
+    "value": null,
+    "description": "",
+    "expression": "2.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kieszenR1",
+    "value": null,
+    "description": "",
+    "expression": "2.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramaZakladka",
+    "value": null,
+    "description": "",
+    "expression": "0.1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kieszenGl",
+    "value": null,
+    "description": "",
+    "expression": "#ramaH - #ramaZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m2L",
+    "value": null,
+    "description": "wkret M2 od osi orczyka",
+    "expression": "13 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m2Otwor",
+    "value": null,
+    "description": "",
+    "expression": "2.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretOrczykaD",
+    "value": null,
+    "description": "",
+    "expression": "2.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ciegnoR",
+    "value": null,
+    "description": "",
+    "expression": "4.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ciegnoY",
+    "value": null,
+    "description": "",
+    "expression": "0.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "podniesienieR",
+    "value": null,
+    "description": "",
+    "expression": "3.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "podniesienieY",
+    "value": null,
+    "description": "gora plyty ciegna - zakladka (K9)",
+    "expression": "#plytaT - #ciegnoY - #ramaZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ciegnoDno",
+    "value": null,
+    "description": "",
+    "expression": "1 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "podniesienieH",
+    "value": null,
+    "description": "",
+    "expression": "#wkladkaL + #wkladkaZapas + #ciegnoDno - #plytaT + #ramaZakladka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ciegnoWkladkiY",
+    "value": null,
+    "description": "",
+    "expression": "5.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ciegnoWkladkaGl",
+    "value": null,
+    "description": "",
+    "expression": "#wkladkaL + #wkladkaZapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolnierzD",
+    "value": null,
+    "description": "",
+    "expression": "8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolnierzH",
+    "value": null,
+    "description": "",
+    "expression": "0.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "tulejkaY",
+    "value": null,
+    "description": "",
+    "expression": "3.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "tulejkaKoniecY",
+    "value": null,
+    "description": "",
+    "expression": "0.3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "tulejkaL",
+    "value": null,
+    "description": "",
+    "expression": "#tulejkaY - #tulejkaKoniecY"
+   },
+   {
+    "type": "LENGTH",
+    "name": "pokrywaT",
+    "value": null,
+    "description": "",
+    "expression": "3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ramiePolSzer",
+    "value": null,
+    "description": "pol szerokosci plyty ramienia (v2.4)",
+    "expression": "4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kieszenPolSzer",
+    "value": null,
+    "description": "pol szerokosci kieszeni orczyka (v2.4)",
+    "expression": "2.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "ciegnoPolSzer",
+    "value": null,
+    "description": "pol szerokosci ciegna (v2.4)",
+    "expression": "3.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaGl",
+    "value": null,
+    "description": "bruzda pod leb sruby osi: glebokosc od otworu",
+    "expression": "1.05 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaR",
+    "value": null,
+    "description": "dno walcowe bruzdy",
+    "expression": "#gniazdoIDR + #bruzdaGl"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaRw",
+    "value": null,
+    "description": "luk wewn. profilu bruzdy (w otworze)",
+    "expression": "#gniazdoIDR - #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaZapasKat",
+    "value": null,
+    "description": "zapas szerokosci bruzdy na obrot i przesuniecie Kasety (review v2.6: 7,56 bez zapasu)",
+    "expression": "0.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaSzer",
+    "value": null,
+    "description": "szerokosc bruzdy",
+    "expression": "#lebD + 2 * (#luzKaseta + #luzRowek) + #bruzdaZapasKat"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "#bruzdaSzer / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "bruzdaKoniec",
+    "value": null,
+    "description": "koniec bruzdy (z)",
+    "expression": "#oczkoZ - #lebD / 2 - #luzRowek"
+   },
+   {
+    "type": "LENGTH",
+    "name": "siedziskoUszuY",
+    "value": null,
+    "description": "siedzisko uszu SG90 (y)",
+    "expression": "17.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "serwoUchoZ1",
+    "value": null,
+    "description": "przednie ucho SG90 (z)",
+    "expression": "46.75 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "serwoUchoZ2",
+    "value": null,
+    "description": "tylne ucho SG90 (z)",
+    "expression": "#serwoUchoZ1 + #sg90UchaRozstaw"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretSerwaD",
+    "value": null,
+    "description": "otwor pod wkret ucha SG90",
+    "expression": "2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretSerwaGl",
+    "value": null,
+    "description": "glebokosc otworu od siedziska",
+    "expression": "6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretKanalSzer",
+    "value": null,
+    "description": "kanal na koncowke wkretu",
+    "expression": "2.4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretKanalPolSzer",
+    "value": null,
+    "description": "",
+    "expression": "#wkretKanalSzer / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretKanalGl",
+    "value": null,
+    "description": "glebokosc kanalu od siedziska",
+    "expression": "1.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretKanalFazka",
+    "value": null,
+    "description": "fazka wejsciowa tylnych krawedzi kanalu wkretu",
+    "expression": "0.8 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "blokPolSzer",
+    "value": null,
+    "description": "blok przedni: pol szerokosci (D1)",
+    "expression": "2.75 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "blokSzer",
+    "value": null,
+    "description": "",
+    "expression": "2 * #blokPolSzer"
+   },
+   {
+    "type": "LENGTH",
+    "name": "blokZ1",
+    "value": null,
+    "description": "czolo bloku na siedzisku",
+    "expression": "45.2 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "sg90UchoKorpus",
+    "value": null,
+    "description": "SG90: os otworu ucha - czolo korpusu (46,75->49,4; 74,55->71,9)",
+    "expression": "2.65 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzKorpusSerwa",
+    "value": null,
+    "description": "zapas osiowy korpusu SG90 z kazdej strony (review v2.6)",
+    "expression": "0.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "blokZ2",
+    "value": null,
+    "description": "tyl bloku",
+    "expression": "#serwoUchoZ1 + #sg90UchoKorpus - #luzKorpusSerwa"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaSerwaZ",
+    "value": null,
+    "description": "przedni koniec szczeliny SG90 w dolnej sciance = czolo bloku (v2.6: #blokZ2)",
+    "expression": "#blokZ2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "blokY2",
+    "value": null,
+    "description": "dol bloku w sciance",
+    "expression": "#kasetaIDR + #kasetaT / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "blokZ0",
+    "value": null,
+    "description": "poczatek skosu 45 przy sciance",
+    "expression": "#blokZ1 - (#blokY2 - #siedziskoUszuY)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "wkretKanalZ2",
+    "value": null,
+    "description": "koniec kanalu za blokiem",
+    "expression": "#blokZ2 + #zapas"
+   },
+   {
+    "type": "LENGTH",
+    "name": "otworGornyZ3",
+    "value": null,
+    "description": "luk otworu montazowego",
+    "expression": "#serwoUchoZ1"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoScianka",
+    "value": null,
+    "description": "scianka wokol wkladki ucha",
+    "expression": "1.6 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "uchoKat",
+    "value": null,
+    "description": "ucha pokrywy wewnatrz 0/180",
+    "expression": "0 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "uchoKatPl",
+    "value": null,
+    "description": "",
+    "expression": "180 deg - #uchoKat"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoSzer",
+    "value": null,
+    "description": "szerokosc ucha",
+    "expression": "#wkladkaD + 2 * #uchoScianka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoR1",
+    "value": null,
+    "description": "wierzcholek ucha",
+    "expression": "#kasetaIDR - #uchoSzer"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoR2",
+    "value": null,
+    "description": "ucho w sciance",
+    "expression": "#blokY2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoDno",
+    "value": null,
+    "description": "dno pod wkladka ucha (v2.6: 1,6 jak v2.5; M3x8 przez Pokrywe 3)",
+    "expression": "1.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoDnoMin",
+    "value": null,
+    "description": "dno za otworem wkladki",
+    "expression": "0.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoL",
+    "value": null,
+    "description": "dlugosc ucha na wierzcholku",
+    "expression": "#wkladkaL + #wkladkaZapas + #uchoDnoMin"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoZ2",
+    "value": null,
+    "description": "czolo ucha na r uchoR1",
+    "expression": "#kasetaTylZ - #uchoL"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoZ1",
+    "value": null,
+    "description": "koniec skosu 45 na r uchoR2",
+    "expression": "#uchoZ2 - (#uchoR2 - #uchoR1)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoR",
+    "value": null,
+    "description": "os wkladki ucha",
+    "expression": "#kasetaIDR - #uchoSzer / 2"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoX",
+    "value": null,
+    "description": "",
+    "expression": "#uchoR * cos(#uchoKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoY",
+    "value": null,
+    "description": "",
+    "expression": "#uchoR * sin(#uchoKat)"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraZ1",
+    "value": null,
+    "description": "Klamra H: przod (z)",
+    "expression": "#serwoUchoZ2 - #sg90UchoKorpus + #luzKorpusSerwa"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraL",
+    "value": null,
+    "description": "Klamra H: dlugosc",
+    "expression": "#kasetaTylZ - #klamraZ1"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraPolSzer",
+    "value": null,
+    "description": "Klamra H: ramiona x +-",
+    "expression": "9.6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "lacznikPolSzer",
+    "value": null,
+    "description": "Klamra H: lacznik w szczelinie",
+    "expression": "#szczelinaSerwaPolSzer - #luzSanki"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraWewR",
+    "value": null,
+    "description": "Klamra H: ramie wewn.",
+    "expression": "#kasetaIDR - #luzSanki"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraZewR1",
+    "value": null,
+    "description": "Klamra H: ramie zewn. od srodka",
+    "expression": "#kasetaODR + #luzSanki"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraZewT",
+    "value": null,
+    "description": "Klamra H: grubosc ramienia zewn.",
+    "expression": "3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraZewR2",
+    "value": null,
+    "description": "",
+    "expression": "#klamraZewR1 + #klamraZewT"
+   },
+   {
+    "type": "LENGTH",
+    "name": "klamraFazka",
+    "value": null,
+    "description": "Klamra H: fazki wejsciowe",
+    "expression": "0.4 mm"
+   }
+  ]
+ }
+]
