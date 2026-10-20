@@ -2954,222 +2954,6 @@
       "fazkaSanek": "2 mm",
       "szczelinaSerwaPolSzer": "#szczelinaSG90 / 2 + #luzSanki (zalezy od zmiennych sanek - zostaja)"
     },
-    "log": [
-      {
-        "t": "2026-10-20T08:40Z",
-        "uwaga": "bramka wstrzyknieta po zalogowaniu uzytkownika, BUDZET 120/4"
-      },
-      [
-        "2026-10-20T08:40Z",
-        "POST versions v2.5",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:40Z",
-        "GET variables (382)",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:31Z",
-        "POST variables krok 1/2",
-        204,
-        null
-      ],
-      [
-        "2026-10-20T08:31Z",
-        "POST variables krok 2/2",
-        204,
-        null
-      ],
-      [
-        "2026-10-20T08:32Z",
-        "GET featurespecs",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:32Z",
-        "GET currentmicroversion",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:32Z",
-        "POST features x4: pl. końca bruzdy, bruzda szkic, bruzda (REMOVE, scope Gniazdo), bruzda dół (Mirror Front, scope Gniazdo) - OK",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:33Z",
-        "GET bodydetails",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:33Z",
-        "GET massproperties",
-        200,
-        null
-      ],
-      {
-        "t": "2026-10-20T08:34Z",
-        "uwaga": "UI: 4 operacje przeciagniete do folderu Gniazdo (27) przy filtrze 'Gniazdo'"
-      },
-      [
-        "2026-10-20T08:34Z",
-        "GET parts",
-        200,
-        null
-      ],
-      [
-        "2026-10-20T08:34Z",
-        "GET massproperties",
-        200,
-        null
-      ],
-      [
-        "08:36Z",
-        "DELETE x8 operacje Sanek",
-        200,
-        null
-      ],
-      [
-        "08:36Z",
-        "POST variables x2 (Kaseta/Klamra, -18 zmiennych Sanek)",
-        204,
-        null
-      ],
-      [
-        "08:37Z",
-        "GET currentmicroversion",
-        200,
-        null
-      ],
-      [
-        "08:37Z",
-        "POST featureid Kaseta: ucho szkic OK (stop 'brak wiersza' - folder zwiniety; po rozwinieciu w pelni zdefiniowany)",
-        200,
-        null
-      ],
-      [
-        "08:38Z",
-        "POST featureid otwor gorny szkic; POST features pl. bloku, blok szkic, blok serwa",
-        200,
-        null
-      ],
-      [
-        "08:39Z",
-        "POST features pl. siedziska, wkrety szkic, kanal wkretu, otwor wkretu przedniego",
-        200,
-        null
-      ],
-      [
-        "08:39Z",
-        "GET bodydetails",
-        200,
-        null
-      ],
-      [
-        "08:40Z",
-        "POST features Klamra H: profil szkic, Klamra H, otwor tylny, fazki",
-        200,
-        null
-      ],
-      [
-        "08:41Z",
-        "DELETE x5 Pokrywa; GET microversion; POST featureid Pokrywa: plyta szkic",
-        200,
-        null
-      ],
-      [
-        "08:42Z",
-        "GET /features (K3/K4 nowych operacji, zmienne nieuzywane)",
-        200,
-        null
-      ],
-      [
-        "08:42Z",
-        "POST variables (-21 nieuzywanych); GET microversion",
-        204,
-        null
-      ],
-      [
-        "08:43Z",
-        "GET parts; POST metadata Klamra H; GET bodydetails; GET massproperties",
-        200,
-        null
-      ],
-      {
-        "t": "08:45Z",
-        "uwaga": "UI: usuniety pusty folder Sanki serwa; 7 operacji Kasety do folderu Kaseta (65); folder Klamra H (4)"
-      },
-      [
-        "08:46Z",
-        "GET parts; GET massproperties (kontrola po przeniesieniu)",
-        200,
-        null
-      ],
-      {
-        "t": "2026-10-20T08:45:13Z",
-        "k": "GET /parts",
-        "status": 200,
-        "remaining": 500
-      },
-      {
-        "t": "2026-10-20T08:45:14Z",
-        "k": "GET /massproperties",
-        "status": 200,
-        "remaining": 3000
-      },
-      {
-        "t": "2026-10-20T08:46:55Z",
-        "k": "POST /variables (K9 min)",
-        "status": 204,
-        "remaining": 3000
-      },
-      {
-        "t": "2026-10-20T08:46:58Z",
-        "k": "GET /bodydetails",
-        "status": 200,
-        "remaining": 452
-      },
-      {
-        "t": "2026-10-20T08:47:03Z",
-        "k": "POST /variables (K9 max)",
-        "status": 204,
-        "remaining": 2999
-      },
-      {
-        "t": "2026-10-20T08:47:06Z",
-        "k": "GET /bodydetails",
-        "status": 200,
-        "remaining": 451
-      },
-      {
-        "t": "2026-10-20T08:47:10Z",
-        "k": "POST /variables (K9 przywrocenie)",
-        "status": 204,
-        "remaining": 2998
-      },
-      {
-        "t": "2026-10-20T08:47:11Z",
-        "k": "GET /currentmicroversion",
-        "status": 200,
-        "remaining": 400
-      },
-      {
-        "t": "2026-10-20T08:47:14Z",
-        "k": "GET /massproperties",
-        "status": 200,
-        "remaining": 3000
-      },
-      {
-        "t": "2026-10-20T08:52Z",
-        "uwaga": "odczyt drzewa w karcie (bez API): 11 folderow, 0 ikon bledu/ostrzezenia, 0 szkicow niedookreslonych w widocznych wierszach"
-      }
-    ],
     "stop": null,
     "F": {
       "Gniazdo: pl. końca bruzdy": "F0fXoMpaCGVprwc_9",
@@ -3451,6 +3235,677 @@
       },
       "wynik": "zgodne z oczekiwanym; po przywroceniu objetosci identyczne"
     },
-    "rokPo": 505
+    "rokPo": 505,
+    "logPodsumowanie": [
+      {
+        "t": "2026-10-20T08:40Z",
+        "uwaga": "bramka wstrzyknieta po zalogowaniu uzytkownika, BUDZET 120/4"
+      },
+      [
+        "2026-10-20T08:40Z",
+        "POST versions v2.5",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:40Z",
+        "GET variables (382)",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:31Z",
+        "POST variables krok 1/2",
+        204,
+        null
+      ],
+      [
+        "2026-10-20T08:31Z",
+        "POST variables krok 2/2",
+        204,
+        null
+      ],
+      [
+        "2026-10-20T08:32Z",
+        "GET featurespecs",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:32Z",
+        "GET currentmicroversion",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:32Z",
+        "POST features x4: pl. końca bruzdy, bruzda szkic, bruzda (REMOVE, scope Gniazdo), bruzda dół (Mirror Front, scope Gniazdo) - OK",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:33Z",
+        "GET bodydetails",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:33Z",
+        "GET massproperties",
+        200,
+        null
+      ],
+      {
+        "t": "2026-10-20T08:34Z",
+        "uwaga": "UI: 4 operacje przeciagniete do folderu Gniazdo (27) przy filtrze 'Gniazdo'"
+      },
+      [
+        "2026-10-20T08:34Z",
+        "GET parts",
+        200,
+        null
+      ],
+      [
+        "2026-10-20T08:34Z",
+        "GET massproperties",
+        200,
+        null
+      ],
+      [
+        "08:36Z",
+        "DELETE x8 operacje Sanek",
+        200,
+        null
+      ],
+      [
+        "08:36Z",
+        "POST variables x2 (Kaseta/Klamra, -18 zmiennych Sanek)",
+        204,
+        null
+      ],
+      [
+        "08:37Z",
+        "GET currentmicroversion",
+        200,
+        null
+      ],
+      [
+        "08:37Z",
+        "POST featureid Kaseta: ucho szkic OK (stop 'brak wiersza' - folder zwiniety; po rozwinieciu w pelni zdefiniowany)",
+        200,
+        null
+      ],
+      [
+        "08:38Z",
+        "POST featureid otwor gorny szkic; POST features pl. bloku, blok szkic, blok serwa",
+        200,
+        null
+      ],
+      [
+        "08:39Z",
+        "POST features pl. siedziska, wkrety szkic, kanal wkretu, otwor wkretu przedniego",
+        200,
+        null
+      ],
+      [
+        "08:39Z",
+        "GET bodydetails",
+        200,
+        null
+      ],
+      [
+        "08:40Z",
+        "POST features Klamra H: profil szkic, Klamra H, otwor tylny, fazki",
+        200,
+        null
+      ],
+      [
+        "08:41Z",
+        "DELETE x5 Pokrywa; GET microversion; POST featureid Pokrywa: plyta szkic",
+        200,
+        null
+      ],
+      [
+        "08:42Z",
+        "GET /features (K3/K4 nowych operacji, zmienne nieuzywane)",
+        200,
+        null
+      ],
+      [
+        "08:42Z",
+        "POST variables (-21 nieuzywanych); GET microversion",
+        204,
+        null
+      ],
+      [
+        "08:43Z",
+        "GET parts; POST metadata Klamra H; GET bodydetails; GET massproperties",
+        200,
+        null
+      ],
+      {
+        "t": "08:45Z",
+        "uwaga": "UI: usuniety pusty folder Sanki serwa; 7 operacji Kasety do folderu Kaseta (65); folder Klamra H (4)"
+      },
+      [
+        "08:46Z",
+        "GET parts; GET massproperties (kontrola po przeniesieniu)",
+        200,
+        null
+      ],
+      {
+        "t": "2026-10-20T08:45:13Z",
+        "k": "GET /parts",
+        "status": 200,
+        "remaining": 500
+      },
+      {
+        "t": "2026-10-20T08:45:14Z",
+        "k": "GET /massproperties",
+        "status": 200,
+        "remaining": 3000
+      },
+      {
+        "t": "2026-10-20T08:46:55Z",
+        "k": "POST /variables (K9 min)",
+        "status": 204,
+        "remaining": 3000
+      },
+      {
+        "t": "2026-10-20T08:46:58Z",
+        "k": "GET /bodydetails",
+        "status": 200,
+        "remaining": 452
+      },
+      {
+        "t": "2026-10-20T08:47:03Z",
+        "k": "POST /variables (K9 max)",
+        "status": 204,
+        "remaining": 2999
+      },
+      {
+        "t": "2026-10-20T08:47:06Z",
+        "k": "GET /bodydetails",
+        "status": 200,
+        "remaining": 451
+      },
+      {
+        "t": "2026-10-20T08:47:10Z",
+        "k": "POST /variables (K9 przywrocenie)",
+        "status": 204,
+        "remaining": 2998
+      },
+      {
+        "t": "2026-10-20T08:47:11Z",
+        "k": "GET /currentmicroversion",
+        "status": 200,
+        "remaining": 400
+      },
+      {
+        "t": "2026-10-20T08:47:14Z",
+        "k": "GET /massproperties",
+        "status": 200,
+        "remaining": 3000
+      },
+      {
+        "t": "2026-10-20T08:52Z",
+        "uwaga": "odczyt drzewa w karcie (bez API): 11 folderow, 0 ikon bledu/ostrzezenia, 0 szkicow niedookreslonych w widocznych wierszach"
+      }
+    ],
+    "log": {
+      "opis": "pelny log bramki G.req (z karty): [czas UTC 2026-10-20, endpoint, status, X-Rate-Limit-Remaining po wywolaniu, odczyt startowy]; wpisy ze statusem null w logPodsumowanie to reczne streszczenie, nie odczyt",
+      "wywolania": [
+        [
+          "08:27:46",
+          "POST /documents/versions",
+          200,
+          198,
+          1
+        ],
+        [
+          "08:27:47",
+          "GET /variables",
+          200,
+          2962,
+          1
+        ],
+        [
+          "08:32:18",
+          "POST /variables",
+          204,
+          3000,
+          1
+        ],
+        [
+          "08:32:20",
+          "POST /variables",
+          204,
+          2999,
+          0
+        ],
+        [
+          "08:32:39",
+          "GET /partstudios/featurespecs",
+          200,
+          93,
+          1
+        ],
+        [
+          "08:32:39",
+          "GET /documents/currentmicroversion",
+          200,
+          400,
+          1
+        ],
+        [
+          "08:32:43",
+          "POST /partstudios/features",
+          200,
+          2998,
+          1
+        ],
+        [
+          "08:32:43",
+          "POST /partstudios/features",
+          200,
+          2997,
+          0
+        ],
+        [
+          "08:32:44",
+          "POST /partstudios/features",
+          200,
+          2996,
+          0
+        ],
+        [
+          "08:32:45",
+          "POST /partstudios/features",
+          200,
+          2995,
+          0
+        ],
+        [
+          "08:33:10",
+          "GET /partstudios/bodydetails",
+          200,
+          455,
+          1
+        ],
+        [
+          "08:33:11",
+          "GET /partstudios/massproperties",
+          200,
+          3000,
+          1
+        ],
+        [
+          "08:33:51",
+          "GET /parts",
+          200,
+          500,
+          1
+        ],
+        [
+          "08:33:52",
+          "GET /partstudios/massproperties",
+          200,
+          2999,
+          0
+        ],
+        [
+          "08:36:05",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          3000,
+          1
+        ],
+        [
+          "08:36:06",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2999,
+          0
+        ],
+        [
+          "08:36:06",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2998,
+          0
+        ],
+        [
+          "08:36:07",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2997,
+          0
+        ],
+        [
+          "08:36:08",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2996,
+          0
+        ],
+        [
+          "08:36:09",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2995,
+          0
+        ],
+        [
+          "08:36:10",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2994,
+          0
+        ],
+        [
+          "08:36:11",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2993,
+          0
+        ],
+        [
+          "08:36:55",
+          "POST /variables",
+          204,
+          2992,
+          0
+        ],
+        [
+          "08:36:57",
+          "POST /variables",
+          204,
+          2991,
+          0
+        ],
+        [
+          "08:36:57",
+          "GET /documents/currentmicroversion",
+          200,
+          400,
+          0
+        ],
+        [
+          "08:37:21",
+          "POST /partstudios/features/featureid/{id}",
+          200,
+          3000,
+          1
+        ],
+        [
+          "08:38:11",
+          "POST /partstudios/features/featureid/{id}",
+          200,
+          2999,
+          0
+        ],
+        [
+          "08:38:11",
+          "POST /partstudios/features",
+          200,
+          2998,
+          0
+        ],
+        [
+          "08:38:19",
+          "POST /partstudios/features",
+          200,
+          2997,
+          0
+        ],
+        [
+          "08:38:33",
+          "POST /partstudios/features",
+          200,
+          3000,
+          0
+        ],
+        [
+          "08:38:54",
+          "POST /partstudios/features",
+          200,
+          2999,
+          0
+        ],
+        [
+          "08:39:02",
+          "POST /partstudios/features",
+          200,
+          2998,
+          0
+        ],
+        [
+          "08:39:16",
+          "POST /partstudios/features",
+          200,
+          2997,
+          0
+        ],
+        [
+          "08:39:23",
+          "POST /partstudios/features",
+          200,
+          2996,
+          0
+        ],
+        [
+          "08:39:47",
+          "GET /partstudios/bodydetails",
+          200,
+          454,
+          0
+        ],
+        [
+          "08:40:38",
+          "POST /partstudios/features",
+          200,
+          3000,
+          0
+        ],
+        [
+          "08:40:52",
+          "POST /partstudios/features",
+          200,
+          2999,
+          0
+        ],
+        [
+          "08:41:00",
+          "POST /partstudios/features",
+          200,
+          2998,
+          0
+        ],
+        [
+          "08:41:07",
+          "POST /partstudios/features",
+          200,
+          2997,
+          0
+        ],
+        [
+          "08:41:49",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          3000,
+          0
+        ],
+        [
+          "08:41:50",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2999,
+          0
+        ],
+        [
+          "08:41:51",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2998,
+          0
+        ],
+        [
+          "08:41:51",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2997,
+          0
+        ],
+        [
+          "08:41:52",
+          "DELETE /partstudios/features/featureid/{id}",
+          200,
+          2996,
+          0
+        ],
+        [
+          "08:41:52",
+          "GET /documents/currentmicroversion",
+          200,
+          400,
+          0
+        ],
+        [
+          "08:41:53",
+          "POST /partstudios/features/featureid/{id}",
+          200,
+          2995,
+          0
+        ],
+        [
+          "08:42:23",
+          "GET /partstudios/features",
+          200,
+          99,
+          1
+        ],
+        [
+          "08:42:36",
+          "POST /variables",
+          204,
+          2994,
+          0
+        ],
+        [
+          "08:42:36",
+          "GET /documents/currentmicroversion",
+          200,
+          399,
+          0
+        ],
+        [
+          "08:42:54",
+          "GET /parts",
+          200,
+          500,
+          0
+        ],
+        [
+          "08:42:55",
+          "POST /metadata",
+          200,
+          500,
+          1
+        ],
+        [
+          "08:42:56",
+          "GET /partstudios/bodydetails",
+          200,
+          453,
+          0
+        ],
+        [
+          "08:42:56",
+          "GET /partstudios/massproperties",
+          200,
+          3000,
+          0
+        ],
+        [
+          "08:45:13",
+          "GET /parts",
+          200,
+          500,
+          0
+        ],
+        [
+          "08:45:14",
+          "GET /partstudios/massproperties",
+          200,
+          3000,
+          0
+        ],
+        [
+          "08:46:55",
+          "POST /variables",
+          204,
+          3000,
+          0
+        ],
+        [
+          "08:46:58",
+          "GET /partstudios/bodydetails",
+          200,
+          452,
+          0
+        ],
+        [
+          "08:47:03",
+          "POST /variables",
+          204,
+          2999,
+          0
+        ],
+        [
+          "08:47:06",
+          "GET /partstudios/bodydetails",
+          200,
+          451,
+          0
+        ],
+        [
+          "08:47:10",
+          "POST /variables",
+          204,
+          2998,
+          0
+        ],
+        [
+          "08:47:11",
+          "GET /documents/currentmicroversion",
+          200,
+          400,
+          0
+        ],
+        [
+          "08:47:14",
+          "GET /partstudios/massproperties",
+          200,
+          3000,
+          0
+        ]
+      ]
+    },
+    "ostatniRemaining": {
+      "GET /partstudios/features": 99,
+      "POST /partstudios/features": 2997,
+      "POST /partstudios/features/featureid/{id}": 2995,
+      "DELETE /partstudios/features/featureid/{id}": 2996,
+      "POST /variables": 2998,
+      "GET /partstudios/featurespecs": 93,
+      "GET /partstudios/bodydetails": 451,
+      "GET /partstudios/massproperties": 3000,
+      "GET /documents/currentmicroversion": 400,
+      "GET /parts": 500,
+      "POST /metadata": 500,
+      "POST /documents/versions": 198,
+      "GET /variables": 2962
+    },
+    "bramka": "G.req: jesli endpoint byl juz wywolany, a ostatni odczyt remaining jest null/undefined/NaN -> blokada(\"brak X-Rate-Limit-Remaining\") i wyjatek bez wysylania; remaining <= PROG 20 -> wyjatek; zadna odpowiedz E4 nie miala braku naglowka"
   }
 }
