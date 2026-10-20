@@ -1,6 +1,6 @@
 {
  "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
- "zapis": "2026-10-20T10:41Z, wykonawca CAD: E4 - wersja v2.5, plan 1 wyslany",
+ "zapis": "2026-10-20T10:35Z, wykonawca CAD: E4 Gniazdo i Ciegno zbudowane",
  "sumaWywolanRok": {
   "total": 131,
   "features": 70,
@@ -2927,8 +2927,8 @@
    "getFeatures": 4
   },
   "n": {
-   "total": 2,
-   "features": 0,
+   "total": 14,
+   "features": 4,
    "getFeatures": 0
   },
   "rokPrzed": 443,
@@ -2944,7 +2944,8 @@
    "opis": "stan wydrukowany 19.10 (przed E4)"
   },
   "plany": {
-   "1 Gniazdo+Ciegno": "40-cad/onshape/e4-plan-1-gniazdo-ciegno.md (dcf0c15), czeka na zatwierdzenie"
+   "1 Gniazdo+Ciegno": "zatwierdzony (scope B1/B2 tylko Gniazdo), zbudowany",
+   "2-6 Kaseta, Klamra, Pokrywa, Sanki": "40-cad/onshape/e4-plan-2-kaseta-klamra-pokrywa-sanki.md (969d820), czeka na zatwierdzenie i D1-D3"
   },
   "zmienneZywe": {
    "luzGwint": "0.2 mm",
@@ -2969,8 +2970,118 @@
     "GET variables (382)",
     200,
     null
+   ],
+   [
+    "2026-10-20T08:31Z",
+    "POST variables krok 1/2",
+    204,
+    null
+   ],
+   [
+    "2026-10-20T08:31Z",
+    "POST variables krok 2/2",
+    204,
+    null
+   ],
+   [
+    "2026-10-20T08:32Z",
+    "GET featurespecs",
+    200,
+    null
+   ],
+   [
+    "2026-10-20T08:32Z",
+    "GET currentmicroversion",
+    200,
+    null
+   ],
+   [
+    "2026-10-20T08:32Z",
+    "POST features x4: pl. końca bruzdy, bruzda szkic, bruzda (REMOVE, scope Gniazdo), bruzda dół (Mirror Front, scope Gniazdo) - OK",
+    200,
+    null
+   ],
+   [
+    "2026-10-20T08:33Z",
+    "GET bodydetails",
+    200,
+    null
+   ],
+   [
+    "2026-10-20T08:33Z",
+    "GET massproperties",
+    200,
+    null
+   ],
+   {
+    "t": "2026-10-20T08:34Z",
+    "uwaga": "UI: 4 operacje przeciagniete do folderu Gniazdo (27) przy filtrze 'Gniazdo'"
+   },
+   [
+    "2026-10-20T08:34Z",
+    "GET parts",
+    200,
+    null
+   ],
+   [
+    "2026-10-20T08:34Z",
+    "GET massproperties",
+    200,
+    null
    ]
   ],
-  "stop": null
+  "stop": null,
+  "F": {
+   "Gniazdo: pl. końca bruzdy": "F0fXoMpaCGVprwc_9",
+   "Gniazdo: bruzda szkic": "FgFmXdujyjCMnMt_9",
+   "Gniazdo: bruzda": "FuGH57nW2aWHF7e_9",
+   "Gniazdo: bruzda dół": "FSCW8adj0AA5Uud_9"
+  },
+  "szkice": [
+   {
+    "t": "2026-10-20T08:32:43.970Z",
+    "nazwa": "Gniazdo: bruzda szkic",
+    "featureId": "FgFmXdujyjCMnMt_9",
+    "dataId": "MdMaCORRRlcL8N6wZ",
+    "podpowiedz": "Gniazdo: bruzda szkic [Sketch]",
+    "niedookreslony": false,
+    "msOdOdpowiedzi": 0,
+    "featureStatus": "OK",
+    "sourceMicroversion": "78065e615eb3f4c51b61e444"
+   }
+  ],
+  "zmienne": "VS 391 zmiennych (dwuetapowo 204/204): rantD 67.5; zabekSzer 1.5, zabekH 1.3 (przed zabekR1); zabekR1 #przodD/2; zabekR2 #zabekR1+#zabekSzer; zabekZ #rantSag2+#zabekH; strzalkaOdstep 0.75 (przed strzalkaY); strzalkaY #rantR-#fazkaRantu-#strzalkaOdstep; wkladkaD 4.4; na koncu bruzdaGl 1.05, bruzdaR, bruzdaRw, bruzdaSzer, bruzdaPolSzer, bruzdaKoniec",
+  "pomiary": {
+   "Gniazdo": {
+    "V": 28958.71,
+    "Vprzed": 32576.96,
+    "rant": "R33.75 z -1..-3.846, sfera R150 z -3.846..-3.399 (412.09 mm2), fazka od r 32.75",
+    "zabki": "8 x R33 na k*45 st., z -4.699..-3.675 (spod rantu na r 33)",
+    "strzalka": "dno z -0.5 pole 8.36 (caly trojkat), y 28.2..32.0, x +-2.2",
+    "bruzdy": "2 sciany R28.55 osobno (y+ i y-), po 271.57 mm2, z -45.7..-8.6; boki x +-3.65 (4 sciany); konce z -8.6 (2 x 7.687 mm2)",
+    "sciankaMin": "0.90 (R29.45 - R28.55, za gwintem z -36.7..-45.7); przod R31.5: 2.95"
+   },
+   "Ciegno": {
+    "V": 575.02,
+    "Vprzed": 599.3,
+    "gniazda": "R2.2 w C (7.382) i H (-9.235), y 0.7..5.3 (gl. 4.6), dno 1.0, scianka 1.6",
+    "roznicaV": "-24.28 = 2 x pi/4 x (4.4^2-4^2) x 4.6"
+   },
+   "Kaseta": {
+    "V": 35015.7,
+    "uwaga": "stare ucha: wkladki teraz Ø4.4 (do przebudowy w zm. 6)"
+   },
+   "po przeniesieniu do folderu": "nazwy czesci bez zmian, nowe partId (Nakretka JzD, Kaseta RUBD, Jarzmo RADD, Sanki RmDD, Ramie RxDD, Ciegno REED, Tulejki RRED/RYED, Pokrywa RbED), objetosci bez zmian, 0 bledow"
+  },
+  "czasy": [
+   {
+    "etap": "Gniazdo/Ciegno: zmienne",
+    "koniec": "2026-10-20T08:31Z"
+   },
+   {
+    "etap": "Gniazdo: bruzdy (4 operacje)",
+    "koniec": "2026-10-20T08:32:50Z"
+   }
+  ]
  }
 }
