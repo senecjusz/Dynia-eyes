@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20T11:47Z, wykonawca CAD: poprawki v2.6 po review siatek, 85/120, GET /features 4/4, rok 528",
+  "zapis": "2026-10-20, wykonawca CAD: E4.4 plan + rachunek ruchu stosu nakretki, 0 wywolan API",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -4198,5 +4198,46 @@
     },
     "mv": "aa1de3ac7aa7e72a76b718a1",
     "rokPo": 528
+  },
+  "e44": {
+    "zadanie": "E4.4 Ciegno v2.6b: przeguby C/H na nakretkach samohamujacych M3 (DIN 985) + 1-2 podkladki, bez wkladek; brief 30-projekt/brief-e4.4-ciegno-nakretki.md (glowny katalog)",
+    "budzet": {
+      "total": 15,
+      "getFeatures": 0
+    },
+    "n": {
+      "total": 0
+    },
+    "logowanie": "2026-10-20 ~15:00Z karta na liscie dokumentow (zalogowana: XSRF, lista Owned by me); powrot do dokumentu Oko F v2.5",
+    "stan": "plan wyslany do orkiestratora, bez zapisow w Onshape; czekam na decyzje (konflikt nakretki H ze scianka Kasety przy oku -33)",
+    "kinematyka": "os oka Y przez (x 0, z -12), walek serwa (0, -66); C0 (7.382, -36.147) R 25.25, H0 (-9.235, -40.628) R 27.0, C-H 17.21; oko +-33 -> serwo -34.2/+27.3 (zgodne z briefem)",
+    "ruch": {
+      "narzedzie": "40-cad/narzedzia/stos_nakretki.py (siatki 40-cad/3mf/Oko F v2.6, eksport 13:55), obwiednia stosu: podkladki R3.5, nakretka R3.175 (naroze), sruba R1.5",
+      "wynik_piasta2.7_M3x12": {
+        "Kaseta": "-0.13 przy oku -34 (poza zakresem); przy -33: 0.0 (naroze nakretki w y 7.7 o sciane r 24.25)",
+        "Gniazdo": 3.435,
+        "Nakretka": 5.646,
+        "Jarzmo": ">=8",
+        "Ramie": ">=8",
+        "Klamra": ">=8",
+        "Pokrywa": ">=8"
+      },
+      "H_oko-33": "H (-19.84, -47.69); naroze nakretki x -23.015; sciana r 24.25 poza wybraniem H (+-13 deg, chroni do y ~5.3)",
+      "odstep_naroze_plaska": {
+        "gora nakretki 6.7": [
+          0.28,
+          0.69
+        ],
+        "7.2": [
+          0.135,
+          0.54
+        ],
+        "7.7": [
+          -0.02,
+          0.38
+        ]
+      },
+      "v2.6_piasta_R3.8_do_5.3": 0.02
+    }
   }
 }
