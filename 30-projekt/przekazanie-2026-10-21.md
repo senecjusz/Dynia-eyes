@@ -7,7 +7,7 @@ Dla orkiestratora, który przejmuje projekt po sesji 19–21.10. Poprzednia sesj
 1. `git pull`; przeczytaj `AGENTS.md`, `30-projekt/teraz.md`, `30-projekt/decyzje.md` (wiersze 20–21.10), ten plik i audyt.
 2. **Uwaga:** `30-projekt/stan-projektu.md` jest z 18.10 i jest nieaktualny (audyt P1). Ważniejszy jest ten plik.
 3. Pokaż użytkownikowi listę braków z audytu i diff poprawek. Commit dopiero po „ok”. Najpierw I1: Krok 4 instrukcji i środki w `test-24h`, zanim użytkownik złoży i skalibruje drugi moduł.
-4. Niezacommitowane: `70-budowa/montaz-v2.8.md` (E5.3) i `50-elektronika/test-24h/` (audyt G1).
+4. Wszystko jest w repo: `montaz-v2.8.md` i `test-24h/` z poprawkami audytu weszły w commit `6b25e06` (21.10).
 5. Munin: ostatni zapis (punkt zapisu) to 19.10, 22:54 (zgłoszenie `2026-10-19-pcl-mefisto-claude-eb2cdf70-dynia-electronics-test`, Charon `0b4832a`). Dni 20 i 21.10 nie są zapisane w Muninie. Na 19.10 `done-for-today` czekało na zgodę, której nie było. Użytkownik nie chce jeszcze projektu dyni w Muninie (rozważa obszar prywatny – to nie decyzja).
 
 ## Stan projektu
@@ -51,12 +51,12 @@ Wszystkie wersje od v2.5 są w jednym dokumencie Onshape **„Oko F v2.5”** (f
 
 W `teraz.md` jako bieżące zadanie stoi wciąż E3.3; trzeba je zmienić (audyt T1). Rzeczywista kolejka, ustalona przez użytkownika 21.10 o 22:34 („usuń pliki, zrób instrukcję, wróćmy, a potem test elektroniczny”):
 
-1. **E5.3 – instrukcja v2.8:** zrobiona w `70-budowa/montaz-v2.8.md`, **niezacommitowana**. Przed commitem poprawki z audytu I1–I6, zwłaszcza Krok 4: dźwigienka przy serwie trzymającym 1500 µs programem `kalibracja`, nie `test-serwa`.
+1. **E5.3 – instrukcja v2.8:** zrobiona w `70-budowa/montaz-v2.8.md` i zacommitowana (`6b25e06`) z poprawkami audytu I1–I6, w tym Krok 4: dźwigienka przy serwie trzymającym 1500 µs programem `kalibracja`, nie `test-serwa`.
 2. **Test powerbanku** (do dopisania jako E5.5): program `50-elektronika/test-powerbank` gotowy.
    - Przebieg: 7 faz po 3 min, ok. 20–25 min, z udziałem użytkownika (po zgaśnięciu wciska przycisk powerbanku).
    - Warunki: Baseus naładowany do pełna, a do niego potem ewentualnie Manta; najpierw skasować NVS (`r`).
    - Kolejność: zrobić **przed** testem 24 h. Jeśli powerbank trzyma przy ruchu, test 24 h może iść na nim.
-3. **Test 24 h mechaniki** (do dopisania jako E5.6): program `test-24h` gotowy, niezacommitowany.
+3. **Test 24 h mechaniki** (do dopisania jako E5.6): program `test-24h` gotowy (środki oczu w NVS, komendy `k0`/`k1`, `z`, `l`), w repo.
    - Warunki: dwa moduły na kanałach 0 i 1, zasilacz USB, tryb stale aktywny; przed startem `z`, po teście `l`.
    - Po teście sprawdzić: luz oka, drganie na postoju, temperaturę serwa, nakrętki.
    - Użytkownik uważa, że największe ryzyko to mechanika, nie elektronika: „ja obstawiałem mechanikę”.
