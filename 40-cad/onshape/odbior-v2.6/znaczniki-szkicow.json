@@ -1,0 +1,289 @@
+{
+ "zapytanie": "[...document.querySelectorAll('.os-list-item-label')].filter(r => r.querySelector('use[*|href*=\"sketch-button\"]')).map(r => ({ id: r.dataset.id, tytul: r.getAttribute('data-bs-original-title'), niedookreslony: !!r.querySelector('use[*|href*=\"underdefined\"]') }))",
+ "sposob": "zapytanie z AGENTS.md uruchamiane przy przewijaniu drzewa (lista wirtualizowana), wyniki zebrane po data-id; wszystkie 11 folderow rozwiniete",
+ "czas": "2026-10-20T09:51:14.236Z",
+ "mv": "471acb6ad53591e7e13cdc4f",
+ "liczbaWierszyZDataId": 163,
+ "foldery": [
+  "Layout (1)",
+  "Gniazdo (27)",
+  "Nakrętka (13)",
+  "Kaseta (66)",
+  "Jarzmo z miską (19)",
+  "Ramię orczyka (10)",
+  "Cięgno (9)",
+  "Tulejka przegubu korby (6)",
+  "Tulejka przegubu ramienia (1)",
+  "Pokrywa tylna (3)",
+  "Klamra H (4)"
+ ],
+ "liczbaSzkicow": 53,
+ "niedookreslone": 0,
+ "szkice": [
+  {
+   "id": "MZBScpo9emUev9nhj",
+   "tytul": "Layout: osie i punkty [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "Mn7I0iXbpylgDAVZb",
+   "tytul": "Gniazdo: profil [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M09HjqqfrhnHjwDgA",
+   "tytul": "Gniazdo: ząbek szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MPf5pfN28eJQ42/sO",
+   "tytul": "Gniazdo: okrąg helisy [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MSAR+PRFqd9xEubbY",
+   "tytul": "Gniazdo: profil gwintu [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MAN7zyOPhCnumixBC",
+   "tytul": "Gniazdo: przycięcie końca zwoju [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M6eFpEZceQu2Qyp6m",
+   "tytul": "Gniazdo: okienko szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "Mhg1TSpC+qHEfR5iF",
+   "tytul": "Gniazdo: żebro szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MoD6G3zNqICSLavuB",
+   "tytul": "Gniazdo: strzałka GÓRA szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MdMaCORRRlcL8N6wZ",
+   "tytul": "Gniazdo: bruzda szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MKVGFKMHFyvqi3Sn6",
+   "tytul": "Nakrętka: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MtuWD6br4CL4LID+P",
+   "tytul": "Nakrętka: czoło szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MpLPvur1wPA77ACAT",
+   "tytul": "Nakrętka: radełko szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MQwi5Lq8BKte0Dl5p",
+   "tytul": "Nakrętka: klucz szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MN4aycXYXJjvE9RpN",
+   "tytul": "Kaseta: profil rury [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MIO90WUJMnBqEzHku",
+   "tytul": "Kaseta: występ szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MI0CGss0BqT8Z1TNi",
+   "tytul": "Kaseta: szczelina stopu szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MjRstoYs44jO9BVYz",
+   "tytul": "Kaseta: kanał kołka szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MT1VE2xXkbUIUZFZ1",
+   "tytul": "Kaseta: oś szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M7lna5B+reTjaxQx1",
+   "tytul": "Kaseta: oś dół szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M7vuIl60+r7XrUXej",
+   "tytul": "Kaseta: okno SG90 szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MgAriswNngNuauWWC",
+   "tytul": "Kaseta: otwory dolne szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "Mck4/M0FpqKCAz1BK",
+   "tytul": "Kaseta: otwór górny szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M7c5P12qfheyzLsPM",
+   "tytul": "Kaseta: wybranie C szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MBlfkSpYk1fBSJMsp",
+   "tytul": "Kaseta: rowek szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MYwDdHHI5/a20svVV",
+   "tytul": "Kaseta: fazki rowka szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MN3+uARqJF7rsfbnx",
+   "tytul": "Kaseta: ucho szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MYzdR1zB6hrMyw9xq",
+   "tytul": "Kaseta: wkładki szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M3/GQDcZzAlaqaPEp",
+   "tytul": "Kaseta: koniec zaczepu szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MHipEHf1dXAR+2wgY",
+   "tytul": "Kaseta: pocienienie zaczepu szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MSy68tg/7S6hq2c/h",
+   "tytul": "Kaseta: szczelina skośna szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MnKSO+IMIdNzgEOuC",
+   "tytul": "Kaseta: szczelina tylna szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M7wDXP/+qR4mOdAFW",
+   "tytul": "Kaseta: haczyk szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MmprHYZla+Xb+/QV6",
+   "tytul": "Kaseta: pogrubienie H szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MflldAEKRKR/uDSzu",
+   "tytul": "Kaseta: wybranie H szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M4UnGXNdLlWUzfhAy",
+   "tytul": "Kaseta: blok serwa szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "Mw4jXvvYzngP7JfYK",
+   "tytul": "Kaseta: wkręty serwa szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MICdVLnqRHiLA4e2u",
+   "tytul": "Jarzmo: profil pasa [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M3lUmuMA59dVBCyux",
+   "tytul": "Jarzmo: przycięcie szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MWehIQVUx4YblzYAQ",
+   "tytul": "Jarzmo: oczko szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MJMA+v8MaElprTOX7",
+   "tytul": "Jarzmo: kołek szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M9e/tuF1vAMt/uRTR",
+   "tytul": "Jarzmo: korba szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MZRZ0f4CXvv8JT9fn",
+   "tytul": "Jarzmo: kula wnętrza szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M+4C7YXVhQM7HU3Md",
+   "tytul": "Ramię: płyta szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MecPYpzut2Lw4q/Lp",
+   "tytul": "Ramię: rama orczyka szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MEtHSsutaagqLLZPu",
+   "tytul": "Ramię: kieszeń orczyka szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "Mvqi2vzZatL4QPRtK",
+   "tytul": "Cięgno: płyta szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MJ4/+v1Evf2Ke0+ys",
+   "tytul": "Cięgno: podniesienia szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MhHw7Ip+KGhPZC9RZ",
+   "tytul": "Cięgno: wkładki szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "M0aSD/btPbxcovy4A",
+   "tytul": "Tulejka korby: kołnierz szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MdUTm6uI4z8r7gz2k",
+   "tytul": "Tulejka korby: trzon szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MKT/kBA7NECcq8uZs",
+   "tytul": "Pokrywa: płyta szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "id": "MQiC+kdnLblVnhfQm",
+   "tytul": "Klamra H: profil szkic [Sketch] (Hidden)",
+   "niedookreslony": false
+  }
+ ]
+}
