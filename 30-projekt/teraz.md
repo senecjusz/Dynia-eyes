@@ -81,6 +81,8 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 ## E5: v2.8 po montażu v2.7
 
 - [ ] E5.1 Kaseta (blok przedni) i Klamra H: otwory ciasne Ø2,6 na całą długość pod M3×10 do uszu SG90, bez kanału na wkręt wstępny (decyzja 21.10).
+- [ ] E5.2 Kaseta: ucha Pokrywy bez wkładek – otwór ciasny Ø2,6 pod M3×8 przez Pokrywę (decyzja 21.10).
+- [ ] E5.3 Instrukcja v2.8: M3×10 w uszach serwa, M3×8 Pokrywy w plastik (bez wtapiania), piłeczka na M3×10 w nawierconych biegunach + CA z primerem (jak wiercić bieguny).
 
 ## Epiki później
 
@@ -95,7 +97,6 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 - `AGENTS.md`: stan OK z odpowiedzi zapisu nie wyłapuje ostrzeżeń (np. „missing selection”); kontrola musi czytać też ikony ostrzeżeń w drzewie.
 - `30-projekt/plan-powrot-do-onshape.md`: obaj recenzenci uznali go za nie do realizacji; dopisać adnotację albo usunąć.
 - Dublety w `30-projekt/decyzje.md`.
-- Oś oka i piłeczka: użytkownik złożył v2.5 na M3×10 wkręconych w nawiercone bieguny + CA z primerem (trzyma). Do decyzji: piłeczka na śrubach jako rozwiązanie docelowe, dobór śrub (zamówione M3×6) i `lebH`; bruzdy w Gnieździe (E4.1) przyjmują wyższe łby.
 - Napęd symetryczny (pomysł użytkownika), po wydruku modułu.
 - Firmware, koncepcja zachowania (użytkownik 20.10): spoczynek – duże oko zamknięte, co ok. 5 s rusza się jedno małe oko; ktoś bliżej niż ok. 1 m (czujnik zbliżeniowy zamiast radaru) – rusza się więcej oczu, najwyżej 2 małe mechanizmy naraz, na zmianę, a duże oko otwiera się i rusza losowo góra–dół i lewo–prawo (2 serwa jednocześnie) – razem do 3 serw w ruchu, plus serwo powieki dużego oka przy otwieraniu. Opcjonalnie sterowanie dużym okiem z telefonu (strona na ESP32, Wi-Fi). Zasilanie: powerbank przez gniazdo USB-C (breakout z 5,1 kΩ na CC) do V+ PCA9685 i 5V ESP; szacunek średnio ok. 0,3–0,4 A, chwilowo do ok. 1 A przy 3–4 serwach w ruchu (port 3 A wystarcza), Baseus 20 000 mAh na ok. 30–40 h.
 - Kopia researchu Gemini na dysk sieciowy.
