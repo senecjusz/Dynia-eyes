@@ -152,6 +152,8 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 **Sprawdź:** dźwigienka siedzi bez luzu; mały błąd środka poprawi później kalibracja w ESP32.
 
+> **Ważne (montaż 21.10):** dźwigienkę nasadzaj na **goły wałek przy serwie zasilonym impulsem 1500 µs**, a mechanizm ustaw w położeniu z rysunku w „Pozycja zero i kalibracja”: otwarte „V” Ramienia i Cięgna z przegubem H po prawej (patrząc od tyłu). Czworobok da się złożyć na dwa sposoby; w drugim przegub H się składa, Ramię kładzie się na Cięgnie i serwo blokuje mechanizm. Jeśli po złożeniu środek wypada daleko od 1500 µs albo ruch w jedną stronę jest krótki – zdejmij Ramię z wałka (wkręt środkowy przez okno) i nasadź ponownie według tej zasady.
+
 ## Krok 5. Skręć napęd na stole (może zrobić syn, nakrętki rodzic)
 
 ![Napęd skręcany na stole: śruby z tulejkami od spodu, Cięgno, podkładki i nakrętki od góry](montaz-v2.7/05_naped_na_stole.png)
@@ -223,9 +225,22 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 Wciśnij oba haczyki przez okienka Gniazda i wyciągnij Kasetę do tyłu (albo Widelcem z v2.4).
 
+## Pozycja zero i kalibracja
+
+![Pozycja zero mechanizmu – widok z góry](montaz-v2.7/pozycja_zero.svg)
+
+*Oko na wprost: Ramię od wałka do przodu i lekko w prawo, przegub H ok. 9 mm na prawo od środka, Cięgno z H w lewo do przegubu C na korbie Jarzma. „V” Ramienia i Cięgna otwarte, wierzchołek w prawo.*
+
+Kalibracja programem `50-elektronika/kalibracja` (port szeregowy 115200; po włączeniu serwo jest bez impulsu i się nie rusza):
+
+1. Nie przesuwaj oka ręką przy zasilonym serwie i nie używaj `off` w trakcie – serwo nie zna swojej pozycji, więc następny impuls skoczy.
+2. Pierwsza komenda: `1500` (przy dźwigience nasadzonej jak w Kroku 4 oko stoi na wprost).
+3. Ruch sprawdzaj płynnie: `g 1350 4000`, `g 1650 6000`, `g 1500 4000`, potem szerzej `g 1200 5000`, `g 1800 8000`.
+4. Krańce: pierwszy moduł (21.10) chodził płynnie w ±300 µs wokół 1500; w programie ruchu `oczy-ruch` zakres ±25° serwa (±278 µs). Środek każdego oka zapisz (`k<nr> <µs>` w `oczy-ruch`).
+
 ## Sprawdzenie na koniec
 
-- Zakres pracy w programie ESP32 najwyżej **±30°** (przy ±33° oko stoi na ograniczniku, a nakrętka przegubu H ma tylko 0,27 mm do ścianki).
+- Zakres pracy w programie ESP32: ±25° serwa (±278 µs) wokół środka, najwyżej **±30°** oka (przy ±33° oko stoi na ograniczniku, a nakrętka przegubu H ma tylko 0,27 mm do ścianki).
 - Oko chodzi płynnie, przeguby się nie zacinają, nakrętki nie ocierają.
 - Serwo nie kiwa się w Kasecie.
 - Kaseta trzyma się w Gnieździe na obu zaczepach.

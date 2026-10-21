@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" font-family="Noto Sans, DejaVu Sans, sans-serif">
+<rect width="680" height="520" fill="#ffffff"/>
+<rect x="218.75" y="60" width="242.5" height="380" rx="6" fill="none" stroke="#888780" stroke-width="1.5"/>
+<circle cx="340" cy="112.5" r="100" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="310.5" y="299.5" width="59" height="112.5" rx="4" fill="none" stroke="#378ADD" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="340" y1="112.5" x2="303.1" y2="233.2" stroke="#7F77DD" stroke-width="7" stroke-linecap="round"/>
+<line x1="303.1" y1="233.2" x2="386.2" y2="255.6" stroke="#1D9E75" stroke-width="7" stroke-linecap="round"/>
+<line x1="340" y1="382.5" x2="386.2" y2="255.6" stroke="#D85A30" stroke-width="7" stroke-linecap="round"/>
+<circle cx="340" cy="112.5" r="7" fill="#5F5E5A"/><circle cx="303.1" cy="233.2" r="7" fill="#5F5E5A"/><circle cx="386.2" cy="255.6" r="7" fill="#5F5E5A"/><circle cx="340" cy="382.5" r="8" fill="#378ADD"/>
+<g font-size="13" fill="#3d3d3a">
+<text x="340" y="44" text-anchor="middle">przód: piłeczka patrzy prosto</text>
+<text x="340" y="462" text-anchor="middle">tył: Pokrywa (patrzysz stąd)</text>
+<text x="205" y="250" text-anchor="end" font-weight="600">lewo</text>
+<text x="475" y="250" font-weight="600">prawo</text>
+<text x="355" y="108">oś oka</text>
+<text x="290" y="170" text-anchor="end">korba Jarzma</text>
+<text x="292" y="238" text-anchor="end">przegub C</text>
+<text x="340" y="226" text-anchor="middle">Cięgno</text>
+<text x="400" y="262">przegub H</text>
+<text x="372" y="322">Ramię</text>
+<text x="352" y="398">wałek serwa (1500 µs)</text>
+<text x="340" y="500" text-anchor="middle">Widok z góry przez okno; lewo i prawo jak patrząc od tyłu. Wierzchołek „V” w H wskazuje w prawo.</text>
+</g>
+</svg>

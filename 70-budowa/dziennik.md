@@ -57,3 +57,10 @@
 - Sanki serwa: otwory na wkręty uszu wychodzą ok. 1 mm; okno Sanek nie ma miejsca na wyjście kabla (serwo trzeba wkładać ukośnie); Sanek nic nie trzyma od ściany do środka i wpadają do Kasety → osadzenie serwa na szynach z przednim wkrętem i klamrą H z tyłu (E4.2). Użytkownik złożył serwo wałkiem do przodu (model zakłada wałek z tyłu); w takim złożeniu kabel wychodzi z przodu, na zewnątrz Kasety, i okno w Pokrywie jest zbędne.
 - Ucha Pokrywy wystają poza obrys Kasety → do środka (E4.2b).
 - Instrukcja montażu: łączenie przegubów w środku rury jest niewykonalne; napęd skręcać na stole (E4.3).
+
+## 2026-10-20/21 – v2.6, v2.7 i pierwszy działający moduł
+- v2.6 (E4: Gniazdo z bruzdami i mniejszym rantem, Kaseta z blokiem serwa i oknem, Klamra H, Pokrywa krążek, wkładki Ø4,4) zbudowana przez wykonawcę, dwa review (projekt i siatki, Fable + Astra), poprawki, wydrukowana 20.10. v2.7 = v2.6 + Cięgno na nakrętkach samohamujących M3 z podkładką (E4.4), dodrukowane Cięgno.
+- Montaż 21.10: pierwszy moduł złożony w całości (bez Gniazda w dyni). Instrukcja `70-budowa/montaz-v2.7.md` z renderami.
+- Kalibracja: po pierwszym złożeniu przy 1500 µs oko stało na lewym oporze, a ruch w prawo składał przegub H (Ramię kładło się na Cięgnie) – czworobok był w drugim położeniu, a dźwigienka nasadzona przy nieustalonym położeniu serwa. Po zdjęciu Ramienia, ustawieniu serwa na 1500 µs i nasadzeniu w położeniu „otwarte V, H po prawej” środek = 1500 µs, ruch płynny w ±300 µs. Ocieranie o ściankę Kasety wynikało ze złego położenia mechanizmu, nie z geometrii.
+- Program `50-elektronika/oczy-ruch` (sakady, fiksacje, tryby spoczynek/aktywny, limit jednoczesnych ruchów; wzorowany na ServoPumpkin, `10-inspiracje/servo-pumpkin-pythoncader.md`) na pierwszym module: „fajnie to wygląda”. Zakres ±25° serwa.
+- Wnioski: przy kalibracji serwo startuje bez impulsu i rusza się płynnie (komenda `g`); SG90 nie zna swojej pozycji, więc nie przesuwać oka ręką przy zasilonym serwie.
