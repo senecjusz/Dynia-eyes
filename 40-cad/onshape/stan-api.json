@@ -1,6 +1,6 @@
 {
   "zadanie": "E2.0 probka gwintu 45, etap 2 (budowa szesciu brył wg e2.0-etap1b.md)",
-  "zapis": "2026-10-20, wykonawca CAD: E4.4 Ciegno v2.6b zbudowane, 13 wywolan, rok 541",
+  "zapis": "2026-10-21, wykonawca CAD: E5 v2.8 zbudowane, 17 wywolan, rok 558",
   "sumaWywolanRok": {
     "total": 131,
     "features": 70,
@@ -4389,5 +4389,173 @@
     },
     "mv": "580c339a24ee05697ae87f5f",
     "rokPo": 541
+  },
+  "e5": {
+    "zadanie": "E5 v2.8: uszy SG90 na M3x10 w otworach Ø2.6 bez kanalu, ucha Pokrywy M3 w plastik bez wkladek, luzKorpusSerwa 0.4 (wariant b)",
+    "budzet": {
+      "total": 30,
+      "getFeatures": 2
+    },
+    "n": {
+      "total": 17,
+      "features": 7,
+      "getFeatures": 2
+    },
+    "rokPrzed": 541,
+    "rokPo": 558,
+    "stop": {
+      "powod": "microversion b6b8da2d95cf5ddec6e1a492 zamiast 580c339a24ee05697ae87f5f",
+      "rozstrzygniecie": "orkiestrator +1 GET /features; drzewo = c301a06e + znane zmiany E4.4, VS sha256 zgodny (df2871ad...) -> stan wyjsciowy przyjety; w karcie Gniazdo i Pokrywa ukryte"
+    },
+    "uwaga": "Zmiana microversion bez zmian modelu jest prawdopodobna (zwijanie/rozwijanie folderow w drzewie, widocznosc Show/Hide, eksport uzytkownika). Ustalenie z orkiestratorem: nastepne zadanie zaczyna od jednego GET /features jako stanu wyjsciowego.",
+    "log": [
+      [
+        "19:52:37",
+        "GET /documents/currentmicroversion",
+        200,
+        400,
+        1
+      ],
+      [
+        "19:53:12",
+        "GET /partstudios/features -> odbior-v2.8/features-b6b8da2d.json",
+        200,
+        100,
+        1
+      ],
+      [
+        "19:53:12",
+        "GET /variables",
+        200,
+        3000,
+        1
+      ],
+      [
+        "19:53:47",
+        "POST /variables krok 1/2",
+        204,
+        3000,
+        1
+      ],
+      [
+        "19:53:49",
+        "POST /variables krok 2/2",
+        204,
+        2999,
+        0
+      ],
+      [
+        "19:53:49",
+        "GET /documents/currentmicroversion",
+        200,
+        400,
+        0
+      ],
+      [
+        "19:53:53",
+        "DELETE featureid Fqp410OxGn40AIJ_10 (Kaseta: fazka kanalu wkretu)",
+        200,
+        2998,
+        1
+      ],
+      [
+        "19:53:54",
+        "DELETE featureid FKJzGbQ45ghU5aX_9 (Kaseta: kanal wkretu)",
+        200,
+        2997,
+        0
+      ],
+      [
+        "19:53:54",
+        "GET /documents/currentmicroversion",
+        200,
+        399,
+        0
+      ],
+      [
+        "19:54:12",
+        "POST featureid FAlPtEGCBevAkYk_9 Kaseta: wkrety serwa szkic OK",
+        200,
+        2996,
+        1
+      ],
+      [
+        "19:54:13",
+        "POST featureid FNOUuTfmPjqbvI9_3 Kaseta: otwory srub Pokrywy OK",
+        200,
+        2995,
+        0
+      ],
+      [
+        "19:54:14",
+        "POST featureid F1WDG2lBcN2zQt4_10 Klamra H: fazki wejsciowe (z -72.3) OK",
+        200,
+        2994,
+        0
+      ],
+      [
+        "19:54:24",
+        "POST /variables krok 3 (-10 zmiennych, 373)",
+        204,
+        2993,
+        0
+      ],
+      [
+        "19:54:24",
+        "GET /documents/currentmicroversion",
+        200,
+        398,
+        0
+      ],
+      [
+        "19:54:25",
+        "GET /partstudios/features (featureStates)",
+        200,
+        99,
+        0
+      ],
+      [
+        "19:54:27",
+        "GET /partstudios/bodydetails",
+        200,
+        500,
+        1
+      ],
+      [
+        "19:54:28",
+        "GET /partstudios/massproperties",
+        200,
+        3000,
+        1
+      ]
+    ],
+    "szkice": [
+      {
+        "nazwa": "Kaseta: wkręty serwa szkic",
+        "featureId": "FAlPtEGCBevAkYk_9",
+        "dataId": "Mw4jXvvYzngP7JfYK",
+        "podpowiedz": "Kaseta: wkręty serwa szkic [Sketch] (Hidden)",
+        "niedookreslony": false
+      }
+    ],
+    "pomiary": {
+      "otworPrzedni": "R1.3 y -17.6..-25.6 z -45.45..-48.05; scianki tyl 0.95, boki 1.45, przod 0.25 przy siedzisku (1:1 po skosie), dno 1.65",
+      "klamra": "czolo z -72.3, otwor R1.3 z -73.25..-75.85 y -17.6..-25.6; przod 0.95, tyl 1.65",
+      "ucha": "R1.3 z -77.5..-71.9 + stozek do -71.12, oba; dno do skosu 1.48",
+      "korpus": "0.4 przod i tyl",
+      "V": {
+        "JID": 28880.39,
+        "JzD": 7383.37,
+        "RBED": 407.99,
+        "RJDD": 1822.63,
+        "RJED": 76.78,
+        "RQED": 76.78,
+        "RTED": 6947.17,
+        "RUBD": 35112.19,
+        "RYED": 1068.07,
+        "RuDD": 793.76
+      }
+    },
+    "mv": "419915cbeab1399955e0f51f"
   }
 }
