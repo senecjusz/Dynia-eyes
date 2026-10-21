@@ -10,10 +10,10 @@ Płytka stykowa, widok z góry: ESP32-C3 USB w prawo, złącze sterujące PCA968
 | 2 | SCL | GPIO9 | |
 | 3 | SDA | GPIO8 | GPIO8 to też niebieska dioda na płytce |
 | 4 | VCC | 3V3 | logika 3,3 V; nie 5 V, bo pull-upy I²C na PCA ciągną do VCC |
-| 5 | V+ | 5V | zasilanie serw z USB, tylko przy jednym serwie |
+| 5 | V+ | 5V | zasilanie serw z USB płytki – najwyżej 2 × SG90; więcej serw: osobne 5 V na V+ (gniazdo USB-C z powerbanku), masa wspólna, kondensator 470–1000 µF przy PCA9685; nie zasilać ESP jednocześnie z USB komputera i z pinu 5V |
 | – | OE | – | wolne |
 
-Serwo SG90 w kanale 0: pomarańczowy → PWM, czerwony → V+, brązowy → GND.
+Serwo SG90 w kanale 0 (drugi moduł do testu 24 h w kanale 1): pomarańczowy → PWM, czerwony → V+, brązowy → GND.
 
 Adresy I²C ze skanu: 0x40 (PCA9685), 0x70 (adres „all call” PCA9685).
 
@@ -28,6 +28,10 @@ arduino-cli upload -p /dev/ttyACM0 -b esp32:esp32:esp32c3:CDCOnBoot=cdc 50-elekt
 
 - `blink/`: dioda na GPIO8 (świeci stanem niskim), co 0,5 s.
 - `skan-i2c/`: skan magistrali co 2 s.
-- `test-serwa/`: kanał 0, środek 1500 µs i 5 s postoju (ustawienie dźwigienki), potem ±30° (1167–1833 µs) w pętli, 60° w ok. 3,3 s.
+- `test-serwa/`: kanał 0, środek 1500 µs i 5 s postoju, potem ±30° (1167–1833 µs) w pętli, 60° w ok. 3,3 s. **Nie do nasadzania dźwigienki** – po 5 s serwo rusza; do tego służy `kalibracja/` (komenda `1500`).
+- `kalibracja/`: kanał w stałej `KANAL` (0 = pierwszy moduł; dla drugiego zmienić na 1). Po włączeniu serwo **bez impulsu**. Komendy (115200): liczba = impuls w µs, `+`/`-` ±10, `++`/`--` ±50, `g <cel> <ms>` płynny ruch, `?` stan, `off` bez impulsu. Po `off` albo ręcznym przesunięciu oka następny `g` startuje od ostatniego zadanego impulsu, więc serwo skacze. Sterowanie z terminala: `newgrp uucp`, potem `arduino-cli monitor -p /dev/ttyACM0 -c baudrate=115200`. Monitor zajmuje port – przed wgrywaniem zamknij go (Ctrl+C).
+- `oczy-ruch/`: ruch oczu (sakada ze smoothstep, fiksacja 0,4–1,8 s aktywnie / 1,5–6 s w spoczynku, najwyżej 2 naraz), zakres ±25° serwa (±278 µs) wokół `srodekUs` 1500; `N_OCZU` 1; czujnik na `PIN_CZUJNIK` (−1 = brak). Komendy: `a` aktywny, `s` spoczynek, `c` stop na środku, `r` wznów, `k<nr> <µs>` środek oka (tylko do restartu; trwale – stała `srodekUs` w kodzie). Po włączeniu serwa od razu dostają impuls środka (bez łagodnego rozruchu).
+- `test-powerbank/`: 7 faz po 3 min, zapis w NVS co 5 s; po zaniku zasilania następne włączenie zaczyna od następnej fazy. Przed testem: podłącz do komputera, w ciągu 3 s otwórz monitor, `r` + Enter kasuje stare przebiegi. Test: ESP zasilany z powerbanku kablem USB-C, serwo na kanale 0 (V+ z pinu 5V). Odczyt: monitor w ciągu 3 s od podłączenia do komputera; bez monitora płytka zacznie nowy przebieg, ale stare zapisy zostają.
+- `test-24h/`: `oczy-ruch` stale aktywny na kanałach 0 i 1, dziennik w NVS co 60 s (czas pracy, ruchy, starty, przyczyna restartu: 1 zasilanie, 9 brownout, 4–7 watchdog/panika). Środek każdego oka: `k<nr> <µs>` zapisuje go w NVS i program czyta go po każdym starcie (bez zapisu 1500 µs). Przed startem `k0 <µs>`, `k1 <µs>` według kalibracji każdego modułu, `l` (sprawdza środki), potem `z` (zeruje dziennik, środków nie kasuje); po teście `l`. Zawieszenie bez restartu widać jako czas pracy krótszy niż czas testu (watchdog nie jest włączony).
 
 Linux: port `/dev/ttyACM0` należy do grupy `uucp`. Bez ponownego logowania wgrywa się przez `newgrp uucp`. Każdy szkic ma `Serial.setTxTimeoutMs(0)`, bo bez tego wypisywanie na port USB, którego nikt nie czyta, spowalnia pętlę (Blink migał co ok. 5 s).

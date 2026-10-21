@@ -70,3 +70,15 @@ Typowy port USB-A daje 2,1–3 A przy 5 V, co jest OK dla serw, jeśli program p
 - **Napięcie:** Nano i przecięty kabel do PCA9685 niczego nie negocjują, więc porty dają **5 V**. Nie podłączać serw przez „inteligentne” kable ani triggery PD.
 - **Propozycja:** **Baseus jako główny** (3 porty, mniejszy, znane wymiary), **Manta jako zapas** na zmianę.
 - **Tryb niskiego poboru:** dla żadnego nie jest potwierdzony. Do sprawdzenia testem: Nano + PCA9685 + serwa w spoczynku przez 5 min. Jeśli powerbank zgaśnie, w programie dodajemy impuls podtrzymujący.
+
+## Uzupełnienie 20.10
+
+Kontroler to dziś ESP32-C3 SuperMini, nie Nano; decyzja o zasilaniu: `30-projekt/decyzje.md`, wiersz 20.10 „Zasilanie: powerbank …”.
+
+- **ESP32-C3:** ok. 20 mA bez Wi-Fi, 80–100 mA w trybie AP (dane katalogowe, nie pomiar).
+- **1 serwo prawie stale w ruchu:** razem ok. 0,3–0,4 A (szacunek).
+- **Baseus 20 000 mAh (ok. 74 Wh):** wystarcza na ok. 30–40 h (szacunek).
+- **Auto-wyłączenie** poniżej ok. 50–100 mA sprawdza test E5.5 (`50-elektronika/test-powerbank`).
+- **Gniazdo USB-C na obudowie** (breakout) wymaga rezystorów 5,1 kΩ na CC1/CC2 – bez nich powerbank z USB-C może nie podać napięcia. Z gniazda do V+ PCA9685 i 5V ESP, masa wspólna.
+- **Porównanie z alternatywami:** NiMH 4,8 V 2400 mAh – ok. 1 dzień; 4 × C 5000 mAh – ok. 24 Wh, potrzebny koszyk i ładowarka, ok. 190 zł. Zakup NiMH niepotrzebny; zapasu szukamy dopiero, gdy powerbank nie przejdzie testu.
+- **Akumulator 12 V odrzucony** przez użytkownika (bezpieczeństwo, dziecko 8 lat).

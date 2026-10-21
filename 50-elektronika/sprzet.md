@@ -7,21 +7,23 @@
 | **ESP32-C3 SuperMini (V1601)** – kontroler | 1 | Wi-Fi (kalibracja przez telefon), I²C do PCA9685 (typowo GPIO8 SDA / GPIO9 SCL), drugi sprzętowy UART na radar LD2450, USB w układzie. Logika 3,3 V. Piny startowe 2, 8, 9 – nie ciągnąć do masy przy starcie. Piny do wlutowania |
 | NodeMCU v3 LoLin (ESP8266, CH340G) – zapas | 1 | Wi-Fi, ale jeden sprzętowy UART (zajęty przez USB) – słabo pod radar LD2450 |
 | Arduino Nano 3.0 (ATmega328, CH340, USB-C, zlutowany) – zapas | 1 | Bez Wi-Fi. Na Windowsie może być potrzebny sterownik CH340 |
-| Sterownik serw PCA9685, 16 kanałów, I²C | 1 | Steruje wszystkimi serwami, Nano wysyła tylko komendy |
-| Serwo SG90 9 g | 8 | 4 szt. od MicroChipCompany + 4 szt. od OMEGA_ZONE. **Kabel wychodzi u dołu krótszego boku, od strony wałka** – uwzględniać w CAD |
+| Sterownik serw PCA9685, 16 kanałów, I²C | 1 | Steruje wszystkimi serwami, ESP32-C3 wysyła tylko komendy (I²C) |
+| Serwo SG90 9 g | 8 | 4 szt. od MicroChipCompany + 4 szt. od OMEGA_ZONE. **Kabel wychodzi u dołu krótszego boku, od strony wałka** – uwzględniać w CAD. Wymiary różnią się między dostawcami – przed serią zmierzyć każdego (Parking w `teraz.md`; kieszeń v2.8 ma 0,4 z każdej strony) |
 | Czujnik ruchu PIR HC-SR501 | 1 | Wystarczy do „ktoś podszedł → oczy się budzą”, nie do śledzenia kierunku |
 | Piłeczki pingpongowe | ✓ | Małe oczy (Ø 40 mm) |
 | Przegub 3 mm i 5 mm | ✓ | Do dużego oka – do doprecyzowania: przegub kulowy czy kardan, osobne sztuki czy jeden 3→5 mm |
 | Drut sprężysty | ✓ | Awaryjnie na popychacze – preferujemy części drukowane |
 | Warsztat Arduino / ESP32 | ✓ | Dużo modułów – przed zakupem czegokolwiek sprawdzić, czy już jest |
 | Arduino Uno, Arduino Mega, ESP32, Raspberry Pi | ✓ | Zapas, gdyby Nano nie wystarczyło (pamięć) – PCA9685 przez I²C działa z każdym |
-| Powerbank Baseus Airpow PPAP20K, 20 000 mAh, 3 porty | 1 | Główne zasilanie (propozycja) |
-| Powerbank Manta MPB2001S Sunny, 20 000 mAh, 2 porty | 1 | Zapas na zmianę |
+| Powerbank Baseus Airpow PPAP20K, 20 000 mAh, 3 porty | 1 | Główne zasilanie (decyzja 20.10). Przed wystawą: test podtrzymania (E5.5) |
+| Powerbank Manta MPB2001S Sunny, 20 000 mAh, 2 porty | 1 | Zapas na zmianę. Przed wystawą: test podtrzymania (E5.5) |
 | Przepusty kablowe szczelne **PG9** | ✓ | Do pudełka elektroniki (kabel Ø ~4–8 mm, otwór montażowy ~15,2 mm) |
 | Otwornice: **45, 50, 56, 62 mm** (stałe), **nastawna do 64 mm**, maks. **80 mm** | ✓ | Otwory w dyni – projektować pod te średnice |
 | Drukarki 3D: Bambu Lab **A1 mini** (stół 180 × 180 × 180) i **X1 Carbon** (256 × 256 × 256) | 2 | Duże części (pudełko-wieża) na X1C |
 | Śruby M3 / M4 / M5, 8–50 mm, nakrętki | komplet | Można zakładać dowolną potrzebną śrubę i nakrętkę (M5 bez najkrótszych 6 mm) |
-| Wkładki gwintowane do wtapiania | zestaw 360 szt. (M2–M6, 1/4"), podwójne radełko; M3: 4×5 / 5×5 / 6×5 (długość × Ø), po 30 szt. | Do gwintów wielokrotnie skręcanych. M3×4×5 w modelu: gniazdo `wkladkaD` 4,4 (decyzja 20.10) |
+| Nakrętki samohamujące M3 (z nylonem) i podkładki M3 (Ø7) | ✓ | Przeguby C i H modułu oka (v2.7+), użyte 21.10 |
+| Wkręty M2×6 krzyżakowe | ✓ | Dźwigienka do Ramienia i wkręt środkowy w wałek SG90 (jedyne M2 w module v2.8) |
+| Wkładki gwintowane do wtapiania | zestaw 360 szt. (M2–M6, 1/4"), podwójne radełko; M3: 4×5 / 5×5 / 6×5 (długość × Ø), po 30 szt. | Do gwintów wielokrotnie skręcanych. Od v2.8 moduł oka nie ma wkładek (śruby M3 wprost w plastik, decyzje 21.10); M3×4×5 z gniazdem `wkladkaD` 4,4 były w v2.6–v2.7 |
 
 ## Zamówione (w drodze)
 
@@ -34,7 +36,7 @@
 
 | Część | Do czego | Poziom |
 |---|---|---|
-| Kabel USB → zaciski (do V+ PCA9685) | Powerbank: port 1 → Nano, port 2 → serwa ([analiza](../20-analizy/2026-10-17-zasilanie-powerbank.md)) | 1 |
+| Gniazdo USB-C (breakout) z 5,1 kΩ na CC1/CC2 + przewody do V+ i 5V | Zasilanie z powerbanku, wymiana bez narzędzi (decyzja 20.10, [analiza](../20-analizy/2026-10-17-zasilanie-powerbank.md)) – **sprawdzić, czy jest w warsztacie** | 1 |
 | Kondensator elektrolityczny 470–1000 µF / ≥10 V | Na zasilanie serw przy PCA9685 – tłumi spadki napięcia przy ruchu wielu serw | 1 |
 | Przewody dupont (F-F, M-F), ewentualnie przedłużacze serw | Połączenia; serwa w dyni mogą być dalej od płytki | 1 |
 | Coś na duże oko (np. większa piłka lub wydruk półkuli) | Duże oko | 2 |

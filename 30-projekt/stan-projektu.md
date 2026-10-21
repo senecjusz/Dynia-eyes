@@ -1,27 +1,20 @@
-# Stan projektu – przekazanie do Warszawy (2026-10-18, późny wieczór)
+# Stan projektu (2026-10-21, wieczór)
 
-Dla orkiestratora, który przejmuje projekt w Warszawie. Zasady pracy: `AGENTS.md`.
+Krótki stan dla orkiestratora, który zaczyna sesję. **Pełne przekazanie: `30-projekt/przekazanie-2026-10-21.md`** (wersje, co działa na sprzęcie, kolejka, wykonawca, pułapki, zasady, których pilnuje użytkownik). Braki w dokumentacji sesji 19–21.10 i ich poprawki: `20-analizy/2026-10-21-audyt-dokumentacji-sesji.md`. Agenda: `30-projekt/teraz.md`.
 
 ## Gdzie jesteśmy
 
-- **Małe oko, moduł v2.5** (19.10): model parametryczny w Onshape, dokument „Oko F v2.5”; po review i poprawkach E2.1c wszystkie 10 części do druku (`40-cad/3mf/Oko F v2.5/`). Instrukcja montażu: `70-budowa/montaz-v2.5.md`. Kontroler: ESP32-C3 SuperMini.
-- **Źródło prawdy o modelu (od 19.10):** Onshape, dokument SimpleEye; v2.5 powstaje w nim przez przebudowę. `40-cad/solidcraft/oko-f-v2.4.solidcraft` to archiwum i wzorzec wymiarów v2.4.
-- **Historia wersji:** v1 → v1.1 (wydruk testowy) → v2 → v2.1 → v2.1b/c/d → v2.2 (pierwsza składalna, gniazdo + kaseta) → v2.3 (SolidCraft) → v2.4 (po review) → v2.5 (do zrobienia). Każda wersja przeszła review Opus + Codex.
-- **Wydruki:**
-  - próbka gwintu 45° v2.2: luz OK,
-  - próbka gwintu ISO M63×3 (v2.3/v2.4): do wydruku (nakrętki z luzem 0,3 / 0,45 / 0,6).
+- **Model:** Onshape, dokument **„Oko F v2.5”** (folder Halloween) zawiera dziś stan **v2.8**. SimpleEye i `40-cad/solidcraft/` to archiwum. Eksporty: `40-cad/3mf/Oko F v2.x/`, do druku plik `… - FullProject.3mf`.
+- **Wersje:** v2.5 (19.10) wydrukowana i złożona → wady → v2.6 (20.10, wydrukowana) → v2.7 (Cięgno na nakrętkach, dodrukowane) → **v2.8** (21.10: M3 w uszach SG90 i w Pokrywie, bez wkładek; eksport sprawdzony; do druku Kaseta i Klamra H, wydruk niepotwierdzony).
+- **Pierwszy moduł** (21.10): złożony z v2.6 + Cięgno v2.7, skalibrowany (środek 1500 µs, dźwigienka nasadzona przy 1500 µs w położeniu „otwarte V”), działa z programem `oczy-ruch`. Gniazda w dyni nie sprawdzano.
+- **Elektronika:** ESP32-C3 SuperMini + PCA9685 + SG90 (`50-elektronika/polaczenia.md`). Zasilanie docelowe: powerbank przez USB-C (decyzja 20.10).
+- **API Onshape:** 558 wywołań w roku (`40-cad/onshape/stan-api.json`).
 
 ## Następne kroki
 
-Epiki, bieżące zadanie i parking: `30-projekt/teraz.md`. Tam jest jedyna agenda projektu.
+Bieżące zadanie i kolejka są w `30-projekt/teraz.md` (E5): instrukcja v2.8 do commita, test powerbanku (E5.5), drugi moduł (E5.7), test 24 h na dwóch modułach (E5.6), stanowisko i tabela kalibracji (E5.4).
 
-## Sesje Claude (komputer w Kobyłce)
+## Sesje
 
-| Sesja | Rola | Stan |
-|---|---|---|
-| Orkiestrator (sesja główna, od 17.10) | rozmowa z użytkownikiem, review, dokumentacja | **zakończona – orkiestracja przechodzi do Warszawy** |
-| SolidCraft: moduł oka v2.3 (pilotaż) | wykonawca CAD w SolidCraft (GUI w Kobyłce, --control 7878) | v2.4 gotowa; nie zlecać jej już pracy – v2.5 robi nowy wykonawca w Warszawie |
-| Onshape: moduł małego oka v2 ze śrubami | wykonawca CAD w Onshape | w zapasie (v2.2 w Onshape) |
-| Onshape: gniazdo i moduł małego oka (wariant F) | wykonawca v1/v1.1 | zakończona |
-
-Nowy orkiestrator w Warszawie nie ma dostępu do historii tych rozmów. Wszystko, co istotne, jest w repo: ten plik, `AGENTS.md`, `30-projekt/decyzje.md`, `70-budowa/dziennik.md`, `20-analizy/review/`, `30-projekt/plan-v2-modul-oka.md`, `40-cad/solidcraft/README.md`.
+- **Wykonawca CAD:** stała sesja „Wykonawca CAD”, worktree `.claude/worktrees/heuristic-brattain-6e5ce2`, gałąź scalona z `main`, bez zlecenia.
+- Sesje z Kobyłki (SolidCraft, wykonawcy v1–v2.2) są zakończone.

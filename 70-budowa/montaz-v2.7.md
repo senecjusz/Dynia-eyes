@@ -75,7 +75,7 @@ Wkrętów z torebki serwa nie używaj. Śruby z wysokim walcowym łbem (DIN 912,
 
 **Kierunki.** „Od tyłu” = od strony Pokrywy (środek dyni). „Od przodu” = od strony piłeczki. „Od spodu” = od strony serwa. „Góra” = strzałka GÓRA i okno w Kasecie.
 
-**Narzędzia:** imbus 2,0 i długi imbus 2,5, klucz płaski 5,5 (nakrętki), wkrętak krzyżakowy PH0/PH1 długi (przez okno Kasety), lutownica z grotem do wkładek, tester serw albo ESP32 z programem `50-elektronika/test-serwa` (środek 1500 µs), otwornica 2½", suwmiarka, nożyk.
+**Narzędzia:** imbus 2,0 i długi imbus 2,5, klucz płaski 5,5 (nakrętki), wkrętak krzyżakowy PH0/PH1 długi (przez okno Kasety), lutownica z grotem do wkładek, ESP32 + PCA9685 z programem `50-elektronika/kalibracja` (środek 1500 µs, Krok 4), otwornica 2½", suwmiarka, nożyk.
 
 ## Części i ich miejsca
 
@@ -145,14 +145,14 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 ![Dźwigienka na wałek, wkręt środkowy](montaz-v2.7/04_dzwigienka.png)
 
-1. Ustaw serwo na środek: 1500 µs (tester albo `test-serwa`), potem odłącz zasilanie.
+1. Podłącz serwo do kanału PCA9685 (ESP32 + PCA9685 jak w `50-elektronika/polaczenia.md`), wgraj `50-elektronika/kalibracja` z `KANAL` ustawionym na ten kanał, otwórz monitor portu i wyślij `1500`. Serwo trzyma 1500 µs, dopóki program działa. **Nie odłączaj zasilania i nie wysyłaj `off` przez cały czas nasadzania**, aż do końca Kroku 7 (dźwigienka i Ramię przykręcone). **Nie używaj `test-serwa`**: trzyma środek tylko 5 s, potem jedzie ±30° w pętli.
 2. Dźwigienkę przyłóż do kieszeni od spodu Ramienia; jeśli dłuższa niż kieszeń, przytnij obcinaczkami.
-3. Nasadź dźwigienkę na wałek tak, żeby wskazywała **do przodu, ok. 20° w prawo** (patrząc od tyłu Kasety) – w stronę, gdzie stanie przegub H Ramienia.
-4. Wkręć wkręt środkowy M2×6 przez okno w wałek.
+3. Przy serwie trzymającym 1500 µs nasadź dźwigienkę na **goły wałek** tak, żeby wskazywała **do przodu, ok. 20° w prawo** (patrząc od tyłu Kasety) – w stronę, gdzie stanie przegub H Ramienia. To daje położenie „otwarte V, przegub H po prawej, patrząc od tyłu” z rysunku w „Pozycja zero i kalibracja”. Wałka nie obracaj ręką.
+4. Wkręć wkręt środkowy M2×6 przez okno w wałek. Serwo dalej trzyma 1500 µs.
 
-**Sprawdź:** dźwigienka siedzi bez luzu; mały błąd środka poprawi później kalibracja w ESP32.
+**Sprawdź:** dźwigienka siedzi bez luzu i wskazuje do przodu, ok. 20° w prawo; mały błąd środka poprawi później kalibracja w ESP32.
 
-> **Ważne (montaż 21.10):** dźwigienkę nasadzaj na **goły wałek przy serwie zasilonym impulsem 1500 µs**, a mechanizm ustaw w położeniu z rysunku w „Pozycja zero i kalibracja”: otwarte „V” Ramienia i Cięgna z przegubem H po prawej (patrząc od tyłu). Czworobok da się złożyć na dwa sposoby; w drugim przegub H się składa, Ramię kładzie się na Cięgnie i serwo blokuje mechanizm. Jeśli po złożeniu środek wypada daleko od 1500 µs albo ruch w jedną stronę jest krótki – zdejmij Ramię z wałka (wkręt środkowy przez okno) i nasadź ponownie według tej zasady.
+> **Ważne (montaż 21.10):** dźwigienkę (a przy ponownym nasadzaniu Ramię z dźwigienką) nasadzaj na **goły wałek przy serwie trzymającym 1500 µs z programu `kalibracja`** (komenda `1500`, zasilanie przez cały czas nasadzania), w położeniu z rysunku w „Pozycja zero i kalibracja”: otwarte „V” Ramienia i Cięgna z przegubem H po prawej (patrząc od tyłu). Czworobok da się złożyć na dwa sposoby; w drugim przegub H się składa, Ramię kładzie się na Cięgnie i serwo blokuje mechanizm. Jeśli po złożeniu środek wypada daleko od 1500 µs albo ruch w jedną stronę jest krótki – wyślij `1500`, zdejmij Ramię z wałka (wkręt środkowy przez okno) i nasadź ponownie według tej zasady.
 
 ## Krok 5. Skręć napęd na stole (może zrobić syn, nakrętki rodzic)
 
@@ -171,7 +171,7 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 1. Oko na wprost: źrenica do przodu, oczka u góry i u dołu, korba do tyłu. Patrząc w tył Kasety, korba i pas miski są po lewej.
 2. Wsuń Jarzmo od przodu Kasety, lekko przechylone, aż kołki ograniczników wejdą w łukowe szczeliny wokół osi oka. Ramię i Cięgno jadą przodem w głąb rury.
-3. Przy końcu opuść Ramię **kieszenią na dźwigienkę** na wałku.
+3. Przy końcu opuść Ramię **kieszenią na dźwigienkę** na wałku (serwo wciąż trzyma 1500 µs z Kroku 4). Mechanizm w położeniu „otwarte V”, przegub H po prawej (patrząc od tyłu); dźwigienki nie obracaj.
 4. Wkręć śruby osi oka od góry i od dołu, w zagłębienia na łeb (M3×4 grzybkowe albo M3×10 w bieguny piłeczki), bez dociągania.
 
 > **Niesprawdzone:** czy skręcony napęd daje się unieść o ok. 1,6 mm, żeby kieszeń Ramienia weszła na dźwigienkę (Fable szacuje ok. 1,7 mm z luzów przegubów). Jeśli nie wchodzi, poluzuj nakrętkę przegubu H o pół obrotu, nasadź Ramię i dokręć. Wynik zapisz w dzienniku.
@@ -184,7 +184,7 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 1. Przez okno w górnej ściance wkręć M2×6 przez otwór w Ramieniu (13 mm od wałka) w dźwigienkę.
 
-**Sprawdź:** Ramię siedzi na dźwigience bez luzu; przy powolnym ruchu serwa z testera przeguby się nie zacinają, nakrętki nie ocierają o Kasetę.
+**Sprawdź:** Ramię siedzi na dźwigience bez luzu; przy płynnym ruchu z programu `kalibracja` (`g 1350 4000`, `g 1650 6000`, `g 1500 4000`) przeguby się nie zacinają, nakrętki nie ocierają o Kasetę.
 
 ## Krok 8. Pokrywa (może zrobić syn)
 
