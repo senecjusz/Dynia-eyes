@@ -80,8 +80,8 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 
 ## E5: v2.8 po montażu v2.7
 
-- [ ] E5.1 Kaseta (blok przedni) i Klamra H: otwory ciasne Ø2,6 na całą długość pod M3×10 do uszu SG90, bez kanału na wkręt wstępny (decyzja 21.10).
-- [ ] E5.2 Kaseta: ucha Pokrywy bez wkładek – otwór ciasny Ø2,6 pod M3×8 przez Pokrywę (decyzja 21.10).
+- [x] E5.1 Kaseta (blok przedni) i Klamra H: otwory ciasne Ø2,6 na całą długość pod M3×10 do uszu SG90, bez kanału na wkręt wstępny (decyzja 21.10).
+- [x] E5.2 Kaseta: ucha Pokrywy bez wkładek – otwór ciasny Ø2,6 pod M3×8 przez Pokrywę (decyzja 21.10).
 - [ ] E5.3 Instrukcja v2.8: M3×10 w uszach serwa, M3×8 Pokrywy w plastik (bez wtapiania), piłeczka na M3×10 w nawierconych biegunach + CA z primerem (jak wiercić bieguny).
 - [ ] E5.4 Stanowisko kalibracji na stole (przed montażem w dyni): ESP32 + PCA9685, każdy moduł po kolei – Ramię nasadzane przy 1500 µs w pozycji „otwarte V”, płynny test ±300 µs, zapis środka i krańców; numer modułu (naklejka/wytłoczenie na Pokrywie) i tabela `50-elektronika/kalibracja-oczu.md`, z której czyta firmware.
 
