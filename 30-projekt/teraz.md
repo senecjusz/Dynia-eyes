@@ -78,6 +78,10 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 - [x] E4.4 Cięgno na nakrętkach samohamujących (v2.7), brief `30-projekt/brief-e4.4-ciegno-nakretki.md`.
 - [x] E4.3 Instrukcja montażu: napęd (Jarzmo, Cięgno, Ramię, tulejki, śruby przegubów) skręcany na stole, w Kasecie tylko Ramię na wałek i wkręt środkowy przez otwór górny; otwory dolne zostają (decyzja użytkownika). Przyrząd centrowania: jego trzpień nie wejdzie w otwór Ramienia zajęty przez tulejkę – nowy sposób ustawienia środka. Temperatura grota 210–215 °C dla PLA (238 °C rozlało piastę).
 
+## E5: v2.8 po montażu v2.7
+
+- [ ] E5.1 Kaseta (blok przedni) i Klamra H: otwory ciasne Ø2,6 na całą długość pod M3×10 do uszu SG90, bez kanału na wkręt wstępny (decyzja 21.10).
+
 ## Epiki później
 
 Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez telefon; pudełko na elektronikę; duże oko.
