@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E6 – duże oko w nowym dokumencie „Duże oko v1”: brief wykonawcy (E6.2), równolegle pomiar przegubu 5/5 (E6.1, użytkownik). E5 (instrukcja v2.8, testy powerbanku i 24 h, drugi moduł) czeka.
+**Bieżące zadanie:** E6 – duże oko 2c (4 × MG90S, otwór ≤ 80, lekkie mocowanie): koncepcja v2 po review (E6.1), brief CAD i budowa w „Duże oko v1” (E6.2–E6.4). E5 (testy powerbanku i 24 h, drugi moduł) czeka.
 
 ```mermaid
 flowchart TD
@@ -100,15 +100,15 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 - [ ] E5.6 Test 24 h mechaniki (`50-elektronika/test-24h`): dwa moduły na kanałach 0 i 1, zasilacz USB (nie powerbank, chyba że E5.5 wykaże, że trzyma), tryb stale aktywny (ostrzej niż na wystawie). Przed startem środki z kalibracji każdego modułu: `k0 <µs>`, `k1 <µs>` (zapis w NVS), potem `z`. Główne ryzyko według użytkownika: mechanika i serwo, nie elektronika. Po teście: dziennik z NVS (`l`: czas, ruchy, starty, przyczyna restartu), luz oka, drganie na postoju, temperatura serwa, nakrętki przegubów.
 - [ ] E5.7 Drugi moduł: wydruk Kasety i Klamry H v2.8 (reszta z posiadanych części – do potwierdzenia), montaż według `montaz-v2.8.md`, kalibracja na kanale 1 (dźwigienka przy 1500 µs z programu `kalibracja`, „otwarte V”, płynny test ±300 µs); wynik w dzienniku i w tabeli E5.4.
 
-## E6: Duże oko (2c w modelu, 2b w pierwszym wydruku)
+## E6: Duże oko 2c
 
-Gotowe, gdy duże oko jest zbudowane w dokumencie „Duże oko v1”, przeszło weryfikację K1–K11, review i wydruk testowy 2b. Podstawa: `20-analizy/2026-10-18-duze-oko-jedna-noc.md`, decyzje z 22.10.
+Gotowe, gdy duże oko 2c jest zbudowane w dokumencie „Duże oko v1”, przeszło weryfikację K1–K11, review, próbki i wydruk testowy. Podstawa: `20-analizy/2026-10-22-duze-oko-2c-koncepcja-v2.md` (zastępuje analizę 18.10), decyzje z 22–23.10.
 
-- [ ] E6.1 Pomiar przegubu 5/5 suwmiarką (użytkownik): głębokość otworu w piaście do krzyżaka, odstęp osi wkrętu M4 od czoła piasty.
-- [ ] E6.2 Brief wykonawcy (orkiestrator; użytkownik 22.10: nie czekać na jego akceptację).
-- [ ] E6.3 Plan drzewa części zatwierdzony; budowa w „Duże oko v1”; Assembly z ruchem ±25° / ±15° / powieka 0–75°.
-- [ ] E6.4 Runda weryfikacji K1–K11, eksport 3MF, kontrola siatek, review Opus + Codex.
-- [ ] E6.5 Kupon testowy, wydruk 2b, montaż, kalibracja.
+- [ ] E6.1 Koncepcja: brief (`30-projekt/brief-e6-duze-oko-koncepcja.md`, v2 `…-v2.md`) po review Fable i Astry; koncepcja v1 (Opus) – review Fable, Astra, Opus: NIE (napęd powiek jednym serwem); koncepcja v2 z 4 × MG90S – druga runda review. Pomiary kardana 5/5, MG90S i orczyka (wykonawca z użytkownikiem 22.10) w koncepcji v2.
+- [ ] E6.2 Brief CAD dla wykonawcy (orkiestrator, z rolą wykonawcy na początku). Brief `30-projekt/brief-e6-duze-oko.md` z 22.10 (na bazie analizy 18.10) i plan `40-cad/onshape/e6-plan.md` na gałęzi wykonawcy są nieaktualne.
+- [ ] E6.3 Plan drzewa części zatwierdzony przez orkiestratora; budowa w „Duże oko v1”; Assembly z ruchem ±27° / ±17° i obu powiek.
+- [ ] E6.4 Runda weryfikacji K1–K11, eksport 3MF (użytkownik autoryzował orkiestratora i wykonawcę 23.10), kontrola siatek, review.
+- [ ] E6.5 Próbki (pasowania, przeguby, mocowanie w miąższu), wydruk, montaż, kalibracja.
 
 ## Epiki później
 
