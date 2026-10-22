@@ -33,14 +33,14 @@ Dozwolone stałe w drzewie: `0`, `90 deg`, `180 deg`, `360 deg`, liczba sztuk w 
 | Płyta serw | `plytaT` 3; `plytaZ` = `−ruraTyl`; mocowanie do Rury 3 × M3 (`plytaSrubyN` 3, `plytaSrubyR` 33) |
 | Słupek | `slupekD` 12; `slupekTyl` = `plytaZ`; otwór pod trzpień M5 na osi Z |
 | Uchwyt gałki | `punktR` 20 (punkty X i Y cięgien w płaszczyźnie z = 0); `uchwytT` 3; `uchwytZ` = `kardanB` (czoło przedniej piasty); 3 × M3 do gałki (`galkaSrubyR` 18) |
-| MG90S (Miuzei MS60-4-D-V1, karta z pudełka 22.10: 22,4 × 12,1 × 22,8, wielowypust 20T Ø4,9, 180° przy 500–2500 µs, 1,8–2,0 kg·cm) | `serwoL` 22,4; `serwoW` 12,5; `serwoH` 22,8; `serwoUchaL` 31,8; `serwoUchaRozstaw` 27,7 (osie otworów uszu); `serwoUchaT` 2,0; `serwoUchaZ` 18 (spód → spód uszu); `serwoWalekZ` 35 (spód → czubek wałka); `serwoWalekOd` 5,5 (czoło → oś wałka, odczyt z rysunku ±0,5); `luzKorpusSerwa` 0,4; uszy M3×10 w Ø`m3Ciasny` (jak v2.8). **Źródło: rysunek „Product Size” Miuzei MG90S (Amazon, obraz 711P7m2xAPL) – korpus tam 22 × 12,5 × 22, karta z pudełka 22,4 × 12,1 × 22,8: przyjmuję większe. Do zmierzenia: I (oś wałka → otwór orczyka); orczyki 21 / 31,5 / 33,5 mm całkowitej długości.** |
-| Cięgna | `ciegnoT` 2,5; `ciegnoSzer` 6; `orczykR` 10 (oś–otwór), pozycje serw: `serwoX…`, `serwoY…`, `serwoZ…` (zmienne, start z rachunku niżej) |
+| MG90S (Miuzei MS60-4-D-V1, karta z pudełka 22.10: 22,4 × 12,1 × 22,8, wielowypust 20T Ø4,9, 180° przy 500–2500 µs, 1,8–2,0 kg·cm) | `serwoL` 22,4; `serwoW` 12,5; `serwoH` 22,8; `serwoUchaL` 31,8; `serwoUchaRozstaw` 27,7 (osie otworów uszu); `serwoUchaT` 2,0; `serwoUchaZ` 18 (spód → spód uszu); `serwoWalekZ` 35 (spód → czubek wałka); `serwoWalekOd` 5,5 (czoło → oś wałka, odczyt z rysunku ±0,5); `luzKorpusSerwa` 0,4; uszy M3×10 w Ø`m3Ciasny` (jak v2.8). **Źródło: rysunek „Product Size” Miuzei MG90S (Amazon, obraz 711P7m2xAPL) – korpus tam 22 × 12,5 × 22, karta z pudełka 22,4 × 12,1 × 22,8: przyjmuję większe. Orczyk jednoramienny (pomiar ze zdjęcia suwmiarki 22.10, ±0,3): 7 otworów ok. Ø1 co 2,0 mm, od osi wałka 5,5 / 7,5 / 9,5 / 11,5 / 13,5 / 15,5 / 17,5. Otwór roboczy rozwiercony do Ø2 pod M2 z nakrętką (sąsiednie otwory co 2 mm nie pozwalają na Ø2,5).** |
+| Cięgna | `ciegnoT` 2,5; `ciegnoSzer` 6; `orczykRX` 11,5 (lewo–prawo), `orczykRY` 9,5 (góra–dół), `orczykRP` 9,5 (powieka) – tylko wartości 5,5 + 2k, pozycje serw: `serwoX…`, `serwoY…`, `serwoZ…` (zmienne, start z rachunku niżej) |
 
 ## Rachunek ruchu (sprawdzony przed planem)
 
-- **Lewo–prawo ±25°:** punkt X (`punktR`, 0, 0) leży na osi pochylenia, więc pochylenie go nie rusza. Skok wzdłuż Z = 20 · sin 25° = 8,5 mm. Przy `orczykR` 10 orczyk obraca się o ±58°.
-- **Góra–dół ±15°:** punkt Y (0, `punktR`, 0) leży na osi obrotu przedniej piasty. Skok = 20 · sin 15° = 5,2 mm, orczyk ±31°.
-- **Powieka górna 0–75°:** ramię 9 mm → cięciwa 2 · 9 · sin 37,5° = 11,0 mm, orczyk 10 mm ok. ±33°.
+- **Lewo–prawo ±25°:** punkt X (`punktR`, 0, 0) leży na osi pochylenia, więc pochylenie go nie rusza. Skok wzdłuż Z = 20 · sin 25° = 8,5 mm. Przy `orczykRX` 11,5 orczyk obraca się o ±48°.
+- **Góra–dół ±15°:** punkt Y (0, `punktR`, 0) leży na osi obrotu przedniej piasty. Skok = 20 · sin 15° = 5,2 mm; `orczykRY` 9,5 → orczyk ±33°.
+- **Powieka górna 0–75°:** ramię 9 mm → cięciwa 2 · 9 · sin 37,5° = 11,0 mm; `orczykRP` 9,5 → orczyk ±35°.
 - **Kardan:** potrzeba ±25° / ±15°, przegub > 90° (pomiar użytkownika). Zapas duży.
 - **Tylny brzeg gałki:** czasza do 15° za równik, brzeg na z = −7,8, r = 29,0. Przy obrocie 25° brzeg schodzi do z = −19,3. Słupek (r ≤ 6) i cięgna X/Y (r = 20 od osi, w ruchu razem z gałką na przednim końcu) mieszczą się w otworze. Kontrola w Assembly (etap 3).
 
