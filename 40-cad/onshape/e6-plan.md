@@ -29,7 +29,7 @@ Dozwolone stałe w drzewie: `0`, `90 deg`, `180 deg`, `360 deg`, liczba sztuk w 
 | Rura i rant | `luzRuraPowieka` 0,5; `ruraWewR` = `powiekaGorR2 + luzRuraPowieka` (35,5); `ruraD` 76 (= rdzeń gwintu); `rantD` 96; `rantT` 3; `rantZ` 8 (przód rantu nad środkiem kuli); `kolnierzykD` = 2 × (√(`powiekaGorR2`² − `rantZ`²) + `luzRuraPowieka`) (69,2); `ruraTyl` 40 (koniec Rury za środkiem kuli) |
 | Dynia | `otworD` 83; `dociskMin` 15; `dociskMax` 35 (ścianka dyni) |
 | Gwint 45° | jak E2.0/v2.5: `gwintSkok` 5, `gwintH` 2, `gwintCzolo` 0,8, `gwintKat` 45°, `gwintZakladka` 0,4; `gwintRdzenD` = `ruraD` (76); `gwintD` 80; **`luzGwint` 0,20**; gwint od z = `rantZ − rantT − dociskMin + …` do `−ruraTyl` (zakres docisku 15–35) |
-| Nakrętka | `nakretkaD` 94; `nakretkaH` 7; skrzydełka albo klucz (patrz „Do decyzji”) |
+| Nakrętka | `nakretkaD` 94; `nakretkaH` 7; radełko na obwodzie jak w małym oku (`radelkoN`, `radelkoSzer`, `radelkoGl`), bez klucza i skrzydełek (decyzja użytkownika 22.10: dokręcanie palcami, lekko) |
 | Płyta serw | `plytaT` 3; `plytaZ` = `−ruraTyl`; mocowanie do Rury 3 × M3 (`plytaSrubyN` 3, `plytaSrubyR` 33) |
 | Słupek | `slupekD` 12; `slupekTyl` = `plytaZ`; otwór pod trzpień M5 na osi Z |
 | Uchwyt gałki | `punktR` 20 (punkty X i Y cięgien w płaszczyźnie z = 0); `uchwytT` 3; `uchwytZ` = `kardanB` (czoło przedniej piasty); 3 × M3 do gałki (`galkaSrubyR` 18) |
@@ -64,7 +64,7 @@ Każda część we własnym folderze; Mirror dla par lewo/prawo; fazki na końcu
 | 2 | **Uchwyt gałki** | `Uchwyt: płyta` (płaszczyzna z = `uchwytZ`) → płyta z 3 uszami; `Uchwyt: ramiona` (Top/Right) → ramiona do punktów X i Y | Extrude płyta; Extrude ramię X; Extrude ramię Y; Hole M5 trzpień (osiowo, przez płytę); Hole M3 ×3 luźne do gałki (szyk); Hole M3 ciasne w punktach X, Y; Chamfer | 8 |
 | 3 | **Słupek** (z Płytą serw, jedna część) | `Płyta: obrys` (płaszczyzna Płyty) → płyta Ø76 z wycięciami na cięgna; `Słupek` (Right) → Revolve | Extrude płyta; Revolve słupek; Hole M5 trzpień osiowo (śruba od tyłu, łeb w Płycie); Hole M3 ×3 do Rury (szyk); Extrude kieszenie MG90S ×3 (osobne położenia, nie szyk); Hole uszy serw (Mirror par uszu); Extrude REMOVE przepusty cięgien; Chamfer | ≤ 15 |
 | 4 | **Rura** | `Rura: przekrój` (Right) → Revolve rant + kołnierzyk + rura; gwint jak v2.5 (helisa, profil, Sweep) | Revolve korpus; Helix; Sweep zwój; Boolean UNION; Hole M3 osi powiek + Mirror (YZ); Hole M3 Ustalacz; Hole M3 ×3 do Płyty (szyk, ciasne); Chamfer rantu | 9 |
-| 5 | **Nakrętka** | jak v2.5 w skali: `Nakrętka: przekrój` → Revolve; zwój Sweep z helisy Rury | Revolve; Sweep narzędzie; Boolean SUBTRACT z offsetem `luzGwint`; skrzydełka albo klucz (szyk) | 5–8 |
+| 5 | **Nakrętka** | jak v2.5 w skali: `Nakrętka: przekrój` → Revolve; zwój Sweep z helisy Rury | Revolve; Sweep narzędzie; Boolean SUBTRACT z offsetem `luzGwint`; Extrude REMOVE rowek radełka + Circular Pattern | 5 |
 | 6 | **Powieka górna** | `Powieka górna: przekrój` (Right): łuk R33/R35 w zakresie kąta + pogrubiony rant → Revolve wokół osi X o kąt szerokości; `Powieka górna: ramię` (płaszczyzna x = 34) → ramię | Revolve czasza; Revolve biegun (piasta osi) + Mirror; Extrude ramię; Hole M3 luźny w biegunach; Hole M3 w ramieniu; Fillet rantu | 7 |
 | 7 | **Powieka dolna** | jak górna, R30,5/R32,5, ramię x = 31,5, długość 8 | jak górna | 7 |
 | 8 | **Cięgna** X, Y, powieki górnej, powieki dolnej | `Cięgna: obrysy` (Top i Right; jeden szkic na płaszczyznę, kilka obszarów) | Extrude ×4 (każde własna bryła); Hole M3 luźne na końcach | 6 |
@@ -114,7 +114,7 @@ Gałka biegunem przodu do góry (0,16, front bez szwu Z na przodzie, szew z tył
 ## Do decyzji (orkiestrator / użytkownik)
 
 1. Odstępstwa 1–6 powyżej.
-2. **Nakrętka:** klucz jak w małym oku (wymaga nowego klucza Ø94) czy skrzydełka (dokręcanie palcami)? Proponuję skrzydełka: duże oko montuje się raz.
+2. ~~Nakrętka~~ – rozstrzygnięte 22.10: samo radełko na obwodzie, bez klucza i skrzydełek.
 3. **Śruba M5 w Słupku i Uchwycie:** w plastik Ø4,3 (krótka próbka) czy nakrętka M5 w kieszeni? Proponuję nakrętkę w kieszeni, bo trzpień przenosi cały moment z cięgien.
 4. **MG90S:** pomiar przed etapem 2 (prześlę rysunek z zaznaczonymi wymiarami).
 5. Położenie serw za Płytą (z −43 do −65, w obrysie Ø76) wyznaczę w szkicu Płyty i sprawdzę w Assembly (etap 3). Moduł za ścianką dyni 15 mm wychodzi ok. 55 mm, na granicy założenia z analizy.
