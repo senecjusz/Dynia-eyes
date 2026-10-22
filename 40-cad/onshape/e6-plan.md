@@ -33,7 +33,7 @@ Dozwolone stałe w drzewie: `0`, `90 deg`, `180 deg`, `360 deg`, liczba sztuk w 
 | Płyta serw | `plytaT` 3; `plytaZ` = `−ruraTyl`; mocowanie do Rury 3 × M3 (`plytaSrubyN` 3, `plytaSrubyR` 33) |
 | Słupek | `slupekD` 12; `slupekTyl` = `plytaZ`; otwór pod trzpień M5 na osi Z |
 | Uchwyt gałki | `punktR` 20 (punkty X i Y cięgien w płaszczyźnie z = 0); `uchwytT` 3; `uchwytZ` = `kardanB` (czoło przedniej piasty); 3 × M3 do gałki (`galkaSrubyR` 18) |
-| MG90S | `serwoL` 22,8; `serwoW` 12,2; `serwoH` 22,7; `serwoUchaL` 32,2; `serwoUchaT` 2,5; `serwoUchaZ` 15,9; `serwoWalekOd` 6; `luzKorpusSerwa` 0,4; uszy M3×10 w Ø`m3Ciasny` (jak v2.8). **Wymiary z SG90 v2.4; przed etapem 2 pomiar MG90S (rysunek do użytkownika).** |
+| MG90S (Miuzei, karta z pudełka 22.10: 22,4 × 12,1 × 22,8, wielowypust 20T Ø4,9, 180° przy 500–2500 µs, 1,8–2,0 kg·cm) | `serwoL` 22,4; `serwoW` 12,1; `serwoH` 22,8; `serwoUchaL` 32,2; `serwoUchaT` 2,5; `serwoUchaZ` 15,9; `serwoWalekOd` 6; `luzKorpusSerwa` 0,4; uszy M3×10 w Ø`m3Ciasny` (jak v2.8). **Korpus z karty producenta; uszy, wałek i orczyk (`serwoUcha…`, `serwoWalekOd`, `orczykR`) z SG90 v2.4 do czasu pomiaru E, D, F, G, H, I (rysunek wysłany 22.10).** |
 | Cięgna | `ciegnoT` 2,5; `ciegnoSzer` 6; `orczykR` 10 (oś–otwór), pozycje serw: `serwoX…`, `serwoY…`, `serwoZ…` (zmienne, start z rachunku niżej) |
 
 ## Rachunek ruchu (sprawdzony przed planem)
