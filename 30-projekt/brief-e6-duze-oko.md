@@ -19,12 +19,12 @@ Parametryczny model dużego oka z powiekami. **Geometria od razu pod poziom 2c**
 |---|---|
 | Gałka | `kulaD` 60, czasza ok. 210°, ścianka 2, tył otwarty; **front gładki** (bez rowków, wkładek, szwów, napisów) – tęczówkę rysuje syn; druk źrenicą do góry |
 | Otwór w dyni / rant | 83 / 96; środek kuli 8 mm pod powierzchnią rantu |
-| Środek gałki | **metalowy przegub kardana 5/5** z warsztatu, nie drukowany Krzyżak: Ø 11 × 24, otwory Ø 5 w obu piastach, wkręty dociskowe M4, zgięcie > 90° (pomiar użytkownika). Środek krzyżaka = środek kuli. Jedna piasta na trzpieniu M5 w Słupku, druga na trzpieniu M5 w Uchwycie gałki |
+| Środek gałki | **metalowy przegub kardana 5/5** z warsztatu, nie drukowany Krzyżak: Ø 11 × 25,5 (pomiar), otwory Ø 5 w obu piastach, wkręty dociskowe M4, zgięcie > 90° (pomiar użytkownika). Środek krzyżaka = środek kuli. Jedna piasta na trzpieniu M5 w Słupku, druga na trzpieniu M5 w Uchwycie gałki |
 | Serwa | 3 × MG90S (lewo–prawo ±25°, góra–dół ±15°, powieki 0–75°); bryła PODGLAD MG90S do kolizji |
 | Śruby | M3/M4/M5 z kompletu 8–50 mm; uszy MG90S na M3×10 w Ø 2,6 (jak v2.8); części montowane raz – M3 w plastik Ø 2,6 zamiast wkładek; części rozkręcane (Płyta serw do Rury) – zaproponuj w planie |
 | Rozmieszczenie | duże oko na środku frontu, po 3–4 małe oczy z każdej strony; wszystko za rantem w obrysie Ø 76, moduł za ścianką dyni ≤ 55 mm |
 
-**Wymiary kardana jeszcze nie zmierzone (E6.1, użytkownik):** A – czoło piasty → oś wkrętu M4, B – czoło piasty → oś sworznia krzyżaka, C – głębokość otworu Ø 5. Do czasu pomiaru zmienne `kardanA` 4,0, `kardanB` 12,0, `kardanC` 9,0 (założenie z karty produktu, nie pomiar). Model ma się przestawić samą zmianą tych zmiennych – to jeden z punktów testu zginania K9.
+**Wymiary kardana (E6.1, odczyt orkiestratora ze zdjęć suwmiarki 22.10, ±0,2):** długość czoło–czoło `kardanL` 25,5 (karta produktu podaje 24 – obowiązuje pomiar); oś sworznia krzyżaka → oś wkrętu M4 `kardanSrubaOd` 9,1. Obie połówki są jednakowe, więc środek krzyżaka = `kardanL`/2 od czoła (12,75), a oś wkrętu M4 = `kardanL`/2 − `kardanSrubaOd` od czoła (3,65). Głębokość otworu Ø 5 `kardanC` jeszcze niezmierzona: na start 9,0 (założenie). Model ma się przestawić samą zmianą tych zmiennych – to jeden z punktów testu zginania K9. Wkręt M4 musi być dostępny kluczem po montażu (otwór dostępowy w Słupku/Uchwycie albo dokręcanie przed wsunięciem – zaproponuj w planie).
 
 ## Części (każda we własnym folderze)
 
