@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E5 – instrukcja v2.8 (E5.3, do commita), potem test powerbanku (E5.5) i test 24 h na dwóch modułach (E5.6); w tym czasie wydruk Kasety i Klamry H v2.8 i drugi moduł (E5.7).
+**Bieżące zadanie:** E6 – duże oko w nowym dokumencie „Duże oko v1”: brief wykonawcy (E6.2), równolegle pomiar przegubu 5/5 (E6.1, użytkownik). E5 (instrukcja v2.8, testy powerbanku i 24 h, drugi moduł) czeka.
 
 ```mermaid
 flowchart TD
@@ -100,9 +100,19 @@ Gotowe, gdy moduł v2.5 jest wydrukowany, złożony, a wnioski są w `70-budowa/
 - [ ] E5.6 Test 24 h mechaniki (`50-elektronika/test-24h`): dwa moduły na kanałach 0 i 1, zasilacz USB (nie powerbank, chyba że E5.5 wykaże, że trzyma), tryb stale aktywny (ostrzej niż na wystawie). Przed startem środki z kalibracji każdego modułu: `k0 <µs>`, `k1 <µs>` (zapis w NVS), potem `z`. Główne ryzyko według użytkownika: mechanika i serwo, nie elektronika. Po teście: dziennik z NVS (`l`: czas, ruchy, starty, przyczyna restartu), luz oka, drganie na postoju, temperatura serwa, nakrętki przegubów.
 - [ ] E5.7 Drugi moduł: wydruk Kasety i Klamry H v2.8 (reszta z posiadanych części – do potwierdzenia), montaż według `montaz-v2.8.md`, kalibracja na kanale 1 (dźwigienka przy 1500 µs z programu `kalibracja`, „otwarte V”, płynny test ±300 µs); wynik w dzienniku i w tabeli E5.4.
 
+## E6: Duże oko (2c w modelu, 2b w pierwszym wydruku)
+
+Gotowe, gdy duże oko jest zbudowane w dokumencie „Duże oko v1”, przeszło weryfikację K1–K11, review i wydruk testowy 2b. Podstawa: `20-analizy/2026-10-18-duze-oko-jedna-noc.md`, decyzje z 22.10.
+
+- [ ] E6.1 Pomiar przegubu 5/5 suwmiarką (użytkownik): głębokość otworu w piaście do krzyżaka, odstęp osi wkrętu M4 od czoła piasty.
+- [ ] E6.2 Brief wykonawcy (orkiestrator; użytkownik 22.10: nie czekać na jego akceptację).
+- [ ] E6.3 Plan drzewa części zatwierdzony; budowa w „Duże oko v1”; Assembly z ruchem ±25° / ±15° / powieka 0–75°.
+- [ ] E6.4 Runda weryfikacji K1–K11, eksport 3MF, kontrola siatek, review Opus + Codex.
+- [ ] E6.5 Kupon testowy, wydruk 2b, montaż, kalibracja.
+
 ## Epiki później
 
-Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez telefon; pudełko na elektronikę; duże oko.
+Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez telefon; pudełko na elektronikę.
 
 ## Parking
 
