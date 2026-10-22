@@ -1,0 +1,65 @@
+{
+  "zadanie": "E6 duże oko, etap 1 (dokument, elementy, plan)",
+  "zapis": "2026-10-22T21:11Z, wykonawca CAD",
+  "doc": {
+    "did": "b8cc184e37d6a8dbfb63c30b",
+    "wid": "abf573bb580a27e085f1d73e",
+    "nazwa": "Duże oko v1",
+    "folder": "Halloween",
+    "parentId": "909f8b9e77a705de6fd31222",
+    "publiczny": true,
+    "partStudio": "045583ad9368d7b383c9477f",
+    "variableStudio": "5d1a01286f0f4439abd87cc4",
+    "assembly": "Assembly 1 (domyślne, do etapu 3)"
+  },
+  "n": {
+    "total": 4,
+    "features": 0,
+    "getFeatures": 0
+  },
+  "liczniki": {
+    "GET /documents/{id}": 3000,
+    "GET /documents (szukaj)": 1000,
+    "POST /documents": 200,
+    "POST /variables/d/{id}/w/{id}/variablestudio": 3000
+  },
+  "log": [
+    [
+      "2026-10-22T~21:05Z",
+      "GET /documents/{id} (Oko F v2.5 -> parentId folderu Halloween)",
+      200,
+      3000,
+      true
+    ],
+    [
+      "2026-10-22T~21:05Z",
+      "GET /documents?q=Duże oko (czy dokument już istnieje: 0 wyników)",
+      200,
+      1000,
+      true
+    ],
+    [
+      "2026-10-22T~21:06Z",
+      "POST /documents (Duże oko v1, parentId Halloween, isPublic)",
+      200,
+      200,
+      true
+    ],
+    {
+      "t": "2026-10-22T~21:06Z",
+      "uwaga": "przejście karty do nowego dokumentu skasowało window.G; log trzech wywołań odtworzony z odpowiedzi w sesji (czasy przybliżone)"
+    },
+    [
+      "2026-10-22T21:07:39Z",
+      "POST /variables/.../variablestudio (Zmienne duże oko)",
+      200,
+      3000,
+      true
+    ],
+    {
+      "t": "2026-10-22T21:10:52Z",
+      "uwaga": "Part Studio 1 -> „Duże oko v1” w UI (menu zakładki, Rename); API nie zmienia nazwy elementu"
+    }
+  ],
+  "stop": null
+}
