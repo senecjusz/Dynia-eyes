@@ -79,7 +79,7 @@ Zmierzony luz sworzni wpisać do tabeli luzów w `AGENTS.md`.
 
 | Okucie | Szt. | Gdzie |
 |---|---|---|
-| DIN 7991 M3×8 | 2 | osie powiek w bokach Ramy (gniazda stożkowe) |
+| DIN 7991 M3×8 (zamiennie DIN 913 M3×8) | 2 | osie powiek w bokach Ramy (gniazda stożkowe). DIN 913: ten sam gwint Ø2,5, stożek pusty, wkręcić równo z bokiem (nie poza Ø79,5), zabezpieczyć klejem do gwintów |
 | M3×45 | 3 | Płyta (od spodu tarczy, przez słupki) → gwint uch Ramy |
 | M3×25 + nakrętka samohamująca DIN 985 M3 | 1 | zacisk Obejmy |
 | DIN 7991 M5×30 + nakrętka M5 | 1 | trzpień Słupka (gniazdo stożkowe w piaście Płyty, nakrętka w kieszeni Słupka) |
