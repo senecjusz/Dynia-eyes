@@ -202,3 +202,9 @@ K3 wyrażenia ze stałymi spoza listy: 0
 
 - K9 (wykonawca): `luzKorpusSerwa`, `zSerw` (wykrył oderwanie klatek od tarczy – poprawione), `wyciecieG`, `ramiePGb` – OK.
 - **Wynik: etap 2a przyjęty** (Rama, Gałka, Powieka górna i dolna, Słupek, Obejma, Płyta bez słupków stopu, Ramię PG, Ramię PD, przyrząd gięcia, Próbka P6). Poza zakresem: słupki stopu (v3.2), przyrząd zera (wgłębienie – zgoda użytkownika 23.10), napęd gałki (v3.2).
+
+## E6.4: wgłębienie zera Gałki i Przyrząd zera – 23.10, ok. 11:05
+
+Dane: `odbior-e6/features-e6.4.json` (commit 135f0ad; 224 operacje), `znaczniki-e6.4.json`. Skrypt: K1 0 błędów, 0 bez stanu; K2 73/73; K3 0; K4 0 Fix. Pomiary wykonawcy: wgłębienie R1,6 × 1,0 (dno z 29,0), trzpień Ø3,0 do z 29,1, oparcie czapki na sferze R152 (to samo co czoło rantu), fartuch na Ø84 z luzem 0,2.
+
+**Wynik: przyjęte.**
