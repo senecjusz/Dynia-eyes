@@ -1,0 +1,55 @@
+gałka: 23 s
+powieki: 26 s
+krzyżowe: 58 s
+== zakres praca
+     0.61  X obudowa M2 – Uchwyt ramię do piasty X                                (25.0, -15.0)
+     0.65  G ogon Z przy J – kula R30 (gałka w dowolnym położeniu)                0.75
+     0.74  G drut – S_Y klatka                                                    55.75
+     0.83  D ogon Z przy J – kula R30 (gałka w dowolnym położeniu)                0.75
+     1.00  D zaczep – kula R30 (gałka w dowolnym położeniu)                       8.75
+     1.00  G zaczep – kula R30 (gałka w dowolnym położeniu)                       22.75
+     1.18  Y pręt Ø5 – czasza górnej                                              ((-25.0, -8.0), 55.75)
+     1.21  D zaczep – rura                                                        0.75
+     1.21  G zaczep – rura                                                        0.75
+     1.29  Y koniec Ø10 (M5) – czasza górnej                                      ((20.0, -15.0), 55.75)
+     1.51  D drut przez ramię – S_X klatka                                        2.75
+     1.51  D drut przez ramię – S_X korpus                                        7.75
+     1.51  D ogon Z przy H – S_X klatka                                           0.75
+     1.51  D ogon Z przy H – S_X korpus                                           2.75
+     1.55  D ramię orczyka – S_Y klatka                                           20.75
+     1.61  X obudowa M2 – czasza gałki                                            (25.0, -15.0)
+     1.75  X obudowa M5 – Y obudowa M5                                            (25.0, -15.0)
+     1.76  G ramię orczyka – rura                                                 0.75
+     1.86  Y obudowa M2 – czasza gałki                                            (25.0, 15.0)
+     1.93  G drut – S_Y korpus                                                    55.75
+     2.21  X Ramię 6 mm – Y Ramię 6 mm                                            (2.0, -15.0)
+     2.34  Y obudowa M2 – czasza górnej                                           ((-25.0, 11.0), 55.75)
+     2.37  D drut – ramię wspornika 200                                           4.75
+     2.38  Y obudowa M5 – S_PG klatka                                             (25.0, 15.0)
+     2.51  D ramię orczyka – S_X klatka                                           0.75
+== zakres ograniczniki
+     0.33  Y koniec Ø10 (M5) – czasza górnej                                      ((-24.0, -18.25), 56.75)
+     0.46  X obudowa M2 – Uchwyt ramię do piasty X                                (24.0, -18.25)
+     0.64  G ogon Z przy J – kula R30 (gałka w dowolnym położeniu)                -0.25
+     0.64  X obudowa M5 – Y obudowa M5                                            (24.0, -18.25)
+     0.73  G drut – S_Y klatka                                                    56.75
+     0.80  Y pręt Ø5 – czasza górnej                                              ((-28.0, -8.0), 56.75)
+     0.81  D ogon Z przy J – kula R30 (gałka w dowolnym położeniu)                -0.25
+     1.00  G zaczep – kula R30 (gałka w dowolnym położeniu)                       56.75
+     1.00  D zaczep – kula R30 (gałka w dowolnym położeniu)                       32.75
+     1.16  X obudowa M2 – czasza gałki                                            (28.25, -14.0)
+     1.20  D zaczep – rura                                                        -0.25
+     1.20  G zaczep – rura                                                        -0.25
+     1.36  Y obudowa M2 – czasza gałki                                            (27.0, 17.0)
+     1.51  D drut przez ramię – S_X klatka                                        32.75
+     1.51  D drut przez ramię – S_X korpus                                        32.75
+     1.51  D ogon Z przy H – S_X klatka                                           -0.25
+     1.68  G drut – S_Y korpus                                                    56.75
+     1.76  D ogon Z przy H – S_X korpus                                           -0.25
+     1.76  G ramię orczyka – rura                                                 -0.25
+     2.04  Y pręt Ø5 – czasza gałki                                               (28.0, 2.0)
+     2.18  Y obudowa M2 – czasza górnej                                           ((-28.25, 12.0), 56.75)
+     2.19  X Ramię 6 mm – Y Ramię 6 mm                                            (2.0, -18.0)
+     2.31  Y obudowa M5 – S_PG klatka                                             (27.0, 17.0)
+     2.33  Y koniec Ø10 (M5) – czasza gałki                                       (28.25, -12.0)
+     2.35  X obudowa M5 – Y Ramię 6 mm                                            (28.25, -12.0)

@@ -1,0 +1,18 @@
+czopy M5: X [0.997 0.    0.081] pochylenie 4.7 L 43.33 | Y [0.943 0.012 0.333] pochylenie 19.5 L 45.82
+serwo X: praca -30.5..43.5, ogr ±28/±18 -33.3..52.0
+serwo Y: praca -20.7..29.9, ogr -24.2..37.1
+X: kulka M5 max 13.0, M2 max 24.9, nacisk orczyk 62.0 | Y: M5 13.7, M2 23.1, nacisk 56.2
+  psi  +0 theta  +0: serwo X   -0.0 Y   -0.0
+  psi +25 theta  +0: serwo X  -30.5 Y   +7.0
+  psi -25 theta  +0: serwo X  +43.5 Y   -1.9
+  psi  +0 theta +15: serwo X   +1.0 Y  -18.6
+  psi  +0 theta -15: serwo X   +1.0 Y  +21.4
+  psi +25 theta +15: serwo X  -28.1 Y  -11.7
+  psi +25 theta -15: serwo X  -27.0 Y  +29.9
+  psi -25 theta +15: serwo X  +43.3 Y  -20.6
+  psi -25 theta -15: serwo X  +42.4 Y  +19.1
+  psi +28 theta +18: serwo X  -29.4 Y  -14.0
+  psi -28 theta -18: serwo X  +49.2 Y  +23.9
+  psi +28 theta -18: serwo X  -27.9 Y  +37.1
+  psi -28 theta +18: serwo X  +51.5 Y  -24.1
+moment przy 0,5 N·m: X 0.614, Y 0.495
