@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T06:22Z, wykonawca CAD",
+  "zapis": "2026-10-23T06:35Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,7 +13,7 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 152,
+    "total": 163,
     "features": 98,
     "getFeatures": 5
   },
@@ -25,7 +25,10 @@
     "GET /partstudios/.../features": 100,
     "POST /partstudios/.../features": 2993,
     "POST /partstudios/.../features/featureid": 3000,
-    "GET /documents/.../currentmicroversion": 400
+    "GET /documents/.../currentmicroversion": 400,
+    "POST /partstudios/.../translations": 10,
+    "GET /translations/{id}": 240,
+    "GET /documents/d/{id}/externaldata/{id}": 1000
   },
   "log": [
     [
@@ -232,15 +235,22 @@
       200,
       96,
       false
+    ],
+    [
+      "2026-10-23T06:24–06:33Z",
+      "K9: 3 × (POST zmiennych + bodydetails) + 1 bodydetails powtórny + przywrócenie; eksport: POST translations, GET status, GET externaldata",
+      200,
+      null,
+      false
     ]
   ],
-  "stop": null,
+  "stop": "etap 1 zakończony – raport weryfikacja-e6-etap1.md; błąd K9 Powieki dolnej do decyzji orkiestratora",
   "etap1": {
     "budzet": {
       "total": 170,
       "getFeatures": 8
     },
-    "wywolania": 148,
+    "wywolania": 159,
     "getFeatures": 5
   },
   "mv": "58c65069b8d0f8a876634025",
@@ -422,7 +432,8 @@
     "Więz ANGLE wysyłany przez API (localFirst/localSecond|externalSecond + angle) daje ostrzeżenie „Some constraints are not applicable…” – kąty wymiarować położeniem punktu (np. R·sin(kąt)).",
     "Szkic nie może leżeć na płaszczyźnie utworzonej później w drzewie (nowe operacje idą na koniec) – przy poprawce usuwać i tworzyć w kolejności.",
     "Revolve częściowy: endBound BLIND; wybór obszaru szkicu przez qLargest/qSmallest działa, qContainsPoint na obszarze szkicu nie zadziałał.",
-    "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół."
+    "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół.",
+    "Szkic, który po zmianie zmiennej traci rozwiązanie, może zostać w starej geometrii bez ostrzeżenia i z featureStatus OK – K9 musi mierzyć bryły (bodydetails), nie tylko stany i ikony."
   ],
   "zmienne": {
     "liczba": 199,
@@ -490,8 +501,8 @@
   },
   "rok": {
     "przedE6": 558,
-    "E6": 152,
-    "suma": 710
+    "E6": 163,
+    "suma": 721
   },
   "powiekaDolna": {
     "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -515,5 +526,18 @@
     "zrzut": "40-cad/onshape/e6.2-zrzuty/obejma.jpg",
     "wywolania": 17,
     "druk": "kołnierzem w dół, PETG (do README)"
+  },
+  "k9": {
+    "luzCzasza 1,2→1,0": "Powieka górna sfery 31,0/33,2/34,5 OK; Powieka dolna BEZ ZMIAN 31,2/33,4/34,7 (szkic bez rozwiązania, bez ostrzeżenia) – BŁĄD",
+    "glebokoscSrodka 10→12": "Rama sfery R150/152 środek z −138; Obejma z −3…−13 – OK",
+    "dociskMin 15→20": "Obejma z −10…−20 – OK",
+    "przywrocone": "wszystkie wartości bazowe, drzewo bez błędów"
+  },
+  "eksport": {
+    "plik": "40-cad/3mf/Duze oko v1/Duze oko v1 - FullProject.3mf",
+    "parametry": "3MF, distanceTolerance 0,00001 m, angularTolerance 3°, maximumChordLength 10 m, mm",
+    "translacja": "6adaf95281e858714ce0b71c DONE",
+    "bajty": 1329812,
+    "siatki": "7/7 OK (sprawdz_siatki.js na STL z 3mf_do_stl.py --rozdziel), brył 7 = 7"
   }
 }

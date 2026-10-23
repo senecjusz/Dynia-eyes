@@ -1,0 +1,142 @@
+{
+ "K1": [],
+ "K2": {
+  "szkiceJSON": 22,
+  "wierszeZnacznikow": 22,
+  "niedookreslone": []
+ },
+ "K3": [],
+ "K4": [],
+ "K5": [
+  [
+   "Rama: bok osi lewy",
+   "FEATURE"
+  ],
+  [
+   "Rama: otwór osi lewy",
+   "FACE"
+  ],
+  [
+   "Powieka górna: mostek i ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Powieka dolna: ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Obejma: ucho lewe",
+   "FEATURE"
+  ]
+ ],
+ "K6": {
+  "Rama": 6,
+  "Gałka": 1,
+  "Próbka P6": 1,
+  "Powieka górna": 6,
+  "Powieka dolna": 5,
+  "Słupek": 4,
+  "Obejma": 6
+ },
+ "K8": [
+  [
+   "Layout: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Layout: czoło",
+   "query=qCreatedBy(makeId(\"Top\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: bok osi",
+   "query=qCreatedBy(makeId(\"FCnPBGeVDIxwC46_1\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: punkt otworu osi",
+   "query=qCreatedBy(makeId(\"F8bD76LPhvuJJ9J_1\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: przekrój",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: mostek",
+   "query=qCreatedBy(makeId(\"FrqgDKx8O7yHBFm_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: ucho",
+   "query=qCreatedBy(makeId(\"F6bWH7u4OadRjRX_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: punkt osi",
+   "query=qCreatedBy(makeId(\"FxjugcFMzN2eMjI_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: przekrój",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: ucho",
+   "query=qCreatedBy(makeId(\"F4kAjYHOC9yz9vg_0\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: punkt osi",
+   "query=qCreatedBy(makeId(\"F6yIFkJIbVIGho5_5\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: punkt trzpienia",
+   "query=qCreatedBy(makeId(\"F1YvoFCIuZraYth_0\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: kanał nakrętki M5",
+   "query=qCreatedBy(makeId(\"FRce4rRx2gHE5B9_6\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: punkt M4",
+   "query=qCreatedBy(makeId(\"FvHiYXAymkvKYNA_6\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: ucho",
+   "query=qCreatedBy(makeId(\"F7Qx4f8FDrK2pf3_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: szczelina",
+   "query=qCreatedBy(makeId(\"F7Qx4f8FDrK2pf3_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: punkt śruby",
+   "query=qCreatedBy(makeId(\"FGs8ToNIq9iWPzC_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: kieszeń nakrętki",
+   "query=qCreatedBy(makeId(\"FdNoDEiuTutNGFM_7\"), EntityType.FACE);"
+  ]
+ ],
+ "K3licz": 149,
+ "K6szkice": {
+  "Layout": 2,
+  "Rama": 3,
+  "Gałka": 1,
+  "Powieka górna": 4,
+  "Powieka dolna": 3,
+  "Słupek": 4,
+  "Obejma": 5
+ },
+ "K10duplikaty": []
+}
