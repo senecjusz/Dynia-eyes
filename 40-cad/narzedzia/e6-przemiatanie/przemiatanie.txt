@@ -1,4 +1,4 @@
 kontrola: {'tuleja_punkt_Astry': -0.803069, 'stara_piasta_Y_przy_0_15': -0.859, 'plyta_punkt': 2.5}
-płyta okna: 19 węzłów wycięcia; najwęższy mostek (-15, 15.04, 1.92)
-gałka: 406 s
-powieki: 602 s
+płyta okna: 19 węzłów wycięcia; najwęższy mostek (15, 15.06, 1.94)
+gałka: 1489 s
+powieki: 2159 s

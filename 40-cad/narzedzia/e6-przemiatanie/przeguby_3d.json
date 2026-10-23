@@ -1,0 +1,78 @@
+{
+ "galka X": {
+  "min_odstep": 0.634,
+  "gdzie": [
+   28.03,
+   18.02,
+   37.01,
+   -23.39
+  ],
+  "para": "policzek pręta – policzek stały",
+  "gamma": [
+   -28.5,
+   37.0
+  ],
+  "beta": [
+   -23.8,
+   23.0
+  ],
+  "zapas_deg": 4.5
+ },
+ "galka Y": {
+  "min_odstep": 0.654,
+  "gdzie": [
+   28.03,
+   -18.02,
+   35.58,
+   24.1
+  ],
+  "para": "policzek pręta – policzek stały",
+  "gamma": [
+   -32.0,
+   35.6
+  ],
+  "beta": [
+   -17.4,
+   24.1
+  ],
+  "zapas_deg": 5.0
+ },
+ "orczyk X": {
+  "min_odstep": 1.446,
+  "gdzie": [
+   28.08,
+   15.15,
+   42.77,
+   -8.95
+  ],
+  "para": "policzek pręta – policzek stały",
+  "gamma": [
+   -42.1,
+   42.8
+  ],
+  "beta": [
+   -9.0,
+   0.6
+  ],
+  "zapas_deg": 17.5
+ },
+ "orczyk Y": {
+  "min_odstep": 1.452,
+  "gdzie": [
+   28.03,
+   -18.02,
+   -40.76,
+   -12.02
+  ],
+  "para": "policzek pręta – policzek stały",
+  "gamma": [
+   -40.8,
+   25.1
+  ],
+  "beta": [
+   -12.0,
+   3.9
+  ],
+  "zapas_deg": 14.5
+ }
+}

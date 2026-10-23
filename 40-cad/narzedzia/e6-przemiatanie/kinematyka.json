@@ -11,10 +11,10 @@
   -24.5,
   40.2
  ],
- "wychylenie_galkaX": "19.4/23.6",
+ "wychylenie_galkaX": "19.8/23.6",
  "wychylenie_orczykX": "7.6/8.9",
  "naciskX": "46.0/54.8",
- "wychylenie_galkaY": "17.8/21.4",
+ "wychylenie_galkaY": "19.8/24.1",
  "wychylenie_orczykY": "8.5/12.0",
  "naciskY": "55.9/64.7",
  "momentX": 0.706,
@@ -60,10 +60,10 @@
   ]
  },
  "obrot_a1_galkaX": [
-  -25.8,
-  33.6,
+  -25.7,
+  32.3,
   -28.5,
-  38.6
+  37.0
  ],
  "obrot_a1_orczykX": [
   -33.1,
@@ -72,10 +72,10 @@
   42.7
  ],
  "obrot_a1_galkaY": [
-  -28.8,
-  31.3,
-  -32.2,
-  35.9
+  -28.5,
+  30.9,
+  -31.9,
+  35.5
  ],
  "obrot_a1_orczykY": [
   -32.0,
@@ -83,6 +83,50 @@
   -40.7,
   24.9
  ],
+ "luz_zwrotny": {
+  "c=0,03": {
+   "dl_max": [
+    0.478,
+    0.494
+   ],
+   "praca_psi_theta": [
+    3.78,
+    2.83
+   ],
+   "calosc_psi_theta": [
+    5.69,
+    3.73
+   ]
+  },
+  "c=0,05": {
+   "dl_max": [
+    0.638,
+    0.654
+   ],
+   "praca_psi_theta": [
+    5.13,
+    3.88
+   ],
+   "calosc_psi_theta": [
+    7.65,
+    5.06
+   ]
+  },
+  "c=0,2": {
+   "dl_max": [
+    1.838,
+    1.854
+   ],
+   "praca_psi_theta": [
+    15.28,
+    11.78
+   ],
+   "calosc_psi_theta": [
+    22.34,
+    15.0
+   ]
+  }
+ },
  "(+25;+0)": [
   -29.5,
   7.7

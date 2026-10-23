@@ -1,0 +1,4 @@
+galka X    min 0.634 (policzek pręta – policzek stały) γ [-28.5, 37.0] β [-23.8, 23.0] zapas 4.5°
+galka Y    min 0.654 (policzek pręta – policzek stały) γ [-32.0, 35.6] β [-17.4, 24.1] zapas 5.0°
+orczyk X   min 1.446 (policzek pręta – policzek stały) γ [-42.1, 42.8] β [-9.0, 0.6] zapas 17.5°
+orczyk Y   min 1.452 (policzek pręta – policzek stały) γ [-40.8, 25.1] β [-12.0, 3.9] zapas 14.5°

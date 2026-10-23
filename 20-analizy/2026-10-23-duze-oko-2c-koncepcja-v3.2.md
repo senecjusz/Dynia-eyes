@@ -21,24 +21,33 @@ Oznaczenia: **[F]** fakt (źródło, pomiar, plik), **[R]** rachunek skryptem z 
 - układ gałki (indeks b) obraca się z gałką; w zerze pokrywa się ze światem;
 - kąty powiek to kąt krawędzi przedniej od +z ku +y (pkt 5).
 
+## Korekta 23.10 (po weryfikacji Astry v3.2 i uwagach wykonawcy CAD) – co się zmieniło
+
+Ten plik nadpisuje pierwszą wersję v3.2. Zmiany:
+
+| # | Skąd | Zmiana | Wynik [R] |
+|---|---|---|---|
+| K1 | Astra pkt 1 (KRYT.) | filar stopu D otwarcia wchodzi w słupek do jego środka; płytka 2 mm przy czole klatki S_PG dla słupka G zamknięcia (gałąź `klatka` w `stop_posts()`); słupek G otwarcia przechodzi przez tarczę | przekroje połączeń 35,4 / ok. 30 / 33,6 mm² (pkt 5.2); pary stała–stała ≥ 0,556 |
+| K2 | Astra pkt 2 (KRYT.), wykonawca (a) | łapy pod nadlewy jako osobne części L × 2, żeberko 5 × 5; **DIN 7991 M3×6 od tyłu** w nadlew (wejście 4,0, do dna 1,4), DIN 7991 M3×8 od wierzchu płyty w żeberko | pkt 3.5 |
+| K3 | Astra pkt 3 | luz zwrotny z pełnej macierzy dwóch prętów i z przesuwem krzyżaka między policzkami; `luzOs` 0,125 na stronę (0,25 razem); kryterium P4 na luz długości ≤ 0,64 mm | luz gałki w pracy 3,8° / 2,8° (c 0,03) … 5,1° / 3,9° (c 0,05) |
+| K4 | Astra pkt 4 | kontrola wnętrza przegubów w 3D (`przeguby_3d.py`) zamiast płaskich przekrojów; przy gałce rS 2,6 → 1,9 (łby DIN 7985 na widełkach stałych), a1 = −y | odstęp ≥ 0,634, zapas kąta ≥ 3,5° |
+| K5 | Astra pkt 5, orkiestrator | długości sworzni i głębokości otworów w jednej tabeli (gałka M2×4, a2 skrócone do 3,7; orczyk M2×5; otwory = wejście + 0,25); `rP` gałki 2,3 (pogłębienie Ø3,8, ścianka 0,4); krążek gałki Ø5,75; zginanie sworznia i wyrwanie policzone | pkt 3.3 |
+| K6 | Astra pkt 6 | przemiatanie i `przeguby_akceptacja.py` na aktualnym modelu (skrót e549b91f9f229d26); narzędzie sprawdza komplet wymiarów, pary stała–stała i wnętrze 3D; pary obrotowe i ucho/mostek – rura liczone dokładnie; progi bez zmian | ⟦brak⟧ |
+| K7 | orkiestrator (C1) | kołnierz Ramy bez wycięcia; Powieka górna z CAD: mostek 56–95°, ucho G R5,5 | ucho G – rura 0,500, mostek G – rura 0,496 |
+| K8 | orkiestrator (B9) | otwory sworzni podwymiarowe, rozwiercane ręcznie do c ≈ 0,03–0,05 | pkt 3.3 |
+| K9 | wykonawca (P4) | podstawa widełek pręta przy orczyku walec Ø8; trójkąty 45° pod podstawą widełek pręta przy gałce (DFAM); czop obrotnicy Ø4,4 | w przemiataniu i w 3D; koniec Ramienia zwężony do 6 na 10 mm (bez tego Ramię Y – podstawa Ø8: −0,31) |
+| K10 | wykonawca (Uchwyt b–e) | wsporniki widełek płaskie, 46° do poziomu, do ściany tulei; tuleja przednia zamknięta do z_b 19,75; węzły żebra co 2,5°; a1 = −y | pkt 3.5 |
+
 ## 0. Wynik
 
-1. **Kolizja piasty M2 Y ze Słupkiem (zlecenie pkt 1) usunięta zmianą przegubów, Słupek bez zmian.** Kulek M2 i piast nie ma. Środek przegubu Y przy gałce przesunąłem z (0; 19,5; −6) do **(0; 20; −6)**, a pręt trzymają widełki stałe Uchwytu nad płytą okna, z policzkami w y_b 15,0…17,0 i 23,0…25,0. Wszystkie bryły przegubu Y i Uchwytu mają do Słupka z tuleją i kardana dolnego **≥ 1,50 mm** w całym zakresie (v3.1: −0,80 w punkcie Astry). Szczegóły pkt 3.5.
-2. **Pręty U–R–U z 4 przegubami krzyżowymi drukowanymi (wariant a).** Obrotnica M3 wzdłuż pręta przy orczyku daje dokładnie jeden więz, jak S–S, bez jałowego obrotu pręta (pkt 3.2). Kardan 2/2 przy gałce (wariant b) odrzuciłem liczbami: styki 0 z czaszą gałki i powieki górnej. Wszystkie wymiary przegubów są zmiennymi z zakresami poprawności (pkt 3.3), a zapas kąta przegubów wynosi ≥ 15,6°.
-3. **Model (zlecenie pkt 2–5):** `ann` we wszystkich parach i przypadki kontrolne (punkt Astry −0,803, stara piasta −0,859), `prism_d` (−20; 0; −2) → 2,5, bryły z CAD i kable 3,6 × 1,2, krok 0,05° (0,026 mm na R30) przy minimach, pary stała–stała i Uchwyt–Gałka.
-4. **Wynik pełnego przemiatania:** najmniej w pracy **0,528 mm** (X widełki pręta przy gałce – żebro mostka X), w całym zakresie **0,494 mm** (X widełki pręta przy gałce – żebro mostka X), bez styków zamierzonych i par obrotowych. Okno – Słupek 0,5605 w pracy. Pary stała–stała ≥ 0,556. Akceptacja przegubów: ⟦brak⟧. Obie listy 10 minimów są w pkt 10.
-5. **Wynik wymaga zmian istniejących części CAD** (pkt 10, C1–C6):
-   - wycięcie kołnierza Ramy przy uszach powiek (bez niego mostek G – rura −1,27);
-   - wycięcie czaszy G przy uchu D (bez niego 0);
-   - zmienne wycięć Gałki: `rimX` 98 / ±30, `rimY` 102 / ±40;
-   - zmienna `wyciecieG`: 82,5° w pasie x −14…24;
-   - Uchwyt dopasowany do nadlewów jak w CAD: kieszeń w płycie i łapy pod nadlewami.
-6. **Słupki stopu:** tabela do CAD z podparciami (pkt 5.2). Słupki D leżą w x −22,5…−16,6, poza S_X. Do wieżyczek zostaje ≥ 1,3, a pary stała–stała mają ≥ 0,556.
-7. **B4 zamknięte** (M2×10 + nakrętka, kanał kabla z obu stron, obie trasy w modelu). **B1 nie blokuje**: rozstrzyga `przeguby_akceptacja.py` z wymiarami jako zmiennymi i próbka **P4 jako pierwszy wydruk etapu 2**.
-8. **Najsłabszy punkt: luz zwrotny drukowanych przegubów.**
-   - Przy luzie sworzni z tabeli AGENTS (0,2 promieniowo) gałka ma do 9° luzu zwrotnego.
-   - Po rozwierceniu otworów (c ≈ 0,03–0,05) luz spada do 1,6–2,7°.
-   - Pasowanie do decyzji użytkownika (B9), potwierdza je P4.
+1. **Kolizja piasty M2 Y ze Słupkiem (zlecenie pkt 1) usunięta zmianą przegubów, Słupek bez zmian.** Kulek M2 i piast nie ma. Środek przegubu Y przy gałce: (0; 20; −6). Pręt trzymają widełki stałe Uchwytu nad płytą okna, z policzkami w y_b 15,0…17,0 i 23,0…25,0. Bryły przegubu Y mają do Słupka z tuleją i kardana dolnego **≥ 1,50 mm** w całym zakresie; cały Uchwyt ≥ 1,09 mm (łapy). Szczegóły pkt 3.5.
+2. **Pręty U–R–U z 4 przegubami krzyżowymi drukowanymi (wariant a).** Obrotnica M3 wzdłuż pręta przy orczyku daje dokładnie jeden więz, jak S–S, bez jałowego obrotu pręta (pkt 3.2). Kardan 2/2 przy gałce (wariant b) odrzuciłem liczbami. Wymiary przegubów są zmiennymi z zakresami (pkt 3.3); wnętrze przegubów w 3D ≥ 0,634 mm, zapas kąta ≥ 3,5°.
+3. **Model:** `ann` we wszystkich parach i przypadki kontrolne (punkt Astry −0,803, stara piasta −0,859), `prism_d` (−20; 0; −2) → 2,5, bryły z CAD, kable 3,6 × 1,2, krok 0,05° (0,026 mm na R30) przy minimach, pary stała–stała i Uchwyt–Gałka, wnętrze przegubów 3D.
+4. **Wynik pełnego przemiatania:** najmniej w pracy **0,479 mm** (G ucho – rura), w całym zakresie **0,147 mm** (Y Ramię – Y widełki pręta), bez styków zamierzonych i par obrotowych. Okno – Słupek 0,5605 w pracy. Pary stała–stała ≥ 0,556. Akceptacja przegubów: ⟦brak⟧. Obie listy 10 minimów są w pkt 10.
+5. **Zmiany istniejących części CAD** (pkt 10, C2–C6): wycięcie czaszy G przy uchu D; zmienne wycięć Gałki `rimX` 98 / ±30 i `rimY` 102 / ±40; `wyciecieG` 82,5° w pasie x −14…24; Uchwyt dopasowany do nadlewów (kieszeń w płycie i łapy). Kołnierz Ramy bez zmian.
+6. **Słupki stopu:** tabela do CAD z podparciami i przekrojami połączeń (pkt 5.2). Słupki D leżą w x −22,5…−16,6, poza S_X.
+7. **B4 zamknięte**, **B1 nie blokuje**: rozstrzyga `przeguby_akceptacja.py` i próbka **P4 jako pierwszy wydruk etapu 2**.
+8. **Najsłabszy punkt: luz zwrotny drukowanych przegubów.** Przy rozwierconych otworach (c 0,03–0,05, decyzja B9) gałka ma w pracy 3,8° / 2,8° … 5,1° / 3,9° luzu (ψ / θ, najgorsze ułożenie obu prętów). Potwierdza to P4.
 
 ## 1. Co zmieniłem względem v3.1
 
@@ -50,7 +59,7 @@ Oznaczenia: **[F]** fakt (źródło, pomiar, plik), **[R]** rachunek skryptem z 
 | Piasta M2 Y | Ø6 wzdłuż −y gałki, 5 mm do środka; wchodzi w tuleję Słupka od θ ≈ 12° (Astra) | **nie ma** – widełki stałe Y nad płytą okna, ≥ 1,50 mm od Słupka w całym zakresie (pkt 3.5) | Astra v3.1 pkt 2 |
 | Pary | bez typu `ann` (tuleje) | `ann` we wszystkich listach par; punkt Astry (0,0077; 6,8469; −11,1521) jako przypadek kontrolny: −0,803 mm | Astra pkt 2–3 |
 | `prism_d()` | punkt nad płytą dawał 3,0 | dokładna odległość do graniastosłupa: (−20; 0; −2) nad płytą z −7,5…−4,5 → **2,5** (przypadek kontrolny) | Astra pkt 4 |
-| Bryły z CAD | brak | mostek G R4,5–8 (x 30,95–36,25, 20–70° od krawędzi przedniej), ucho G R6 (x 33,85–36,25), ucho D R4 (x 30,95–33,6), boki osi Ramy R5 (x ±36,5–38,5), Uchwyt z płytą, łącznikami, nadlewami, tuleją przednią i żebrem w parach z powiekami; kable jako pełny prostokąt 3,6 × 1,2 | zlecenie v3.2 pkt 4 |
+| Bryły z CAD | brak | mostek G R4,5–8 (x 30,95–36,25, 56–95° od krawędzi przedniej), ucho G R5,5 (x 33,85–36,25), ucho D R4 (x 30,95–33,6), boki osi Ramy R5 (x ±36,5–38,5), Uchwyt z płytą, łącznikami, nadlewami, tuleją przednią i żebrem w parach z powiekami; kable jako pełny prostokąt 3,6 × 1,2 | zlecenie v3.2 pkt 4 |
 | Krok ruchu | gałka 1°, zagęszczenie ±0,25° co 0,05° | to samo, policzone na R30: 0,05° = **0,026 mm** między próbkami przy minimach (pkt 10) | zlecenie pkt 5 |
 | Gałka – CAD | stożek 115° | płaskie cięcie z_b −12,68 (jak w CAD), nadlewy M3 φ 210°/330°, R23,5, Ø7, z −12,68…−6,68 | Astra pkt 10, CAD 23.10 |
 | Rama | ucha R30,5–37,75 | ucha R4 na R34,5, z −33…−27, gwint M3 Ø2,5 × 6 na R33, fazka 3 × 45° pod uchem; słupki Płyty ze stożkowym końcem 45°; rant po sferze R152, kołnierz R35,2 od z 6 | CAD 23.10 |
@@ -63,7 +72,7 @@ Oznaczenia: **[F]** fakt (źródło, pomiar, plik), **[R]** rachunek skryptem z 
 
 | Wielkość | Wartość | Status |
 |---|---|---|
-| Gałka | Ø60, ścianka 2 (R28–30), tył płaski z_b −12,68 (CAD), wycięcia φ 0° ±30° od 100° i φ 80° ±40° od 102° (kąt od osi patrzenia), biała, front gładki | [F] CAD, [R] |
+| Gałka | Ø60, ścianka 2 (R28–30), tył płaski z_b −12,68 (CAD), wycięcia φ 0° ±30° od 98° i φ 80° ±40° od 102° (kąt od osi patrzenia), biała, front gładki | [F] CAD, [R] |
 | Zakres gałki | praca ψ ±25°, θ ±15°; okno na ±28°/±18° (`zapasOgr` 3°); granica mechaniczna pkt 4 | [R] okno.py |
 | Powieka górna (G) | krawędź przednia: zamknięta −8,5°, otwarta +42°, z podążaniem +47°; ograniczniki −9,25° i +47,75° | [R] |
 | Powieka dolna (D) | zamknięta −11,5°, otwarta −38°, z podążaniem −43°; ograniczniki −10,75° i −43,75° | [R] |
@@ -94,7 +103,7 @@ Oznaczenia: **[F]** fakt (źródło, pomiar, plik), **[R]** rachunek skryptem z 
 
 | Wariant | Co | Wynik | Decyzja |
 |---|---|---|---|
-| (a) 4 przeguby drukowane | krążek-krzyżak Ø5,5 / Ø8 × 4, sworznie M2, obrotnica M3 | wszystkie pary ≥ 0,494 mm w całym zakresie poza stykami zamierzonymi i parami obrotowymi; kąty przegubów z zapasem ≥ 15,6° (pkt 3.3); luz zwrotny zależny od pasowania sworzni (pkt 3.3) | **wybrany** |
+| (a) 4 przeguby drukowane | krążek-krzyżak Ø5,75 / Ø8 × 4, sworznie M2, obrotnica M3 | wszystkie pary ≥ 0,147 mm w całym zakresie poza stykami zamierzonymi i parami obrotowymi; wnętrze przegubów w 3D ≥ 0,634 mm, zapas kąta ≥ 3,5° (pkt 3.3); luz zwrotny zależny od pasowania sworzni (pkt 3.3) | **wybrany** |
 | (b) kardan 2/2 przy gałce + drukowany przy orczyku | kardan Ø9 × 23,5, połowa od krzyżaka 11,75 | szybkie przemiatanie (`pktR` 22): kardan Y – czasza gałki **0**, kardan Y – czasza górnej **0** (θ ±, G otwarta), pręt Y – czasza górnej **0**, kardan X – czasza gałki 0,013, kardan Y – płyta 0,43, kardan X – żebro 0,49; usunięcie tego wymaga głębszych wycięć gałki i powieki G w pasie pręta Y | odrzucony: większy kardan niż miejsce przy krawędzi gałki |
 | (c) zapasowy kardan 5/5 | Ø11 × 25,5 | większy od 2/2 w każdym wymiarze, więc kolizje z (b) rosną | odrzucony |
 
@@ -103,61 +112,77 @@ Kardany 2/2 zostają w warsztacie jako zapas, gdyby próbka P4 nie zaliczyła lu
 ### 3.3 Przeguby krzyżowe drukowane
 
 **Budowa [A] (oba końce tak samo, różnią się wymiarami):**
-- **krzyżak:** krążek Do × Hr, oś krążka wzdłuż pręta; cztery promieniowe otwory Ø2,0 (drukowane Ø1,8 i rozwiercone wiertłem 2,0) głębokości 1,7 przy gałce (Ø5,5) i 2,75 przy orczyku (Ø8), dwa na osi a1 i dwa na osi a2, w jednej płaszczyźnie, więc osie się przecinają; dna otworów kończą się 1,0–1,25 od środka, więc otwory się nie przecinają;
-- **widełki stałe** (na Uchwycie albo na Ramieniu): dwa policzki o grubości `policzek`, w odległości Do/2 + `luzOs` od środka, zakończone łukiem o promieniu rS wokół osi a1, podstawa o grubości pS w odległości cS od środka;
-- **widełki pręta:** to samo wokół osi a2, z promieniem rP, podstawą w cP i grubością pP;
-- **sworznie:** wkręt M2 wkręcony w policzek (otwór Ø1,6, łeb dociska wkręt do policzka), obraca się w otworze krążka. Przy gałce DIN 7991 M2×4 w pogłębieniu, łeb równo z policzkiem (nic nie wystaje), przy orczyku: sworzeń a1 (widełki na Ramieniu) DIN 7991 M2×5, sworzeń a2 (widełki pręta) DIN 7985 M2×5 (łeb Ø4 × 1,6);
-- **obrotnica przy orczyku:** wkręt M3×12 wkręcony w tulejkę pręta Ø7 × 6 (otwór Ø2,6); łeb w pogłębieniu Ø6 × 3,2 podstawy widełek pręta, podstawa obraca się na czopie-tulejce tulejki pręta Ø5 przez długość 3,3; luz osiowy z różnicy długości czopu i łożyska (3,4 − 3,3 = 0,1), bez regulacji nakrętką;
-- **luz osiowy policzek – krążek:** `luzOs` 0,25 (tabela AGENTS: 0,2–0,3).
+- **krzyżak:** krążek Do × Hr, oś krążka wzdłuż pręta; cztery promieniowe otwory Ø2,0 (drukowane Ø1,8 i **rozwiercane ręcznie wiertłem Ø2,0**), dwa na osi a1 i dwa na osi a2, w jednej płaszczyźnie, więc osie się przecinają;
+- **widełki stałe** (na Uchwycie albo na Ramieniu): dwa policzki o grubości `policzek` w odległości Do/2 + `luzOs` od środka, zakończone łukiem o promieniu rS wokół osi a1, podstawa o grubości pS w odległości cS od środka;
+- **widełki pręta:** to samo wokół osi a2, z promieniem rP, podstawą w cP i grubością pP. Przy orczyku podstawa jest dodatkowo **walcem Ø8 (`podstawaD`) współosiowym z prętem**, bo 2·rP = 5,2 nie mieści pogłębienia łba M3 (uwaga wykonawcy do P4). Przy gałce pod podstawą są **trójkąty 45°** od ±ho do pręta Ø4,5 (wysokość ho − 2,25 = 2,75 wzdłuż pręta), bo pręt drukuje się pionowo, widełkami do góry (DFAM, uwaga wykonawcy). Obie bryły są w przemiataniu i w kontroli wnętrza przegubu 3D;
+- **sworznie:** wkręt M2 wkręcony w policzek (otwór Ø1,6, łeb dociska wkręt do policzka), obraca się w otworze krążka;
+- **obrotnica przy orczyku:** wkręt M3×12 wkręcony w tulejkę pręta Ø7 × 6 (otwór Ø2,6); łeb (dk 5,5, k 3) w pogłębieniu Ø6 × 3,2 podstawy widełek pręta; podstawa obraca się na czopie tulejki **Ø4,4 (`czopD`)** przez długość 3,3, czop ma 3,4, więc luz osiowy s = 0,1 wynika z wymiarów, bez regulacji nakrętką (przy Ø5 łeb zachodził na stopień Ø5,4 tylko 0,05; uwaga wykonawcy);
+- **luz osiowy krzyżak – policzki:** `luzOs` **0,125 na stronę**, razem 0,25 (tabela AGENTS: luz osiowy 0,2–0,3).
 
-**Wymiary odniesienia (mm) i zakres poprawności każdej zmiennej** (pozostałe zmienne na wartościach odniesienia; zakres = przedział, w którym oba kąty dopuszczalne ≥ wymaganym; w nawiasie granica siatki sprawdzenia, poza którą nie liczyłem):
+**Sworznie, długości i otwory** (L – długość wkręta, dla DIN 7991 całkowita, dla DIN 7985 pod łbem; wejście w krążek = L − `policzek` − `luzOs`; `otwGl` = wejście + 0,25):
 
-| Zmienna | Opis | Gałka (`uGal`) | zakres kątów | Orczyk (`uOrcz`) | zakres kątów | Ograniczenie obwiedni [R] i co zmienić poza zakresem |
-|---|---|---|---|---|---|---|
-| `Do` | średnica krążka | 5,5 | 5,0–11 (siatka) | 8,0 | 5,0–11 | gałka: ho = Do/2 + `luzOs` + `policzek` = 5,0 ≤ 5,07 (widełki pręta X – czasza gałki 0,575); więcej → `rimX` głębiej o 0,5° na 0,25 mm. Orczyk: ho 6,25 ≤ 6,59 (widełki orczyka X – rura 0,843) |
-| `Hr` | wysokość krążka (wzdłuż pręta) | 4,0 | 3–7 | 4,0 | 3–7 | gałka: krzyżak X – żebro 0,902 → Hr ≤ 4,9 przy Do 5,5 |
-| `luzOs` | luz policzek–krążek | 0,25 | 0,2–0,5 | 0,25 | 0,2–0,5 | jak `Do` (ho); tabela AGENTS 0,2–0,3 |
-| `policzek` | grubość policzka | 2,0 | 1,2–3,0 | 2,0 | 1,2–3,0 | jak `Do`; ≥ 2,0 dla DIN 7991 M2 (łeb 1,2 + gwint 0,8) |
-| `rP` | ½ grubości widełek pręta = promień końca | 1,8 | 1,6–4,0 | 2,6 | 1,6–4,0 | gałka: większe rP podnosi koniec policzka pod czaszą gałki – sprawdzić narzędziem; orczyk ≤ 2,98 (widełki pręta Y – Ramię Y 0,880) |
-| `cP` | lico podstawy widełek pręta | 5,5 | 4,25–8 | 5,5 | 3,5–8 | dłuższe widełki: sprawdzić `przeguby_akceptacja.py` |
-| `pP` | grubość podstawy widełek pręta | 2,0 | 1,5–8 | 6,5 | 1,5–8 | orczyk: ≥ 6,5 (pogłębienie łba M3 3,2 + łożysko 3,3) |
-| `rS` | ½ grubości widełek stałych = promień końca | 2,6 | 1,6–3,8 | 2,6 | 1,6–4,0 | orczyk ≤ 2,94 (widełki orczyka X – rura) |
-| `cS` | lico podstawy widełek stałych | 7,0 | 5,25–11 | 8,25 | 6,75–11 | orczyk: cS + pS ≤ 9,75 + 1,0 (podstawa X – tarcza ≥ 1,5 przy `katWidelekX` −12) |
-| `pS` | grubość podstawy widełek stałych | 2,0 | 1,5–4 | 1,5 | 1,5–4 | jak `cS` |
-| `lebH` / `lebHP` | wystawanie łbów sworzni a1 / a2 | 0 / 0 (DIN 7991) | 0–4 / 0–3 | 0 / 1,6 (DIN 7991 / DIN 7985) | 0–4 / 0–3 | gałka: łby muszą być w pogłębieniu (zapas widełek pręta X do czaszy 0,075); orczyk: łeb a1 przy rurze, więc DIN 7991 |
-| `katWidelekX` / `Y` | obrót osi widełek orczyka wokół a1 | – | – | −12° / 0° | – | X 0° → zakres wokół a1 −56,7…+32,5 i podstawa w tarczy; −12° wyśrodkowuje |
-| `a1X`, `a1Y` | oś sworznia widełek stałych przy gałce (układ gałki) | optimum (pkt 3.3) | ±10° → wychylenie +3–5° | – | – | wychylenie wokół a2 ≤ 39,25 |
-| `pretD`, `tulejaD` × `tulejaL` | pręt, tulejka obrotnicy | – | – | 4,5; 7 × 6 | – | pręt Y – czasza G 0,527 (cały zakres): pręt grubszy o > 0,05 promieniowo wymaga głębszego `wyciecieG` |
+| Miejsce | Wkręt | Wejście w krążek | Koniec wkręta od środka | `otwGl` | Dno otworu od środka |
+|---|---|---|---|---|---|
+| gałka, widełki pręta (a2) | DIN 7991 M2×4 **skrócony do 3,7**, łeb w pogłębieniu 90° Ø3,8 | 1,575 | 1,30 | 1,825 | 1,05 |
+| gałka, widełki stałe (a1) | DIN 7985 M2×4 (łeb Ø4 × 1,6 na zewnątrz policzka) | 1,875 | 1,00 | 2,125 | 0,75 |
+| orczyk, widełki stałe (a1) | DIN 7991 M2×5 w pogłębieniu Ø3,8 | 2,875 | 1,125 | 3,125 | 0,875 |
+| orczyk, widełki pręta (a2) | DIN 7985 M2×5 | 2,875 | 1,125 | 3,125 | 0,875 |
 
-Ograniczenia obwiedni liczę w przybliżeniu „zapas pary − 0,5 przenosi się 1:1 na wymiar”; rozstrzyga `przeguby_akceptacja.py`. Kąty wymagane w siatce sprawdzenia: przy gałce a1 38,6°, a2 23,6°; przy orczyku a1 42,7°, a2 12,0°. Kąty dopuszczalne odniesienia: gałka 112,0° / 39,25°, orczyk 58,75° / 34,0°. Poza zakresem kątów: zwiększyć lico podstawy (cP przy a2, cS przy a1) albo zmniejszyć rP / rS; przy obwiedni: zmiana jak w ostatniej kolumnie i powtórka `przeguby_akceptacja.py`. Architektura (U–R–U, położenie przegubów, serwa) zostaje w tych zakresach bez zmian.
+Końce wkrętów a1 i a2 się nie stykają: walec wkręta a1 zajmuje x ≥ 1,00, |y| ≤ 1, a wkręta a2 y ≥ 1,30, |x| ≤ 1 (orczyk: oba od 1,125). Dna sąsiednich otworów przy orczyku i przy gałce (a1) zachodzą na siebie w narożniku do 0,25 × 0,25 – to tylko otwory, wkręty tam nie sięgają.
 
-**Kąty [R]:** wymagane z `kinematyka.py` w całym zakresie (gałka do okna), dopuszczalne z `u_zakres()` (przekroje w płaszczyznach obrotu, pierwszy styk < 0,5 mm):
+**Wymiary odniesienia (mm) i zakresy poprawności:**
 
-| Przegub | obrót wokół a1 wymagany / dopuszczalny | wychylenie wokół a2 wymagane / dopuszczalne |
-|---|---|---|
-| przy gałce X | −28,5…+38,6 / ±112,0 | 23,6 / 39,25 |
-| przy gałce Y | −32,2…+35,9 / ±112,0 | 21,4 / 39,25 |
-| przy orczyku X (widełki obrócone o `katWidelekX` −12°) | −41,8…+42,7 / ±58,75 | 8,9 / 34,0 |
-| przy orczyku Y | −40,7…+24,9 / ±58,75 | 12,0 / 34,0 |
-
-- Oś a1 przy gałce dobrałem tak, żeby wychylenie wokół a2 było najmniejsze (przegląd co 1–2° obrotu wokół osi widełek m): X a1_b = (−0,049; −0,998; −0,049), Y a1_b = (−0,055; −0,998; 0,007), czyli prawie wzdłuż −y gałki. Obrót o ±10° od optimum podnosi wychylenie o 3–5°.
-- Najmniejsze zapasy kąta: przy gałce X wokół a2 39,25 − 23,6 = **15,6°**, przy orczyku X wokół a1 58,75 − 42,7 = 16,0°. Bez obrotu widełek X (`katWidelekX` 0) zakres byłby −56,7…+32,5, a podstawa widełek przy ψ +28 wchodziła w tarczę; obrót o −12° wyśrodkowuje zakres i odsuwa podstawę od tarczy (≥ 1,5).
-- Oś a1 przy orczyku to kierunek d (X 1,3°, Y 19,5° od osi wałka ku +z) rzutowany na płaszczyznę ⊥ do pręta w zerze; obraca się z Ramieniem.
-
-**Luz zwrotny [R].** Każdy sworzeń ma luz tylko w jednym otworze (w krążku), a jego luz średnicowy 2c przenosi się wprost na długość pręta, bo wszystkie sworznie są prostopadłe do pręta. Pręt ma 4 sworznie i obrotnicę: Δl = 8c + s (s – luz osiowy obrotnicy, tu 0,1). Wrażliwość gałki na długość pręta: X do **5,4°/mm**, Y do **3,8°/mm** w pracy (6,5 / 4,0 w całym zakresie), w zerze 2,9 / 3,2°/mm.
-
-| Pasowanie sworznia | c (promieniowo) | Δl | luz gałki X / Y w pracy (najgorzej) | w zerze |
+| Zmienna | Opis | Gałka (`uGal`) | Orczyk (`uOrcz`) | Zakres i co zmienić poza nim [R] |
 |---|---|---|---|---|
-| tabela AGENTS „obrotowe na śrubie” | 0,2 | 1,7 | 9,2° / 6,5° | 5,0° / 5,5° |
-| otwór Ø1,8 rozwiercony 2,0, wkręt M2 (Ø1,90–1,95 [Z]) | 0,03–0,05 | 0,34–0,50 | 1,8–2,7° / 1,3–1,9° | 1,0–1,6° |
-| to samo + obrotnica s 0,05 | 0,03 | 0,29 | 1,6° / 1,1° | 0,8° / 0,9° |
+| `Do` | średnica krążka | 5,75 | 8,0 | gałka: ho = Do/2 + `luzOs` + `policzek` = 5,0; widełki pręta X – czasza gałki ma zapas 0,12 ponad 0,5, każde +0,1 ho zjada go 1:1 → więcej: `rimX` głębiej (0,5° na 0,25 mm). Mniej niż 5,6: końce wkrętów a1/a2 zaczynają się stykać (pkt wyżej). Orczyk: widełki orczyka X – rura zapas 0,46 |
+| `Hr` | wysokość krążka | 4,0 | 4,0 | ≥ 4,0 (po 1,0 nad otworem Ø2 do czół – wyrwanie); więcej: krzyżak X – żebro mostka |
+| `luzOs` | luz osiowy krzyżak – policzek, na stronę | 0,125 | 0,125 | 0,1–0,15 (tabela AGENTS 0,2–0,3 razem); więcej podnosi luz zwrotny o 2·Δ·sin β |
+| `policzek` | grubość policzka | 2,0 | 2,0 | ≥ 2,0 (pogłębienie DIN 7991 1,1 + gwint 0,9); więcej jak `Do` |
+| `rP` | ½ szerokości widełek pręta = promień końca | **2,3** | 2,6 | gałka ≥ 2,3 (ścianka 0,4 przy pogłębieniu Ø3,8) i **rP + rS ≤ 4,3** (wnętrze 3D: przy 4,2 odstęp 0,61, 4,3 – 0,55, 4,4 – 0,53, 4,6 – 0,39); orczyk: widełki pręta Y – Ramię Y (koniec Ramienia zwężony do 6) |
+| `cP` | lico podstawy widełek pręta | 5,5 | 5,5 | ≥ 4,25 (krzyżak – podstawa przy β do 40°); dłuższe: `przeguby_akceptacja.py` |
+| `pP` | grubość podstawy widełek pręta | 2,0 | 6,5 | orczyk ≥ 6,5 (pogłębienie łba M3 3,2 + łożysko 3,3) |
+| `rS` | ½ szerokości widełek stałych = promień końca | **1,9** | 2,6 | gałka: jak `rP` (bez pogłębienia, łeb DIN 7985 na licu); orczyk: widełki orczyka X – rura |
+| `cS`, `pS` | lico i grubość podstawy widełek stałych | 7,0; 2,0 | 8,25; 1,5 | orczyk: cS + pS ≤ 9,75 + 1,0 (podstawa X – tarcza ≥ 1,5 przy `katWidelekX` −12) |
+| `lebH` / `lebHP` | wystawanie łbów a1 / a2 | 1,6 / 0 | 0 / 1,6 | gałka: łeb widełek pręta musi być w pogłębieniu (zapas do czaszy); łby widełek stałych Y – czasza 0,71 ≥ 0,3 |
+| `L` | długość wkręta sworznia | 3,7 (a2), 4 (a1) | 5 | wejście = L − policzek − luzOs; końce a1/a2 nie mogą się zejść (Do/2 − wejście ≥ 1,0 i suma ≥ 2,3) |
+| `otwGl` | głębokość otworów krążka | 1,825 (a2), 2,125 (a1) | 3,125 | = wejście + 0,25 |
+| `podstawaD` | Ø podstawy walcowej widełek pręta | – | 8,0 | mieści pogłębienie Ø6 (ścianka 1,0) |
+| `czopD` | Ø czopu obrotnicy | – | 4,4 | łeb M3 dk 5,5 opiera się na stopniu 0,55 |
+| `katWidelekX` / `Y` | obrót osi widełek orczyka wokół a1 | – | −12° / 0° | X 0° → zakres γ −56,7…+32,5° i podstawa w tarczy |
+| `a1X`, `a1Y` | oś sworznia widełek stałych przy gałce (układ gałki) | (0; −1; 0) | – | rozstrzyga `przeguby_3d.py` |
+| `pretD`, `tulejaD` × `tulejaL` | pręt, tulejka obrotnicy | 4,5 | 7 × 6 | pręt Y – czasza G zapas 0,03 |
 
-**To odstępstwo od tabeli AGENTS** (0,2 dla przegubów na śrubie): proponuję dla sworzni napędu gałki c ≈ 0,03 przez rozwiercenie i zapisanie wartości w tabeli po próbce P4. Przy 0,2 gałka ma 5–9° luzu zwrotnego, co przy zmianie kierunku będzie widać. Pozostałe pasowania (luz osiowy policzek–krążek 0,25, obrotnica) są z tabeli. **Decyzja użytkownika** (pkt 16, B9).
+Ograniczenia obwiedni liczę jako „zapas pary − 0,5 przenosi się 1:1 na wymiar”; rozstrzyga `przeguby_akceptacja.py` (przemiatanie + wnętrze 3D + pary stała–stała). Architektura (U–R–U, położenie przegubów, serwa) zostaje w tych zakresach bez zmian.
 
-**Wytrzymałość [R]** (siły w pręcie X / Y: zablokowane serwo 17,3 / 20,2 N w pracy, 20,9 / 26,4 N w całym zakresie; ręka 0,5 N·m na gałce w dowolnym kierunku 58,8 / 43,0 N w pracy, 79,7 / 55,7 N w całym zakresie):
-- sworzeń M2 w krążku: na sworzeń połowa siły, docisk 40 N / (2,0 × 1,7) ≈ **11,8 MPa** przy gałce i 40 / (2,0 × 2,75) ≈ 7,3 MPa przy orczyku, przy 79,7 N (PLA ok. 60 MPa na ściskanie [Z]); przy serwie ≤ 3,9 MPa;
-- ścinanie M2 (rdzeń Ø1,57, 1,9 mm²): 40 N / 1,9 ≈ 21 MPa;
-- policzek 2 mm na sworzniu: docisk 40 / (2 × 2) = 10 MPa;
+**Wnętrze przegubu w 3D [R] (`przeguby_3d.py`, uwaga Astry pkt 4).** Dla każdego z 4 przegubów i każdego położenia gałki (siatka 1° + 360 położeń granicy okna) skrypt liczy rzeczywiste kąty (γ wokół a1, β wokół a2) i najmniejszy odstęp brył strony pręta (policzki z końcami, podstawa, trójkąty, walec Ø8, łby, tulejka, pręt) od brył strony stałej (policzki, podstawa, łby, przejście w Ramię) oraz krzyżaka od podstaw. Pary sworzniowe (krzyżak – własne policzki) mają luz osiowy `luzOs` i nie wchodzą. Zapas kąta to największe Δ, o które można jednocześnie powiększyć |γ| i |β| w 60 skrajnych położeniach przy odstępie ≥ 0,5:
+
+| Przegub | γ (wokół a1) wymagane | β (wokół a2) wymagane | najmniejszy odstęp | gdzie (ψ; θ; γ; β) | para | zapas kąta |
+|---|---|---|---|---|---|---|
+| przy gałce X | −28,5…37,0° | −23,8…23,0° | **0,634** | (28,0; 18,0; 37,0; −23,4) | policzek pręta – policzek stały | 3,5° |
+| przy gałce Y | −32,0…35,6° | −17,4…24,1° | **0,654** | (28,0; −18,0; 35,6; 24,1) | policzek pręta – policzek stały | 4,0° |
+| przy orczyku X | −42,1…42,8° | −8,9…0,6° | **1,446** | (28,1; 14,6; 42,8; −8,9) | policzek pręta – policzek stały | 17,0° |
+| przy orczyku Y | −40,8…25,1° | −12,0…3,9° | **1,452** | (28,0; −18,0; −40,8; −12,0) | policzek pręta – policzek stały | 14,0° |
+
+Płaskie przekroje `u_zakres()` (v3.2 przed korektą: gałka 112° / 39,25°) zawyżały zapas, bo nie łączą obrotu wokół obu osi (Astra: 7,4° zamiast 15,6°). Przy dawnych wymiarach (rP 1,8, rS 2,6, a1 dobrane) przestrzenny odstęp policzków spadał do 0,31 mm. Po korekcie (rS 1,9 przy łbach DIN 7985 na widełkach stałych, a1 = −y) odstęp w całym zakresie wynosi ≥ 0,634 mm, a zapas kąta ≥ 3,5°.
+
+**Oś a1 przy gałce = −y gałki** dla X i Y (propozycja wykonawcy, widełki na płaszczyznach Front/Right); oś widełek m to kierunek pręta w zerze rzutowany na płaszczyznę ⊥ a1. Kąty wymagane (`kinematyka.py`): przy gałce X γ −28,5…37,0°, β −23,8…23,0°; Y γ −32,0…35,6°, β −17,4…24,1°; przy orczyku X γ −42,1…42,8° (widełki obrócone o `katWidelekX` −12°, bez tego −56,7…+32,5° i podstawa w tarczy), β −8,9…0,6°; Y γ −40,8…25,1°, β −12,0…3,9°.
+
+**Luz zwrotny [R] (`kinematyka.py`, uwaga Astry pkt 3).** Luz długości pręta: Δl = 8c + s + 2·`luzOs`·(sin β_gałka + sin β_orczyk) – 4 sworznie z luzem średnicowym 2c, obrotnica s = 0,1 i przesuw krzyżaka między policzkami rzutowany na pręt przy wychyleniu β. Kąt gałki z obu prętów naraz: [δψ, δθ] = |J_L⁻¹|·[Δl_X, Δl_Y], J_L = ∂(L_X, L_Y)/∂(ψ, θ) przy stałych kątach serw, najgorsze ułożenie luzów:
+
+| c (promieniowo) | Δl pręta X / Y (najwięcej) | luz ψ / θ w pracy | luz ψ / θ w całym zakresie |
+|---|---|---|---|
+| 0,03 | 0,48 / 0,49 mm | **3,8° / 2,8°** | 5,7° / 3,7° |
+| 0,05 | 0,64 / 0,65 mm | **5,1° / 3,9°** | 7,7° / 5,1° |
+| 0,2 | 1,84 / 1,85 mm | **15,3° / 11,8°** | 22,3° / 15,0° |
+
+**Decyzja orkiestratora (23.10, B9):** otwory sworzni drukowane podwymiarowo (Ø1,8) i rozwiercane ręcznie wiertłem Ø2,0 do luzu **c ≈ 0,03–0,05**. Przy c 0,2 z tabeli AGENTS luz zwrotny byłby kilkunastostopniowy (wiersz c = 0,2 wyżej). Wartość po P4 trafia do tabeli luzów. Luz zwrotny nie wynika z obrotu jałowego (tego nie ma), tylko z luzów sworzni; przy wyłączonym PWM gałka może się w nim przestawiać – PWM wyłączany tylko w spoczynku (pkt 7a), a P4 mierzy luz rzeczywisty.
+
+**Wytrzymałość [R]** (siły w pręcie X / Y: zablokowane serwo 17,3 / 20,2 N w pracy, 20,9 / 26,4 N w całym zakresie; ręka 0,5 N·m na gałce w dowolnym kierunku 58,8 / 43,0 N w pracy, 79,7 / 55,7 N w całym zakresie; na sworzeń połowa, 40 N):
+- docisk sworznia w krążku: 40 / (2,0 × 1,575) = **12,7 MPa** (gałka, a2), 40 / (2,0 × 1,875) = 10,7 MPa (gałka, a1), 40 / (2,0 × 2,875) = 7,0 MPa (orczyk); PLA ok. 60 MPa na ściskanie [Z];
+- **wyrwanie sworznia z krążka** (Astra): nad otworem Ø2 w krążku Hr 4 zostaje po 1,0 mm do czół; ścinanie dwóch pasm 1,0 × wejście: 40 / (2 × 1,0 × 1,575) = **12,7 MPa** na ścinanie międzywarstwowe (PLA ok. 20–30 MPa [Z]) – to sprawdza P4;
+- **zginanie sworznia** (wspornik od lica policzka, ramię = `luzOs` + ½ wejścia, rdzeń Ø1,57, W = 0,378 mm³): gałka a2 40·0,91 / 0,378 = **96 MPa**, gałka a1 40·1,06 / 0,378 = 112 MPa, orczyk 40·1,56 / 0,378 = **165 MPa**; stal 4.8 R_e 320 MPa, A2-70 450 MPa [Z] – zapas ≥ 1,9;
+- **policzek widełek pręta przy gałce po pogłębieniu:** szerokość 2·rP = 4,6, pogłębienie Ø3,8 → ścianka 0,4 na stronę przy licu (uwaga orkiestratora: `rP` ≥ 2,3); ścinanie od sworznia do końca policzka: 2 × (rP − 0,8) × (2,0 − ½·1,1) = 2 × 1,5 × 1,45 = 4,35 mm² → 40 / 4,35 = **9,2 MPa**; gwint wkręta w policzku po pogłębieniu ok. 0,9 mm – trzyma wkręt osiowo (bez obciążenia osiowego);
+- policzek widełek stałych przy gałce (rS 1,9, szer. 3,8, bez pogłębienia, łeb DIN 7985 Ø4 opiera się na licu): ścianka przy otworze Ø1,6 1,1; docisk 40 / (2 × 2) = 10 MPa;
 - pręt Ø4,5 drukowany pionowo: długość wolna X 18,1, Y 20,7; wyboczenie P_kr = π²·3500·20,1/20,7² ≈ 1620 N wobec 80 N.
 
 ### 3.4 Ramiona X/Y i kinematyka [R] (`kinematyka.py`)
@@ -199,25 +224,34 @@ Kierunek µs ustala kalibracja (flaga znaku w NVS).
 **Zmiana geometrii dla kolizji piasty M2 Y ze Słupkiem (zlecenie pkt 1) [R]:**
 - **Było (v3.1):** kulka M2 Y w (0; 19,5; −6) z piastą Ø6 wzdłuż −y gałki na 5 mm do środka (koniec przy y_b 14,5). Przy θ > 12° piasta schodzi poniżej z −5,5 i wchodzi w tuleję Słupka (R5,65–7,65, z −12,75…−5,5): −0,80 mm w punkcie Astry przy (0; 15), −0,86 w przypadku kontrolnym.
 - **Jest (v3.2):** piasty i kulki nie ma. Środek krzyżaka Y w **(0; 20; −6)** (`pktRY` 20, +0,5 na zewnątrz). Pręt trzymają **widełki stałe Uchwytu nad płytą okna**, wzdłuż m_Y (w stronę +z gałki, od pręta), policzki w y_b 15,0…17,0 i 23,0…25,0, od z_b ≈ −6 do +2; żadna bryła przegubu Y nie schodzi do środka bliżej niż y_b 15,0 w warstwie płyty, a pod płytę schodzą tylko widełki pręta, które obracają się z prętem na zewnątrz od okna.
-- **Wynik:** wszystkie bryły przegubu Y i Uchwytu wobec Słupka (z tuleją) i kardana dolnego **≥ 1,50 mm** w całym zakresie (widełki stałe Y – Słupek 2,04, krzyżak Y – Słupek 4,28; wartości ≥ 1,5 model podaje jako dolne ograniczenie z kul opisanych). **Słupek bez zmian** poza kieszenią Ø11,6 z CAD 23.10.
+- **Wynik:** bryły przegubu Y wobec Słupka (z tuleją) i kardana dolnego **≥ 1,50 mm** w całym zakresie (wartości ≥ 1,5 model podaje jako dolne ograniczenie z kul opisanych); najbliżej Słupka z całego Uchwytu są łapy pod nadlewy: 1,09 mm. **Słupek bez zmian** poza kieszenią Ø11,6 z CAD 23.10.
 - Poprawka v3.1 w obrębie kulek (piasta skrócona do 2,8) przestała być potrzebna: zmiana przegubów usuwa piastę.
 
-**Uchwyt (układ gałki):**
-- **płyta okna** z_b −7,5…−4,5, R zewn. **26,6**, otwór = okno (pkt 4), wycięcia pod przeguby przy gałce po obwiedni krzyżaków i widełek prętów z luzem 0,6 (tabela pkt 4), nad nadlewami wycięcia Ø7,6;
-- **żebro mostka X** z_b −4,5…−2,0 w sektorze ±17,5°;
-- **widełki stałe X:** oś m_X = (−0,18; −0,04; 0,98) (od P w stronę przeciwną do pręta), policzki ⊥ a1_X (płaszczyzny ⊥ osi y gałki, w odległości 3,0…5,0 od P), od P (koniec policzków R2,6 wokół a1) do +9,0 wzdłuż m (podstawa 2,0 w 7,0…9,0); **wspornik** 4 × 4 od podstawy widełek do tulei przedniej w (R8,6; z_b +9,0) w płaszczyźnie promieniowej przegubu, nad drogą widełek pręta;
-- **widełki stałe Y:** m_Y = (−0,47; 0,03; 0,88), policzki ⊥ a1_Y (y_b 15,0…17,0 i 23,0…25,0), wspornik jak X;
+**Uchwyt (układ gałki) – wymiary dla CAD po korekcie:**
+- **płyta okna** z_b −7,5…−4,5, R zewn. **26,6**, otwór = okno (pkt 4), wycięcia pod przeguby przy gałce po obwiedni krzyżaków i widełek prętów z luzem 0,6 (węzły i mostki w pkt 10), nad nadlewami kieszenie Ø7,6 od spodu na 1,1 (wierzch nadlewu −6,68 jest 0,82 nad spodem płyty);
+- **żebro mostka X** z_b −4,5…−2,0 w sektorze ±17,5°, luz do obwiedni prętów 1,3; węzły zewnętrzne co 2,5° (pytanie wykonawcy d): −17,5°: R26,60; −15,0°: R26,60; −12,5°: R26,60; −10,0°: R15,14; −7,5°: R14,79; −5,0°: R14,62; −2,5°: R14,54; 0,0°: R14,54; 2,5°: R14,54; 5,0°: R14,62; 7,5°: R14,79; 10,0°: R15,14; 12,5°: R26,60; 15,0°: R26,60; 17,5°: R26,60; od środka żebro kończy się na splajnie okna;
+- **widełki stałe X:** P (21,25; 0; −6), sworzeń a1 = −y, oś widełek m_X = (−0,201; 0; 0,980) (kierunek pręta w zerze rzutowany na płaszczyznę xz), policzki w płaszczyznach ⊥ y w |y| 3,0…5,0, szerokość 2·rS = 3,8, koniec R1,9 wokół a1, podstawa 2,0 w 7,0…9,0 wzdłuż m; łby DIN 7985 M2×4 na zewnątrz policzków (|y| 5,0…6,6);
+- **widełki stałe Y:** P (0; 20; −6), a1 = −y, m_Y = (−0,473; 0; 0,881), policzki w y 15,0…17,0 i 23,0…25,0, łeb zewnętrzny do y 26,6 (do czaszy 0,71);
+- **wsporniki widełek (pytania wykonawcy b, c):** płaskie, 4 × 4, **nachylone 46° do poziomu**, więc drukują się płytą w dół bez podpór, i poprowadzone nad drogą widełek pręta:
+  - X: w płaszczyźnie y = 0 od środka podstawy widełek (19,64; 0; 1,84) do ściany tulei przedniej (7,65; 0; 14,26);
+  - Y: w płaszczyźnie x = −3,78 od (−3,78; 20,00; 1,05) do ściany tulei (−3,78; 6,65; 14,87);
+  - dawny wspornik X do (8,6; 9,0) miał 33° (nawis 57°), a wspornik pionowy z płyty musiałby stać w wycięciu płyty pod widełkami pręta X; płaski 46° omija oba problemy;
 - **łączniki** do tulei przedniej: 3 pręty Ø4 na φ 135°, 225°, 315° od (r 15,5; z_b −4,5) do (r 9,2; z_b +7,0);
-- **tuleja przednia** Ø11,6/Ø15,3, z_b +7,0…+12,75;
-- **łapy pod nadlewy Gałki:** płytka R20–25 × 2,0 pod czołem nadlewu (z_b −14,68…−12,68), od −3,5 do +6,3 stycznie, z pogłębieniem na DIN 7991 M3×8 w otwór Ø2,6 nadlewu; żeberko 2,5 (stycznie) × 5 (promieniowo) obok nadlewu, po stronie φ 270°, od spodu płyty do łapy; w płycie nad nadlewem kieszeń Ø7,6 od spodu na 1,1 (wierzch nadlewu −6,68 jest 0,82 nad spodem płyty).
+- **tuleja przednia** Ø11,6/Ø15,3, z_b +7,0…+12,75, **zamknięta nad kardanem do z_b 19,75** (pytanie wykonawcy e): DIN 7991 M5 + nakrętka, przelot Ø4,2 w ±y na wkręt M4 piasty kardana; do czaszy Gałki 6,82 [R];
+- **łapy pod nadlewy Gałki (pytanie wykonawcy a)** – osobne części × 2, kształt L, druk na boku:
+  - płytka R20–25 × 2,0 pod czołem nadlewu (z_b −14,68…−12,68), od −3,5 do +8,8 stycznie;
+  - żeberko **5 × 5** (stycznie × promieniowo) obok nadlewu, po stronie φ 270°, od spodu płyty (−7,5) do spodu łapy (−14,68);
+  - do Gałki: **DIN 7991 M3×6 od tyłu** przez płytkę 2,0 (pogłębienie 90° Ø6,3 na 1,7, łeb k 1,65 chowa się 0,05 pod licem) w otwór Ø2,6 nadlewu: wejście 4,0, do dna (głębokość 5,4) zostaje **1,4** (uwaga Astry pkt 2: M3×8 wystawałby 6,0 > 5,4);
+  - do płyty: **DIN 7991 M3×8 od wierzchu płyty** (pogłębienie 90° Ø6,3 na 1,7 w płycie 3,0) w otwór Ø2,6 żeberka: wejście 5,0, otwór 6,6, dno 0,6 nad spodem łapy;
+  - łeb na wierzchu płyty przy φ 210°/330°, R ≈ 22 jest równo z licem, więc nie zmienia obwiedni; w przemiataniu łapy mają najmniej 0,655 (D wypust zaczepu – łapa).
 
-Wszystkie te bryły są w przemiataniu. Uchwyt wobec czaszy Gałki (sztywno skręcone) sprawdza `stale_pary.py`: widełki stałe X 2,67 mm, Y 1,83, wsporniki ≥ 5,9, łączniki 9,9, płyta okna 0,36 (R26,6 przy z_b −7,5); łapy dociśnięte do czoła nadlewu (styk montażowy).
+Wszystkie te bryły są w przemiataniu. Uchwyt wobec czaszy Gałki (sztywno skręcone) sprawdza `stale_pary.py`: płyta okna 0,36, łeb i nakrętka sworznia przy gałce Y 0,71, widełki przy gałce Y 2,00, łeb i nakrętka sworznia przy gałce X 3,03, widełki przy gałce X 3,50, wspornik widełek Y 5,66, wspornik widełek X 6,58, piasta przednia Uchwytu 6,82, łącznik Uchwytu 225 9,86, łącznik Uchwytu 315 9,86, łącznik Uchwytu 135 9,86, kardan górny 14,11; łapy dociśnięte do czoła nadlewu (styk montażowy).
 
 ### 3.6 Wycięcia gałki i powieki górnej
 
-- **Gałka:** φ 0° ±30° od **98°** (widełki pręta X), φ 80° ±40° od 102° (pręt Y), pełna głębokość w pasie; tył płaski z_b −12,68. Wycięcia leżą za równikiem kuli. Przy ψ −25° krawędź wycięcia X widać na 73° od osi patrzenia (w v3.1: 79°), ok. 1,4 mm w głąb od sylwetki – kosmetyka, do oceny na P6.
+- **Gałka:** φ 0° ±30° od **98°** (widełki pręta X), φ 80° ±40° od 102° (pręt Y), pełna głębokość w pasie; tył płaski z_b −12,68. Wycięcia leżą za równikiem kuli. Przy ψ −25° krawędź wycięcia X widać na 73° od osi patrzenia (w v3.1: 79°), ok. 1,3 mm w głąb od sylwetki – kosmetyka, do oceny na P6.
 - **Powieka górna:** w pasie x **−14…+24** tylna krawędź **82,5°** za przednią; w pasie x −31…−17 do 96,5°. Powieka dolna: x −31…−17 do 76°.
-- **Przycięcie przy uszach** (pkt 10, C1–C2): kołnierz Ramy wokół mostka G, czasza G wokół ucha D.
+- **Przycięcie przy uszach** (pkt 10, C2): czasza G wokół ucha D; kołnierz Ramy bez zmian (mostek G 56–95°, ucho G R5,5).
 
 ## 4. Ogranicznik gałki: okno
 
@@ -255,7 +289,7 @@ Bez zmian geometrii względem v3.1 (`okno.json`, `okno_splajn.npy`). Okno nie za
 | | Powieka górna (G) | Powieka dolna (D) |
 |---|---|---|
 | Czasza | R31,2–33,4, rant R34,7 w pasie 6,5° przy krawędzi przedniej, zakres 99,5°, przycięta do \|x\| ≤ 30,95 | jak G, zakres 79° |
-| Ucha i mostek (CAD) | ucho R6, x ±(33,85…36,25); mostek R4,5–8 od x 30,95 do 36,25, 20–70° za krawędzią przednią | ucho R4, x ±(30,95…33,6) |
+| Ucha i mostek (CAD) | ucho R5,5 (`uchoGR`), x ±(33,85…36,25); mostek R4,5–8 od x 30,95 do 36,25, 56–95° za krawędzią przednią (`mostekKat1/2`) | ucho R4, x ±(30,95…33,6) |
 | Wycięcia tylnej krawędzi | x −14…+24: 82,5°; x −31…−17: 96,5° | x −31…−17: 76° |
 | Zaczep J (t = 0) | (−22,0; +25,6; −0,9), płytka 2,4 z otworem Ø1,6 | (−22,0; −25,6; −0,9) |
 | Serwo | S_PG: wałek (y 18; z −60), odwrócone, orczyk w −x, płaszczyzna x −30 | S_PD: wałek (y −27; z −49), orczyk w −x, płaszczyzna x −21 |
@@ -281,34 +315,34 @@ Bez zmian względem v3.1: zagięcia Z z promieniem osi 1,8, nogi 1,9 od ścianek
 
 **Tabela słupków do CAD** (słupek 6 × 6 w przekroju yz, obrócony o kąt b ramienia przy ograniczniku; b mierzony w yz od +y ku +z):
 
-| Słupek | wyrasta z | kąt b ramienia | środek (x; y; z) | x | y | z (obwiednia) |
-|---|---|---|---|---|---|---|
-| G zamknięcia (ρ 10) | ściana klatki S_PG przedłużona do wierzchu korpusu (płytka 2) | 134,69° | (−25,40; 15,23; −48,67) | −32,00…−18,80 | 10,99…19,48 | −52,91…−44,43 |
-| G otwarcia (ρ 10) | jak wyżej | 210,89° | (−25,40; 12,50; −70,28) | −32,00…−18,80 | 8,38…16,61 | −74,40…−66,17 |
-| D zamknięcia (ρ 14) | **łącznik** 5,9 × 4 do ramienia wspornika 200° (z −37…−33): x −22,5…−16,6, y −19,20…−5,62, z −37,09…−33,09 | 30,36° | (−19,55; −17,70; −37,18) | −22,50…−16,60 | −21,80…−13,59 | −41,28…−33,07 |
-| D otwarcia (ρ 10) | **filar** 5,9 × 6 z tarczy (z −68,3) do spodu słupka: y −22,46…−16,46, z −68,30…−61,41 | −19,87° | (−19,55; −19,46; −57,57) | −22,50…−16,60 | −23,31…−15,62 | −61,41…−53,73 |
+| Słupek | wyrasta z / podparcie | najmniejszy przekrój połączenia | kąt b ramienia | środek (x; y; z) | x | y | z (obwiednia) |
+|---|---|---|---|---|---|---|---|
+| G zamknięcia (ρ 10) | **płytka 2 mm** przy czole klatki S_PG: x −20,8…−18,8, y 10,4…19,48, z −52,91…−40,70, łączy słupek z krawędziami ścianek klatki (y 10,4…11,35 i z −42,7…−40,7) | słupek–płytka 6 × 8,5 (cały przekrój słupka w x −20,8…−18,8); płytka–klatka ok. 0,95 × 12,2 + 2,0 × 9,1 ≈ 30 mm² | 134,69° | (−25,40; 15,23; −48,67) | −32,00…−18,80 | 10,99…19,48 | −52,91…−44,43 |
+| G otwarcia (ρ 10) | **przechodzi przez tarczę** (z −71,3…−68,3) obok okna G | przekrój słupka w materiale tarczy: 33,6 mm² na licu −68,3, 52,6 w połowie grubości | 210,89° | (−25,40; 12,50; −70,28) | −32,00…−18,80 | 8,38…16,61 | −74,40…−66,17 |
+| D zamknięcia (ρ 14) | **łącznik** 5,9 × 4 do ramienia wspornika 200° (z −37…−33): x −22,5…−16,6, y −19,20…−5,62, z −37,09…−33,09 | 5,9 × 4 = 23,6 mm² | 30,36° | (−19,55; −17,70; −37,18) | −22,50…−16,60 | −21,80…−13,59 | −41,28…−33,07 |
+| D otwarcia (ρ 10) | **filar** 5,9 × 6 z tarczy (z −68,3) **wchodzący w słupek do jego środka** (z −57,57): y −22,46…−16,46 | **5,9 × 6 = 35,4 mm²** (cały przekrój filara leży w słupku; v3.2 przed korektą: styk linią, 0 mm² – Astra pkt 1) | −19,87° | (−19,55; −19,46; −57,57) | −22,50…−16,60 | −23,31…−15,62 | −61,41…−53,73 |
 
-Przekrój słupka 6 × 6 (`slupekStopuA`), osie przekroju: wzdłuż ramienia (cos b; sin b) i prostopadle w stronę ruchu do ogranicznika. G otwarcia sięga z −74,40, czyli 3,1 za tył tarczy (−71,3): przechodzi przez okno tarczy G i wyznacza tył modułu (B5).
+Przekrój słupka 6 × 6 (`slupekStopuA`), osie przekroju: wzdłuż ramienia (cos b; sin b) i prostopadle w stronę ruchu do ogranicznika. G otwarcia sięga z −74,40, czyli 3,1 za tył tarczy (−71,3), i wyznacza tył modułu (B5). Podparcia są w modelu (`stop_posts()`, gałąź `klatka` z płytką) i w parach stała–stała.
 
 **Pary stała–stała [R]** (10 najmniejszych, wymaganie ≥ 0,5):
 
 | # | Para | mm |
 |---|---|---|
-| 1 | korpus S_X – słupek stopu D otwarcia | **0,556** |
-| 2 | korpus S_X – filar słupka D otwarcia | 0,557 |
-| 3 | korpus S_X – korpus / ucho S_PD | 0,643 |
-| 4 | łeb śruby ucha S_PG – słupek stopu G otwarcia | 0,663 |
-| 5 | kabel S_X – korpus S_Y (i odwrotnie) | 0,693 |
-| 6 | korpus S_Y – słupek stopu G zamknięcia | 1,234 |
-| 7 | korpus S_X – wieża S_PD | 1,244 |
-| 8 | łeb śruby ucha S_Y – piasta wspornika | 1,245 |
-| 9 | wieża S_PD – słupek stopu D otwarcia | 1,327 |
-| 10 | kabel S_X – korpus S_Y (trasa przód) | 1,371 |
+| 1 | S_X korpus – słupek stopu D otwarcia | **0,556** |
+| 2 | S_X korpus – filar słupka D otwarcia | 0,557 |
+| 3 | S_X korpus – S_PD korpus | 0,643 |
+| 4 | S_X korpus – S_PD ucho | 0,643 |
+| 5 | S_X ucho – S_PD korpus | 0,643 |
+| 6 | S_PG łeb śruby ucha – płytka słupka G zamknięcia | 0,644 |
+| 7 | S_PG łeb śruby ucha – słupek stopu G otwarcia | 0,663 |
+| 8 | S_X kabel – S_Y korpus | 0,693 |
+| 9 | S_X korpus – S_Y kabel | 0,693 |
+| 10 | S_Y korpus – płytka słupka G zamknięcia | 0,693 |
 
-Wieżyczki R6 do słupków: ≥ 1,3 (wykonawca v3.1: 0,26 i 0,04). Klatki sąsiednich serw mają wspólne ścianki, kable mogą leżeć obok siebie w kanale – tych par nie liczę.
+Wieżyczki R6 do słupków: ≥ 1,3 (wykonawca v3.1: 0,26 i 0,04). Klatki sąsiednich serw mają wspólne ścianki, kable mogą leżeć obok siebie w kanale – tych par nie liczę; podparcia z własnym słupkiem i klatką są jedną bryłą.
 
 - **Zapas w pracy:** ramię–słupek 0,057–0,148 mm (0,75° powieki = 0,9–1,1° serwa ≈ 10–12 µs; styk zamierzony). Zamknięcie programowe ustawia kalibracja: dojazd do słupka, cofnięcie o 1,0° serwa.
-- **Wytrzymałość:** przy 0,546 N·m na ramieniu G i styku na r ≈ 10 siła wynosi ok. 55 N; słupek 6 × 6 wysięgu 13 mm: σ = 55·13/36 ≈ **20 MPa**. Łącznik D zamknięcia 4 × 5,9 przy 0,470 N·m / 14 mm = 34 N i ramieniu 13: σ ≈ 34·13·6/(5,9·4²) ≈ 28 MPa – na granicy dla PLA w zginaniu długotrwałym [Z]; przy T1 obserwować, w razie potrzeby łącznik 5 mm.
+- **Wytrzymałość:** przy 0,546 N·m na ramieniu G i styku na r ≈ 10 siła wynosi ok. 55 N; słupek G 6 × 6 wysięgu 13 mm od płytki: σ = 55·13/36 ≈ **20 MPa**. Filar D otwarcia 5,9 × 6 przy 0,470 N·m / 10 mm = 47 N i ramieniu 10 (od tarczy do środka słupka): σ = 47·10·6/(5,9·6²) ≈ **13 MPa**. Łącznik D zamknięcia 4 × 5,9 przy 34 N i ramieniu 13: σ ≈ 34·13·6/(5,9·4²) ≈ 28 MPa – na granicy dla PLA w zginaniu długotrwałym [Z]; przy T1 obserwować, w razie potrzeby łącznik 5 mm.
 
 ### 5.3 Szczelina zamknięcia, kąciki, ucha
 
@@ -351,9 +385,9 @@ Reszta bez zmian względem v3.1: (a) PWM tylko w ruchu + 0,3 s; (b) T1 osobno dl
 4. (O) Serwa w klatki: **M2×10 przez wycięcia uszu, nakrętki M2 w kieszeniach bloków**. **(S)** podaje śruby i układa kable w kanale (kanał przyjmuje kabel z dowolnej krótszej ściany).
 5. (O) Słupek na piastę wspornika (DIN 7991 M5×30 od spodu, nakrętka w kieszeni), kardan na trzpień, M4 przez otwór na ±x.
 6. (O) Uchwyt na przednią piastę kardana, M5×12, M4.
-7. (O) Przeguby krzyżowe: krzyżak w widełki, wkręty M2×5 w policzki do oporu łba; sprawdzić ręką ruch bez zacięć w obu osiach. Obrotnica: M3×12 przez podstawę widełek pręta w tulejkę pręta, do oporu łba.
-8. (O) Ramiona X/Y na orczyki i wielowypusty w zerze (program `kalibracja`, 1500 µs, przyrząd zera), najpierw Y, potem X; widełki orczyka z krzyżakiem pręta, M2×5.
-9. **(S)** nakłada Gałkę na Uchwyt. (O) 2 × M3×8 od tyłu przez łapy Uchwytu w nadlewy.
+7. (O) Przeguby krzyżowe: otwory krążków rozwiercić Ø2,0; krzyżak w widełki, wkręty M2 w policzki do oporu łba (długości z tabeli pkt 3.3: przy gałce M2×4 – a2 skrócone do 3,7; przy orczyku M2×5); sprawdzić ręką ruch bez zacięć przy jednoczesnym wychyleniu obu osi. Obrotnica: M3×12 przez podstawę widełek pręta w tulejkę pręta, do oporu łba na czopie Ø4,4.
+8. (O) Ramiona X/Y na orczyki i wielowypusty w zerze (program `kalibracja`, 1500 µs, przyrząd zera), najpierw Y, potem X; widełki orczyka z krzyżakiem pręta, DIN 7991 M2×5.
+9. (O) Łapy do płyty Uchwytu: DIN 7991 M3×8 od wierzchu płyty w żeberka. **(S)** nakłada Gałkę na Uchwyt. (O) 2 × DIN 7991 M3×6 od tyłu przez łapy w nadlewy.
 10. (O) Ramiona PG/PD na wielowypusty w położeniu „zamknięte”, bok ramienia przy słupku stopu.
 
 **Złożenie:**
@@ -384,7 +418,7 @@ Przyrząd długości prętów nie jest potrzebny: długość pręta jest stała 
 - **typ `ann` (tuleje)** we wszystkich listach par: tuleja Słupka (R5,65–7,65, z −12,75…−5,5), tuleja przednia Uchwytu. Typy próbkowane: `cap`, `cyl`, `obb`, `ann`, `cwedge` (klin walcowy: mostek G);
 - **przypadki kontrolne** (`kontrola()`, błąd = przerwanie biegu): (1) punkt Astry (0,007714; 6,846927; −11,152104) wobec tulei Słupka: **−0,803069** (zgodnie z Astrą); (2) tuleja jest na liście par; (3) geometria v3.1 (kulki RC, `pktR` 19,5, piasta M2 Y 5 mm) przy (0; 15): piasta M2 Y – Słupek **−0,859**, czyli model wykrywa kolizję, którą v3.1 pominęła; (4) `prism_d` dla (−20; 0; −2) nad płytą z −7,5…−4,5: **2,5**;
 - **`prism_d()`:** dokładna odległość do graniastosłupa z otworem (wnętrze konturu: test gwiazdy na wielokącie, krawędzie w oknie kątowym, a przy braku trafienia pełna lista krawędzi); poprawny znak nad i pod płytą;
-- **bryły z CAD:** mostek G (klin walcowy R4,5–8 wokół osi x, x ±(30,95…36,25), 20–70° za krawędzią przednią, obraca się z powieką), ucho G R6 (x ±(33,85…36,25)), ucho D R4 (x ±(30,95…33,6)), boki osi Ramy R5 (x ±(36,5…38,5)), czasze przycięte do |x| ≤ 30,95; Gałka z płaskim tyłem z_b −12,68 i nadlewami; Uchwyt: płyta, żebro, widełki stałe, wsporniki, łączniki, tuleja przednia, łapy pod nadlewy – wszystko w parach z powiekami i bryłami stałymi; ucha Ramy R4 na R34,5; kieszeń Słupka Ø11,6;
+- **bryły z CAD:** mostek G (klin walcowy R4,5–8 wokół osi x, x ±(30,95…36,25), **56–95°** za krawędzią przednią – `mostekKat1/2` z CAD, obraca się z powieką), ucho G **R5,5** (`uchoGR`, x ±(33,85…36,25)), ucho D R4 (x ±(30,95…33,6)), boki osi Ramy R5 (x ±(36,5…38,5)), czasze przycięte do |x| ≤ 30,95; Gałka z płaskim tyłem z_b −12,68 i nadlewami; Uchwyt: płyta, żebro, widełki stałe, wsporniki, łączniki, tuleja przednia, łapy pod nadlewy – wszystko w parach z powiekami i bryłami stałymi; ucha Ramy R4 na R34,5; kieszeń Słupka Ø11,6;
 - **przeguby krzyżowe** jako bryły: krzyżak (kula opisana na krążku), widełki pręta i widełki stałe (prostopadłościan policzków z podstawą + walec końca policzków wzdłuż osi sworznia), łby sworzni, pręt Ø4,5, tulejka obrotnicy;
 - **kable** jako pełny prostokąt 3,6 × 1,2 (prostopadłościan wzdłuż trasy) po obu trasach wyjścia (tył i przód korpusu), bo kanał przyjmuje kabel z dowolnej krótszej ściany;
 - **wycięcia z ustaleń CAD** jako różnica brył: odległość max(d_A, −d_B), czyli dolne ograniczenie odległości do A∖B.
@@ -403,37 +437,37 @@ Widełki pręta wobec wspornika widełek i płyty okna (ruchome wobec Uchwytu) s
 - **zagęszczenie** przy 30 najciaśniejszych parach: ±1° co 0,25°, potem ±0,25° co **0,05°** (gałka i powieki). Na R30 krok 0,05° to **0,026 mm** między próbkami, czyli spełnia warunek ≤ 0,05 mm przy minimach (zlecenie pkt 5);
 - próbki brył: 0,08 mm na osi kapsuł, powierzchnie walców i prostopadłościanów z promieniem pokrycia ≤ 0,06, odejmowanym od wyniku.
 
-**Wynik pełnego przemiatania (`przemiatanie.json`, skrót 28b2b7e4a3b8b8c1):**
+**Wynik pełnego przemiatania (`przemiatanie.json`, skrót e549b91f9f229d26):**
 
 **10 najciaśniejszych par, zakres pracy** (gałka ±25/±15, powieki między położeniami programowymi; bez styków zamierzonych i par obrotowych):
 
 | # | Para | mm | Gdzie |
 |---|---|---|---|
-| 1 | X widełki pręta przy gałce – żebro mostka X | **0,528** | (−25,00; 15,00) |
-| 2 | G mostek ucha – rura | 0,540 | G t 0,50 |
-| 3 | D ucho – czasza górnej | 0,543 | G t 7,75, D t 0,50 |
-| 4 | G ucho – rura | 0,543 | G t 0,50 |
-| 5 | G drut – gałka R30 (dowolne położenie) | 0,617 | G t 0,50 |
-| 6 | D drut – ramię wspornika 200 | 0,648 | D t 5,35 |
+| 1 | G ucho – rura | **0,479** | G t 0,50 |
+| 2 | G mostek ucha – rura | 0,535 | G t 0,50 |
+| 3 | D ucho – czasza górnej | 0,543 | G t 9,75, D t 0,50 |
+| 4 | G drut – gałka R30 (dowolne położenie) | 0,617 | G t 0,50 |
+| 5 | D drut – ramię wspornika 200 | 0,648 | D t 5,35 |
+| 6 | X widełki pręta przy gałce – żebro mostka X | 0,650 | (−24,00; −1,25) |
 | 7 | G ramię serwa – rura | 0,650 | G t 2,90 |
-| 8 | kardan dolny – piasta przednia Uchwytu | 0,736 | (−25,00; −15,00) |
-| 9 | D ramię serwa – łącznik słupka D zamknięcia | 0,744 | D t 0,50 |
-| 10 | D drut – słupek stopu D zamknięcia | 0,760 | D t 22,75 |
+| 8 | Y Ramię – Y widełki pręta | 0,650 | (24,05; −14,75) |
+| 9 | D wypust zaczepu – łapa Uchwytu 210 | 0,655 | (14,00; −4,55), D t 27,75 |
+| 10 | Y widełki pręta przy gałce – płyta okna | 0,734 | (24,75; −15,00) |
 
 **10 najciaśniejszych par, cały zakres** (gałka do granicy okna, powieki do ograniczników):
 
 | # | Para | mm | Gdzie |
 |---|---|---|---|
-| 1 | X widełki pręta przy gałce – żebro mostka X | **0,494** | (−28,03; 18,02) |
-| 2 | D ramię serwa – łącznik słupka D zamknięcia | 0,510 | D t −0,25 |
-| 3 | Y pręt Ø4,5 – czasza górnej | 0,527 | (−28,05; −8,41), G t 56,75 |
-| 4 | G mostek ucha – rura | 0,540 | G t −0,25 |
-| 5 | D ucho – czasza górnej | 0,543 | G t 7,75, D t −0,25 |
-| 6 | G ucho – rura | 0,543 | G t −0,25 |
-| 7 | X widełki pręta przy gałce – czasza gałki | 0,575 | (28,03; 18,02) |
-| 8 | kardan dolny – piasta przednia Uchwytu | 0,597 | (28,03; −18,02) |
-| 9 | G drut – gałka R30 (dowolne położenie) | 0,605 | G t −0,25 |
-| 10 | D drut – ramię wspornika 200 | 0,648 | D t 5,35 |
+| 1 | Y Ramię – Y widełki pręta | **0,147** | (28,03; −18,02) |
+| 2 | G ucho – rura | 0,479 | G t −0,25 |
+| 3 | G mostek ucha – rura | 0,496 | G t −0,25 |
+| 4 | D ramię serwa – łącznik słupka D zamknięcia | 0,510 | D t −0,25 |
+| 5 | Y widełki pręta przy gałce – płyta okna | 0,517 | (28,03; −18,02) |
+| 6 | Y pręt Ø4,5 – czasza górnej | 0,529 | (−28,05; −9,09), G t 56,75 |
+| 7 | X widełki pręta przy gałce – żebro mostka X | 0,535 | (−28,03; −18,02) |
+| 8 | D ucho – czasza górnej | 0,543 | G t 9,75, D t −0,25 |
+| 9 | kardan dolny – piasta przednia Uchwytu | 0,597 | (28,03; −18,02) |
+| 10 | G drut – gałka R30 (dowolne położenie) | 0,605 | G t −0,25 |
 
 **Styki zamierzone i pary obrotowe:**
 
@@ -443,30 +477,32 @@ Widełki pręta wobec wspornika widełek i płyty okna (ruchome wobec Uchwytu) s
 | G ramię serwa – słupek stopu G otwarcia (styk zamierzony) | 0,063 | −0,057 |
 | D ramię serwa – słupek stopu D otwarcia (styk zamierzony) | 0,095 | −0,057 |
 | D ramię serwa – słupek stopu D zamknięcia (styk zamierzony) | 0,148 | −0,057 |
-| G mostek ucha – bok osi Ramy (para obrotowa, wym. 0,2) | 0,190 | 0,190 |
-| D ucho (para obrotowa, wym. 0,2) – G ucho | 0,193 | 0,193 |
-| G ucho – bok osi Ramy (para obrotowa, wym. 0,2) | 0,193 | 0,193 |
-| D ucho (para obrotowa, wym. 0,2) – G mostek ucha | 0,440 | 0,440 |
+| G mostek ucha – bok osi Ramy (para obrotowa, wym. 0,2) | 0,250 | 0,250 |
+| G ucho – bok osi Ramy (para obrotowa, wym. 0,2) | 0,250 | 0,250 |
+| D ucho (para obrotowa, wym. 0,2) – G ucho | 0,250 | 0,250 |
+| D ucho (para obrotowa, wym. 0,2) – G mostek ucha | 0,500 | 0,500 |
 
-- Pary obrotowe 0,190–0,193 to luz osiowy 0,25 ze stosu osi powiek (pkt 5.3) pomniejszony o promień pokrycia próbek 0,057. Nominalnie 0,25 ≥ 0,2.
+- Pary obrotowe na osi powiek i pary ucho/mostek G – rura liczę dokładnie jako pierścienie współosiowe z osią x (`rot_exact`, `tube_x_exact`, bez wycinka kątowego – ostrożnie), a nie z próbek: luz osiowy stosu 0,25 ≥ 0,2, ucho D – mostek G 0,5 promieniowo (Astra pkt 6: dawne 0,190–0,193 były promieniem pokrycia próbek). Ucho G – rura: **0,500** dokładnie (6 − 5,50, zgodnie z pomiarem CAD), czyli na progu; przy `uchoGR` 5,4 byłoby 0,6.
+- Przypadki graniczne 0,40…0,50 przemiatanie dopróbkowuje krokiem 0,03 (promień pokrycia ok. 0,02).
 - Ramię–słupek stopu na ograniczniku: 0 (w wyniku −0,057 = promień pokrycia).
 
 **Analitycznie:** okno–Słupek 0,5605 w pracy; szczelina krawędzi przednich powiek ≥ 0,60 (po luzie osi 0,20); kołnierz–rant powieki 1,008; gałka–powieki 1,20 (współśrodkowe).
 
-**Mostki płyty okna** (φ: r zewn. / szerokość mostka) −15°: 15,04 / 1,92; −10°: 14,82 / 1,96; −5°: 14,79 / 2,08; 0°: 14,79 / 2,13; 5°: 14,81 / 2,10; 10°: 14,91 / 2,05; 15°: 15,29 / 2,17; 55°: 17,16 / 4,12; 60°: 15,97 / 3,39; 65°: 15,51 / 3,44; 70°: 15,51 / 3,98; 75°: 15,76 / 4,70; 80°: 15,92 / 5,18; 85°: 15,99 / 5,44; 90°: 15,99 / 5,50; 95°: 15,99 / 5,44; 100°: 16,40 / 5,66; 105°: 17,14 / 6,08; 110°: 17,63 / 6,10. Najwęższy mostek ma żebro z_b −4,5…−2,0 (luz do obwiedni prętów 1,3 w warstwie żebra). Naprężenie przy 42 N na mostku 7 mm z utwierdzonymi końcami: M = 42·7/8 = 37 N·mm, W = 3·1,92²/6 + 2,5·b_ż²/6, σ ≤ 10 (żebro ≥ 2,07 szer., W = 3,6 mm³) MPa.
+**Mostki płyty okna** (φ: r zewn. / szerokość mostka) −15°: 15,07 / 1,95; −10°: 14,89 / 2,03; −5°: 14,82 / 2,11; 0°: 14,82 / 2,16; 5°: 14,82 / 2,11; 10°: 14,88 / 2,02; 15°: 15,06 / 1,94; 55°: 15,45 / 2,41; 60°: 15,29 / 2,71; 65°: 15,26 / 3,19; 70°: 15,26 / 3,73; 75°: 15,28 / 4,22; 80°: 15,42 / 4,68; 85°: 15,64 / 5,09; 90°: 15,89 / 5,40; 95°: 15,89 / 5,34; 100°: 16,22 / 5,48; 105°: 16,40 / 5,34; 110°: 16,76 / 5,23. Najwęższy mostek ma żebro z_b −4,5…−2,0 (luz do obwiedni prętów 1,3 w warstwie żebra). Naprężenie przy 42 N na mostku 7 mm z utwierdzonymi końcami: M = 42·7/8 = 37 N·mm, W = 3·1,94²/6 + 2,5·b_ż²/6, σ ≤ 11 (żebro ≥ 1,88 szer., W = 3,4 mm³) MPa.
 
 **Ustalenia dla CAD (z przemiatania; zmiany istniejących części):**
 
 | # | Część | Problem bez zmiany [R] | Zmiana | Wynik po zmianie [R] |
 |---|---|---|---|---|
-| C1 | **Rama: kołnierz R35,2 od z 6** | mostek G – rura **−1,274** (G t 11,75), ucho G – rura 0 (ucho R6 sięga z 6) | wycięcie kołnierza walcem **R8,6 o osi powiek (x)** w pasie \|x\| 30,35…36,85 (mostek R8 + 0,6, do x 36,25 + 0,6); ścianka rury R37,75 i boki osi zostają | mostek G – rura 0,540, ucho G – rura 0,543 |
 | C2 | **Powieka górna: czasza przy uchu D** | ucho D – czasza G **0** (czasza R31,2 przy x 30,95 ma ρ_x 3,94 < 4) | wycięcie czaszy G walcem **R4,6 o osi x** dla \|x\| ≥ 30,35 | ucho D – czasza G 0,543 |
-| C3 | **Gałka: wycięcie X** (zmienne CAD) | widełki pręta X przy gałce – czasza gałki 0 przy `rimX` 100 | `rimX` 104 → **98**, `rimXSzer` 25 → **30** | widełki pręta X – czasza gałki 0,575 (praca 0,818) |
-| C4 | **Gałka: wycięcie Y** | (wariant z kardanem; utrzymane) | `rimY` 106 → **102**, `rimYSzer` 35 → **40**, `rimYSrodek` 80 | krzyżak Y – czasza gałki 3,719 |
-| C5 | **Powieka górna: wycięcie tylnej krawędzi** | pręt Y – czasza G 0,187 (pełne otwarcie, ψ −28, θ −8,9; styk na krawędzi tylnej przy x 11,3) | pas `wyciecieG` x −2…24 → **−14…24**, 83,5° → **82,5°** (przy zamknięciu nominalnym krawędź tylna 74°: 31,2·sin 74° = 29,99 ≈ R30, kula nadal zakryta) | pręt Y – czasza G 0,527 (praca 0,769) |
-| C6 | **Gałka: nadlewy M3** | wierzch nadlewu z −6,68 jest nad spodem płyty okna (−7,5) o 0,82; otwór ślepy od czoła z −12,68 wymaga śruby od tyłu | Uchwyt dopasowany do nadlewów bez zmiany Gałki: w płycie nad nadlewem kieszeń Ø7,6 od spodu (0,82 + 0,3 luzu), **łapa** 2,0 pod czołem nadlewu (z −14,68…−12,68, R20–25) z pogłębieniem na DIN 7991 M3×8 i żeberkiem 2,5 obok nadlewu (po stronie φ 270°) od spodu płyty do łapy | łapa – powieka D 1,286, łapa – Słupek 1,092 |
+| C3 | **Gałka: wycięcie X** (zmienne CAD) | widełki pręta X przy gałce – czasza gałki 0 przy `rimX` 100 | `rimX` 104 → **98**, `rimXSzer` 25 → **30** | widełki pręta X – czasza gałki 0,618 (praca 0,891) |
+| C4 | **Gałka: wycięcie Y** | (wariant z kardanem; utrzymane) | `rimY` 106 → **102**, `rimYSzer` 35 → **40**, `rimYSrodek` 80 | krzyżak Y – czasza gałki 3,617 |
+| C5 | **Powieka górna: wycięcie tylnej krawędzi** | pręt Y – czasza G 0,187 (pełne otwarcie, ψ −28, θ −8,9; styk na krawędzi tylnej przy x 11,3) | pas `wyciecieG` x −2…24 → **−14…24**, 83,5° → **82,5°** (przy zamknięciu nominalnym krawędź tylna 74°: 31,2·sin 74° = 29,99 ≈ R30, kula nadal zakryta) | pręt Y – czasza G 0,529 (praca 0,770) |
+| C6 | **Uchwyt przy nadlewach M3 Gałki** (Gałka bez zmian) | wierzch nadlewu z −6,68 jest nad spodem płyty okna (−7,5) o 0,82; otwór ślepy Ø2,6 × 5,4 od czoła z −12,68 wymaga śruby od tyłu | w płycie nad nadlewem kieszeń Ø7,6 od spodu na 1,1; **łapy osobne × 2** (L: płytka 2,0 pod czołem nadlewu, R20–25, z −14,68…−12,68 + żeberko 5 × 5 obok nadlewu po stronie φ 270° do spodu płyty); **DIN 7991 M3×6 od tyłu** w nadlew (wejście 4,0, do dna 1,4), DIN 7991 M3×8 od wierzchu płyty w żeberko (pkt 3.5) | łapy – powieka D i Słupek 0,655, łapa – Słupek 1,092 |
 
-Zmiany C3–C5 to zmiany zmiennych w Variable Studio istniejących operacji (wycięcia już są w drzewie). C1, C2 to nowe operacje usuwania materiału (Revolve albo Extrude REMOVE walcem wokół osi x). Kolejność i zgodę daje orkiestrator.
+Zmiany C3–C5 to zmiany zmiennych w Variable Studio istniejących operacji (wycięcia już są w drzewie). C2 to nowa operacja usuwania materiału (Revolve albo Extrude REMOVE walcem wokół osi x). Kolejność i zgodę daje orkiestrator.
+
+**Kołnierz Ramy przy uszach powiek (dawne C1) – bez zmiany Ramy.** Wycięcie kołnierza orkiestrator odrzucił (przebiłoby widoczne czoło rantu). W CAD Powieka górna ma teraz mostek 56–95° od krawędzi przedniej (`mostekKat1` 56, `mostekKat2` 95) i ucho G R5,5 (`uchoGR`); pomiar CAD: najwyżej z 5,40 (mostek) i 5,50 (ucho) wobec kołnierza od z 6. Model ma te wartości i kołnierz bez wycięcia: mostek G – rura 0,496, ucho G – rura 0,479 (cały zakres).
 
 **Poza modelem** (do kontroli na siatkach CAD):
 - zaokrąglenia i fazki (model ma więcej materiału);
@@ -478,10 +514,12 @@ Zmiany C3–C5 to zmiany zmiennych w Variable Studio istniejących operacji (wyc
 
 Zastępuje `b1_akceptacja.py` (przeniesione do `v3.1/`). Wejście: plik JSON jak `przeguby_odniesienie.json` z polami `uGal`, `uOrcz` (wszystkie wymiary przegubów z pkt 3.3) i `hPrzegubu` (wysokość H nad wierzchem Ramienia). Brak pola = przerwanie, bez wartości zastępczych.
 
-Narzędzie wpisuje wymiary do modelu, liczy pełne przemiatanie (albo bierze zapisane, jeśli **skrót** parametrów, trybu i plików `e6model.py`, `przemiatanie.py`, `okno.json` się zgadza – Astra pkt 6) i `kinematyka.py`. Daje **TAK**, gdy:
+Narzędzie wymaga kompletu wymiarów w `uGal` i `uOrcz` (bez wartości domyślnych), wpisuje je do modelu, liczy pełne przemiatanie (albo bierze zapisane, jeśli **skrót** parametrów, trybu i plików `e6model.py`, `przemiatanie.py`, `okno.json` się zgadza – Astra pkt 6), `kinematyka.py`, `przeguby_3d.py` i `stale_pary.py`. Daje **TAK**, gdy:
 1. każda para poza stykiem zamierzonym ≥ 0,5 mm w całym zakresie (pary obrotowe ≥ 0,2);
 2. okno – Słupek ≥ 0,5 w pracy;
-3. dla każdego z 4 przegubów: obrót wymagany wokół a1 i wychylenie wymagane wokół a2 (cały zakres) ≤ kąty dopuszczalne z `u_zakres()`.
+3. pary stała–stała ≥ 0,5;
+4. wnętrze każdego z 4 przegubów w 3D ≥ 0,5 przy rzeczywistych kątach i zapas kąta > 0 (`przeguby_3d.py`).
+Progów nie obniżam; przypadki graniczne rozstrzyga gęstsze próbkowanie albo rachunek dokładny (pierścienie współosiowe).
 
 Wynik: TAK/NIE, lista naruszeń, 10 minimów w pracy i w całości, kinematyka (zakresy serw, momenty, L, H0, w) i kąty dopuszczalne. **Wynik dla `przeguby_odniesienie.json`:** ⟦brak⟧.
 
@@ -495,20 +533,20 @@ Wynik: TAK/NIE, lista naruszeń, 10 minimów w pracy i w całości, kinematyka (
 | **Uchwyt** | pkt 3.5 | płytą w dół; widełki stałe i wsporniki do góry (nawisy ≤ 45° – sprawdzić w CAD) |
 | **Gałka** | pkt 2, nadlewy M3 Ø7 (otwór Ø2,6, dno 0,6) | krawędzią tylną w dół |
 | **Powieka górna / dolna** | pkt 5; przycięcia pkt 10 (ustalenia CAD) | płaszczyzną krawędzi przedniej na stół |
-| **Ramię X / Y** | pkt 3.4, z widełkami orczyka | płasko |
-| **Pręt X / Y** | widełki przy gałce + pręt Ø4,5 + tulejka obrotnicy Ø7 × 6 z czopem Ø5 × 3,4 – jedna część | pionowo, tulejką na stole; widełki u góry |
+| **Ramię X / Y** | pkt 3.4, z widełkami orczyka; szer. 8, ostatnie 10 mm przed punktem A zwężone do 6 (miejsce na podstawę Ø8 widełek pręta Y) | płasko |
+| **Pręt X / Y** | widełki przy gałce (z trójkątami 45° pod podstawą) + pręt Ø4,5 + tulejka obrotnicy Ø7 × 6 z czopem Ø4,4 × 3,4 – jedna część | pionowo, tulejką na stole; widełki u góry, bez podpór |
 | **Widełki pręta przy orczyku X / Y** | pkt 3.3 (podstawa 6,5 z pogłębieniem łba M3) | podstawą na stole |
-| **Krzyżak × 4** | krążek Ø5,5 × 4 (przy gałce), Ø8 × 4 (przy orczyku), 4 otwory promieniowe Ø1,8 → 2,0 | na płasko, otwory poziome: rozwiercić |
+| **Krzyżak × 4** | krążek Ø5,75 × 4 (przy gałce), Ø8 × 4 (przy orczyku), 4 otwory promieniowe Ø1,8 → 2,0, głębokości z tabeli pkt 3.3 | na płasko, otwory poziome: rozwiercić |
 | **Ramię PG / PD** | r20 / r17,5, otwór Ø1,6, kieszeń orczyka | płasko |
 | **Obejma** | pkt 9 | kołnierzem w dół |
 | *Przyrządy* | zera gałki (czapka w rancie), do gięcia drutów | |
 
 **Z warsztatu (bez zakupów):**
 - 4 × MG90S, kardan 5/5, drut sprężynowy Ø1,2 (2 × ok. 60 mm);
-- DIN 7991 M3×8 × 2, DIN 7991 M5×30 + nakrętka, M5×12 + nakrętka, 2 × M4 bez łba (docięte);
-- **sworznie przegubów: 8 × DIN 7991 M2×4 (przy gałce), 4 × DIN 7991 M2×5 i 4 × DIN 7985 M2×5 (przy orczyku), 2 × M3×12 (obrotnice)**; 2 × DIN 7991 M3×8 (łapy Uchwytu) [Z: M2 tej długości w warsztacie; jeśli są tylko dłuższe – skrócić];
+- DIN 7991 M3×8 × 2 (osie powiek), DIN 7991 M5×30 + nakrętka, DIN 7991 M5 + nakrętka (tuleja przednia), 2 × M4 bez łba (docięte);
+- **sworznie przegubów: 4 × DIN 7991 M2×4 skrócone do 3,7 i 4 × DIN 7985 M2×4 (przy gałce), 4 × DIN 7991 M2×5 i 4 × DIN 7985 M2×5 (przy orczyku), 2 × M3×12 (obrotnice)**; łapy Uchwytu: 2 × DIN 7991 M3×6 (w nadlewy) i 2 × DIN 7991 M3×8 (z płyty) [Z: M2 tej długości w warsztacie; jeśli są tylko dłuższe – skrócić];
 - 8 × M2×10 + 8 nakrętek M2 (uszy serw);
-- 3 × M3×45, 2 × M3×8, M3×25 z nakrętką samohamującą.
+- 3 × M3×45, M3×25 z nakrętką samohamującą.
 - Kardany 2/2 (2 szt.) i zapasowy 5/5 zostają jako zapas (pkt 3.2).
 
 ## 13. Zmienne (Variable Studio) i test zginania K9
@@ -520,7 +558,7 @@ Wynik: TAK/NIE, lista naruszeń, 10 minimów w pracy i w całości, kinematyka (
 - `walX` (y −13; z −49), `walY` (y 3; z −49), `ramieX_x` 18,013, `ramieY_x` 10,229;
 - `orczykX` 14,7, `orczykY` 15,4, `ramieT` 6, `ramieW` 8, `ramieHubR` 7, `hPrzegubu` 7;
 - `pretD` 4,5, `tulejaD` 7, `tulejaL` 6;
-- przeguby `uGal_*` i `uOrcz_*` (pkt 3.3), osie `a1X`, `a1Y` (układ gałki), `katWidelekX` −12, wsporniki widełek `wsporR` 8,6, `wsporZ` 9,0, `wsporA` 4.
+- przeguby `uGal_*` i `uOrcz_*` (pkt 3.3), osie `a1X`, `a1Y` (układ gałki), `katWidelekX` −12, wsporniki widełek `wsporKat` 46°, `wsporA` 4 (do ściany tulei R7,65), `piastaPrzodZ2` 19,75, `ramieWKoniec` 6 / `ramieLKoniec` 10.
 
 **Okno i Uchwyt:** `oknoZ` −6, `plytaOknaT` 3, `plytaRout` 26,6, `zapasOgr` 3, `okno_r0`…`okno_r90`, węzły wycięć płyty (pkt 10); `slupekR` 7,65, `slupekZ0` −33, `slupekZ1` −5,5, `luzKieszeni` 0,3; `zebroZ1` −2; łapy R20–25 × 2,0, żeberko 2,5.
 
@@ -548,7 +586,7 @@ Wynik: TAK/NIE, lista naruszeń, 10 minimów w pracy i w całości, kinematyka (
 
 | # | Miejsce | Test i kryterium |
 |---|---|---|
-| 1 | **Przeguby krzyżowe (pierwszy wydruk etapu 2)** | **P4:** jeden komplet pręta X (widełki przy gałce + pręt + tulejka, krzyżak Ø5,5, krzyżak Ø8, widełki pręta i wycinek Ramienia z widełkami orczyka), sworznie M2×5 i M3×12 jak w pkt 3.3. Kryteria: (a) obrót bez zacięć w pełnym kącie wymaganym + 5° wokół a1 i a2 (kątomierz, tabela pkt 3.3); (b) **luz zwrotny długości** pręta pod ±5 N (czujnik zegarowy albo suwmiarka na przyrządzie) ≤ 0,3 mm przy pasowaniu rozwierconym; (c) obciążenie osiowe ±80 N przez 10 s, 5 razy: bez pęknięć, bez trwałego wydłużenia > 0,05; (d) 1000 cykli ±40° na serwie: wzrost luzu ≤ 0,1. Przy NIE w (b): mniejszy luz sworzni albo kardan 2/2 przy orczyku – z przeliczeniem |
+| 1 | **Przeguby krzyżowe (pierwszy wydruk etapu 2)** | **P4:** jeden komplet pręta X (widełki przy gałce + pręt + tulejka, krzyżak Ø5,75, krzyżak Ø8, widełki pręta z podstawą Ø8 i wycinek Ramienia z widełkami orczyka, wycinek Uchwytu z widełkami stałymi), sworznie M2 i M3×12 jak w tabeli pkt 3.3, otwory rozwiercone Ø2,0. Kryteria: (a) obrót bez zacięć przy **jednoczesnym** γ i β w narożnikach zakresu z pkt 3.3 + 3° (kątomierz); (b) **luz długości pręta** pod ±5 N, w zerze i przy wychyleniu skrajnym: ≤ 0,64 mm (rachunek dla c 0,05; cel 0,48 przy c 0,03); (c) obciążenie osiowe ±80 N przez 10 s, 5 razy, **przy połączonym wychyleniu skrajnym**: bez pęknięć i rozwarstwienia krążka, bez wyrwania sworznia, trwałe wydłużenie ≤ 0,05, potem ponowny pomiar (b); (d) 1000 cykli ±40° na serwie: wzrost luzu ≤ 0,1. Po złożeniu mechanizmu: luz gałki w zerze i w 4 narożnikach pracy ≤ 5,1° / 3,9° (ψ / θ). Przy NIE w (b): mniejszy luz sworzni (ciaśniejsze rozwiercenie) albo kardan 2/2 przy orczyku – z przeliczeniem |
 | 2 | Przekładnie (do 4,0 × zablokowania) | **T1** dla każdego napędu, decyzja o planie B przed drukiem całości |
 | 3 | Druty i zaczepy | **P3** (1000 mrugnięć) i **P3b** (montaż Z) |
 | 4 | Okno i Słupek | **P1**: zakres mechaniczny, szczelinomierz 0,5 przy ±25/±15, dostęp klucza M4 |
@@ -563,7 +601,7 @@ B1 nie jest blokujące (orkiestrator 23.10): wymiary przegubów są zmiennymi z 
 
 | # | Pytanie | Warunek przyjęcia |
 |---|---|---|
-| **B9** (nowe, decyzja) | Pasowanie sworzni przegubów napędu gałki: tabela AGENTS 0,2 promieniowo daje luz zwrotny gałki do 9,2° (X) / 6,5° (Y); rozwiercenie do c ≈ 0,03–0,05 daje 1,6–2,7° (X) / 1,1–1,9° (Y) | użytkownik wybiera; wartość po P4 do tabeli luzów w AGENTS.md |
+| B9 (rozstrzygnięte 23.10) | Pasowanie sworzni przegubów napędu gałki | orkiestrator: otwory podwymiarowe rozwiercane ręcznie do c ≈ 0,03–0,05 (luz zwrotny 1,6–2,7°); P4 potwierdza, wartość po P4 do tabeli luzów w AGENTS.md |
 | **B2** (Słupek) | Potwierdzić zdjęciem „M4 równolegle do sworznia” | prostopadle → kardan obrócony o 90°, okno i przemiatanie od nowa |
 | **B5** (Płyta) | Wolna głębokość za wewnętrzną ścianką | wolne ≥ 74,40 + g − w + 2 (przy g 10, w 15: ≥ 71,4); mniej → mniejsze g albo S_PG do przodu, z powtórką przemiatania |
 | B6 | Gałka wystaje 20 mm, zamknięte powieki 25 mm – OK? | karton Ø84 na dyni |
@@ -575,30 +613,29 @@ B1 nie jest blokujące (orkiestrator 23.10): wymiary przegubów są zmiennymi z 
 | Pkt | Uwaga | Co zrobiono |
 |---|---|---|
 | 2 (KRYT.) | Tuleja Słupka poza kontrolą; piasta M2 Y w tulei od θ ≈ 12°, −0,80 przy (0; 15) | `ann` we wszystkich parach; punkt Astry i stara piasta jako przypadki kontrolne (−0,803 / −0,859); piasty M2 nie ma, przegub Y to widełki nad płytą: ≥ 1,50 mm od Słupka w całym zakresie (pkt 3.5); Słupek bez zmian poza kieszenią Ø11,6 |
-| 3 (KRYT.) | Macierz i geometria nie obejmują całego mechanizmu | Bryły z CAD (mostek, ucha, boki osi, płaski tył Gałki, nadlewy, Uchwyt w parach z powiekami, żebro, ucha Ramy), kable jako prostokąt, pary stała–stała (`stale_pary.py`), Uchwyt–Gałka; ustalenia CAD C1–C6 (pkt 10) |
+| 3 (KRYT.) | Macierz i geometria nie obejmują całego mechanizmu | Bryły z CAD (mostek, ucha, boki osi, płaski tył Gałki, nadlewy, Uchwyt w parach z powiekami, żebro, ucha Ramy), kable jako prostokąt, pary stała–stała (`stale_pary.py`), Uchwyt–Gałka; ustalenia CAD C2–C6 (pkt 10) |
 | 4 (KRYT.) | Nie każda odległość jest dolnym ograniczeniem (`prism_d`) | `prism_d` dokładne (przypadek kontrolny 2,5), wycięcia jako max(d_A, −d_B); zgodnie z decyzją orkiestratora formalnego ograniczenia dla ruchu ciągłego nie dowodzę: krok 0,05° (0,026 mm na R30) przy minimach, kontrola końcowa na siatkach CAD |
 | 5 | Okno: 180 punktów w przemiataniu, splajn ≠ CAD | 720 punktów splajnu w przemiataniu; profil CAD do sprawdzenia na siatce względem `okno_splajn.npy` (pkt 4) |
 | 6 | B1 TAK niewiarygodne (cache, wartości zastępcze) | `przeguby_akceptacja.py`: komplet pól wymagany, skrót parametrów, trybu i plików modelu, kinematyka i momenty w wyniku (pkt 11) |
 | 7 | Czopy M5 i podstawa Ramion niespójne | nieaktualne: Ramiona bez czopu M5, widełki orczyka wyrastają z płaskiego Ramienia (pkt 3.4) |
 | 8 | Końcówka Ø8, ścianka 1,5 | nieaktualne: pręt bez gwintu M5; pręt z widełkami i tulejką jedna część; obciążenie osiowe ±72 N w P4 (pkt 15) |
 | 9 | Sprzęgło planu B nie mieści się w piastach powiek | opisane jako zadanie po T1 (pkt 7) |
-| 10 | Wpływ na CAD: płaski tył Gałki, Ø11,6, mostek i ucha | tył z_b −12,68 i Ø11,6 w modelu; mostek i ucha w parach; zmiany CAD C1–C6 |
+| 10 | Wpływ na CAD: płaski tył Gałki, Ø11,6, mostek i ucha | tył z_b −12,68 i Ø11,6 w modelu; mostek 56–95° i ucho G R5,5 (CAD) w parach; zmiany CAD C2–C6 |
 | drobne | granica okna poza osiami; kołnierz 1,023 | ψ 28,083° przy θ 15,148°, θ 18,183° przy ψ 23,733° (pkt 4); kołnierz 1,008 (pkt 5.3) |
 
 ## Werdykt
 
-V3.2 nadaje się do weryfikacji modelu kontrolnego i do briefu CAD etapu 2 przy trzech warunkach:
-- zmiany C1–C6 istniejących części wchodzą do CAD;
-- użytkownik wybiera pasowanie sworzni przegubów (B9);
-- P4 drukuje się jako pierwsza.
+V3.2 po korekcie nadaje się do weryfikacji modelu kontrolnego i do briefu CAD etapu 2 przy dwóch warunkach:
+- zmiany C2–C6 istniejących części wchodzą do CAD;
+- P4 (przeguby z otworami rozwierconymi do c ≈ 0,03–0,05) drukuje się jako pierwsza i zalicza kryteria z pkt 15.
 
 **W modelu:**
-- wszystkie pary niezamierzone mają ≥ 0,494 mm w całym zakresie;
+- wszystkie pary niezamierzone ≥ 0,147 mm w całym zakresie, pary stała–stała ≥ 0,556;
 - okno – Słupek 0,56 w pracy;
-- przeguby mają zapas kąta ≥ 15,6°;
+- wnętrze przegubów w 3D ≥ 0,634 mm, zapas kąta ≥ 3,5°;
 - kolizja piasty Y ze Słupkiem znika bez zmiany Słupka.
 
-**Najsłabszy punkt:** luz zwrotny drukowanych przegubów (pkt 3.3). Drugi w kolejności: przekładnie MG90S, do 4,0 × momentu zablokowania na X (T1).
+**Najsłabszy punkt:** luz zwrotny przegubów, 3,8° / 2,8° … 5,1° / 3,9° w pracy (pkt 3.3). Drugi w kolejności: przekładnie MG90S, do 4,0 × momentu zablokowania na X w pracy (T1).
 
 ---
 

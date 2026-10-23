@@ -18,6 +18,7 @@ from e6model import d2r
 THR = 1.5
 SAMP = ('cap', 'cyl', 'obb', 'ann', 'cwedge')      # bryły z próbnikiem
 STEP_C, STEP_S, STEP_F = 0.5, 0.15, 0.08
+STEP_G = 0.03
 
 
 # ------------------------------------------------------------------ geometria pomocnicza
@@ -97,6 +98,9 @@ def dmin(A, B, thr=THR):
     lb = float((B.dist(pts) - r).min() - eps)
     if lb < 0.65:
         pts, r, eps = A.samples(STEP_F)
+        lb = float((B.dist(pts) - r).min() - eps)
+    if 0.40 <= lb < 0.5:                       # przypadek graniczny: próbki gęstsze (promień pokrycia ok. 0,02)
+        pts, r, eps = A.samples(STEP_G)
         lb = float((B.dist(pts) - r).min() - eps)
     return lb
 
@@ -209,6 +213,47 @@ def excluded(A, B):
 ROTARY = [{'G ucho', 'bok osi Ramy'}, {'G ucho', 'D ucho'}, {'G mostek ucha', 'bok osi Ramy'}, {'D ucho', 'G mostek ucha'}]
 
 
+def _xband(A):
+    """bryła współosiowa z osią x (oś powiek): (r_wewn, r_zewn, x0, x1) albo None."""
+    if A.kind == 'cyl' and abs(A.p[1]) + abs(A.p[2]) + abs(A.q[1]) + abs(A.q[2]) < 1e-9:
+        return 0.0, A.r, min(A.p[0], A.q[0]), max(A.p[0], A.q[0])
+    if A.kind == 'cwedge':
+        return A.r0, A.r1, min(A.x0, A.x1), max(A.x0, A.x1)
+    return None
+
+
+def rot_exact(A, B):
+    """pary obrotowe na osi powiek: dokładna odległość pierścieni współosiowych (bez wycinka kątowego – ostrożnie)."""
+    a, b = _xband(A), _xband(B)
+    if a is None or b is None: return None
+    gx = max(a[2] - b[3], b[2] - a[3])                 # > 0: przerwa osiowa
+    gr = max(b[0] - a[1], a[0] - b[1])                 # > 0: przerwa promieniowa
+    if gx > 0 and gr > 0: return float(np.hypot(gx, gr))
+    if gx > 0: return float(gx)
+    if gr > 0: return float(gr)
+    return float(max(gx, gr))
+
+
+def tube_x_exact(A, T):
+    """ucho / mostek powieki (bryła współosiowa z osią x) wobec rury Ramy: ścianka R i kołnierz R_k od z_k (dokładnie dla
+    płaszczyzny spodu kołnierza; ścianka ostrożnie przez największe ρ_xy bryły)."""
+    b = _xband(A)
+    if b is None or getattr(T, 'wyc', None): return None
+    r0, r1, x0, x1 = b
+    if A.kind == 'cwedge':
+        a0, a1 = A.a0, A.a1
+        cs = [np.cos(a0), np.cos(a1)] + ([1.0] if a0 <= 0 <= a1 else [])
+        sn = [abs(np.sin(a0)), abs(np.sin(a1))] + ([1.0] if a0 <= np.pi / 2 <= a1 or a0 <= -np.pi / 2 <= a1 else [])
+        zmax = r1 * max(cs) if max(cs) > 0 else r0 * max(cs); ymax = r1 * max(sn)
+    else:
+        zmax = r1; ymax = r1
+    xm = max(abs(x0), abs(x1)); rho = np.hypot(xm, ymax)
+    (Rw, zw0, zw1), (Rk, zk0, zk1) = T.T[0], T.T[1]
+    gw = Rw - rho
+    gk = (zk0 - zmax) if rho >= Rk else float(np.hypot(Rk - rho, max(zk0 - zmax, 0.0)))
+    return float(min(gw, gk))
+
+
 def rotary(A, B):
     return {A.name, B.name} in ROTARY
 
@@ -278,12 +323,17 @@ def put(reg, A, B, work, info, sel=None):
     if sel is not None and {A.name, B.name} != sel:
         return
     if excluded(A, B): return
-    v = ev(A, B)
+    v = None
+    for X_, T_ in ((A, B), (B, A)):
+        if T_.kind == 'tube' and T_.name == 'rura' and _xband(X_) is not None:
+            v = tube_x_exact(X_, T_)
+    if v is None: v = ev(A, B)
     if v is None: return
     if intended(A, B):
         reg.up(A.name, B.name + ' (styk zamierzony)', v, work, info)
     elif rotary(A, B):
-        reg.up(A.name, B.name + ' (para obrotowa, wym. 0,2)', v, work, info)
+        ex = rot_exact(A, B)
+        reg.up(A.name, B.name + ' (para obrotowa, wym. 0,2)', ex if ex is not None else v, work, info)
     else:
         reg.up(A.name, B.name, v, work, info)
 
@@ -556,7 +606,7 @@ def run(P, szybko=False, out='przemiatanie.json', log=print):
                     par('cross_sel', pl, reg)
     log("zagęszczenie: %.0f s" % (time.time() - t00))
     res = dict(pary=[[list(k), v['praca'][0], v['praca'][1], v['calosc'][0], v['calosc'][1]] for k, v in reg.d.items()],
-               plyta_wezly=nodes, mostki=bridges, zebro=rib, powieki=lid_lid_gap(P),
+               plyta_wezly=nodes, mostki=bridges, zebro=rib, zebro_wezly=[[round(float(np.degrees(np.arctan2(q[1], q[0]))), 2), round(float(np.hypot(q[0], q[1])), 2)] for q in model.rib], powieki=lid_lid_gap(P),
                okno=dict(zapas_praca=okno['zapas_praca'], tabela=okno['tabela_r'], styk=okno['styk_z_azymut'], M4=okno['odl_od_otworu_M4']),
                stale=dict(LX=model.hX.L, LY=model.hY.L, dX=list(model.hX.d0), dY=list(model.hY.d0)))
     res['skrot'] = hsh

@@ -3,9 +3,12 @@
   0.643  S_X korpus – S_PD korpus
   0.643  S_X korpus – S_PD ucho
   0.643  S_X ucho – S_PD korpus
+  0.644  S_PG łeb śruby ucha – płytka słupka G zamknięcia
   0.663  S_PG łeb śruby ucha – słupek stopu G otwarcia
   0.693  S_X kabel – S_Y korpus
   0.693  S_X korpus – S_Y kabel
+  0.693  S_Y korpus – płytka słupka G zamknięcia
+  0.981  S_PG wieża – płytka słupka G zamknięcia
   1.234  S_Y korpus – słupek stopu G zamknięcia
   1.244  S_X korpus – S_PD wieża
   1.244  S_X wieża – S_PD korpus
@@ -14,12 +17,16 @@
   1.371  S_X kabel – S_Y korpus
   1.371  S_X korpus – S_Y kabel
 Uchwyt – czasza Gałki (luz montażowy ≥ 0,3):
-  2.927  widełki przy gałce X
-  2.672  widełki przy gałce X
-  6.870  wspornik widełek X
-  1.826  widełki przy gałce Y
-  2.000  widełki przy gałce Y
-  5.973  wspornik widełek Y
+  3.696  widełki przy gałce X
+  3.504  widełki przy gałce X
+  3.032  łeb i nakrętka sworznia przy gałce X
+  3.032  łeb i nakrętka sworznia przy gałce X
+  6.579  wspornik widełek X
+  2.012  widełki przy gałce Y
+  2.001  widełki przy gałce Y
+ 11.000  łeb i nakrętka sworznia przy gałce Y
+  0.714  łeb i nakrętka sworznia przy gałce Y
+  5.661  wspornik widełek Y
   9.862  łącznik Uchwytu 135
   9.860  łącznik Uchwytu 225
   9.860  łącznik Uchwytu 315
@@ -29,11 +36,13 @@ Uchwyt – czasza Gałki (luz montażowy ≥ 0,3):
   styk  łapa Uchwytu 330 (płytka łapy dociśnięta do czoła nadlewu i tylnej krawędzi Gałki z_b -12,68, zamierzony)
  14.114  kardan górny
  13.131  piasta przednia Uchwytu
+  6.820  piasta przednia Uchwytu
   0.363  płyta okna (R zewn. 26.60 przy z_b -7.50; czasza R28.0)
 słupki:
   słupek stopu G zamknięcia        x -32.00…-18.80  y 10.99…19.48  z -52.91…-44.43  środek (-25.40; 15.23; -48.67)
+  płytka słupka G zamknięcia       x -20.80…-18.80  y 10.40…19.48  z -52.91…-40.70  środek (-19.80; 14.94; -46.81)
   słupek stopu G otwarcia          x -32.00…-18.80  y 8.38…16.61  z -74.40…-66.17  środek (-25.40; 12.50; -70.28)
   słupek stopu D zamknięcia        x -22.50…-16.60  y -21.80…-13.59  z -41.28…-33.07  środek (-19.55; -17.70; -37.18)
   łącznik słupka D zamknięcia      x -22.50…-16.60  y -19.20…-5.62  z -37.09…-33.09  środek (-19.55; -12.41; -35.09)
   słupek stopu D otwarcia          x -22.50…-16.60  y -23.31…-15.62  z -61.41…-53.73  środek (-19.55; -19.46; -57.57)
-  filar słupka D otwarcia          x -22.50…-16.60  y -22.46…-16.46  z -68.30…-61.41  środek (-19.55; -19.46; -64.86)
+  filar słupka D otwarcia          x -22.50…-16.60  y -22.46…-16.46  z -68.30…-57.57  środek (-19.55; -19.46; -62.94)

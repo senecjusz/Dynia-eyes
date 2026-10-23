@@ -9,7 +9,8 @@ F = [f for f in M.fixed_prims(P) if f.kind in Z.SAMP and not f.name.endswith('kl
 def joined(A, B):
     a, b = A.name, B.name; n = {a, b}
     for k in ('G zamknięcia', 'G otwarcia', 'D zamknięcia', 'D otwarcia'):
-        if n <= {'słupek stopu ' + k, 'filar słupka ' + k, 'łącznik słupka ' + k}: return True
+        if n <= {'słupek stopu ' + k, 'filar słupka ' + k, 'łącznik słupka ' + k, 'płytka słupka ' + k}: return True
+    if any(x.startswith('płytka słupka G') for x in n) and (n & {'S_PG klatka', 'S_PG korpus'}): return True
     if any(x.startswith('łącznik słupka') for x in n) and 'ramię wspornika 200' in n: return True
     if any(x.startswith('filar słupka') for x in n) and 'tarcza' in n: return True
     for srv, w in (('S_PG', 'G'), ('S_PD', 'D')):

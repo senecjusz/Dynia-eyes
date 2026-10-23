@@ -28,7 +28,7 @@ DEF = dict(
     S_PD=dict(xh=-21.0, yc=-27.0, zs=-49.0, n=-1, flip=False),
     serwoW=12.5, luzSerwa=0.4, klatka=2.0,
     kabelStrona='oba',                # kanał przyjmuje kabel z obu krótszych ścian (decyzja 23.10): obie trasy w modelu
-    rX=14.7, rY=15.4, ramieT=6.0, ramieW=8.0, ramieHubR=7.0,
+    rX=14.7, rY=15.4, ramieT=6.0, ramieW=8.0, ramieHubR=7.0, ramieWKoniec=6.0, ramieLKoniec=10.0,
     # przeguby (B1) – wariant odniesienia h 7 / obudowa M5 Ø12
     # gniazdo: walec o osi wzdłuż czopu (gD × gH, środek w środku kuli); trzon: walec wzdłuż pręta (sD, od środka kuli do L)
     M2=dict(h=4.0, cokol=1.0, cokolR=2.0, gD=7.0, gH=6.0, sD=5.0, L=9.0, nutR=2.31, nutL=1.6, bossR=3.0, bossLX=5.0, bossLY=2.8, kat=30.0),
@@ -45,14 +45,15 @@ DEF = dict(
     # widełek stałych; łby sworzni: lebR (promień), lebH (widełki stałe), lebHP (widełki pręta), nakrH (nakrętka, tu 0).
     # Zakresy kątów liczy u_zakres() (luz 0,5 mm w całym obrocie); wymagane kąty liczy kinematyka.py.
     # Przy orczyku: obrotnica M3 wzdłuż pręta – podstawa widełek pP = pogłębienie łba 3,2 + łożysko 3,3 na tulejce pręta.
-    uOrcz=dict(Do=8.0, Hr=4.0, luzOs=0.25, policzek=2.0, rP=2.6, cP=5.5, pP=6.5, rS=2.6, cS=8.25, pS=1.5,
-               lebR=2.0, lebH=0.0, nakrH=0.0, lebHP=1.6, tulejaD=7.0, tulejaL=6.0, katWidelekX=-12.0, katWidelekY=0.0),
+    uOrcz=dict(Do=8.0, Hr=4.0, luzOs=0.125, policzek=2.0, rP=2.6, cP=5.5, pP=6.5, rS=2.6, cS=8.25, pS=1.5,
+               lebR=2.0, lebH=0.0, nakrH=0.0, lebHP=1.6, tulejaD=7.0, tulejaL=6.0, katWidelekX=-12.0, katWidelekY=0.0,
+               podstawaD=8.0, czopD=4.4, L=5.0, otwGl=3.125),     # podstawa walcowa Ø8, czop obrotnicy Ø4,4; otwory krzyżaka L − policzek − luzOs + 0,25
     pretUU=dict(D=4.5),
     # przy gałce: bez obrotnicy; widełki stałe na Uchwycie (oś m = -e0, sworzeń a1 dobrany pod najmniejsze wychylenie wokół a2),
     # wspornik widełek od płyty okna (φ, R)
-    uGal=dict(Do=5.5, Hr=4.0, luzOs=0.25, policzek=2.0, rP=1.8, cP=5.5, pP=2.0, rS=2.6, cS=7.0, pS=2.0,
-              lebR=2.0, lebH=0.0, nakrH=0.0, lebHP=0.0,     # przy gałce wszystkie sworznie DIN 7991 M2×5 w pogłębieniu (łby równo z policzkiem)
-              a1X=[-0.049, -0.998, -0.049], a1Y=[-0.055, -0.998, 0.007], wsporR=8.6, wsporZ=9.0, wsporA=4.0),
+    uGal=dict(Do=5.75, Hr=4.0, luzOs=0.125, policzek=2.0, rP=2.3, cP=5.5, pP=2.0, rS=1.9, cS=7.0, pS=2.0,
+              lebR=2.0, lebH=1.6, nakrH=0.0, lebHP=0.0, L=3.7, otwGl=1.825, trojkaty=True,     # przy gałce: widełki pręta DIN 7991 M2×4 (skrócone do 3,7) w pogłębieniu Ø3,8, widełki stałe DIN 7985 M2×4 (łeb Ø4 × 1,6)
+              a1X=[0.0, -1.0, 0.0], a1Y=[0.0, -1.0, 0.0], wsporKat=46.0, wsporA=4.0),     # a1 = −y gałki (widełki na płaszczyznach Front/Right); wspornik ≥ 45° do poziomu (druk płytą w dół bez podpór)
     przegubGalki='druk',              # 'druk' (4 przeguby drukowane) albo 'kardan22'
     # Słupek, kardan, wspornik, Rama, Płyta
     slupekR=7.65, slupekZ0=-33.0, slupekZ1=-5.5,
@@ -67,14 +68,14 @@ DEF = dict(
     oknoZ=-6.0, plytaT=3.0, plytaRout=26.6, zebroZ1=-2.0,      # R zewn. płyty: przy z_b -7,5 do R28 czaszy 0,36
     laczniki=[135.0, 225.0, 315.0], lacznikR=2.0,
     nadlewy=[210.0, 330.0], nadlewR=3.5, nadlewRpol=23.5, nadlewZ=[-12.68, -6.68],     # CAD 23.10
-    lapaUchwytu=dict(r0=20.0, r1=25.0, t=2.0, grub=2.5, luz=0.3),   # łapy Uchwytu pod nadlewy (płyta ma nad nadlewami wycięcia Ø7,6)
-    piastaPrzodZ0=7.0, piastaPrzodR=7.65,
+    lapaUchwytu=dict(r0=20.0, r1=25.0, t=2.0, grub=5.0, luz=0.3),   # łapy Uchwytu pod nadlewy (płyta ma nad nadlewami wycięcia Ø7,6)
+    piastaPrzodZ0=7.0, piastaPrzodR=7.65, piastaPrzodZ2=19.75,
     # powieki
     LID=dict(Rin=31.2, Rout=33.4, Rrant=34.7, rantKat=6.5),
     # ucha i mostek (jak w CAD etapu 1): mostek G R4,5–8, x 30,95–36,25, kąt od krawędzi przedniej 20–70°; ucho G R6 x 33,85–36,25;
     # ucho D R4 x 30,95–33,6; boki osi Ramy R5 x 36,5–38,5 (obie strony)
-    wycKolnierza=[8.6, 30.35, 36.85], wycUchaD=[4.6, 30.35],     # ustalenia CAD v3.2 (mostek G R8 i ucho D R4 + 0,6)
-    uszy=dict(mostG=[4.5, 8.0, 30.95, 36.25, 20.0, 70.0], uchoG=[6.0, 33.85, 36.25], uchoD=[4.0, 30.95, 33.6], bokOsi=[5.0, 36.5, 38.5]),
+    wycKolnierza=None, wycUchaD=[4.6, 30.35],     # v3.2: kołnierz bez wycięcia (mostek G 56–95°, ucho G R5,5 – CAD 23.10); czasza G wokół ucha D R4 + 0,6
+    uszy=dict(mostG=[4.5, 8.0, 30.95, 36.25, 56.0, 95.0], uchoG=[5.5, 33.85, 36.25], uchoD=[4.0, 30.95, 33.6], bokOsi=[5.0, 36.5, 38.5]),
     G_SPAN=99.5, D_SPAN=79.0, G_CUT=[-14.0, 24.0, 82.5], G_CUT2=[-31.0, -17.0, 96.5], D_CUT2=[-31.0, -17.0, 76.0],
     LG=dict(xJ=-22.0, rho=25.61694307060082, ph=92.0, xh=-30.0, yc=18.0, zs=-60.0, r=20.0, b0=135.0,
             ramieT=3.0, ramieW=6.0, hubR=4.5, legJ=-1, legH=+1, f=0.40),
@@ -83,7 +84,7 @@ DEF = dict(
     tG=[-0.25, 0.5, 56.0, 56.75], tD=[-0.25, 0.5, 32.0, 32.75],   # ogr. zamknięcia, praca od, praca do, ogr. otwarcia
     drutR=0.6, drutRi=1.2, drutOgon=2.0, zaczepT=2.4, zaczepR=2.0,
     slupkiStopuA=6.0, slupkiStopuRho=8.5,
-    stopy=dict(G_zam=dict(rho=10.0, x=[-32.0, -18.8], wsp='klatka'), G_otw=dict(rho=10.0, x=[-32.0, -18.8], wsp='klatka'),
+    stopy=dict(G_zam=dict(rho=10.0, x=[-32.0, -18.8], wsp='klatka', plytka=[10.4, -40.7]), G_otw=dict(rho=10.0, x=[-32.0, -18.8], wsp='przez_tarcze'),
                D_zam=dict(rho=14.0, x=[-22.5, -16.6], wsp='wspornik200'), D_otw=dict(rho=10.0, x=[-22.5, -16.6], wsp='tarcza')),
     # zakres gałki
     praca=[25.0, 15.0], ogr=[28.0, 18.0],
@@ -740,7 +741,7 @@ def fixed_prims(P):
     T = P['rura']
     wk = P['wycKolnierza']          # wycięcie kołnierza przy uszach powiek: walec R wokół osi x, |x| w [x0; x1]
     F.append(Prim('tube', 'rura', T=[(T['R'], T['z0'], T['z1']), (T['kolnR'], T['kolnZ0'], T['z1']), (T['obwR'], -200.0, T['z0'])],
-                  wyc=[(wk[0], wk[1], wk[2]), (wk[0], -wk[2], -wk[1])]))
+                  wyc=[(wk[0], wk[1], wk[2]), (wk[0], -wk[2], -wk[1])] if wk else []))
     F.append(cyl('Słupek', [0, 0, P['slupekZ0']], [0, 0, P['kardanDolZ0']], P['slupekR']))
     F.append(ann('Słupek', [0, 0, P['kardanDolZ0']], [0, 0, P['slupekZ1']], P['kardanR'] + P['luzKieszeni'], P['slupekR']))
     F.append(cyl('kardan dolny', [0, 0, P['kardanDolZ0']], [0, 0, P['kardanDolZ1']], P['kardanR']))
@@ -790,10 +791,14 @@ def stop_posts(P, with_support=True):
             out.append(obb('słupek stopu %s %s' % (key, side), ctr, ax, [(x1 - x0) / 2, a / 2, a / 2]))
             if not with_support:
                 continue
-            if cfg['wsp'] == 'tarcza':                       # filar z tarczy do spodu słupka
-                zb = cz - a / 2 * (abs(e[1]) + abs(perp[1]))
-                out.append(obb('filar słupka %s %s' % (key, side), [(x0 + x1) / 2, cy, (zb + P['tarczaZ1']) / 2], np.eye(3),
-                               [(x1 - x0) / 2, a / 2, (zb - P['tarczaZ1']) / 2]))
+            if cfg['wsp'] == 'tarcza':                       # filar z tarczy wchodzi w słupek do jego środka (przekrój połączenia = przekrój filara)
+                zt = cz
+                out.append(obb('filar słupka %s %s' % (key, side), [(x0 + x1) / 2, cy, (zt + P['tarczaZ1']) / 2], np.eye(3),
+                               [(x1 - x0) / 2, a / 2, (zt - P['tarczaZ1']) / 2]))
+            elif cfg['wsp'] == 'klatka':                     # płytka 2 mm przy ścianie klatki (x1) od ścianki y0 klatki i wierzchu z1 klatki do słupka
+                yk, zk = cfg['plytka']; L = np.array([[i, j, k] for i in (-1, 1) for j in (-1, 1) for k in (-1, 1)]) * np.array([(x1 - x0) / 2, a / 2, a / 2])
+                C = ctr + L @ ax.T; ya, yb = min(yk, C[:, 1].min()), C[:, 1].max(); za, zb_ = C[:, 2].min(), max(zk, C[:, 2].max())
+                out.append(obb('płytka słupka %s %s' % (key, side), [x1 - 1.0, (ya + yb) / 2, (za + zb_) / 2], np.eye(3), [1.0, (yb - ya) / 2, (zb_ - za) / 2]))
             elif cfg['wsp'] == 'wspornik200':                # łącznik w płaszczyźnie ramion wspornika (z -37…-33)
                 zA = (P['piastaZ0'] + P['piastaZ1']) / 2; ca, sa = np.cos(200 * d2r), np.sin(200 * d2r)
                 xm = (x0 + x1) / 2; ya = xm * sa / ca                     # punkt na osi ramienia 200° przy x słupka
@@ -902,7 +907,8 @@ def u_zakres(u, rodR=2.25, clr=0.5):
     if lP > 0: mov1 += [(-lR, lR, ho, ho + lP), (-lR, lR, -ho - lP, -ho)]
     fix1 = [(-cS - pS, -cS, -rS, rS)]
     L = max(lH, nH)
-    mov2 = [(cP, cP + pP, -rP, rP), (cP + pP, cP + pP + 15, -rodR, rodR)]
+    rb = max(rP, u.get('podstawaD', 0.0) / 2)                 # podstawa widełek pręta (walec Ø podstawaD przy orczyku)
+    mov2 = [(cP, cP + pP, -rb, rb), (cP + pP, cP + pP + 15, -rodR, rodR)]
     fix2 = [(-Hr / 2, Hr / 2, -Do / 2, Do / 2), (-cS - pS, rS, hi, ho), (-cS - pS, rS, -ho, -hi)]
     if L > 0: fix2 += [(-lR, lR, ho, ho + L), (-lR, lR, -ho - L, -ho)]
     return _u_limit(mov1, fix1, clr), _u_limit(mov2, fix2, clr)
@@ -950,6 +956,13 @@ def rod_prims_uu(P, name, P_pt, horn, a, R):
         # policzki z końcem zaokrąglonym R rP wokół sworznia a2: prostopadłościan od środka do podstawy + walec wzdłuż a2
         out.append(obb(name + ' widełki pręta przy gałce', P_pt + e * hi / 2, np.stack([e, a2g, w2g], 1), [hi / 2, half, g['rP']]))
         out.append(cyl(name + ' widełki pręta przy gałce', P_pt - a2g * half, P_pt + a2g * half, g['rP']))
+        # DFAM (druk pręta pionowo, widełki u góry): trójkąty 45° pod podstawą widełek od ±half do pręta R pretD/2;
+        # obwiednia schodkowa (2 stopnie) zawiera trójkąt
+        tri = half - P['pretUU']['D'] / 2
+        if g.get('trojkaty', True) and tri > 0:
+            e1 = hi + tri / 2; h1 = half; e2 = hi + tri; h2 = half - tri / 2
+            out.append(obb(name + ' widełki pręta przy gałce', P_pt + e * (hi + e1) / 2, np.stack([e, a2g, w2g], 1), [(e1 - hi) / 2, h1, g['rP']]))
+            out.append(obb(name + ' widełki pręta przy gałce', P_pt + e * (e1 + e2) / 2, np.stack([e, a2g, w2g], 1), [(e2 - e1) / 2, h2, g['rP']]))
         out += _u_heads(name + ' łby sworzni pręta przy gałce', P_pt, a2g, g, g.get('lebHP', 0.0))
         out.append(cap(name + ' krzyżak przy gałce', P_pt, P_pt, np.hypot(g['Do'] / 2, g['Hr'] / 2)))
         s0 = hi
@@ -962,6 +975,8 @@ def rod_prims_uu(P, name, P_pt, horn, a, R):
     lo = -(u['cP'] + u['pP'])
     out.append(obb(name + ' widełki pręta', H + e * lo / 2, np.stack([e, a2, w2], 1), [-lo / 2, half, u['rP']]))
     out.append(cyl(name + ' widełki pręta', H - a2 * half, H + a2 * half, u['rP']))
+    # podstawa widełek pręta przy orczyku: walec współosiowy z prętem (mieści pogłębienie łba M3 obrotnicy)
+    out.append(cyl(name + ' widełki pręta', H - e * u['cP'], H - e * (u['cP'] + u['pP']), u['podstawaD'] / 2))
     out += _u_heads(name + ' łby sworzni pręta', H, a2, u, u.get('lebHP', 0.0))
     out.append(cap(name + ' krzyżak', H, H, np.hypot(u['Do'] / 2, u['Hr'] / 2)))
     return out, (A, H, d, e)
@@ -973,7 +988,9 @@ def horn_prims_uu(P, name, horn, a, A, H, d, R):
     T = P['ramieT']; Wd = P['ramieW']; u = P['uOrcz']
     v = rot_x(np.array([0, 1.0, 0]), a)
     Cm = horn.C - np.array([T / 2, 0, 0]); Am = A - np.array([T / 2, 0, 0])
-    out.append(obb_seg(name + ' Ramię', Cm - v * 4.0, Am + v * 4.0, [1.0, 0, 0], T, Wd))
+    Lk = P['ramieLKoniec']                                   # koniec Ramienia zwężony do ramieWKoniec (miejsce na podstawę Ø8 widełek pręta)
+    out.append(obb_seg(name + ' Ramię', Cm - v * 4.0, Am - v * Lk, [1.0, 0, 0], T, Wd))
+    out.append(obb_seg(name + ' Ramię', Am - v * Lk, Am + v * 4.0, [1.0, 0, 0], T, P['ramieWKoniec']))
     out.append(cyl(name + ' piasta Ramienia', horn.C - np.array([T, 0, 0]), horn.C, P['ramieHubR']))
     P0 = pkt0(P, name)
     e0, a10 = uu_frames(P, horn, P0)
@@ -1124,15 +1141,24 @@ def uchwyt_prims(P, R, okno_poly, plate_outer, rib=None):
     if P.get('przeguby') == 'UU' and P.get('przegubGalki') != 'kardan22':
         g = P['uGal']
         for nm, p0, mvec in (('X', pkt0(P, 'X'), P['_mX']), ('Y', pkt0(P, 'Y'), P['_mY'])):
-            a1 = np.array(g['a1' + nm]); a1 = a1 - (a1 @ mvec) * mvec; a1 /= np.linalg.norm(a1); wv = np.cross(mvec, a1)
+            a1 = np.array(g['a1' + nm], float); a1 /= np.linalg.norm(a1)
+            mvec = mvec - (mvec @ a1) * a1; mvec = mvec / np.linalg.norm(mvec); wv = np.cross(mvec, a1)   # a1 dokładnie z parametru, oś widełek m rzutowana ⊥ a1
             half = g['Do'] / 2 + g['luzOs'] + g['policzek']; hi = g['cS'] + g['pS']
             out.append(obb('widełki przy gałce ' + nm, R @ (p0 + mvec * hi / 2), R @ np.stack([mvec, a1, wv], 1), [hi / 2, half, g['rS']]))
             out.append(cyl('widełki przy gałce ' + nm, R @ (p0 - a1 * half), R @ (p0 + a1 * half), g['rS']))
             out += _u_heads('łeb i nakrętka sworznia przy gałce ' + nm, R @ p0, R @ a1, g)
             base = p0 + mvec * (hi - g['pS'] / 2)
             # wspornik od podstawy widełek do tulei przedniej (nad drogą widełek pręta), w płaszczyźnie promieniowej przegubu
-            ph = np.arctan2(p0[1], p0[0]); rd = np.array([np.cos(ph), np.sin(ph), 0.0]); tg = np.array([-np.sin(ph), np.cos(ph), 0.0])
-            att = rd * g['wsporR'] + np.array([0, 0, g['wsporZ']])
+            # wspornik w płaszczyźnie y = y_podstawy (X) albo x = x_podstawy (Y) do ściany tulei przedniej R piastaPrzodR,
+            # nachylony o wsporKat do poziomu (druk płytą w dół bez podpór)
+            Rt = P['piastaPrzodR']
+            if nm == 'X':
+                xa = np.sqrt(max(Rt ** 2 - base[1] ** 2, 0)); dh = base[0] - xa
+                att = np.array([xa, base[1], base[2] + dh * np.tan(np.radians(g['wsporKat']))]); tg = np.array([0, 1.0, 0])
+            else:
+                ya = np.sqrt(max(Rt ** 2 - base[0] ** 2, 0)); dh = base[1] - ya
+                att = np.array([base[0], ya, base[2] + dh * np.tan(np.radians(g['wsporKat']))]); tg = np.array([1.0, 0, 0])
+            P.setdefault('_wspor', {})[nm] = (base.copy(), att.copy())
             out.append(obb_seg('wspornik widełek ' + nm, R @ att, R @ base, R @ tg, g['wsporA'], g['wsporA']))
     elif P.get('przeguby') == 'UU':
         k = P['kard22']
@@ -1175,4 +1201,6 @@ def uchwyt_prims(P, R, okno_poly, plate_outer, rib=None):
                        [hr, L['grub'] / 2, (zp - (zt - L['t'])) / 2]))
     out.append(cyl('kardan górny', R @ np.array([0, 0, P['kardanGoraZ0']]), R @ np.array([0, 0, P['kardanGoraZ1']]), P['kardanR']))
     out.append(ann('piasta przednia Uchwytu', R @ np.array([0, 0, P['piastaPrzodZ0']]), R @ np.array([0, 0, P['kardanGoraZ1']]), P['kardanR'] + P['luzKieszeni'], P['piastaPrzodR']))
+    # tuleja przednia zamknięta nad kardanem (CAD E6.6): pełny walec do z_b piastaPrzodZ2
+    out.append(cyl('piasta przednia Uchwytu', R @ np.array([0, 0, P['kardanGoraZ1']]), R @ np.array([0, 0, P['piastaPrzodZ2']]), P['piastaPrzodR']))
     return out
