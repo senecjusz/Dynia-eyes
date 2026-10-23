@@ -116,6 +116,9 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 
 ## Parking
 
+- E6: obszary szkiców w całym drzewie „Duże oko v1” wybierane przez `qClosestTo(qSketchRegion…)` zamiast `qContainsPoint` z punktów startowych – przy zmianie zmiennych (K9 `pktRY`, `pretY`) 5 operacji dało ERROR; poprawione tylko te 5.
+- E6: foldery (K11) Uchwyt, Łapa, Ramię X/Y, Komplet Y, Płyta–stopy – założyć w UI przy widocznym panelu.
+
 - E6: przypora nadlewu M3 Gałki przy 330° (łączy się ze ścianką tylko na łuku 70° po wycięciu X) – jeśli test 30 N po druku nie przejdzie; do sprawdzenia przez realizatora razem z łapami Uchwytu.
 
 - `AGENTS.md` (wnioski 19.10, do zatwierdzenia): status OK szyku nie dowodzi powielenia wszystkich operacji; po eksporcie test symetrii (obrót/odbicie) i porównanie powierzchni z poprzednią wersją; kontrola szkicu przez filtr nazw w drzewie; ukrywanie płaszczyzn i szkiców po użyciu; zlecenia dla agentów jako osobne, widoczne sesje.
