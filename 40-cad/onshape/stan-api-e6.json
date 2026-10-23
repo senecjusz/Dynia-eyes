@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "P4 gotowa (+m2PoglD 3,8), C2/C4/C5 zrobione, C3 czeka na decyzję (nadlew), README P4",
-  "wywolania": "E6.6 37/260 (GET /features 0/8); E6 518, rok 1076",
-  "aktualizacja": "2026-10-23T14:25:00Z"
+  "stan": "P4 + C2–C5 odebrane na odczycie wykonawcy (K1–K4); następny krok: plan Uchwytu (zapis po korekcie v3.2)",
+  "wywolania": "E6.6 42/260 (GET /features 1/8); E6 523, rok 1081",
+  "aktualizacja": "2026-10-23T14:35:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,7 +18,7 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 518,
+  "total": 523,
   "features": 326,
   "getFeatures": 14
  },
@@ -722,8 +722,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 518,
-  "suma": 1076
+  "E6": 523,
+  "suma": 1081
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2147,8 +2147,8 @@
    "getFeatures": 8
   },
   "n": {
-   "total": 37,
-   "getFeatures": 0
+   "total": 42,
+   "getFeatures": 1
   },
   "log": [],
   "skrypty": [
@@ -2246,13 +2246,15 @@
    }
   },
   "c": {
-   "decyzja": "orkiestrator: C2–C5 od razu, C6 po korekcie v3.2; C3 wstrzymane (nadlew 330°, decyzja a/b)",
+   "decyzja": "orkiestrator: plan C2–C6 zatwierdzony, nadlewy wariant (a); C6 w planie Uchwytu",
    "zmienne": {
     "rimY": "106 → 102 deg",
     "rimYSzer": "35 → 40 deg",
     "wyciecieX1": "-2 → -14 mm",
     "wyciecieG": "83.5 → 82.5 deg",
-    "luzUchaD": "nowa 0.6 mm"
+    "luzUchaD": "nowa 0.6 mm",
+    "rimX": "104 → 98 deg",
+    "rimXSzer": "25 → 30 deg"
    },
    "C2": {
     "operacje": {
@@ -2265,7 +2267,39 @@
     "bodydetails": "PG: walec R4,6 o osi x na x 30,86…30,95 i −30,95…−30,86 (cięcie +x, zdejmuje koniec czaszy przy ρ<4,6); mostek R4,5/R8, ucho G R5,5 bez zmian; płaszczyzna wycięcia C5 na x −14; 18 brył",
     "folder": "4 operacje przeciągnięte do folderu „Powieka górna” (30 → 34), drzewo bez ikon błędów"
    },
-   "wywolania": 8
+   "wywolania": 12,
+   "C3": {
+    "nadlewy": "4 operacje (nadlew (wyciągnięcie), nadlew prawy, otwór M3 nadlewu, otwór M3 nadlewu prawy) przeciągnięte za „Gałka: wycięcie Y (cięcie)”, przed „Gałka: płaszczyzna zera”; drzewo bez ikon błędów",
+    "bodydetails": "Gałka 1 bryła (dokument 18), 20 ścian; nadlewy R3,5 całe (z −12,68…−6,68), otwory R1,3 z −12,68…−7,28 (pełne); ścianka wokół Ø2,6 = 2,2",
+    "stykNadlewu330": {
+     "metoda": "obliczenie na geometrii z VS (ścianka R28–30 do z −12,68, minus wycięcie X: φ ±30, biegunowo 98…120°, r 26,8…31,2); punkt powierzchni nadlewu +0,05 w ściance",
+     "po C3": "łuk 70° (z −12,68), 41,5° (z −9,68), 0° (z −6,68); pole wspólne z ścianką 4,87 mm² (z −12,68), 2,46 (−11), 1,40 (−10), 0,62 (−9), 0,13 (−8), 0 (−7)",
+     "przed C3": "łuk 110° (z −12,68), pole 8,92 mm²",
+     "bez wycięcia (projekt E6.3)": "łuk 139°, pole 9,74 mm²",
+     "wniosek": "≥ 180° nie było spełnione nawet bez wycięcia: nadlew stoi w kieszeni czaszy i dotyka ścianki zewnętrzną stroną tylko przy tylnej krawędzi"
+    }
+   },
+   "decyzjaC3": "orkiestrator: (1) przyjęte; test nadlewów 30 N w README; przypora do Parkingu"
+  },
+  "odbiorP4C": {
+   "czas": "2026-10-23T14:30Z",
+   "GET /features": {
+    "status": 200,
+    "remaining": 100,
+    "sourceMicroversion": "c75dd0464edd0d901326b3b8"
+   },
+   "pliki": [
+    "odbior-e6/features-e6.6-p4-c.json",
+    "odbior-e6/znaczniki-e6.6-p4-c.json",
+    "odbior-e6/k1-k8-e6.6-p4-c.json"
+   ],
+   "K1": "251 stanów, 0 ≠ OK",
+   "K2": "79 szkiców w JSON = 79 wierszy, 0 niedookreślonych, 0 ostrzeżeń",
+   "K3": "1002 wyrażenia, 0 naruszeń",
+   "K4": "0 Fix, 0 wolnych encji",
+   "K5": "Mirror: + Powieka górna: wycięcie ucha D lewe (FEATURE)",
+   "K6": "P4 14 (5 szkiców), Powieka górna 15, Gałka 8",
+   "skan": "pane ukryty – lista renderowana zrzutem ekranu po każdym przewinięciu; 19 folderów rozwiniętych"
   }
  }
 }
