@@ -1,0 +1,4 @@
+B1: TAK
+najmniej w pracy 0.617, w całym zakresie 0.551; okno – Słupek 0.560
+wychylenia wymagane: {'M5X': np.float64(16.9), 'M5Y': np.float64(18.7), 'M2X': np.float64(24.0), 'M2Y': np.float64(24.0)}
+pręty X 43.71 / Y 46.18; kulki M5 w zerze X [np.float64(29.99), np.float64(0.0), np.float64(-48.43)] Y [np.float64(21.828), np.float64(18.081), np.float64(-46.666)]

@@ -11,8 +11,7 @@
 | Serwo SG90 9 g | 8 | 4 szt. od MicroChipCompany + 4 szt. od OMEGA_ZONE. **Kabel wychodzi u dołu krótszego boku, od strony wałka** – uwzględniać w CAD. Wymiary różnią się między dostawcami – przed serią zmierzyć każdego (Parking w `teraz.md`; kieszeń v2.8 ma 0,4 z każdej strony) |
 | Czujnik ruchu PIR HC-SR501 | 1 | Wystarczy do „ktoś podszedł → oczy się budzą”, nie do śledzenia kierunku |
 | Piłeczki pingpongowe | ✓ | Małe oczy (Ø 40 mm) |
-| Przegub krzyżowy (kardan) 5/5 i 2/2 | ✓ | 5/5: Ø11 × 25,5, otwory Ø5 (głęb. 7), wkręty dociskowe M4 – środek gałki dużego oka (pomiar 22.10, ze zdjęć). 2/2 za słaby |
-| Przeguby kulowe RC: 2 × M2, 2 × M5 | 4 | Pręty napędu gałki dużego oka (M2 przy gałce, M5 przy orczyku – koncepcja v2); wymiary do zmierzenia |
+| Przegub krzyżowy (kardan) PATIKIL 5/5 i 2/2 | po 2 | 5/5: Ø11 × 25,5, otwory Ø5 (głęb. 7), wkręty dociskowe M4 – jeden w środku gałki dużego oka (pomiar 22.10, ze zdjęć). 2/2: Ø9 × 23,5, otwory Ø2, wkręty M3. Wychylenie > 90°. Przegubów kulowych RC **nie ma** (23.10) |
 | Wkręty bez łba M3 (DIN 913) | ✓ | Osie powiek dużego oka |
 | Łożyska 608-2RS (8 × 22 × 7) i 6802-2RS (15 × 24 × 5) | ✓ | W dużym oku nieużyte (koncepcja v2) |
 | Pręty stalowe 500 mm: Ø1,0 i Ø1,2 sprężynowe, Ø2,0 ocynkowany | po 1 | Ø1,2 – łączniki powiek dużego oka z zagięciami Z (koncepcja v2); poza tym preferujemy części drukowane |

@@ -14,6 +14,8 @@ Odpowiedzi na pytania blokujące koncepcji v3 (`20-analizy/2026-10-23-duze-oko-2
 | **B1** przeguby kulowe RC M2 i M5 | **brak danych** – do pomiaru przez użytkownika | – |
 | **B5** wolne miejsce za wewnętrzną ścianką dyni (potrzeba ≥ 70 mm) | **brak** – dyni jeszcze nie ma | – |
 
+**Decyzja orkiestratora 23.10 (B4 zamknięte bez pomiaru):** źródłem wymiarów MG90S jest rysunek producenta (Miuzei MS60-4-D-V1). Uszy mocowane **M2×10 + nakrętka M2 w kieszeni bloku** (pasuje do każdego wycięcia ≥ 2,1 mm). Kanał kabla w klatce przyjmuje kabel z obu krótszych ścian. Użytkownik: „wykonawca dostał info o rodzaju serwa i ściągnął specyfikację modelu”.
+
 ## B1 – przeguby kulowe RC (2 × M2, 2 × M5) – stan 23.10 rano
 
 **Zdjęć przegubów kulowych w tej sesji nie ma.** Wszystkie obrazy z rozmowy z użytkownikiem 22/23.10 (`~/.claude/uploads/5ff01094-…/` i karty produktów wklejone w rozmowie):
