@@ -182,3 +182,9 @@ Dane: `odbior-e6/k1-e6.3.json` (commit wykonawcy 37d46d3; GET /features bez `inc
 
 - **Warunkowe odbiory E6.3 (Rama, Gałka, powieki) – zamknięte, przyjęte.**
 - Nadlewy Gałki (zmiana B): `nadlewR` 23,5, spód na płaszczyźnie krawędzi z −12,68, wysokość `nadlewH` 6 – zmiana tylko zmiennych.
+
+## E6.3: Płyta (bez słupków stopu) – 23.10, ok. 10:35
+
+Dane: `odbior-e6/k1-plyta.json` (commit wykonawcy 2ea8d62; noSketchGeometry), `znaczniki-plyta.json`. Wynik skryptu: K1 0 błędów, 0 bez stanu (197 operacji); K2 64/64 bez niedookreślenia; K3 (operacje) 0. K3/K4 szkiców – przy ostatnim odczycie z encjami. K6: Płyta 38 operacji (wyjątek D4 – jedna część drukowana). Odstępstwa 1–4 (klatka do spodu ucha, przegroda 0,7, kieszenie nakrętek 0,15 od korpusu, otwory M2 S_PD wycięciem) zaakceptowane.
+
+**Wynik: Płyta przyjęta warunkowo (K3/K4 szkiców).**
