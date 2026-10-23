@@ -1,9 +1,9 @@
 {
  "zadanie": {
-  "id": "E6.3 etap 2a – koniec",
-  "stan": "zbudowane wszystko z zakresu poza słupkami stopu (v3.2) i przyrządem zera (decyzja użytkownika); K9 i odbiór końcowy zrobione",
-  "wywolania": "etap 2a 291/300, GET /features 7/7",
-  "aktualizacja": "2026-10-23T08:47:54Z"
+  "id": "E6.4 zero gałki",
+  "stan": "plan wgłębienia zera i czapki wysłany do orkiestratora; bez zapisów w Onshape do zatwierdzenia",
+  "wywolania": "E6.4 0/30, GET /features 0/2; E6 razem 465, rok 1023",
+  "aktualizacja": "2026-10-23T08:50:51Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -2072,6 +2072,16 @@
    "features": "odbior-e6/features-e6.3-koniec.json (GET /features bez parametrów, 219 operacji, 223 stany, 0 ≠ OK)",
    "znaczniki": "odbior-e6/znaczniki-e6.3-koniec.json (71 = 71, 0 niedookreślonych)",
    "k": "odbior-e6/k1-k8-e6.3-koniec.json: K1 0, K3 0/697, K4 0 Fix, 0 wolnych encji; K6: Rama 9, Gałka 7, P6 1, PG 13, PD 11, Słupek 5, Obejma 6, Płyta 38 (D4), Ramię PG 4, Ramię PD 4, Przyrząd 2"
-  }
+  },
+  "odbior": "PRZYJĘTY przez orkiestratora (niezależny K1–K4), scalone z main 698613f"
+ },
+ "e64": {
+  "start_n_total": 465,
+  "budzet": {
+   "total": 30,
+   "getFeatures": 2
+  },
+  "plan": "40-cad/onshape/e6.4-plan-zero.md",
+  "stan": "plan wysłany, czekam na zatwierdzenie"
  }
 }
