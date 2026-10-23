@@ -1,0 +1,4187 @@
+{
+ "data": "2026-10-23 11:13",
+ "konfiguracja": "e6-siatki-ruch.json",
+ "katalog_siatek": "../../.claude/worktrees/heuristic-brattain-6e5ce2/40-cad/3mf/Duze oko v1/stl",
+ "procesy": 11,
+ "siatki": {
+  "Gałka": {
+   "plik_format": "binarny",
+   "trojkaty": 37070,
+   "wierzcholki": 18537,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 15187.8,
+   "pole_mm2": 15561.5,
+   "skladowe": 1,
+   "bbox_min": [
+    -29.999,
+    -29.995,
+    -12.679
+   ],
+   "bbox_max": [
+    29.999,
+    30.0,
+    30.0
+   ],
+   "max_odl_od_poczatku": 30.0,
+   "max_krawedz": 2.424,
+   "max_promien_wpisany": 0.396,
+   "odcinki_krawedzi": 154474,
+   "krawedzie_wypukle": 28242
+  },
+  "Powieka górna": {
+   "plik_format": "binarny",
+   "trojkaty": 16346,
+   "wierzcholki": 8171,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 8615.4,
+   "pole_mm2": 8528.4,
+   "skladowe": 1,
+   "bbox_min": [
+    -36.25,
+    -5.994,
+    -6.0
+   ],
+   "bbox_max": [
+    36.25,
+    33.39,
+    34.674
+   ],
+   "max_odl_od_poczatku": 37.122,
+   "max_krawedz": 11.831,
+   "max_promien_wpisany": 1.344,
+   "odcinki_krawedzi": 75530,
+   "krawedzie_wypukle": 11729
+  },
+  "Powieka dolna": {
+   "plik_format": "binarny",
+   "trojkaty": 13562,
+   "wierzcholki": 6779,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 6623.0,
+   "pole_mm2": 6645.5,
+   "skladowe": 1,
+   "bbox_min": [
+    -33.6,
+    -33.399,
+    -4.0
+   ],
+   "bbox_max": [
+    33.6,
+    4.0,
+    34.003
+   ],
+   "max_odl_od_poczatku": 34.7,
+   "max_krawedz": 11.207,
+   "max_promien_wpisany": 0.497,
+   "odcinki_krawedzi": 61361,
+   "krawedzie_wypukle": 9759
+  },
+  "Rama": {
+   "plik_format": "binarny",
+   "trojkaty": 6520,
+   "wierzcholki": 3256,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 23525.7,
+   "pole_mm2": 24918.5,
+   "skladowe": 1,
+   "bbox_min": [
+    -42.0,
+    -42.0,
+    -37.0
+   ],
+   "bbox_max": [
+    42.0,
+    42.0,
+    7.868
+   ],
+   "max_odl_od_poczatku": 54.305,
+   "max_krawedz": 43.035,
+   "max_promien_wpisany": 0.867,
+   "odcinki_krawedzi": 107091,
+   "krawedzie_wypukle": 5698
+  },
+  "Słupek": {
+   "plik_format": "binarny",
+   "trojkaty": 1116,
+   "wierzcholki": 554,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 3582.9,
+   "pole_mm2": 2378.2,
+   "skladowe": 1,
+   "bbox_min": [
+    -7.65,
+    -7.64,
+    -33.0
+   ],
+   "bbox_max": [
+    7.65,
+    7.64,
+    -5.5
+   ],
+   "max_odl_od_poczatku": 33.875,
+   "max_krawedz": 27.511,
+   "max_promien_wpisany": 1.568,
+   "odcinki_krawedzi": 17619,
+   "krawedzie_wypukle": 693
+  },
+  "Obejma": {
+   "plik_format": "binarny",
+   "trojkaty": 1990,
+   "wierzcholki": 993,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 11780.5,
+   "pole_mm2": 10098.1,
+   "skladowe": 1,
+   "bbox_min": [
+    -47.999,
+    -47.99,
+    -15.0
+   ],
+   "bbox_max": [
+    47.999,
+    50.0,
+    -5.0
+   ],
+   "max_odl_od_poczatku": 52.738,
+   "max_krawedz": 26.914,
+   "max_promien_wpisany": 2.3,
+   "odcinki_krawedzi": 28555,
+   "krawedzie_wypukle": 1138,
+   "pominieta": "nieruchoma, poza okiem (na rurze Ramy z −5…−15, R ≥ 40) – bez pary"
+  },
+  "Próbka P6": {
+   "plik_format": "binarny",
+   "trojkaty": 21730,
+   "wierzcholki": 10867,
+   "krawedzie_nie_2_sciany": 0,
+   "krawedzie_skierowane_powtorzone": 0,
+   "trojkaty_zdegenerowane": 0,
+   "objetosc_mm3": 6925.2,
+   "pole_mm2": 7298.8,
+   "skladowe": 1,
+   "bbox_min": [
+    -28.284,
+    -28.284,
+    10.0
+   ],
+   "bbox_max": [
+    28.284,
+    28.284,
+    30.0
+   ],
+   "max_odl_od_poczatku": 30.0,
+   "max_krawedz": 2.361,
+   "max_promien_wpisany": 0.413,
+   "odcinki_krawedzi": 84960,
+   "krawedzie_wypukle": 16838,
+   "pominieta": "próbka druku czaszy, nie część mechanizmu"
+  }
+ },
+ "weryfikacja_geometrii": [
+  {
+   "czesc": "Gałka",
+   "typ": "promienie",
+   "opis": "wszystkie wierzchołki na sferach R28 i R30 wokół początku",
+   "udzial": 1.0,
+   "oczekiwany_min": 0.999,
+   "zakres_r": [
+    28.0,
+    30.0
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Gałka",
+   "typ": "kat_biegunowy_max",
+   "opis": "krawędź tylna R30 na 115° od +z (kulaRim)",
+   "zmierzony": 115.0,
+   "oczekiwany": 115,
+   "ok": true
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "promienie",
+   "opis": "czasza R31,2–33,4 i rant R34,7 wokół początku (poza uchami)",
+   "udzial": 1.0,
+   "oczekiwany_min": 0.99,
+   "zakres_r": [
+    31.2,
+    34.7
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "kat_krawedzi",
+   "opis": "czasza od krawędzi przedniej zamkG −8,5° do −8,5 + 99,5°",
+   "zmierzony": [
+    -8.5,
+    91.0
+   ],
+   "oczekiwany": [
+    -8.5,
+    91.0
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "kat_krawedzi",
+   "opis": "rant w pasie 6,5° od krawędzi przedniej",
+   "zmierzony": [
+    -8.5,
+    -2.0
+   ],
+   "oczekiwany": [
+    -8.5,
+    -2.0
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "os",
+   "opis": "otwór Ø3,4 uch na osi X",
+   "wierzcholkow": 117,
+   "srodek_przesuniecie_mm": 0.0,
+   "promien_dopasowany": 1.7,
+   "zakres_wzdluz_osi": [
+    -36.25,
+    36.25
+   ],
+   "oczekiwany_zakres": [
+    -36.25,
+    36.25
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Powieka dolna",
+   "typ": "promienie",
+   "opis": "czasza R31,2–33,4 i rant R34,7 wokół początku (poza uchami)",
+   "udzial": 1.0,
+   "oczekiwany_min": 0.99,
+   "zakres_r": [
+    31.2,
+    34.7
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Powieka dolna",
+   "typ": "kat_krawedzi",
+   "opis": "czasza od krawędzi przedniej zamkD −11,5° do −11,5 − 79°",
+   "zmierzony": [
+    -90.5,
+    -11.5
+   ],
+   "oczekiwany": [
+    -90.5,
+    -11.5
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Powieka dolna",
+   "typ": "os",
+   "opis": "otwór Ø3,4 uch na osi X",
+   "wierzcholkow": 200,
+   "srodek_przesuniecie_mm": 0.0,
+   "promien_dopasowany": 1.7,
+   "zakres_wzdluz_osi": [
+    -33.6,
+    33.6
+   ],
+   "oczekiwany_zakres": [
+    -33.6,
+    33.6
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Rama",
+   "typ": "os",
+   "opis": "otwór M3 boków osi powiek na osi X",
+   "wierzcholkow": 152,
+   "srodek_przesuniecie_mm": 0.0,
+   "promien_dopasowany": 1.25,
+   "zakres_wzdluz_osi": [
+    -37.887,
+    37.887
+   ],
+   "oczekiwany_zakres": null,
+   "ok": true
+  },
+  {
+   "czesc": "Rama",
+   "typ": "os",
+   "opis": "kołnierz przodu R35,2 od z 6 (kolnierzZ)",
+   "wierzcholkow": 464,
+   "srodek_przesuniecie_mm": 0.0,
+   "promien_dopasowany": 35.1992,
+   "zakres_wzdluz_osi": [
+    6.0,
+    7.868
+   ],
+   "oczekiwany_zakres": [
+    6.0,
+    7.87
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Rama",
+   "typ": "os",
+   "opis": "rura wewnątrz R37,75 do z −37",
+   "wierzcholkow": 482,
+   "srodek_przesuniecie_mm": 0.0,
+   "promien_dopasowany": 37.75,
+   "zakres_wzdluz_osi": [
+    -37.0,
+    6.0
+   ],
+   "oczekiwany_zakres": [
+    -37.0,
+    6.0
+   ],
+   "ok": true
+  },
+  {
+   "czesc": "Słupek",
+   "typ": "os",
+   "opis": "walec R7,65 z −33…−5,5 na osi z",
+   "wierzcholkow": 220,
+   "srodek_przesuniecie_mm": 0.0,
+   "promien_dopasowany": 7.65,
+   "zakres_wzdluz_osi": [
+    -33.0,
+    -5.5
+   ],
+   "oczekiwany_zakres": [
+    -33.0,
+    -5.5
+   ],
+   "ok": true
+  }
+ ],
+ "uwagi_geometrii": [
+  "Gałka w eksporcie etapu 1 to sama czasza R28–30 z krawędzią 115°: bez wycięć φ 0°/80° i bez nadlewów M3 (wszystkie wierzchołki na R28/R30).",
+  "Rama w eksporcie nie ma uch wewnętrznych R30,5–37,75 (z −33…−27): najmniejszy promień od osi z to 35,2 (kołnierz).",
+  "Powieki to „baza” wg e6.2-plan-powieki.md: bez wycięcia wyciecieG, zaczepów J i przycięcia kącików; czasza G do x ±30,95, D do ±31,2."
+ ],
+ "kinematyka_opis": [
+  "Układ: x prawo, y góra, z na zewnątrz dyni, początek = środek kuli i krzyżaka (koncepcja v3.1); siatki w mm, układ Onshape = układ koncepcji.",
+  "Gałka: R = Rx(−θ)·Ry(ψ) wokół początku; ψ+ = spojrzenie w prawo, θ+ = w górę (koncepcja v3.1, układ współrzędnych).",
+  "Powieki: obrót wokół osi X; G, D = kąt krawędzi przedniej od +z ku +y [°] (jak zamkG/otwG/zamkD/otwD); R = Rx(−(kąt − kąt modelu)); siatki wyeksportowane w położeniu zamkniętym: G −8,5°, D −11,5°.",
+  "Krata stanów: co 0.5° (0.288 mm na R33), kotwice ψ 0, θ 0, G −8,5, D −11,5; zagęszczenie do 0.0868° (0.05 mm na R33).",
+  "Każda para liczona na rzucie pełnego iloczynu ψ × θ × G × D na swoje zmienne (pozostałe zmienne nie zmieniają pary, więc to jest dokładnie równoważne pełnemu iloczynowi); stany o tej samej pozie względnej A→B liczone raz (np. Gałka – Powieka: zależy tylko od ψ i θ − ΔG).",
+  "Zakresy: praca_podazanie: psi [-25, 25], theta [-15, 15], G [-8.5, 47], D [-43, -11.5] + podążanie (G ≤ otwG + podazanie·max(θ,0)/zakresTheta, D ≥ otwD − podazanie·max(−θ,0)/zakresTheta); praca: psi [-25, 25], theta [-15, 15], G [-8.5, 47], D [-43, -11.5]; mechaniczny: psi [-28.05, 28.05], theta [-18.12, 18.12], G [-9.25, 47.75], D [-43.75, -10.75]",
+  "Odcięcie dokładnej odległości c = 1.5 mm (poniżej wszystko dokładnie), rejestr miejsc < 1.0 mm w wokselach 1.0 mm."
+ ],
+ "siatka": {
+  "krok_deg": 0.5,
+  "R_ref": 33,
+  "krok_mm_max": 0.3,
+  "zageszczenie_mm": 0.05,
+  "odciecie_mm": 1.5,
+  "rejestr_miejsc_mm": 1.0,
+  "woksel_miejsc_mm": 1.0,
+  "odcinek_krawedzi_mm": 0.5,
+  "komorka_mm": 0.75,
+  "krok_zgrubny_daleko": 4
+ },
+ "zakresy": {
+  "praca_podazanie": {
+   "opis": "praca z warunkiem podążania (koncepcja pkt 6)",
+   "psi": [
+    -25,
+    25
+   ],
+   "theta": [
+    -15,
+    15
+   ],
+   "G": [
+    -8.5,
+    47
+   ],
+   "D": [
+    -43,
+    -11.5
+   ],
+   "podazanie": {
+    "otwG": 42,
+    "otwD": -38,
+    "podazanie": 5,
+    "zakresTheta": 15
+   }
+  },
+  "praca": {
+   "opis": "praca, pełny iloczyn (G do otwG+podazanie i D do otwD−podazanie przy każdym θ)",
+   "psi": [
+    -25,
+    25
+   ],
+   "theta": [
+    -15,
+    15
+   ],
+   "G": [
+    -8.5,
+    47
+   ],
+   "D": [
+    -43,
+    -11.5
+   ]
+  },
+  "mechaniczny": {
+   "opis": "gałka do granicy okna (obwiednia ψ 28,05 / θ 18,12 z koncepcji pkt 4), powieki do ograniczników (pkt 5)",
+   "psi": [
+    -28.05,
+    28.05
+   ],
+   "theta": [
+    -18.12,
+    18.12
+   ],
+   "G": [
+    -9.25,
+    47.75
+   ],
+   "D": [
+    -43.75,
+    -10.75
+   ]
+  }
+ },
+ "kontrole": [
+  {
+   "nazwa": "K0 wzorzec: Gałka – Powieka górna bez przesunięcia (projekt 1,2)",
+   "para": [
+    "Gałka",
+    "Powieka górna"
+   ],
+   "przesun": {},
+   "stan": {
+    "psi": 0,
+    "theta": 0,
+    "G": -8.5
+   },
+   "wynik_min_mm": 1.1901,
+   "kolizja": false,
+   "glebokosc_mm": null,
+   "rodzaj_kolizji": null,
+   "oczekiwane": {
+    "min": 1.2,
+    "tol": 0.03,
+    "kolizja": false
+   },
+   "ok": true
+  },
+  {
+   "nazwa": "K1 Powieka górna przesunięta o 0,7 mm w −y (szczelina 1,2 → 0,5)",
+   "para": [
+    "Gałka",
+    "Powieka górna"
+   ],
+   "przesun": {
+    "Powieka górna": [
+     0,
+     -0.7,
+     0
+    ]
+   },
+   "stan": {
+    "psi": 0,
+    "theta": 0,
+    "G": -8.5
+   },
+   "wynik_min_mm": 0.4902,
+   "kolizja": false,
+   "glebokosc_mm": null,
+   "rodzaj_kolizji": null,
+   "oczekiwane": {
+    "min": 0.5,
+    "tol": 0.03,
+    "kolizja": false
+   },
+   "ok": true
+  },
+  {
+   "nazwa": "K2 Powieka górna przesunięta o 1,5 mm w −y (przenikanie 0,3)",
+   "para": [
+    "Gałka",
+    "Powieka górna"
+   ],
+   "przesun": {
+    "Powieka górna": [
+     0,
+     -1.5,
+     0
+    ]
+   },
+   "stan": {
+    "psi": 0,
+    "theta": 0,
+    "G": -8.5
+   },
+   "wynik_min_mm": -0.3098,
+   "kolizja": true,
+   "glebokosc_mm": 0.3098,
+   "rodzaj_kolizji": "przecięcie powierzchni",
+   "oczekiwane": {
+    "kolizja": true,
+    "glebokosc": 0.3,
+    "tol": 0.03
+   },
+   "ok": true
+  },
+  {
+   "nazwa": "K3 Słupek przesunięty o +33 mm w z (krawędź czoła R7,65 w ściance gałki: √(7,65² + 27,5²) − 28 = 0,544)",
+   "para": [
+    "Gałka",
+    "Słupek"
+   ],
+   "przesun": {
+    "Słupek": [
+     0,
+     0,
+     33
+    ]
+   },
+   "stan": {
+    "psi": 0,
+    "theta": 0
+   },
+   "wynik_min_mm": -0.5475,
+   "kolizja": true,
+   "glebokosc_mm": 0.5475,
+   "rodzaj_kolizji": "przecięcie powierzchni",
+   "oczekiwane": {
+    "kolizja": true,
+    "glebokosc": 0.544,
+    "tol": 0.02
+   },
+   "ok": true
+  },
+  {
+   "nazwa": "K4 Powieka dolna obrócona za ogranicznik do D = −7,0 (krawędzie przednie G i D się nakładają)",
+   "para": [
+    "Powieka górna",
+    "Powieka dolna"
+   ],
+   "przesun": {},
+   "stan": {
+    "G": -8.5,
+    "D": -7.0
+   },
+   "wynik_min_mm": -0.0038,
+   "kolizja": true,
+   "glebokosc_mm": 0.0038,
+   "rodzaj_kolizji": "przecięcie powierzchni",
+   "oczekiwane": {
+    "kolizja": true
+   },
+   "ok": true
+  }
+ ],
+ "pary": [
+  {
+   "a": "Gałka",
+   "b": "Powieka górna",
+   "zmienne": [
+    "psi",
+    "theta",
+    "G"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "czasze współśrodkowe, projekt 1,2 (luzCzasza)",
+   "strefy": [],
+   "wezly": 940386,
+   "pozy_unikalne": 21018,
+   "tryb": "blisko",
+   "odciecie_mm": 1.5,
+   "lipschitz_mm_na_rad": {
+    "psi": 30.0,
+    "theta": 30.0,
+    "G": 30.0
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 643067,
+     "pozy": 16362,
+     "ograniczenie_dolne_ciagle_mm": 0.7974,
+     "pol_kroku_lipschitz_mm": 0.3927,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "praca": {
+     "wezly": 690032,
+     "pozy": 17372,
+     "ograniczenie_dolne_ciagle_mm": 0.7974,
+     "pol_kroku_lipschitz_mm": 0.3927,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.0,
+       "G": -8.5,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.656,
+       29.252
+      ],
+      "punkt_B": [
+       0.0,
+       6.92,
+       30.413
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 940386,
+     "pozy": 21018,
+     "ograniczenie_dolne_ciagle_mm": 0.7974,
+     "pol_kroku_lipschitz_mm": 0.3927,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.5,
+       "G": -9.0,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.4,
+       29.309
+      ],
+      "punkt_B": [
+       0.0,
+       6.654,
+       30.472
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.5,
+       "G": -9.0,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.4,
+       29.309
+      ],
+      "punkt_B": [
+       0.0,
+       6.654,
+       30.472
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.5,
+       "G": -9.0,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.4,
+       29.309
+      ],
+      "punkt_B": [
+       0.0,
+       6.654,
+       30.472
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 1.1901,
+      "stan": {
+       "psi": 0.0,
+       "theta": -6.5,
+       "G": -9.0,
+       "D": null
+      },
+      "punkt_A": [
+       0.0,
+       6.4,
+       29.309
+      ],
+      "punkt_B": [
+       0.0,
+       6.654,
+       30.472
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    }
+   },
+   "czas_s": 1840.1,
+   "ocen_stanow": 21062,
+   "werdykt": "OK"
+  },
+  {
+   "a": "Gałka",
+   "b": "Powieka dolna",
+   "zmienne": [
+    "psi",
+    "theta",
+    "D"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "czasze współśrodkowe, projekt 1,2",
+   "strefy": [],
+   "wezly": 544434,
+   "pozy_unikalne": 15594,
+   "tryb": "blisko",
+   "odciecie_mm": 1.5,
+   "lipschitz_mm_na_rad": {
+    "psi": 30.0,
+    "theta": 30.0,
+    "D": 30.0
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 347339,
+     "pozy": 11514,
+     "ograniczenie_dolne_ciagle_mm": 0.7975,
+     "pol_kroku_lipschitz_mm": 0.3927,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     }
+    },
+    "praca": {
+     "wezly": 394304,
+     "pozy": 12524,
+     "ograniczenie_dolne_ciagle_mm": 0.7975,
+     "pol_kroku_lipschitz_mm": 0.3927,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -15.0,
+       "G": null,
+       "D": -42.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.929,
+       2.06
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.117,
+       2.142
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 544434,
+     "pozy": 15594,
+     "ograniczenie_dolne_ciagle_mm": 0.7975,
+     "pol_kroku_lipschitz_mm": 0.3927,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -16.0,
+       "G": null,
+       "D": -43.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.961,
+       1.537
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.149,
+       1.598
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -16.0,
+       "G": null,
+       "D": -43.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.961,
+       1.537
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.149,
+       1.598
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -16.0,
+       "G": null,
+       "D": -43.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.961,
+       1.537
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.149,
+       1.598
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 1.1902,
+      "stan": {
+       "psi": 3.0,
+       "theta": -16.0,
+       "G": null,
+       "D": -43.5
+      },
+      "punkt_A": [
+       -0.006,
+       -29.961,
+       1.537
+      ],
+      "punkt_B": [
+       -0.006,
+       -31.149,
+       1.598
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     }
+    }
+   },
+   "czas_s": 1083.2,
+   "ocen_stanow": 15638,
+   "werdykt": "OK"
+  },
+  {
+   "a": "Powieka górna",
+   "b": "Powieka dolna",
+   "zmienne": [
+    "G",
+    "D"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [
+    "oś powiek – luz osiowy"
+   ],
+   "wezly": 7524,
+   "pozy_unikalne": 179,
+   "tryb": "blisko",
+   "odciecie_mm": 1.5,
+   "lipschitz_mm_na_rad": {
+    "G": 37.12,
+    "D": 37.12
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 7068,
+     "pozy": 165,
+     "ograniczenie_dolne_ciagle_mm": -0.1177,
+     "pol_kroku_lipschitz_mm": 0.324,
+     "kolizje_wezlow": 0,
+     "miejsca": [
+      {
+       "min_mm": 0.2063,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": -8.5,
+        "D": -11.5
+       },
+       "punkt_A": [
+        -30.95,
+        -0.58,
+        3.9
+       ],
+       "punkt_B": [
+        -30.95,
+        -0.78,
+        3.86
+       ],
+       "kierunek": [
+        -0.002,
+        -0.98,
+        -0.199
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 165,
+       "rozpietosc_ukl_B": [
+        [
+         -34.0,
+         -5.0,
+         -5.0
+        ],
+        [
+         -24.0,
+         5.0,
+         19.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.2063,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": -8.5,
+        "D": -11.5
+       },
+       "punkt_A": [
+        30.95,
+        -0.58,
+        3.9
+       ],
+       "punkt_B": [
+        30.95,
+        -0.78,
+        3.86
+       ],
+       "kierunek": [
+        0.002,
+        -0.98,
+        -0.199
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 161,
+       "rozpietosc_ukl_B": [
+        [
+         24.0,
+         -5.0,
+         -5.0
+        ],
+        [
+         34.0,
+         5.0,
+         19.0
+        ]
+       ]
+      }
+     ],
+     "wszystko": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "praca": {
+     "wezly": 7168,
+     "pozy": 175,
+     "ograniczenie_dolne_ciagle_mm": -0.1177,
+     "pol_kroku_lipschitz_mm": 0.324,
+     "kolizje_wezlow": 0,
+     "miejsca": [
+      {
+       "min_mm": 0.2063,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": -8.5,
+        "D": -11.5
+       },
+       "punkt_A": [
+        -30.95,
+        -0.58,
+        3.9
+       ],
+       "punkt_B": [
+        -30.95,
+        -0.78,
+        3.86
+       ],
+       "kierunek": [
+        -0.002,
+        -0.98,
+        -0.199
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 168,
+       "rozpietosc_ukl_B": [
+        [
+         -34.0,
+         -5.0,
+         -5.0
+        ],
+        [
+         -24.0,
+         5.0,
+         19.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.2063,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": -8.5,
+        "D": -11.5
+       },
+       "punkt_A": [
+        30.95,
+        -0.58,
+        3.9
+       ],
+       "punkt_B": [
+        30.95,
+        -0.78,
+        3.86
+       ],
+       "kierunek": [
+        0.002,
+        -0.98,
+        -0.199
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 164,
+       "rozpietosc_ukl_B": [
+        [
+         24.0,
+         -5.0,
+         -5.0
+        ],
+        [
+         34.0,
+         5.0,
+         19.0
+        ]
+       ]
+      }
+     ],
+     "wszystko": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 0.2063,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -8.5,
+       "D": -11.5
+      },
+      "punkt_A": [
+       -30.95,
+       -0.583,
+       3.898
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.785,
+       3.857
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 7524,
+     "pozy": 179,
+     "ograniczenie_dolne_ciagle_mm": -0.1864,
+     "pol_kroku_lipschitz_mm": 0.324,
+     "kolizje_wezlow": 0,
+     "miejsca": [
+      {
+       "min_mm": 0.1376,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": -9.0,
+        "D": -11.0
+       },
+       "punkt_A": [
+        -30.95,
+        -0.62,
+        3.89
+       ],
+       "punkt_B": [
+        -30.95,
+        -0.75,
+        3.87
+       ],
+       "kierunek": [
+        0.0,
+        -0.982,
+        -0.191
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": false,
+       "wokseli": 255,
+       "rozpietosc_ukl_B": [
+        [
+         -34.0,
+         -6.0,
+         -5.0
+        ],
+        [
+         -12.0,
+         5.0,
+         29.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.1376,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": -9.0,
+        "D": -11.0
+       },
+       "punkt_A": [
+        30.95,
+        -0.62,
+        3.89
+       ],
+       "punkt_B": [
+        30.95,
+        -0.75,
+        3.87
+       ],
+       "kierunek": [
+        -0.0,
+        -0.982,
+        -0.191
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": false,
+       "wokseli": 248,
+       "rozpietosc_ukl_B": [
+        [
+         12.0,
+         -6.0,
+         -5.0
+        ],
+        [
+         34.0,
+         5.0,
+         29.0
+        ]
+       ]
+      }
+     ],
+     "wszystko": {
+      "min_mm": 0.1376,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -9.0,
+       "D": -11.0
+      },
+      "punkt_A": [
+       -30.95,
+       -0.617,
+       3.893
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.752,
+       3.867
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 0.1376,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -9.0,
+       "D": -11.0
+      },
+      "punkt_A": [
+       -30.95,
+       -0.617,
+       3.893
+      ],
+      "punkt_B": [
+       -30.95,
+       -0.752,
+       3.867
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 0.1032,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -9.25,
+       "D": -10.75
+      },
+      "punkt_A": [
+       30.95,
+       -0.634,
+       3.89
+      ],
+      "punkt_B": [
+       30.95,
+       -0.735,
+       3.871
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 0.1032,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -9.25,
+       "D": -10.75
+      },
+      "punkt_A": [
+       30.95,
+       -0.634,
+       3.89
+      ],
+      "punkt_B": [
+       30.95,
+       -0.735,
+       3.871
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    }
+   },
+   "czas_s": 14.9,
+   "ocen_stanow": 208,
+   "werdykt": "PONIŻEJ: praca_podazanie: 0.206 < 0.5; praca: 0.206 < 0.5; mechaniczny: 0.103 < 0.5"
+  },
+  {
+   "a": "Gałka",
+   "b": "Rama",
+   "zmienne": [
+    "psi",
+    "theta"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [],
+   "wezly": 8249,
+   "pozy_unikalne": 8249,
+   "krok_zgrubny_daleko_deg": 2.0,
+   "pelna_krata_d_ponad_mm": 1.5,
+   "tryb": "daleko",
+   "odciecie_mm": null,
+   "lipschitz_mm_na_rad": {
+    "psi": 30.0,
+    "theta": 30.0
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 375,
+     "pozy": 375,
+     "ograniczenie_dolne_ciagle_mm": 4.6507,
+     "pol_kroku_lipschitz_mm": 0.2618,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -24.0,
+       "theta": -10.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -27.184,
+       11.644,
+       5.043
+      ],
+      "punkt_B": [
+       -32.348,
+       13.855,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -24.0,
+       "theta": -10.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -27.184,
+       11.644,
+       5.043
+      ],
+      "punkt_B": [
+       -32.348,
+       13.855,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -8.125,
+       "theta": 13.875,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       18.836,
+       -22.799,
+       5.04
+      ],
+      "punkt_B": [
+       22.412,
+       -27.13,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -8.125,
+       "theta": 13.875,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       18.836,
+       -22.799,
+       5.04
+      ],
+      "punkt_B": [
+       22.412,
+       -27.13,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     }
+    },
+    "praca": {
+     "wezly": 375,
+     "pozy": 375,
+     "ograniczenie_dolne_ciagle_mm": 4.6507,
+     "pol_kroku_lipschitz_mm": 0.2618,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -24.0,
+       "theta": -10.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -27.184,
+       11.644,
+       5.043
+      ],
+      "punkt_B": [
+       -32.348,
+       13.855,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -24.0,
+       "theta": -10.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -27.184,
+       11.644,
+       5.043
+      ],
+      "punkt_B": [
+       -32.348,
+       13.855,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -8.125,
+       "theta": 13.875,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       18.836,
+       -22.799,
+       5.04
+      ],
+      "punkt_B": [
+       22.412,
+       -27.13,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -8.125,
+       "theta": 13.875,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       18.836,
+       -22.799,
+       5.04
+      ],
+      "punkt_B": [
+       22.412,
+       -27.13,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 551,
+     "pozy": 551,
+     "ograniczenie_dolne_ciagle_mm": 4.6507,
+     "pol_kroku_lipschitz_mm": 0.2618,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": 28.0,
+       "theta": -6.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -3.513,
+       -29.363,
+       5.045
+      ],
+      "punkt_B": [
+       -4.18,
+       -34.941,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": 28.0,
+       "theta": -6.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -3.513,
+       -29.363,
+       5.045
+      ],
+      "punkt_B": [
+       -4.18,
+       -34.941,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -15.9375,
+       "theta": -18.0625,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -18.825,
+       -22.808,
+       5.042
+      ],
+      "punkt_B": [
+       -22.401,
+       -27.139,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 5.6979,
+      "stan": {
+       "psi": -15.9375,
+       "theta": -18.0625,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -18.825,
+       -22.808,
+       5.042
+      ],
+      "punkt_B": [
+       -22.401,
+       -27.139,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)"
+     }
+    }
+   },
+   "czas_s": 923.6,
+   "ocen_stanow": 796,
+   "werdykt": "OK"
+  },
+  {
+   "a": "Powieka górna",
+   "b": "Rama",
+   "zmienne": [
+    "G"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [
+    "oś powiek – luz osiowy"
+   ],
+   "wezly": 114,
+   "pozy_unikalne": 114,
+   "tryb": "blisko",
+   "odciecie_mm": 1.5,
+   "lipschitz_mm_na_rad": {
+    "G": 37.12
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 112,
+     "pozy": 112,
+     "ograniczenie_dolne_ciagle_mm": -1.2907,
+     "pol_kroku_lipschitz_mm": 0.162,
+     "kolizje_wezlow": 60,
+     "kolizja_najglebsza": {
+      "glebokosc_mm": 1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt": [
+       -35.041,
+       3.346,
+       6.0
+      ],
+      "rodzaj": "przecięcie powierzchni"
+     },
+     "miejsca": [
+      {
+       "min_mm": 0.0,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 13.0,
+        "D": null
+       },
+       "punkt_A": [
+        35.2,
+        0.0,
+        6.0
+       ],
+       "punkt_B": [
+        35.2,
+        0.0,
+        6.0
+       ],
+       "kierunek": [
+        0.0,
+        0.0,
+        1.0
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 119,
+       "rozpietosc_ukl_B": [
+        [
+         34.0,
+         -6.0,
+         -6.0
+        ],
+        [
+         37.0,
+         9.0,
+         8.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.0,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 13.0,
+        "D": null
+       },
+       "punkt_A": [
+        -36.25,
+        0.0,
+        6.0
+       ],
+       "punkt_B": [
+        -36.25,
+        0.0,
+        6.0
+       ],
+       "kierunek": [
+        0.0,
+        0.0,
+        1.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": false,
+       "wokseli": 123,
+       "rozpietosc_ukl_B": [
+        [
+         -37.0,
+         -7.0,
+         -6.0
+        ],
+        [
+         -34.0,
+         9.0,
+         8.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.25,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 47.0,
+        "D": null
+       },
+       "punkt_A": [
+        -36.25,
+        -1.29,
+        -1.11
+       ],
+       "punkt_B": [
+        -36.5,
+        -1.29,
+        -1.11
+       ],
+       "kierunek": [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": true,
+       "wokseli": 14,
+       "rozpietosc_ukl_B": [
+        [
+         -37.0,
+         -2.0,
+         -2.0
+        ],
+        [
+         -36.0,
+         2.0,
+         2.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.25,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 47.0,
+        "D": null
+       },
+       "punkt_A": [
+        36.25,
+        -1.29,
+        -1.11
+       ],
+       "punkt_B": [
+        36.5,
+        -1.29,
+        -1.11
+       ],
+       "kierunek": [
+        1.0,
+        0.0,
+        0.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": true,
+       "wokseli": 14,
+       "rozpietosc_ukl_B": [
+        [
+         36.0,
+         -2.0,
+         -2.0
+        ],
+        [
+         37.0,
+         2.0,
+         2.0
+        ]
+       ]
+      }
+     ],
+     "wszystko": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "praca": {
+     "wezly": 112,
+     "pozy": 112,
+     "ograniczenie_dolne_ciagle_mm": -1.2907,
+     "pol_kroku_lipschitz_mm": 0.162,
+     "kolizje_wezlow": 60,
+     "kolizja_najglebsza": {
+      "glebokosc_mm": 1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt": [
+       -35.041,
+       3.346,
+       6.0
+      ],
+      "rodzaj": "przecięcie powierzchni"
+     },
+     "miejsca": [
+      {
+       "min_mm": 0.0,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 13.0,
+        "D": null
+       },
+       "punkt_A": [
+        35.2,
+        0.0,
+        6.0
+       ],
+       "punkt_B": [
+        35.2,
+        0.0,
+        6.0
+       ],
+       "kierunek": [
+        0.0,
+        0.0,
+        1.0
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 119,
+       "rozpietosc_ukl_B": [
+        [
+         34.0,
+         -6.0,
+         -6.0
+        ],
+        [
+         37.0,
+         9.0,
+         8.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.0,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 13.0,
+        "D": null
+       },
+       "punkt_A": [
+        -36.25,
+        0.0,
+        6.0
+       ],
+       "punkt_B": [
+        -36.25,
+        0.0,
+        6.0
+       ],
+       "kierunek": [
+        0.0,
+        0.0,
+        1.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": false,
+       "wokseli": 123,
+       "rozpietosc_ukl_B": [
+        [
+         -37.0,
+         -7.0,
+         -6.0
+        ],
+        [
+         -34.0,
+         9.0,
+         8.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.25,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 47.0,
+        "D": null
+       },
+       "punkt_A": [
+        -36.25,
+        -1.29,
+        -1.11
+       ],
+       "punkt_B": [
+        -36.5,
+        -1.29,
+        -1.11
+       ],
+       "kierunek": [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": true,
+       "wokseli": 14,
+       "rozpietosc_ukl_B": [
+        [
+         -37.0,
+         -2.0,
+         -2.0
+        ],
+        [
+         -36.0,
+         2.0,
+         2.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.25,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 47.0,
+        "D": null
+       },
+       "punkt_A": [
+        36.25,
+        -1.29,
+        -1.11
+       ],
+       "punkt_B": [
+        36.5,
+        -1.29,
+        -1.11
+       ],
+       "kierunek": [
+        1.0,
+        0.0,
+        0.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": true,
+       "wokseli": 14,
+       "rozpietosc_ukl_B": [
+        [
+         36.0,
+         -2.0,
+         -2.0
+        ],
+        [
+         37.0,
+         2.0,
+         2.0
+        ]
+       ]
+      }
+     ],
+     "wszystko": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 114,
+     "pozy": 114,
+     "ograniczenie_dolne_ciagle_mm": -1.2907,
+     "pol_kroku_lipschitz_mm": 0.162,
+     "kolizje_wezlow": 61,
+     "kolizja_najglebsza": {
+      "glebokosc_mm": 1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt": [
+       -35.041,
+       3.346,
+       6.0
+      ],
+      "rodzaj": "przecięcie powierzchni"
+     },
+     "miejsca": [
+      {
+       "min_mm": 0.0,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 13.0,
+        "D": null
+       },
+       "punkt_A": [
+        35.2,
+        0.0,
+        6.0
+       ],
+       "punkt_B": [
+        35.2,
+        0.0,
+        6.0
+       ],
+       "kierunek": [
+        0.0,
+        0.0,
+        1.0
+       ],
+       "rodzaj": "krawędź – krawędź",
+       "w_strefie": false,
+       "wokseli": 120,
+       "rozpietosc_ukl_B": [
+        [
+         34.0,
+         -6.0,
+         -6.0
+        ],
+        [
+         37.0,
+         9.0,
+         8.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.0,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 13.0,
+        "D": null
+       },
+       "punkt_A": [
+        -36.25,
+        0.0,
+        6.0
+       ],
+       "punkt_B": [
+        -36.25,
+        0.0,
+        6.0
+       ],
+       "kierunek": [
+        0.0,
+        0.0,
+        1.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": false,
+       "wokseli": 125,
+       "rozpietosc_ukl_B": [
+        [
+         -37.0,
+         -7.0,
+         -6.0
+        ],
+        [
+         -34.0,
+         9.0,
+         8.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.25,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 47.5,
+        "D": null
+       },
+       "punkt_A": [
+        -36.25,
+        -1.3,
+        -1.1
+       ],
+       "punkt_B": [
+        -36.5,
+        -1.3,
+        -1.1
+       ],
+       "kierunek": [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": true,
+       "wokseli": 14,
+       "rozpietosc_ukl_B": [
+        [
+         -37.0,
+         -2.0,
+         -2.0
+        ],
+        [
+         -36.0,
+         2.0,
+         2.0
+        ]
+       ]
+      },
+      {
+       "min_mm": 0.25,
+       "stan": {
+        "psi": null,
+        "theta": null,
+        "G": 47.5,
+        "D": null
+       },
+       "punkt_A": [
+        36.25,
+        -1.3,
+        -1.1
+       ],
+       "punkt_B": [
+        36.5,
+        -1.3,
+        -1.1
+       ],
+       "kierunek": [
+        1.0,
+        0.0,
+        0.0
+       ],
+       "rodzaj": "wierzchołek A – ściana B",
+       "w_strefie": true,
+       "wokseli": 14,
+       "rozpietosc_ukl_B": [
+        [
+         36.0,
+         -2.0,
+         -2.0
+        ],
+        [
+         37.0,
+         2.0,
+         2.0
+        ]
+       ]
+      }
+     ],
+     "wszystko": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": -1.1287,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": -7.5,
+       "D": null
+      },
+      "punkt_A": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "punkt_B": [
+       -36.25,
+       -0.072,
+       6.0
+      ],
+      "rodzaj": "wierzchołek A – ściana B",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    }
+   },
+   "czas_s": 7.1,
+   "ocen_stanow": 131,
+   "werdykt": "PONIŻEJ: praca_podazanie: -1.129 < 0.5; praca_podazanie: przenikanie w 60 węzłach; praca: -1.129 < 0.5; praca: przenikanie w 60 węzłach; mechaniczny: -1.129 < 0.5; mechaniczny: przenikanie w 61 węzłach"
+  },
+  {
+   "a": "Powieka dolna",
+   "b": "Rama",
+   "zmienne": [
+    "D"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [
+    "oś powiek – luz osiowy"
+   ],
+   "wezly": 66,
+   "pozy_unikalne": 66,
+   "krok_zgrubny_daleko_deg": 2.0,
+   "pelna_krata_d_ponad_mm": 1.5,
+   "tryb": "daleko",
+   "odciecie_mm": null,
+   "lipschitz_mm_na_rad": {
+    "D": 34.7
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 16,
+     "pozy": 16,
+     "ograniczenie_dolne_ciagle_mm": 1.6923,
+     "pol_kroku_lipschitz_mm": 0.1514,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "praca": {
+     "wezly": 16,
+     "pozy": 16,
+     "ograniczenie_dolne_ciagle_mm": 1.6923,
+     "pol_kroku_lipschitz_mm": 0.1514,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 17,
+     "pozy": 17,
+     "ograniczenie_dolne_ciagle_mm": 1.6923,
+     "pol_kroku_lipschitz_mm": 0.1514,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 2.2979,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -23.5
+      },
+      "punkt_A": [
+       -22.111,
+       -24.394,
+       5.62
+      ],
+      "punkt_B": [
+       -23.635,
+       -26.071,
+       6.0
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    }
+   },
+   "czas_s": 27.3,
+   "ocen_stanow": 48,
+   "werdykt": "OK"
+  },
+  {
+   "a": "Gałka",
+   "b": "Słupek",
+   "zmienne": [
+    "psi",
+    "theta"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [],
+   "wezly": 8249,
+   "pozy_unikalne": 8249,
+   "krok_zgrubny_daleko_deg": 2.0,
+   "pelna_krata_d_ponad_mm": 1.5,
+   "tryb": "daleko",
+   "odciecie_mm": null,
+   "lipschitz_mm_na_rad": {
+    "psi": 30.0,
+    "theta": 30.0
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 375,
+     "pozy": 375,
+     "ograniczenie_dolne_ciagle_mm": 7.5594,
+     "pol_kroku_lipschitz_mm": 0.2618,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 8.6066,
+      "stan": {
+       "psi": -24.0,
+       "theta": -14.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -14.233,
+       -7.855,
+       -22.793
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -22.793
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 8.6066,
+      "stan": {
+       "psi": -24.0,
+       "theta": -14.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -14.233,
+       -7.855,
+       -22.793
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -22.793
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 8.0736,
+      "stan": {
+       "psi": -25,
+       "theta": 15,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -13.718,
+       7.684,
+       -23.164
+      ],
+      "punkt_B": [
+       -6.689,
+       3.713,
+       -23.164
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 8.0736,
+      "stan": {
+       "psi": -25,
+       "theta": 15,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -13.718,
+       7.684,
+       -23.164
+      ],
+      "punkt_B": [
+       -6.689,
+       3.713,
+       -23.164
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    },
+    "praca": {
+     "wezly": 375,
+     "pozy": 375,
+     "ograniczenie_dolne_ciagle_mm": 7.5594,
+     "pol_kroku_lipschitz_mm": 0.2618,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 8.6066,
+      "stan": {
+       "psi": -24.0,
+       "theta": -14.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -14.233,
+       -7.855,
+       -22.793
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -22.793
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 8.6066,
+      "stan": {
+       "psi": -24.0,
+       "theta": -14.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -14.233,
+       -7.855,
+       -22.793
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -22.793
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 8.0736,
+      "stan": {
+       "psi": -25,
+       "theta": 15,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -13.718,
+       7.684,
+       -23.164
+      ],
+      "punkt_B": [
+       -6.689,
+       3.713,
+       -23.164
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 8.0736,
+      "stan": {
+       "psi": -25,
+       "theta": 15,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -13.718,
+       7.684,
+       -23.164
+      ],
+      "punkt_B": [
+       -6.689,
+       3.713,
+       -23.164
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 551,
+     "pozy": 551,
+     "ograniczenie_dolne_ciagle_mm": 5.3799,
+     "pol_kroku_lipschitz_mm": 0.2618,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 6.4271,
+      "stan": {
+       "psi": -28.0,
+       "theta": -18.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -12.28,
+       -6.882,
+       -24.2
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -24.2
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 6.4271,
+      "stan": {
+       "psi": -28.0,
+       "theta": -18.0,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -12.28,
+       -6.882,
+       -24.2
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -24.2
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 6.3846,
+      "stan": {
+       "psi": -28.05,
+       "theta": -18.12,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -12.244,
+       -6.86,
+       -24.225
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -24.225
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 6.3846,
+      "stan": {
+       "psi": -28.05,
+       "theta": -18.12,
+       "G": null,
+       "D": null
+      },
+      "punkt_A": [
+       -12.244,
+       -6.86,
+       -24.225
+      ],
+      "punkt_B": [
+       -6.689,
+       -3.713,
+       -24.225
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    }
+   },
+   "czas_s": 108.8,
+   "ocen_stanow": 682,
+   "werdykt": "OK"
+  },
+  {
+   "a": "Powieka górna",
+   "b": "Słupek",
+   "zmienne": [
+    "G"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [],
+   "wezly": 114,
+   "pozy_unikalne": 114,
+   "krok_zgrubny_daleko_deg": 2.0,
+   "pelna_krata_d_ponad_mm": 1.5,
+   "tryb": "daleko",
+   "odciecie_mm": null,
+   "lipschitz_mm_na_rad": {
+    "G": 37.12
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 28,
+     "pozy": 28,
+     "ograniczenie_dolne_ciagle_mm": 8.9296,
+     "pol_kroku_lipschitz_mm": 0.162,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "praca": {
+     "wezly": 28,
+     "pozy": 28,
+     "ograniczenie_dolne_ciagle_mm": 8.9296,
+     "pol_kroku_lipschitz_mm": 0.162,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 29,
+     "pozy": 29,
+     "ograniczenie_dolne_ciagle_mm": 8.9296,
+     "pol_kroku_lipschitz_mm": 0.162,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 9.5775,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.0,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       17.218,
+       -26.013
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.013
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 9.2355,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.75,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       16.876,
+       -26.236
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.236
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 9.2355,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": 47.75,
+       "D": null
+      },
+      "punkt_A": [
+       -0.387,
+       16.876,
+       -26.236
+      ],
+      "punkt_B": [
+       -0.387,
+       7.64,
+       -26.236
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    }
+   },
+   "czas_s": 7.9,
+   "ocen_stanow": 43,
+   "werdykt": "OK"
+  },
+  {
+   "a": "Powieka dolna",
+   "b": "Słupek",
+   "zmienne": [
+    "D"
+   ],
+   "wymagany_mm": 0.5,
+   "uwaga": "",
+   "strefy": [],
+   "wezly": 66,
+   "pozy_unikalne": 66,
+   "krok_zgrubny_daleko_deg": 2.0,
+   "pelna_krata_d_ponad_mm": 1.5,
+   "tryb": "daleko",
+   "odciecie_mm": null,
+   "lipschitz_mm_na_rad": {
+    "D": 34.7
+   },
+   "zakresy": {
+    "praca_podazanie": {
+     "wezly": 16,
+     "pozy": 16,
+     "ograniczenie_dolne_ciagle_mm": 18.6289,
+     "pol_kroku_lipschitz_mm": 0.1514,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 19.2345,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -41.5
+      },
+      "punkt_A": [
+       -0.979,
+       -26.866,
+       -15.825
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -15.825
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 19.2345,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -41.5
+      },
+      "punkt_A": [
+       -0.979,
+       -26.866,
+       -15.825
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -15.825
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 18.8112,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43
+      },
+      "punkt_A": [
+       -0.957,
+       -26.443,
+       -16.523
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.523
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 18.8112,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43
+      },
+      "punkt_A": [
+       -0.957,
+       -26.443,
+       -16.523
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.523
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    },
+    "praca": {
+     "wezly": 16,
+     "pozy": 16,
+     "ograniczenie_dolne_ciagle_mm": 18.6289,
+     "pol_kroku_lipschitz_mm": 0.1514,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 19.2345,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -41.5
+      },
+      "punkt_A": [
+       -0.979,
+       -26.866,
+       -15.825
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -15.825
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 19.2345,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -41.5
+      },
+      "punkt_A": [
+       -0.979,
+       -26.866,
+       -15.825
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -15.825
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 18.8112,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43
+      },
+      "punkt_A": [
+       -0.957,
+       -26.443,
+       -16.523
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.523
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 18.8112,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43
+      },
+      "punkt_A": [
+       -0.957,
+       -26.443,
+       -16.523
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.523
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    },
+    "mechaniczny": {
+     "wezly": 17,
+     "pozy": 17,
+     "ograniczenie_dolne_ciagle_mm": 18.0605,
+     "pol_kroku_lipschitz_mm": 0.1514,
+     "kolizje_wezlow": 0,
+     "miejsca": [],
+     "wszystko": {
+      "min_mm": 18.6661,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43.5
+      },
+      "punkt_A": [
+       -0.949,
+       -26.298,
+       -16.754
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.754
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "poza_strefami": {
+      "min_mm": 18.6661,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43.5
+      },
+      "punkt_A": [
+       -0.949,
+       -26.298,
+       -16.754
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.754
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "siatka"
+     },
+     "wszystko_po_zageszczeniu": {
+      "min_mm": 18.5928,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43.75
+      },
+      "punkt_A": [
+       -0.945,
+       -26.225,
+       -16.868
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.868
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     },
+     "poza_strefami_po_zageszczeniu": {
+      "min_mm": 18.5928,
+      "stan": {
+       "psi": null,
+       "theta": null,
+       "G": null,
+       "D": -43.75
+      },
+      "punkt_A": [
+       -0.945,
+       -26.225,
+       -16.868
+      ],
+      "punkt_B": [
+       -0.387,
+       -7.64,
+       -16.868
+      ],
+      "rodzaj": "krawędź – krawędź",
+      "w_strefie": false,
+      "zrodlo": "narożnik zakresu"
+     }
+    }
+   },
+   "czas_s": 8.6,
+   "ocen_stanow": 31,
+   "werdykt": "OK"
+  }
+ ],
+ "ograniczenia": [
+  "Liczona jest odległość siatek trójkątnych z eksportu (tolerancja cięciwy eksportu ok. 0,01 mm), nie brył CAD: wklęsła czasza powieki ma ściany o strzałkę bliżej osi, wypukła gałka – o strzałkę dalej, więc współśrodkowa szczelina 1,2 wychodzi ok. 1,19.",
+  "Odległość jest dokładna dla siatek (wierzchołek–ściana w obie strony + krawędź–krawędź, bez próbkowania), ale tylko poniżej odcięcia c; powyżej działa tryb daleki (klastry 4 mm, gałęzie i granice, też dokładny).",
+  "Stany: krata co krok_deg (0,5° = 0,288 mm na R33; na rancie powieki R34,7: 0,303 mm), z kotwicą w położeniu modelu; brzegi zakresu mechanicznego, które nie leżą na kracie, są pokryte z dokładnością ≤ ½ kroku i liczone dokładnie w narożnikach; zagęszczenie to lokalne przeszukiwanie wzorcem od 3 najlepszych węzłów, nie pełna krata 0,05 mm. Ograniczenie dolne w ciągłym zakresie = minimum węzłów − L·½ kroku (L z obrotu wokół początku).",
+  "Zakres „praca” to pełny iloczyn (G do otwG + podążanie przy każdym θ – nadzbiór); „praca_podazanie” sprawdza warunek podążania z koncepcji pkt 6. Zakres mechaniczny gałki to prostokąt ψ ±28,05 × θ ±18,12 (obwiednia granicy okna z koncepcji pkt 4) – nadzbiór rzeczywistego okna.",
+  "Przenikanie: przecięcie powierzchni – test odcinek–trójkąt (Möller–Trumbore) dla wszystkich krawędzi obu siatek w pobliżu drugiej; zawieranie bez przecięcia – parzystość promienia z jednego wierzchołka każdej składowej (3 kierunki, większość głosów), tylko gdy obwiednia mieści się w obwiedni drugiej części. Głębokość = największa odległość wierzchołka leżącego w drugiej bryle od jej powierzchni (znak z pseudonormalnych, wymaga siatek zamkniętych i zgodnie zorientowanych – sprawdzone w pkt 1); głębokość większa niż c jest obcięta do c. Styk ściana–ściana współpłaszczyznowy daje odległość 0, ale może nie dać flagi przecięcia.",
+  "Tryb daleki nie testuje przecięcia osobno: przy odległości > największy promień wpisany trójkąta obu siatek przecięcie jest niemożliwe (krawędź przebijająca trójkąt ma do jego brzegu ≤ promień wpisany).",
+  "Strefy zamierzone (np. luz osiowy ucha powieki na osi M3) klasyfikuje się po położeniu środka odcinka najbliższych punktów (w układzie części B) i kierunku szczeliny; minimum „poza strefami” jest dokładne, gdy < rejestr_miejsc_mm, inaczej podawane jako ≥ tej wartości.",
+  "Śruby, kable, serwa, Płyta i części etapu 2 nie są w modelu; siatki etapu 1 to „baza” (bez wycięć gałki, zaczepów, przycięcia kącików powiek), więc wynik dotyczy tylko tych brył."
+ ],
+ "czas_s": 4076.7
+}
