@@ -167,6 +167,7 @@ class Siatka:
         self.lo, self.hi = V.min(0), V.max(0)
         self.rmax = float(_norm(V).max())
         self._klastry = {}
+        self._kraty = {}
 
     def opis(self):
         return {
@@ -415,15 +416,93 @@ def Ry(a):
     return R
 
 
-def kinematyka_pretow(czesc, stany):
-    """Miejsce na moduł etapu 2: pręty X/Y z IK (koncepcja v3.1 pkt 3.2).
+# ---------------------------------------------------------------- kinematyka napędu gałki (v3.2: pręty U–R–U)
+CZLONY = ("ramie", "krzyzak_orczyka", "widelki_preta_orczyka", "pret", "krzyzak_galki")
 
-    Ma zwrócić (R, t) dla każdego stanu: R (n,3,3), t (n,3) – położenie pręta w świecie
-    z kąta serwa α z IK (wzór zamknięty) i środków kulek M2 (na gałce) i M5 (na Ramieniu).
-    Dla Lipschitza w raporcie potrzebne jest też maksymalne przemieszczenie punktu
-    na 1 rad zmiennej (pole 'lipschitz_mm_na_rad' w opisie części).
+
+def _unit(v):
+    return v / np.linalg.norm(v, axis=-1, keepdims=True)
+
+
+def stan_napedu(k, psi, theta):
+    """Stan napędu (słownik z JSON 'naped'[X|Y]) dla tablic ψ, θ [°].
+
+    Koncepcja v3.2 pkt 3.2–3.4: środek krzyżaka przy gałce P = R·P0 (R = Rx(−θ)·Ry(ψ)), kąt serwa α
+    z IK (wzór zamknięty, gałąź „−”), środek krzyżaka przy orczyku H = C + Rx(α)·w, oś pręta e = (H − P)/|H − P|.
+    Przegub przy gałce: sworzeń a1g stały w Uchwycie (R·a1_galka_b), sworzeń pręta a2g ⊥ a1g i ⊥ e.
+    Przegub przy orczyku: sworzeń a1o stały w Ramieniu (Rx(α)·a1_orczyk0), sworzeń widełek pręta a2o ⊥ a1o i ⊥ e.
+    Obrót pręta wokół własnej osi wyznacza U przy gałce; obrotnica przenosi różnicę na widełki pręta przy orczyku.
     """
-    raise NotImplementedError("kinematyka prętów (etap 2) nie jest jeszcze zaimplementowana")
+    psi = np.atleast_1d(np.asarray(psi, float))
+    theta = np.atleast_1d(np.asarray(theta, float))
+    R = Rx(-np.radians(theta)) @ Ry(np.radians(psi))
+    P0, C, w = (np.asarray(k[x], float) for x in ("P0", "C", "w"))
+    L = float(np.linalg.norm(P0 - C - w))          # długość pręta = |P0 − H0| (pole "L" w JSON tylko do kontroli)
+    P = R @ P0
+    q = P - C
+    K = (w @ w + _dot(q, q) - L * L) / 2
+    A_ = q[:, 1] * w[1] + q[:, 2] * w[2]
+    B_ = q[:, 2] * w[1] - q[:, 1] * w[2]
+    c = (K - q[:, 0] * w[0]) / np.hypot(A_, B_)
+    if np.any(np.abs(c) > 1):
+        raise ValueError("IK: stan poza zasięgiem napędu")
+    alfa = np.arctan2(B_, A_) - np.arccos(c)
+    Ra = Rx(alfa)
+    H = C + Ra @ w
+    e = _unit(H - P)
+    a1g = _unit(R @ np.asarray(k["a1_galka_b"], float))
+    a2g = _unit(np.cross(e, a1g))
+    a1o = _unit(Ra @ np.asarray(k["a1_orczyk0"], float))
+    a2o = _unit(np.cross(e, a1o))
+    return dict(R=R, alfa=alfa, Ra=Ra, P=P, H=H, e=e, a1g=a1g, a2g=a2g, a1o=a1o, a2o=a2o, C=C, L=L)
+
+
+def _rama_czlonu(s, czlon):
+    u, v = {"krzyzak_orczyka": ("a1o", "a2o"), "widelki_preta_orczyka": ("e", "a2o"),
+            "pret": ("e", "a2g"), "krzyzak_galki": ("a1g", "a2g")}[czlon]
+    u, v = s[u], s[v]
+    return np.stack([u, v, np.cross(u, v)], -1)
+
+
+def _srodek_czlonu(s, czlon):
+    return s["H"] if czlon in ("krzyzak_orczyka", "widelki_preta_orczyka") else s["P"]
+
+
+def kinematyka_pretow(czesc, stany):
+    """(R, t) członu napędu dla stanów (ψ, θ). Siatka członu jest wyeksportowana w położeniu zerowym
+    (ψ = θ = 0, α = 0), więc R = F(q)·F(0)ᵀ, t = c(q) − R·c(0), gdzie F to rama członu, c jego środek obrotu."""
+    k = czesc["ruch"]["_naped"]
+    czlon = czesc["ruch"]["czlon"]
+    s = stan_napedu(k, stany["psi"], stany["theta"])
+    if czlon == "ramie":
+        R = s["Ra"]
+        return R, s["C"] - R @ s["C"]
+    s0 = stan_napedu(k, [0.0], [0.0])
+    F, F0 = _rama_czlonu(s, czlon), _rama_czlonu(s0, czlon)[0]
+    R = F @ F0.T
+    return R, _srodek_czlonu(s, czlon) - R @ _srodek_czlonu(s0, czlon)[0]
+
+
+def kinematyka_raport(k, psi, theta, maska_pracy):
+    """Kąty serwa, zgięcia przegubów i obrót obrotnicy na siatce stanów (do raportu i testu)."""
+    s = stan_napedu(k, psi, theta)
+    zg_g = np.degrees(np.arcsin(np.abs(_dot(s["e"], s["a1g"]))))      # wychylenie przy gałce wokół a2
+    zg_o = np.degrees(np.arcsin(np.abs(_dot(s["e"], s["a1o"]))))      # wychylenie przy orczyku wokół a2
+    ob = np.degrees(np.arctan2(_dot(np.cross(s["a2g"], s["a2o"]), s["e"]), _dot(s["a2g"], s["a2o"])))
+    s0 = stan_napedu(k, [0.0], [0.0])
+    ob0 = np.degrees(np.arctan2(_dot(np.cross(s0["a2g"], s0["a2o"]), s0["e"]), _dot(s0["a2g"], s0["a2o"])))[0]
+    ob = (ob - ob0 + 180.0) % 360.0 - 180.0                           # obrót obrotnicy względem położenia zerowego
+    dl = np.linalg.norm(s["H"] - s["P"], axis=1) - s["L"]
+    ort = np.max(np.abs(np.stack([_dot(s["a1g"], s["a2g"]), _dot(s["e"], s["a2g"]), _dot(s["a1o"], s["a2o"]),
+                                  _dot(s["e"], s["a2o"])], 1)))
+    a = np.degrees(s["alfa"])
+
+    def zak(x):
+        return [round(float(x[maska_pracy].min()), 2), round(float(x[maska_pracy].max()), 2),
+                round(float(x.min()), 2), round(float(x.max()), 2)]
+    return {"serwo_deg": zak(a), "wychylenie_przy_galce_deg": zak(zg_g), "wychylenie_przy_orczyku_deg": zak(zg_o),
+            "obrot_obrotnicy_deg": zak(ob), "blad_dlugosci_preta_mm": float(np.abs(dl).max()),
+            "blad_prostopadlosci_osi": float(ort), "opis": "[min, max] w pracy, [min, max] w zakresie mechanicznym"}
 
 
 def zmienne_czesci(czesc):
@@ -442,20 +521,21 @@ def zmienne_czesci(czesc):
 def pozy(czesc, stany, n):
     """(R, t) części dla n stanów; stany: dict zmienna -> tablica (n,) w stopniach."""
     typ = czesc["ruch"]["typ"]
+    t = np.zeros((n, 3))
     if typ == "stala":
         R = np.broadcast_to(np.eye(3), (n, 3, 3)).copy()
     elif typ in ("galka", "z_galka"):
-        # koncepcja v3.1: R = Rx(−θ)·Ry(ψ); ψ+ = w prawo (+x), θ+ = w górę (+y)
+        # koncepcja v3.1/v3.2: R = Rx(−θ)·Ry(ψ); ψ+ = w prawo (+x), θ+ = w górę (+y)
         R = Rx(-np.radians(stany["theta"])) @ Ry(np.radians(stany["psi"]))
     elif typ == "powieka":
         # kąt = kąt krawędzi przedniej od +z ku +y; Rx(−Δ) zwiększa ten kąt o Δ
         d = np.radians(stany[czesc["ruch"]["zmienna"]] - czesc["ruch"]["kat_modelu"])
         R = Rx(-d)
     elif typ == "pret_ik":
-        return kinematyka_pretow(czesc, stany)
+        R, t = kinematyka_pretow(czesc, stany)
+        t = np.array(t, float)
     else:
         raise ValueError(typ)
-    t = np.zeros((n, 3))
     if "przesun" in czesc:
         t = t + np.asarray(czesc["przesun"], float)[None, :]
     return R, t
@@ -473,22 +553,54 @@ def lipschitz(czesci_pary, A_rmax, zmienne):
     return L
 
 
+def lipschitz_num(P, zakres, n_prob=4, h_deg=0.25, zapas=1.25, maks_pkt=3000):
+    """Numeryczne L_v [mm/rad]: największe przemieszczenie punktu A w układzie B na 1 rad zmiennej v,
+    z różnic skończonych na siatce n_prob^k stanów, razy zapas (dla członów z IK; nie jest dowodem)."""
+    zm = P.zm
+    V = P.A.V if len(P.A.V) <= maks_pkt else P.A.V[np.linspace(0, len(P.A.V) - 1, maks_pkt).astype(int)]
+    siatka = np.meshgrid(*[np.linspace(zakres[v][0], zakres[v][1], n_prob) for v in zm], indexing="ij")
+    st = {v: g.ravel() for v, g in zip(zm, siatka)}
+    m = len(st[zm[0]])
+    R0, t0, _, _ = P.pozy_wzgl(st, m)
+    p0 = np.einsum("nij,kj->nki", R0, V) + t0[:, None, :]
+    L = {}
+    for v in zm:
+        st2 = dict(st)
+        hh = np.where(st[v] + h_deg <= zakres[v][1], h_deg, -h_deg)
+        st2[v] = st[v] + hh
+        R1, t1, _, _ = P.pozy_wzgl(st2, m)
+        p1 = np.einsum("nij,kj->nki", R1, V) + t1[:, None, :]
+        L[v] = float(np.linalg.norm(p1 - p0, axis=2).max() / math.radians(h_deg) * zapas)
+    return L
+
+
 # ---------------------------------------------------------------- ocena jednego stanu
 _CTX = {}
 
 
 def _w_strefie(ctx, pA, pB):
-    """Maska rekordów w strefach zamierzonych (punkty w układzie części B)."""
+    """Maska rekordów w strefach zamierzonych (punkty w układzie części B).
+
+    Strefa: oś (punkt _p0, kierunek _u, w układzie części B = układ jej siatki), obszar środka odcinka najbliższych
+    punktów (|s| ≥ os_abs_min, s_min ≤ s ≤ s_max, ρ ≤ rho_max) i kierunek szczeliny: 'osiowy' (|cos| ≥ k) albo
+    'promieniowy' (|cos| ≤ k)."""
     z = np.zeros(len(pA), bool)
+    mid = 0.5 * (pA + pB)
+    dd = pB - pA
+    dl = _norm(dd)
     for s in ctx["strefy"]:
-        ax = "xyz".index(s["os"])
-        inne = [i for i in range(3) if i != ax]
-        mid = 0.5 * (pA + pB)
-        reg = (np.abs(mid[:, ax]) >= s.get("os_abs_min", -1e9)) & \
-              (np.hypot(mid[:, inne[0]], mid[:, inne[1]]) <= s.get("rho_max", 1e9))
-        dd = pB - pA
-        dl = _norm(dd)
-        kier = np.abs(dd[:, ax]) >= s.get("kierunek_osiowy_min", 0.0) * dl
+        p0 = np.asarray(s.get("_p0", (0.0, 0.0, 0.0)), float)
+        u = np.asarray(s.get("_u", np.eye(3)["xyz".index(s.get("os", "x"))]), float)
+        v = mid - p0
+        sa = v @ u
+        rho = _norm(v - sa[:, None] * u[None, :])
+        reg = (np.abs(sa) >= s.get("os_abs_min", -1e9)) & (rho <= s.get("rho_max", 1e9)) & \
+              (sa >= s.get("s_min", -1e9)) & (sa <= s.get("s_max", 1e9))
+        cosk = np.abs(dd @ u)
+        if s.get("kierunek", "osiowy") == "osiowy":
+            kier = cosk >= s.get("kierunek_osiowy_min", 0.0) * dl
+        else:
+            kier = cosk <= s.get("kierunek_promieniowy_max", 1.0) * dl
         z |= reg & kier & (dl > 1e-9)
     return z
 
@@ -593,6 +705,8 @@ def _glebokosc(ctx, R, t):
         if not dd:
             continue
         d, ti, reg, pi, q = (np.concatenate(x) for x in (dd, tt, rr, pp, qq))
+        if len(d) == 0:
+            continue
         kolej = np.lexsort((d, pi))
         pierwsze = kolej[np.concatenate([[True], pi[kolej][1:] != pi[kolej][:-1]])]
         zn = znak_pseudonormalna(S, ti[pierwsze], reg[pierwsze], P[pi[pierwsze]], q[pierwsze])
@@ -718,13 +832,21 @@ def ocen_daleko(ctx, R, t):
 def ocen_stan(ctx, R, t):
     """Wynik jednego stanu (względna poza A→B): odległości, rekordy, przenikanie, miejsca."""
     wyn = {"tryb": ctx["tryb"]}
-    if ctx["tryb"] == "blisko":
+    if ctx["tryb"] in ("blisko", "oba"):
         zb = ocen_blisko(ctx, R, t)
         wyn["d"], wyn["rek"] = zb.best
         wyn["dp"], wyn["rekp"] = zb.bestp
         wyn["miejsca"] = zb.miejsca_razem()
         p = _przeciecie(ctx, R, t)
         rodz = "przecięcie powierzchni" if p is not None else None
+        if ctx["tryb"] == "oba" and p is None and not np.isfinite(wyn["d"]):
+            # nic bliżej niż c: dokładna wartość z trybu dalekiego (test przecięcia już wykonany wyżej)
+            d, rek = ocen_daleko(ctx, R, t)
+            if rek is not None and ctx["strefy"]:
+                z = bool(_w_strefie(ctx, rek[0][None, :], rek[1][None, :])[0])
+                rek = (rek[0], rek[1], rek[2], z)
+            wyn["d"], wyn["rek"] = d, rek
+            wyn["dp"], wyn["rekp"] = (d, rek) if (rek is None or not rek[3]) else (np.inf, None)
     else:
         d, rek = ocen_daleko(ctx, R, t)
         if rek is not None and ctx["strefy"]:
@@ -827,21 +949,28 @@ class Para:
         ctx = {"A": self.A, "B": self.B, "c": self.c, "c_miejsc": s["rejestr_miejsc_mm"], "wox": s.get("woksel_miejsc_mm", 1.0),
                "strefy": self.strefy, "tryb": tryb,
                "prom_wpis": max(self.A.promien_wpisany_max, self.B.promien_wpisany_max)}
-        if tryb == "blisko":
+        if tryb in ("blisko", "oba"):
             kom = self.cfg["siatka"].get("komorka_mm", 0.75)
 
             def kt(S, zap):
-                lo = np.minimum(np.minimum(S.a, S.b), S.c)
-                hi = np.maximum(np.maximum(S.a, S.b), S.c)
-                return Krata(lo, hi, zap, kom, ("tri", S.a, S.b, S.c))
+                klucz = ("t", round(zap, 6), kom)
+                if klucz not in S._kraty:
+                    lo = np.minimum(np.minimum(S.a, S.b), S.c)
+                    hi = np.maximum(np.maximum(S.a, S.b), S.c)
+                    S._kraty[klucz] = Krata(lo, hi, zap, kom, ("tri", S.a, S.b, S.c))
+                return S._kraty[klucz]
             ctx["kB"] = kt(self.B, self.c)
             ctx["kA"] = kt(self.A, self.c)
-            ctx["kBo"] = Krata(np.minimum(self.B.w0, self.B.w1), np.maximum(self.B.w0, self.B.w1),
-                               self.c + float(self.A.sh.max()), kom, ("seg", self.B.w0, self.B.w1))
+            zap = self.c + float(self.A.sh.max())
+            klucz = ("s", round(zap, 6), kom)
+            if klucz not in self.B._kraty:
+                self.B._kraty[klucz] = Krata(np.minimum(self.B.w0, self.B.w1), np.maximum(self.B.w0, self.B.w1),
+                                             zap, kom, ("seg", self.B.w0, self.B.w1))
+            ctx["kBo"] = self.B._kraty[klucz]
             # wąskie kraty do testu przecięcia odcinek–trójkąt (zapas = pół długości odcinka drugiej siatki)
             ctx["kBm"] = kt(self.B, float(self.A.sh.max()) + 1e-6)
             ctx["kAm"] = kt(self.A, float(self.B.sh.max()) + 1e-6)
-        else:
+        if tryb in ("daleko", "oba"):
             for S in (self.A, self.B):
                 for r in "vts":
                     S.klastry(r)
@@ -1079,6 +1208,168 @@ def analizuj_pare(cfg, opis_pary, czesci, siatki, n_proc, log):
     return wynik
 
 
+def analizuj_pare_bnb(cfg, opis_pary, czesci, siatki, n_proc, log):
+    """Para na kracie zakresu przeszukiwanej gałęziami i granicami po stanach (etap 2: pręty z IK, 2–3 zmienne).
+
+    Ocena stanu jest dokładna (tryb 'oba': indeks do odcięcia c, poza nim klastry). Krata co krok_deg; poziomy
+    co S0, S0/2, …, 1 węzłów. Węzeł o kroku S obejmuje ±S/2 kroku w każdej zmiennej i ma ograniczenie dolne
+    d − Σ L_v·(S/2)·krok (L_v numeryczne z lipschitz_num). Pudełko jest dzielone do kroku 1, gdy ograniczenie
+    < bnb_prog_mm (domyślnie rejestr miejsc, 1,0 mm); inaczej jego ograniczenie trafia do 'ograniczenie_dolne_ciagle_mm'.
+    Każdy stan, który może mieć < progu, jest więc policzony na pełnej kracie; minimum par dalszych daje najlepszy
+    węzeł zgrubny + zagęszczenie wzorcem (wartość dokładna w znalezionym stanie, ograniczenie dolne ścisłe)."""
+    t0 = time.time()
+    P = Para(cfg, opis_pary, czesci, siatki, n_proc)
+    s = cfg["siatka"]
+    zak = cfg["zakresy"]
+    zm = P.zm
+    P.przygotuj("oba")
+    mech = zak[cfg["zakres_siatki"]]
+    L = lipschitz_num(P, mech) if zm else {}
+    krok_r = math.radians(P.krok)
+    S0 = int(s.get("bnb_krok_poczatkowy", 8))
+    Treg = s.get("bnb_prog_mm", s["rejestr_miejsc_mm"])
+    wynik = {"a": P.nA, "b": P.nB, "zmienne": zm, "wymagany_mm": opis_pary.get("wymagany", 0.5),
+             "uwaga": opis_pary.get("uwaga", ""), "strefy": [x["nazwa"] for x in P.strefy], "tryb": "bnb (oba)",
+             "odciecie_mm": P.c, "lipschitz_mm_na_rad": {v: round(L[v], 2) for v in zm}, "lipschitz": "numeryczny ×1,25"}
+    ctxm = mp.get_context("fork")
+
+    def rekord_swiat(rek, stan):
+        st = {v: np.array([stan[v]]) for v in zm}
+        RBs, tBs = pozy(P.cB, st, 1)
+        return RBs[0] @ np.asarray(rek[0], float) + tBs[0], RBs[0] @ np.asarray(rek[1], float) + tBs[0]
+
+    def opis_rek(dv, rek, stan, zrodlo):
+        if rek is None or not np.isfinite(dv):
+            return {"min_mm": None if not np.isfinite(dv) else round(float(dv), 4), "stan": stan, "zrodlo": zrodlo}
+        pA, pB = rekord_swiat(rek, stan)
+        return {"min_mm": round(float(dv), 4), "stan": stan, "punkt_A": [round(float(x), 3) for x in pA],
+                "punkt_B": [round(float(x), 3) for x in pB], "rodzaj": RODZAJ[rek[2]], "w_strefie": bool(rek[3]),
+                "zrodlo": zrodlo}
+
+    zakresy_wyn = {}
+    n_wez = 0
+    with ctxm.Pool(n_proc) as pula:
+        def eval_stany(lista):
+            if not lista:
+                return []
+            if not zm:
+                R_, t_, _, _ = P.pozy_wzgl({}, 1)
+                return P.ocen(R_, t_, pula) * len(lista)
+            st = {v: np.array([x[v] for x in lista], float) for v in zm}
+            R_, t_, _, _ = P.pozy_wzgl(st, len(lista))
+            return P.ocen(R_, t_, pula)
+
+        for nz, zr in zak.items():
+            wart = {v: wartosci_zmiennej(zr[v][0], zr[v][1], P.krok, cfg["zmienne"][v]["kotwica"]) for v in zm}
+            nv = [len(wart[v]) for v in zm]
+            oceny = {}
+
+            def stan_i(i):
+                return {v: float(wart[v][i[j]]) for j, v in enumerate(zm)}
+
+            def ocen_i(lista):
+                nowe = [i for i in dict.fromkeys(lista) if i not in oceny]
+                for i, w in zip(nowe, eval_stany([stan_i(i) for i in nowe])):
+                    oceny[i] = w
+            kot = [int(round((wart[v][0] - cfg["zmienne"][v]["kotwica"]) / P.krok)) for v in zm]   # numer węzła kraty od kotwicy
+            poziom = [sorted({i for i in range(n) if (i + k0) % S0 == 0} | {0, n - 1}) for n, k0 in zip(nv, kot)]
+            aktywne = [(i, S0) for i in itertools.product(*poziom)]
+            best, lb_min = np.inf, np.inf
+            while aktywne:
+                ocen_i([i for i, _ in aktywne])
+                best = min(best, min(oceny[i]["d"] for i, _ in aktywne))
+                nast = set()
+                for i, S in aktywne:
+                    lb = oceny[i]["d"] - sum(L[v] * (S / 2) * krok_r for v in zm)
+                    if S <= 1:
+                        lb_min = min(lb_min, lb)
+                        continue
+                    if lb < Treg:
+                        h = S // 2
+                        for off in itertools.product((-h, 0, h), repeat=len(zm)):
+                            nast.add((tuple(min(max(i[a] + off[a], 0), nv[a] - 1) for a in range(len(zm))), h))
+                    else:
+                        lb_min = min(lb_min, lb)
+                # węzeł oceniony już na drobniejszym poziomie zostaje z najmniejszym S
+                najm = {}
+                for i, S in nast:
+                    najm[i] = min(S, najm.get(i, S))
+                aktywne = sorted(najm.items())
+            klucze = list(oceny.keys())
+            stany = [stan_i(i) for i in klucze]
+            wazne = warunek_zakresu(zr, {v: np.array([x[v] for x in stany]) for v in zm}, len(stany)) if zm else np.ones(len(stany), bool)
+            idx = np.nonzero(wazne)[0]
+            wyn_l = [oceny[k] for k in klucze]
+            n_wez += int(np.prod(nv)) if zm else 1
+            rz = {"wezly": int(np.prod(nv)) if zm else 1, "pozy": len(klucze)}
+
+            def stan_pelny(j):
+                return {v: (stany[j][v] if v in zm else None) for v in KOLEJNOSC_ZMIENNYCH}
+            out = {}
+            krok_f = math.degrees(s["zageszczenie_mm"] / s["R_ref"])
+            krok_k = P.krok / 2
+            while krok_k > krok_f + 1e-12:
+                krok_k /= 2
+            for cel, kl_rek in (("wszystko", "rek"), ("poza_strefami", "rekp")):
+                kd = "d" if cel == "wszystko" else "dp"
+                vals = np.array([wyn_l[j][kd] for j in idx])
+                j = int(idx[np.argmin(vals)])
+                najl = opis_rek(wyn_l[j][kd], wyn_l[j][kl_rek], stan_pelny(j), "siatka (gałęzie i granice)")
+                out[cel] = najl
+                najl_v = najl["min_mm"] if najl["min_mm"] is not None else np.inf
+                if zm:
+                    naroza = [dict(zip(zm, kb)) for kb in itertools.product(*[zr[v] for v in zm])]
+                    naroza = [x for x in naroza if warunek_zakresu(zr, {v: np.array([x[v]]) for v in zm}, 1)[0]]
+                    for x, w in zip(naroza, eval_stany(naroza)):
+                        if w[kd] < najl_v - 1e-9:
+                            najl_v = w[kd]
+                            najl = opis_rek(w[kd], w[kl_rek], {v: x.get(v) for v in KOLEJNOSC_ZMIENNYCH}, "narożnik zakresu")
+                    x = {v: stany[j][v] for v in zm}
+                    fx, w0 = wyn_l[j][kd], wyn_l[j]
+                    h, ruchy = P.krok / 2, 0
+                    while h >= krok_k - 1e-12 and ruchy < 60:
+                        sas = []
+                        for off in itertools.product((-1, 0, 1), repeat=len(zm)):
+                            if any(off):
+                                y = {v: min(max(x[v] + o * h, zr[v][0]), zr[v][1]) for v, o in zip(zm, off)}
+                                if y != x and warunek_zakresu(zr, {v: np.array([y[v]]) for v in zm}, 1)[0]:
+                                    sas.append(y)
+                        ws = eval_stany(sas)
+                        fv = [w[kd] for w in ws]
+                        if fv and min(fv) < fx - 1e-6:
+                            k = int(np.argmin(fv))
+                            x, fx, w0 = sas[k], fv[k], ws[k]
+                            ruchy += 1
+                        else:
+                            h /= 2
+                    if fx < najl_v - 1e-9:
+                        najl = opis_rek(fx, w0[kl_rek], {v: x.get(v) for v in KOLEJNOSC_ZMIENNYCH},
+                                        f"zagęszczenie (krok końcowy {krok_k:.4f}° = {math.radians(krok_k) * s['R_ref']:.3f} mm na R{s['R_ref']})")
+                out[cel + "_po_zageszczeniu"] = najl
+            rz["ograniczenie_dolne_ciagle_mm"] = round(float(lb_min), 4) if np.isfinite(lb_min) else None
+            rz["pol_kroku_lipschitz_mm"] = round(sum(L[v] * krok_r / 2 for v in zm), 4)
+            kol = [j for j in idx if wyn_l[j]["kol"]]
+            rz["kolizje_wezlow"] = len(kol)
+            if kol:
+                j = max(kol, key=lambda j: wyn_l[j]["gl"])
+                w = wyn_l[j]
+                pk, _ = rekord_swiat((w["kol_pkt"], w["kol_pkt"], 0, False), stan_pelny(j))
+                rz["kolizja_najglebsza"] = {"glebokosc_mm": round(float(w["gl"]), 4), "stan": stan_pelny(j),
+                                           "punkt": [round(float(x), 3) for x in pk], "rodzaj": w["kol_rodzaj"]}
+            rz["miejsca"] = miejsca_zakresu(P, wyn_l, idx, idx, stan_pelny, rekord_swiat)
+            rz.update(out)
+            zakresy_wyn[nz] = rz
+    wynik["wezly"] = n_wez
+    wynik["pozy_unikalne"] = len(P.memo)
+    wynik["zakresy"] = zakresy_wyn
+    wynik["czas_s"] = round(time.time() - t0, 1)
+    wynik["ocen_stanow"] = len(P.memo)
+    log(f"  {P.nA} – {P.nB}: zmienne {zm or '—'}, gałęzie i granice, ocen stanów {len(P.memo)}, "
+        f"min {zakresy_wyn[cfg['zakres_siatki']]['wszystko_po_zageszczeniu']['min_mm']}, {wynik['czas_s']} s")
+    _CTX.pop(P.klucz, None)
+    return wynik
+
+
 def miejsca_zakresu(P, wyn_u, u_w, idx, stan_wezla, rekord_swiat, maks=12):
     """Miejsca (woksele 1 mm, łączone w skupiska 26-sąsiedztwa) z minimum < rejestr_miejsc_mm."""
     uu, gdzie = np.unique(u_w, return_index=True)
@@ -1210,7 +1501,13 @@ def kontrole(cfg, czesci, siatki, log):
                 w = ocen_stan(P.ctx, R_[0], t_[0])
             rek.append((st, w))
         st, w = min(rek, key=lambda x: x[1]["d"])
-        oc = k["oczekiwane"]
+        oc = dict(k["oczekiwane"])
+        for kl in ("min", "glebokosc"):
+            if isinstance(oc.get(kl), str):            # wyrażenie z wymiarów siatek zastępczych, np. "0.6 - uOrcz.luzOs"
+                from types import SimpleNamespace
+                ns = {n_: SimpleNamespace(**v_) for n_, v_ in cfg.get("_parametry_zastepcze", {}).items() if isinstance(v_, dict)}
+                oc[kl + "_wyrazenie"] = oc[kl]
+                oc[kl] = float(eval(oc[kl], {"__builtins__": {}}, ns))
         ok = True
         if "min" in oc:
             ok &= abs(w["d"] - oc["min"]) <= oc["tol"]
@@ -1227,6 +1524,283 @@ def kontrole(cfg, czesci, siatki, log):
         wyn.append(r)
         _CTX.pop(P.klucz, None)
     return wyn
+
+
+# ---------------------------------------------------------------- konfiguracja etapu 2
+def przygotuj_konfiguracje(cfg):
+    """Napęd do członów z IK, symbole osi stref (P_X, a1g_X, …), rozwinięcie grup par."""
+    naped = cfg.get("naped", {})
+    for n, c in cfg["czesci"].items():
+        if c["ruch"]["typ"] == "pret_ik":
+            c["ruch"]["_naped"] = naped[c["ruch"]["naped"]]
+    sym = {"x": (np.zeros(3), np.eye(3)[0]), "y": (np.zeros(3), np.eye(3)[1]), "z": (np.zeros(3), np.eye(3)[2])}
+    wek = {}
+    for k, nd in naped.items():
+        s0 = stan_napedu(nd, [0.0], [0.0])
+        wek[f"C_{k}"] = np.asarray(nd["C"], float)
+        for nm in ("P", "H"):
+            wek[f"{nm}_{k}"] = s0[nm][0]
+        for nm in ("e", "a1g", "a2g", "a1o", "a2o"):
+            wek[f"{nm}_{k}"] = s0[nm][0]
+    for nz, st in cfg.get("strefy", {}).items():
+        if "os_punkt" in st or "os_kier" in st:
+            p0 = st.get("os_punkt", [0, 0, 0])
+            u = st.get("os_kier", "x")
+            st["_p0"] = list(wek[p0] if isinstance(p0, str) else np.asarray(p0, float))
+            uu = (sym[u][1] if u in sym else wek[u]) if isinstance(u, str) else np.asarray(u, float)
+            st["_u"] = list(np.asarray(uu, float) / np.linalg.norm(uu))
+    pary = list(cfg.get("pary", []))
+    znane = {(p["a"], p["b"]) for p in pary} | {(p["b"], p["a"]) for p in pary}
+    strefy_par = {}
+    for sp in cfg.get("strefy_par", []):
+        strefy_par[(sp["a"], sp["b"])] = sp["strefy"]
+        strefy_par[(sp["b"], sp["a"])] = sp["strefy"]
+    wyklucz = {tuple(x) for x in cfg.get("pary_wykluczone", [])} | {tuple(x[::-1]) for x in cfg.get("pary_wykluczone", [])}
+
+    def dodaj(a, b, wym, uwaga=""):
+        if a == b or (a, b) in znane or (a, b) in wyklucz:
+            return
+        znane.add((a, b))
+        znane.add((b, a))
+        pary.append({"a": a, "b": b, "wymagany": wym, "strefy": strefy_par.get((a, b), []), "uwaga": uwaga})
+    for g in cfg.get("grupy_par", []):
+        if "wzajemne" in g:
+            lst = g["wzajemne"]
+            for i in range(len(lst)):
+                for j in range(i + 1, len(lst)):
+                    dodaj(lst[i], lst[j], g.get("wymagany", 0.5), g.get("uwaga", ""))
+        else:
+            for a in g["a"]:
+                for b in g["b"]:
+                    dodaj(a, b, g.get("wymagany", 0.5), g.get("uwaga", ""))
+    cfg["pary"] = pary
+    return cfg
+
+
+def test_kinematyki(cfg, log):
+    """Kąty serw z IK wobec tabeli koncepcji v3.2 pkt 3.4, zgięcia przegubów wobec kinematyka.json, więzy U–R–U."""
+    t = cfg.get("test_naped", {})
+    wyn = {"ok": True, "pozycje": [], "zakresy": {}}
+    for (psi, theta), oczek in [((float(k.split(";")[0]), float(k.split(";")[1])), v) for k, v in t.get("serwa", {}).items()]:
+        a = [float(np.degrees(stan_napedu(cfg["naped"][n], [psi], [theta])["alfa"][0])) for n in ("X", "Y")]
+        ok = all(abs(x - y) <= t.get("tol_deg", 0.1) for x, y in zip(a, oczek))
+        wyn["ok"] &= ok
+        wyn["pozycje"].append({"psi": psi, "theta": theta, "serwa": [round(x, 2) for x in a], "oczekiwane": oczek, "ok": ok})
+    z = cfg["zakresy"][cfg["zakres_siatki"]]
+    zp = cfg["zakresy"].get("praca", z)
+    g = np.meshgrid(np.arange(-math.floor(z["psi"][1] * 2) / 2, z["psi"][1] + 1e-9, 0.5),
+                    np.arange(-math.floor(z["theta"][1] * 2) / 2, z["theta"][1] + 1e-9, 0.5), indexing="ij")
+    psi, theta = g[0].ravel(), g[1].ravel()
+    mp_ = (np.abs(psi) <= zp["psi"][1] + 1e-9) & (np.abs(theta) <= zp["theta"][1] + 1e-9)
+    for n, k in cfg["naped"].items():
+        r = kinematyka_raport(k, psi, theta, mp_)
+        wyn["zakresy"][n] = r
+        for klucz, (praca_max, mech_max) in t.get("zgiecia_" + n, {}).items():
+            zm_ = r[klucz]
+            ok = abs(max(abs(zm_[0]), abs(zm_[1])) - praca_max) <= 0.15 and abs(max(abs(zm_[2]), abs(zm_[3])) - mech_max) <= 0.25
+            wyn["ok"] &= ok
+            wyn["pozycje"].append({"naped": n, "wielkosc": klucz, "zmierzone_praca_mech": [max(abs(zm_[0]), abs(zm_[1])), max(abs(zm_[2]), abs(zm_[3]))],
+                                   "oczekiwane": [praca_max, mech_max], "ok": ok})
+        ok = r["blad_dlugosci_preta_mm"] < 1e-9 and r["blad_prostopadlosci_osi"] < 1e-9
+        wyn["pozycje"].append({"naped": n, "wielkosc": "więzy U–R–U (|H − P| = L, a2 ⊥ a1, a2 ⊥ e)",
+                               "zmierzone": [r["blad_dlugosci_preta_mm"], r["blad_prostopadlosci_osi"]], "ok": bool(ok)})
+        wyn["ok"] &= ok
+    for n in cfg["naped"]:
+        for cz in CZLONY:
+            R, tt = kinematyka_pretow({"ruch": {"_naped": cfg["naped"][n], "czlon": cz}}, {"psi": np.array([0.0]), "theta": np.array([0.0])})
+            ok = np.abs(R[0] - np.eye(3)).max() < 1e-9 and np.abs(tt[0]).max() < 1e-9
+            wyn["pozycje"].append({"naped": n, "wielkosc": f"poza zerowa członu {cz} = tożsamość",
+                                   "zmierzone": [float(np.abs(R[0] - np.eye(3)).max()), float(np.abs(tt[0]).max())], "ok": bool(ok)})
+            wyn["ok"] &= bool(ok)
+    log(f"test kinematyki napędu: {'OK' if wyn['ok'] else 'BŁĄD'} "
+        + "; ".join(f"{n}: serwo {r['serwo_deg']}, zgięcie gałka {r['wychylenie_przy_galce_deg']}, orczyk {r['wychylenie_przy_orczyku_deg']}, obrotnica {r['obrot_obrotnicy_deg']}"
+                    for n, r in wyn["zakresy"].items()))
+    return wyn
+
+
+# ---------------------------------------------------------------- siatki zastępcze (etap 2 przed eksportem z CAD)
+def _tri_box(ctr, ax, h):
+    ax = np.asarray(ax, float)
+    tri = _kostka((0, 0, 0), 2.0) * np.asarray(h, float)[None, None, :]   # kostka ±1 przeskalowana do półwymiarów
+    tri = tri @ ax.T + np.asarray(ctr, float)
+    if np.linalg.det(ax) < 0:
+        tri = tri[:, ::-1]
+    return tri
+
+
+def _baza_osi(u):
+    u = u / np.linalg.norm(u)
+    t = np.array([1.0, 0, 0]) if abs(u[0]) < 0.9 else np.array([0, 1.0, 0])
+    b1 = np.cross(u, t)
+    b1 /= np.linalg.norm(b1)
+    return u, b1, np.cross(u, b1)
+
+
+def _tri_cyl(p, q, r, n=48, faza=0.123):
+    p, q = np.asarray(p, float), np.asarray(q, float)
+    u, b1, b2 = _baza_osi(q - p)
+    f = faza + np.arange(n) * 2 * np.pi / n
+    k = np.cos(f)[:, None] * b1 + np.sin(f)[:, None] * b2
+    r0, r1 = p + r * k, q + r * k
+    j = np.roll(np.arange(n), -1)
+    tri = [np.stack([r0, r0[j], r1[j]], 1), np.stack([r0, r1[j], r1], 1),
+           np.stack([np.broadcast_to(p, r0.shape), r0[j], r0], 1), np.stack([np.broadcast_to(q, r1.shape), r1, r1[j]], 1)]
+    return _orientuj(np.concatenate(tri))
+
+
+def _tri_ann(p, q, ri, r, n=48, faza=0.123):
+    p, q = np.asarray(p, float), np.asarray(q, float)
+    u, b1, b2 = _baza_osi(q - p)
+    f = faza + np.arange(n) * 2 * np.pi / n
+    k = np.cos(f)[:, None] * b1 + np.sin(f)[:, None] * b2
+    o0, o1, i0, i1 = p + r * k, q + r * k, p + ri * k, q + ri * k
+    j = np.roll(np.arange(n), -1)
+    tri = [np.stack([o0, o0[j], o1[j]], 1), np.stack([o0, o1[j], o1], 1),
+           np.stack([i0, i1[j], i0[j]], 1), np.stack([i0, i1, i1[j]], 1),
+           np.stack([o0, i0[j], o0[j]], 1), np.stack([o0, i0, i0[j]], 1),
+           np.stack([o1, o1[j], i1[j]], 1), np.stack([o1, i1[j], i1], 1)]
+    return _orientuj(np.concatenate(tri))
+
+
+def _orientuj(tri):
+    a, b, c = tri[:, 0], tri[:, 1], tri[:, 2]
+    if _dot(a, np.cross(b, c)).sum() < 0:
+        tri = tri[:, ::-1]
+    return tri
+
+
+def zapisz_stl(sciezka, tri, nazwa="e6-siatki-ruch"):
+    tri = np.asarray(tri, np.float32)
+    n = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
+    n = n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-30)
+    dt = np.dtype([("n", "<f4", (3,)), ("v", "<f4", (9,)), ("a", "<u2")])
+    rek = np.zeros(len(tri), dt)
+    rek["n"] = n
+    rek["v"] = tri.reshape(-1, 9)
+    with open(sciezka, "wb") as f:
+        f.write(nazwa.encode()[:80].ljust(80, b" "))
+        f.write(struct.pack("<I", len(tri)))
+        f.write(rek.tobytes())
+
+
+def _widelki(c, ax_os, ax_dl, h_dl, u, r_konca, zapas_bazy=0.2):
+    """Widełki: dwa policzki ⊥ do osi sworznia (ax_os) na |s| ∈ [hi, ho], wzdłuż ax_dl od 0 do h_dl·c (lico podstawy),
+    koniec policzka zaokrąglony walcem R r_konca wokół osi sworznia, podstawa od lica do lica + grubość."""
+    hi = u["Do"] / 2 + u["luzOs"]
+    ho = hi + u["policzek"]
+    w = np.cross(ax_dl, ax_os)
+    rama = np.stack([ax_dl, ax_os, w], 1)
+    tri = []
+    for sg in (1, -1):
+        tri.append(_tri_box(c + ax_dl * h_dl[0] / 2 + ax_os * sg * (hi + ho) / 2, rama, [abs(h_dl[0]) / 2, (ho - hi) / 2, r_konca]))
+        tri.append(_tri_cyl(c + ax_os * sg * hi, c + ax_os * sg * ho, r_konca))
+    return tri, hi, ho, rama
+
+
+def generuj_zastepcze(cfg, katalog, baza):
+    """Siatki zastępcze członów napędu, Uchwytu i Płyty w położeniu zerowym.
+
+    Wymiary przegubów, pręta, Ramienia i Uchwytu: JSON 'zastepcze.wymiary' (koncepcja v3.2 pkt 3.3–3.5, zamrożone, zgodne
+    z osiami w 'naped'); bryły Płyty (serwa, wspornik, słupki, tarcza): e6model.fixed_prims() z bieżącego e6model."""
+    sciezka = os.path.normpath(os.path.join(baza, cfg["zastepcze"]["e6model"]))
+    sys.path.insert(0, sciezka)
+    import e6model as M
+    PM = dict(M.params())
+    PM.update(json.loads(json.dumps(cfg["zastepcze"]["wymiary"])))
+
+    def obb_seg(a, b, side, t, w):
+        a, b = np.asarray(a, float), np.asarray(b, float)
+        e = b - a
+        Ls = np.linalg.norm(e)
+        e /= Ls
+        sd = np.asarray(side, float) - (np.asarray(side, float) @ e) * e
+        sd /= np.linalg.norm(sd)
+        return (a + b) / 2, np.stack([e, sd, np.cross(e, sd)], 1), [Ls / 2, t / 2, w / 2]
+
+    def obrot(v, k_, kat):                                   # Rodrigues: v wokół osi k_ o kąt [°]
+        b = math.radians(kat)
+        return v * math.cos(b) + np.cross(k_, v) * math.sin(b) + k_ * (k_ @ v) * (1 - math.cos(b))
+    os.makedirs(katalog, exist_ok=True)
+    g, o = PM["uGal"], PM["uOrcz"]
+    ciala = {}
+    uchwyt = []
+    for n, k in cfg["naped"].items():
+        s0 = stan_napedu(k, [0.0], [0.0])
+        P0, H0, e0 = s0["P"][0], s0["H"][0], s0["e"][0]
+        a1g, a2g, a1o, a2o = s0["a1g"][0], s0["a2g"][0], s0["a1o"][0], s0["a2o"][0]
+        L = float(k["L"])
+        # przy gałce: widełki stałe Uchwytu (oś m = −e0, sworzeń a1g), krzyżak, widełki pręta (sworzeń a2g)
+        m = -e0
+        tri, hi, ho, rama = _widelki(P0, a1g, m, [g["cS"]], g, g["rS"])
+        tri.append(_tri_box(P0 + m * (g["cS"] - 0.2 + g["cS"] + g["pS"]) / 2, rama, [(g["pS"] + 0.2) / 2, ho, g["rS"]]))
+        ph = math.atan2(P0[1], P0[0])
+        tg = np.array([-math.sin(ph), math.cos(ph), 0.0])
+        att = np.array([math.cos(ph) * g["wsporR"], math.sin(ph) * g["wsporR"], g["wsporZ"]])
+        pod = P0 + m * (g["cS"] + g["pS"] / 2)
+        tri.append(_tri_box(*obb_seg(pod, att, tg, g["wsporA"], g["wsporA"])))
+        uchwyt += tri
+        ciala[f"Krzyżak gałki {n}"] = [_tri_cyl(P0 - e0 * g["Hr"] / 2, P0 + e0 * g["Hr"] / 2, g["Do"] / 2)]
+        tri, hi, ho, rama = _widelki(P0, a2g, e0, [g["cP"]], g, g["rP"])
+        tri.append(_tri_box(P0 + e0 * (g["cP"] - 0.2 + g["cP"] + g["pP"]) / 2, rama, [(g["pP"] + 0.2) / 2, ho, g["rP"]]))
+        s_t = L - (o["cP"] + o["pP"]) - 0.1                     # luz osiowy obrotnicy 0,1 (koncepcja pkt 3.3)
+        tri.append(_tri_cyl(P0 + e0 * (g["cP"] + g["pP"] - 0.2), P0 + e0 * (s_t - o["tulejaL"] + 0.2), PM["pretUU"]["D"] / 2))
+        tri.append(_tri_cyl(P0 + e0 * (s_t - o["tulejaL"]), P0 + e0 * s_t, o["tulejaD"] / 2))
+        ciala[f"Pręt {n}"] = tri
+        # przy orczyku: krzyżak, widełki pręta (sworzeń a2o, łby DIN 7985), widełki Ramienia (sworzeń a1o)
+        ciala[f"Krzyżak orczyka {n}"] = [_tri_cyl(H0 - e0 * o["Hr"] / 2, H0 + e0 * o["Hr"] / 2, o["Do"] / 2)]
+        tri, hi, ho, rama = _widelki(H0, a2o, -e0, [o["cP"]], o, o["rP"])
+        tri.append(_tri_cyl(H0 - e0 * (o["cP"] - 0.2), H0 - e0 * (o["cP"] + o["pP"]), o["podstawaD"] / 2))
+        if o.get("lebHP", 0) > 0:
+            for sg in (1, -1):
+                tri.append(_tri_cyl(H0 + a2o * sg * (ho - 0.2), H0 + a2o * sg * (ho + o["lebHP"]), o["lebR"]))
+        ciala[f"Widełki pręta orczyka {n}"] = tri
+        r_ram, h_ram = float(k["r"]), float(k["h"])
+        d0 = (np.asarray(k["w"], float) - r_ram * np.array([0, 1.0, 0])) / h_ram
+        uf = obrot(e0, a1o, o.get("katWidelek" + n, 0.0))      # oś widełek Ramienia: e0 obrócone wokół a1 (v3.2: X −12°)
+        tri, hi, ho, rama = _widelki(H0, a1o, uf, [o["cS"]], o, o["rS"])
+        tri.append(_tri_box(H0 + uf * (o["cS"] - 0.2 + o["cS"] + o["pS"]) / 2, rama, [(o["pS"] + 0.2) / 2, ho, o["rS"]]))
+        hh = h_ram * abs(d0 @ a1o)
+        tri.append(_tri_box(H0 + uf * (o["cS"] + o["pS"]) / 2 - a1o * (hh + ho - 0.2) / 2, rama,
+                            [(o["cS"] + o["pS"]) / 2, (hh - ho + 0.2) / 2, o["rS"]]))     # stopa widełek do Ramienia
+        T, Wd = PM["ramieT"], PM["ramieW"]
+        C = np.asarray(k["C"], float)
+        A0 = C + r_ram * np.array([0, 1.0, 0])
+        tri.append(_tri_box(*obb_seg(C - np.array([T / 2, 0, 0]) - np.array([0, 4.0, 0]),
+                                     A0 - np.array([T / 2, 0, 0]) + np.array([0, 4.0, 0]), [1.0, 0, 0], T, Wd)))
+        tri.append(_tri_cyl(C - np.array([T, 0, 0]), C, PM["ramieHubR"]))
+        ciala[f"Ramię {n}"] = tri
+    uchwyt.append(_tri_ann([0, 0, PM["piastaPrzodZ0"]], [0, 0, PM["kardanGoraZ1"]], PM["kardanR"] + PM["luzKieszeni"], PM["piastaPrzodR"]))
+    for f in PM["laczniki"]:
+        cf, sf = math.cos(math.radians(f)), math.sin(math.radians(f))
+        uchwyt.append(_tri_cyl([15.5 * cf, 15.5 * sf, PM["oknoZ"] + PM["plytaT"] / 2], [9.2 * cf, 9.2 * sf, PM["piastaPrzodZ0"]], PM["lacznikR"]))
+    ciala["Uchwyt"] = uchwyt
+    # Płyta: korpusy, klatki, wieżyczki i kable serw, piasta i ramiona wspornika, słupki Płyty, tarcza (bez okien), słupki stopu
+    plyta = []
+    for pr in M.fixed_prims(PM):
+        if pr.name.split()[0] in ("rura", "Słupek", "kardan") or pr.name.startswith(("bok osi", "ucho Ramy")):
+            continue
+        if pr.kind == "obb":
+            plyta.append(_tri_box(pr.ctr, pr.ax, pr.h))
+        elif pr.kind == "cyl":
+            q = pr.q
+            if "wieża" in pr.name:                                  # 0,25 przed Ramieniem (styk osadzenia jako strefa)
+                q = pr.q - (pr.q - pr.p) / np.linalg.norm(pr.q - pr.p) * 0.25
+            plyta.append(_tri_cyl(pr.p, q, pr.r))
+        elif pr.kind == "prism" and pr.name == "tarcza":
+            plyta.append(_tri_cyl([0, 0, PM["tarczaZ0"]], [0, 0, PM["tarczaZ1"]], PM["tarczaR"]))
+    ciala["Płyta"] = plyta
+    pliki = {}
+    for nazwa, tri in ciala.items():
+        f = os.path.join(katalog, f"zastepcza - {nazwa}.stl")
+        zapisz_stl(f, np.concatenate(tri))
+        pliki[nazwa] = f
+    cfg["_parametry_zastepcze"] = {k_: dict(PM[k_]) for k_ in ("uGal", "uOrcz", "pretUU")}
+    cfg["_parametry_zastepcze"]["zrodlo_wymiarow"] = "JSON zastepcze.wymiary (v3.2); Płyta z e6model.fixed_prims()"
+    import hashlib
+    with open(os.path.join(sciezka, "e6model.py"), "rb") as f_:
+        cfg["_parametry_zastepcze"]["e6model_sha256"] = hashlib.sha256(f_.read()).hexdigest()[:16]
+    cfg["_parametry_zastepcze"]["e6model"] = os.path.relpath(sciezka)
+    return pliki
 
 
 # ---------------------------------------------------------------- testy jednostkowe
@@ -1431,6 +2005,7 @@ def main():
     ap.add_argument("--procesy", type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument("--pary", default=None, help="tylko pary o numerach, np. 1,3")
     ap.add_argument("--test", action="store_true", help="testy jednostkowe jąder i przypadków kostek")
+    ap.add_argument("--zastepcze", default=None, help="katalog na siatki zastępcze (domyślnie katalog tymczasowy)")
     arg = ap.parse_args()
     if arg.test:
         sys.exit(0 if testy() else 1)
@@ -1451,11 +2026,20 @@ def main():
     krok_mm = math.radians(s["krok_deg"]) * s["R_ref"]
     if krok_mm > s["krok_mm_max"] + 1e-9:
         sys.exit(f"krok_deg {s['krok_deg']} daje {krok_mm:.3f} mm na R{s['R_ref']} > {s['krok_mm_max']} mm")
+    przygotuj_konfiguracje(cfg)
     czesci = cfg["czesci"]
+    zast = {}
+    if any(c.get("zastepcza") for c in czesci.values()):
+        import tempfile
+        kz = arg.zastepcze or tempfile.mkdtemp(prefix="e6-zastepcze-")
+        zast = generuj_zastepcze(cfg, kz, baza)
+        log(f"siatki zastępcze: {kz} ({len(zast)} plików)")
+    test_kin = test_kinematyki(cfg, log) if cfg.get("naped") else None
     siatki = {}
     opis_siatek = {}
     for n, c in czesci.items():
-        tri, fmt = wczytaj_stl(os.path.join(kat, c["plik"]))
+        sciezka = zast[c.get("zastepcza_nazwa", n)] if c.get("zastepcza") else os.path.join(kat, c["plik"])
+        tri, fmt = wczytaj_stl(sciezka)
         S = Siatka(n, tri, s["odcinek_krawedzi_mm"], fmt)
         siatki[n] = S
         opis_siatek[n] = S.opis()
@@ -1474,7 +2058,10 @@ def main():
     for i, op in enumerate(cfg["pary"], 1):
         if wybor and i not in wybor:
             continue
-        w = analizuj_pare(cfg, op, czesci, siatki, arg.procesy, log)
+        if s.get("strategia", "pelna") == "bnb":
+            w = analizuj_pare_bnb(cfg, op, czesci, siatki, arg.procesy, log)
+        else:
+            w = analizuj_pare(cfg, op, czesci, siatki, arg.procesy, log)
         # werdykt
         zle = []
         for nz, rz in w["zakresy"].items():
@@ -1509,7 +2096,9 @@ def main():
          "katalog_siatek": os.path.relpath(kat), "procesy": arg.procesy, "siatki": opis_siatek,
          "weryfikacja_geometrii": wer, "uwagi_geometrii": cfg.get("uwagi_geometrii", []),
          "kinematyka_opis": kin, "siatka": s, "zakresy": cfg["zakresy"], "kontrole": kon, "pary": pary,
-         "ograniczenia": OGRANICZENIA, "czas_s": round(time.time() - t0, 1)}
+         "ograniczenia": OGRANICZENIA, "czas_s": round(time.time() - t0, 1),
+         "test_kinematyki": test_kin, "siatki_zastepcze": sorted(zast) if zast else None,
+         "parametry_zastepcze": cfg.get("_parametry_zastepcze")}
     with open(prefiks + ".json", "w", encoding="utf-8") as f:
         json.dump(W, f, ensure_ascii=False, indent=1, default=lambda o: o.tolist() if hasattr(o, "tolist") else str(o))
     with open(prefiks + ".txt", "w", encoding="utf-8") as f:

@@ -1,0 +1,1328 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#140b06">
+<title>Dynia</title>
+<!-- Strona dyni (E7.2). Jeden plik bez zasobów zewnętrznych. Safari 15 (iPhone 7) i Chrome na Androidzie:
+     bez :has(), zagnieżdżania CSS, dvh, ?. i ??, structuredClone, Array.at. Tryb symulacji: plik otwarty
+     lokalnie (file:) albo ?symulacja=1 (opcjonalnie &duze=1) – odpowiedzi API i ruch oczu liczone w JS. -->
+<style>
+:root { --tlo:#140b06; --karta:#24160c; --karta2:#33200f; --pom:#ff8a1f; --pom2:#ffb15c; --tekst:#fff4e6; --szary:#b9a89a; --zly:#ff6b5b; --ok:#7ddc7a; }
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; background:var(--tlo); color:var(--tekst); }
+html { -webkit-text-size-adjust:100%; touch-action:manipulation; }
+body { font:17px/1.35 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; min-height:100vh;
+  -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent;
+  padding-bottom:calc(68px + env(safe-area-inset-bottom)); overflow-x:hidden; }
+button, input, select { font:inherit; color:inherit; }
+button { touch-action:manipulation; cursor:pointer; }
+#gora { position:-webkit-sticky; position:sticky; top:0; z-index:5; background:var(--tlo); padding:4px 8px 2px; border-bottom:1px solid #3a2414;
+  padding-top:calc(4px + env(safe-area-inset-top)); }
+#podglad { display:block; width:100%; max-width:420px; height:auto; max-height:24vh; margin:0 auto; }
+#status { display:flex; justify-content:space-between; gap:6px; font-size:14px; color:var(--szary); max-width:420px; margin:0 auto; white-space:nowrap; overflow:hidden; }
+#status b { color:var(--tekst); font-weight:600; overflow:hidden; text-overflow:ellipsis; }
+#baner { display:none; background:#3b2a00; color:#ffe2a6; font-size:14px; padding:8px 10px; margin:6px 8px 0; border-radius:10px; }
+#sym { display:none; background:#123a2a; color:#bff5d8; font-size:13px; padding:4px 10px; text-align:center; }
+main { padding:6px 10px 16px; max-width:480px; margin:0 auto; }
+.zakl { display:none; }
+.zakl.wid { display:block; }
+h2 { font-size:18px; margin:16px 2px 8px; color:var(--pom2); font-weight:700; }
+h2 small { color:var(--szary); font-weight:400; font-size:13px; }
+.siatka { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; }
+.siatka3 { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); gap:8px; }
+.p { position:relative; min-width:0; word-break:break-word; min-height:64px; padding:8px 6px; border:2px solid #6b3d16; border-radius:14px; background:var(--karta2);
+  font-size:17px; font-weight:650; line-height:1.15; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+.p .em { font-size:28px; line-height:1; }
+.p:active, .p.wcis { background:#5a3412; border-color:var(--pom); }
+.p:disabled { opacity:.4; }
+.p.szer { grid-column:1 / -1; flex-direction:row; gap:10px; width:100%; }
+.p .zn { position:absolute; top:3px; right:5px; font-size:11px; font-weight:600; color:var(--pom2); background:#000a; border-radius:6px; padding:0 4px; }
+.ukryty { display:none !important; }
+.karta { background:var(--karta); border-radius:16px; padding:10px; margin:8px 0; }
+.opis { color:var(--szary); font-size:14px; margin:4px 2px 8px; }
+#tamPole, #pianino { display:block; width:100%; height:auto; background:var(--karta); border-radius:16px; touch-action:none; }
+#pad { position:relative; width:100%; max-width:320px; height:300px; max-height:62vw; margin:0 auto; border-radius:18px; background:#1d120a;
+  border:2px solid #6b3d16; touch-action:none; overflow:hidden; }
+#pad:before, #pad:after { content:""; position:absolute; background:#3a2414; }
+#pad:before { left:50%; top:0; bottom:0; width:2px; margin-left:-1px; }
+#pad:after { top:50%; left:0; right:0; height:2px; margin-top:-1px; }
+#padKropka { position:absolute; left:50%; top:50%; width:46px; height:46px; margin:-23px 0 0 -23px; border-radius:50%;
+  background:radial-gradient(circle at 40% 40%, #fff 0, #fff 30%, #222 32%, #000 60%); box-shadow:0 0 0 3px var(--pom); z-index:2; }
+input[type=range] { width:100%; height:44px; accent-color:var(--pom); }
+.wiersz { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.wiersz > * { flex:1 1 auto; }
+.mini { min-height:48px; padding:6px 10px; border:2px solid #6b3d16; border-radius:12px; background:var(--karta2); font-weight:650; font-size:16px; }
+.mini:active { background:#5a3412; }
+.mini.waz { border-color:var(--zly); color:#ffd2cc; }
+.przel { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:52px; padding:4px 2px; }
+.przel input { width:28px; height:28px; accent-color:var(--pom); flex:0 0 auto; }
+.wyr { min-height:110px; font-size:60px; border-radius:22px; }
+#refPole { min-height:150px; font-size:22px; }
+#refPole.otw { background:#17451c; border-color:var(--ok); }
+.duzy { font-size:30px; font-weight:800; text-align:center; margin:6px 0; }
+#dol { position:fixed; left:0; right:0; bottom:0; z-index:6; display:flex; background:#0d0704; border-top:1px solid #3a2414;
+  padding-bottom:env(safe-area-inset-bottom); }
+#dol button { flex:1 1 0; min-width:0; height:64px; border:0; background:none; color:var(--szary); font-size:12px; font-weight:600;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+#dol button span { font-size:24px; line-height:1; }
+#dol button.akt { color:var(--pom); background:#22140a; }
+#toast { position:fixed; left:12px; right:12px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:9; text-align:center; pointer-events:none;
+  opacity:0; transition:opacity .25s; }
+#toast span { display:inline-block; background:#000d; color:#fff; border:1px solid var(--pom); border-radius:12px; padding:10px 14px; font-size:16px; }
+#toast.wid { opacity:1; }
+#magikEkran { position:fixed; left:0; top:0; right:0; bottom:0; z-index:20; background:#000; display:none; touch-action:none; }
+#magikEkran.wid { display:block; }
+#zegar { position:absolute; left:0; right:0; top:34%; text-align:center; color:#4a4a4a; font-size:84px; font-weight:200; letter-spacing:2px; pointer-events:none;
+  font-variant-numeric:tabular-nums; }
+#zegarData { position:absolute; left:0; right:0; top:calc(34% + 104px); text-align:center; color:#3a3a3a; font-size:18px; pointer-events:none; }
+#strefy { position:absolute; left:0; top:0; right:0; bottom:0; display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr 1fr; }
+#strefy div { -webkit-tap-highlight-color:transparent; }
+#magikWyj { position:absolute; left:0; right:0; bottom:20px; text-align:center; color:#555; font-size:14px; pointer-events:none; transition:opacity 1s; }
+.mapa { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; font-size:14px; text-align:center; }
+.mapa div { background:var(--karta2); border-radius:8px; padding:8px 2px; }
+table.dz { width:100%; border-collapse:collapse; font-size:15px; }
+table.dz td { padding:3px 2px; border-bottom:1px solid #3a2414; }
+table.dz td:last-child { text-align:right; font-weight:600; }
+#kalWart { font-size:28px; font-weight:800; text-align:center; min-width:90px; }
+.kNazwa { font-size:18px; font-weight:700; margin:2px 2px 8px; }
+.kImp { font-size:20px; text-align:center; margin:4px 0 8px; }
+.kImp b { font-size:30px; }
+.kTrzy { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; text-align:center; font-size:14px; color:var(--szary); }
+.kTrzy div { background:var(--karta2); border-radius:10px; padding:6px 2px; }
+.kTrzy b { font-size:20px; color:var(--tekst); }
+.siatka4 { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px; margin:8px 0; }
+.siatka4 .p { font-size:24px; min-height:60px; }
+.siatka4 .p small { font-size:11px; font-weight:600; color:var(--szary); }
+.p.oz { border-color:var(--pom); margin-top:8px; }
+.kDol { display:flex; justify-content:space-between; gap:8px; margin-top:10px; }
+.kDol .mini { flex:0 0 auto; min-height:44px; font-size:15px; }
+.krokNr { font-size:15px; font-weight:700; color:var(--pom2); margin:0 2px 4px; }
+.krokTxt { font-size:19px; line-height:1.35; margin:4px 2px 10px; font-weight:600; }
+.p.strz { font-size:40px; min-height:76px; }
+.p.strz small { font-size:16px; font-weight:700; display:block; line-height:1.1; }
+.p.kier { min-height:96px; font-size:18px; border-color:var(--pom); }
+details#kWiecej { margin-top:14px; border-top:1px solid #3a2414; padding-top:8px; }
+details#kWiecej summary { font-size:16px; color:var(--szary); padding:10px 2px; min-height:44px; cursor:pointer; }
+.uwaga { margin-top:12px; border:3px solid var(--zly); background:#3a0f0a; color:#ffd7d0; border-radius:14px; padding:10px; font-size:15px; }
+.uwaga b { color:#fff; font-size:16px; }
+select { width:100%; min-height:48px; border-radius:12px; background:var(--karta2); border:2px solid #6b3d16; padding:4px 8px; }
+input[type=password], input[type=number] { width:100%; min-height:52px; border-radius:12px; background:#0d0704; border:2px solid #6b3d16; padding:4px 12px;
+  font-size:24px; letter-spacing:4px; -webkit-user-select:text; user-select:text; }
+@media (max-width:340px) { body { font-size:16px; } .p { font-size:15px; } .p .em { font-size:25px; } #zegar { font-size:66px; } }
+</style>
+</head>
+<body>
+<div id="sym">Symulacja – bez dyni (PIN demo: 0000)</div>
+<header id="gora">
+  <svg id="podglad" viewBox="0 0 320 104" aria-label="Podgląd dyni"></svg>
+  <div id="status"><b id="stTryb">łączę…</b><span id="stInfo"></span></div>
+</header>
+<div id="baner">To okienko logowania Wi-Fi jest okrojone. Działa, ale lepiej: zamknij je, wybierz „Bez internetu”, otwórz Safari i wpisz <b>192.168.4.1</b>.</div>
+
+<main>
+<!-- ===== EFEKTY ===== -->
+<section id="z-efekty" class="zakl wid">
+  <h2>Małe oczy</h2>
+  <div class="siatka3">
+    <button class="p" data-e="fala" data-w="1"><span class="em">⬅️</span>Fala</button>
+    <button class="p" data-e="fala" data-w="2"><span class="em">↔️</span>Fala</button>
+    <button class="p" data-e="fala" data-w="0"><span class="em">➡️</span>Fala</button>
+  </div>
+  <div class="siatka" style="margin-top:8px">
+    <button class="p" data-e="zez"><span class="em">🤪</span>Zez</button>
+    <button class="p" data-e="rozbiegane"><span class="em">😱</span>Spłoszone</button>
+    <button class="p" data-e="mucha"><span class="em">🪰</span>Mucha</button>
+    <button class="p" data-e="klotnia"><span class="em">😤</span>Kłótnia sąsiadów</button>
+  </div>
+  <h2>Wszyscy tam! <small>stuknij kierunek</small></h2>
+  <svg id="tamPole" viewBox="0 0 320 150" data-e="tam"></svg>
+
+  <h2>Duże oko <small id="doUwaga"></small></h2>
+  <div class="siatka">
+    <button class="p" data-e="bu" data-do="1"><span class="em">👻</span>Bu!</button>
+    <button class="p" data-e="zdziwienie" data-do="1"><span class="em">😮</span>Zdziwienie</button>
+    <button class="p" data-e="przewracanie" data-do="1"><span class="em">🙄</span>Przewracanie</button>
+    <button class="p" data-e="szef" data-do="1"><span class="em">😠</span>Szef ucisza bunt</button>
+    <button class="p" data-e="zasypianie" data-do="1"><span class="em">😴</span>Zasypianie</button>
+    <button class="p" data-e="budzenie" data-do="1"><span class="em">⏰</span>Budzenie</button>
+    <button class="p" data-e="hipnoza" data-do="1"><span class="em">🌀</span>Hipnoza</button>
+    <button class="p" data-e="mrug" data-do="1"><span class="em">😉</span>Mrugnij</button>
+  </div>
+  <h2>Emocje <small id="emInfo">na ok. 45 s</small></h2>
+  <div class="siatka">
+    <button class="p" data-m="senny"><span class="em">😪</span>Senny</button>
+    <button class="p" data-m="ciekawski"><span class="em">🧐</span>Ciekawski</button>
+    <button class="p" data-m="podejrzliwy"><span class="em">🤨</span>Podejrzliwy</button>
+    <button class="p" data-m="przestraszony"><span class="em">😨</span>Przestraszony</button>
+    <button class="p" data-m="znudzony"><span class="em">😑</span>Znudzony</button>
+    <button class="p" data-m="zlosliwy"><span class="em">😏</span>Złośliwy</button>
+    <button class="p szer" data-m="brak"><span class="em">🙂</span>Zwykły</button>
+  </div>
+  <div class="siatka" style="margin-top:14px">
+    <button class="p szer" data-e="automat"><span class="em">🎃</span>Pokaz automatyczny</button>
+  </div>
+</section>
+
+<!-- ===== PACYNKA ===== -->
+<section id="z-pacynka" class="zakl">
+  <h2>Pacynka <small id="padUwaga">prowadź palcem, stuknij = mrugnij</small></h2>
+  <div id="padBlok">
+    <div id="pad"><div id="padKropka"></div></div>
+    <div class="karta" id="powBlok">
+      <div class="wiersz"><span>👁️ Powieki (obie)</span><span id="powWart" style="text-align:right">75 %</span></div>
+      <input type="range" id="powieki" min="0" max="100" value="75">
+      <div class="wiersz"><span>🤨 Mrużenie (dolna w górę)</span><span id="mruWart" style="text-align:right">0</span></div>
+      <input type="range" id="mruzenie" min="0" max="100" value="0">
+    </div>
+  </div>
+  <div id="padWyst" class="karta opis ukryty">Pacynka jest wyłączona w trybie wystawowym.</div>
+  <h2>Pianino oczu <small>dotknij oka albo przeciągnij</small></h2>
+  <svg id="pianino" viewBox="0 0 320 160"></svg>
+  <div class="siatka" style="margin-top:14px">
+    <button class="p szer" data-e="automat"><span class="em">🎃</span>Pokaz automatyczny</button>
+  </div>
+</section>
+
+<!-- ===== MAGIK ===== -->
+<section id="z-magik" class="zakl">
+  <h2>Tryb magika 🎩</h2>
+  <p class="opis">Ekran udaje zegar. Niewidoczne strefy 3 × 3 wywołują ruch dyni. Wyjście: przytrzymaj lewy górny róg przez 2 s. Ustaw w telefonie dłuższą autoblokadę, żeby ekran nie gasł.</p>
+  <div class="mapa">
+    <div>⬅️ lewo</div><div>⬆️ wprost</div><div>➡️ prawo</div>
+    <div>🤪 zez</div><div>👻 Bu!</div><div>🌊 fala</div>
+    <div>😉 mrugnij</div><div>😴 zaśnij</div><div>⏰ obudź</div>
+  </div>
+  <div class="siatka" style="margin-top:12px">
+    <button class="p szer" id="magikStart"><span class="em">🎩</span>Start magika</button>
+  </div>
+</section>
+
+<!-- ===== GRY ===== -->
+<section id="z-gry" class="zakl">
+  <h2>Wyrocznia <small><a id="wyrPom" style="color:var(--pom2)">ściąga</a></small></h2>
+  <div class="siatka3">
+    <button class="p wyr" data-e="tak">🎃</button>
+    <button class="p wyr" data-e="nie">🦇</button>
+    <button class="p wyr" data-e="niewiem">👻</button>
+  </div>
+  <p class="opis ukryty" id="wyrLeg">🎃 tak · 🦇 nie · 👻 nie wiem</p>
+
+  <h2>Znajdź buntownika</h2>
+  <div class="siatka">
+    <button class="p" data-e="buntownik"><span class="em">🕵️</span>Start</button>
+    <button class="p" id="buntPokaz"><span class="em">👀</span>Pokaż które</button>
+  </div>
+
+  <h2>Refleks ⚡ <small id="refRekord"></small></h2>
+  <button class="p szer" id="refStart" data-e="refleks"><span class="em">⚡</span>Start</button>
+  <button class="p ukryty" id="refPole" style="width:100%"></button>
+
+  <h2>Baba Jaga patrzy</h2>
+  <div class="siatka">
+    <button class="p" data-e="babajaga"><span class="em">🧙</span>Start</button>
+    <button class="p" data-e="patrze" id="babaPatrze"><span class="em">👁️</span>Patrzę!</button>
+    <button class="p szer" data-e="automat"><span class="em">🏁</span>Koniec gry</button>
+  </div>
+
+  <h2>Tryb trolla</h2>
+  <div class="karta" id="trollBlok">
+    <label class="przel"><span>😈 Odwrócone sterowanie (Pacynka, Pianino)</span><input type="checkbox" id="troll"></label>
+    <button class="p szer" data-e="awaria"><span class="em">💥</span>Awaria!</button>
+  </div>
+</section>
+
+<!-- ===== RODZIC ===== -->
+<section id="z-rodzic" class="zakl">
+  <div id="rodzLog">
+    <h2>Panel rodzica 🔒</h2>
+    <div class="karta">
+      <input type="password" id="pin" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="PIN" autocomplete="off">
+      <button class="p szer" id="pinOk" style="margin-top:8px"><span class="em">🔓</span>Wejdź</button>
+    </div>
+  </div>
+  <div id="rodzPanel" class="ukryty">
+    <h2>Kalibracja oka</h2>
+    <div class="karta" id="kalKarta">
+      <div id="kOko">
+        <div class="krokNr" id="krokNr">Oko 1 · kanał 0</div>
+        <p class="krokTxt" id="krokTxt">–</p>
+        <div class="kImp" id="kImpBlok">Impuls: <b id="kImp">–</b> µs</div>
+        <div id="kStrz">
+          <div class="siatka"><button class="p strz" data-raw="-30" id="kStrzL">◀</button><button class="p strz" data-raw="30" id="kStrzP">▶</button></div>
+          <div class="siatka" style="margin-top:6px"><button class="mini" data-raw="-5" id="kDrobL">◀ drobno</button><button class="mini" data-raw="5" id="kDrobP">drobno ▶</button></div>
+        </div>
+        <div id="kKier" class="siatka">
+          <button class="p kier" data-lewa="1"><span class="em">👈</span>W moją lewą</button>
+          <button class="p kier" data-lewa="0"><span class="em">👉</span>W moją prawą</button>
+        </div>
+        <button class="p szer oz" id="kGlowny">Zacznij kalibrację</button>
+        <div class="kDol"><button class="mini" id="kWstecz">← Wstecz</button><button class="mini" id="kPowtorz">🔁 Powtórz test</button></div>
+      </div>
+      <p class="opis ukryty" id="kDuzeInfo">Wybrany kanał dużego oka – ustawienia w „Więcej…”.</p>
+      <details id="kWiecej">
+        <summary>Więcej…</summary>
+        <select id="kSel"></select>
+        <div id="kNazwa" class="kNazwa">Oko 1 · kanał 0</div>
+        <div class="kTrzy" id="kTrzy">
+          <div>lewy<br><b id="kL">–</b></div><div>środek<br><b id="kA">–</b></div><div>prawy<br><b id="kR">–</b></div>
+        </div>
+        <div id="kInny" class="ukryty">
+          <div class="wiersz">
+            <button class="mini" data-kd="-10">−10</button><button class="mini" data-kd="-1">−1</button>
+            <span id="kalWart">–</span>
+            <button class="mini" data-kd="1">+1</button><button class="mini" data-kd="10">+10</button>
+          </div>
+          <p class="opis">µs, zmiana dochodzi powoli (ok. 18°/s)</p>
+          <div class="siatka">
+            <button class="mini" id="kTest">🔁 Test zakresu</button>
+            <button class="mini" id="kZapisz">💾 Zapisz</button>
+          </div>
+          <div class="wiersz" style="margin-top:8px"><button class="mini" id="kZnak">↔️ Odwróć kierunek</button></div>
+        </div>
+        <div class="wiersz" id="azBlok" style="margin-top:8px">
+          <button class="mini" data-azd="-5">◀ 5°</button><span id="azWart" style="text-align:center">azymut –</span><button class="mini" data-azd="5">5° ▶</button>
+        </div>
+        <label class="przel"><span>🚫 Serwo wyłączone (uszkodzone)</span><input type="checkbox" id="kWyl"></label>
+        <button class="mini" id="kOdNowa" style="width:100%">↺ Zacznij kalibrację od nowa</button>
+        <div class="uwaga" id="kNoweBlok">
+          <b>⚠️ NOWE SERWO: najpierw ZDEJMIJ DŹWIGIENKĘ albo ODCZEP OKO!</b><br>
+          Serwo od razu skoczy na 1500 µs (jedyny skok bez płynnego ruchu). Potem załóż dźwigienkę na środku i zrób kalibrację.
+          <button class="p szer" id="kNowe" style="margin-top:8px"><span class="em">🆕</span>Nowe serwo – ustaw 1500 µs</button>
+        </div>
+      </details>
+    </div>
+
+    <h2>Dynia <small id="rWersja"></small></h2>
+    <div class="karta"><table class="dz" id="rDz"></table>
+      <button class="mini" id="rOdswiez" style="margin-top:8px;width:100%">🔄 Odśwież</button></div>
+
+    <h2>Ustawienia</h2>
+    <div class="karta">
+      <label class="przel"><span>🏫 Tryb wystawowy (goście: tylko bezpieczne efekty)</span><input type="checkbox" id="rWystawa"></label>
+      <div class="przel"><span>Serwa w ruchu naraz</span>
+        <span class="wiersz" style="flex:0 0 auto"><button class="mini" data-ust="max" data-d="-1">−</button><b id="rMax" style="min-width:28px;text-align:center">4</b><button class="mini" data-ust="max" data-d="1">+</button></span></div>
+      <div class="przel"><span>Małe oczy <small class="opis">(po restarcie)</small></span>
+        <span class="wiersz" style="flex:0 0 auto"><button class="mini" data-ust="n" data-d="-1">−</button><b id="rN" style="min-width:28px;text-align:center">10</b><button class="mini" data-ust="n" data-d="1">+</button></span></div>
+      <label class="przel"><span>Duże oko <small class="opis">(po restarcie)</small></span><input type="checkbox" id="rDuze"></label>
+    </div>
+
+    <h2>Serwis</h2>
+    <div class="siatka">
+      <button class="p" id="rParkuj"><span class="em">🅿️</span>Parkuj</button>
+      <button class="p" id="rWznow"><span class="em">▶️</span>Wznów</button>
+      <button class="p" id="rRestart"><span class="em">🔄</span>Restart</button>
+      <button class="p" id="rZeruj"><span class="em">🧹</span>Zeruj dziennik</button>
+      <button class="p szer" id="rWyloguj"><span class="em">🔒</span>Wyloguj</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav id="dol">
+  <button data-z="efekty" class="akt"><span>✨</span>Efekty</button>
+  <button data-z="pacynka"><span>🖐️</span>Pacynka</button>
+  <button data-z="magik"><span>🎩</span>Magik</button>
+  <button data-z="gry"><span>🎲</span>Gry</button>
+  <button data-z="rodzic"><span>🔧</span>Rodzic</button>
+</nav>
+
+<div id="magikEkran"><div id="zegar">--:--</div><div id="zegarData"></div>
+  <div id="strefy"></div><div id="magikWyj">wyjście: przytrzymaj lewy górny róg 2 s</div></div>
+<div id="toast"><span id="toastTxt"></span></div>
+
+<script>
+"use strict";
+var SYM = location.protocol === "file:" || /[?&]symulacja=1/.test(location.search);
+var $ = function (id) { return document.getElementById(id); };
+var NS = "http://www.w3.org/2000/svg";
+var stan = null, konfig = null, token = null, buntPokazLok = false;
+var NAZWY = { fala:"🌊 Fala", tam:"👉 Wszyscy tam!", zez:"🤪 Zez", rozbiegane:"😱 Spłoszone", mucha:"🪰 Mucha", buntownik:"🕵️ Buntownik",
+  klotnia:"😤 Kłótnia", pianino:"🎹 Pianino", pacynka:"🖐️ Pacynka", bu:"👻 Bu!", zdziwienie:"😮 Zdziwienie", przewracanie:"🙄 Przewracanie",
+  zasypianie:"😴 Zasypianie", budzenie:"⏰ Budzenie", hipnoza:"🌀 Hipnoza", szef:"😠 Szef", tak:"🔮 Wyrocznia", nie:"🔮 Wyrocznia",
+  niewiem:"🔮 Wyrocznia", mrug:"😉 Mrugnięcie", refleks:"⚡ Refleks", babajaga:"🧙 Baba Jaga", awaria:"💥 Awaria" };
+var TRYBY = { automat:"🎃 Pokaz automatyczny", efekt:"✨", reczny:"🖐️", sen:"😴 Dynia śpi", kalibracja:"🔧 Kalibracja",
+  zaparkowana:"🅿️ Zaparkowana – można odłączyć", parkowanie:"🅿️ Parkowanie…", rozruch:"⏳ Rozruch" };
+try { token = sessionStorage.getItem("dyniaToken"); } catch (e) {}
+
+// ---------- komunikacja ----------
+function qs(p) { var s = []; for (var k in p) if (p[k] !== undefined && p[k] !== null) s.push(k + "=" + encodeURIComponent(p[k])); return s.length ? "?" + s.join("&") : ""; }
+function api(sciezka, p) {
+  p = p || {};
+  if (token && (sciezka.indexOf("/api/rodzic/") === 0 || sciezka === "/api/efekt" || sciezka === "/api/emocja" || sciezka === "/api/pad" ||
+      sciezka === "/api/powieki" || sciezka === "/api/troll" || sciezka === "/api/konfig")) p.t = token;
+  if (SYM) return new Promise(function (ok) { setTimeout(function () { ok(sim.api(sciezka, p)); }, 15); });
+  // limit czasu 2,5 s: zawieszone zapytanie (cichy klient serwera, utrata Wi-Fi) nie blokuje padu ani podglądu
+  var ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  var tLim = setTimeout(function () { if (ctl) ctl.abort(); }, 2500);
+  return fetch(sciezka + qs(p), { cache:"no-store", signal:ctl ? ctl.signal : undefined }).then(function (r) {
+    return r.json().then(function (j) { j._kod = r.status; return j; }, function () { return { ok:false, _kod:r.status }; });
+  }).then(function (j) { clearTimeout(tLim); return j; }, function (e) { clearTimeout(tLim); throw e; });
+}
+var tToast = 0;
+function toast(t) { $("toastTxt").textContent = t; $("toast").className = "wid"; clearTimeout(tToast); tToast = setTimeout(function () { $("toast").className = ""; }, 2200); }
+function wynik(j) {
+  if (!j || j.ok === false) {
+    j = j || { ok:false, _kod:0 };
+    if (j._kod === 401) { wyloguj(true); toast("🔒 Zaloguj się ponownie"); }
+    else toast((j._kod === 429 ? "⏳ " : "🙅 ") + (j.powod || "nie teraz"));
+  }
+  odswiezZaraz();
+  return j;
+}
+function bladSieci() { toast("📡 Brak połączenia z dynią"); return { ok:false, _kod:0 }; }
+function efekt(n, w, k) { return api("/api/efekt", { n:n, w:w, k:k }).then(wynik, bladSieci); }
+
+// ---------- stan i podgląd ----------
+var tPoll = 0, rtt = 50, tOtwLok = null, refAktywny = false, bladPolaczenia = 0, pollWToku = false;
+function odswiezZaraz() { if (pollWToku) return; clearTimeout(tPoll); tPoll = setTimeout(poll, 120); }
+function poll() {                                   // najwyżej jedno zapytanie o stan w toku; następne zawsze zaplanowane
+  clearTimeout(tPoll);
+  if (pollWToku) return;
+  if (document.hidden) { tPoll = setTimeout(poll, 1000); return; }
+  var t0 = performance.now(), dalej = 1500;
+  pollWToku = true;
+  api("/api/stan").then(function (s) {
+    if (!s || !s.az || !s.oczy || !s.refleks) throw new Error("zła odpowiedź");
+    var t1 = performance.now();
+    rtt = rtt * 0.7 + (t1 - t0) * 0.3;
+    bladPolaczenia = 0;
+    przyjmijStan(s, t1);
+    dalej = refAktywny ? 100 : 400;
+  }).catch(function () {
+    bladPolaczenia++;
+    $("stTryb").textContent = "📡 brak połączenia z dynią";
+  }).then(function () {
+    pollWToku = false;
+    clearTimeout(tPoll);
+    tPoll = setTimeout(poll, dalej);
+  });
+}
+function przyjmijStan(s, t1) {
+  var sygn = s.n + "|" + s.duze + "|" + s.az.join(",") + "|" + s.wyl.join(",") + "|" + (s.do && (s.do.wyl + "" + s.do.wylG + s.do.wylD));
+  var zmiana = !stan || stan._sygn !== sygn;
+  s._sygn = sygn;
+  var stary = stan;
+  stan = s;
+  if (zmiana) { budujPodglad(); budujPianino(); }
+  ustawCele();
+  var t = TRYBY[s.tryb] || s.tryb;
+  if ((s.tryb === "efekt" || s.tryb === "reczny") && s.efekt) t = NAZWY[s.efekt] || s.efekt;
+  if (s.emocja) t += " · " + s.emocja + (s.emocjaZa ? " " + s.emocjaZa + " s" : "");
+  $("stTryb").textContent = t;
+  $("stInfo").textContent = "📱" + s.klienci + "  ⚙️" + s.wRuchu + "/" + s.max;
+  if (!stary || stary.wystawa !== s.wystawa || stary.duze !== s.duze || zmiana) zastosujUprawnienia();
+  if (document.activeElement !== $("troll")) $("troll").checked = !!s.troll;
+  // refleks: chwila otwarcia w zegarze telefonu (połowa czasu zapytania jako opóźnienie)
+  var r = s.refleks;
+  if (r.faza === 1 && r.za >= 0) tOtwLok = t1 + r.za - rtt / 2;            // plan (z oczekiwanym opóźnieniem)
+  else if (r.faza >= 2 && r.od >= 0) tOtwLok = t1 - r.od - rtt / 2;         // zmierzony sygnał: powieka / oko w połowie
+  $("refRekord").textContent = r.rekord ? "rekord dnia: " + r.rekord + " ms" : "";
+  $("babaPatrze").disabled = !!s.babaPatrzy;
+}
+
+var oczyCel = [], oczyTeraz = [], doCel = { x:0, y:0, g:75, d:75 }, doTeraz = { x:0, y:0, g:75, d:75 }, el = { oczy:[], zr:[], ring:[] };
+function svg(rodzic, tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); rodzic.appendChild(e); return e; }
+function polozenieOka(az) {
+  var r = az * Math.PI / 180;
+  return { x:160 + 124 * Math.sin(r), y:64 + 6 * (1 - Math.cos(r)), rx:11 * Math.max(0.5, Math.cos(Math.max(-1.3, Math.min(1.3, r)))), ry:11 };
+}
+function dynia(g, cy, ry) {
+  svg(g, "rect", { x:153, y:cy - ry - 10, width:14, height:16, rx:4, fill:"#4f7a2a" });
+  svg(g, "ellipse", { cx:160, cy:cy, rx:156, ry:ry, fill:"#e8730c" });
+  svg(g, "ellipse", { cx:160, cy:cy, rx:105, ry:ry, fill:"none", stroke:"#c95f06", "stroke-width":3 });
+  svg(g, "ellipse", { cx:160, cy:cy, rx:50, ry:ry, fill:"none", stroke:"#c95f06", "stroke-width":3 });
+}
+function budujPodglad() {
+  var s = $("podglad"); while (s.firstChild) s.removeChild(s.firstChild);
+  dynia(s, 56, 45);
+  el = { oczy:[], zr:[], ring:[], do:null };
+  oczyCel = []; oczyTeraz = [];
+  for (var i = 0; i < stan.n; i++) {
+    var p = polozenieOka(stan.az[i]), wyl = stan.wyl[i];
+    el.ring.push(svg(s, "ellipse", { cx:p.x, cy:p.y, rx:p.rx + 5, ry:p.ry + 5, fill:"none", stroke:"#ff3b30", "stroke-width":3, visibility:"hidden" }));
+    svg(s, "ellipse", { cx:p.x, cy:p.y, rx:p.rx, ry:p.ry, fill:wyl ? "#6d6d6d" : "#fbf7ef", stroke:"#5a2c00", "stroke-width":2 });
+    el.zr.push(wyl ? null : svg(s, "ellipse", { cx:p.x, cy:p.y, rx:p.rx * 0.5, ry:5.5, fill:"#1b1b1b" }));
+    el.oczy.push(p);
+    oczyCel.push(0); oczyTeraz.push(0);
+  }
+  if (stan.duze) {
+    var cx = 160, cy = 36, r = 16;
+    var defs = svg(s, "defs", {}), cp = svg(defs, "clipPath", { id:"klipDO" });
+    svg(cp, "circle", { cx:cx, cy:cy, r:r });
+    svg(s, "circle", { cx:cx, cy:cy, r:r, fill:stan.do.wyl ? "#6d6d6d" : "#fbf7ef" });
+    var g = svg(s, "g", { "clip-path":"url(#klipDO)" });
+    var zr = svg(g, "circle", { cx:cx, cy:cy, r:8, fill:"#1b1b1b" });
+    svg(g, "circle", { cx:cx - 3, cy:cy - 3, r:2.2, fill:"#fff" });
+    var pg = svg(g, "rect", { x:cx - r, y:cy - r, width:2 * r, height:0, fill:"#d9650a" });
+    var pd = svg(g, "rect", { x:cx - r, y:cy + r, width:2 * r, height:0, fill:"#d9650a" });
+    svg(s, "circle", { cx:cx, cy:cy, r:r, fill:"none", stroke:"#5a2c00", "stroke-width":2.5 });
+    el.do = { cx:cx, cy:cy, r:r, zr:zr, blask:zr.nextSibling, pg:pg, pd:pd };
+  }
+}
+function ustawCele() {
+  for (var i = 0; i < stan.n; i++) oczyCel[i] = stan.oczy[i];
+  if (stan.do) { doCel.x = stan.do.x; doCel.y = stan.do.y; doCel.g = stan.do.powG; doCel.d = stan.do.powD; }
+  var pok = stan.bunt >= 0 && (stan.buntJawny || buntPokazLok);
+  for (var j = 0; j < el.ring.length; j++) el.ring[j].setAttribute("visibility", pok && j === stan.bunt ? "visible" : "hidden");
+}
+var tKlatki = 0;
+function klatka(t) {
+  var dt = tKlatki ? Math.min(100, t - tKlatki) : 16; tKlatki = t;
+  var a = Math.min(1, dt / 110);
+  if (stan) {
+    for (var i = 0; i < el.oczy.length; i++) {
+      oczyTeraz[i] += (oczyCel[i] - oczyTeraz[i]) * a;
+      if (el.zr[i]) { var p = el.oczy[i]; el.zr[i].setAttribute("cx", (p.x + oczyTeraz[i] / 25 * p.rx * 0.5).toFixed(1)); }
+    }
+    if (el.do) {
+      doTeraz.x += (doCel.x - doTeraz.x) * a; doTeraz.y += (doCel.y - doTeraz.y) * a;
+      doTeraz.g += (doCel.g - doTeraz.g) * Math.min(1, a * 1.6); doTeraz.d += (doCel.d - doTeraz.d) * Math.min(1, a * 1.6);
+      var d = el.do, x = d.cx + doTeraz.x / 25 * 8, y = d.cy - doTeraz.y / 15 * 7, h = d.r * (1 - doTeraz.g / 100), hd = d.r * (1 - doTeraz.d / 100);
+      d.zr.setAttribute("cx", x.toFixed(1)); d.zr.setAttribute("cy", y.toFixed(1));
+      d.blask.setAttribute("cx", (x - 3).toFixed(1)); d.blask.setAttribute("cy", (y - 3).toFixed(1));
+      d.pg.setAttribute("height", Math.max(0, h * 1.05).toFixed(1));        // powieka górna
+      d.pd.setAttribute("y", (d.cy + d.r - hd * 0.95).toFixed(1)); d.pd.setAttribute("height", Math.max(0, hd * 0.95).toFixed(1));   // dolna
+    }
+  }
+  requestAnimationFrame(klatka);
+}
+
+// ---------- uprawnienia: tryb wystawowy, brak dużego oka ----------
+function bezpieczny(lista, n) { if (!lista) return true; for (var i = 0; i < lista.length; i++) if (lista[i].n === n) return !!lista[i].b; return true; }
+function zastosujUprawnienia() {
+  if (!stan) return;
+  var gosc = stan.wystawa && !token;
+  var el2 = document.querySelectorAll("[data-e]");
+  for (var i = 0; i < el2.length; i++) {
+    var n = el2[i].getAttribute("data-e");
+    var ukryj = gosc && konfig && n !== "automat" && n !== "patrze" && !bezpieczny(konfig.efekty, n);
+    if (n === "patrze") ukryj = gosc && konfig && !bezpieczny(konfig.efekty, "babajaga");
+    el2[i].classList.toggle("ukryty", !!ukryj);
+    var zn = el2[i].querySelector(".zn");
+    if (el2[i].getAttribute("data-do")) {
+      if (!stan.duze && !zn) { zn = document.createElement("span"); zn.className = "zn"; zn.textContent = "małe"; el2[i].appendChild(zn); }
+      if (stan.duze && zn) zn.parentNode.removeChild(zn);
+    }
+  }
+  var em = document.querySelectorAll("[data-m]");
+  for (var j = 0; j < em.length; j++) {
+    var m = em[j].getAttribute("data-m");
+    em[j].classList.toggle("ukryty", !!(gosc && konfig && m !== "brak" && !bezpieczny(konfig.emocje, m)));
+  }
+  $("doUwaga").textContent = stan.duze ? "" : "(nie ma go – wersje na małych oczach)";
+  $("emInfo").textContent = stan.duze ? "na ok. 45 s" : "na ok. 45 s (bez powiek)";
+  $("padBlok").classList.toggle("ukryty", gosc);
+  $("padWyst").classList.toggle("ukryty", !gosc);
+  $("powieki").disabled = !stan.duze; $("mruzenie").disabled = !stan.duze;
+  $("powBlok").style.opacity = stan.duze ? "1" : ".4";
+  $("padUwaga").textContent = stan.duze ? "prowadź palcem, stuknij = mrugnij" : "bez dużego oka: małe oczy lewo–prawo, stuknij = drżenie";
+  $("trollBlok").classList.toggle("ukryty", gosc);
+}
+
+// ---------- zakładki ----------
+function pokazZakladke(z) {
+  var b = document.querySelectorAll("#dol button");
+  for (var i = 0; i < b.length; i++) b[i].classList.toggle("akt", b[i].getAttribute("data-z") === z);
+  var s = document.querySelectorAll(".zakl");
+  for (var j = 0; j < s.length; j++) s[j].classList.toggle("wid", s[j].id === "z-" + z);
+  window.scrollTo(0, 0);
+  if (z === "rodzic" && token) rodzicOdswiez();
+}
+$("dol").addEventListener("click", function (e) {
+  var b = e.target.closest("button"); if (b) pokazZakladke(b.getAttribute("data-z"));
+});
+
+// przyciski efektów i emocji (delegacja)
+document.addEventListener("click", function (e) {
+  var b = e.target.closest ? e.target.closest("button") : null;
+  if (!b) return;
+  if (b.hasAttribute("data-e") && b.id !== "refStart") {
+    var n = b.getAttribute("data-e");
+    efekt(n, b.getAttribute("data-w") || 0);
+    if (n === "buntownik") buntPokazLok = false;
+  } else if (b.hasAttribute("data-m")) api("/api/emocja", { n:b.getAttribute("data-m") }).then(wynik, bladSieci);
+});
+
+// ---------- Wszyscy tam! ----------
+(function () {
+  var s = $("tamPole"), cx = 160, cy = 142, R = 120;
+  svg(s, "path", { d:"M" + (cx - R - 14) + " " + cy + " A " + (R + 14) + " " + (R + 14) + " 0 0 1 " + (cx + R + 14) + " " + cy + " Z", fill:"#e8730c" });
+  svg(s, "path", { d:"M" + (cx - 70) + " " + cy + " A 70 70 0 0 1 " + (cx + 70) + " " + cy, fill:"none", stroke:"#c95f06", "stroke-width":3 });
+  var t1 = svg(s, "text", { x:16, y:cy - 6, fill:"#fff", "font-size":15, "font-weight":700 }); t1.textContent = "⬅️ lewo";
+  var t2 = svg(s, "text", { x:304, y:cy - 6, fill:"#fff", "font-size":15, "font-weight":700, "text-anchor":"end" }); t2.textContent = "prawo ➡️";
+  var t3 = svg(s, "text", { x:cx, y:cy - 46, fill:"#fff", "font-size":15, "font-weight":700, "text-anchor":"middle" }); t3.textContent = "⬆️ przed dynią";
+  var znacznik = svg(s, "circle", { cx:cx, cy:cy - R, r:12, fill:"#fff", stroke:"#000", "stroke-width":3, visibility:"hidden" });
+  s.addEventListener("pointerdown", function (e) {
+    var r = s.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width * 320, y = (e.clientY - r.top) / r.height * 150;
+    var phi = Math.atan2(x - cx, Math.max(1, cy - y)) * 180 / Math.PI;
+    phi = Math.max(-120, Math.min(120, Math.round(phi)));
+    var a = phi * Math.PI / 180;
+    znacznik.setAttribute("cx", cx + R * Math.sin(a)); znacznik.setAttribute("cy", cy - R * Math.cos(a)); znacznik.setAttribute("visibility", "visible");
+    efekt("tam", 0, phi);
+  });
+})();
+
+// ---------- Pacynka ----------
+var padCz = null, padZajety = false, padOst = 0, padStart = null;
+function padWyslij() {
+  if (padZajety || !padCz) return;
+  var teraz = Date.now();
+  if (teraz - padOst < 100) { setTimeout(padWyslij, 100 - (teraz - padOst)); return; }
+  var p = padCz; padCz = null; padZajety = true; padOst = teraz;
+  api("/api/pad", p).then(function (j) { if (j && j.ok === false) wynik(j); }, function () { padCz = null; })   // po błędzie bez starego polecenia
+    .then(function () { padZajety = false; padWyslij(); });
+}
+(function () {
+  var pad = $("pad"), kr = $("padKropka");
+  function pos(e) {
+    var r = pad.getBoundingClientRect();
+    var x = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width) * 2 - 1));
+    var y = Math.max(-1, Math.min(1, 1 - ((e.clientY - r.top) / r.height) * 2));
+    kr.style.left = ((x + 1) * 50) + "%"; kr.style.top = ((1 - y) * 50) + "%";
+    return { x:Math.round(x * 100), y:Math.round(y * 100) };
+  }
+  pad.addEventListener("pointerdown", function (e) {
+    pad.setPointerCapture && pad.setPointerCapture(e.pointerId);
+    padStart = { x:e.clientX, y:e.clientY, t:Date.now(), ruch:false };
+    padCz = pos(e); padWyslij();
+  });
+  pad.addEventListener("pointermove", function (e) {
+    if (!padStart) return;
+    if (Math.abs(e.clientX - padStart.x) + Math.abs(e.clientY - padStart.y) > 12) padStart.ruch = true;
+    padCz = pos(e); padWyslij();
+  });
+  function koniec() {
+    if (padStart && !padStart.ruch && Date.now() - padStart.t < 300) api("/api/mrug").then(wynik);
+    padStart = null;
+  }
+  pad.addEventListener("pointerup", koniec);
+  pad.addEventListener("pointercancel", function () { padStart = null; });
+  var pw = $("powieki"), mr = $("mruzenie"), tPow = 0;
+  function powieki() {
+    $("powWart").textContent = pw.value + " %"; $("mruWart").textContent = mr.value;
+    clearTimeout(tPow);
+    var g = +pw.value, d = Math.max(0, g - +mr.value);
+    tPow = setTimeout(function () { api("/api/powieki", { g:g, d:d }).then(wynik, function () {}); }, 80);
+  }
+  pw.addEventListener("input", powieki); mr.addEventListener("input", powieki);
+})();
+
+// ---------- Pianino ----------
+var klawisze = [];
+function budujPianino() {
+  var s = $("pianino"); while (s.firstChild) s.removeChild(s.firstChild);
+  svg(s, "path", { d:"M8 150 A 152 140 0 0 1 312 150 Z", fill:"#e8730c" });
+  klawisze = [];
+  for (var i = 0; i < stan.n; i++) {
+    var a = Math.max(-100, Math.min(100, stan.az[i])) * 0.8 * Math.PI / 180, x = 160 + 122 * Math.sin(a), y = 150 - 120 * Math.cos(a);
+    var c = svg(s, "circle", { cx:x, cy:y, r:16, fill:stan.wyl[i] ? "#6d6d6d" : "#fbf7ef", stroke:"#5a2c00", "stroke-width":3 });
+    var tx = svg(s, "text", { x:x, y:y + 5, "text-anchor":"middle", "font-size":14, "font-weight":700, fill:"#5a2c00" }); tx.textContent = i + 1;
+    klawisze.push({ nr:i, x:x, y:y, el:c });
+  }
+  if (stan.duze) {
+    var d = svg(s, "circle", { cx:160, cy:104, r:22, fill:"#fbf7ef", stroke:"#5a2c00", "stroke-width":3 });
+    svg(s, "circle", { cx:160, cy:104, r:9, fill:"#1b1b1b" });
+    klawisze.push({ nr:-1, x:160, y:104, el:d });
+  }
+}
+(function () {
+  var s = $("pianino"), ost = null, ostX = 0, ostT = 0, wcis = false;
+  function traf(e) {
+    var r = s.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 320, y = (e.clientY - r.top) / r.height * 160;
+    var best = null, bd = 30 * 30;
+    for (var i = 0; i < klawisze.length; i++) { var dx = klawisze[i].x - x, dy = klawisze[i].y - y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = klawisze[i]; } }
+    return { k:best, x:x };
+  }
+  function graj(k, kier) {
+    if (Date.now() - ostT < 60) return;
+    ostT = Date.now();
+    k.el.setAttribute("fill", "#ffd28a");
+    setTimeout(function () { k.el.setAttribute("fill", (k.nr >= 0 && stan.wyl[k.nr]) ? "#6d6d6d" : "#fbf7ef"); }, 250);
+    api("/api/oko", { nr:k.nr, k:kier }).then(function (j) { if (j && j.ok === false) wynik(j); });
+  }
+  s.addEventListener("pointerdown", function (e) {
+    s.setPointerCapture && s.setPointerCapture(e.pointerId);
+    wcis = true; var h = traf(e); ost = h.k; ostX = h.x;
+    if (h.k) graj(h.k, 1);
+  });
+  s.addEventListener("pointermove", function (e) {
+    if (!wcis) return;
+    var h = traf(e);
+    if (h.k && h.k !== ost) { graj(h.k, h.x >= ostX ? 1 : -1); ost = h.k; }
+    ostX = h.x;
+  });
+  s.addEventListener("pointerup", function () { wcis = false; ost = null; });
+  s.addEventListener("pointercancel", function () { wcis = false; ost = null; });
+})();
+
+// ---------- Magik ----------
+(function () {
+  var ekr = $("magikEkran"), str = $("strefy"), tZeg = 0, tTrzym = 0;
+  var MAPA = [["lewo"], ["wprost"], ["prawo"], ["zez"], ["bu", 1], ["fala", 2], ["mrug"], ["zasypianie"], ["budzenie"]];
+  function zegar() {
+    var d = new Date(), h = d.getHours(), m = d.getMinutes();
+    $("zegar").textContent = (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
+    var dni = ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"];
+    $("zegarData").textContent = dni[d.getDay()] + ", " + d.getDate() + "." + (d.getMonth() + 1);
+  }
+  for (var i = 0; i < 9; i++) {
+    (function (i) {
+      var z = document.createElement("div"), t0 = 0;
+      z.addEventListener("pointerdown", function (e) {
+        e.preventDefault(); t0 = Date.now();
+        if (i === 0) tTrzym = setTimeout(function () { ekr.className = ""; clearInterval(tZeg); t0 = 0; }, 2000);
+      });
+      z.addEventListener("pointerup", function () {
+        clearTimeout(tTrzym);
+        if (!t0 || Date.now() - t0 > 700) return;
+        var m = MAPA[i];
+        api("/api/efekt", { n:m[0], w:m[1] || 0 }).then(function () { odswiezZaraz(); }, function () {});   // bez komunikatów: nic nie zdradza
+      });
+      z.addEventListener("pointercancel", function () { clearTimeout(tTrzym); t0 = 0; });
+      str.appendChild(z);
+    })(i);
+  }
+  $("magikStart").addEventListener("click", function () {
+    zegar(); tZeg = setInterval(zegar, 5000);
+    ekr.className = "wid"; $("magikWyj").style.opacity = "1";
+    setTimeout(function () { $("magikWyj").style.opacity = "0"; }, 2500);
+  });
+})();
+
+// ---------- Gry ----------
+$("wyrPom").addEventListener("click", function () { $("wyrLeg").classList.toggle("ukryty"); });
+$("buntPokaz").addEventListener("click", function () {
+  if (!stan || stan.bunt < 0) { toast("Najpierw Start"); return; }
+  buntPokazLok = true; ustawCele();
+  efekt("pokaz");
+});
+var refStan = 0;   // 0 nic, 1 czeka na otwarcie, 2 wynik
+$("refStart").addEventListener("click", function () {
+  efekt("refleks").then(function (j) {
+    if (j && j.ok === false) return;
+    refStan = 1; refAktywny = true; tOtwLok = null;
+    $("refStart").classList.add("ukryty"); $("refPole").classList.remove("ukryty"); $("refPole").classList.remove("otw");
+    $("refPole").innerHTML = "👀 Patrz na dynię!<br>Stuknij tutaj, gdy oko się otworzy";
+  });
+});
+$("refPole").addEventListener("pointerdown", function (e) {
+  e.preventDefault();
+  var p = $("refPole"), teraz = performance.now();
+  if (refStan === 2) { refStan = 0; refAktywny = false; p.classList.add("ukryty"); $("refStart").classList.remove("ukryty"); return; }
+  if (refStan !== 1) return;
+  refStan = 2;
+  if (tOtwLok === null || teraz < tOtwLok) {
+    p.innerHTML = "😅 Falstart!<br><small>stuknij, żeby zamknąć</small>";
+    efekt("automat");
+    return;
+  }
+  var ms = Math.round(teraz - tOtwLok);
+  p.classList.add("otw");
+  p.innerHTML = "<span class='duzy'>" + ms + " ms</span><br><small>stuknij, żeby zamknąć</small>";
+  api("/api/refleks", { ms:ms }).then(function (j) { if (j && j.rekord) $("refRekord").textContent = "rekord dnia: " + j.rekord + " ms" + (j.rekord === ms ? " 🏆" : ""); });
+});
+$("troll").addEventListener("change", function () { api("/api/troll", { on:$("troll").checked ? 1 : 0 }).then(wynik); });
+
+// ---------- Rodzic ----------
+var rStan = null;
+function wyloguj(cicho) {
+  if (!cicho && token) api("/api/rodzic/wyloguj");
+  token = null; try { sessionStorage.removeItem("dyniaToken"); } catch (e) {}
+  $("rodzPanel").classList.add("ukryty"); $("rodzLog").classList.remove("ukryty");
+  zastosujUprawnienia();
+}
+$("pinOk").addEventListener("click", function () {
+  api("/api/rodzic/pin", { pin:$("pin").value }).then(function (j) {
+    $("pin").value = "";
+    if (!j.ok) { toast("🙅 " + (j.powod || "zły PIN")); return; }
+    token = j.t; try { sessionStorage.setItem("dyniaToken", token); } catch (e) {}
+    $("rodzLog").classList.add("ukryty"); $("rodzPanel").classList.remove("ukryty");
+    zastosujUprawnienia(); rodzicOdswiez();
+  });
+});
+function godz(s) { var h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60); return h + " h " + m + " min"; }
+function rodzicOdswiez() {
+  return api("/api/rodzic/stan").then(function (j) {
+    if (!j || !j.ok) { if (!j || j._kod !== 0) wynik(j); return; }
+    rStan = j;
+    $("rWersja").textContent = j.wersja;
+    var w = [["Tryb", j.tryb], ["Czas pracy (łącznie)", godz(j.czasPracy)], ["Od startu", godz(j.odStartu)], ["Starty", j.starty],
+      ["Ostatni start", j.przyczyna], ["Ruchy", j.ruchy], ["Zapisy NVS od startu", j.zapisy], ["Odrzucone kroki (pełna kolejka)", j.odrzucone], ["Wolna pamięć (min.)", Math.round(j.heap / 1024) + " KB (" + Math.round(j.heapMin / 1024) + ")"], ["Telefony", j.klienci]];
+    var h = ""; for (var i = 0; i < w.length; i++) h += "<tr><td>" + w[i][0] + "</td><td>" + w[i][1] + "</td></tr>";
+    $("rDz").innerHTML = h;
+    $("rWystawa").checked = j.ust.wystawa; $("rMax").textContent = j.ust.max; $("rN").textContent = j.ust.nNvs; $("rDuze").checked = j.ust.duzeNvs;
+    var sel = $("kSel"), wyb = sel.value, o = "";
+    for (var k = 0; k < j.kan.length; k++) {
+      var c = j.kan[k];
+      if (c.typ === "oko") o += "<option value='" + c.ch + ":a'>Oko " + (c.nap + 1) + " (kanał " + c.ch + ")</option>";
+      else if (c.typ === "doX") o += "<option value='" + c.ch + ":a'>Duże oko lewo–prawo – środek</option>";
+      else if (c.typ === "doY") o += "<option value='" + c.ch + ":a'>Duże oko góra–dół – środek</option>";
+      else { var nz = c.typ === "powG" ? "Powieka górna" : "Powieka dolna";
+        o += "<option value='" + c.ch + ":a'>" + nz + " – zamknięta</option><option value='" + c.ch + ":b'>" + nz + " – otwarta</option>"; }
+    }
+    if (sel.getAttribute("data-o") !== o) { sel.innerHTML = o; sel.setAttribute("data-o", o); if (wyb) sel.value = wyb; }   // bez przebudowy przy odświeżaniu
+    if (!sel.value && sel.options.length) sel.selectedIndex = 0;                      // domyślnie kanał 0
+    sel.classList.toggle("ukryty", sel.options.length < 2);
+    pokazKal();
+  }).catch(function () {});
+}
+function kalWybrany() {
+  var v = $("kSel").value; if (!v || !rStan) return null;
+  var ch = +v.split(":")[0], p = v.split(":")[1];
+  for (var i = 0; i < rStan.kan.length; i++) if (rStan.kan[i].ch === ch) return { c:rStan.kan[i], p:p };
+  return null;
+}
+// ---- kreator kalibracji małego oka: krok 0 (start) … 5 (test i zapis); widać tylko kontrolki bieżącego kroku ----
+var krok = 0;
+var KROKI = [
+  null,
+  { t:"Ustaw piłkę prosto – patrz na dynię od przodu. Strzałki obracają piłkę.", g:"Zapisz środek", k:"s", strz:true },
+  { t:"Obróć piłkę do oporu w JEDNĄ stronę (którąkolwiek), potem cofnij o jeden drobny krok.", g:"Zapisz kraniec 1", k:"1", strz:true },
+  { t:"Teraz do oporu w DRUGĄ stronę i cofnij o jeden drobny krok.", g:"Zapisz kraniec 2", k:"2", strz:true },
+  { t:"Piłka jedzie na kraniec 1. Stań przed dynią: w którą TWOJĄ stronę patrzy piłka?", kier:true },
+  { t:"Gotowe! Piłka pokazuje zakres: środek → twoja lewa → twoja prawa → środek. Jeśli wszystko się zgadza – Zapisz.", g:"💾 Zapisz", strz:true, po:true }
+];
+function pokazKrok(w) {
+  var oko = w.c.typ === "oko", d = KROKI[krok];
+  $("krokNr").textContent = "Oko " + (w.c.nap + 1) + " · kanał " + w.c.ch + (krok ? " · krok " + krok + " z 5" : "");
+  $("krokTxt").textContent = krok ? d.t : "Zapisane: lewy " + w.c.l + " · środek " + w.c.a + " · prawy " + w.c.r + " µs. Kalibracja zajmie minutę.";
+  $("kImpBlok").classList.toggle("ukryty", !krok);
+  $("kImp").textContent = w.c.cel >= 0 ? w.c.cel : w.c.us;
+  $("kStrz").classList.toggle("ukryty", !(d && d.strz));
+  $("kKier").classList.toggle("ukryty", !(d && d.kier));
+  $("kGlowny").classList.toggle("ukryty", !!(d && d.kier));
+  $("kGlowny").innerHTML = krok ? d.g : "Zacznij kalibrację";
+  $("kWstecz").classList.toggle("ukryty", !krok);
+  $("kPowtorz").classList.toggle("ukryty", krok !== 5);
+  // kroki 1–3: strzałki to tylko obrót serwa (◀ mniej µs, ▶ więcej µs); po kroku 4 znamy stronę obserwatora
+  var po = d && d.po;
+  $("kStrzL").innerHTML = po ? "◀<small>twoja lewa</small>" : "◀"; $("kStrzP").innerHTML = po ? "▶<small>twoja prawa</small>" : "▶";
+  $("kDrobL").textContent = "◀ drobno"; $("kDrobP").textContent = "drobno ▶";
+  if (!oko) $("kWiecej").open = true;
+}
+function pokazKal() {
+  var w = kalWybrany(); if (!w) return;
+  var oko = w.c.typ === "oko";
+  $("kNazwa").textContent = oko ? "Oko " + (w.c.nap + 1) + " · kanał " + w.c.ch : $("kSel").options[$("kSel").selectedIndex].text + " · kanał " + w.c.ch;
+  $("kOko").classList.toggle("ukryty", !oko); $("kNoweBlok").classList.toggle("ukryty", !oko);
+  $("kDuzeInfo").classList.toggle("ukryty", oko); $("kOdNowa").classList.toggle("ukryty", !oko);
+  $("kInny").classList.toggle("ukryty", oko); $("kTrzy").classList.toggle("ukryty", !oko);
+  if (oko) {
+    $("kL").textContent = w.c.l; $("kA").textContent = w.c.a; $("kR").textContent = w.c.r;
+    pokazKrok(w);
+  }
+  $("kalWart").textContent = (w.p === "b" ? w.c.b : w.c.a);
+  $("azBlok").classList.toggle("ukryty", w.c.typ !== "oko");
+  $("azWart").textContent = w.c.typ === "oko" ? "azymut " + w.c.az + "°" : "";
+  $("kWyl").checked = w.c.wyl;
+  $("kZnak").classList.toggle("ukryty", w.c.typ.indexOf("pow") === 0);
+}
+$("kSel").addEventListener("change", function () {
+  var w = kalWybrany(); if (!w) return;
+  pokazKal();
+  api("/api/rodzic/wybierz", { ch:w.c.ch, p:w.p }).then(wynik);
+});
+document.addEventListener("click", function (e) {
+  var b = e.target.closest ? e.target.closest("button") : null; if (!b) return;
+  var w;
+  if (b.hasAttribute("data-raw") && (w = kalWybrany())) {
+    // krok 5: kierunek obserwatora (p=j: + = w prawo patrząc na dynię); kroki 1–3: surowy impuls (p=u)
+    api("/api/rodzic/kal", { ch:w.c.ch, p:krok === 5 ? "j" : "u", d:b.getAttribute("data-raw") }).then(wynik, bladSieci).then(rodzicOdswiez);
+  } else if (b.hasAttribute("data-lewa") && (w = kalWybrany())) {
+    kreator(w, "k", +b.getAttribute("data-lewa"), function () { krok = 5; api("/api/rodzic/test", { ch:w.c.ch }); });
+  } else if (b.hasAttribute("data-kd") && (w = kalWybrany())) {
+    api("/api/rodzic/kal", { ch:w.c.ch, p:w.p, d:b.getAttribute("data-kd") }).then(wynik).then(rodzicOdswiez);
+  } else if (b.hasAttribute("data-azd") && (w = kalWybrany())) {
+    api("/api/rodzic/kal", { ch:w.c.ch, p:"q", d:b.getAttribute("data-azd") }).then(wynik).then(rodzicOdswiez);
+  } else if (b.hasAttribute("data-ust") && rStan) {
+    var k = b.getAttribute("data-ust"), d = +b.getAttribute("data-d"), p = {};
+    if (k === "max") p.max = rStan.ust.max + d; else p.n = rStan.ust.nNvs + d;
+    api("/api/rodzic/ustaw", p).then(wynik).then(rodzicOdswiez);
+  }
+});
+$("kZnak").addEventListener("click", function () { var w = kalWybrany(); if (w) api("/api/rodzic/kal", { ch:w.c.ch, p:"z", v:-w.c.z }).then(function (j) { wynik(j); if (j && j.ok && w.c.typ === "oko") toast("↔️ Krańce zamienione"); }).then(rodzicOdswiez); });
+function kreator(w, k, lewa, dalej) {
+  api("/api/rodzic/kreator", { ch:w.c.ch, krok:k, lewa:lewa }).then(function (j) {
+    if (j && j.ok) { dalej(j); rodzicOdswiez(); }
+    else wynik(j);
+  }, bladSieci);
+}
+$("kGlowny").addEventListener("click", function () {
+  var w = kalWybrany(); if (!w) return;
+  if (krok === 0) { api("/api/rodzic/wybierz", { ch:w.c.ch, p:"a" }).then(function (j) { wynik(j); if (j && j.ok) { krok = 1; rodzicOdswiez(); } }, bladSieci); return; }
+  if (krok === 5) {
+    api("/api/rodzic/zapisz").then(function (j) { wynik(j); if (j && j.ok) { toast("💾 Zapisane – oko skalibrowane"); krok = 0; api("/api/rodzic/wznow").then(rodzicOdswiez); } }, bladSieci);
+    return;
+  }
+  var d = KROKI[krok];
+  kreator(w, d.k, 0, function () {
+    krok++;
+    if (krok === 4) kreator(w, "p", 0, function () {});   // piłka płynnie na kraniec 1
+  });
+});
+$("kWstecz").addEventListener("click", function () { if (krok > 0) { krok--; var w = kalWybrany(); if (w) pokazKrok(w); } });
+$("kPowtorz").addEventListener("click", function () { var w = kalWybrany(); if (w) api("/api/rodzic/test", { ch:w.c.ch }).then(wynik, bladSieci); });
+$("kOdNowa").addEventListener("click", function () { krok = 0; $("kWiecej").open = false; var w = kalWybrany(); if (w) pokazKrok(w); window.scrollTo(0, 0); });
+$("kTest").addEventListener("click", function () { var w = kalWybrany(); if (w) api("/api/rodzic/test", { ch:w.c.ch }).then(wynik).then(rodzicOdswiez); });
+$("kNowe").addEventListener("click", function () {
+  var w = kalWybrany(); if (!w) return;
+  if (!potwierdz("n", "⚠️ Dźwigienka zdjęta? Serwo skoczy na 1500 µs")) return;
+  api("/api/rodzic/nowe", { ch:w.c.ch }).then(function (j) { wynik(j); if (j && j.ok) { toast("🆕 1500 µs – załóż dźwigienkę na środku i ustaw piłkę prosto"); krok = 1; $("kWiecej").open = false; window.scrollTo(0, 0); } }).then(rodzicOdswiez);
+});
+setInterval(function () {                           // panel otwarty: bieżący impuls i wartości co 1 s
+  if (token && !document.hidden && $("z-rodzic").classList.contains("wid") && !$("rodzPanel").classList.contains("ukryty")) rodzicOdswiez();
+}, 1000);
+$("kWyl").addEventListener("change", function () { var w = kalWybrany(); if (w) api("/api/rodzic/wylacz", { nr:w.c.nap, v:$("kWyl").checked ? 1 : 0 }).then(wynik).then(rodzicOdswiez); });
+$("kZapisz").addEventListener("click", function () { api("/api/rodzic/zapisz").then(function (j) { wynik(j); if (j.ok) toast("💾 Zapisane"); }); });
+$("rWystawa").addEventListener("change", function () { api("/api/rodzic/ustaw", { wystawa:$("rWystawa").checked ? 1 : 0 }).then(wynik).then(rodzicOdswiez); });
+$("rDuze").addEventListener("change", function () { api("/api/rodzic/ustaw", { duze:$("rDuze").checked ? 1 : 0 }).then(function (j) { wynik(j); toast(SYM ? "Zmienione" : "Zadziała po restarcie"); }).then(rodzicOdswiez); });
+$("rOdswiez").addEventListener("click", rodzicOdswiez);
+$("rParkuj").addEventListener("click", function () { api("/api/rodzic/parkuj").then(wynik); });
+$("rWznow").addEventListener("click", function () { api("/api/rodzic/wznow").then(wynik); });
+var potwId = null, tPotw = 0;
+function potwierdz(id, tekst) {                      // drugie stuknięcie w 3 s (confirm() bywa zablokowane w oknie logowania iOS)
+  if (potwId === id && Date.now() - tPotw < 3000) { potwId = null; return true; }
+  potwId = id; tPotw = Date.now(); toast(tekst + " – stuknij jeszcze raz"); return false;
+}
+$("rRestart").addEventListener("click", function () { if (potwierdz("r", "🔄 Restart (najpierw parkowanie)")) api("/api/rodzic/restart").then(function () { toast("🔄 Parkowanie i restart…"); }); });
+$("rZeruj").addEventListener("click", function () { if (potwierdz("z", "🧹 Zerowanie dziennika")) api("/api/rodzic/zeruj").then(wynik).then(rodzicOdswiez); });
+$("rWyloguj").addEventListener("click", function () { wyloguj(false); });
+
+// ---------- start ----------
+document.addEventListener("gesturestart", function (e) { e.preventDefault(); });   // bez powiększania szczypaniem (iOS)
+document.addEventListener("visibilitychange", function () { if (!document.hidden) odswiezZaraz(); });
+if (/[?&]cna=1/.test(location.search)) $("baner").style.display = "block";
+if (SYM) $("sym").style.display = "block";
+function zaladujKonfig() { api("/api/konfig").then(function (k) { konfig = k; zastosujUprawnienia(); }, function () { setTimeout(zaladujKonfig, 2000); }); }
+zaladujKonfig();
+if (token) { $("rodzLog").classList.add("ukryty"); $("rodzPanel").classList.remove("ukryty"); }
+poll();
+requestAnimationFrame(klatka);
+
+// =====================================================================================
+// SYMULATOR: uproszczona kopia silnika z ESP (kolejki kroków, limit serw, kaskady, efekty).
+// Działa tylko w trybie symulacji; liczby jak w firmware (dynia.h), ruch bez stycznych Hermite'a.
+// =====================================================================================
+var sim = SYM ? (function () {
+  var NM = 16, G = 16, PG = 17, PD = 18, NN = 19, P = -2, KROK = 20, KOLEJKA = 12;   // P = obie powieki naraz
+  var nPar = /[?&]n=(\d+)/.exec(location.search);
+  var U = { n:nPar ? Math.max(1, Math.min(16, +nPar[1])) : 10, max:4, duze:/[?&]duze=1/.test(location.search), wystawa:false };
+  var nap = [], az = [], tryb = "rozruch", ef = null, emocja = null, tKoniecEmocji = 0, troll = false;
+  var tOstSpocz = 0, tMrug = 0, tBuKoniec = 0, tOstEfektu = 0, seq = 0, tOstStart = 0, ostBunt = -1, buntJawny = false, rekord = 0, tOtw = 0;
+  var ruchy = 0, start = Date.now(), tokenS = null;
+  var kal = {};
+  var NASTR = { spoczynek:[75, 75, 1500, 6000, 25, 1, 3000, 7000, 5000, 0], senny:[30, 85, 3000, 8000, 10, 2, 1500, 3500, 6000, 0], ciekawski:[95, 95, 500, 1500, 25, 1, 3000, 6000, 1500, 0],
+    podejrzliwy:[50, 40, 1200, 2500, 20, 3.5, 6000, 10000, 2500, 1], przestraszony:[100, 100, 300, 800, 15, 0.8, 1500, 3000, 400, 0], znudzony:[50, 80, 2500, 6000, 8, 1.8, 2500, 5000, 4000, 0],
+    zlosliwy:[70, 30, 800, 2000, 20, 1.2, 4000, 8000, 1500, 0] };
+  var BEZP = { fala:1, tam:1, zez:1, rozbiegane:0, mucha:1, buntownik:1, klotnia:1, pianino:1, pacynka:0, bu:1, zdziwienie:1, przewracanie:1, zasypianie:0,
+    budzenie:1, hipnoza:0, szef:1, tak:1, nie:1, niewiem:1, mrug:1, refleks:1, babajaga:0, awaria:0 };
+  function R(a, b) { return a + Math.floor(Math.random() * (b - a)); }
+  function sgn(v) { return v > 0 ? 1 : (v < 0 ? -1 : 0); }
+  function ogr(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function nastr() { var a = NASTR[emocja || "spoczynek"]; return { roz:a[0], rozD:a[1], fMin:a[2], fMax:a[3], zak:a[4], tempo:a[5], mMin:a[6], mMax:a[7], odst:a[8], skan:a[9] }; }
+  function init() {
+    nap = []; az = [];
+    if (U.duze) { U.n = Math.min(U.n, 12); U.max = Math.max(U.max, 2); }
+    for (var i = 0; i < NN; i++) nap.push({ typ:i < NM ? "m" : (i === G ? "g" : "p"), koszt:i === G ? 2 : 1, uz:i < NM ? i < U.n : U.duze, wyl:false,
+      p:[i > G ? 100 : 0, 0], s:[0, 0], c:[0, 0], t0:0, T:1, ruch:false, czeka:null, seq:0, q:[], czekDo:0, ost:[i > G ? 100 : 0, 0], tNast:0 });
+    for (var j = 0; j < NM; j++) az.push(U.n <= 1 ? 0 : -100 + 200 * j / (U.n - 1));
+    for (var k = 0; k < NN; k++) if (akt(k)) { var c = k > G ? 75 : 0; ruch(k, c, 0, czas(k, 25, 0, 2.5)); }
+    tryb = "rozruch"; ef = null;
+  }
+  function akt(i) { if (i === P) return akt(PG) || akt(PD); return nap[i] && nap[i].uz && !nap[i].wyl; }
+  function czas(i, d0, d1, tempo) {
+    var d = Math.max(Math.abs(d0), Math.abs(d1));
+    if (nap[i].typ === "p") return Math.max((80 + 2 * d) * tempo, 1.5 * d / 1000 * 1000, 60);
+    return Math.max((120 + 6 * d) * tempo, 1.5 * d / 200 * 1000, 60);
+  }
+  function ogrC(n, c) { if (n.typ === "m") return [ogr(c[0], -25, 25), 0]; if (n.typ === "g") return [ogr(c[0], -25, 25), ogr(c[1], -15, 15)]; return [ogr(c[0], 0, 100), 0]; }
+  function wstaw(i, e) { if (nap[i].q.length >= KOLEJKA) return false; nap[i].q.push(e); return true; }   // jak ESP: 12 kroków
+  function ruch(i, c0, c1, ms) { if (i === P) { ruch(PG, c0, 0, ms); ruch(PD, c0, 0, ms); return; } if (!akt(i)) return; var c = ogrC(nap[i], [c0, c1]); if (wstaw(i, { r:1, c:c, ms:ms })) nap[i].ost = c; }
+  function ruchKat(i, kat, tempo) { if (!akt(i)) return; var n = nap[i]; ruch(i, kat, n.typ === "g" ? n.ost[1] : 0, czas(i, kat - n.ost[0], 0, tempo)); }
+  function gal(x, y, tempo) { if (!akt(G)) return; var n = nap[G]; ruch(G, x, y, czas(G, x - n.ost[0], y - n.ost[1], tempo)); }
+  function powR(g, d, ms) { if (ms === undefined) { ms = d; d = g; } ruch(PG, g, 0, ms); ruch(PD, d, 0, ms); }
+  function powSpocz(ms) { var n = nastr(); powR(n.roz, n.rozD, ms); }
+  function postoj(i, ms) { if (i === P) { postoj(PG, ms); postoj(PD, ms); return; } if (akt(i)) wstaw(i, { r:0, ms:ms }); }
+  function czekajDo(i, t) { if (i === P) { czekajDo(PG, t); czekajDo(PD, t); return; } if (akt(i)) wstaw(i, { r:2, ms:t }); }
+  function wyczysc(i) { var n = nap[i]; n.q = []; n.czekDo = 0; n.czeka = null; n.ost = n.ruch ? n.c.slice() : n.p.slice(); }
+  function wyczyscW() { for (var i = 0; i < NN; i++) if (nap[i].uz) wyczysc(i); }
+  function natych(i, c0, c1, tempo) {
+    if (i === P) { natych(PG, c0, 0, tempo); natych(PD, c0, 0, tempo); return; }
+    if (!akt(i)) return; var n = nap[i]; n.q = []; n.czekDo = 0;
+    var c = ogrC(n, [c0, c1]); n.ost = c;
+    var ms = czas(i, c[0] - n.p[0], c[1] - n.p[1], tempo);
+    if (n.ruch) { n.s = n.p.slice(); n.c = c; n.t0 = Date.now(); n.T = ms; }
+    else { if (!n.czeka) n.seq = ++seq; n.czeka = { c:c, ms:ms }; }
+  }
+  function wolny(i) { if (i === P) return wolny(PG) && wolny(PD); var n = nap[i]; return !n.uz || (!n.ruch && !n.czeka && !n.q.length && !n.czekDo); }
+  function wszWolne() { for (var i = 0; i < NN; i++) if (!wolny(i)) return false; return true; }
+  function maleWolne() { for (var i = 0; i < U.n; i++) if (!wolny(i)) return false; return true; }
+  function wRuchu() { var w = 0; for (var i = 0; i < NN; i++) if (nap[i].ruch) w += nap[i].koszt; return w; }
+  function budzet(k) { var w = wRuchu(); return w === 0 || w + k <= U.max; }
+  function ktosCzeka() { for (var i = 0; i < NN; i++) if (nap[i].uz && nap[i].czeka) return true; return false; }
+  function mrugnij() { [PG, PD].forEach(function (i) { if (!akt(i)) return; var r = nap[i].ost[0]; wyczysc(i); if (r < 30) r = 75; ruch(i, 0, 0, 110); ruch(i, r, 0, 200); }); }
+  function drzenie(i) { if (!akt(i)) return; var b = nap[i].ost[0]; ruch(i, b + 4, 0, 140); ruch(i, b - 4, 0, 160); ruch(i, b, 0, 140); }
+  function startNap(n, c, ms, t) { n.s = n.p.slice(); n.c = c; n.t0 = t; n.T = Math.max(1, ms); n.ruch = true; }
+  function krokRuchu(t) {
+    var i, n;
+    for (i = 0; i < NN; i++) {
+      n = nap[i]; if (!n.uz || !n.ruch) continue;
+      var u = (t - n.t0) / n.T;
+      if (u < 1) { var s = u * u * (3 - 2 * u); n.p = [n.s[0] + (n.c[0] - n.s[0]) * s, n.s[1] + (n.c[1] - n.s[1]) * s]; continue; }
+      n.p = n.c.slice(); n.ruch = false; ruchy++;
+      if (n.q.length && n.q[0].r === 1) { var k = n.q.shift(); startNap(n, k.c, k.ms, t); }
+    }
+    for (i = 0; i < NN; i++) {
+      n = nap[i]; if (!n.uz || n.ruch || n.czeka) continue;
+      while (true) {
+        if (n.czekDo) { if (t < n.czekDo) break; n.czekDo = 0; }
+        if (!n.q.length) break;
+        var e = n.q.shift();
+        if (e.r === 1) { if (!n.czeka) n.seq = ++seq; n.czeka = { c:e.c, ms:e.ms }; break; }
+        n.czekDo = e.r === 0 ? t + e.ms : e.ms;
+      }
+    }
+    if (t - tOstStart >= 40) {
+      var b = -1;
+      for (i = 0; i < NN; i++) if (nap[i].uz && nap[i].czeka && (b < 0 || nap[i].seq < nap[b].seq)) b = i;
+      if (b >= 0 && budzet(nap[b].koszt)) { n = nap[b]; startNap(n, n.czeka.c, n.czeka.ms, t); n.czeka = null; tOstStart = t; }
+    }
+  }
+  // uczestnicy
+  var uc = [];
+  function zbierz() {
+    uc = []; for (var i = 0; i < U.n; i++) if (akt(i)) uc.push({ n:i, az:az[i] });
+    if (akt(G)) uc.push({ n:G, az:0 });
+    uc.sort(function (a, b) { return a.az - b.az; });
+  }
+  function uloz(f) { var o = uc.slice(); o.sort(function (a, b) { return f(a.az) - f(b.az); }); return o; }
+  function doKier(a, phi) { return ogr(phi - a, -25, 25); }
+  function odwr(a) { return Math.abs(a) < 8 ? (Math.random() < 0.5 ? 20 : -20) : sgn(a) * 20; }
+  function kaskada(o, kat, pocz, odst, tempo, drzyj, trzymaj, tPowr) {
+    var p = 0;
+    for (var r = 0; r < o.length; r++) {
+      var n = o[r].n; if (n === G) continue;
+      postoj(n, pocz + Math.floor(p / 2) * odst); ruchKat(n, kat(o[r].az), tempo);
+      if (drzyj) drzenie(n);
+      if (trzymaj) { postoj(n, trzymaj); ruchKat(n, 0, tPowr); }
+      p++;
+    }
+  }
+  function zez(a) { return Math.abs(a) < 8 ? 0 : -sgn(a) * 22; }
+  function rozb(a) { return Math.abs(a) < 8 ? (Math.random() < 0.5 ? 25 : -25) : sgn(a) * 25; }
+  function zakoncz(wym) {
+    var t = Date.now();
+    if (wym) { wyczyscW(); for (var i = 0; i < NN; i++) if (akt(i)) natych(i, i === PG ? nastr().roz : (i === PD ? nastr().rozD : 0), 0, 1.5); }
+    ef = null; tryb = "automat";
+    for (var j = 0; j < NN; j++) nap[j].tNast = t + R(1000, 3000);
+  }
+  function uspiona() { return ef && ef.id === "zasypianie" && ef.faza === 1; }
+  function fala(w, t0) {
+    var A = w === 1 ? -20 : 20, M = uc.length;
+    for (var r = 0; r < M; r++) {
+      var n = uc[A > 0 ? r : M - 1 - r].n;
+      postoj(n, r * 140); ruchKat(n, A, 1); postoj(n, 250); ruchKat(n, 0, 1);
+      if (w === 2) { czekajDo(n, t0 + M * 140 + 900 + (M - 1 - r) * 140); ruchKat(n, -A, 1); postoj(n, 250); ruchKat(n, 0, 1); }
+    }
+  }
+  function przewracanie() {
+    if (akt(G)) { powR(50, 80, 300); gal(-18, 2, 1.5); ruch(G, -13, 11, 260); ruch(G, 0, 15, 260); ruch(G, 13, 11, 260); ruch(G, 18, 2, 260); postoj(G, 300); gal(0, 0, 1.5);
+      postoj(P, 1700); powR(35, 60, 600); powSpocz(500); }
+    else { var o = uloz(function (a) { return a; }); for (var r = 0; r < o.length; r++) { var n = o[r].n; postoj(n, r * 100); ruchKat(n, 25, 3); postoj(n, 600); ruchKat(n, 0, 2.5); } }
+  }
+  function drzMalych() { for (var r = 0; r < uc.length; r++) if (uc[r].n !== G) { postoj(uc[r].n, r * 60); drzenie(uc[r].n); } }
+  function startEf(id, w, k) {
+    var t = Date.now(); wyczyscW(); emocja = null; zbierz();
+    ef = { id:id, faza:0, w:w, k:k, t0:t, tF:t, tMax:15000, tNast:0, a:-1, f:0, fCel:0, fV:0, kier:1, licznik:0, pokaz:false };
+    tryb = (id === "pianino" || id === "pacynka") ? "reczny" : "efekt";
+    if (tryb === "reczny") ef.tMax = 0;
+    var d = akt(G), o, r, n, p;
+    switch (id) {
+      case "fala": fala(w, t); break;
+      case "tam": o = uloz(function (a) { return Math.abs(a - k); });
+        if (d) { gal(ogr(k, -25, 25), 0, 0.9); postoj(G, 3000); gal(0, 0, 1.5); }
+        powR(95, 200); postoj(P, 3000); powSpocz(400);
+        kaskada(o, function (a) { return doKier(a, k); }, d ? 250 : 0, 120, 0.9, false, 3000, 1.5); ef.tMax = 10000; break;
+      case "zez": o = uloz(function (a) { return -Math.abs(a); }); powR(100, 200); gal(0, 0, 1); p = 0;
+        for (r = 0; r < o.length; r++) { n = o[r].n; if (n === G) continue; postoj(n, Math.floor(p / 2) * 120); ruchKat(n, zez(o[r].az), 1); czekajDo(n, t + 1800 + Math.floor(U.n / 2) * 120); ruchKat(n, 0, 1.2); p++; }
+        postoj(P, 2000); powSpocz(400); break;
+      case "rozbiegane": case "awaria": powR(100, 150); ef.tMax = 7000; break;
+      case "mucha": ef.kier = Math.random() < 0.5 ? 1 : -1; ef.f = -150 * ef.kier; ef.fCel = R(-60, 61); ef.fV = 70; ef.licznik = 5; break;
+      case "buntownik": var dir = Math.random() < 0.5 ? 1 : -1, male = uc.filter(function (x) { return x.n !== G; });
+        ef.a = male[R(0, male.length)].n; ef.kier = dir; ostBunt = ef.a; buntJawny = false;
+        o = uloz(function (a) { return Math.abs(a - dir * 100); }); p = 0;
+        for (r = 0; r < o.length; r++) { n = o[r].n; if (n === G) { gal(dir * 20, 0, 1); continue; } postoj(n, Math.floor(p / 2) * 120); ruchKat(n, (n === ef.a ? -dir : dir) * 20, 1); p++; }
+        ef.tNast = t + 2500; ef.tMax = 21000; break;
+      case "klotnia": var s = uc.filter(function (x) { return x.n !== G; }), q = R(0, s.length - 1), ii = s[q].n, jj = s[q + 1].n;
+        [ii, jj].forEach(function (n, z) { var dd = z ? -1 : 1; if (z) postoj(n, 150); ruchKat(n, 22 * dd, 1); postoj(n, 700); ruchKat(n, 12 * dd, 1); postoj(n, 200);
+          ruchKat(n, 22 * dd, 1); postoj(n, 600); ruchKat(n, -25 * dd, 0.8); postoj(n, 2000); ruchKat(n, 0, 2); });
+        if (d) { czekajDo(G, t + 2600); gal(ogr((az[ii] + az[jj]) / 2, -25, 25), 0, 1); postoj(G, 1500); gal(0, 0, 1.5); }
+        if (akt(P)) { czekajDo(P, t + 3000); powR(0, 110); powSpocz(200); } ef.tMax = 10000; break;
+      case "bu": if (w === 0 && !uspiona()) { powR(0, 800); gal(0, -8, 2); for (r = 0; r < uc.length; r++) if (uc[r].n !== G) ruchKat(uc[r].n, odwr(uc[r].az), 2); } else ef.faza = 1; break;
+      case "zdziwienie":
+        if (d) { gal(-20, 0, 0.8); gal(12, 0, 0.9); gal(0, 0, 1); postoj(P, 900); powR(0, 110); powR(80, 200); postoj(P, 120); powR(0, 110); powR(80, 200); powR(100, 200); postoj(P, 1000); powSpocz(500); }
+        o = uloz(function (a) { return Math.abs(a); }); p = 0;
+        for (r = 0; r < o.length; r++) { n = o[r].n; if (n === G) continue; var pr = doKier(o[r].az, 0), ob = Math.abs(pr) < 3 ? 20 : pr - sgn(pr) * 20;
+          postoj(n, (d ? 1300 : 0) + Math.floor(p / 2) * 120); ruchKat(n, pr, 1.2); postoj(n, 250); ruchKat(n, ob, 1); postoj(n, 200); ruchKat(n, pr, 0.7); if (!d) drzenie(n); postoj(n, 1500); ruchKat(n, 0, 1.5); p++; }
+        break;
+      case "przewracanie": case "niewiem": przewracanie(); break;
+      case "zasypianie": [[45, 65, 600, 700], [55, 70, 200, 400], [25, 45, 700, 900], [32, 50, 200, 600], [8, 15, 800, 500], [0, 0, 600, 0]].forEach(function (z) { powR(z[0], z[1], z[2]); if (z[3]) postoj(P, z[3]); });
+        gal(0, -10, 3); for (r = 0; r < uc.length; r++) if (uc[r].n !== G) { postoj(uc[r].n, r * 600); ruchKat(uc[r].n, 0, 2.5); } ef.tMax = 210000; break;
+      case "budzenie": var m2 = uc.filter(function (x) { return x.n !== G; }); if (m2.length) { ef.a = m2[R(0, m2.length)].n; ruchKat(ef.a, 15, 2); postoj(ef.a, 800); ruchKat(ef.a, 0, 3); }
+        powR(30, 500); postoj(P, 800); powR(0, 700); break;
+      case "hipnoza": powR(75, 90, 300); kaskada(uloz(function (a) { return -Math.abs(a); }), zez, 0, 150, 2.5, false, 0, 1); if (d) gal(18, 0, 1.5); ef.tMax = 25000; break;
+      case "szef": powR(0, 600); gal(0, 0, 1.5); break;
+      case "tak": if (d) { powR(90, 200); ruch(G, 0, 10, 240); ruch(G, 0, -8, 220); ruch(G, 0, 10, 220); ruch(G, 0, -8, 220); ruch(G, 0, 0, 220); postoj(P, 1300); powSpocz(400); }
+        else kaskada(uloz(function (a) { return Math.abs(a); }), function (a) { return doKier(a, 0); }, 0, 100, 0.9, true, 1500, 1.5); break;
+      case "nie": if (d) { ruch(G, 18, 0, 260); ruch(G, -18, 0, 230); ruch(G, 18, 0, 230); ruch(G, -18, 0, 230); ruch(G, 0, 0, 230); } else fala(2, t); break;
+      case "mrug": if (akt(P)) mrugnij(); else drzMalych(); ef.tMax = 4000; break;
+      case "refleks": powR(0, 500); gal(0, 0, 1.5); for (r = 0; r < uc.length; r++) if (uc[r].n !== G) ruchKat(uc[r].n, odwr(uc[r].az), 2); tOtw = 0; ef.tMax = 25000; break;
+      case "babajaga": powR(0, 600); gal(0, 0, 1.5); for (r = 0; r < uc.length; r++) if (uc[r].n !== G) ruchKat(uc[r].n, 0, 2); ef.tMax = 180000; break;
+    }
+  }
+  function patrze() {
+    var phi = R(-90, 91); wyczyscW();
+    if (akt(P)) { natych(P, 100, 0, 0.5); postoj(P, 2000); powR(0, 400); }
+    if (akt(G)) { gal(R(-20, 21), R(-8, 9), 0.7); postoj(G, 2000); gal(0, 0, 1.5); }
+    kaskada(uloz(function (a) { return Math.abs(a - phi); }), function (a) { return doKier(a, phi); }, 0, 60, 0.7, false, 2000, 1.5);
+    ef.faza = 1;
+  }
+  function nerwowe(amp, tempo, zD) {
+    if (ktosCzeka() || !budzet(1)) return;
+    var x = uc[R(0, uc.length)]; if (!x || !wolny(x.n)) return;
+    if (x.n === G) { if (zD) gal(R(-12, 13), R(-8, 9), tempo); return; }
+    ruchKat(x.n, ogr(nap[x.n].p[0] + R(-amp, amp + 1), -amp, amp), tempo);
+  }
+  function krokEf(t) {
+    var dt = t - ef.t0, dtF = t - ef.tF, r, n;
+    switch (ef.id) {
+      case "rozbiegane": case "awaria":
+        if (ef.faza === 0) { nerwowe(12, 0.7, true);
+          if (dt > (ef.id === "awaria" ? 3000 : 2500)) { wyczyscW(); kaskada(uloz(function (a) { return -Math.abs(a); }), rozb, 0, 60, 0.8, false, 1200, 1.5);
+            if (akt(G)) { gal(22, 0, 0.8); postoj(G, 1200); gal(0, 0, 1.5); } postoj(P, 1500); powSpocz(400); ef.faza = 1; } }
+        else if (wszWolne()) zakoncz(false); break;
+      case "mucha":
+        if (ef.faza === 1) { if (wszWolne()) zakoncz(false); break; }
+        if (t < ef.tNast) break; ef.tNast = t + 100;
+        var kr = ef.fV * 0.1;
+        if (Math.abs(ef.fCel - ef.f) <= kr) { ef.f = ef.fCel;
+          if (Math.abs(ef.f) >= 195) { ef.faza = 1; for (r = 0; r < uc.length; r++) natych(uc[r].n, 0, 0, 1.5); break; }
+          if (--ef.licznik <= 0) ef.fCel = ef.f > 0 ? 200 : -200; else { var c; do c = R(-150, 151); while (Math.abs(c - ef.f) < 60); ef.fCel = c; ef.fV = R(50, 91); }
+        } else ef.f += sgn(ef.fCel - ef.f) * kr;
+        for (r = 0; r < uc.length; r++) { n = uc[r].n; var rel = ef.f - uc[r].az, cel = Math.abs(rel) <= 70 ? ogr(rel, -25, 25) : 0, th = n === G ? 8 * Math.sin(t / 300) : 0;
+          if (Math.abs(cel - nap[n].ost[0]) > 2 || (n === G && Math.abs(th - nap[n].ost[1]) > 2)) natych(n, cel, th, 1); }
+        break;
+      case "buntownik":
+        if (ef.faza === 0) {
+          if (t >= ef.tNast && wolny(ef.a)) { ruchKat(ef.a, -ef.kier * 8, 0.8); postoj(ef.a, 250); ruchKat(ef.a, -ef.kier * 20, 0.8); ef.tNast = t + R(1500, 2500); }
+          if (ef.pokaz || dt > 15000) { wyczysc(ef.a); for (var z = 0; z < 3; z++) { ruchKat(ef.a, ef.kier * 5, 0.8); ruchKat(ef.a, -ef.kier * 20, 0.8); } postoj(ef.a, 800); ruchKat(ef.a, 0, 1.5);
+            for (r = 0; r < uc.length; r++) { n = uc[r].n; if (n === ef.a) continue; postoj(n, 1500); if (n === G) gal(0, 0, 1.5); else ruchKat(n, 0, 1.5); } buntJawny = true; ef.faza = 1; }
+        } else if (wszWolne()) zakoncz(false); break;
+      case "bu":
+        if (ef.faza === 0) { if (!ef.tNast && wszWolne()) ef.tNast = t + R(1500, 3001); if (ef.tNast && t >= ef.tNast) ef.faza = 1; }
+        else if (ef.faza === 1) { tBuKoniec = t; wyczyscW(); if (akt(P)) natych(P, 100, 0, 0.5); if (akt(G)) natych(G, 0, 0, 0.6); ef.tF = t; ef.faza = 2; }
+        else if (ef.faza === 2) { var dd = akt(G); if (dtF >= (dd ? 250 : 0)) { kaskada(uloz(function (a) { return Math.abs(a); }), function (a) { return doKier(a, 0); }, 0, 80, 0.6, !dd, 2000, 1.5);
+          postoj(P, 1500); powSpocz(500); postoj(G, 2000); ef.faza = 3; } }
+        else if (wszWolne()) zakoncz(false); break;
+      case "zasypianie": if (ef.faza === 0) { if (wszWolne()) { ef.faza = 1; ef.tF = t; } } else if (dtF >= 180000) startEf("budzenie", 0, 0); break;
+      case "budzenie":
+        if (ef.faza === 0) { if (wszWolne()) { ef.tNast = t + 1200; ef.faza = 1; } }
+        else if (ef.faza === 1) { if (t >= ef.tNast) { if (akt(P)) natych(P, 100, 0, 0.5); postoj(P, 800); powSpocz(500);
+          if (akt(G)) { gal(R(-15, 16), R(-8, 9), 0.7); postoj(G, 600); gal(0, 0, 1.2); }
+          kaskada(uloz(function () { return Math.random(); }), function () { return R(-20, 21); }, 0, 80, 0.7, false, 500, 1.2); ef.faza = 2; } }
+        else if (wszWolne()) zakoncz(false); break;
+      case "hipnoza":
+        if (ef.faza === 0) {
+          if (akt(G)) { while (nap[G].q.length < 4) { var a = (ef.licznik++) * 0.785398; ruch(G, 18 * Math.cos(a), 11 * Math.sin(a), 250); } }
+          else if (maleWolne() && dt > 500) { kaskada(uloz(function (a) { return -Math.abs(a); }), (ef.licznik++ % 2) ? zez : rozb, 0, 150, 3, false, 0, 1); for (r = 0; r < U.n; r++) postoj(r, 600); }
+          if (dt >= 20000) { wyczyscW(); for (r = 0; r < uc.length; r++) natych(uc[r].n, 0, 0, 2); powSpocz(400); ef.faza = 1; }
+        } else if (wszWolne()) zakoncz(false); break;
+      case "szef":
+        if (ef.faza === 0) { nerwowe(25, 1, false); if (dt > 4000) { wyczyscW(); if (akt(G)) { natych(P, 100, 0, 0.5); powR(60, 40, 300); gal(-15, -3, 2); gal(15, -3, 2); gal(0, 0, 1.5); } ef.tF = t; ef.faza = 1; } }
+        else if (ef.faza === 1) { if (dtF >= (akt(G) ? 300 : 600)) { kaskada(uloz(function (a) { return Math.abs(a); }), function () { return 0; }, 0, 60, 0.7, false, 0, 1); ef.tF = t; ef.faza = 2; } }
+        else if (ef.faza === 2) { if (maleWolne() && dtF > 2500) { mrugnij(); powSpocz(400); ef.faza = 3; } }
+        else if (wszWolne()) zakoncz(false); break;
+      case "refleks":
+        if (ef.faza === 0) { if (wszWolne()) { ef.tNast = t + R(2000, 8001); ef.faza = 1; } }
+        else if (ef.faza === 1) { if (t >= ef.tNast) { if (akt(P)) natych(P, 100, 0, 0.5); kaskada(uloz(function (a) { return Math.abs(a); }), function (a) { return doKier(a, 0); }, 0, 60, 0.6, false, 0, 1); tOtw = t; ef.faza = 2; } }
+        else if (ef.faza === 2) { if (t - tOtw > 3000) { powSpocz(400); for (r = 0; r < uc.length; r++) if (uc[r].n !== G) ruchKat(uc[r].n, 0, 1.5); ef.faza = 3; } }
+        else if (wszWolne()) zakoncz(false); break;
+      case "babajaga": if (ef.faza === 1 && wszWolne()) ef.faza = 0; break;
+      case "pianino": case "pacynka": if (t - ef.tR > 15000) zakoncz(false); break;
+      default: if (dt > 300 && wszWolne()) zakoncz(false);
+    }
+    if (ef && ef.tMax && t - ef.t0 > ef.tMax) zakoncz(true);
+  }
+  function krokAutomatu(t) {
+    if (emocja && t >= tKoniecEmocji) emocja = null;
+    var n = nastr(), i, k;
+    if (!n.odst || t - tOstSpocz >= n.odst) {
+      for (k = 0; k < U.n; k++) {
+        if (ktosCzeka() || !budzet(1)) break;
+        i = R(0, U.n); if (!akt(i) || !wolny(i) || t < nap[i].tNast) continue;
+        var p = nap[i].p[0], c = n.skan ? -sgn(p || 1) * R(n.zak / 2, n.zak + 1) : (Math.random() < 0.25 ? ogr(p + R(-6, 7), -n.zak, n.zak) : R(-n.zak, n.zak + 1));
+        var ms = czas(i, c - p, 0, n.tempo); ruch(i, c, 0, ms); nap[i].tNast = t + ms + R(n.fMin, n.fMax);
+        if (n.odst) { tOstSpocz = t; break; }
+      }
+    }
+    if (akt(G) && wolny(G) && t >= nap[G].tNast && !ktosCzeka() && budzet(2)) {
+      var g = nap[G], z = Math.min(n.zak, 25), zy = Math.min(n.zak * 0.6, 15);
+      var x = n.skan ? -sgn(g.p[0] || 1) * R(z / 2, z + 1) : R(-z, z + 1), y = n.skan ? R(-3, 4) : R(-zy, zy + 1);
+      var ms2 = czas(G, x - g.p[0], y - g.p[1], n.tempo);
+      if (Math.abs(x - g.p[0]) > 15 && Math.random() < 0.6 && wolny(P)) { mrugnij(); tMrug = t + R(n.mMin, n.mMax); }
+      ruch(G, x, y, ms2); g.tNast = t + ms2 + R(n.fMin * 0.7, n.fMax * 0.7);
+    }
+    if (akt(P) && wolny(P)) {
+      if (t >= tMrug) { mrugnij(); tMrug = t + R(n.mMin, n.mMax); }
+      else { if (Math.abs(nap[PG].ost[0] - n.roz) > 1) ruch(PG, n.roz, 0, 500); if (Math.abs(nap[PD].ost[0] - n.rozD) > 1) ruch(PD, n.rozD, 0, 500); }
+    }
+  }
+  function krok() {
+    var t = Date.now();
+    krokRuchu(t);
+    if (tryb === "rozruch") { if (wszWolne()) zakoncz(false); }
+    else if (tryb === "automat") krokAutomatu(t);
+    else if ((tryb === "efekt" || tryb === "reczny") && ef) krokEf(t);
+    else if (tryb === "park" && wszWolne()) tryb = "zaparkowana";
+  }
+  function nazwaTrybu() { if (tryb === "efekt" && uspiona()) return "sen"; return tryb === "park" ? "parkowanie" : tryb; }
+  function odp(kod, powod) { return kod === 200 ? { ok:true, _kod:200 } : { ok:false, powod:powod, _kod:kod }; }
+  function zablokowana() { return tryb === "park" || tryb === "zaparkowana" || tryb === "rozruch" || tryb === "kalibracja"; }
+  function uruchom(nazwa, w, k, rodz) {
+    var t = Date.now();
+    if (tryb === "park" || tryb === "zaparkowana") return odp(409, "zaparkowana");
+    if (tryb === "rozruch") return odp(409, "rozruch, chwileczkę");
+    if (nazwa === "automat") { if (tryb === "kalibracja") tryb = "automat"; zakoncz(tryb !== "automat"); return odp(200); }
+    if (nazwa === "pokaz") { if (ef && ef.id === "buntownik") ef.pokaz = true; else buntJawny = true; return odp(200); }
+    if (nazwa === "patrze") { if (ef && ef.id === "babajaga") { if (ef.faza === 1) return odp(429, "jeszcze patrzy"); patrze(); return odp(200); } nazwa = "babajaga"; }
+    if (nazwa === "lewo") { nazwa = "tam"; k = -90; } else if (nazwa === "prawo") { nazwa = "tam"; k = 90; } else if (nazwa === "wprost") { nazwa = "tam"; k = 0; }
+    if (!(nazwa in BEZP)) return odp(404, "nieznany efekt");
+    if (U.wystawa && !BEZP[nazwa] && !rodz) return odp(403, "niedostępne w trybie wystawowym");
+    if (nazwa === "bu") { if (ef && ef.id === "bu") return odp(429, "już straszy"); if (tBuKoniec && t - tBuKoniec < 10000) return odp(429, "dynia łapie oddech, " + Math.ceil((10000 - (t - tBuKoniec)) / 1000) + " s"); }
+    if (!rodz && tOstEfektu && t - tOstEfektu < 1200) return odp(429, "chwileczkę");
+    startEf(nazwa, +w || 0, +k || 0); tOstEfektu = t; return odp(200);
+  }
+  function stanJson() {
+    var t = Date.now(), s = { tryb:nazwaTrybu(), efekt:ef ? ef.id : "", emocja:emocja || "", n:U.n, duze:U.duze, oczy:[], wyl:[], az:[], klienci:1, czas:Math.round((t - start) / 1000),
+      troll:troll, wystawa:U.wystawa, wRuchu:wRuchu(), max:U.max, bunt:ostBunt, buntJawny:buntJawny,
+      buZa:tBuKoniec && t - tBuKoniec < 10000 ? Math.ceil((10000 - (t - tBuKoniec)) / 1000) : 0, emocjaZa:emocja ? Math.round((tKoniecEmocji - t) / 1000) : 0,
+      refleks:{ faza:ef && ef.id === "refleks" ? ef.faza : -1, za:ef && ef.id === "refleks" && ef.faza === 1 ? ef.tNast - t + (akt(P) ? 120 : 200) : -1,
+        od:ef && ef.id === "refleks" && ef.faza >= 2 ? t - tOtw - (akt(P) ? 120 : 200) : -1, rekord:rekord }, babaPatrzy:!!(ef && ef.id === "babajaga" && ef.faza === 1) };
+    for (var i = 0; i < U.n; i++) { s.oczy.push(Math.round(nap[i].p[0] * 10) / 10); s.wyl.push(nap[i].wyl ? 1 : 0); s.az.push(Math.round(az[i] * 10) / 10); }
+    s.do = U.duze ? { x:nap[G].p[0], y:nap[G].p[1], powG:Math.round(nap[PG].p[0]), powD:Math.round(nap[PD].p[0]), wyl:nap[G].wyl, wylG:nap[PG].wyl, wylD:nap[PD].wyl } : null;
+    return s;
+  }
+  function kanaly() {
+    var k = [], i;
+    function kk(ch, n, typ, a, b) { var key = ch + ":" + typ; if (!kal[key]) kal[key] = { a:a, b:b, z:1, l:a - 278, r:a + 278, cel:-1 }; var c = kal[key];
+      if (tryb !== "kalibracja") c.cel = -1;
+      k.push({ ch:ch, nap:n, typ:typ, a:c.a, b:c.b, l:c.l, r:c.r, z:c.z, cel:c.cel, us:typ === "oko" ? usOka(c, nap[n].p[0]) : c.a, wyl:nap[n].wyl, az:n < NM ? Math.round(az[n] * 10) / 10 : undefined }); }
+    for (i = 0; i < U.n; i++) kk(i, i, "oko", 1500, 1500);
+    if (U.duze) { kk(12, G, "doX", 1500, 1500); kk(13, G, "doY", 1500, 1500); kk(14, PG, "powG", 1350, 1650); kk(15, PD, "powD", 1350, 1650); }
+    return k;
+  }
+  function usOka(c, kat) { var q = ogr(kat, -25, 25) / 25; return Math.round(q < 0 ? c.a + (c.l - c.a) * -q : c.a + (c.r - c.a) * q); }
+  function katOka(c, us) { var d = us - c.a; if (!d) return 0; var wl = (d < 0) === (c.l < c.a), kr = wl ? c.l : c.r; return ogr((wl ? -25 : 25) * d / (kr - c.a), -25, 25); }
+  function kranceOk(a, l, r) { var dl = l - a, dr = r - a; return (dl < 0) !== (dr < 0) && Math.abs(dl) >= 30 && Math.abs(dr) >= 30 && Math.abs(dl) <= 700 && Math.abs(dr) <= 700; }
+  function znajdzKal(ch) { var k = kanaly(); for (var i = 0; i < k.length; i++) if (k[i].ch === ch) return kal[ch + ":" + k[i].typ]; return null; }
+  function api(sc, p) {
+    var rodz = !!tokenS && p.t === tokenS;
+    if (sc === "/api/stan") return stanJson();
+    if (sc === "/api/konfig") { var e = [], m = []; for (var x in BEZP) e.push({ n:x, b:BEZP[x] }); for (var y in NASTR) if (y !== "spoczynek") m.push({ n:y, b:y === "przestraszony" ? 0 : 1 }); return { wersja:"symulacja", efekty:e, emocje:m }; }
+    if (sc === "/api/efekt") return uruchom(p.n, p.w, p.k, rodz);
+    if (sc === "/api/emocja") {
+      if (zablokowana()) return odp(409, "dynia zajęta");
+      if (p.n === "brak") { emocja = null; return odp(200); }
+      if (!NASTR[p.n]) return odp(404, "nieznana emocja");
+      if (U.wystawa && p.n === "przestraszony" && !rodz) return odp(403, "niedostępne w trybie wystawowym");
+      if (tryb !== "automat") zakoncz(false); emocja = p.n; tKoniecEmocji = Date.now() + 45000; tOstSpocz = 0; for (var j = 0; j < NN; j++) nap[j].tNast = Date.now() + R(0, 800); return odp(200);
+    }
+    if (sc === "/api/pad") {
+      if (U.wystawa && !rodz) return odp(403, "niedostępne w trybie wystawowym");
+      if (zablokowana()) return odp(200);
+      if (!ef || ef.id !== "pacynka") startEf("pacynka", 0, 0); ef.tR = Date.now();
+      var px = ogr(p.x / 100, -1, 1), py = ogr(p.y / 100, -1, 1); if (troll) px = -px;
+      if (akt(G)) { if (Math.abs(px * 25 - nap[G].ost[0]) > 1 || Math.abs(py * 15 - nap[G].ost[1]) > 1) natych(G, px * 25, py * 15, 1); }
+      else { var o = uloz(function (a) { return Math.abs(a); }); for (var r = 0; r < o.length; r++) if (Math.abs(px * 25 - nap[o[r].n].ost[0]) > 3) natych(o[r].n, px * 25, 0, 1); }
+      return odp(200);
+    }
+    if (sc === "/api/oko") {
+      if (zablokowana()) return odp(200);
+      if (!ef || ef.id !== "pianino") startEf("pianino", 0, 0); ef.tR = Date.now();
+      var nr = +p.nr, kier = +p.k < 0 ? -1 : 1, n = nr < 0 ? G : nr;
+      if (troll) { kier = -kier; if (n !== G) { var best = 1e9; for (var i2 = 0; i2 < U.n; i2++) if (Math.abs(az[i2] + az[nr]) < best) { best = Math.abs(az[i2] + az[nr]); n = i2; } } }
+      if (!akt(n)) return odp(200); wyczysc(n);
+      if (n === G) { gal(kier * 20, 0, 0.8); postoj(G, 150); gal(0, 0, 1.2); } else { ruchKat(n, kier * 20, 0.8); postoj(n, 150); ruchKat(n, 0, 1.2); }
+      return odp(200);
+    }
+    if (sc === "/api/mrug") { if (zablokowana()) return odp(200); if (tryb === "reczny") { ef.tR = Date.now(); zbierz(); if (akt(P)) mrugnij(); else drzMalych(); } else startEf("mrug", 0, 0); return odp(200); }
+    if (sc === "/api/powieki") { if (!akt(P) || zablokowana()) return odp(200); if (!ef || ef.id !== "pacynka") startEf("pacynka", 0, 0); ef.tR = Date.now(); var gg = p.g !== undefined ? +p.g : +p.r, dd = p.d !== undefined ? +p.d : +p.r; natych(PG, gg, 0, 1); natych(PD, dd, 0, 1); return odp(200); }
+    if (sc === "/api/troll") { if (U.wystawa && !rodz) return odp(403, "niedostępne w trybie wystawowym"); troll = +p.on === 1; return odp(200); }
+    if (sc === "/api/refleks") { var ms = +p.ms; if (ms >= 80 && ms < 5000 && (!rekord || ms < rekord)) rekord = ms; return { ok:true, rekord:rekord }; }
+    if (sc === "/api/rodzic/pin") { if (p.pin !== "0000") return odp(403, "zły PIN"); /* PIN tylko symulacji, nie firmware */ tokenS = tokenS || "5afe1234"; return { ok:true, t:tokenS }; }
+    if (sc.indexOf("/api/rodzic/") === 0 && !rodz) return odp(401, "wymagany PIN rodzica");
+    var cmd = sc.substring(12), ch = +p.ch, c;
+    switch (cmd) {
+      case "stan": return { ok:true, wersja:"symulacja", czasPracy:Math.round((Date.now() - start) / 1000) + 7200, odStartu:Math.round((Date.now() - start) / 1000), starty:3,
+        przyczyna:"zasilanie", ruchy:ruchy, zapisy:Math.round(ruchy * 0.9), heap:182000, klienci:1, tryb:nazwaTrybu(),
+        odrzucone:0, heapMin:150000, ust:{ n:U.n, max:U.max, maxMin:U.duze ? 2 : 1, duze:U.duze, duzeNvs:U.duze, nNvs:U.n, wystawa:U.wystawa }, kan:kanaly() };
+      case "wybierz": wyczyscW(); ef = null; emocja = null; tryb = "kalibracja"; for (var kk2 in kal) kal[kk2].cel = -1; var w = kanaly().filter(function (x) { return x.ch === ch; })[0];
+        if (w) natych(w.nap, w.nap > G ? (p.p === "b" ? 100 : 0) : 0, 0, 2); return odp(200);
+      case "kal": c = znajdzKal(ch); if (!c) return odp(400, "kanał");
+        if (p.p === "q") { if (ch < NM) az[ch] = ogr((p.v !== undefined ? +p.v : az[ch] + +p.d), -180, 180); return odp(200); }
+        if (tryb !== "kalibracja") { tryb = "kalibracja"; ef = null; emocja = null; wyczyscW(); natych(ch, 0, 0, 2); }   // jak kalibrujWybierz
+        var oko = ch < U.n;
+        if (p.p === "j" || p.p === "u") { if (!oko) return odp(409, "strzałki tylko dla małych oczu"); var st = c.cel >= 0 ? c.cel : usOka(c, nap[ch].ost[0]);
+          c.cel = ogr(st + (p.p === "u" ? 1 : (c.r > c.a ? 1 : -1)) * ogr(+p.d, -50, 50), 900, 2100); natych(ch, katOka(c, c.cel), 0, 3); return odp(200); }
+        if (p.p === "z") { if (oko) { var t2 = c.l; c.l = c.r; c.r = t2; } else c.z = +p.v < 0 ? -1 : 1; }
+        else if (p.p === "b") c.b = ogr(c.b + (+p.d || 0), 1000, 2000);
+        else if (p.p === "l" || p.p === "r") { var nv = c[p.p] + (+p.d || 0); if (!kranceOk(c.a, p.p === "l" ? nv : c.l, p.p === "r" ? nv : c.r)) return odp(409, "środek musi leżeć między krańcami (30–700 µs od każdego)"); c[p.p] = nv; }
+        else { var na = c.a + (+p.d || 0); if (oko && !kranceOk(na, c.l, c.r)) return odp(409, "środek musi leżeć między krańcami (30–700 µs od każdego)"); c.a = ogr(na, ch >= 14 && U.duze ? 1000 : 1200, ch >= 14 && U.duze ? 2000 : 1800); }
+        return odp(200);
+      case "oznacz": c = znajdzKal(ch); if (!c || ch >= U.n) return odp(400, "kanał"); if (tryb !== "kalibracja") return odp(409, "najpierw wybierz oko w kalibracji");
+        var us = c.cel >= 0 ? c.cel : usOka(c, nap[ch].p[0]);
+        if (p.p === "a") { if (us < 1200 || us > 1800) return odp(409, "środek poza 1200–1800 µs"); if (!kranceOk(us, c.l, c.r)) { var ddl = c.l - c.a, ddr = c.r - c.a; c.l = us + ddl; c.r = us + ddr; } c.a = us; }
+        else { var l2 = p.p === "l" ? us : c.l, r2 = p.p === "r" ? us : c.r; if (!kranceOk(c.a, l2, r2)) return odp(409, "środek musi leżeć między krańcami (30–700 µs od każdego)"); c.l = l2; c.r = r2; }
+        return odp(200);
+      case "kreator": c = znajdzKal(ch); if (!c || ch >= U.n) return odp(400, "kanał");
+        if (tryb !== "kalibracja") { tryb = "kalibracja"; ef = null; emocja = null; wyczyscW(); natych(ch, 0, 0, 2); }
+        var u = c.cel >= 0 ? c.cel : usOka(c, nap[ch].ost[0]), dd2 = Math.abs(u - c.a);
+        if (p.krok === "s") { if (u < 1200 || u > 1800) return odp(409, "Środek musi być między 1200 a 1800 µs – ustaw piłkę bliżej środka"); c.a = u; c.l = u - 278; c.r = u + 278; c.k1 = c.k2 = -1; }
+        else if (p.krok === "1") { if (dd2 < 30) return odp(409, "Za blisko środka – obróć piłkę dalej, aż do oporu, i cofnij o mały krok"); if (dd2 > 700) return odp(409, "Za daleko od środka (ponad 700 µs) – cofnij"); c.k1 = u; c.k2 = -1; }
+        else if (p.krok === "2") { if (!(c.k1 >= 0)) return odp(409, "Najpierw zapisz kraniec 1"); if ((u < c.a) === (c.k1 < c.a)) return odp(409, "Kraniec 2 jest po tej samej stronie co kraniec 1 – obróć piłkę w DRUGĄ stronę, za środek");
+          if (dd2 < 30) return odp(409, "Za blisko środka – obróć piłkę dalej, aż do oporu, i cofnij o mały krok"); if (dd2 > 700) return odp(409, "Za daleko od środka (ponad 700 µs) – cofnij"); c.k2 = u; }
+        else if (p.krok === "p") { if (!(c.k1 >= 0 && c.k2 >= 0)) return odp(409, "Najpierw zapisz oba krańce"); c.cel = c.k1; natych(ch, katOka(c, c.cel), 0, 3); u = c.cel; }
+        else if (p.krok === "k") { if (!(c.k1 >= 0 && c.k2 >= 0)) return odp(409, "Najpierw zapisz oba krańce"); var lw = +p.lewa === 1;
+          c.l = lw ? c.k1 : c.k2; c.r = lw ? c.k2 : c.k1; c.cel = c.a; natych(ch, 0, 0, 3); u = c.a; }
+        else return odp(400, "krok");
+        return { ok:true, us:u, _kod:200 };
+      case "nowe": c = znajdzKal(ch); if (!c || ch >= U.n) return odp(400, "kanał"); tryb = "kalibracja"; ef = null; wyczysc(ch);
+        c.a = 1500; c.l = 1222; c.r = 1778; c.cel = 1500; nap[ch].p = [0, 0]; nap[ch].ruch = false; return odp(200);
+      case "test": var w2 = kanaly().filter(function (x) { return x.ch === ch; })[0]; if (!w2) return odp(400, "kanał"); tryb = "kalibracja"; ef = null; wyczyscW();
+        if (w2.nap > G) { ruch(w2.nap, 0, 0, 1200); postoj(w2.nap, 500); ruch(w2.nap, 100, 0, 1200); postoj(w2.nap, 500); ruch(w2.nap, 75, 0, 800); }
+        else if (w2.nap === G) { ruch(G, -25, 0, 1500); ruch(G, 25, 0, 2500); ruch(G, 0, 0, 1500); ruch(G, 0, -15, 1200); ruch(G, 0, 15, 2000); ruch(G, 0, 0, 1200); }
+        else { c = znajdzKal(ch); if (c) c.cel = -1; ruch(w2.nap, 0, 0, 1500); postoj(w2.nap, 600); ruch(w2.nap, -25, 0, 2000); postoj(w2.nap, 800); ruch(w2.nap, 25, 0, 3000); postoj(w2.nap, 800); ruch(w2.nap, 0, 0, 2000); } return odp(200);
+      case "zapisz": return odp(200);
+      case "wylacz": var nn = +p.nr; if (!nap[nn] || !nap[nn].uz) return odp(400, "nr"); if (+p.v) { natych(nn, nn > G ? 100 : 0, 0, 2); nap[nn].wyl = true; } else nap[nn].wyl = false; return odp(200);
+      case "ustaw": if (p.max !== undefined) U.max = ogr(+p.max, U.duze ? 2 : 1, 8); if (p.wystawa !== undefined) U.wystawa = +p.wystawa === 1;
+        if (p.n !== undefined || p.duze !== undefined) { if (p.n !== undefined) U.n = ogr(+p.n, 1, 16); if (p.duze !== undefined) U.duze = +p.duze === 1; init(); } return odp(200);
+      case "parkuj": wyczyscW(); ef = null; emocja = null; for (var q = 0; q < NN; q++) if (akt(q)) natych(q, q > G ? 100 : 0, 0, 2); tryb = "park"; return odp(200);
+      case "wznow": if (tryb === "park" || tryb === "zaparkowana" || tryb === "kalibracja") tryb = "automat"; zakoncz(false); return odp(200);
+      case "restart": init(); return odp(200);
+      case "zeruj": ruchy = 0; return odp(200);
+      case "wyloguj": if (tryb === "kalibracja") zakoncz(true); tokenS = null; return odp(200);
+    }
+    return odp(404, "brak");
+  }
+  init();
+  setInterval(krok, KROK);
+  return { api:api };
+})() : null;
+</script>
+</body>
+</html>

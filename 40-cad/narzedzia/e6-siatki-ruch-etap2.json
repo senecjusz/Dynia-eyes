@@ -1,0 +1,776 @@
+{
+ "opis": "Etap 2 dużego oka: napęd gałki U–R–U (koncepcja v3.2 pkt 3.2–3.5). Części etapu 2b nie istnieją jeszcze w CAD: Uchwyt, Płyta i człony napędu to siatki zastępcze generowane przez narzędzie z wymiarów e6model (v3.2). Gałka, powieki, Rama, Słupek – eksport etapu 1 (Gałka bez wycięć, Rama bez wycięcia kołnierza).",
+ "katalog_siatek": "../../.claude/worktrees/heuristic-brattain-6e5ce2/40-cad/3mf/Duze oko v1/stl",
+ "zastepcze": {
+  "e6model": "e6-przemiatanie",
+  "wymiary": {
+   "uGal": {
+    "Do": 5.5,
+    "Hr": 4.0,
+    "luzOs": 0.25,
+    "policzek": 2.0,
+    "rP": 1.8,
+    "cP": 5.5,
+    "pP": 2.0,
+    "rS": 2.6,
+    "cS": 7.0,
+    "pS": 2.0,
+    "lebR": 2.0,
+    "lebH": 0.0,
+    "lebHP": 0.0,
+    "wsporR": 8.6,
+    "wsporZ": 9.0,
+    "wsporA": 4.0
+   },
+   "uOrcz": {
+    "Do": 8.0,
+    "Hr": 4.0,
+    "luzOs": 0.25,
+    "policzek": 2.0,
+    "rP": 2.6,
+    "cP": 5.5,
+    "pP": 6.5,
+    "rS": 2.6,
+    "cS": 8.25,
+    "pS": 1.5,
+    "lebR": 2.0,
+    "lebH": 0.0,
+    "lebHP": 1.6,
+    "tulejaD": 7.0,
+    "tulejaL": 6.0,
+    "katWidelekX": -12.0,
+    "katWidelekY": 0.0,
+    "podstawaD": 8.0
+   },
+   "pretUU": {
+    "D": 4.5
+   },
+   "ramieT": 6.0,
+   "ramieW": 8.0,
+   "ramieHubR": 7.0,
+   "piastaPrzodZ0": 7.0,
+   "kardanGoraZ1": 12.75,
+   "kardanR": 5.5,
+   "luzKieszeni": 0.3,
+   "piastaPrzodR": 7.65,
+   "laczniki": [
+    135.0,
+    225.0,
+    315.0
+   ],
+   "oknoZ": -6.0,
+   "plytaT": 3.0,
+   "lacznikR": 2.0,
+   "_zrodlo": "koncepcja v3.2 pkt 3.3–3.5 i e6model.py z commitu HEAD (v3.2); zamrożone, bo e6model.py jest w trakcie zmian"
+  }
+ },
+ "wynik": "e6-siatki-ruch-wynik-etap2-zastepcze",
+ "jednostki": "mm",
+ "naped": {
+  "X": {
+   "P0": [
+    21.25,
+    0.0,
+    -6.0
+   ],
+   "C": [
+    23.013,
+    -13.0,
+    -49.0
+   ],
+   "w": [
+    6.994133,
+    14.688681,
+    0.286312
+   ],
+   "L": 43.634827,
+   "a1_galka_b": [
+    -0.048882,
+    -0.997579,
+    -0.049461
+   ],
+   "a1_orczyk0": [
+    0.979655,
+    -0.007928,
+    0.200535
+   ],
+   "r": 14.7,
+   "h": 7.0
+  },
+  "Y": {
+   "P0": [
+    0.0,
+    20.0,
+    -6.0
+   ],
+   "C": [
+    15.229,
+    3.0,
+    -49.0
+   ],
+   "w": [
+    6.598907,
+    15.486841,
+    2.333856
+   ],
+   "L": 46.178809,
+   "a1_galka_b": [
+    -0.055281,
+    -0.998443,
+    0.007479
+   ],
+   "a1_orczyk0": [
+    0.881233,
+    0.017576,
+    0.472355
+   ],
+   "r": 15.4,
+   "h": 7.0
+  }
+ },
+ "czesci": {
+  "Gałka": {
+   "plik": "Duze oko v1 - Gałka.stl",
+   "ruch": {
+    "typ": "galka"
+   }
+  },
+  "Powieka górna": {
+   "plik": "Duze oko v1 - Powieka górna.stl",
+   "ruch": {
+    "typ": "powieka",
+    "zmienna": "G",
+    "kat_modelu": -8.5
+   }
+  },
+  "Powieka dolna": {
+   "plik": "Duze oko v1 - Powieka dolna.stl",
+   "ruch": {
+    "typ": "powieka",
+    "zmienna": "D",
+    "kat_modelu": -11.5
+   }
+  },
+  "Rama": {
+   "plik": "Duze oko v1 - Rama.stl",
+   "ruch": {
+    "typ": "stala"
+   }
+  },
+  "Słupek": {
+   "plik": "Duze oko v1 - Słupek.stl",
+   "ruch": {
+    "typ": "stala"
+   }
+  },
+  "Uchwyt": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "z_galka"
+   },
+   "uwaga": "zastępcza: widełki stałe X/Y, wsporniki, łączniki, tuleja przednia; bez płyty okna, żebra i łap"
+  },
+  "Płyta": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "stala"
+   },
+   "uwaga": "zastępcza: serwa (korpus, klatka, ucho, łby, wieżyczka skrócona o 0,25, kable), wspornik, słupki Płyty, tarcza bez okien, słupki stopu"
+  },
+  "Ramię X": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "X",
+    "czlon": "ramie"
+   }
+  },
+  "Krzyżak orczyka X": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "X",
+    "czlon": "krzyzak_orczyka"
+   }
+  },
+  "Widełki pręta orczyka X": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "X",
+    "czlon": "widelki_preta_orczyka"
+   }
+  },
+  "Pręt X": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "X",
+    "czlon": "pret"
+   }
+  },
+  "Krzyżak gałki X": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "X",
+    "czlon": "krzyzak_galki"
+   }
+  },
+  "Ramię Y": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "Y",
+    "czlon": "ramie"
+   }
+  },
+  "Krzyżak orczyka Y": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "Y",
+    "czlon": "krzyzak_orczyka"
+   }
+  },
+  "Widełki pręta orczyka Y": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "Y",
+    "czlon": "widelki_preta_orczyka"
+   }
+  },
+  "Pręt Y": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "Y",
+    "czlon": "pret"
+   }
+  },
+  "Krzyżak gałki Y": {
+   "zastepcza": true,
+   "ruch": {
+    "typ": "pret_ik",
+    "naped": "Y",
+    "czlon": "krzyzak_galki"
+   }
+  }
+ },
+ "zmienne": {
+  "psi": {
+   "kotwica": 0
+  },
+  "theta": {
+   "kotwica": 0
+  },
+  "G": {
+   "kotwica": -8.5
+  },
+  "D": {
+   "kotwica": -11.5
+  }
+ },
+ "zakresy": {
+  "praca_podazanie": {
+   "psi": [
+    -25,
+    25
+   ],
+   "theta": [
+    -15,
+    15
+   ],
+   "G": [
+    -8.5,
+    47
+   ],
+   "D": [
+    -43,
+    -11.5
+   ],
+   "podazanie": {
+    "otwG": 42,
+    "otwD": -38,
+    "podazanie": 5,
+    "zakresTheta": 15
+   }
+  },
+  "praca": {
+   "psi": [
+    -25,
+    25
+   ],
+   "theta": [
+    -15,
+    15
+   ],
+   "G": [
+    -8.5,
+    47
+   ],
+   "D": [
+    -43,
+    -11.5
+   ]
+  },
+  "mechaniczny": {
+   "opis": "v3.2 pkt 4: granica okna – prostokąt obwiedni ψ 28,083 / θ 18,183",
+   "psi": [
+    -28.09,
+    28.09
+   ],
+   "theta": [
+    -18.19,
+    18.19
+   ],
+   "G": [
+    -9.25,
+    47.75
+   ],
+   "D": [
+    -43.75,
+    -10.75
+   ]
+  }
+ },
+ "zakres_siatki": "mechaniczny",
+ "siatka": {
+  "krok_deg": 0.5,
+  "R_ref": 33,
+  "krok_mm_max": 0.3,
+  "zageszczenie_mm": 0.05,
+  "odciecie_mm": 1.5,
+  "rejestr_miejsc_mm": 1.0,
+  "woksel_miejsc_mm": 1.0,
+  "odcinek_krawedzi_mm": 0.5,
+  "komorka_mm": 0.75,
+  "krok_zgrubny_daleko": 4,
+  "strategia": "bnb",
+  "bnb_krok_poczatkowy": 16,
+  "bnb_prog_mm": 1.0
+ },
+ "strefy": {
+  "luz osiowy a1 przy gałce X": {
+   "typ": "walec",
+   "os_punkt": "P_X",
+   "os_kier": "a1g_X",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek stałych Uchwytu, luzOs 0,25"
+  },
+  "luz osiowy a2 przy gałce X": {
+   "typ": "walec",
+   "os_punkt": "P_X",
+   "os_kier": "a2g_X",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek pręta, luzOs 0,25"
+  },
+  "luz osiowy a1 przy orczyku X": {
+   "typ": "walec",
+   "os_punkt": "H_X",
+   "os_kier": "a1o_X",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek Ramienia, luzOs 0,25"
+  },
+  "luz osiowy a2 przy orczyku X": {
+   "typ": "walec",
+   "os_punkt": "H_X",
+   "os_kier": "a2o_X",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek pręta, luzOs 0,25"
+  },
+  "obrotnica X": {
+   "typ": "walec",
+   "os_punkt": "H_X",
+   "os_kier": "e_X",
+   "rho_max": 4.5,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.05,
+   "opis": "tulejka pręta – podstawa widełek pręta, luz osiowy obrotnicy 0,1"
+  },
+  "osadzenie Ramienia X": {
+   "typ": "walec",
+   "os_punkt": "C_X",
+   "os_kier": "x",
+   "rho_max": 7.5,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "piasta Ramienia nad wieżyczką własnego serwa (w zastępczej Płycie 0,25)"
+  },
+  "luz osiowy a1 przy gałce Y": {
+   "typ": "walec",
+   "os_punkt": "P_Y",
+   "os_kier": "a1g_Y",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek stałych Uchwytu, luzOs 0,25"
+  },
+  "luz osiowy a2 przy gałce Y": {
+   "typ": "walec",
+   "os_punkt": "P_Y",
+   "os_kier": "a2g_Y",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek pręta, luzOs 0,25"
+  },
+  "luz osiowy a1 przy orczyku Y": {
+   "typ": "walec",
+   "os_punkt": "H_Y",
+   "os_kier": "a1o_Y",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek Ramienia, luzOs 0,25"
+  },
+  "luz osiowy a2 przy orczyku Y": {
+   "typ": "walec",
+   "os_punkt": "H_Y",
+   "os_kier": "a2o_Y",
+   "rho_max": 3.0,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "krążek krzyżaka – policzki widełek pręta, luzOs 0,25"
+  },
+  "obrotnica Y": {
+   "typ": "walec",
+   "os_punkt": "H_Y",
+   "os_kier": "e_Y",
+   "rho_max": 4.5,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.05,
+   "opis": "tulejka pręta – podstawa widełek pręta, luz osiowy obrotnicy 0,1"
+  },
+  "osadzenie Ramienia Y": {
+   "typ": "walec",
+   "os_punkt": "C_Y",
+   "os_kier": "x",
+   "rho_max": 7.5,
+   "kierunek": "osiowy",
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "piasta Ramienia nad wieżyczką własnego serwa (w zastępczej Płycie 0,25)"
+  }
+ },
+ "strefy_par": [
+  {
+   "a": "Krzyżak gałki X",
+   "b": "Uchwyt",
+   "strefy": [
+    "luz osiowy a1 przy gałce X"
+   ]
+  },
+  {
+   "a": "Krzyżak gałki X",
+   "b": "Pręt X",
+   "strefy": [
+    "luz osiowy a2 przy gałce X"
+   ]
+  },
+  {
+   "a": "Ramię X",
+   "b": "Krzyżak orczyka X",
+   "strefy": [
+    "luz osiowy a1 przy orczyku X"
+   ]
+  },
+  {
+   "a": "Krzyżak orczyka X",
+   "b": "Widełki pręta orczyka X",
+   "strefy": [
+    "luz osiowy a2 przy orczyku X"
+   ]
+  },
+  {
+   "a": "Widełki pręta orczyka X",
+   "b": "Pręt X",
+   "strefy": [
+    "obrotnica X"
+   ]
+  },
+  {
+   "a": "Ramię X",
+   "b": "Płyta",
+   "strefy": [
+    "osadzenie Ramienia X"
+   ]
+  },
+  {
+   "a": "Krzyżak gałki Y",
+   "b": "Uchwyt",
+   "strefy": [
+    "luz osiowy a1 przy gałce Y"
+   ]
+  },
+  {
+   "a": "Krzyżak gałki Y",
+   "b": "Pręt Y",
+   "strefy": [
+    "luz osiowy a2 przy gałce Y"
+   ]
+  },
+  {
+   "a": "Ramię Y",
+   "b": "Krzyżak orczyka Y",
+   "strefy": [
+    "luz osiowy a1 przy orczyku Y"
+   ]
+  },
+  {
+   "a": "Krzyżak orczyka Y",
+   "b": "Widełki pręta orczyka Y",
+   "strefy": [
+    "luz osiowy a2 przy orczyku Y"
+   ]
+  },
+  {
+   "a": "Widełki pręta orczyka Y",
+   "b": "Pręt Y",
+   "strefy": [
+    "obrotnica Y"
+   ]
+  },
+  {
+   "a": "Ramię Y",
+   "b": "Płyta",
+   "strefy": [
+    "osadzenie Ramienia Y"
+   ]
+  }
+ ],
+ "grupy_par": [
+  {
+   "a": [
+    "Ramię X",
+    "Krzyżak orczyka X",
+    "Widełki pręta orczyka X",
+    "Pręt X",
+    "Krzyżak gałki X",
+    "Ramię Y",
+    "Krzyżak orczyka Y",
+    "Widełki pręta orczyka Y",
+    "Pręt Y",
+    "Krzyżak gałki Y"
+   ],
+   "b": [
+    "Gałka",
+    "Powieka górna",
+    "Powieka dolna",
+    "Rama",
+    "Słupek",
+    "Płyta"
+   ],
+   "wymagany": 0.5
+  },
+  {
+   "a": [
+    "Uchwyt"
+   ],
+   "b": [
+    "Powieka górna",
+    "Powieka dolna",
+    "Rama",
+    "Słupek",
+    "Płyta"
+   ],
+   "wymagany": 0.5
+  },
+  {
+   "wzajemne": [
+    "Ramię X",
+    "Krzyżak orczyka X",
+    "Widełki pręta orczyka X",
+    "Pręt X",
+    "Krzyżak gałki X",
+    "Ramię Y",
+    "Krzyżak orczyka Y",
+    "Widełki pręta orczyka Y",
+    "Pręt Y",
+    "Krzyżak gałki Y",
+    "Uchwyt"
+   ],
+   "wymagany": 0.5
+  }
+ ],
+ "pary_wykluczone": [
+  [
+   "Uchwyt",
+   "Gałka"
+  ]
+ ],
+ "test_naped": {
+  "tol_deg": 0.1,
+  "serwa": {
+   "25;0": [
+    -29.5,
+    7.7
+   ],
+   "-25;0": [
+    40.4,
+    -2.6
+   ],
+   "0;15": [
+    1.1,
+    -18.4
+   ],
+   "0;-15": [
+    0.7,
+    21.8
+   ],
+   "25;15": [
+    -26.5,
+    -11.0
+   ],
+   "25;-15": [
+    -26.7,
+    31.7
+   ],
+   "-25;15": [
+    40.0,
+    -21.0
+   ],
+   "-25;-15": [
+    39.6,
+    18.5
+   ]
+  },
+  "zgiecia_X": {
+   "wychylenie_przy_galce_deg": [
+    19.4,
+    23.6
+   ],
+   "wychylenie_przy_orczyku_deg": [
+    7.6,
+    8.9
+   ]
+  },
+  "zgiecia_Y": {
+   "wychylenie_przy_galce_deg": [
+    17.8,
+    21.4
+   ],
+   "wychylenie_przy_orczyku_deg": [
+    8.5,
+    12.0
+   ]
+  }
+ },
+ "kontrole": [
+  {
+   "nazwa": "K0 bez przesunięcia: krzyżak orczyka X – Ramię X (luz osiowy luzOs)",
+   "para": [
+    "Krzyżak orczyka X",
+    "Ramię X"
+   ],
+   "strefy": [
+    "luz osiowy a1 przy orczyku X"
+   ],
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0
+    }
+   ],
+   "oczekiwane": {
+    "min": "uOrcz.luzOs",
+    "tol": 0.02,
+    "kolizja": false
+   }
+  },
+  {
+   "nazwa": "K1 Ramię X przesunięte o 0,6 mm wzdłuż a1 orczyka (policzek w krążek: przenikanie 0,6 − luzOs)",
+   "para": [
+    "Krzyżak orczyka X",
+    "Ramię X"
+   ],
+   "przesun": {
+    "Ramię X": [
+     0.587793,
+     -0.004757,
+     0.120321
+    ]
+   },
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0
+    }
+   ],
+   "oczekiwane": {
+    "kolizja": true,
+    "glebokosc": "0.6 - uOrcz.luzOs",
+    "tol": 0.03
+   }
+  },
+  {
+   "nazwa": "K2 Ramię Y przesunięte o −2 mm w x (piasta w wieżyczkę serwa: przenikanie 1,75)",
+   "para": [
+    "Ramię Y",
+    "Płyta"
+   ],
+   "przesun": {
+    "Ramię Y": [
+     -2.0,
+     0,
+     0
+    ]
+   },
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0
+    }
+   ],
+   "oczekiwane": {
+    "kolizja": true,
+    "glebokosc": 1.75,
+    "tol": 0.03
+   }
+  },
+  {
+   "nazwa": "K3 Ramię X przesunięte o 0,6 mm, stan (−25; −15): przenikanie także w ruchu",
+   "para": [
+    "Krzyżak orczyka X",
+    "Ramię X"
+   ],
+   "przesun": {
+    "Ramię X": [
+     0.587793,
+     -0.004757,
+     0.120321
+    ]
+   },
+   "stany": [
+    {
+     "psi": -25,
+     "theta": -15
+    }
+   ],
+   "oczekiwane": {
+    "kolizja": true
+   }
+  }
+ ],
+ "weryfikacja_geometrii": []
+}

@@ -14,9 +14,13 @@
 // 3. Sprawdź "l" (wypisuje środki), potem "z" – zeruje dziennik, środków nie kasuje. Start testu.
 // PO TEŚCIE: "l".
 // Uwaga: po włączeniu serwa od razu dostają impuls środka (bez łagodnego rozruchu).
+// WIFI_PODTRZYMANIE: ukryty punkt dostępu Wi-Fi podnosi pobór ESP, żeby powerbank się nie wyłączał
+// (22.10: Baseus bez Wi-Fi gasł co ok. 15 s, z Wi-Fi 47,6 min bez restartu – test-powerbank-wifi).
+// START_AKTYWNY: true = tryb aktywny od startu (E5.6, test mechaniki), false = spoczynek jak na wystawie.
 // Kompilacja: arduino-cli compile -b esp32:esp32:esp32c3:CDCOnBoot=cdc 50-elektronika/test-24h
 
 #include <Wire.h>
+#include <WiFi.h>
 #include <Adafruit_PWMServoDriver.h>
 #include <Preferences.h>
 #include <esp_system.h>
@@ -28,6 +32,8 @@ const int MAX_RUCHOW = 2;            // ile oczu naraz w ruchu
 const float US_NA_STOPIEN = 2000.0 / 180.0;
 const float ZAKRES_DEG = 25;         // ±25° serwa = ±278 µs; kalibracja 21.10: ±300 µs wokół 1500 bez oporu
 const uint32_t KROK_MS = 20;         // 50 Hz aktualizacji
+const bool WIFI_PODTRZYMANIE = true;
+const bool START_AKTYWNY = false;
 
 Adafruit_PWMServoDriver pca(0x40);
 
@@ -40,7 +46,7 @@ struct Oko {
 };
 Oko oczy[N_OCZU];
 
-bool aktywny = true, stop = false;   // test: stale aktywny
+bool aktywny = START_AKTYWNY, stop = false;
 Preferences nvs;
 uint32_t ruchy = 0, czasPrzed = 0, starty = 0; int przyczyna = 0;
 uint32_t tOstZapis = 0, tZero = 0;
@@ -136,6 +142,7 @@ void komendy() {
 void setup() {
   Serial.begin(115200);
   Serial.setTxTimeoutMs(0);
+  if (WIFI_PODTRZYMANIE) WiFi.softAP("dynia-test", "dynia-test-2026", 1, 1, 1);   // kanał 1, ukryta, 1 klient
   Wire.begin(PIN_SDA, PIN_SCL);
   pca.begin();
   pca.setOscillatorFrequency(27000000);
