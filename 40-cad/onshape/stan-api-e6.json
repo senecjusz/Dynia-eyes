@@ -2,14 +2,14 @@
  "zadanie": {
   "id": "E6.3 etap 2a",
   "brief": "30-projekt/brief-e6.3-cad-etap2a.md",
-  "stan": "Płyta w budowie: tarcza, klatki, bloki uszu, kanały, wspornik i słupki gotowe; dalej stożki, kieszeń Słupka, stopy, otwory kabli, czop Słupka",
+  "stan": "Płyta gotowa poza słupkami stopu (do decyzji); budżet 2a 241/260",
   "zrobione": [
    "dokończenie etapu 1: Rama, Gałka (8b3ee9e), powieki (6542d15)",
    "plan Płyty e6.3-plan-plyta.md (9fbd433)"
   ],
   "dlaczego_stoje": "plan Płyty (D1–D6) wymaga zatwierdzenia przed pierwszym zapisem (AGENTS: plan drzewa → zgoda orkiestratora); budżet 2a: 103/160 zużyte, Płyta + reszta etapu ok. 213 → prośba o ~230 albo przeniesienie Ramion/przyrządów/K9 do 2b; otwarte sprawy A (fazka uch Ramy), B (nadlewy a druk Gałki), kąciki bez Mirror (K5)",
   "wtle": "cron e343f71c co 10 min – kontrola sesji Onshape bez /api/",
-  "aktualizacja": "2026-10-23T08:08:32Z"
+  "aktualizacja": "2026-10-23T08:24:53Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -24,9 +24,9 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 391,
-  "features": 274,
-  "getFeatures": 9
+  "total": 415,
+  "features": 293,
+  "getFeatures": 11
  },
  "liczniki": {
   "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
@@ -704,8 +704,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 391,
-  "suma": 949
+  "E6": 415,
+  "suma": 973
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -759,8 +759,8 @@
    "getFeatures": 7
   },
   "zuzyte": {
-   "total": 217,
-   "getFeatures": 4
+   "total": 241,
+   "getFeatures": 6
   },
   "log": [
    {
@@ -1987,11 +1987,12 @@
    }
   },
   "licznik": {
-   "etap2a": 217,
+   "etap2a": 241,
    "budzet": 260,
-   "getFeatures_etap2a": 4,
-   "rok": 949,
-   "czas": "2026-10-23T08:08:32Z"
+   "getFeatures_etap2a": 6,
+   "budzetGetFeatures": 7,
+   "rok": 973,
+   "czas": "2026-10-23T08:24:53Z"
   },
   "zmianaB": {
    "czas": "2026-10-23T07:50:49Z",
@@ -2008,22 +2009,36 @@
    "k1k8": "odbior-e6/k1-k8-e6.3.json: K1 0, K2 38/38, K3 0/265, K4 0"
   },
   "plyta": {
-   "czas": "2026-10-23T08:08:32Z",
+   "czas": "2026-10-23T08:24:53Z",
    "zbudowane": {
     "tarcza": "z −71,3…−68,3, R39,5, okna G (x −35,5…−24,5, y −7…10,5) i D (x −26…−17, y −21…−6)",
     "klatki": "4 pierścienie ścianka 2 od spodu korpusu do spodu ucha (serwoUchoZ 18; klatka nie może sięgać pełnej wysokości korpusu, bo ucha przechodziłyby przez ścianki – model przemiatania ma klatkę na całą wysokość jako bryłę zachowawczą); kieszenie korpusów z luzem 0,4 po wszystkich pierścieniach; S_PG spód doprowadzony do tarczy; między S_X a S_PD zostaje przegroda 0,7 mm (y −20,35…−19,65)",
     "bloki": "górne ucha: blok 8 pod uchem; kieszenie nakrętek M2 (kwadrat S4,2 × 1,8, otwarte na zewnątrz w z – nakrętka wsuwana bokiem); dolne ucha: blok = tarcza + ścianka, kieszeń nakrętki otwarta od spodu tarczy; otwory M2 Ø2,4 na 8; wycięcie na ucho + łeb z podkładką Ø6,4 (w tarczy do z −70,8; łeb dolny przebija spód tarczy – D1)",
     "kanaly": "kanały kabli w obu ścianach z każdej klatki, 4,4 × 10 od spodu korpusu",
-    "wspornik": "piasta R9 z −37…−33, ramiona 5 × 4 (R6…33), słupki Ø6 z −68,3…−30, przeloty M3 Ø3,3 na wylot, gniazdo M5 stożkowe Ø10,4 90° od spodu"
+    "wspornik": "piasta R9 z −37…−33, ramiona 5 × 4 (R6…33), słupki Ø6 z −68,3…−30, przeloty M3 Ø3,3 na wylot, gniazdo M5 stożkowe Ø10,4 90° od spodu",
+    "stozki": "słupki Płyty: wierzch = płasko d ≤ 1 od osi ucha (z −33) + stożek 45° do z −30, Revolve 360° wokół osi ucha (oś przypięta do środka okręgu ucha w szkicu Ramy E0–E2)",
+    "kieszenSlupka": "kształt D: R7,8 (slupekR + 0,15), spłaszczenie po −y na 7,2, głęb. 1,0 (z −33…−34)",
+    "otworyKabli": "w tarczy 4,4 × 2,0 pod wyjściami S_X, S_Y, S_PD (oś kabla 2 nad spodem korpusu)",
+    "slupek": "slupekBot = #zArmWsp + #ramieWspH/2 − #slupekCzop (−34); spłaszczenie 0,6 na 1 mm po −y; Słupek 5 operacji bryłowych",
+    "nazwa": "część „Płyta” (RDDD)",
+    "foldery": "Płyta (81): tarcza 3, klatki 16, bloki i ucha 41, wspornik i słupki 16, kieszeń Słupka i kable 5; Słupek (12) – spłaszczenie przeniesione do folderu Słupka (przestawienie w drzewie bez zależności od Płyty)"
    },
    "problemy": [
     "qSketchRegion(…, true) = obszary bez wewnętrznych pętli (zewnętrzny prostokąt z wnętrzem) – kieszenie wycięły całe klatki; poprawione na false",
     "ujemny offset cPlane → 400; offset dodatni + oppositeDirection",
     "Hole z punktem w środku litego materiału wierci także „do tyłu” do krawędzi bryły (S_PD dolny: przelot x 3…29,9 w tarczy); startStyle SKETCH nie pomaga → otwory M2 S_PD jako wycięcie okręgów (odstępstwo od „Hole do śrub”)",
     "extrude z drugim kierunkiem przy oppositeDirection dał zakres między głębokościami (słupki −68,3…−44) – słupki przeniesione na szkic na płaszczyźnie tarczy, jeden kierunek w górę",
-    "piasta z ramionami powstała jako osobna bryła (INFO) do czasu słupków – słupki ze scope obu brył; otwór M5 najpierw w złą stronę i w tarczy (scope) – poprawione"
+    "piasta z ramionami powstała jako osobna bryła (INFO) do czasu słupków – słupki ze scope obu brył; otwór M5 najpierw w złą stronę i w tarczy (scope) – poprawione",
+    "wspornik (wyciągnięcie) ADD dawał INFO (osobna bryła do czasu słupków) → zmienione na NEW; słupki łączą obie bryły"
    ],
-   "dalej": "stożki słupków (D2), kieszeń Słupka, słupki stopu, otwory kabli w tarczy, czop Słupka; foldery podgrup w UI"
+   "dalej": "słupki stopu powiek – do decyzji (klatka kończy się na płaszczyźnie ucha, słupek stopu nie ma ścianki, z której wyrasta); Ramiona PG/PD, przyrządy, K9 – budżet",
+   "odbior": {
+    "K1": "odbior-e6/k1-plyta.json (GET /features?noSketchGeometry=true): 197 operacji, 201 stanów, 0 ≠ OK",
+    "K2": "odbior-e6/znaczniki-plyta.json: 64 szkice w JSON = 64 w drzewie, 0 niedookreślonych, 0 ostrzeżeń w 211 wierszach",
+    "K3": "wyrażenia operacji: 0 naruszeń (szkiców nie ma w odczycie noSketchGeometry – pełny K3/K4 przy końcowym GET /features)",
+    "K6": "Płyta 38 (wyjątek D4), Słupek 5",
+    "zrzut": "e6.2-zrzuty/e6.3-plyta-od-spodu.jpg"
+   }
   }
  }
 }
