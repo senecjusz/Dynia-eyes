@@ -2,14 +2,14 @@
  "zadanie": {
   "id": "E6.3 etap 2a",
   "brief": "30-projekt/brief-e6.3-cad-etap2a.md",
-  "stan": "zmiana B gotowa, K1 zamknięte; dalej Płyta wg zatwierdzonego planu (D1: oba ucha M2, D2: słupki ze stożkiem 45°, D5, D4 foldery podgrup)",
+  "stan": "Płyta w budowie: tarcza, klatki, bloki uszu, kanały, wspornik i słupki gotowe; dalej stożki, kieszeń Słupka, stopy, otwory kabli, czop Słupka",
   "zrobione": [
    "dokończenie etapu 1: Rama, Gałka (8b3ee9e), powieki (6542d15)",
    "plan Płyty e6.3-plan-plyta.md (9fbd433)"
   ],
   "dlaczego_stoje": "plan Płyty (D1–D6) wymaga zatwierdzenia przed pierwszym zapisem (AGENTS: plan drzewa → zgoda orkiestratora); budżet 2a: 103/160 zużyte, Płyta + reszta etapu ok. 213 → prośba o ~230 albo przeniesienie Ramion/przyrządów/K9 do 2b; otwarte sprawy A (fazka uch Ramy), B (nadlewy a druk Gałki), kąciki bez Mirror (K5)",
   "wtle": "cron e343f71c co 10 min – kontrola sesji Onshape bez /api/",
-  "aktualizacja": "2026-10-23T07:50:49Z"
+  "aktualizacja": "2026-10-23T08:08:32Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -24,8 +24,8 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 283,
-  "features": 184,
+  "total": 391,
+  "features": 274,
   "getFeatures": 9
  },
  "liczniki": {
@@ -704,8 +704,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 283,
-  "suma": 841
+  "E6": 391,
+  "suma": 949
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -759,7 +759,7 @@
    "getFeatures": 7
   },
   "zuzyte": {
-   "total": 109,
+   "total": 217,
    "getFeatures": 4
   },
   "log": [
@@ -1987,12 +1987,11 @@
    }
   },
   "licznik": {
-   "etap2a": 109,
+   "etap2a": 217,
    "budzet": 260,
    "getFeatures_etap2a": 4,
-   "budzetGetFeatures": 7,
-   "rok": 841,
-   "czas": "2026-10-23T07:50:49Z"
+   "rok": 949,
+   "czas": "2026-10-23T08:08:32Z"
   },
   "zmianaB": {
    "czas": "2026-10-23T07:50:49Z",
@@ -2007,6 +2006,24 @@
    "wynik": "114 operacji, 118 featureStates, 0 ≠ OK, rollback 114 (koniec)",
    "przyczyna": "parametr includeGeometryIds=false usuwa featureStates z odpowiedzi",
    "k1k8": "odbior-e6/k1-k8-e6.3.json: K1 0, K2 38/38, K3 0/265, K4 0"
+  },
+  "plyta": {
+   "czas": "2026-10-23T08:08:32Z",
+   "zbudowane": {
+    "tarcza": "z −71,3…−68,3, R39,5, okna G (x −35,5…−24,5, y −7…10,5) i D (x −26…−17, y −21…−6)",
+    "klatki": "4 pierścienie ścianka 2 od spodu korpusu do spodu ucha (serwoUchoZ 18; klatka nie może sięgać pełnej wysokości korpusu, bo ucha przechodziłyby przez ścianki – model przemiatania ma klatkę na całą wysokość jako bryłę zachowawczą); kieszenie korpusów z luzem 0,4 po wszystkich pierścieniach; S_PG spód doprowadzony do tarczy; między S_X a S_PD zostaje przegroda 0,7 mm (y −20,35…−19,65)",
+    "bloki": "górne ucha: blok 8 pod uchem; kieszenie nakrętek M2 (kwadrat S4,2 × 1,8, otwarte na zewnątrz w z – nakrętka wsuwana bokiem); dolne ucha: blok = tarcza + ścianka, kieszeń nakrętki otwarta od spodu tarczy; otwory M2 Ø2,4 na 8; wycięcie na ucho + łeb z podkładką Ø6,4 (w tarczy do z −70,8; łeb dolny przebija spód tarczy – D1)",
+    "kanaly": "kanały kabli w obu ścianach z każdej klatki, 4,4 × 10 od spodu korpusu",
+    "wspornik": "piasta R9 z −37…−33, ramiona 5 × 4 (R6…33), słupki Ø6 z −68,3…−30, przeloty M3 Ø3,3 na wylot, gniazdo M5 stożkowe Ø10,4 90° od spodu"
+   },
+   "problemy": [
+    "qSketchRegion(…, true) = obszary bez wewnętrznych pętli (zewnętrzny prostokąt z wnętrzem) – kieszenie wycięły całe klatki; poprawione na false",
+    "ujemny offset cPlane → 400; offset dodatni + oppositeDirection",
+    "Hole z punktem w środku litego materiału wierci także „do tyłu” do krawędzi bryły (S_PD dolny: przelot x 3…29,9 w tarczy); startStyle SKETCH nie pomaga → otwory M2 S_PD jako wycięcie okręgów (odstępstwo od „Hole do śrub”)",
+    "extrude z drugim kierunkiem przy oppositeDirection dał zakres między głębokościami (słupki −68,3…−44) – słupki przeniesione na szkic na płaszczyźnie tarczy, jeden kierunek w górę",
+    "piasta z ramionami powstała jako osobna bryła (INFO) do czasu słupków – słupki ze scope obu brył; otwór M5 najpierw w złą stronę i w tarczy (scope) – poprawione"
+   ],
+   "dalej": "stożki słupków (D2), kieszeń Słupka, słupki stopu, otwory kabli w tarczy, czop Słupka; foldery podgrup w UI"
   }
  }
 }
