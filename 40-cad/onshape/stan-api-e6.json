@@ -1,15 +1,9 @@
 {
  "zadanie": {
-  "id": "E6.3 etap 2a",
-  "brief": "30-projekt/brief-e6.3-cad-etap2a.md",
-  "stan": "Płyta gotowa poza słupkami stopu (do decyzji); budżet 2a 241/260",
-  "zrobione": [
-   "dokończenie etapu 1: Rama, Gałka (8b3ee9e), powieki (6542d15)",
-   "plan Płyty e6.3-plan-plyta.md (9fbd433)"
-  ],
-  "dlaczego_stoje": "plan Płyty (D1–D6) wymaga zatwierdzenia przed pierwszym zapisem (AGENTS: plan drzewa → zgoda orkiestratora); budżet 2a: 103/160 zużyte, Płyta + reszta etapu ok. 213 → prośba o ~230 albo przeniesienie Ramion/przyrządów/K9 do 2b; otwarte sprawy A (fazka uch Ramy), B (nadlewy a druk Gałki), kąciki bez Mirror (K5)",
-  "wtle": "cron e343f71c co 10 min – kontrola sesji Onshape bez /api/",
-  "aktualizacja": "2026-10-23T08:24:53Z"
+  "id": "E6.3 Płyta",
+  "stan": "Płyta bez słupków stopu gotowa (2ea8d62); słupki stopu wstrzymane – kolizje do decyzji; w międzyczasie plan Ramion PG/PD i przyrządów (bez API)",
+  "wywolania": "etap 2a 241/300, GET /features 6/7",
+  "aktualizacja": "2026-10-23T08:28:06Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -755,7 +749,7 @@
   "plan": "40-cad/onshape/e6.3-plan-dokonczenie-etapu1.md",
   "start_n_total": 174,
   "budzet": {
-   "total": 260,
+   "total": 300,
    "getFeatures": 7
   },
   "zuzyte": {
@@ -1988,11 +1982,11 @@
   },
   "licznik": {
    "etap2a": 241,
-   "budzet": 260,
+   "budzet": 300,
    "getFeatures_etap2a": 6,
    "budzetGetFeatures": 7,
    "rok": 973,
-   "czas": "2026-10-23T08:24:53Z"
+   "czas": "2026-10-23T08:28:06Z"
   },
   "zmianaB": {
    "czas": "2026-10-23T07:50:49Z",
@@ -2038,6 +2032,12 @@
     "K3": "wyrażenia operacji: 0 naruszeń (szkiców nie ma w odczycie noSketchGeometry – pełny K3/K4 przy końcowym GET /features)",
     "K6": "Płyta 38 (wyjątek D4), Słupek 5",
     "zrzut": "e6.2-zrzuty/e6.3-plyta-od-spodu.jpg"
+   },
+   "slupkiStopu": {
+    "czas": "2026-10-23T08:28:06Z",
+    "stan": "wstrzymane przed zapisem – kolizje słupków z koncepcji z bryłami stałymi (pary stała–stała nie były przemiatane)",
+    "pomiar": "e6model.stop_posts vs korpusy serw z luzem i wieżyczki R6 (próbkowanie 21³): D otwarcia – 1300 próbek w korpusie S_X (x −9,8…−16,0, y ≥ −19,65); odległość słupków od wieżyczek: G 0,26, D 0,04 (< 0,5); G zamknięcia/G otwarcia/D zamknięcia – tylko styk płaszczyzną wierzchu korpusu własnego serwa (zamierzony)",
+    "propozycja": "słupki D od x −16,49 (spód S_X − 0,5) do −22,5; D otwarcia na filarze z tarczy (x −16,49…−22,5, z −68,3…−53,2; od wieżyczki S_PD 1,3, od drutu D 1,4 w x); D zamknięcia – do decyzji (filar z tarczy przechodzi przez wieżyczkę S_PD); słupki przesunięte o +0,5 od wieżyczek (zmiana stopRho albo przesunięcia bocznego – zmienia kąt styku, przeliczyć w e6model)"
    }
   }
  }
