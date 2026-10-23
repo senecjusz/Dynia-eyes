@@ -11,13 +11,13 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 
 | # | Kamień | Stan | Commit |
 |---|---|---|---|
-| 1 | Próbka końcówki drutu | gotowa (3MF, siatka OK) | (ten commit) |
-| 2 | Plan szczegółów + Astra | plan `40-cad/onshape/duze-oko-v2-plan.md`, review Astry `20-analizy/review/2026-10-25-astra-plan-v2.md` (3 krytyczne, 7 ważnych); poprawki w modelu (niżej) | (ten commit) |
+| 1 | Próbka końcówki drutu | gotowa (3MF, siatka OK) | 98e5fdb |
+| 2 | Plan szczegółów + Astra | plan `40-cad/onshape/duze-oko-v2-plan.md`, review Astry `20-analizy/review/2026-10-25-astra-plan-v2.md` (3 krytyczne, 7 ważnych); poprawki w modelu (niżej) | 98e5fdb |
 | 3 | CAD | OpenSCAD zamiast Onshape (pkt 1 wyżej) | – |
 | 4 | Eksport 3MF + kontrola siatek | w toku | – |
 | 5 | Astra na siatkach | – | – |
-| 6 | Druty: rysunek 1:1 | – | – |
-| 7 | Instrukcja montażu i README druku | – | – |
+| 6 | Druty: rysunek 1:1 | `40-cad/druty/duze-oko-v2-druty-1do1.svg` (L: S1 40,4, S2 41,4, powieki 2 × 44,6) | (ten commit) |
+| 7 | Instrukcja montażu i README druku | `40-cad/openscad/duze-oko-v2-montaz.md` | (ten commit) |
 
 ## Rozstrzygnięcia z Astrą (plan)
 

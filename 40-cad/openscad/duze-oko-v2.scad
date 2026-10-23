@@ -178,6 +178,25 @@ module probka() {   // płytka 34 × 10 × 2: żebro A (klepsydra jak w gałce),
   }
 }
 
+// ===================== PODGLĄD (tylko złożenie, nie do druku): serwa, orczyki w zerze, druty, kardan =====================
+module drut(a, b) { color("red") hull() { translate(a) sphere(d = 1, $fn = 8); translate(b) sphere(d = 1, $fn = 8); } }
+module podglad() {
+  color("steelblue") {
+    translate([xOrcz1 + 1.5 + wiezaH, yWal1 - Wsv / 2, zSerwoTyl]) cube([Hsv, Wsv, Lsv]);
+    translate([xOrcz2 + 1.5 + wiezaH, yWal2 - Wsv / 2, zSerwoTyl]) cube([Hsv, Wsv, Lsv]);
+    translate([xWal3 - Wsv / 2, yOrcz3 - 1.5 - wiezaH - Hsv, zSerwoTyl]) cube([Wsv, Hsv, Lsv]);
+  }
+  color("gray") { translate([0, 0, -zPiasta]) cylinder(d = dPiasta, h = 2 * zPiasta); }
+  h1 = [xOrcz1, yWal1 + rOrcz1 * cos(-6), zWal + rOrcz1 * sin(-6)];
+  h2 = [xOrcz2, yWal2 + rOrcz2 * cos(-6), zWal + rOrcz2 * sin(-6)];
+  h3 = [xWal3 + rOrcz3, 0, zWal];
+  color("black") { hull() { translate([xOrcz1 - 1, yWal1, zWal]) sphere(2); translate(h1 - [1, 0, 0]) sphere(2); }
+    hull() { translate([xOrcz2 - 1, yWal2, zWal]) sphere(2); translate(h2 - [1, 0, 0]) sphere(2); }
+    hull() { translate([xWal3, 0, zWal]) sphere(2); translate(h3) sphere(2); } }
+  drut([22, 0, zUcho], h1); drut([0, 22, zUcho], h2);
+  drut([-33.05, rDzw * sin(katDzwZam), rDzw * cos(katDzwZam)], h3); drut([-34.75, -rDzw * sin(katDzwZam), rDzw * cos(katDzwZam)], h3);
+}
+
 // ===================== wybór =====================
 module wybrana() {
   if (czesc == "galka") { if (tryb == "druk") translate([0, 0, -zRant]) galka(); else galka(); }
@@ -187,6 +206,6 @@ module wybrana() {
   else if (czesc == "maskownica") { if (tryb == "druk") translate([0, 0, -22]) maskownica(); else maskownica(); }
   else if (czesc == "uchwyt") { if (tryb == "druk") translate([0, 0, -zPlyta]) uchwyt(); else uchwyt(); }
   else if (czesc == "probka") probka();
-  else { color("white") galka(); color("orange") { powiekaGorna(); powiekaDolna(); pierscien(); uchwyt(); } color("darkorange") maskownica(); }
+  else { color("white") galka(); color("orange") { powiekaGorna(); powiekaDolna(); pierscien(); uchwyt(); } color("darkorange") maskownica(); podglad(); }
 }
 wybrana();

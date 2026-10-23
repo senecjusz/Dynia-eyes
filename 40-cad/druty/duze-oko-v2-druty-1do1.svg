@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200mm" height="150mm" viewBox="0 0 200 150" font-family="Arial, sans-serif">
+<!-- Duże oko v2 – druty Ø1,0 (sprężynowy), rysunek 1:1. Drukować w skali 100 % (sprawdzić odcinek 50 mm). -->
+<style>
+  .d{fill:none;stroke:#c0102a;stroke-width:1.0;stroke-linecap:round;stroke-linejoin:round}
+  .o{fill:none;stroke:#888;stroke-width:0.25;stroke-dasharray:1.5 1}
+  .t{font-size:3.2px;fill:#222}
+  .h{font-size:4.2px;font-weight:bold;fill:#222}
+  .s{font-size:2.6px;fill:#444}
+</style>
+<rect width="200" height="150" fill="#fff"/>
+<text x="5" y="7" class="h">Duże oko v2 – druty Ø1,0 sprężynowe, skala 1:1</text>
+<text x="5" y="11.5" class="s">Długość korpusu (L) mierzona między osiami otworów. Zagięcia ciasne (promień wewn. ≈ 1). Ogon Z ≤ 2 mm. Odcinek przez otwór = grubość ścianki + 0,5.</text>
+<!-- skala -->
+<line x1="140" y1="18" x2="190" y2="18" stroke="#000" stroke-width="0.4"/>
+<line x1="140" y1="16.5" x2="140" y2="19.5" stroke="#000" stroke-width="0.4"/><line x1="190" y1="16.5" x2="190" y2="19.5" stroke="#000" stroke-width="0.4"/>
+<text x="152" y="15.5" class="t">50 mm – sprawdź</text>
+
+<!-- 1. lewo-prawo -->
+<text x="5" y="24" class="h">1. Lewo–prawo (S1): L = 40,4</text>
+<path class="d" d="M 8 31.5 L 10 31.5 L 10 34 L 50.4 34 L 50.4 36.5 L 52.4 36.5"/>
+<text x="5" y="40.5" class="s">żebro gałki (2 mm): Z w płaszczyźnie rysunku</text>
+<text x="44" y="40.5" class="s">orczyk S1, otwór 17,5 (Ø1,3)</text>
+<text x="5" y="44" class="s">Koniec przy orczyku zagiąć w płaszczyźnie prostopadłej do rysunku (obrót o 90° wokół korpusu). Zagięcia 90°.</text>
+
+<!-- 2. gora-dol: plaski, zagiecia 74,6 st -->
+<text x="5" y="54" class="h">2. Góra–dół (S2): L = 41,4, oba końce w jednej płaszczyźnie</text>
+<!-- uklad (x,z) -> rysunek: u = 10 + (z_ucho - z), v = 64 + x ; ucho (0,-5.5), orczyk (11,-45.41) -->
+<path class="d" d="M 8 63 L 10 63 L 10 65.5 L 49.91 76.5 L 49.91 79 L 51.91 79"/>
+<line class="o" x1="10" y1="62" x2="10" y2="80"/><line class="o" x1="49.91" y1="62" x2="49.91" y2="80"/>
+<text x="12" y="84" class="s">Korpus pod kątem 15,4° do osi gałki: oba odcinki przez otwór równoległe (∥ osi x), kąt korpus–odcinek 74,6°.</text>
+<text x="12" y="87.5" class="s">Lewy koniec: żebro gałki (klepsydra). Prawy: orczyk S2, otwór 13,5 (Ø1,3).</text>
+
+<!-- 3. powieki -->
+<text x="5" y="98" class="h">3. Powieki (S3): 2 sztuki, L = 44,6 (górna i dolna jednakowe)</text>
+<path class="d" d="M 8 105.5 L 10 105.5 L 10 108 L 54.6 108 L 54.6 110.5 L 56.6 110.5"/>
+<text x="5" y="114.5" class="s">Lewy koniec: dźwignia powieki (1,5 mm, Ø1,2), zagięcie 90° w płaszczyźnie prostopadłej do rysunku.</text>
+<text x="5" y="118" class="s">Prawy koniec: orczyk S3 (wałek pionowy), oba druty w jednym otworze 7,5 rozwierconym na Ø2,1, wchodzą z przeciwnych stron.</text>
+
+<text x="5" y="132" class="h">Cięcie</text>
+<text x="5" y="137" class="s">Odciąć L + 12 mm (S1: 53, S2: 54, powieki: 2 × 57), najpierw zagiąć koniec przy gałce/dźwigni, odmierzyć L od osi otworu, zagiąć drugi koniec.</text>
+<text x="5" y="141" class="s">Dokładność ±0,5 mm wystarcza: zero i krańce serw ustawia się w kalibracji (strona w telefonie).</text>
+</svg>
