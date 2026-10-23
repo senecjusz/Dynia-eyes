@@ -2,6 +2,23 @@
 
 Zebrane z pracy nad E6 (duże oko): plik stanu wykonawcy (`40-cad/onshape/stan-api-e6.json` → `wnioskiDoAGENTS`), Parking w `teraz.md` (wnioski g–i) i obserwacje orkiestratora. **To propozycje zmian w `AGENTS.md` – do decyzji użytkownika; `AGENTS.md` nie jest zmieniony.** Każdy punkt: co się stało → proponowana zasada.
 
+## 0. Błąd orkiestratora 22–23.10 – najważniejszy wniosek
+
+**Co się stało.** Napęd dużego oka wyszedł niepotrzebnie skomplikowany (drukowane przeguby krzyżowe P4, krzyżaki, widełki, okno-ogranicznik w Uchwycie, żebra, łapy, słupki stopu), a cały dzień pracy poszedł na kolejne rundy analiz i budowę tego w CAD. Użytkownik ocenił to jako mechanizm „z dupy”: przejrzane mechanizmy (Cogley) są prostsze i powinny maksymalnie wykorzystać kupione przeguby.
+
+**Przyczyny (wina orkiestratora):**
+1. **Orkiestrator sam dopisał do specyfikacji wymagania funkcjonalne, których użytkownik nie podał:** „mechanizm ma przeżyć rękę dziecka” (z tego okno-ogranicznik, żebra, łapy, słupki stopu, ochrona przekładni) i „bezpieczny rozruch” z ochroną przekładni. Złamało to zasadę użytkownika: o funkcji decyduje on, agenci tylko o technice.
+2. **Mechanizmu nikt z użytkownikiem nie przegadał.** Dostawał skróty z koncepcji i pojedyncze pytania; nie było rysunku ani wytłumaczenia, jak to działa i dlaczego tak.
+3. **Kupione części zignorowano.** Użytkownik powiedział, że ma kardany 2/2 i 5/5 (wychylenie > 90°) – zamiast oprzeć na nich napęd, zaprojektowano drukowane mini-kardany na śrubach M2. Jedno zdanie o tym w wiadomości orkiestrator potraktował jako zgodę.
+4. **Brak limitu złożoności i rund:** każda runda review dokładała zabezpieczenia, nikt nie zapytał „czy da się prościej”.
+5. Orkiestrator w ostatniej wiadomości 23.10 podał, że ten wniosek jest już zapisany – nie był. Zapisany dopiero teraz.
+
+**Zasady na przyszłość:**
+- Wymaganie funkcjonalne spoza specyfikacji użytkownika (bezpieczeństwo, odporność, ograniczniki, ochrona) wolno tylko zaproponować użytkownikowi – nigdy wpisać do briefu bez jego „tak”.
+- Przed koncepcją i przed CAD: mechanizm pokazany użytkownikowi prosto – rysunek, co się rusza i czym, z jakich jego części – i jego zgoda.
+- Najpierw najprostszy sprawdzony mechanizm z researchu, z maksymalnym użyciem części, które użytkownik ma; każdy dodatkowy element musi mieć uzasadnienie i zgodę.
+- Nie podawać jako zrobione czegoś, czego się nie sprawdziło.
+
 ## A. Rozmowa z użytkownikiem i podział decyzji
 
 1. **Użytkownik decyduje o funkcji, agenci o technice.** Wykonawca zadawał użytkownikowi pytania o geometrię, których ten nie mógł ocenić („3 mm w jedną czy drugą stronę – nie jestem w stanie sobie tego wyobrazić”). → Do użytkownika idą tylko decyzje funkcjonalne (co oko robi, liczba serw, otwór, wygląd) i fakty, które zna tylko on (co jest w warsztacie). Rozstrzygnięcia techniczne podejmuje orkiestrator z wykonawcą i recenzentami.
