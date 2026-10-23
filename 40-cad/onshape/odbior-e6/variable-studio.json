@@ -1268,6 +1268,62 @@
     "value": null,
     "description": "wysokość próbki P6 od szczytu Gałki",
     "expression": "20 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoDR",
+    "value": null,
+    "description": "promień ucha D",
+    "expression": "4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "luzMostka",
+    "value": null,
+    "description": "mostek G od ucha D",
+    "expression": "0.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "mostekR1",
+    "value": null,
+    "description": "",
+    "expression": "#uchoDR + #luzMostka"
+   },
+   {
+    "type": "LENGTH",
+    "name": "mostekR2",
+    "value": null,
+    "description": "orkiestrator: luz do rury 0,63",
+    "expression": "8 mm"
+   },
+   {
+    "type": "ANGLE",
+    "name": "mostekKat1",
+    "value": null,
+    "description": "od krawędzi przedniej G",
+    "expression": "20 deg"
+   },
+   {
+    "type": "ANGLE",
+    "name": "mostekKat2",
+    "value": null,
+    "description": "",
+    "expression": "70 deg"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoGR",
+    "value": null,
+    "description": "promień ucha G",
+    "expression": "6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "trimG",
+    "value": null,
+    "description": "przycięcie czaszy G",
+    "expression": "#uchoDX1 - #luzOsiowy"
    }
   ]
  }

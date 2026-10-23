@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T05:52Z, wykonawca CAD",
+  "zapis": "2026-10-23T06:00Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,9 +13,9 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 99,
-    "features": 61,
-    "getFeatures": 3
+    "total": 117,
+    "features": 72,
+    "getFeatures": 4
   },
   "liczniki": {
     "GET /documents/{id}": 3000,
@@ -211,19 +211,25 @@
       200,
       null,
       false
+    ],
+    [
+      "2026-10-23T05:53–05:59Z",
+      "Powieka dolna: 10 zapisów, 2 × bodydetails, 2 × bbox; GET /features (4/8) + GET zmiennych do odbioru",
+      200,
+      97,
+      false
     ]
   ],
   "stop": null,
   "etap1": {
     "budzet": {
       "total": 140,
-      "getFeatures": 8,
-      "uwaga": "podniesiony przez orkiestratora 23.10 z 80"
+      "getFeatures": 8
     },
-    "wywolania": 95,
-    "getFeatures": 3
+    "wywolania": 113,
+    "getFeatures": 4
   },
-  "mv": "0d2be67658747887928cf9e8",
+  "mv": "58c65069b8d0f8a876634025",
   "variableStudio": {
     "liczba": 177,
     "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
@@ -443,7 +449,9 @@
     "pliki": {
       "features-rama-galka.json": "GET /features z encjami (bez noSketchGeometry), 22 operacje, mv 0d2be676…, wszystkie featureStatus OK",
       "znaczniki-rama-galka.json": "odczyt znaczników wszystkich 6 szkiców z drzewa (foldery rozwinięte), dosłownie – wszystkie niedookreslony false",
-      "variable-studio.json": "GET zmiennych, 181"
+      "variable-studio.json": "nadpisany: 189 zmiennych",
+      "features-powieki.json": "GET /features (4/8) z encjami, 46 operacji, mv 58c65069…, wszystkie OK",
+      "znaczniki-powieki.json": "13 szkiców (foldery rozwinięte, lista przewijana), wszystkie niedookreslony false"
     },
     "uwagi": [
       "GET /features wykonane dwukrotnie: 2. (przed Gałką, na prośbę odbioru Ramy) i 3. (po Gałce, wspólne dla Ramy i Gałki) – zapisany tylko 3., bo obejmuje obie części",
@@ -461,5 +469,17 @@
       "nazwy wyciągnięć z dopiskiem „(wyciągnięcie)”, żeby różniły się od szkiców (K10)"
     ],
     "wywolania": "ok. 37 (w tym 4 edycje kierunku/obszaru Revolve, 3 nieudane wersje szkicu mostka, 1 nieudane wyciągnięcie ze startOffset, 3 DELETE)"
+  },
+  "rok": {
+    "przedE6": 558,
+    "E6": 117,
+    "suma": 675,
+    "zrodlo": "stan-api.json e5.rokPo 558 + n.total tego pliku"
+  },
+  "powiekaDolna": {
+    "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
+    "pomiar": "1 bryła, 16 ścian; sfery R31,2 / R33,4 / R34,7; ucha R4 przy x ±31,2…±33,6, otwór R1,7 (2 ściany); bbox x ±33,6, y −33,4…4, z −4…34,0 (czasza y −33,4…0, z −0,29…32,73 = zakres −11,5…−90,5°, oppositeDirection false)",
+    "zrzut": "40-cad/onshape/e6.2-zrzuty/powieki.jpg",
+    "wywolania": "ok. 14 (bez poprawek)"
   }
 }
