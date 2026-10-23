@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T05:27Z, wykonawca CAD",
+  "zapis": "2026-10-23T05:31Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 44,
-    "features": 26,
+    "total": 47,
+    "features": 28,
     "getFeatures": 1
   },
   "liczniki": {
@@ -169,15 +169,29 @@
       200,
       2993,
       false
+    ],
+    [
+      "2026-10-23T05:2xZ",
+      "Rama: featurespecs, GET+POST zmiennych, currentmicroversion, 10 zapisów operacji, 2 edycje Hole, 1 edycja Mirror, 2 × bodydetails, boundingboxes",
+      200,
+      null,
+      false
+    ],
+    [
+      "2026-10-23T05:29Z",
+      "edycja Mirror (tylko podkładka) + Mirror FACE otworu + bodydetails",
+      200,
+      null,
+      false
     ]
   ],
-  "stop": "budżet Ramy przekroczony (20/18); czeka na zgodę orkiestratora na +5 wywołań",
+  "stop": null,
   "etap1": {
     "budzet": {
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 40,
+    "wywolania": 43,
     "getFeatures": 1
   },
   "mv": "5e30e6e06aa4734f64a8b1e3",
@@ -203,8 +217,9 @@
     "Rama: płaszczyzna otworu osi": "F8bD76LPhvuJJ9J_1",
     "Rama: punkt otworu osi": "FWBgJNIwKNTMcSD_1",
     "Rama: otwór osi": "F5UPiRG1ed42NSX_1",
-    "Rama: bok i otwór lewy": "FwXY4GqWzOhHNcL_1",
-    "Rama: fazka rantu": "FY18JQmIo1HQljk_1"
+    "Rama: fazka rantu": "FY18JQmIo1HQljk_1",
+    "Rama: bok osi lewy": "FwXY4GqWzOhHNcL_1",
+    "Rama: otwór osi lewy": "FjpsCi7pQevuYS9_1"
   },
   "testBramki": {
     "t": "2026-10-23T02:44:35Z",
@@ -333,7 +348,9 @@
   "wnioskiDoAGENTS": [
     "Encje pomocnicze (construction) nie liczą się do dookreślenia szkicu: niedookreślona linia pomocnicza nie daje znacznika „underdefined”. Test znacznika i szkice kontrolowane znacznikiem muszą mieć encje zwykłe (layout: decyzja orkiestratora 23.10 – encje zwykłe); pomocnicze encje w szkicach części wymiarować zawsze, K4 z JSON przy odbiorze.",
     "document.visibilityState w karcie panelu przeglądarki aplikacji bywa „hidden” także przy widocznym panelu – nie jest wskaźnikiem widoczności; get_layout (views) mówi, czy sesja jest w oknie.",
-    "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie)."
+    "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie).",
+    "Mirror FEATURE nie odbija operacji Hole (także z fullFeaturePattern) – otwór po drugiej stronie trzeba odbić Mirror typu FACE (qCreatedBy(Hole, FACE)); para z otworem = dwa Mirror (orkiestrator 23.10).",
+    "Hole przez API wymaga parametru scope (bryła) – bez niego featureStatus ERROR „Error regenerating” bez dalszego opisu."
   ],
   "zmienne": {
     "liczba": 180,
@@ -347,13 +364,16 @@
       "sfery": "R150 i R152, środek z −140",
       "plaszczyzny": "z −37, z 6 (kołnierz), x ±36,5",
       "fazka": "stożek 37,1° przy z 5,08 (fazka krawędzi czoła)",
-      "bbox": "x ±42, y ±42, z −37…7,87"
+      "bbox": "x ±42, y ±42, z −37…7,87",
+      "otwory": "po obu stronach: walce R3, R1,25, R3 i stożek 45° (x ±39,64); 21 ścian bryły"
     },
     "odstepstwa": [
       "Hole wymagał parametru scope (bryła Ramy) – bez niego ERROR „Error regenerating” (2 edycje)",
       "Mirror FEATURE (także z fullFeaturePattern) odbija podkładkę, ale NIE odbija Hole – po stronie −x brak otworu (bodydetails)"
     ],
-    "stan": "STOP na budżecie Ramy (≤ 18; zużyte 20 od początku sekcji). Brakuje otworu osi po −x.",
-    "proponowanaPoprawka": "edycja Mirror → tylko podkładka; nowe Mirror typu FACE ścian otworu (qCreatedBy(Hole, FACE)) względem Right; bodydetails – razem 3 wywołania"
+    "stan": "PRZYJĘTA DO ODBIORU (baza): 1 bryła „Rama”, folder „Rama (11)”, nazwa części Rama (UI), zrzut 40-cad/onshape/e6.2-zrzuty/rama-baza.jpg",
+    "proponowanaPoprawka": "edycja Mirror → tylko podkładka; nowe Mirror typu FACE ścian otworu (qCreatedBy(Hole, FACE)) względem Right; bodydetails – razem 3 wywołania",
+    "budzet": "23 wywołania (budżet 18 + 5 za zgodą orkiestratora)",
+    "kolejnoscOdstepstwo": "Chamfer „Rama: fazka rantu” stoi przed Mirror „Rama: otwór osi lewy” (plan: Chamfer ostatni) – bez wpływu na geometrię"
   }
 }
