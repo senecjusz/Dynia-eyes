@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T02:55Z, wykonawca CAD",
+  "zapis": "2026-10-23T02:50Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 11,
-    "features": 2,
+    "total": 13,
+    "features": 3,
     "getFeatures": 1
   },
   "liczniki": {
@@ -110,15 +110,29 @@
     {
       "t": "2026-10-23T02:46Z",
       "uwaga": "brak wiersza w drzewie 5 s + 15 s (karta hidden); banner „session has timed out”; klik „reconnect” przeładował stronę i skasował window.G i timer; po przeładowaniu wiersz jest, znacznika niedookreślenia brak"
-    }
+    },
+    [
+      "2026-10-23T02:49:5xZ",
+      "GET …/currentmicroversion (próba diagnostyczna)",
+      200,
+      null,
+      false
+    ],
+    [
+      "2026-10-23T02:49:51Z",
+      "POST …/features/featureid FXtwYQCQ4yOgcrx_0 (ta sama treść, bez wymiaru osY) – OK",
+      200,
+      3000,
+      false
+    ]
   ],
-  "stop": "test znacznika niezaliczony przy ukrytym panelu; budowa szkiców wstrzymana do decyzji orkiestratora",
+  "stop": "znacznik wymaga widocznego panelu – czeka na użytkownika (otwarcie sesji Wykonawca CAD w oknie); szkic testowy Layout: przekrój (FXtwYQCQ4yOgcrx_0) zostaje celowo bez wymiaru osY",
   "etap1": {
     "budzet": {
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 7,
+    "wywolania": 9,
     "getFeatures": 1
   },
   "mv": "po zapisie szkicu Layout: przekrój (odczyt z odpowiedzi zapisu utracony przy przeładowaniu karty)",
@@ -148,6 +162,11 @@
     "krok1": "zapis celowo bez wymiaru długości osY (koniec osY wolny wzdłuż osi) -> featureStatus OK",
     "wynik": "NIEZALICZONY: wiersz pojawił się dopiero po przeładowaniu karty; ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]” (bez „is not fully defined”)",
     "przyczyna": "panel przeglądarki ukryty (sesja Claude nie jest otwarta w żadnym oknie, document.visibilityState = hidden); przed przeładowaniem wiersz był „not-computed”, a edytor pokazał „Your Onshape session has timed out … Click here to reconnect” mimo działającego API i timera podtrzymania",
-    "krok2": "nie wykonany (edycja z wymiarem) – bez działającego znacznika nie ma czego porównać"
+    "krok2": "nie wykonany (edycja z wymiarem) – bez działającego znacznika nie ma czego porównać",
+    "proba2": {
+      "t": "2026-10-23T02:49:51Z",
+      "opis": "po przeładowaniu: bramka odtworzona, timer wstawiony; visibilityState hidden; baner timeout zniknął; wiersz szkicu computed. Edycja featureid tej samej treści (bez wymiaru osY): HTTP 200, featureStatus OK, zapis 971 ms; odpytywanie drzewa co 100 ms przez 5000 ms: ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]”",
+      "wynik": "NIEZALICZONY – znacznik nie działa przy ukrytym panelu"
+    }
   }
 }
