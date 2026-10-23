@@ -201,5 +201,38 @@
     },
     "wniosek": "ZALICZONY. Przyczyna wcześniejszych prób: szkic miał wyłącznie encje pomocnicze (construction) – Onshape nie liczy ich do dookreślenia, więc znacznik nie pojawia się dla niedookreślonej linii pomocniczej. Ukryty panel nie był przyczyną. Skutek: szkice layoutu z samymi encjami pomocniczymi nie są sprawdzalne znacznikiem – potrzebna decyzja orkiestratora (K4 z JSON albo encje zwykłe w layoucie).",
     "limitMs": 5000
+  },
+  "widocznosc": {
+    "2026-10-23T05:15:25Z": {
+      "visibilityState": "visible",
+      "hasFocus": false,
+      "get_layout": {
+        "views": [
+          {
+            "placement": "primary"
+          }
+        ],
+        "open_panes": [
+          "preview"
+        ]
+      }
+    },
+    "2026-10-23T05:1xZ (po zrzucie użytkownika)": {
+      "visibilityState": "hidden mimo widocznego panelu",
+      "get_layout": {
+        "views": [
+          {
+            "placement": "primary"
+          }
+        ],
+        "open_panes": [
+          "preview"
+        ]
+      }
+    },
+    "2026-10-23T02:46–02:55Z (noc, „hidden”)": {
+      "podstawa": "document.visibilityState = hidden w karcie i get_layout = {views: [], open_panes: []} („This session isn't open in any window”); wiersz szkicu „not-computed” i baner „session has timed out” na zrzucie",
+      "ocena": "w nocy sesja faktycznie nie była otwarta w oknie (get_layout views []), ale to nie była przyczyna braku znacznika – przyczyną były encje pomocnicze; visibilityState w tym webview bywa „hidden” także przy widocznym panelu, więc nie jest wiarygodnym wskaźnikiem"
+    }
   }
 }
