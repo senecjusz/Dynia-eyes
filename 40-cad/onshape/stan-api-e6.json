@@ -1,558 +1,2077 @@
 {
-  "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
-  "doc": {
-    "did": "b8cc184e37d6a8dbfb63c30b",
-    "wid": "abf573bb580a27e085f1d73e",
-    "nazwa": "Duże oko v1",
-    "folder": "Halloween",
-    "parentId": "909f8b9e77a705de6fd31222",
-    "publiczny": true,
-    "partStudio": "045583ad9368d7b383c9477f",
-    "variableStudio": "5d1a01286f0f4439abd87cc4",
-    "assembly": "Assembly 1 (domyślne, do etapu 3)"
+ "zadanie": {
+  "id": "E6.3 etap 2a – koniec",
+  "stan": "zbudowane wszystko z zakresu poza słupkami stopu (v3.2) i przyrządem zera (decyzja użytkownika); K9 i odbiór końcowy zrobione",
+  "wywolania": "etap 2a 291/300, GET /features 7/7",
+  "aktualizacja": "2026-10-23T08:47:54Z"
+ },
+ "zapis": "2026-10-23T06:50Z, wykonawca CAD",
+ "doc": {
+  "did": "b8cc184e37d6a8dbfb63c30b",
+  "wid": "abf573bb580a27e085f1d73e",
+  "nazwa": "Duże oko v1",
+  "folder": "Halloween",
+  "parentId": "909f8b9e77a705de6fd31222",
+  "publiczny": true,
+  "partStudio": "045583ad9368d7b383c9477f",
+  "variableStudio": "5d1a01286f0f4439abd87cc4",
+  "assembly": "Assembly 1 (domyślne, do etapu 3)"
+ },
+ "n": {
+  "total": 465,
+  "features": 319,
+  "getFeatures": 12
+ },
+ "liczniki": {
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
+   "remaining": 93,
+   "t": "2026-10-23T07:37:52.680Z"
   },
-  "n": {
-    "total": 174,
-    "features": 100,
-    "getFeatures": 5
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": {
+   "remaining": 2996,
+   "t": "2026-10-23T07:36:13.325Z"
   },
-  "liczniki": {
-    "GET /documents/{id}": 3000,
-    "GET /documents (szukaj)": 1000,
-    "POST /documents": 200,
-    "POST /variables/d/{id}/w/{id}/variablestudio": 3000,
-    "GET /partstudios/.../features": 100,
-    "POST /partstudios/.../features": 2993,
-    "POST /partstudios/.../features/featureid": 3000,
-    "GET /documents/.../currentmicroversion": 400,
-    "POST /partstudios/.../translations": 10,
-    "GET /translations/{id}": 240,
-    "GET /documents/d/{id}/externaldata/{id}": 1000
+  "GET /documents/d/{id}/w/{id}/currentmicroversion": {
+   "remaining": 400,
+   "t": "2026-10-23T07:03:25.282Z"
+  },
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features": {
+   "remaining": 2992,
+   "t": "2026-10-23T07:36:51.876Z"
+  },
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/featurespecs": {
+   "remaining": 99,
+   "t": "2026-10-23T05:21:32.786Z"
+  },
+  "GET /variables/d/{id}/w/{id}/e/{id}/variables": {
+   "remaining": 3000,
+   "t": "2026-10-23T06:02:37.407Z"
+  },
+  "POST /variables/d/{id}/w/{id}/e/{id}/variables": {
+   "remaining": 3000,
+   "t": "2026-10-23T07:11:45.283Z"
+  },
+  "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails": {
+   "remaining": 466,
+   "t": "2026-10-23T07:36:53.331Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/JRD/boundingboxes": {
+   "remaining": 500,
+   "t": "2026-10-23T05:24:28.667Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/JhD/boundingboxes": {
+   "remaining": 499,
+   "t": "2026-10-23T05:30:45.999Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/JiD/boundingboxes": {
+   "remaining": 498,
+   "t": "2026-10-23T05:30:46.218Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/JmD/boundingboxes": {
+   "remaining": 494,
+   "t": "2026-10-23T05:46:20.183Z"
+  },
+  "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": {
+   "remaining": 2998,
+   "t": "2026-10-23T07:33:51.038Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/J+D/boundingboxes": {
+   "remaining": 492,
+   "t": "2026-10-23T05:49:03.683Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/RNBD/boundingboxes": {
+   "remaining": 491,
+   "t": "2026-10-23T05:56:09.039Z"
+  },
+  "GET /parts/d/{id}/w/{id}/e/{id}/partid/RcBD/boundingboxes": {
+   "remaining": 490,
+   "t": "2026-10-23T06:00:53.086Z"
+  },
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/translations": {
+   "remaining": 10,
+   "t": "2026-10-23T06:06:10.687Z"
+  },
+  "GET /translations/{id}": {
+   "remaining": 240,
+   "t": "2026-10-23T06:06:26.071Z"
+  },
+  "GET /documents/d/{id}/externaldata/{id}": {
+   "remaining": 1000,
+   "t": "2026-10-23T06:06:39.125Z"
+  },
+  "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback": {
+   "remaining": 95,
+   "t": "2026-10-23T07:37:51.515Z"
+  }
+ },
+ "log": [
+  [
+   "2026-10-22T~21:05Z",
+   "GET /documents/{id} (Oko F v2.5 -> parentId folderu Halloween)",
+   200,
+   3000,
+   true
+  ],
+  [
+   "2026-10-22T~21:05Z",
+   "GET /documents?q=Duże oko (czy dokument już istnieje: 0 wyników)",
+   200,
+   1000,
+   true
+  ],
+  [
+   "2026-10-22T~21:06Z",
+   "POST /documents (Duże oko v1, parentId Halloween, isPublic)",
+   200,
+   200,
+   true
+  ],
+  {
+   "t": "2026-10-22T~21:06Z",
+   "uwaga": "przejście karty do nowego dokumentu skasowało window.G; log trzech wywołań odtworzony z odpowiedzi w sesji (czasy przybliżone)"
+  },
+  [
+   "2026-10-22T21:07:39Z",
+   "POST /variables/.../variablestudio (Zmienne duże oko)",
+   200,
+   3000,
+   true
+  ],
+  {
+   "t": "2026-10-22T21:10:52Z",
+   "uwaga": "Part Studio 1 -> „Duże oko v1” w UI (menu zakładki, Rename); API nie zmienia nazwy elementu"
+  },
+  [
+   "2026-10-23T~01:00Z",
+   "GET /features (stan wyjściowy E6.2: 0 operacji, 4 domyślne)",
+   200,
+   100,
+   true
+  ],
+  {
+   "t": "2026-10-23T~01:00Z",
+   "uwaga": "plan e6.2-plan-zmienne-layout.md zastępuje e6-plan.md (brief E6.2); 22.10 plan e6-plan.md odrzucony przez orkiestratora"
+  },
+  [
+   "2026-10-23T02:44:35Z",
+   "GET …/featurespecs",
+   200,
+   100,
+   true
+  ],
+  [
+   "2026-10-23T02:45:0xZ",
+   "POST …/variables ×2 (177 zmiennych: liczby, potem wyrażenia)",
+   204,
+   2999,
+   true
+  ],
+  [
+   "2026-10-23T02:45:2xZ",
+   "GET …/variablestudioreferences (VS widoczne w Part Studio)",
+   200,
+   3000,
+   true
+  ],
+  [
+   "2026-10-23T02:45:4xZ",
+   "GET …/currentmicroversion",
+   200,
+   null,
+   true
+  ],
+  [
+   "2026-10-23T02:45:49Z",
+   "POST …/features Layout: przekrój (test znacznika, bez wymiaru osY) – featureStatus OK",
+   200,
+   2998,
+   true
+  ],
+  {
+   "t": "2026-10-23T02:46Z",
+   "uwaga": "brak wiersza w drzewie 5 s + 15 s (karta hidden); banner „session has timed out”; klik „reconnect” przeładował stronę i skasował window.G i timer; po przeładowaniu wiersz jest, znacznika niedookreślenia brak"
+  },
+  [
+   "2026-10-23T02:49:5xZ",
+   "GET …/currentmicroversion (próba diagnostyczna)",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T02:49:51Z",
+   "POST …/features/featureid FXtwYQCQ4yOgcrx_0 (ta sama treść, bez wymiaru osY) – OK",
+   200,
+   3000,
+   false
+  ],
+  [
+   "2026-10-23T05:14:2xZ",
+   "GET …/currentmicroversion",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:14:27Z",
+   "POST featureid Layout: przekrój (osY zwykła, bez długości) – znacznik JEST",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:14:39Z",
+   "POST featureid Layout: przekrój (osY zwykła z długością) – znacznik znika",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:18:34Z",
+   "POST featureid Layout: przekrój (encje zwykłe, komplet wymiarów)",
+   200,
+   3000,
+   false
+  ],
+  [
+   "2026-10-23T05:18:54Z",
+   "POST Layout: czoło",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:19:06–09Z",
+   "POST ×6 cPlane layoutu",
+   200,
+   2993,
+   false
+  ],
+  [
+   "2026-10-23T05:2xZ",
+   "Rama: featurespecs, GET+POST zmiennych, currentmicroversion, 10 zapisów operacji, 2 edycje Hole, 1 edycja Mirror, 2 × bodydetails, boundingboxes",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:29Z",
+   "edycja Mirror (tylko podkładka) + Mirror FACE otworu + bodydetails",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:30Z",
+   "GET /features (2/8, odbiór Ramy – plik niezapisany, zastąpiony 3.) + GET zmiennych",
+   200,
+   99,
+   false
+  ],
+  [
+   "2026-10-23T05:32–05:34Z",
+   "Gałka: POST zmiennych (p6Wys), currentmicroversion, szkic, 2 × Revolve, bodydetails, 2 × boundingboxes",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:35Z",
+   "GET /features (3/8, z encjami) + GET zmiennych – odbiór Ramy i Gałki",
+   200,
+   98,
+   false
+  ],
+  [
+   "2026-10-23T05:38–05:51Z",
+   "Powieka górna: zmienne (3 POST, 1 × 400), mv ×2, zmiana nazwy podkładki Ramy, 14 zapisów + 9 edycji/powtórzeń, 3 DELETE, 4 × bodydetails/bbox",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T05:53–05:59Z",
+   "Powieka dolna: 10 zapisów, 2 × bodydetails, 2 × bbox; GET /features (4/8) + GET zmiennych do odbioru",
+   200,
+   97,
+   false
+  ],
+  [
+   "2026-10-23T06:01–06:08Z",
+   "Słupek: POST zmiennych (nakrM5E), mv, 11 zapisów + 1 edycja Hole, 2 × bodydetails, bbox",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T06:12–06:21Z",
+   "Obejma: POST zmiennych, mv, 14 zapisów, 2 × bodydetails, bbox; GET /features (5/8) + GET zmiennych",
+   200,
+   96,
+   false
+  ],
+  [
+   "2026-10-23T06:24–06:33Z",
+   "K9: 3 × (POST zmiennych + bodydetails) + 1 bodydetails powtórny + przywrócenie; eksport: POST translations, GET status, GET externaldata",
+   200,
+   null,
+   false
+  ],
+  [
+   "2026-10-23T06:40–06:48Z",
+   "poprawka K9: POST zmiennych (trimG), mv, edycja przekroju PD, edycja wyciągnięcia ucha D, 2 × bodydetails; K9: 3 × (POST + bodydetails)",
+   200,
+   null,
+   false
+  ]
+ ],
+ "stop": null,
+ "etap1": {
+  "budzet": {
+   "total": 180,
+   "getFeatures": 8
+  },
+  "wywolania": 170,
+  "getFeatures": 5
+ },
+ "mv": "a3b1c6ad42fe9fb00064b5d7",
+ "variableStudio": {
+  "liczba": 177,
+  "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
+  "dodatkowa": "rantSzer 4 (rantD = otworD + rantSzer, bez stałej 4)"
+ },
+ "F": {
+  "Layout: przekrój": "FXtwYQCQ4yOgcrx_0",
+  "Layout: czoło": "FCIWCBd9PB1cghZ_0",
+  "Layout: pł. powierzchni dyni": "Fl8JFmA38sZyoHf_0",
+  "Layout: pł. tyłu rury": "FFMxHyR4Hv1oWI1_0",
+  "Layout: pł. uch Ramy tył": "FwwFCKVtfpN8MG9_0",
+  "Layout: pł. uch Ramy przód": "FBTHbpeQKRRerp2_0",
+  "Layout: pł. spodu Słupka": "F1YvoFCIuZraYth_0",
+  "Layout: pł. ucha D": "F4kAjYHOC9yz9vg_0",
+  "Rama: przekrój": "FUiIxQkyzZseizt_0",
+  "Rama: korpus": "FtKz4BOJ8fEsOLB_0",
+  "Rama: płaszczyzna boku": "FCnPBGeVDIxwC46_1",
+  "Rama: bok osi (szkic)": "FVzeYdUtE9ZmZjk_1",
+  "Rama: bok osi (extrude)": "FBHMlUQqQqgIOlq_1",
+  "Rama: płaszczyzna otworu osi": "F8bD76LPhvuJJ9J_1",
+  "Rama: punkt otworu osi": "FWBgJNIwKNTMcSD_1",
+  "Rama: otwór osi": "F5UPiRG1ed42NSX_1",
+  "Rama: fazka rantu": "FY18JQmIo1HQljk_1",
+  "Rama: bok osi lewy": "FwXY4GqWzOhHNcL_1",
+  "Rama: otwór osi lewy": "FjpsCi7pQevuYS9_1",
+  "Gałka: przekrój": "FiheSZ0iFarFXiR_1",
+  "Gałka: czasza": "(revolve – patrz features-rama-galka.json)",
+  "Próbka P6: czasza": "(revolve – patrz features-rama-galka.json)",
+  "Rama: podkładka boku osi": "FBHMlUQqQqgIOlq_1 (zmiana nazwy z „Rama: bok osi”, K10)",
+  "Powieka górna: płaszczyzna krawędzi": "FHkRivqJoCYPvOe_3",
+  "Powieka górna: przekrój": "FHtdzdXAfXIOaou_3",
+  "Powieka górna: czasza": "FjJFtCDjQ43qFLk_3",
+  "Powieka górna: rant": "F1ZofAPMjlZ6y9A_4",
+  "Powieka górna: płaszczyzna mostka": "(nowa, po usunięciu pierwszej)",
+  "Powieka górna: mostek": "F7P32GoKpm3lssD_4",
+  "Powieka górna: mostek (wyciągnięcie)": "FLQP3J4TiJNY4jw_4",
+  "plBok": "FCnPBGeVDIxwC46_1",
+  "skBok": "FVzeYdUtE9ZmZjk_1",
+  "exBok": "FBHMlUQqQqgIOlq_1",
+  "hole": "F5UPiRG1ed42NSX_1",
+  "plOtw": "F8bD76LPhvuJJ9J_1",
+  "skOtw": "FWBgJNIwKNTMcSD_1",
+  "mirror": "FwXY4GqWzOhHNcL_1",
+  "chamfer": "FY18JQmIo1HQljk_1",
+  "mirrorFace": "FjpsCi7pQevuYS9_1",
+  "skGalka": "FiheSZ0iFarFXiR_1",
+  "revGalka": "Foxq7bXQOaMEBJ3_1",
+  "revP6": "Fc5OR9rA8SLwFzW_2",
+  "plG": "FHkRivqJoCYPvOe_3",
+  "skG": "FHtdzdXAfXIOaou_3",
+  "revG": "FjJFtCDjQ43qFLk_3",
+  "rantG": "F1ZofAPMjlZ6y9A_4",
+  "skMost": "F7P32GoKpm3lssD_4",
+  "exMost": "FLQP3J4TiJNY4jw_4",
+  "plMost": "FrqgDKx8O7yHBFm_4",
+  "plUchoG": "F6bWH7u4OadRjRX_4",
+  "skUchoG": "F8RlScR0zPbWTSO_4",
+  "exUchoG": "FgJQTHHbFud962g_4",
+  "mirG": "FhmpNFJd6UOvVYC_4",
+  "plOsG": "FxjugcFMzN2eMjI_4",
+  "skOsG": "FzUH3YJcxyuIhYf_4",
+  "holeG": "FJeX5EIq7j9EZuR_4",
+  "plD": "FJUf5ncC4fsX8Dt_4",
+  "skD": "FC3zgXwZhcSgtxd_4",
+  "revD": "FzkXVD35CawMXjQ_4",
+  "rantD": "F729Q8mtSEjuM1U_5",
+  "skUchoD": "F1lNvpRK9sfocbj_5",
+  "exUchoD": "FjGLVH4YXQTzjfG_5",
+  "mirD": "Fkt0J2bbXILUVkp_5",
+  "plOsD": "F6yIFkJIbVIGho5_5",
+  "skOsD": "Fg3NnaX6ooHhrjC_5",
+  "holeD": "FoxnWeHgcouCsaW_5",
+  "skS": "FmujNFbDqgJ8ZhF_5",
+  "revS": "FyUrzolZWebwzXH_5",
+  "skPtS": "F1fMp25mEwYgOPF_6",
+  "holeS": "FVoPsdANwA8t9J8_6",
+  "plNakr": "FRce4rRx2gHE5B9_6",
+  "skNakr": "F3S4MbO78WEdfZF_6",
+  "exNakr": "FaXUYcKOB8VNDhN_6",
+  "plM4": "FvHiYXAymkvKYNA_6",
+  "skM4": "FM2etuJ3cVev1ZD_6",
+  "holeM4": "FvT9DSSEPl1RJan_6",
+  "skO": "F1rLWRgdezRlLJr_6",
+  "revO": "FuJRkZYbSVgvuHO_6",
+  "plO": "F7Qx4f8FDrK2pf3_7",
+  "skUchoO": "FY85s44QSlNOUNS_7",
+  "exUchoO": "Ftf9G3iCc3RwxK7_7",
+  "mirO": "FaQZohA278ZttVN_7",
+  "skSzcz": "FvLngIreQsZQ4MY_7",
+  "exSzcz": "Fr4jRyPwU7Bm1vc_7",
+  "plSrO": "FGs8ToNIq9iWPzC_7",
+  "skSrO": "FTem70a09Ok9WYy_7",
+  "holeO": "FKqwjAng9fZhuJw_7",
+  "plNkO": "FdNoDEiuTutNGFM_7",
+  "skNkO": "FUTfIHVr2Wf0RP1_7",
+  "exNkO": "FRSKpIkFNSboG7Z_7",
+  "skUchaR": "FrZI3ULSZytPA4C_1",
+  "exUchaR": "Fqlu44mTDYqkuIG_1",
+  "skPktUchR": "F2tn2IDaCJ2SoOR_1",
+  "holeUchR": "FSljx4gbkJuHTdA_1",
+  "fazUchR": "FcXtinVdNHEqQLv_1",
+  "plNadl": "FdsbCBYCQkXf39S_2",
+  "skNadl": "FQSt3M2Un4UQ37S_2",
+  "exNadl": "FtTChSNq7MZu4ip_2",
+  "mirNadl": "F9hWJds4Y9tBjA8_2",
+  "holeNadl": "FVjVIRXBZMxqXvy_2",
+  "mirHoleNadl": "F68zdVteFe2DB0J_2",
+  "skRimX": "FNMeCEriSghhZsR_2",
+  "revRimX": "F7Olv1S8n3w9tP5_2",
+  "plRimY": "Fs7QBAeazT05TwX_2",
+  "skRimY": "F01rg56Dam6PRyF_2",
+  "revRimY": "FmIpIK46xDDL5pZ_2",
+  "plWycG": "FBF1AuTk6ArwUts_4",
+  "skWycG": "FA7eFECtrb3mtav_4",
+  "revWycG": "F4uo9wq7UknuKTf_4",
+  "plPrzG": "FowaoAz8dzSPY8K_4",
+  "skPrzG": "F3AQR5KxEqnegSx_4",
+  "revPrzG": "F5uOMljfUcYHfR9_4",
+  "plZacG": "FgvV3sUV9aaM1D4_4",
+  "skZacG": "FG9P4moDAzKVmnp_4",
+  "exZacG": "FQJWQfxgOB6oeLJ_4",
+  "holeZacG": "Fcy5msyGTv802zE_4",
+  "skKacG": [
+   "Fhicp7kc8G89g9Z_4",
+   "FTt6tasDFuNMgsx_4",
+   "FSFk9wBRl2kXfOm_4"
+  ],
+  "revKacG": [
+   "FzJROMZZbbjVytb_4",
+   "F2VelrJ4e8flspL_4",
+   "F8Wc5dwqv9UrNBa_4"
+  ],
+  "plPrzD": "F6Hw4JOh6ypw2qX_5",
+  "skPrzD": "FQUZtXMg9S3BLoz_5",
+  "revPrzD": "FFL0LmdDOLg34sz_5",
+  "skZacD": "FAiNoDs7Ix10PHQ_5",
+  "exZacD": "FZzpmx40hburRel_5",
+  "holeZacD": "FLEB32v2qN3jSGn_5",
+  "skKacD": [
+   "Fqpk1RGl0ZLPyiA_5",
+   "Fe2IJMbo5Gnkxjj_5",
+   "FdtVlx8bHNKZTQf_5"
+  ],
+  "revKacD": [
+   "FG5Ttoc1bt46oz3_5",
+   "FkzOX3s23T6OPht_5",
+   "FMdzSaaMlDieO0G_5"
+  ]
+ },
+ "testBramki": {
+  "t": "2026-10-23T02:44:35Z",
+  "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+  "remaining": 100,
+  "prog": 100,
+  "wyjatek": true,
+  "brakNaglowkaWyjatek": true,
+  "wyslanoRazem": 0,
+  "zaliczony": true
+ },
+ "testZnacznika": {
+  "t": "2026-10-23T02:46–02:55Z",
+  "szkic": "Layout: przekrój",
+  "featureId": "FXtwYQCQ4yOgcrx_0",
+  "dataId": "MM7NRmWBfxHjHS8uy",
+  "krok1": "zapis celowo bez wymiaru długości osY (koniec osY wolny wzdłuż osi) -> featureStatus OK",
+  "wynik": "NIEZALICZONY: wiersz pojawił się dopiero po przeładowaniu karty; ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]” (bez „is not fully defined”)",
+  "przyczyna": "panel przeglądarki ukryty (sesja Claude nie jest otwarta w żadnym oknie, document.visibilityState = hidden); przed przeładowaniem wiersz był „not-computed”, a edytor pokazał „Your Onshape session has timed out … Click here to reconnect” mimo działającego API i timera podtrzymania",
+  "krok2": "nie wykonany (edycja z wymiarem) – bez działającego znacznika nie ma czego porównać",
+  "proba2": {
+   "t": "2026-10-23T02:49:51Z",
+   "opis": "po przeładowaniu: bramka odtworzona, timer wstawiony; visibilityState hidden; baner timeout zniknął; wiersz szkicu computed. Edycja featureid tej samej treści (bez wymiaru osY): HTTP 200, featureStatus OK, zapis 971 ms; odpytywanie drzewa co 100 ms przez 5000 ms: ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]”",
+   "wynik": "NIEZALICZONY – znacznik nie działa przy ukrytym panelu"
+  },
+  "proba3": {
+   "t": "2026-10-23T05:14:27Z",
+   "opis": "panel widoczny (zrzut użytkownika; visibilityState w webview i tak „hidden” – nie jest wskaźnikiem). Edycja: osY jako ZWYKŁA linia bez wymiaru długości",
+   "wynik": "ikona underdefined JEST, podpowiedź „Layout: przekrój [Sketch] is not fully defined”, od razu po odpowiedzi zapisu (0 ms przy odpytywaniu co 100 ms)"
+  },
+  "proba4": {
+   "t": "2026-10-23T05:14:39Z",
+   "opis": "edycja: osY zwykła z wymiarem #obwiedniaR",
+   "wynik": "ikona znika, podpowiedź „Layout: przekrój [Sketch]”, 0 ms po odpowiedzi (odpytywanie co 50 ms), zapis 486 ms"
+  },
+  "wniosek": "ZALICZONY. Przyczyna wcześniejszych prób: szkic miał wyłącznie encje pomocnicze (construction) – Onshape nie liczy ich do dookreślenia, więc znacznik nie pojawia się dla niedookreślonej linii pomocniczej. Ukryty panel nie był przyczyną. Skutek: szkice layoutu z samymi encjami pomocniczymi nie są sprawdzalne znacznikiem – potrzebna decyzja orkiestratora (K4 z JSON albo encje zwykłe w layoucie).",
+  "limitMs": 5000
+ },
+ "widocznosc": {
+  "2026-10-23T05:15:25Z": {
+   "visibilityState": "visible",
+   "hasFocus": false,
+   "get_layout": {
+    "views": [
+     {
+      "placement": "primary"
+     }
+    ],
+    "open_panes": [
+     "preview"
+    ]
+   }
+  },
+  "2026-10-23T05:1xZ (po zrzucie użytkownika)": {
+   "visibilityState": "hidden mimo widocznego panelu",
+   "get_layout": {
+    "views": [
+     {
+      "placement": "primary"
+     }
+    ],
+    "open_panes": [
+     "preview"
+    ]
+   }
+  },
+  "2026-10-23T02:46–02:55Z (noc, „hidden”)": {
+   "podstawa": "document.visibilityState = hidden w karcie i get_layout = {views: [], open_panes: []} („This session isn't open in any window”); wiersz szkicu „not-computed” i baner „session has timed out” na zrzucie",
+   "ocena": "w nocy sesja faktycznie nie była otwarta w oknie (get_layout views []), ale to nie była przyczyna braku znacznika – przyczyną były encje pomocnicze; visibilityState w tym webview bywa „hidden” także przy widocznym panelu, więc nie jest wiarygodnym wskaźnikiem"
+  }
+ },
+ "szkice": [
+  {
+   "t": "2026-10-23T05:18:34Z",
+   "nazwa": "Layout: przekrój",
+   "featureId": "FXtwYQCQ4yOgcrx_0",
+   "dataId": "MM7NRmWBfxHjHS8uy",
+   "podpowiedz": "Layout: przekrój [Sketch]",
+   "niedookreslony": false,
+   "ponownyOdczyt1500ms": "bez zmian",
+   "sourceMicroversion": "15b92c528b0fae90e8bda2c9",
+   "encje": "wszystkie zwykłe (decyzja orkiestratora b)"
+  },
+  {
+   "t": "2026-10-23T05:18:54Z",
+   "nazwa": "Layout: czoło",
+   "featureId": "FCIWCBd9PB1cghZ_0",
+   "dataId": "Mxcqhe7Wf9dSyGxsx",
+   "podpowiedz": "Layout: czoło [Sketch]",
+   "niedookreslony": false,
+   "ponownyOdczyt1500ms": "bez zmian",
+   "sourceMicroversion": "2809679b339ebcbd04c18207",
+   "encje": "wszystkie zwykłe"
+  },
+  {
+   "t": "2026-10-23T05:22:07Z",
+   "nazwa": "Rama: przekrój",
+   "featureId": "FUiIxQkyzZseizt_0",
+   "dataId": "MxmifMk4W673yV/xv",
+   "podpowiedz": "Rama: przekrój [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "t": "2026-10-23T05:22:3xZ",
+   "nazwa": "Rama: bok osi",
+   "featureId": "FVzeYdUtE9ZmZjk_1",
+   "podpowiedz": "Rama: bok osi [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "t": "2026-10-23T05:22:59Z",
+   "nazwa": "Rama: punkt otworu osi",
+   "featureId": "FWBgJNIwKNTMcSD_1",
+   "dataId": "M1PqlTiZMFl/1d4oo",
+   "podpowiedz": "Rama: punkt otworu osi [Sketch]",
+   "niedookreslony": false
+  },
+  {
+   "t": "2026-10-23T05:33Z",
+   "nazwa": "Gałka: przekrój",
+   "featureId": "FiheSZ0iFarFXiR_1",
+   "dataId": "MfmKyIRO9rdf1XReH",
+   "podpowiedz": "Gałka: przekrój [Sketch]",
+   "niedookreslony": false
+  }
+ ],
+ "layout": {
+  "operacje": 8,
+  "folder": "Layout (8) – założony w UI (Add selection to folder)",
+  "plaszczyzny": "6 × cPlane OK, bez ikon ostrzeżeń",
+  "odstepstwo": "w „Layout: czoło” pominięte proste promieniowe pod uchaRamyKat1–3 i nadlewKat1–2 (kąty > 180° nie dają się zwymiarować jednym ANGLE od osi x; to elementy odłożone do v3.1 – dodam przy uchach/nadlewach)",
+  "zrzut": "tool-results mcp-Claude_Browser-blob-1792732754223 (sesja), widok drzewa i layoutu"
+ },
+ "wnioskiDoAGENTS": [
+  "Encje pomocnicze (construction) nie liczą się do dookreślenia szkicu: niedookreślona linia pomocnicza nie daje znacznika „underdefined”. Test znacznika i szkice kontrolowane znacznikiem muszą mieć encje zwykłe (layout: decyzja orkiestratora 23.10 – encje zwykłe); pomocnicze encje w szkicach części wymiarować zawsze, K4 z JSON przy odbiorze.",
+  "document.visibilityState w karcie panelu przeglądarki aplikacji bywa „hidden” także przy widocznym panelu – nie jest wskaźnikiem widoczności; get_layout (views) mówi, czy sesja jest w oknie.",
+  "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie).",
+  "Mirror FEATURE nie odbija operacji Hole (także z fullFeaturePattern) – otwór po drugiej stronie trzeba odbić Mirror typu FACE (qCreatedBy(Hole, FACE)); para z otworem = dwa Mirror (orkiestrator 23.10).",
+  "Hole przez API wymaga parametru scope (bryła) – bez niego featureStatus ERROR „Error regenerating” bez dalszego opisu.",
+  "Więz ANGLE wysyłany przez API (localFirst/localSecond|externalSecond + angle) daje ostrzeżenie „Some constraints are not applicable…” – kąty wymiarować położeniem punktu (np. R·sin(kąt)).",
+  "Szkic nie może leżeć na płaszczyźnie utworzonej później w drzewie (nowe operacje idą na koniec) – przy poprawce usuwać i tworzyć w kolejności.",
+  "Revolve częściowy: endBound BLIND; wybór obszaru szkicu przez qLargest/qSmallest działa, qContainsPoint na obszarze szkicu nie zadziałał.",
+  "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół.",
+  "Szkic, który po zmianie zmiennej traci rozwiązanie, może zostać w starej geometrii bez ostrzeżenia i z featureStatus OK – K9 musi mierzyć bryły (bodydetails), nie tylko stany i ikony.",
+  "GET /features z includeGeometryIds=false zwraca puste featureStates – do K1 wołać bez tego parametru",
+  "Variable Studio liczy zmienne po kolei – zmienna może odwołać się tylko do zmiennych wyżej na liście",
+  "LINE_ANGLE: kierunki osi szkicu niespójne między kątami – każde cięcie sprawdzać bodydetails",
+  "Przemiatanie musi obejmować też pary stała–stała (słupki stopu v3.1 kolidowały z korpusem S_X i wieżyczkami – wykryte dopiero przy budowie)"
+ ],
+ "zmienne": {
+  "liczba": 199,
+  "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1",
+  "p6Wys": "20 (nowa)",
+  "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy",
+  "nakrM5E": "9,47 (nowa: wymiar po narożach kieszeni nakrętki M5)",
+  "obejma": "obejmaZ1 = glebokoscSrodka − dociskMin (było −5 stałe), nowe: obejmaScianka 3, kolnierzObejmyT 2,5, szczelinaObejmy 3, uchoObejmyT 6, uchoObejmyR2 50, obejmaSrubaR 46,5, m3NakrS 5,7, m3NakrH 4, m3NakrE 6,58",
+  "trimG": "min(#uchoDX1, #powiekaR1) - #luzOsiowy (poprawka K9)"
+ },
+ "rama": {
+  "pomiar": {
+   "bryly": 1,
+   "sciany": 17,
+   "walce": "R39,75 / 37,75 / 42 / 35,2 (oś z); R5 przy x ±38,5 (boki); otwór +x: R1,25 i R3 przy x 39,75, stożek 45° przy x 39,64",
+   "sfery": "R150 i R152, środek z −140",
+   "plaszczyzny": "z −37, z 6 (kołnierz), x ±36,5",
+   "fazka": "stożek 37,1° przy z 5,08 (fazka krawędzi czoła)",
+   "bbox": "x ±42, y ±42, z −37…7,87",
+   "otwory": "po obu stronach: walce R3, R1,25, R3 i stożek 45° (x ±39,64); 21 ścian bryły"
+  },
+  "odstepstwa": [
+   "Hole wymagał parametru scope (bryła Ramy) – bez niego ERROR „Error regenerating” (2 edycje)",
+   "Mirror FEATURE (także z fullFeaturePattern) odbija podkładkę, ale NIE odbija Hole – po stronie −x brak otworu (bodydetails)"
+  ],
+  "stan": "PRZYJĘTA DO ODBIORU (baza): 1 bryła „Rama”, folder „Rama (11)”, nazwa części Rama (UI), zrzut 40-cad/onshape/e6.2-zrzuty/rama-baza.jpg",
+  "proponowanaPoprawka": "edycja Mirror → tylko podkładka; nowe Mirror typu FACE ścian otworu (qCreatedBy(Hole, FACE)) względem Right; bodydetails – razem 3 wywołania",
+  "budzet": "23 wywołania (budżet 18 + 5 za zgodą orkiestratora)",
+  "kolejnoscOdstepstwo": "Chamfer „Rama: fazka rantu” stoi przed Mirror „Rama: otwór osi lewy” (plan: Chamfer ostatni) – bez wpływu na geometrię"
+ },
+ "galka": {
+  "pomiar": {
+   "Gałka (JhD)": "3 ściany: sfery R28 i R30, płaszczyzna z −12,68; bbox ±30 × ±30 × z −12,68…30",
+   "Próbka P6 (JiD)": "3 ściany: sfery R28 i R30, płaszczyzna z 10; bbox ±28,28 × z 10…30"
+  },
+  "stan": "PRZYJĘTA DO ODBIORU (baza): foldery „Gałka (2)” i „Próbka P6 (1)”, nazwy części Gałka i Próbka P6 (UI), zrzut 40-cad/onshape/e6.2-zrzuty/galka-p6.jpg",
+  "budzet": "10 wywołań z ≤ 12 (GET+POST zmiennych: tylko POST – GET z odbioru Ramy, mv, 3 zapisy, bodydetails, 2 × bbox; + GET /features i GET zmiennych do odbioru)"
+ },
+ "odbior": {
+  "katalog": "40-cad/onshape/odbior-e6/",
+  "pliki": {
+   "features-rama-galka.json": "GET /features z encjami (bez noSketchGeometry), 22 operacje, mv 0d2be676…, wszystkie featureStatus OK",
+   "znaczniki-rama-galka.json": "odczyt znaczników wszystkich 6 szkiców z drzewa (foldery rozwinięte), dosłownie – wszystkie niedookreslony false",
+   "variable-studio.json": "nadpisany: 199 zmiennych",
+   "features-powieki.json": "GET /features (4/8) z encjami, 46 operacji, mv 58c65069…, wszystkie OK",
+   "znaczniki-powieki.json": "13 szkiców (foldery rozwinięte, lista przewijana), wszystkie niedookreslony false",
+   "features-slupek-obejma.json": "GET /features (5/8) z encjami, 70 operacji, mv 0f5c55ec…, wszystkie OK",
+   "znaczniki-wszystkie.json": "22 szkice (13 z odbioru powiek + 9 Słupka i Obejmy), wszystkie niedookreslony false"
+  },
+  "uwagi": [
+   "GET /features wykonane dwukrotnie: 2. (przed Gałką, na prośbę odbioru Ramy) i 3. (po Gałce, wspólne dla Ramy i Gałki) – zapisany tylko 3., bo obejmuje obie części",
+   "szkic i wyciągnięcie mają tę samą nazwę „Rama: bok osi” – do rozróżnienia przy K10 (proponuję zmienić nazwę wyciągnięcia na „Rama: podkładka boku osi”)"
+  ]
+ },
+ "powiekaGorna": {
+  "czesc": "JmD „Powieka górna”, folder „Powieka górna (14)”",
+  "pomiar": "1 bryła, 24 ściany; sfery R31,2 / R33,4 / R34,7 (rant); walce osi X: mostek R4,5 i R8, ucho R6 (po obu stronach), otwór R1,7 (2 ściany – oba ucha); płaszczyzny x ±30,95 (przycięcie, start mostka), ±33,85, ±36,25; bbox x ±36,25, y −6…33,4, z −6…34,68 (czasza y −4,94…33,4 i z −0,58…33,4 = zakres −8,5…91°; rant y −5,13, z 34,68)",
+  "zrzut": "40-cad/onshape/e6.2-zrzuty/powieka-gorna.jpg",
+  "odstepstwa": [
+   "Revolve częściowy wymaga endBound BLIND; obszary szkicu wybrane qLargest (czasza) i qSmallest (rant) zamiast qContainsPoint (punkt nie trafiał – błąd ERROR)",
+   "obrót czaszy: oppositeDirection true (bbox po pierwszej próbie pokazał obrót w −y)",
+   "szkic mostka: wymiar ANGLE przez API dawał „constraints not applicable” – kąty promieni zastąpione wymiarem poziomym R1·sin(zamkG + mostekKat); pierwsza płaszczyzna mostka, szkic i wyciągnięcie usunięte i utworzone ponownie w kolejności płaszczyzna → szkic → wyciągnięcie (szkic nie może odwołać się do późniejszej płaszczyzny)",
+   "nazwy wyciągnięć z dopiskiem „(wyciągnięcie)”, żeby różniły się od szkiców (K10)"
+  ],
+  "wywolania": "ok. 37 (w tym 4 edycje kierunku/obszaru Revolve, 3 nieudane wersje szkicu mostka, 1 nieudane wyciągnięcie ze startOffset, 3 DELETE)"
+ },
+ "rok": {
+  "przedE6": 558,
+  "E6": 465,
+  "suma": 1023
+ },
+ "powiekaDolna": {
+  "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
+  "pomiar": "1 bryła, 16 ścian; sfery R31,2 / R33,4 / R34,7; ucha R4 przy x ±31,2…±33,6, otwór R1,7 (2 ściany); bbox x ±33,6, y −33,4…4, z −4…34,0 (czasza y −33,4…0, z −0,29…32,73 = zakres −11,5…−90,5°, oppositeDirection false)",
+  "zrzut": "40-cad/onshape/e6.2-zrzuty/powieki.jpg",
+  "wywolania": "ok. 14 (bez poprawek)"
+ },
+ "slupek": {
+  "czesc": "RNBD „Słupek”, folder „Słupek (10)”",
+  "pomiar": "1 bryła, 14 ścian; walec R7,65 (z −33…−5,5), kieszeń kardana R5,65 do z −12,75, przelot M5 R2,65 od z −33 (2 ściany – przerwany kanałem), kanał nakrętki: sześciokąt S 8,2 (ściany skośne ±30° na x ≈ 3,55, płaskie y ±4,1) z wylotem na −x, z −20…−16; otwór M4 R2,1 oś x na z −9,1 od +x; bbox ±7,65 × z −33…−5,5; ścianka kanał–kieszeń 3,25 (≥ 3, wymóg orkiestratora)",
+  "zrzut": "40-cad/onshape/e6.2-zrzuty/slupek.jpg",
+  "odstepstwa": [
+   "Hole M5 z płaszczyzny spodu: oppositeDirection true (pierwsza próba w −z = ERROR)",
+   "spłaszczenie i czop pod piastę Płyty odłożone do etapu 2 (decyzja orkiestratora)"
+  ],
+  "wywolania": 16
+ },
+ "obejma": {
+  "czesc": "RcBD „Obejma”, folder „Obejma (14)”",
+  "pomiar": "1 bryła, 22 ściany; pierścień R40,05–43,05, kołnierz R48 (z −5…−7,5), dół z −15; szczelina x ±1,5 przez całą wysokość, ucha do x ±7,5 i y 50; otwór M3 R1,65 (2 ściany – oba ucha) w osi x na y 46,5, z −10; kieszeń nakrętki x −7,5…−3,5 (głęb. 4); bbox x ±48, y −48…50, z −15…−5",
+  "zrzut": "40-cad/onshape/e6.2-zrzuty/obejma.jpg",
+  "wywolania": 17,
+  "druk": "kołnierzem w dół, PETG (do README)"
+ },
+ "k9": {
+  "luzCzasza 1,2→1,0": "Powieka górna sfery 31,0/33,2/34,5 OK; Powieka dolna BEZ ZMIAN 31,2/33,4/34,7 (szkic bez rozwiązania, bez ostrzeżenia) – BŁĄD",
+  "glebokoscSrodka 10→12": "Rama sfery R150/152 środek z −138; Obejma z −3…−13 – OK",
+  "dociskMin 15→20": "Obejma z −10…−20 – OK",
+  "przywrocone": "wszystkie wartości bazowe, drzewo bez błędów"
+ },
+ "eksport": {
+  "plik": "40-cad/3mf/Duze oko v1/Duze oko v1 - FullProject.3mf",
+  "parametry": "3MF, distanceTolerance 0,00001 m, angularTolerance 3°, maximumChordLength 10 m, mm",
+  "translacja": "6adaf95281e858714ce0b71c DONE",
+  "bajty": 1329812,
+  "siatki": "7/7 OK (sprawdz_siatki.js na STL z 3mf_do_stl.py --rozdziel), brył 7 = 7"
+ },
+ "k9poPoprawce": {
+  "poprawka": "trimG = min(uchoDX1, powiekaR1) − luzOsiowy; przekrój PD przycięty na ±trimG; ucho D z drugim kierunkiem uchoDX1 − trimG",
+  "luzCzasza 1,0": "Gałka 28/30; PG i PD 31,0/33,2/34,5; przycięcie ±30,75 – OK",
+  "kulaD 58": "Gałka i P6 27/29; PG i PD 30,2/32,4/33,7; przycięcie ±29,95 – OK",
+  "przywrocone": "PG i PD 31,2/33,4/34,7, ±30,95; 7 brył, bez błędów",
+  "znacznikPD": "Powieka dolna: przekrój – w pełni zdefiniowany"
+ },
+ "etap2a": {
+  "brief": "30-projekt/brief-e6.3-cad-etap2a.md",
+  "plan": "40-cad/onshape/e6.3-plan-dokonczenie-etapu1.md",
+  "start_n_total": 174,
+  "budzet": {
+   "total": 300,
+   "getFeatures": 7
+  },
+  "zuzyte": {
+   "total": 291,
+   "getFeatures": 7
   },
   "log": [
-    [
-      "2026-10-22T~21:05Z",
-      "GET /documents/{id} (Oko F v2.5 -> parentId folderu Halloween)",
-      200,
-      3000,
-      true
-    ],
-    [
-      "2026-10-22T~21:05Z",
-      "GET /documents?q=Duże oko (czy dokument już istnieje: 0 wyników)",
-      200,
-      1000,
-      true
-    ],
-    [
-      "2026-10-22T~21:06Z",
-      "POST /documents (Duże oko v1, parentId Halloween, isPublic)",
-      200,
-      200,
-      true
-    ],
-    {
-      "t": "2026-10-22T~21:06Z",
-      "uwaga": "przejście karty do nowego dokumentu skasowało window.G; log trzech wywołań odtworzony z odpowiedzi w sesji (czasy przybliżone)"
-    },
-    [
-      "2026-10-22T21:07:39Z",
-      "POST /variables/.../variablestudio (Zmienne duże oko)",
-      200,
-      3000,
-      true
-    ],
-    {
-      "t": "2026-10-22T21:10:52Z",
-      "uwaga": "Part Studio 1 -> „Duże oko v1” w UI (menu zakładki, Rename); API nie zmienia nazwy elementu"
-    },
-    [
-      "2026-10-23T~01:00Z",
-      "GET /features (stan wyjściowy E6.2: 0 operacji, 4 domyślne)",
-      200,
-      100,
-      true
-    ],
-    {
-      "t": "2026-10-23T~01:00Z",
-      "uwaga": "plan e6.2-plan-zmienne-layout.md zastępuje e6-plan.md (brief E6.2); 22.10 plan e6-plan.md odrzucony przez orkiestratora"
-    },
-    [
-      "2026-10-23T02:44:35Z",
-      "GET …/featurespecs",
-      200,
-      100,
-      true
-    ],
-    [
-      "2026-10-23T02:45:0xZ",
-      "POST …/variables ×2 (177 zmiennych: liczby, potem wyrażenia)",
-      204,
-      2999,
-      true
-    ],
-    [
-      "2026-10-23T02:45:2xZ",
-      "GET …/variablestudioreferences (VS widoczne w Part Studio)",
-      200,
-      3000,
-      true
-    ],
-    [
-      "2026-10-23T02:45:4xZ",
-      "GET …/currentmicroversion",
-      200,
-      null,
-      true
-    ],
-    [
-      "2026-10-23T02:45:49Z",
-      "POST …/features Layout: przekrój (test znacznika, bez wymiaru osY) – featureStatus OK",
-      200,
-      2998,
-      true
-    ],
-    {
-      "t": "2026-10-23T02:46Z",
-      "uwaga": "brak wiersza w drzewie 5 s + 15 s (karta hidden); banner „session has timed out”; klik „reconnect” przeładował stronę i skasował window.G i timer; po przeładowaniu wiersz jest, znacznika niedookreślenia brak"
-    },
-    [
-      "2026-10-23T02:49:5xZ",
-      "GET …/currentmicroversion (próba diagnostyczna)",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T02:49:51Z",
-      "POST …/features/featureid FXtwYQCQ4yOgcrx_0 (ta sama treść, bez wymiaru osY) – OK",
-      200,
-      3000,
-      false
-    ],
-    [
-      "2026-10-23T05:14:2xZ",
-      "GET …/currentmicroversion",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:14:27Z",
-      "POST featureid Layout: przekrój (osY zwykła, bez długości) – znacznik JEST",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:14:39Z",
-      "POST featureid Layout: przekrój (osY zwykła z długością) – znacznik znika",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:18:34Z",
-      "POST featureid Layout: przekrój (encje zwykłe, komplet wymiarów)",
-      200,
-      3000,
-      false
-    ],
-    [
-      "2026-10-23T05:18:54Z",
-      "POST Layout: czoło",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:19:06–09Z",
-      "POST ×6 cPlane layoutu",
-      200,
-      2993,
-      false
-    ],
-    [
-      "2026-10-23T05:2xZ",
-      "Rama: featurespecs, GET+POST zmiennych, currentmicroversion, 10 zapisów operacji, 2 edycje Hole, 1 edycja Mirror, 2 × bodydetails, boundingboxes",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:29Z",
-      "edycja Mirror (tylko podkładka) + Mirror FACE otworu + bodydetails",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:30Z",
-      "GET /features (2/8, odbiór Ramy – plik niezapisany, zastąpiony 3.) + GET zmiennych",
-      200,
-      99,
-      false
-    ],
-    [
-      "2026-10-23T05:32–05:34Z",
-      "Gałka: POST zmiennych (p6Wys), currentmicroversion, szkic, 2 × Revolve, bodydetails, 2 × boundingboxes",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:35Z",
-      "GET /features (3/8, z encjami) + GET zmiennych – odbiór Ramy i Gałki",
-      200,
-      98,
-      false
-    ],
-    [
-      "2026-10-23T05:38–05:51Z",
-      "Powieka górna: zmienne (3 POST, 1 × 400), mv ×2, zmiana nazwy podkładki Ramy, 14 zapisów + 9 edycji/powtórzeń, 3 DELETE, 4 × bodydetails/bbox",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T05:53–05:59Z",
-      "Powieka dolna: 10 zapisów, 2 × bodydetails, 2 × bbox; GET /features (4/8) + GET zmiennych do odbioru",
-      200,
-      97,
-      false
-    ],
-    [
-      "2026-10-23T06:01–06:08Z",
-      "Słupek: POST zmiennych (nakrM5E), mv, 11 zapisów + 1 edycja Hole, 2 × bodydetails, bbox",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T06:12–06:21Z",
-      "Obejma: POST zmiennych, mv, 14 zapisów, 2 × bodydetails, bbox; GET /features (5/8) + GET zmiennych",
-      200,
-      96,
-      false
-    ],
-    [
-      "2026-10-23T06:24–06:33Z",
-      "K9: 3 × (POST zmiennych + bodydetails) + 1 bodydetails powtórny + przywrócenie; eksport: POST translations, GET status, GET externaldata",
-      200,
-      null,
-      false
-    ],
-    [
-      "2026-10-23T06:40–06:48Z",
-      "poprawka K9: POST zmiennych (trimG), mv, edycja przekroju PD, edycja wyciągnięcia ucha D, 2 × bodydetails; K9: 3 × (POST + bodydetails)",
-      200,
-      null,
-      false
-    ]
-  ],
-  "stop": "etap 1 zakończony po poprawce K9; nowy eksport 3MF ręcznie (licznik translations 10)",
-  "etap1": {
-    "budzet": {
-      "total": 180,
-      "getFeatures": 8
-    },
-    "wywolania": 170,
-    "getFeatures": 5
-  },
-  "mv": "58c65069b8d0f8a876634025",
-  "variableStudio": {
-    "liczba": 177,
-    "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
-    "dodatkowa": "rantSzer 4 (rantD = otworD + rantSzer, bez stałej 4)"
-  },
-  "F": {
-    "Layout: przekrój": "FXtwYQCQ4yOgcrx_0",
-    "Layout: czoło": "FCIWCBd9PB1cghZ_0",
-    "Layout: pł. powierzchni dyni": "Fl8JFmA38sZyoHf_0",
-    "Layout: pł. tyłu rury": "FFMxHyR4Hv1oWI1_0",
-    "Layout: pł. uch Ramy tył": "FwwFCKVtfpN8MG9_0",
-    "Layout: pł. uch Ramy przód": "FBTHbpeQKRRerp2_0",
-    "Layout: pł. spodu Słupka": "F1YvoFCIuZraYth_0",
-    "Layout: pł. ucha D": "F4kAjYHOC9yz9vg_0",
-    "Rama: przekrój": "FUiIxQkyzZseizt_0",
-    "Rama: korpus": "FtKz4BOJ8fEsOLB_0",
-    "Rama: płaszczyzna boku": "FCnPBGeVDIxwC46_1",
-    "Rama: bok osi (szkic)": "FVzeYdUtE9ZmZjk_1",
-    "Rama: bok osi (extrude)": "FBHMlUQqQqgIOlq_1",
-    "Rama: płaszczyzna otworu osi": "F8bD76LPhvuJJ9J_1",
-    "Rama: punkt otworu osi": "FWBgJNIwKNTMcSD_1",
-    "Rama: otwór osi": "F5UPiRG1ed42NSX_1",
-    "Rama: fazka rantu": "FY18JQmIo1HQljk_1",
-    "Rama: bok osi lewy": "FwXY4GqWzOhHNcL_1",
-    "Rama: otwór osi lewy": "FjpsCi7pQevuYS9_1",
-    "Gałka: przekrój": "FiheSZ0iFarFXiR_1",
-    "Gałka: czasza": "(revolve – patrz features-rama-galka.json)",
-    "Próbka P6: czasza": "(revolve – patrz features-rama-galka.json)",
-    "Rama: podkładka boku osi": "FBHMlUQqQqgIOlq_1 (zmiana nazwy z „Rama: bok osi”, K10)",
-    "Powieka górna: płaszczyzna krawędzi": "FHkRivqJoCYPvOe_3",
-    "Powieka górna: przekrój": "FHtdzdXAfXIOaou_3",
-    "Powieka górna: czasza": "FjJFtCDjQ43qFLk_3",
-    "Powieka górna: rant": "F1ZofAPMjlZ6y9A_4",
-    "Powieka górna: płaszczyzna mostka": "(nowa, po usunięciu pierwszej)",
-    "Powieka górna: mostek": "F7P32GoKpm3lssD_4",
-    "Powieka górna: mostek (wyciągnięcie)": "FLQP3J4TiJNY4jw_4"
-  },
-  "testBramki": {
-    "t": "2026-10-23T02:44:35Z",
+   {
+    "t": "2026-10-23T07:03:04.094Z",
+    "k": "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+    "method": "POST",
+    "status": 400,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:03:20.843Z",
+    "k": "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+    "method": "POST",
+    "status": 204,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:03:24.117Z",
+    "k": "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+    "method": "POST",
+    "status": 204,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:03:25.741Z",
+    "k": "GET /documents/d/{id}/w/{id}/currentmicroversion",
+    "method": "GET",
+    "status": 200,
+    "remaining": 400
+   },
+   {
+    "t": "2026-10-23T07:03:45.973Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 100
+   },
+   {
+    "t": "2026-10-23T07:05:21.101Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:05:23.657Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:05:35.040Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 480
+   },
+   {
+    "t": "2026-10-23T07:05:56.072Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:05:57.499Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:05:58.286Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:08:55.364Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:09:07.215Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 479
+   },
+   {
+    "t": "2026-10-23T07:09:22.506Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 478
+   },
+   {
+    "t": "2026-10-23T07:10:23.750Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 99
+   },
+   {
+    "t": "2026-10-23T07:10:40.429Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 98
+   },
+   {
+    "t": "2026-10-23T07:11:45.288Z",
+    "k": "POST /variables/d/{id}/w/{id}/e/{id}/variables",
+    "method": "POST",
+    "status": 204,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:13:03.451Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:13:05.086Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:13:06.587Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:13:07.948Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:13:09.393Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:13:10.573Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:13:55.823Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:13:57.130Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:14:11.723Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:14:13.104Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:14:14.388Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:14:15.233Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 477
+   },
+   {
+    "t": "2026-10-23T07:14:44.560Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:14:45.211Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 476
+   },
+   {
+    "t": "2026-10-23T07:16:32.167Z",
     "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
-    "remaining": 100,
-    "prog": 100,
-    "wyjatek": true,
-    "brakNaglowkaWyjatek": true,
-    "wyslanoRazem": 0,
-    "zaliczony": true
-  },
-  "testZnacznika": {
-    "t": "2026-10-23T02:46–02:55Z",
-    "szkic": "Layout: przekrój",
-    "featureId": "FXtwYQCQ4yOgcrx_0",
-    "dataId": "MM7NRmWBfxHjHS8uy",
-    "krok1": "zapis celowo bez wymiaru długości osY (koniec osY wolny wzdłuż osi) -> featureStatus OK",
-    "wynik": "NIEZALICZONY: wiersz pojawił się dopiero po przeładowaniu karty; ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]” (bez „is not fully defined”)",
-    "przyczyna": "panel przeglądarki ukryty (sesja Claude nie jest otwarta w żadnym oknie, document.visibilityState = hidden); przed przeładowaniem wiersz był „not-computed”, a edytor pokazał „Your Onshape session has timed out … Click here to reconnect” mimo działającego API i timera podtrzymania",
-    "krok2": "nie wykonany (edycja z wymiarem) – bez działającego znacznika nie ma czego porównać",
-    "proba2": {
-      "t": "2026-10-23T02:49:51Z",
-      "opis": "po przeładowaniu: bramka odtworzona, timer wstawiony; visibilityState hidden; baner timeout zniknął; wiersz szkicu computed. Edycja featureid tej samej treści (bez wymiaru osY): HTTP 200, featureStatus OK, zapis 971 ms; odpytywanie drzewa co 100 ms przez 5000 ms: ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]”",
-      "wynik": "NIEZALICZONY – znacznik nie działa przy ukrytym panelu"
-    },
-    "proba3": {
-      "t": "2026-10-23T05:14:27Z",
-      "opis": "panel widoczny (zrzut użytkownika; visibilityState w webview i tak „hidden” – nie jest wskaźnikiem). Edycja: osY jako ZWYKŁA linia bez wymiaru długości",
-      "wynik": "ikona underdefined JEST, podpowiedź „Layout: przekrój [Sketch] is not fully defined”, od razu po odpowiedzi zapisu (0 ms przy odpytywaniu co 100 ms)"
-    },
-    "proba4": {
-      "t": "2026-10-23T05:14:39Z",
-      "opis": "edycja: osY zwykła z wymiarem #obwiedniaR",
-      "wynik": "ikona znika, podpowiedź „Layout: przekrój [Sketch]”, 0 ms po odpowiedzi (odpytywanie co 50 ms), zapis 486 ms"
-    },
-    "wniosek": "ZALICZONY. Przyczyna wcześniejszych prób: szkic miał wyłącznie encje pomocnicze (construction) – Onshape nie liczy ich do dookreślenia, więc znacznik nie pojawia się dla niedookreślonej linii pomocniczej. Ukryty panel nie był przyczyną. Skutek: szkice layoutu z samymi encjami pomocniczymi nie są sprawdzalne znacznikiem – potrzebna decyzja orkiestratora (K4 z JSON albo encje zwykłe w layoucie).",
-    "limitMs": 5000
-  },
-  "widocznosc": {
-    "2026-10-23T05:15:25Z": {
-      "visibilityState": "visible",
-      "hasFocus": false,
-      "get_layout": {
-        "views": [
-          {
-            "placement": "primary"
-          }
-        ],
-        "open_panes": [
-          "preview"
-        ]
-      }
-    },
-    "2026-10-23T05:1xZ (po zrzucie użytkownika)": {
-      "visibilityState": "hidden mimo widocznego panelu",
-      "get_layout": {
-        "views": [
-          {
-            "placement": "primary"
-          }
-        ],
-        "open_panes": [
-          "preview"
-        ]
-      }
-    },
-    "2026-10-23T02:46–02:55Z (noc, „hidden”)": {
-      "podstawa": "document.visibilityState = hidden w karcie i get_layout = {views: [], open_panes: []} („This session isn't open in any window”); wiersz szkicu „not-computed” i baner „session has timed out” na zrzucie",
-      "ocena": "w nocy sesja faktycznie nie była otwarta w oknie (get_layout views []), ale to nie była przyczyna braku znacznika – przyczyną były encje pomocnicze; visibilityState w tym webview bywa „hidden” także przy widocznym panelu, więc nie jest wiarygodnym wskaźnikiem"
-    }
-  },
-  "szkice": [
-    {
-      "t": "2026-10-23T05:18:34Z",
-      "nazwa": "Layout: przekrój",
-      "featureId": "FXtwYQCQ4yOgcrx_0",
-      "dataId": "MM7NRmWBfxHjHS8uy",
-      "podpowiedz": "Layout: przekrój [Sketch]",
-      "niedookreslony": false,
-      "ponownyOdczyt1500ms": "bez zmian",
-      "sourceMicroversion": "15b92c528b0fae90e8bda2c9",
-      "encje": "wszystkie zwykłe (decyzja orkiestratora b)"
-    },
-    {
-      "t": "2026-10-23T05:18:54Z",
-      "nazwa": "Layout: czoło",
-      "featureId": "FCIWCBd9PB1cghZ_0",
-      "dataId": "Mxcqhe7Wf9dSyGxsx",
-      "podpowiedz": "Layout: czoło [Sketch]",
-      "niedookreslony": false,
-      "ponownyOdczyt1500ms": "bez zmian",
-      "sourceMicroversion": "2809679b339ebcbd04c18207",
-      "encje": "wszystkie zwykłe"
-    },
-    {
-      "t": "2026-10-23T05:22:07Z",
-      "nazwa": "Rama: przekrój",
-      "featureId": "FUiIxQkyzZseizt_0",
-      "dataId": "MxmifMk4W673yV/xv",
-      "podpowiedz": "Rama: przekrój [Sketch]",
-      "niedookreslony": false
-    },
-    {
-      "t": "2026-10-23T05:22:3xZ",
-      "nazwa": "Rama: bok osi",
-      "featureId": "FVzeYdUtE9ZmZjk_1",
-      "podpowiedz": "Rama: bok osi [Sketch]",
-      "niedookreslony": false
-    },
-    {
-      "t": "2026-10-23T05:22:59Z",
-      "nazwa": "Rama: punkt otworu osi",
-      "featureId": "FWBgJNIwKNTMcSD_1",
-      "dataId": "M1PqlTiZMFl/1d4oo",
-      "podpowiedz": "Rama: punkt otworu osi [Sketch]",
-      "niedookreslony": false
-    },
-    {
-      "t": "2026-10-23T05:33Z",
-      "nazwa": "Gałka: przekrój",
-      "featureId": "FiheSZ0iFarFXiR_1",
-      "dataId": "MfmKyIRO9rdf1XReH",
-      "podpowiedz": "Gałka: przekrój [Sketch]",
-      "niedookreslony": false
-    }
+    "method": "GET",
+    "status": 200,
+    "remaining": 95
+   },
+   {
+    "t": "2026-10-23T07:22:21.569Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 97
+   },
+   {
+    "t": "2026-10-23T07:23:32.365Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:23:36.084Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:23:37.328Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:23:51.322Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:23:52.013Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "GET",
+    "status": 200,
+    "remaining": 94
+   },
+   {
+    "t": "2026-10-23T07:24:12.023Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:24:13.390Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:24:14.638Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:24:30.581Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:24:32.080Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 475
+   },
+   {
+    "t": "2026-10-23T07:26:00.044Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:26:15.732Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:26:40.978Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:27:28.793Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:27:29.939Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:27:30.704Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:27:43.789Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:27:46.755Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:27:48.354Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 474
+   },
+   {
+    "t": "2026-10-23T07:28:43.303Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:30:07.986Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:30:09.428Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:30:10.148Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 473
+   },
+   {
+    "t": "2026-10-23T07:30:56.413Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:30:58.458Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:31:00.084Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:31:01.689Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:31:02.941Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:31:04.700Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:31:20.056Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:31:42.911Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 472
+   },
+   {
+    "t": "2026-10-23T07:32:11.280Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:32:12.623Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:32:14.014Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:32:15.258Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:32:25.728Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:32:49.602Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:33:00.266Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 471
+   },
+   {
+    "t": "2026-10-23T07:33:18.643Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:33:49.865Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:33:50.621Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:33:51.531Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:34:05.511Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:34:07.087Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:34:08.522Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:34:09.839Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:34:11.786Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:34:13.458Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2992
+   },
+   {
+    "t": "2026-10-23T07:34:14.171Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 470
+   },
+   {
+    "t": "2026-10-23T07:35:25.546Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 96
+   },
+   {
+    "t": "2026-10-23T07:35:29.444Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:35:30.159Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:35:32.506Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:35:33.229Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 469
+   },
+   {
+    "t": "2026-10-23T07:35:51.805Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:35:53.305Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 468
+   },
+   {
+    "t": "2026-10-23T07:36:13.891Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:36:15.417Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 467
+   },
+   {
+    "t": "2026-10-23T07:36:39.901Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:36:41.798Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:36:43.240Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:36:45.101Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:36:46.548Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:36:47.928Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:36:49.257Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:36:50.952Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:36:52.615Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2992
+   },
+   {
+    "t": "2026-10-23T07:36:53.429Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 466
+   },
+   {
+    "t": "2026-10-23T07:37:51.664Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 95
+   },
+   {
+    "t": "2026-10-23T07:37:53.032Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "GET",
+    "status": 200,
+    "remaining": 93
+   }
   ],
-  "layout": {
-    "operacje": 8,
-    "folder": "Layout (8) – założony w UI (Add selection to folder)",
-    "plaszczyzny": "6 × cPlane OK, bez ikon ostrzeżeń",
-    "odstepstwo": "w „Layout: czoło” pominięte proste promieniowe pod uchaRamyKat1–3 i nadlewKat1–2 (kąty > 180° nie dają się zwymiarować jednym ANGLE od osi x; to elementy odłożone do v3.1 – dodam przy uchach/nadlewach)",
-    "zrzut": "tool-results mcp-Claude_Browser-blob-1792732754223 (sesja), widok drzewa i layoutu"
-  },
-  "wnioskiDoAGENTS": [
-    "Encje pomocnicze (construction) nie liczą się do dookreślenia szkicu: niedookreślona linia pomocnicza nie daje znacznika „underdefined”. Test znacznika i szkice kontrolowane znacznikiem muszą mieć encje zwykłe (layout: decyzja orkiestratora 23.10 – encje zwykłe); pomocnicze encje w szkicach części wymiarować zawsze, K4 z JSON przy odbiorze.",
-    "document.visibilityState w karcie panelu przeglądarki aplikacji bywa „hidden” także przy widocznym panelu – nie jest wskaźnikiem widoczności; get_layout (views) mówi, czy sesja jest w oknie.",
-    "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie).",
-    "Mirror FEATURE nie odbija operacji Hole (także z fullFeaturePattern) – otwór po drugiej stronie trzeba odbić Mirror typu FACE (qCreatedBy(Hole, FACE)); para z otworem = dwa Mirror (orkiestrator 23.10).",
-    "Hole przez API wymaga parametru scope (bryła) – bez niego featureStatus ERROR „Error regenerating” bez dalszego opisu.",
-    "Więz ANGLE wysyłany przez API (localFirst/localSecond|externalSecond + angle) daje ostrzeżenie „Some constraints are not applicable…” – kąty wymiarować położeniem punktu (np. R·sin(kąt)).",
-    "Szkic nie może leżeć na płaszczyźnie utworzonej później w drzewie (nowe operacje idą na koniec) – przy poprawce usuwać i tworzyć w kolejności.",
-    "Revolve częściowy: endBound BLIND; wybór obszaru szkicu przez qLargest/qSmallest działa, qContainsPoint na obszarze szkicu nie zadziałał.",
-    "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół.",
-    "Szkic, który po zmianie zmiennej traci rozwiązanie, może zostać w starej geometrii bez ostrzeżenia i z featureStatus OK – K9 musi mierzyć bryły (bodydetails), nie tylko stany i ikony."
+  "kontrolaZapisow": [
+   {
+    "t": "2026-10-23T07:05:22.774Z",
+    "nazwa": "Rama: ucha wewnętrzne",
+    "featureId": "FrZI3ULSZytPA4C_1",
+    "featureStatus": "OK",
+    "tytul": "Rama: ucha wewnętrzne [Sketch]",
+    "under": false,
+    "mv": "c3d5e3479c7f29542bb590ff"
+   },
+   {
+    "t": "2026-10-23T07:05:24.010Z",
+    "nazwa": "Rama: ucha wewnętrzne (wyciągnięcie)",
+    "featureId": "Fqlu44mTDYqkuIG_1",
+    "featureStatus": "OK",
+    "tytul": "Rama: ucha wewnętrzne (wyciągnięcie) [Extrude] &lt;- Rama: ucha wewnętrzne [Sketch]",
+    "under": false,
+    "mv": "d8ee1bb60613733497cb049b"
+   },
+   {
+    "t": "2026-10-23T07:05:56.723Z",
+    "nazwa": "Rama: punkty gwintów uch",
+    "featureId": "F2tn2IDaCJ2SoOR_1",
+    "featureStatus": "OK",
+    "tytul": "Rama: punkty gwintów uch [Sketch]",
+    "under": false,
+    "mv": "579b098146f0816483f8812f"
+   },
+   {
+    "t": "2026-10-23T07:05:57.842Z",
+    "nazwa": "Rama: gwinty uch M3",
+    "featureId": "FSljx4gbkJuHTdA_1",
+    "featureStatus": "OK",
+    "tytul": "Rama: gwinty uch M3 [Hole] &lt;- Rama: punkty gwintów uch [Sketch]",
+    "under": false,
+    "mv": "af98e8b7731e7aff62931b0d"
+   },
+   {
+    "t": "2026-10-23T07:08:55.958Z",
+    "nazwa": "Rama: fazka uch",
+    "featureId": "FcXtinVdNHEqQLv_1",
+    "featureStatus": "OK",
+    "tytul": "Rama: fazka uch [Chamfer]",
+    "under": false,
+    "mv": "454b56ace74402592e24f00b"
+   },
+   {
+    "t": "2026-10-23T07:13:04.135Z",
+    "nazwa": "Gałka: płaszczyzna nadlewów",
+    "featureId": "FdsbCBYCQkXf39S_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: płaszczyzna nadlewów [Plane]",
+    "under": false,
+    "mv": "92c26d40b0e2ef24ee1b3754"
+   },
+   {
+    "t": "2026-10-23T07:13:05.586Z",
+    "nazwa": "Gałka: nadlew",
+    "featureId": "FQSt3M2Un4UQ37S_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: nadlew [Sketch]",
+    "under": false,
+    "mv": "03d2f6cb77f6ec9c30c26734"
+   },
+   {
+    "t": "2026-10-23T07:13:06.932Z",
+    "nazwa": "Gałka: nadlew (wyciągnięcie)",
+    "featureId": "FtTChSNq7MZu4ip_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: nadlew (wyciągnięcie) [Extrude] &lt;- Gałka: nadlew [Sketch]",
+    "under": false,
+    "mv": "a3ccb18d50c437fbc099cffd"
+   },
+   {
+    "t": "2026-10-23T07:13:08.318Z",
+    "nazwa": "Gałka: nadlew prawy",
+    "featureId": "F9hWJds4Y9tBjA8_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: nadlew prawy [Mirror]",
+    "under": false,
+    "mv": "8f0d03cc3bc077f6612214e4"
+   },
+   {
+    "t": "2026-10-23T07:13:09.804Z",
+    "nazwa": "Gałka: otwór M3 nadlewu",
+    "featureId": "FVjVIRXBZMxqXvy_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: otwór M3 nadlewu [Hole] &lt;- Gałka: nadlew [Sketch]",
+    "under": false,
+    "mv": "f15382532bacbfe0c86f6c97"
+   },
+   {
+    "t": "2026-10-23T07:13:10.923Z",
+    "nazwa": "Gałka: otwór M3 nadlewu prawy",
+    "featureId": "F68zdVteFe2DB0J_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: otwór M3 nadlewu prawy [Mirror]",
+    "under": false,
+    "mv": "e58e0cdb195461578d94c1e3"
+   },
+   {
+    "t": "2026-10-23T07:13:56.214Z",
+    "nazwa": "Gałka: wycięcie X",
+    "featureId": "FNMeCEriSghhZsR_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: wycięcie X [Sketch]",
+    "under": false,
+    "mv": "57a46cc6f4e94dd88eb391db"
+   },
+   {
+    "t": "2026-10-23T07:13:57.677Z",
+    "nazwa": "Gałka: wycięcie X (cięcie)",
+    "featureId": "F7Olv1S8n3w9tP5_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: wycięcie X (cięcie) [Revolve] &lt;- Gałka: wycięcie X [Sketch], Layout: przekrój [Sketch]",
+    "under": false,
+    "mv": "88a064db4fe0c3444d5c0149"
+   },
+   {
+    "t": "2026-10-23T07:14:12.084Z",
+    "nazwa": "Gałka: płaszczyzna wycięcia Y",
+    "featureId": "Fs7QBAeazT05TwX_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: płaszczyzna wycięcia Y [Plane]",
+    "under": false,
+    "mv": "ffe6b6d50bd811e593ec918c"
+   },
+   {
+    "t": "2026-10-23T07:14:13.466Z",
+    "nazwa": "Gałka: wycięcie Y",
+    "featureId": "F01rg56Dam6PRyF_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: wycięcie Y [Sketch]",
+    "under": false,
+    "mv": "949c444a4c705c34d5193f5c"
+   },
+   {
+    "t": "2026-10-23T07:14:14.954Z",
+    "nazwa": "Gałka: wycięcie Y (cięcie)",
+    "featureId": "FmIpIK46xDDL5pZ_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: wycięcie Y (cięcie) [Revolve] &lt;- Gałka: wycięcie Y [Sketch], Layout: przekrój [Sketch]",
+    "under": false,
+    "mv": "21d3da383a47a20bb44e5924"
+   },
+   {
+    "t": "2026-10-23T07:14:44.935Z",
+    "nazwa": "Gałka: wycięcie Y",
+    "featureId": "F01rg56Dam6PRyF_2",
+    "featureStatus": "OK",
+    "tytul": "Gałka: wycięcie Y [Sketch] (Hidden)",
+    "under": false,
+    "mv": "35d2bbf1177a9b97c866fa12"
+   },
+   {
+    "t": "2026-10-23T07:23:35.085Z",
+    "nazwa": "Powieka górna: płaszczyzna wycięcia",
+    "featureId": "FBF1AuTk6ArwUts_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:23:36.455Z",
+    "nazwa": "Powieka górna: wycięcie",
+    "featureId": "FA7eFECtrb3mtav_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:23:51.674Z",
+    "nazwa": "Powieka górna: wycięcie",
+    "featureId": "FA7eFECtrb3mtav_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:24:12.376Z",
+    "nazwa": "Powieka górna: płaszczyzna przycięcia przy zaczepie",
+    "featureId": "FowaoAz8dzSPY8K_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:24:13.750Z",
+    "nazwa": "Powieka górna: przycięcie przy zaczepie",
+    "featureId": "F3AQR5KxEqnegSx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:24:30.977Z",
+    "nazwa": "Powieka górna: przycięcie przy zaczepie",
+    "featureId": "F3AQR5KxEqnegSx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:27:45.929Z",
+    "nazwa": "Powieka górna: wycięcie",
+    "featureId": "FA7eFECtrb3mtav_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:27:47.260Z",
+    "nazwa": "Powieka górna: przycięcie przy zaczepie",
+    "featureId": "F3AQR5KxEqnegSx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:28:51.455Z",
+    "nazwa": "Powieka górna: płaszczyzna zaczepu",
+    "featureId": "FgvV3sUV9aaM1D4_4",
+    "featureStatus": "OK",
+    "under": null
+   },
+   {
+    "t": "2026-10-23T07:30:08.485Z",
+    "nazwa": "Powieka górna: zaczep",
+    "featureId": "FG9P4moDAzKVmnp_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:30:09.838Z",
+    "nazwa": "Powieka górna: zaczep (wyciągnięcie)",
+    "featureId": "FQJWQfxgOB6oeLJ_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:30:56.768Z",
+    "nazwa": "Powieka górna: otwór drutu",
+    "featureId": "Fcy5msyGTv802zE_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:30:58.873Z",
+    "nazwa": "Powieka górna: kąciki",
+    "featureId": "Fhicp7kc8G89g9Z_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:31:00.479Z",
+    "nazwa": "Powieka górna: kącik 1 (cięcie)",
+    "featureId": "FzJROMZZbbjVytb_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:31:02.051Z",
+    "nazwa": "Powieka górna: kącik 2 (cięcie)",
+    "featureId": "FMYcZQEzoUny4mj_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:31:03.287Z",
+    "nazwa": "Powieka górna: kącik 3 (cięcie)",
+    "featureId": "F4B9fnxDCSHAlQe_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:32:11.639Z",
+    "nazwa": "Powieka górna: kącik 1 (cięcie)",
+    "featureId": "FzJROMZZbbjVytb_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:32:12.987Z",
+    "nazwa": "Powieka górna: kącik 2 (cięcie)",
+    "featureId": "FMYcZQEzoUny4mj_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:32:14.399Z",
+    "nazwa": "Powieka górna: kącik 3 (cięcie)",
+    "featureId": "F4B9fnxDCSHAlQe_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:05.890Z",
+    "nazwa": "Powieka górna: kącik 1",
+    "featureId": "Fhicp7kc8G89g9Z_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:07.452Z",
+    "nazwa": "Powieka górna: kącik 1 (cięcie)",
+    "featureId": "FzJROMZZbbjVytb_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:08.878Z",
+    "nazwa": "Powieka górna: kącik 2",
+    "featureId": "FTt6tasDFuNMgsx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:10.360Z",
+    "nazwa": "Powieka górna: kącik 2 (cięcie)",
+    "featureId": "F2VelrJ4e8flspL_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:12.171Z",
+    "nazwa": "Powieka górna: kącik 3",
+    "featureId": "FSFk9wBRl2kXfOm_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:13.825Z",
+    "nazwa": "Powieka górna: kącik 3 (cięcie)",
+    "featureId": "F8Wc5dwqv9UrNBa_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:29.827Z",
+    "nazwa": "Powieka dolna: płaszczyzna przycięcia przy zaczepie",
+    "featureId": "F6Hw4JOh6ypw2qX_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:31.312Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie",
+    "featureId": "FQUZtXMg9S3BLoz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:32.866Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie (cięcie)",
+    "featureId": "FFL0LmdDOLg34sz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:52.257Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie",
+    "featureId": "FQUZtXMg9S3BLoz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:14.326Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie",
+    "featureId": "FQUZtXMg9S3BLoz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:40.480Z",
+    "nazwa": "Powieka dolna: zaczep",
+    "featureId": "FAiNoDs7Ix10PHQ_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:42.188Z",
+    "nazwa": "Powieka dolna: zaczep (wyciągnięcie)",
+    "featureId": "FZzpmx40hburRel_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:43.744Z",
+    "nazwa": "Powieka dolna: otwór drutu",
+    "featureId": "FLEB32v2qN3jSGn_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:45.493Z",
+    "nazwa": "Powieka dolna: kącik 1",
+    "featureId": "Fqpk1RGl0ZLPyiA_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:46.905Z",
+    "nazwa": "Powieka dolna: kącik 1 (cięcie)",
+    "featureId": "FG5Ttoc1bt46oz3_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:48.334Z",
+    "nazwa": "Powieka dolna: kącik 2",
+    "featureId": "Fe2IJMbo5Gnkxjj_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:49.623Z",
+    "nazwa": "Powieka dolna: kącik 2 (cięcie)",
+    "featureId": "FkzOX3s23T6OPht_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:51.342Z",
+    "nazwa": "Powieka dolna: kącik 3",
+    "featureId": "FdtVlx8bHNKZTQf_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:53.036Z",
+    "nazwa": "Powieka dolna: kącik 3 (cięcie)",
+    "featureId": "FMdzSaaMlDieO0G_5",
+    "featureStatus": "OK",
+    "under": false
+   }
   ],
-  "zmienne": {
-    "liczba": 199,
-    "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1",
-    "p6Wys": "20 (nowa)",
-    "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy",
-    "nakrM5E": "9,47 (nowa: wymiar po narożach kieszeni nakrętki M5)",
-    "obejma": "obejmaZ1 = glebokoscSrodka − dociskMin (było −5 stałe), nowe: obejmaScianka 3, kolnierzObejmyT 2,5, szczelinaObejmy 3, uchoObejmyT 6, uchoObejmyR2 50, obejmaSrubaR 46,5, m3NakrS 5,7, m3NakrH 4, m3NakrE 6,58",
-    "trimG": "min(#uchoDX1, #powiekaR1) - #luzOsiowy (poprawka K9)"
-  },
-  "rama": {
-    "pomiar": {
-      "bryly": 1,
-      "sciany": 17,
-      "walce": "R39,75 / 37,75 / 42 / 35,2 (oś z); R5 przy x ±38,5 (boki); otwór +x: R1,25 i R3 przy x 39,75, stożek 45° przy x 39,64",
-      "sfery": "R150 i R152, środek z −140",
-      "plaszczyzny": "z −37, z 6 (kołnierz), x ±36,5",
-      "fazka": "stożek 37,1° przy z 5,08 (fazka krawędzi czoła)",
-      "bbox": "x ±42, y ±42, z −37…7,87",
-      "otwory": "po obu stronach: walce R3, R1,25, R3 i stożek 45° (x ±39,64); 21 ścian bryły"
-    },
-    "odstepstwa": [
-      "Hole wymagał parametru scope (bryła Ramy) – bez niego ERROR „Error regenerating” (2 edycje)",
-      "Mirror FEATURE (także z fullFeaturePattern) odbija podkładkę, ale NIE odbija Hole – po stronie −x brak otworu (bodydetails)"
-    ],
-    "stan": "PRZYJĘTA DO ODBIORU (baza): 1 bryła „Rama”, folder „Rama (11)”, nazwa części Rama (UI), zrzut 40-cad/onshape/e6.2-zrzuty/rama-baza.jpg",
-    "proponowanaPoprawka": "edycja Mirror → tylko podkładka; nowe Mirror typu FACE ścian otworu (qCreatedBy(Hole, FACE)) względem Right; bodydetails – razem 3 wywołania",
-    "budzet": "23 wywołania (budżet 18 + 5 za zgodą orkiestratora)",
-    "kolejnoscOdstepstwo": "Chamfer „Rama: fazka rantu” stoi przed Mirror „Rama: otwór osi lewy” (plan: Chamfer ostatni) – bez wpływu na geometrię"
-  },
-  "galka": {
-    "pomiar": {
-      "Gałka (JhD)": "3 ściany: sfery R28 i R30, płaszczyzna z −12,68; bbox ±30 × ±30 × z −12,68…30",
-      "Próbka P6 (JiD)": "3 ściany: sfery R28 i R30, płaszczyzna z 10; bbox ±28,28 × z 10…30"
-    },
-    "stan": "PRZYJĘTA DO ODBIORU (baza): foldery „Gałka (2)” i „Próbka P6 (1)”, nazwy części Gałka i Próbka P6 (UI), zrzut 40-cad/onshape/e6.2-zrzuty/galka-p6.jpg",
-    "budzet": "10 wywołań z ≤ 12 (GET+POST zmiennych: tylko POST – GET z odbioru Ramy, mv, 3 zapisy, bodydetails, 2 × bbox; + GET /features i GET zmiennych do odbioru)"
-  },
-  "odbior": {
-    "katalog": "40-cad/onshape/odbior-e6/",
-    "pliki": {
-      "features-rama-galka.json": "GET /features z encjami (bez noSketchGeometry), 22 operacje, mv 0d2be676…, wszystkie featureStatus OK",
-      "znaczniki-rama-galka.json": "odczyt znaczników wszystkich 6 szkiców z drzewa (foldery rozwinięte), dosłownie – wszystkie niedookreslony false",
-      "variable-studio.json": "nadpisany: 199 zmiennych",
-      "features-powieki.json": "GET /features (4/8) z encjami, 46 operacji, mv 58c65069…, wszystkie OK",
-      "znaczniki-powieki.json": "13 szkiców (foldery rozwinięte, lista przewijana), wszystkie niedookreslony false",
-      "features-slupek-obejma.json": "GET /features (5/8) z encjami, 70 operacji, mv 0f5c55ec…, wszystkie OK",
-      "znaczniki-wszystkie.json": "22 szkice (13 z odbioru powiek + 9 Słupka i Obejmy), wszystkie niedookreslony false"
-    },
-    "uwagi": [
-      "GET /features wykonane dwukrotnie: 2. (przed Gałką, na prośbę odbioru Ramy) i 3. (po Gałce, wspólne dla Ramy i Gałki) – zapisany tylko 3., bo obejmuje obie części",
-      "szkic i wyciągnięcie mają tę samą nazwę „Rama: bok osi” – do rozróżnienia przy K10 (proponuję zmienić nazwę wyciągnięcia na „Rama: podkładka boku osi”)"
+  "zmienne": [
+   "07:03 dwuetapowy POST (rimYSzer 35, luzKieszeni 0,3, uchoRamy*, zaczep*, kacik*, wyciecieZaczep*, wypustL); pierwszy POST 400 – nowe odwołują się do nowych",
+   "07:11 nadlewD 6,1 → 7 (v3.1 pkt 4: Ø7), nowa dnoNadlewu 0,6 (v3.1 tab. części: dno ≥ 0,6)"
+  ],
+  "rollback": "API features/rollback za Ramą (07:03) i za Gałką (07:10; pierwsze żądanie 31 omyłkowo za „PG: rant”, poprawione na 26). Nowe operacje wpadają na początek następnego folderu – przeniesione w UI (jedno przeciągnięcie przestawiło kolejność – cofnięte ctrl+z, powtórzone poprawnie)",
+  "poprawki": [
+   "Rama: fazka uch – pierwszy zapis ERROR (qCoincidesWithPlane brał też wklęsłą krawędź styku ucha z rurą); edycja: qIntersection(krawędzie ściany startowej wyciągnięcia uch, krawędzie walców uch) → OK",
+   "Gałka: wycięcie Y – na płaszczyźnie LINE_ANGLE 80° oś x szkicu wskazuje φ 260°; pierwsze cięcie φ 225…295; edycja szkicu (x ujemne) → φ 45…115"
+  ],
+  "pomiary": {
+   "Rama": {
+    "bryly": 1,
+    "scian": 36,
+    "walceUch": "R4, środki (22,18; −26,43), (−32,42; −11,80), (−5,99; 33,98), z −33…−27",
+    "gwintyM3": "R1,25 na R33: (−5,73; 32,50), (−31,01; −11,29), (21,21; −25,28), od z −33 w +z",
+    "fazkaUch": "stożki 45° wokół środków uch: R4 przy z −30 → R1 przy z −33",
+    "plaszczyznyZ": [
+     -37,
+     -33,
+     -27,
+     6
     ]
+   },
+   "Galka": {
+    "partId": "JpD (było JhD)",
+    "scian": 24,
+    "nadlewy": "R3,5 w (±20,78; −12), z −16…−10",
+    "otworyM3": "R1,3 od z −16, dno z −10,6 (głęb. 5,4)",
+    "wyciecieX": "płaszczyzny φ ±25°, stożki krawędzi 104°/120°",
+    "wyciecieY": "płaszczyzny φ 45° i 115°"
+   }
   },
-  "powiekaGorna": {
-    "czesc": "JmD „Powieka górna”, folder „Powieka górna (14)”",
-    "pomiar": "1 bryła, 24 ściany; sfery R31,2 / R33,4 / R34,7 (rant); walce osi X: mostek R4,5 i R8, ucho R6 (po obu stronach), otwór R1,7 (2 ściany – oba ucha); płaszczyzny x ±30,95 (przycięcie, start mostka), ±33,85, ±36,25; bbox x ±36,25, y −6…33,4, z −6…34,68 (czasza y −4,94…33,4 i z −0,58…33,4 = zakres −8,5…91°; rant y −5,13, z 34,68)",
-    "zrzut": "40-cad/onshape/e6.2-zrzuty/powieka-gorna.jpg",
-    "odstepstwa": [
-      "Revolve częściowy wymaga endBound BLIND; obszary szkicu wybrane qLargest (czasza) i qSmallest (rant) zamiast qContainsPoint (punkt nie trafiał – błąd ERROR)",
-      "obrót czaszy: oppositeDirection true (bbox po pierwszej próbie pokazał obrót w −y)",
-      "szkic mostka: wymiar ANGLE przez API dawał „constraints not applicable” – kąty promieni zastąpione wymiarem poziomym R1·sin(zamkG + mostekKat); pierwsza płaszczyzna mostka, szkic i wyciągnięcie usunięte i utworzone ponownie w kolejności płaszczyzna → szkic → wyciągnięcie (szkic nie może odwołać się do późniejszej płaszczyzny)",
-      "nazwy wyciągnięć z dopiskiem „(wyciągnięcie)”, żeby różniły się od szkiców (K10)"
-    ],
-    "wywolania": "ok. 37 (w tym 4 edycje kierunku/obszaru Revolve, 3 nieudane wersje szkicu mostka, 1 nieudane wyciągnięcie ze startOffset, 3 DELETE)"
+  "odbior1": {
+   "features": "odbior-e6/features-e6.3-rama-galka.json",
+   "znaczniki": "odbior-e6/znaczniki-e6.3-rama-galka.json",
+   "zmienne": "odbior-e6/variable-studio-e6.3.json",
+   "uwagaK1": "GET /features z rollbackiem za Gałką zwraca puste featureStates – K1 nowych operacji ze stanów w odpowiedziach zapisu (wszystkie OK) i ikon drzewa (0 błędów/ostrzeżeń); pełny K1 przy następnym GET /features z rollbackiem na końcu",
+   "K2": "27 szkiców w JSON = 27 wierszy, 0 niedookreślonych",
+   "K3": "195 wyrażeń, 0 naruszeń",
+   "K4": "0 Fix, 0 wolnych encji",
+   "K5": "Gałka: nadlew prawy FEATURE, otwór M3 nadlewu prawy FACE",
+   "K6": "Rama 9, Gałka 7 (≤ 15)",
+   "K8": "nowe szkice na: pł. uch Ramy tył, pł. nadlewów, Front, pł. wycięcia Y"
   },
-  "rok": {
-    "przedE6": 558,
-    "E6": 174,
-    "suma": 732
+  "powieki": {
+   "zbudowane": {
+    "Powieka górna": "wycięcie x −2…24 krawędź 75°; przycięcie x −31…−17 krawędź 88°; zaczep: płytka x −23,2…−20,8, oko R2 w (y 25,58; z −1,12), otwór Ø1,6 THROUGH; kąciki 3 pasma ×2 strony (0,25°/0,94°/3,6°)",
+    "Powieka dolna": "przycięcie x −trimG…−17 krawędź −87,5°; zaczep: oko R2 w (y −25,58; z −1,12), otwór Ø1,6; kąciki jw."
+   },
+   "odstepstwa": [
+    "Zakres ρ profili wycięć/przycięć/kącików: od osi X (ρ 0) do powiekaR1 + rantPowieki + luzOsiowy – plan podawał ρ od powiekaR1 − luzOsiowy, co trafia w czaszę tylko przy x ≈ 0 (przy |x| > 12,6 nic nie tnie). Błąd planu, poprawiony.",
+    "Kąciki: zamiast 1 szkicu × 3 obroty + Mirror – 3 szkice, każdy z parą prostokątów ±x (wymiary od origin tymi samymi zmiennymi), obroty symetryczne 2·kacikDi. Mirror FEATURE obrotów: „Could not pattern selected features” (także dla 1 obrotu; z dołączonym szkicem: INFO, brak cięcia po +x); Mirror FACE: „Failed to create pattern, check input”. K5: pary kącików nie są Mirror – do zatwierdzenia.",
+    "Płaszczyzna zaczepu na zewnętrznej ścianie płytki (x = zaczepX − zaczepT/2), wyciągnięcie zaczepT w +x – żeby Hole THROUGH startował od ściany płytki (Hole z płaszczyzny środkowej ciąłby tylko połowę).",
+    "Zaczep D na wspólnej płaszczyźnie „Powieka górna: płaszczyzna zaczepu” (ta sama x) – bez osobnej płaszczyzny.",
+    "Przycięcie D od x = −trimG (zaczepPasX1 −31 zahaczał 0,05 mm o ucho D przy x −31…−30,95)."
+   ],
+   "bledyWykonawcy": [
+    "3 szkice utworzone omyłkowo jako nowe (puste G.ids po wyjątku INFO → edycja bez featureId) – usunięte DELETE; dodano kontrolę featureId przed edycją",
+    "1 zbędny GET /features (07:23:52) – odczyt stanu jednej operacji"
+   ],
+   "orientacjaPlaszczyzn": "LINE_ANGLE z osX/Top: oś ρ szkicu odwrócona dla kątów 15° i 177,5°, zgodna dla 2°, 98,5°, 101,5°; na płaszczyźnie krawędzi G (98,5°) oś x szkicu = −X. Sprawdzane bodydetails po każdym cięciu.",
+   "odbior2": {
+    "features": "odbior-e6/features-e6.3-powieki.json (114 operacji, rollback na końcu)",
+    "znaczniki": "odbior-e6/znaczniki-e6.3-powieki.json",
+    "k": "odbior-e6/k1-k8-e6.3.json",
+    "K1": "featureStates w GET /features puste (także z rollbackiem na końcu, 114/114) – K1 z odpowiedzi zapisu (wszystkie OK) i skanu drzewa: 128 wierszy, 0 ikon błędu/ostrzeżenia/info",
+    "K2": "38 = 38, 0 niedookreślonych",
+    "K3": "265 wyrażeń, 0 naruszeń",
+    "K4": "0 Fix, 0 wolnych encji",
+    "K6": "PG 13, PD 11 (≤ 15)",
+    "K8": "szkice na płaszczyznach LINE_ANGLE / offset / płaszczyznach krawędzi"
+   }
   },
-  "powiekaDolna": {
-    "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
-    "pomiar": "1 bryła, 16 ścian; sfery R31,2 / R33,4 / R34,7; ucha R4 przy x ±31,2…±33,6, otwór R1,7 (2 ściany); bbox x ±33,6, y −33,4…4, z −4…34,0 (czasza y −33,4…0, z −0,29…32,73 = zakres −11,5…−90,5°, oppositeDirection false)",
-    "zrzut": "40-cad/onshape/e6.2-zrzuty/powieki.jpg",
-    "wywolania": "ok. 14 (bez poprawek)"
+  "licznik": {
+   "etap2a": 291,
+   "budzet": 300,
+   "getFeatures_etap2a": 7,
+   "budzetGetFeatures": 7,
+   "rok": 1023,
+   "czas": "2026-10-23T08:47:54Z"
   },
-  "slupek": {
-    "czesc": "RNBD „Słupek”, folder „Słupek (10)”",
-    "pomiar": "1 bryła, 14 ścian; walec R7,65 (z −33…−5,5), kieszeń kardana R5,65 do z −12,75, przelot M5 R2,65 od z −33 (2 ściany – przerwany kanałem), kanał nakrętki: sześciokąt S 8,2 (ściany skośne ±30° na x ≈ 3,55, płaskie y ±4,1) z wylotem na −x, z −20…−16; otwór M4 R2,1 oś x na z −9,1 od +x; bbox ±7,65 × z −33…−5,5; ścianka kanał–kieszeń 3,25 (≥ 3, wymóg orkiestratora)",
-    "zrzut": "40-cad/onshape/e6.2-zrzuty/slupek.jpg",
-    "odstepstwa": [
-      "Hole M5 z płaszczyzny spodu: oppositeDirection true (pierwsza próba w −z = ERROR)",
-      "spłaszczenie i czop pod piastę Płyty odłożone do etapu 2 (decyzja orkiestratora)"
-    ],
-    "wywolania": 16
+  "zmianaB": {
+   "czas": "2026-10-23T07:50:49Z",
+   "decyzja": "orkiestrator 23.10: nadlewy Gałki spodem na płaszczyźnie krawędzi, wys. 6 w górę, nadlewR 23,5",
+   "zmienne": "nadlewR 24 → 23,5; nowa nadlewH 6; nadlewZ2 = #kulaR * cos(#czaszaKat) (−12,68); nadlewZ1 = #nadlewZ2 + #nadlewH; operacje bez zmian",
+   "blad": "pierwszy zapis: nadlewZ1 przed nadlewZ2 na liście VS → „Variable not found” w wyciągnięciu i otworze (+ lustra); poprawka: kolejność zmiennych",
+   "pomiar": "nadlewy R3,5 w (±20,35; −11,75) = R23,5, z −12,68…−6,68; otwory R1,3 z −12,68…−7,28 (5,4); spód w płaszczyźnie krawędzi; Gałka 19 ścian"
   },
-  "obejma": {
-    "czesc": "RcBD „Obejma”, folder „Obejma (14)”",
-    "pomiar": "1 bryła, 22 ściany; pierścień R40,05–43,05, kołnierz R48 (z −5…−7,5), dół z −15; szczelina x ±1,5 przez całą wysokość, ucha do x ±7,5 i y 50; otwór M3 R1,65 (2 ściany – oba ucha) w osi x na y 46,5, z −10; kieszeń nakrętki x −7,5…−3,5 (głęb. 4); bbox x ±48, y −48…50, z −15…−5",
-    "zrzut": "40-cad/onshape/e6.2-zrzuty/obejma.jpg",
-    "wywolania": 17,
-    "druk": "kołnierzem w dół, PETG (do README)"
+  "K1": {
+   "plik": "odbior-e6/k1-e6.3.json",
+   "wywolanie": "GET /features bez parametrów (jak w etapie 1)",
+   "wynik": "114 operacji, 118 featureStates, 0 ≠ OK, rollback 114 (koniec)",
+   "przyczyna": "parametr includeGeometryIds=false usuwa featureStates z odpowiedzi",
+   "k1k8": "odbior-e6/k1-k8-e6.3.json: K1 0, K2 38/38, K3 0/265, K4 0"
   },
-  "k9": {
-    "luzCzasza 1,2→1,0": "Powieka górna sfery 31,0/33,2/34,5 OK; Powieka dolna BEZ ZMIAN 31,2/33,4/34,7 (szkic bez rozwiązania, bez ostrzeżenia) – BŁĄD",
-    "glebokoscSrodka 10→12": "Rama sfery R150/152 środek z −138; Obejma z −3…−13 – OK",
-    "dociskMin 15→20": "Obejma z −10…−20 – OK",
-    "przywrocone": "wszystkie wartości bazowe, drzewo bez błędów"
+  "plyta": {
+   "czas": "2026-10-23T08:24:53Z",
+   "zbudowane": {
+    "tarcza": "z −71,3…−68,3, R39,5, okna G (x −35,5…−24,5, y −7…10,5) i D (x −26…−17, y −21…−6)",
+    "klatki": "4 pierścienie ścianka 2 od spodu korpusu do spodu ucha (serwoUchoZ 18; klatka nie może sięgać pełnej wysokości korpusu, bo ucha przechodziłyby przez ścianki – model przemiatania ma klatkę na całą wysokość jako bryłę zachowawczą); kieszenie korpusów z luzem 0,4 po wszystkich pierścieniach; S_PG spód doprowadzony do tarczy; między S_X a S_PD zostaje przegroda 0,7 mm (y −20,35…−19,65)",
+    "bloki": "górne ucha: blok 8 pod uchem; kieszenie nakrętek M2 (kwadrat S4,2 × 1,8, otwarte na zewnątrz w z – nakrętka wsuwana bokiem); dolne ucha: blok = tarcza + ścianka, kieszeń nakrętki otwarta od spodu tarczy; otwory M2 Ø2,4 na 8; wycięcie na ucho + łeb z podkładką Ø6,4 (w tarczy do z −70,8; łeb dolny przebija spód tarczy – D1)",
+    "kanaly": "kanały kabli w obu ścianach z każdej klatki, 4,4 × 10 od spodu korpusu",
+    "wspornik": "piasta R9 z −37…−33, ramiona 5 × 4 (R6…33), słupki Ø6 z −68,3…−30, przeloty M3 Ø3,3 na wylot, gniazdo M5 stożkowe Ø10,4 90° od spodu",
+    "stozki": "słupki Płyty: wierzch = płasko d ≤ 1 od osi ucha (z −33) + stożek 45° do z −30, Revolve 360° wokół osi ucha (oś przypięta do środka okręgu ucha w szkicu Ramy E0–E2)",
+    "kieszenSlupka": "kształt D: R7,8 (slupekR + 0,15), spłaszczenie po −y na 7,2, głęb. 1,0 (z −33…−34)",
+    "otworyKabli": "w tarczy 4,4 × 2,0 pod wyjściami S_X, S_Y, S_PD (oś kabla 2 nad spodem korpusu)",
+    "slupek": "slupekBot = #zArmWsp + #ramieWspH/2 − #slupekCzop (−34); spłaszczenie 0,6 na 1 mm po −y; Słupek 5 operacji bryłowych",
+    "nazwa": "część „Płyta” (RDDD)",
+    "foldery": "Płyta (81): tarcza 3, klatki 16, bloki i ucha 41, wspornik i słupki 16, kieszeń Słupka i kable 5; Słupek (12) – spłaszczenie przeniesione do folderu Słupka (przestawienie w drzewie bez zależności od Płyty)"
+   },
+   "problemy": [
+    "qSketchRegion(…, true) = obszary bez wewnętrznych pętli (zewnętrzny prostokąt z wnętrzem) – kieszenie wycięły całe klatki; poprawione na false",
+    "ujemny offset cPlane → 400; offset dodatni + oppositeDirection",
+    "Hole z punktem w środku litego materiału wierci także „do tyłu” do krawędzi bryły (S_PD dolny: przelot x 3…29,9 w tarczy); startStyle SKETCH nie pomaga → otwory M2 S_PD jako wycięcie okręgów (odstępstwo od „Hole do śrub”)",
+    "extrude z drugim kierunkiem przy oppositeDirection dał zakres między głębokościami (słupki −68,3…−44) – słupki przeniesione na szkic na płaszczyźnie tarczy, jeden kierunek w górę",
+    "piasta z ramionami powstała jako osobna bryła (INFO) do czasu słupków – słupki ze scope obu brył; otwór M5 najpierw w złą stronę i w tarczy (scope) – poprawione",
+    "wspornik (wyciągnięcie) ADD dawał INFO (osobna bryła do czasu słupków) → zmienione na NEW; słupki łączą obie bryły"
+   ],
+   "dalej": "słupki stopu powiek – do decyzji (klatka kończy się na płaszczyźnie ucha, słupek stopu nie ma ścianki, z której wyrasta); Ramiona PG/PD, przyrządy, K9 – budżet",
+   "odbior": {
+    "K1": "odbior-e6/k1-plyta.json (GET /features?noSketchGeometry=true): 197 operacji, 201 stanów, 0 ≠ OK",
+    "K2": "odbior-e6/znaczniki-plyta.json: 64 szkice w JSON = 64 w drzewie, 0 niedookreślonych, 0 ostrzeżeń w 211 wierszach",
+    "K3": "wyrażenia operacji: 0 naruszeń (szkiców nie ma w odczycie noSketchGeometry – pełny K3/K4 przy końcowym GET /features)",
+    "K6": "Płyta 38 (wyjątek D4), Słupek 5",
+    "zrzut": "e6.2-zrzuty/e6.3-plyta-od-spodu.jpg"
+   },
+   "slupkiStopu": {
+    "czas": "2026-10-23T08:28:06Z",
+    "stan": "wstrzymane przed zapisem – kolizje słupków z koncepcji z bryłami stałymi (pary stała–stała nie były przemiatane)",
+    "pomiar": "e6model.stop_posts vs korpusy serw z luzem i wieżyczki R6 (próbkowanie 21³): D otwarcia – 1300 próbek w korpusie S_X (x −9,8…−16,0, y ≥ −19,65); odległość słupków od wieżyczek: G 0,26, D 0,04 (< 0,5); G zamknięcia/G otwarcia/D zamknięcia – tylko styk płaszczyzną wierzchu korpusu własnego serwa (zamierzony)",
+    "propozycja": "słupki D od x −16,49 (spód S_X − 0,5) do −22,5; D otwarcia na filarze z tarczy (x −16,49…−22,5, z −68,3…−53,2; od wieżyczki S_PD 1,3, od drutu D 1,4 w x); D zamknięcia – do decyzji (filar z tarczy przechodzi przez wieżyczkę S_PD); słupki przesunięte o +0,5 od wieżyczek (zmiana stopRho albo przesunięcia bocznego – zmienia kąt styku, przeliczyć w e6model)",
+    "decyzja": "orkiestrator 23.10: przekazane realizatorowi do v3.2, w 2a nie budować"
+   }
   },
-  "eksport": {
-    "plik": "40-cad/3mf/Duze oko v1/Duze oko v1 - FullProject.3mf",
-    "parametry": "3MF, distanceTolerance 0,00001 m, angularTolerance 3°, maximumChordLength 10 m, mm",
-    "translacja": "6adaf95281e858714ce0b71c DONE",
-    "bajty": 1329812,
-    "siatki": "7/7 OK (sprawdz_siatki.js na STL z 3mf_do_stl.py --rozdziel), brył 7 = 7"
+  "ramiona": {
+   "czas": "2026-10-23T08:47:54Z",
+   "PG": "płytka T3 x −28,5…−31,5, piasta R4,5 w (18; −60), koniec R3 w (3,71; −46,01) = r20 pod ramiePGb 135,62°; kieszeń orczyka głęb. 2 (dno 1); otwór drutu Ø1,6; M2 Ø2,4 w osi + 2 × Ø2,4 na r 7,5/11,5; pogłębienie Ø4,5 × 1,5 (przebija dno 1,0 nad piastą – łeb M2 opiera się na orczyku)",
+   "PD": "płytka T2 x −20…−22, piasta w (−27; −49), koniec R2,5 w (−11,74; −40,44) = r17,5 pod 29,29°; wybranie orczyka 0,5; otwory jak PG",
+   "czesci": "Ramię PG, Ramię PD (foldery 9 + 9)",
+   "otwory": "wycięcia okręgów zamiast Hole (lekcja z Płyty)"
   },
-  "k9poPoprawce": {
-    "poprawka": "trimG = min(uchoDX1, powiekaR1) − luzOsiowy; przekrój PD przycięty na ±trimG; ucho D z drugim kierunkiem uchoDX1 − trimG",
-    "luzCzasza 1,0": "Gałka 28/30; PG i PD 31,0/33,2/34,5; przycięcie ±30,75 – OK",
-    "kulaD 58": "Gałka i P6 27/29; PG i PD 30,2/32,4/33,7; przycięcie ±29,95 – OK",
-    "przywrocone": "PG i PD 31,2/33,4/34,7, ±30,95; 7 brył, bez błędów",
-    "znacznikPD": "Powieka dolna: przekrój – w pełni zdefiniowany"
+  "przyrzadGiecia": {
+   "czas": "2026-10-23T08:47:54Z",
+   "opis": "płytka 62 × 46 × 4 na z −124…−120, 12 kołków Ø2,4 × 4: środki zagięć Z (J, H), środki łuków wykorbienia S (2), oporniki końców nóg (2) dla G i D; położenia ze zmiennych drutu (lacznikG/D, wykGf/wykDf, wykGkat/wykDkat, drutOsR, nogaJx, zaczepX/T, ramię)",
+   "pomiar": "kołki: G (0;1,8) (18,52;−1,8) (21,44;0,32) (49,95;−3,28) (−1,8;7,5) (51,75;−9,6); D (0;21,8) (4,9;21,8) (7,61;19,44) (41,69;23,04) (−1,8;27,5) (43,49;28,3)",
+   "odstepstwo": "bez rowka R0,6 (offset ścieżki przez API zbyt kosztowny przy budżecie) – drut prowadzą kołki; rowek do dodania w 2b"
+  },
+  "przyrzadZera": "wstrzymany – decyzja użytkownika (wgłębienie w Gałce przeczy „front gładki”)",
+  "K9": {
+   "czas": "2026-10-23T08:47:54Z",
+   "wyniki": {
+    "luzKorpusSerwa 0,4→0,6": "kieszenie i pierścienie ±0,2 w y i z (np. y −35,65→−35,85, −19,65→−19,85, z −66,3→−66,5, −43,1→−42,9), 11 brył – OK",
+    "zSerw −49→−48 (1. próba)": "BŁĄD: Płyta rozpada się na 7 brył – klatki S_X/S_Y/S_PD odrywają się od tarczy (spód zewn. wymiarowany od wałka)",
+    "poprawka": "spód zewnętrznego prostokąta klatek S_X/S_Y/S_PD = abs(#tarczaZ1) (jak S_PG) – 3 edycje szkiców",
+    "zSerw −49→−48 (po poprawce)": "11 brył, kieszenie +1 w z (−66,3→−65,3; −43,1→−42,1), piasta PD z −48, wierzch górnych bloków −37,3 (0,3 pod ramionami wspornika – brak rezerwy, jak w v3.1) – OK",
+    "wyciecieG 83,5→85,5": "krawędź tylna PG 75°→77° – OK",
+    "ramiePGb 135,62→140": "koniec Ramienia PG (3,71;−46,01)→(2,68;−47,14) = obliczone – OK",
+    "przywrócenie": "geometria identyczna z bazą (płaszczyzny, ściany, położenia)"
+   }
+  },
+  "odbiorKoncowy": {
+   "features": "odbior-e6/features-e6.3-koniec.json (GET /features bez parametrów, 219 operacji, 223 stany, 0 ≠ OK)",
+   "znaczniki": "odbior-e6/znaczniki-e6.3-koniec.json (71 = 71, 0 niedookreślonych)",
+   "k": "odbior-e6/k1-k8-e6.3-koniec.json: K1 0, K3 0/697, K4 0 Fix, 0 wolnych encji; K6: Rama 9, Gałka 7, P6 1, PG 13, PD 11, Słupek 5, Obejma 6, Płyta 38 (D4), Ramię PG 4, Ramię PD 4, Przyrząd 2"
   }
+ }
 }

@@ -1,0 +1,391 @@
+{
+ "czas": "2026-10-23T08:15:31.179Z",
+ "lista": [
+  {
+   "featureId": "FXtwYQCQ4yOgcrx_0",
+   "id": "MM7NRmWBfxHjHS8uy",
+   "tytul": "Layout: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FCIWCBd9PB1cghZ_0",
+   "id": "Mxcqhe7Wf9dSyGxsx",
+   "tytul": "Layout: czoło [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FUiIxQkyzZseizt_0",
+   "id": "MxmifMk4W673yV/xv",
+   "tytul": "Rama: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FVzeYdUtE9ZmZjk_1",
+   "id": "MQoomRbrTwQO5NZ5o",
+   "tytul": "Rama: bok osi [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FWBgJNIwKNTMcSD_1",
+   "id": "M1PqlTiZMFl/1d4oo",
+   "tytul": "Rama: punkt otworu osi [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FrZI3ULSZytPA4C_1",
+   "id": "MdCMRvcD7RO9P+m8z",
+   "tytul": "Rama: ucha wewnętrzne [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F2tn2IDaCJ2SoOR_1",
+   "id": "MxrD/UeghC6bbbNOU",
+   "tytul": "Rama: punkty gwintów uch [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FiheSZ0iFarFXiR_1",
+   "id": "MfmKyIRO9rdf1XReH",
+   "tytul": "Gałka: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FQSt3M2Un4UQ37S_2",
+   "id": "MLcmzwhxVUX6OS+VI",
+   "tytul": "Gałka: nadlew [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FNMeCEriSghhZsR_2",
+   "id": "MFjV5/rvSRIP656Cf",
+   "tytul": "Gałka: wycięcie X [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F01rg56Dam6PRyF_2",
+   "id": "MzqiLSPkicf3S4DDn",
+   "tytul": "Gałka: wycięcie Y [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FHtdzdXAfXIOaou_3",
+   "id": "MGhO/cMThPeYrPmNN",
+   "tytul": "Powieka górna: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F7P32GoKpm3lssD_4",
+   "id": "MGahsUKqvPVwv/O1G",
+   "tytul": "Powieka górna: mostek [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F8RlScR0zPbWTSO_4",
+   "id": "M0eMllGlhWXd/7tnU",
+   "tytul": "Powieka górna: ucho [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FzUH3YJcxyuIhYf_4",
+   "id": "MZonKql8EKIt04gKw",
+   "tytul": "Powieka górna: punkt osi [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FA7eFECtrb3mtav_4",
+   "id": "MtGkraSb6EU2Jc2hA",
+   "tytul": "Powieka górna: wycięcie [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F3AQR5KxEqnegSx_4",
+   "id": "MI6AFJpdWzjQCevfY",
+   "tytul": "Powieka górna: przycięcie przy zaczepie [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FG9P4moDAzKVmnp_4",
+   "id": "M8bEUaL6ihg6Vk0R4",
+   "tytul": "Powieka górna: zaczep [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fhicp7kc8G89g9Z_4",
+   "id": "MfxpJiRM6NMNPqxw6",
+   "tytul": "Powieka górna: kącik 1 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FTt6tasDFuNMgsx_4",
+   "id": "METLplcn8iozL3H6U",
+   "tytul": "Powieka górna: kącik 2 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FSFk9wBRl2kXfOm_4",
+   "id": "MNGDyf6pNudIL2POz",
+   "tytul": "Powieka górna: kącik 3 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FC3zgXwZhcSgtxd_4",
+   "id": "MEiKhl1/kAaSU+X5j",
+   "tytul": "Powieka dolna: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F1lNvpRK9sfocbj_5",
+   "id": "MUzxjTRVv3wKWVX4S",
+   "tytul": "Powieka dolna: ucho [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fg3NnaX6ooHhrjC_5",
+   "id": "MfGTypz3/2JesnoGB",
+   "tytul": "Powieka dolna: punkt osi [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FQUZtXMg9S3BLoz_5",
+   "id": "M6LSFIht5Q1fLsjrr",
+   "tytul": "Powieka dolna: przycięcie przy zaczepie [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FAiNoDs7Ix10PHQ_5",
+   "id": "MFttsjFysUGUoTnXk",
+   "tytul": "Powieka dolna: zaczep [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fqpk1RGl0ZLPyiA_5",
+   "id": "MyTWkjLSeNPJEUFU1",
+   "tytul": "Powieka dolna: kącik 1 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fe2IJMbo5Gnkxjj_5",
+   "id": "MY6VKRbbL2q6jKGim",
+   "tytul": "Powieka dolna: kącik 2 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FdtVlx8bHNKZTQf_5",
+   "id": "MVOAHdmm9O8SdIZkP",
+   "tytul": "Powieka dolna: kącik 3 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FmujNFbDqgJ8ZhF_5",
+   "id": "MD4XyQYF7agDWTX0m",
+   "tytul": "Słupek: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F1fMp25mEwYgOPF_6",
+   "id": "MK5KKkHShqmt0je3a",
+   "tytul": "Słupek: punkt trzpienia [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F3S4MbO78WEdfZF_6",
+   "id": "M94iNQiCRiSvIkAYy",
+   "tytul": "Słupek: kanał nakrętki M5 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FM2etuJ3cVev1ZD_6",
+   "id": "ModPqSc08nM3/6Oe2",
+   "tytul": "Słupek: punkt M4 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F1rLWRgdezRlLJr_6",
+   "id": "MHwk+Cqp6AgEP4gmF",
+   "tytul": "Obejma: przekrój [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FY85s44QSlNOUNS_7",
+   "id": "Mgtyi83k3xFctfetk",
+   "tytul": "Obejma: ucho [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FvLngIreQsZQ4MY_7",
+   "id": "MqPA25PL4a//61MNv",
+   "tytul": "Obejma: szczelina [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FTem70a09Ok9WYy_7",
+   "id": "MbwjLr4ivQD35jusK",
+   "tytul": "Obejma: punkt śruby [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FUTfIHVr2Wf0RP1_7",
+   "id": "MY3q6CB9AAkhLpsEx",
+   "tytul": "Obejma: kieszeń nakrętki [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FTeO0Bey8mdc0Kn_7",
+   "id": "MCCq5nLgrOJ+pPX4Q",
+   "tytul": "Płyta: tarcza [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FuzDf5TncDaoi0U_8",
+   "id": "M2xcYUN85hEEYugBq",
+   "tytul": "Płyta: klatka S_X [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F7U8kAGfiRrAsq6_8",
+   "id": "Mj1WuZAG08Yeye5+s",
+   "tytul": "Płyta: klatka S_Y [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FbkC2u4WMaaDDxk_8",
+   "id": "MxeH405mBHCEio332",
+   "tytul": "Płyta: klatka S_PD [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FyM3LnOcmB9KxMJ_8",
+   "id": "Mu3A1Xowv5NhCNp+e",
+   "tytul": "Płyta: klatka S_PG [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FI58bvfWjWe5RGW_8",
+   "id": "MsYskTcW4Ioy4480f",
+   "tytul": "Płyta: blok S_X [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FORDu5qkCZUvScl_8",
+   "id": "M5H4iFX22VlSmS0oT",
+   "tytul": "Płyta: nakrętki M2 S_X [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FxJnOTr1DcaULst_8",
+   "id": "MSvulbC0hL/QpPPpY",
+   "tytul": "Płyta: ucha S_X [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FcyROKnKZQdhSt6_8",
+   "id": "MVMQvwsrlg8eeXwTC",
+   "tytul": "Płyta: blok S_Y [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fl8hFwkPECOqPuH_8",
+   "id": "MAspYWCEYyQVhOr+N",
+   "tytul": "Płyta: nakrętki M2 S_Y [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FsReTcQphvEM4aU_8",
+   "id": "MyJ6/9x+Me6zUdiBK",
+   "tytul": "Płyta: ucha S_Y [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FVpBkhPzAKFh1rB_8",
+   "id": "MG+x0drqpLBZVVFky",
+   "tytul": "Płyta: blok S_PD [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FKK2EswZtqKbweu_8",
+   "id": "M7Q7XiuXL7VGL86Lf",
+   "tytul": "Płyta: nakrętki M2 S_PD [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FxYv2Dq5mBMzwvR_8",
+   "id": "MPRuVH+SMaMFejfY6",
+   "tytul": "Płyta: ucha S_PD [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FDnwpDxoFLfKPx2_8",
+   "id": "M8KmVYkl0ElIGBBLZ",
+   "tytul": "Płyta: blok S_PG [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F0prtj5T1q3c2xs_8",
+   "id": "MfEgYYw7w48i6utxM",
+   "tytul": "Płyta: nakrętki M2 S_PG [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fjt0WMOpvtRLSiw_8",
+   "id": "MtuC6BabTAID2dMSq",
+   "tytul": "Płyta: ucha S_PG [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FoIjRShDSdnzstr_8",
+   "id": "MGSlT8eXNO2gjcys1",
+   "tytul": "Płyta: otwory M2 S_PD [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FKa1IjbaDyK20qU_8",
+   "id": "MZf3M5vTDOfO/FY81",
+   "tytul": "Płyta: wspornik [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "F68pawLVFsWRTgt_9",
+   "id": "MfGybaePnjT9Z1iEC",
+   "tytul": "Płyta: słupki Płyty [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FPzgSKdWJUiyPmP_8",
+   "id": "MtuC6YR3ivUbZrszV",
+   "tytul": "Płyta: stożek słupka 1 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FWOWG1r4E9z2CBE_8",
+   "id": "M4L0YqBM8RHbWUpPW",
+   "tytul": "Płyta: stożek słupka 2 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FoDZVbOBC23PUVY_8",
+   "id": "MBEANS8v66W9b3vnh",
+   "tytul": "Płyta: stożek słupka 3 [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FlYSfOjU2EBNYzX_8",
+   "id": "MYMAYrOeswqUsq0XI",
+   "tytul": "Płyta: kieszeń Słupka [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "FqCx0SlB5FXkGJe_8",
+   "id": "M+UKVkgzvWo/Z6H/n",
+   "tytul": "Płyta: otwory kabli [Sketch] (Hidden)",
+   "niedookreslony": false
+  },
+  {
+   "featureId": "Fmlok43PPdYAWxx_8",
+   "id": "MNWsiX1ExFm1Zt0tM",
+   "tytul": "Słupek: spłaszczenie [Sketch] (Hidden)",
+   "niedookreslony": false
+  }
+ ],
+ "ostrzezenia": {},
+ "wierszy": 211
+}
