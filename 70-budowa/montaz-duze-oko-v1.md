@@ -47,7 +47,7 @@ Pliki 3MF: `40-cad/3mf/Duze oko v1/` (eksport ręczny po etapie 2b). Orientacja 
 | **M2×10 + nakrętka M2 (DIN 934) + podkładka Ø6** | 8 | uszy 4 serw w klatkach Płyty | 1 |
 | M2 krótki (ok. 6) | 4 | Ramiona PG/PD przez otwory orczyka (rozwiercone do Ø1,6) | 3 |
 | wkręt środkowy orczyka | 4 | z kompletu serwa: Ramiona PG, PD, X, Y | 3 |
-| **DIN 7991 M3×8** | 2 | osie powiek w gniazdach stożkowych boków Ramy | 5 |
+| **DIN 7991 M3×8** (zamiennie DIN 913 M3×8) | 2 | osie powiek w gniazdach stożkowych boków Ramy | 5 |
 | **DIN 7991 M5×30 + nakrętka M5** | 1 | trzpień Słupka (łeb w gnieździe piasty Płyty, nakrętka w kieszeni Słupka) | 6 |
 | M4 bez łba (docięty) | 2 | wkręty piast kardana: przez Słupek i przez tuleję Uchwytu | 6, 7 |
 | DIN 7991 M5 + nakrętka M5 | 1 | [2b] zamknięcie tulei Uchwytu, koniec jako czop w górnej piaście kardana | 7 |
@@ -116,6 +116,8 @@ Wiertła: Ø1,6 (otwory zaczepów drutu, Ramion i orczyków), **Ø2,0 do rozwier
 
 1. Od tyłu Ramy włóż **Powiekę dolną**, potem **górną**. Ucha nakładają się na boki osi: bok Ramy → ucho G → ucho D (luz 0,25 między nimi).
 2. Oś powiek z każdej strony: **DIN 7991 M3×8** z zewnątrz w gniazdo stożkowe boku Ramy, przez ucha.
+   - **Zamiennie DIN 913 M3×8** (wkręt bez łba, jest w warsztacie): wkręca się w ten sam gwint Ø2,5 boku Ramy, stożek gniazda zostaje pusty. Wkręć go **równo z powierzchnią boku** – nie może wystawać poza obrys rury Ø79,5. Koniec wypada wtedy 0,55 przed wewnętrzną ścianą ucha D, jak przy DIN 7991.
+   - Gwint w boku ma tylko ok. 1,6 mm (pod stożkiem gniazda), a wkrętu bez łba nic nie dociska. Zabezpiecz go kroplą kleju do gwintów i sprawdź po teście 24 h, czy się nie wykręcił.
 3. **(S)** wkręca zagięcie Z drutu w otwór zaczepu J każdej powieki.
 4. **(S)** przykleja zamknięte powieki taśmą do rantu, a druty taśmą do rury, żeby nie przeszkadzały przy dalszym montażu.
 
