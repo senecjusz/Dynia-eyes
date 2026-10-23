@@ -134,6 +134,9 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
   (d) recenzent „Fable” zamiast „Opus” (użytkownik 20.10: „wrzuć proszę do analizy Fable’owi oraz Astrze”);
   (e) „Źródło prawdy: dokument SimpleEye” → dokument „Oko F v2.5” (zawiera dziś v2.8);
   (f) eksport 3MF robi użytkownik ręcznie, całe Part Studio jednym plikiem do `40-cad/`, a kontrola siatek rozdziela bryły (`3mf_do_stl.py --rozdziel`); `AGENTS.md` mówi „eksport przez API, jeden plik na część”.
+  (g) 23.10: użytkownik zgodził się na Astrę (codex) w tle z limitem 60 min bez pytania za każdym razem; `codex exec` w tle trzeba uruchamiać z `< /dev/null`, inaczej czeka na wejście i nic nie robi;
+  (h) 23.10, test znacznika E6: encje pomocnicze (construction) nie liczą się do znacznika niedookreślenia – szkic z samymi encjami pomocniczymi nie pokazuje ikony, choć jest niedookreślony; layout z encjami zwykłymi albo K4 z JSON; `document.visibilityState` w panelu przeglądarki aplikacji jest zawsze „hidden”, więc nie świadczy o ukrytym panelu;
+  (i) 22–23.10: wykonawca bez briefu z rolą zaczął działać jak orkiestrator (commity na `main`, decyzje z rozmowy z użytkownikiem) – każde zlecenie zaczyna się od roli wykonawcy; użytkownik decyduje o funkcji, rozstrzygnięcia techniczne ustalają agenci.
 - Przed serią modułów zmierzyć SG90 każdego dostawcy (MicroChip, OMEGA_ZONE, nowa dostawa): długość korpusu, odległość oś otworu ucha → czoło korpusu z obu stron, grubość ucha. Kieszeń v2.8 ma 0,4 z każdej strony (`luzKorpusSerwa`).
 - Onshape, do ręcznego usunięcia przez użytkownika: „Assembly 1” i BOM w dokumencie „Probka wkladek M3”; „Part Studio 1” w „Probka gwintu 45” (`stan-api.json` → `etap2`).
 - `40-cad/onshape/oko-f-v2.5-build.js` nie zawiera zmian E4/E4.4/E5 (Fable 20.10, uwaga 12).
