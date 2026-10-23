@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T05:15Z, wykonawca CAD",
+  "zapis": "2026-10-23T05:21Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 16,
-    "features": 5,
+    "total": 24,
+    "features": 13,
     "getFeatures": 1
   },
   "liczniki": {
@@ -22,7 +22,10 @@
     "GET /documents (szukaj)": 1000,
     "POST /documents": 200,
     "POST /variables/d/{id}/w/{id}/variablestudio": 3000,
-    "GET /partstudios/.../features": 100
+    "GET /partstudios/.../features": 100,
+    "POST /partstudios/.../features": 2993,
+    "POST /partstudios/.../features/featureid": 3000,
+    "GET /documents/.../currentmicroversion": 400
   },
   "log": [
     [
@@ -145,25 +148,54 @@
       200,
       null,
       false
+    ],
+    [
+      "2026-10-23T05:18:34Z",
+      "POST featureid Layout: przekrój (encje zwykłe, komplet wymiarów)",
+      200,
+      3000,
+      false
+    ],
+    [
+      "2026-10-23T05:18:54Z",
+      "POST Layout: czoło",
+      200,
+      null,
+      false
+    ],
+    [
+      "2026-10-23T05:19:06–09Z",
+      "POST ×6 cPlane layoutu",
+      200,
+      2993,
+      false
     ]
   ],
-  "stop": "test znacznika zaliczony; czekam na decyzję orkiestratora w sprawie encji pomocniczych w layoucie",
+  "stop": null,
   "etap1": {
     "budzet": {
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 12,
-    "getFeatures": 1
+    "wywolania": 20,
+    "getFeatures": 1,
+    "uwaga": "sekcja Zmienne+layout: 20 wywołań wobec planu ≤ 15 – nadwyżka 5 to próby diagnostyczne znacznika zlecone przez orkiestratora (2 + 3)"
   },
-  "mv": "e7863df5560c4b8fa5f6cf89",
+  "mv": "5e30e6e06aa4734f64a8b1e3",
   "variableStudio": {
     "liczba": 177,
     "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
     "dodatkowa": "rantSzer 4 (rantD = otworD + rantSzer, bez stałej 4)"
   },
   "F": {
-    "Layout: przekrój": "FXtwYQCQ4yOgcrx_0"
+    "Layout: przekrój": "FXtwYQCQ4yOgcrx_0",
+    "Layout: czoło": "FCIWCBd9PB1cghZ_0",
+    "Layout: pł. powierzchni dyni": "Fl8JFmA38sZyoHf_0",
+    "Layout: pł. tyłu rury": "FFMxHyR4Hv1oWI1_0",
+    "Layout: pł. uch Ramy tył": "FwwFCKVtfpN8MG9_0",
+    "Layout: pł. uch Ramy przód": "FBTHbpeQKRRerp2_0",
+    "Layout: pł. spodu Słupka": "F1YvoFCIuZraYth_0",
+    "Layout: pł. ucha D": "F4kAjYHOC9yz9vg_0"
   },
   "testBramki": {
     "t": "2026-10-23T02:44:35Z",
@@ -234,5 +266,41 @@
       "podstawa": "document.visibilityState = hidden w karcie i get_layout = {views: [], open_panes: []} („This session isn't open in any window”); wiersz szkicu „not-computed” i baner „session has timed out” na zrzucie",
       "ocena": "w nocy sesja faktycznie nie była otwarta w oknie (get_layout views []), ale to nie była przyczyna braku znacznika – przyczyną były encje pomocnicze; visibilityState w tym webview bywa „hidden” także przy widocznym panelu, więc nie jest wiarygodnym wskaźnikiem"
     }
-  }
+  },
+  "szkice": [
+    {
+      "t": "2026-10-23T05:18:34Z",
+      "nazwa": "Layout: przekrój",
+      "featureId": "FXtwYQCQ4yOgcrx_0",
+      "dataId": "MM7NRmWBfxHjHS8uy",
+      "podpowiedz": "Layout: przekrój [Sketch]",
+      "niedookreslony": false,
+      "ponownyOdczyt1500ms": "bez zmian",
+      "sourceMicroversion": "15b92c528b0fae90e8bda2c9",
+      "encje": "wszystkie zwykłe (decyzja orkiestratora b)"
+    },
+    {
+      "t": "2026-10-23T05:18:54Z",
+      "nazwa": "Layout: czoło",
+      "featureId": "FCIWCBd9PB1cghZ_0",
+      "dataId": "Mxcqhe7Wf9dSyGxsx",
+      "podpowiedz": "Layout: czoło [Sketch]",
+      "niedookreslony": false,
+      "ponownyOdczyt1500ms": "bez zmian",
+      "sourceMicroversion": "2809679b339ebcbd04c18207",
+      "encje": "wszystkie zwykłe"
+    }
+  ],
+  "layout": {
+    "operacje": 8,
+    "folder": "Layout (8) – założony w UI (Add selection to folder)",
+    "plaszczyzny": "6 × cPlane OK, bez ikon ostrzeżeń",
+    "odstepstwo": "w „Layout: czoło” pominięte proste promieniowe pod uchaRamyKat1–3 i nadlewKat1–2 (kąty > 180° nie dają się zwymiarować jednym ANGLE od osi x; to elementy odłożone do v3.1 – dodam przy uchach/nadlewach)",
+    "zrzut": "tool-results mcp-Claude_Browser-blob-1792732754223 (sesja), widok drzewa i layoutu"
+  },
+  "wnioskiDoAGENTS": [
+    "Encje pomocnicze (construction) nie liczą się do dookreślenia szkicu: niedookreślona linia pomocnicza nie daje znacznika „underdefined”. Test znacznika i szkice kontrolowane znacznikiem muszą mieć encje zwykłe (layout: decyzja orkiestratora 23.10 – encje zwykłe); pomocnicze encje w szkicach części wymiarować zawsze, K4 z JSON przy odbiorze.",
+    "document.visibilityState w karcie panelu przeglądarki aplikacji bywa „hidden” także przy widocznym panelu – nie jest wskaźnikiem widoczności; get_layout (views) mówi, czy sesja jest w oknie.",
+    "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie)."
+  ]
 }
