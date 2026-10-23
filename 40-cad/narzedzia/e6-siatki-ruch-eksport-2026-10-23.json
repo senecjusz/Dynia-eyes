@@ -1,0 +1,508 @@
+{
+ "opis": "Etap 1 dużego oka (E6.2): części z eksportu Onshape „Duze oko v1” (STL), układ koncepcji v3.1. Ścieżki względem tego pliku.",
+ "zrodla": [
+  "20-analizy/2026-10-23-duze-oko-2c-koncepcja-v3.1.md (układ współrzędnych, pkt 2, 4, 5, 6)",
+  ".claude/worktrees/heuristic-brattain-6e5ce2/40-cad/onshape/e6.2-plan-zmienne-layout.md (zamkG, otwG, zamkD, otwD, podazanie)",
+  ".claude/worktrees/heuristic-brattain-6e5ce2/40-cad/onshape/e6.2-plan-powieki.md (powieki budowane w położeniu zamkniętym)"
+ ],
+ "katalog_siatek": "../3mf/Duze oko v1/eksport-2026-10-23/stl",
+ "wynik": "e6-siatki-ruch-wynik-eksport-2026-10-23",
+ "jednostki": "mm",
+ "czesci": {
+  "Gałka": {
+   "plik": "Duże oko v1 - Gałka.stl",
+   "ruch": {
+    "typ": "galka"
+   }
+  },
+  "Powieka górna": {
+   "plik": "Duże oko v1 - Powieka górna.stl",
+   "ruch": {
+    "typ": "powieka",
+    "zmienna": "G",
+    "kat_modelu": -8.5
+   }
+  },
+  "Powieka dolna": {
+   "plik": "Duże oko v1 - Powieka dolna.stl",
+   "ruch": {
+    "typ": "powieka",
+    "zmienna": "D",
+    "kat_modelu": -11.5
+   }
+  },
+  "Rama": {
+   "plik": "Duże oko v1 - Rama.stl",
+   "ruch": {
+    "typ": "stala"
+   }
+  },
+  "Słupek": {
+   "plik": "Duże oko v1 - Słupek.stl",
+   "ruch": {
+    "typ": "stala"
+   }
+  },
+  "Obejma": {
+   "plik": "Duże oko v1 - Obejma.stl",
+   "ruch": {
+    "typ": "stala"
+   },
+   "pomin": "nieruchoma, poza okiem (na rurze Ramy z −5…−15, R ≥ 40) – bez pary"
+  },
+  "Próbka P6": {
+   "plik": "Duże oko v1 - Próbka P6.stl",
+   "ruch": {
+    "typ": "stala"
+   },
+   "pomin": "próbka druku czaszy, nie część mechanizmu"
+  }
+ },
+ "_etap2_przyklad": {
+  "Uchwyt": {
+   "plik": "Duze oko v1 - Uchwyt.stl",
+   "ruch": {
+    "typ": "z_galka"
+   }
+  },
+  "Pręt X": {
+   "plik": "Duze oko v1 - Pręt X.stl",
+   "ruch": {
+    "typ": "pret_ik",
+    "pret": "X"
+   }
+  },
+  "Ramię X": {
+   "plik": "Duze oko v1 - Ramię X.stl",
+   "ruch": {
+    "typ": "pret_ik",
+    "pret": "ramie_X"
+   }
+  }
+ },
+ "zmienne": {
+  "psi": {
+   "opis": "ψ gałki [°], + = w prawo",
+   "kotwica": 0
+  },
+  "theta": {
+   "opis": "θ gałki [°], + = w górę",
+   "kotwica": 0
+  },
+  "G": {
+   "opis": "kąt krawędzi przedniej powieki górnej od +z ku +y [°]",
+   "kotwica": -8.5
+  },
+  "D": {
+   "opis": "kąt krawędzi przedniej powieki dolnej od +z ku +y [°]",
+   "kotwica": -11.5
+  }
+ },
+ "zakresy": {
+  "praca_podazanie": {
+   "opis": "praca z warunkiem podążania (koncepcja pkt 6)",
+   "psi": [
+    -25,
+    25
+   ],
+   "theta": [
+    -15,
+    15
+   ],
+   "G": [
+    -8.5,
+    47
+   ],
+   "D": [
+    -43,
+    -11.5
+   ],
+   "podazanie": {
+    "otwG": 42,
+    "otwD": -38,
+    "podazanie": 5,
+    "zakresTheta": 15
+   }
+  },
+  "praca": {
+   "opis": "praca, pełny iloczyn (G do otwG+podazanie i D do otwD−podazanie przy każdym θ)",
+   "psi": [
+    -25,
+    25
+   ],
+   "theta": [
+    -15,
+    15
+   ],
+   "G": [
+    -8.5,
+    47
+   ],
+   "D": [
+    -43,
+    -11.5
+   ]
+  },
+  "mechaniczny": {
+   "opis": "gałka do granicy okna (obwiednia ψ 28,05 / θ 18,12 z koncepcji pkt 4), powieki do ograniczników (pkt 5)",
+   "psi": [
+    -28.05,
+    28.05
+   ],
+   "theta": [
+    -18.12,
+    18.12
+   ],
+   "G": [
+    -9.25,
+    47.75
+   ],
+   "D": [
+    -43.75,
+    -10.75
+   ]
+  }
+ },
+ "zakres_siatki": "mechaniczny",
+ "siatka": {
+  "krok_deg": 0.5,
+  "R_ref": 33,
+  "krok_mm_max": 0.3,
+  "zageszczenie_mm": 0.05,
+  "odciecie_mm": 1.5,
+  "rejestr_miejsc_mm": 1.0,
+  "woksel_miejsc_mm": 1.0,
+  "odcinek_krawedzi_mm": 0.5,
+  "komorka_mm": 0.75,
+  "krok_zgrubny_daleko": 4
+ },
+ "strefy": {
+  "oś powiek – luz osiowy": {
+   "typ": "walec",
+   "os": "x",
+   "os_abs_min": 30.9,
+   "rho_max": 6.5,
+   "kierunek_osiowy_min": 0.9,
+   "wymagany": 0.2,
+   "opis": "ucha powiek na osi M3 i bok Ramy: pasowanie obrotowe, luz osiowy 0,25 (AGENTS.md: luz osiowy 0,2–0,3); tylko szczelina skierowana wzdłuż osi X"
+  }
+ },
+ "pary": [
+  {
+   "a": "Gałka",
+   "b": "Powieka górna",
+   "wymagany": 0.5,
+   "uwaga": "czasze współśrodkowe, projekt 1,2 (luzCzasza)"
+  },
+  {
+   "a": "Gałka",
+   "b": "Powieka dolna",
+   "wymagany": 0.5,
+   "uwaga": "czasze współśrodkowe, projekt 1,2"
+  },
+  {
+   "a": "Powieka górna",
+   "b": "Powieka dolna",
+   "wymagany": 0.5,
+   "strefy": [
+    "oś powiek – luz osiowy"
+   ]
+  },
+  {
+   "a": "Gałka",
+   "b": "Rama",
+   "wymagany": 0.5
+  },
+  {
+   "a": "Powieka górna",
+   "b": "Rama",
+   "wymagany": 0.5,
+   "strefy": [
+    "oś powiek – luz osiowy"
+   ]
+  },
+  {
+   "a": "Powieka dolna",
+   "b": "Rama",
+   "wymagany": 0.5,
+   "strefy": [
+    "oś powiek – luz osiowy"
+   ]
+  },
+  {
+   "a": "Gałka",
+   "b": "Słupek",
+   "wymagany": 0.5
+  },
+  {
+   "a": "Powieka górna",
+   "b": "Słupek",
+   "wymagany": 0.5
+  },
+  {
+   "a": "Powieka dolna",
+   "b": "Słupek",
+   "wymagany": 0.5
+  }
+ ],
+ "weryfikacja_geometrii": [
+  {
+   "czesc": "Gałka",
+   "typ": "promienie",
+   "wartosci": [
+    28,
+    30
+   ],
+   "tol": 0.005,
+   "min_udzial": 0.999,
+   "opis": "wszystkie wierzchołki na sferach R28 i R30 wokół początku"
+  },
+  {
+   "czesc": "Gałka",
+   "typ": "kat_biegunowy_max",
+   "promien": 30,
+   "oczekiwany": 115,
+   "opis": "krawędź tylna R30 na 115° od +z (kulaRim)"
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "promienie",
+   "wartosci": [
+    31.2,
+    33.4,
+    34.7
+   ],
+   "tol": 0.005,
+   "x_abs_max": 30.9,
+   "min_udzial": 0.99,
+   "opis": "czasza R31,2–33,4 i rant R34,7 wokół początku (poza uchami)"
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "kat_krawedzi",
+   "promien": 31.2,
+   "oczekiwany": [
+    -8.5,
+    91.0
+   ],
+   "opis": "czasza od krawędzi przedniej zamkG −8,5° do −8,5 + 99,5°"
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "kat_krawedzi",
+   "promien": 34.7,
+   "oczekiwany": [
+    -8.5,
+    -2.0
+   ],
+   "opis": "rant w pasie 6,5° od krawędzi przedniej"
+  },
+  {
+   "czesc": "Powieka górna",
+   "typ": "os",
+   "os": "x",
+   "promien": 1.7,
+   "os_abs_min": 30,
+   "zakres": [
+    -36.25,
+    36.25
+   ],
+   "opis": "otwór Ø3,4 uch na osi X"
+  },
+  {
+   "czesc": "Powieka dolna",
+   "typ": "promienie",
+   "wartosci": [
+    31.2,
+    33.4,
+    34.7
+   ],
+   "tol": 0.005,
+   "x_abs_max": 30.9,
+   "min_udzial": 0.99,
+   "opis": "czasza R31,2–33,4 i rant R34,7 wokół początku (poza uchami)"
+  },
+  {
+   "czesc": "Powieka dolna",
+   "typ": "kat_krawedzi",
+   "promien": 31.2,
+   "oczekiwany": [
+    -90.5,
+    -11.5
+   ],
+   "opis": "czasza od krawędzi przedniej zamkD −11,5° do −11,5 − 79°"
+  },
+  {
+   "czesc": "Powieka dolna",
+   "typ": "os",
+   "os": "x",
+   "promien": 1.7,
+   "os_abs_min": 30,
+   "zakres": [
+    -33.6,
+    33.6
+   ],
+   "opis": "otwór Ø3,4 uch na osi X"
+  },
+  {
+   "czesc": "Rama",
+   "typ": "os",
+   "os": "x",
+   "promien": 1.25,
+   "os_abs_min": 30,
+   "opis": "otwór M3 boków osi powiek na osi X"
+  },
+  {
+   "czesc": "Rama",
+   "typ": "os",
+   "os": "z",
+   "promien": 35.2,
+   "zakres": [
+    6.0,
+    7.87
+   ],
+   "opis": "kołnierz przodu R35,2 od z 6 (kolnierzZ)"
+  },
+  {
+   "czesc": "Rama",
+   "typ": "os",
+   "os": "z",
+   "promien": 37.75,
+   "zakres": [
+    -37.0,
+    6.0
+   ],
+   "opis": "rura wewnątrz R37,75 do z −37"
+  },
+  {
+   "czesc": "Słupek",
+   "typ": "os",
+   "os": "z",
+   "promien": 7.65,
+   "zakres": [
+    -33.0,
+    -5.5
+   ],
+   "opis": "walec R7,65 z −33…−5,5 na osi z"
+  }
+ ],
+ "uwagi_geometrii": [
+  "Gałka w eksporcie etapu 1 to sama czasza R28–30 z krawędzią 115°: bez wycięć φ 0°/80° i bez nadlewów M3 (wszystkie wierzchołki na R28/R30).",
+  "Rama w eksporcie nie ma uch wewnętrznych R30,5–37,75 (z −33…−27): najmniejszy promień od osi z to 35,2 (kołnierz).",
+  "Powieki to „baza” wg e6.2-plan-powieki.md: bez wycięcia wyciecieG, zaczepów J i przycięcia kącików; czasza G do x ±30,95, D do ±31,2."
+ ],
+ "kontrole": [
+  {
+   "nazwa": "K0 wzorzec: Gałka – Powieka górna bez przesunięcia (projekt 1,2)",
+   "para": [
+    "Gałka",
+    "Powieka górna"
+   ],
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0,
+     "G": -8.5
+    }
+   ],
+   "oczekiwane": {
+    "min": 1.2,
+    "tol": 0.03,
+    "kolizja": false
+   }
+  },
+  {
+   "nazwa": "K1 Powieka górna przesunięta o 0,7 mm w −y (szczelina 1,2 → 0,5)",
+   "para": [
+    "Gałka",
+    "Powieka górna"
+   ],
+   "przesun": {
+    "Powieka górna": [
+     0,
+     -0.7,
+     0
+    ]
+   },
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0,
+     "G": -8.5
+    }
+   ],
+   "oczekiwane": {
+    "min": 0.5,
+    "tol": 0.03,
+    "kolizja": false
+   }
+  },
+  {
+   "nazwa": "K2 Powieka górna przesunięta o 1,5 mm w −y (przenikanie 0,3)",
+   "para": [
+    "Gałka",
+    "Powieka górna"
+   ],
+   "przesun": {
+    "Powieka górna": [
+     0,
+     -1.5,
+     0
+    ]
+   },
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0,
+     "G": -8.5
+    }
+   ],
+   "oczekiwane": {
+    "kolizja": true,
+    "glebokosc": 0.3,
+    "tol": 0.03
+   }
+  },
+  {
+   "nazwa": "K3 Słupek przesunięty o +33 mm w z (krawędź czoła R7,65 w ściance gałki: √(7,65² + 27,5²) − 28 = 0,544)",
+   "para": [
+    "Gałka",
+    "Słupek"
+   ],
+   "przesun": {
+    "Słupek": [
+     0,
+     0,
+     33
+    ]
+   },
+   "stany": [
+    {
+     "psi": 0,
+     "theta": 0
+    }
+   ],
+   "oczekiwane": {
+    "kolizja": true,
+    "glebokosc": 0.544,
+    "tol": 0.02
+   }
+  },
+  {
+   "nazwa": "K4 Powieka dolna obrócona za ogranicznik do D = −7,0 (krawędzie przednie G i D się nakładają)",
+   "para": [
+    "Powieka górna",
+    "Powieka dolna"
+   ],
+   "stany": [
+    {
+     "G": -8.5,
+     "D": -7.0
+    }
+   ],
+   "oczekiwane": {
+    "kolizja": true
+   }
+  }
+ ]
+}

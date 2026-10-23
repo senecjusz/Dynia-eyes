@@ -1,0 +1,178 @@
+E6 – kontrola kolizji na siatkach z CAD dużego oka, z kinematyką ruchu (e6-siatki-ruch.py)
+Data: 2026-10-23 20:18; konfiguracja: e6-siatki-ruch-eksport-2026-10-23.json; siatki: ../3mf/Duze oko v1/eksport-2026-10-23/stl
+Czas obliczeń: 3910.1 s, procesy: 11
+
+1. Siatki (po zespoleniu wierzchołków)
+część             trójk.  wierz. kraw≠2 orient  objęt. mm3 skład.  bbox min → max [mm]
+Gałka              38044   19024      0     OK     14493.5      1  [-29.999, -29.995, -12.679] → [29.999, 30.0, 29.957]
+Powieka górna      17376    8684      0     OK      7644.6      1  [-36.25, -5.5, -5.5] → [36.25, 32.101, 34.674]
+Powieka dolna      15158    7575      0     OK      6537.9      1  [-33.6, -33.394, -4.0] → [33.6, 4.0, 33.998]
+Rama               12376    6178      0     OK     24071.8      1  [-42.0, -42.0, -37.0] → [42.0, 42.0, 7.868]
+Słupek              2896    1444      0     OK      3708.2      1  [-7.65, -7.65, -34.0] → [7.65, 7.65, -5.5]
+Obejma              2716    1356      0     OK     11780.0      1  [-47.999, -47.99, -15.0] → [47.999, 50.0, -5.0]   [pominięta: nieruchoma, poza okiem (na rurze Ramy z −5…−15, R ≥ 40) – bez pary]
+Próbka P6          21730   10867      0     OK      6925.2      1  [-28.284, -28.284, 10.0] → [28.284, 28.284, 30.0]   [pominięta: próbka druku czaszy, nie część mechanizmu]
+
+2. Weryfikacja położenia geometrii (układ koncepcji v3.1)
+  [NIE] Gałka: wszystkie wierzchołki na sferach R28 i R30 wokół początku – {'udzial': 0.9467, 'oczekiwany_min': 0.999, 'zakres_r': [21.0856, 30.0]}
+  [OK] Gałka: krawędź tylna R30 na 115° od +z (kulaRim) – {'zmierzony': 115.0, 'oczekiwany': 115}
+  [NIE] Powieka górna: czasza R31,2–33,4 i rant R34,7 wokół początku (poza uchami) – {'udzial': 0.95087, 'oczekiwany_min': 0.99, 'zakres_r': [31.1999, 36.1801]}
+  [OK] Powieka górna: czasza od krawędzi przedniej zamkG −8,5° do −8,5 + 99,5° – {'zmierzony': [-8.5, 91.0], 'oczekiwany': [-8.5, 91.0]}
+  [OK] Powieka górna: rant w pasie 6,5° od krawędzi przedniej – {'zmierzony': [-8.5, -2.0], 'oczekiwany': [-8.5, -2.0]}
+  [OK] Powieka górna: otwór Ø3,4 uch na osi X – {'wierzcholkow': 480, 'srodek_przesuniecie_mm': 0.0, 'promien_dopasowany': 1.7, 'zakres_wzdluz_osi': [-36.25, 36.25], 'oczekiwany_zakres': [-36.25, 36.25]}
+  [NIE] Powieka dolna: czasza R31,2–33,4 i rant R34,7 wokół początku (poza uchami) – {'udzial': 0.94297, 'oczekiwany_min': 0.99, 'zakres_r': [31.2, 36.1801]}
+  [OK] Powieka dolna: czasza od krawędzi przedniej zamkD −11,5° do −11,5 − 79° – {'zmierzony': [-90.5, -11.5], 'oczekiwany': [-90.5, -11.5]}
+  [OK] Powieka dolna: otwór Ø3,4 uch na osi X – {'wierzcholkow': 480, 'srodek_przesuniecie_mm': 0.0, 'promien_dopasowany': 1.7, 'zakres_wzdluz_osi': [-33.6, 33.6], 'oczekiwany_zakres': [-33.6, 33.6]}
+  [OK] Rama: otwór M3 boków osi powiek na osi X – {'wierzcholkow': 480, 'srodek_przesuniecie_mm': 0.0, 'promien_dopasowany': 1.25, 'zakres_wzdluz_osi': [-37.887, 37.887], 'oczekiwany_zakres': None}
+  [NIE] Rama: kołnierz przodu R35,2 od z 6 (kolnierzZ) – {'wierzcholkow': 470, 'srodek_przesuniecie_mm': 0.0, 'promien_dopasowany': 35.1991, 'zakres_wzdluz_osi': [-33.0, 7.868], 'oczekiwany_zakres': [6.0, 7.87]}
+  [OK] Rama: rura wewnątrz R37,75 do z −37 – {'wierzcholkow': 813, 'srodek_przesuniecie_mm': 0.0, 'promien_dopasowany': 37.75, 'zakres_wzdluz_osi': [-37.0, 6.0], 'oczekiwany_zakres': [-37.0, 6.0]}
+  [NIE] Słupek: walec R7,65 z −33…−5,5 na osi z – {'wierzcholkow': 502, 'srodek_przesuniecie_mm': 0.0, 'promien_dopasowany': 7.65, 'zakres_wzdluz_osi': [-34.0, -5.5], 'oczekiwany_zakres': [-33.0, -5.5]}
+  uwaga: Gałka w eksporcie etapu 1 to sama czasza R28–30 z krawędzią 115°: bez wycięć φ 0°/80° i bez nadlewów M3 (wszystkie wierzchołki na R28/R30).
+  uwaga: Rama w eksporcie nie ma uch wewnętrznych R30,5–37,75 (z −33…−27): najmniejszy promień od osi z to 35,2 (kołnierz).
+  uwaga: Powieki to „baza” wg e6.2-plan-powieki.md: bez wycięcia wyciecieG, zaczepów J i przycięcia kącików; czasza G do x ±30,95, D do ±31,2.
+
+3. Kinematyka i siatka stanów
+  - Układ: x prawo, y góra, z na zewnątrz dyni, początek = środek kuli i krzyżaka (koncepcja v3.1); siatki w mm, układ Onshape = układ koncepcji.
+  - Gałka: R = Rx(−θ)·Ry(ψ) wokół początku; ψ+ = spojrzenie w prawo, θ+ = w górę (koncepcja v3.1, układ współrzędnych).
+  - Powieki: obrót wokół osi X; G, D = kąt krawędzi przedniej od +z ku +y [°] (jak zamkG/otwG/zamkD/otwD); R = Rx(−(kąt − kąt modelu)); siatki wyeksportowane w położeniu zamkniętym: G −8,5°, D −11,5°.
+  - Krata stanów: co 0.5° (0.288 mm na R33), kotwice ψ 0, θ 0, G −8,5, D −11,5; zagęszczenie do 0.0868° (0.05 mm na R33).
+  - Każda para liczona na rzucie pełnego iloczynu ψ × θ × G × D na swoje zmienne (pozostałe zmienne nie zmieniają pary, więc to jest dokładnie równoważne pełnemu iloczynowi); stany o tej samej pozie względnej A→B liczone raz (np. Gałka – Powieka: zależy tylko od ψ i θ − ΔG).
+  - Zakresy: praca_podazanie: psi [-25, 25], theta [-15, 15], G [-8.5, 47], D [-43, -11.5] + podążanie (G ≤ otwG + podazanie·max(θ,0)/zakresTheta, D ≥ otwD − podazanie·max(−θ,0)/zakresTheta); praca: psi [-25, 25], theta [-15, 15], G [-8.5, 47], D [-43, -11.5]; mechaniczny: psi [-28.05, 28.05], theta [-18.12, 18.12], G [-9.25, 47.75], D [-43.75, -10.75]
+  - Odcięcie dokładnej odległości c = 1.5 mm (poniżej wszystko dokładnie), rejestr miejsc < 1.0 mm w wokselach 1.0 mm.
+
+4. Przypadki kontrolne (dowód wykrywania)
+  [OK] K0 wzorzec: Gałka – Powieka górna bez przesunięcia (projekt 1,2): min 1.1902 mm, kolizja False; oczekiwane {'min': 1.2, 'tol': 0.03, 'kolizja': False}
+  [OK] K1 Powieka górna przesunięta o 0,7 mm w −y (szczelina 1,2 → 0,5): min 0.527 mm, kolizja False; oczekiwane {'min': 0.5, 'tol': 0.03, 'kolizja': False}
+  [BŁĄD] K2 Powieka górna przesunięta o 1,5 mm w −y (przenikanie 0,3): min -0.2363 mm, kolizja True, głębokość 0.2363 mm (przecięcie powierzchni); oczekiwane {'kolizja': True, 'glebokosc': 0.3, 'tol': 0.03}
+  [OK] K3 Słupek przesunięty o +33 mm w z (krawędź czoła R7,65 w ściance gałki: √(7,65² + 27,5²) − 28 = 0,544): min -0.5475 mm, kolizja True, głębokość 0.5475 mm (przecięcie powierzchni); oczekiwane {'kolizja': True, 'glebokosc': 0.544, 'tol': 0.02}
+  [OK] K4 Powieka dolna obrócona za ogranicznik do D = −7,0 (krawędzie przednie G i D się nakładają): min -0.0087 mm, kolizja True, głębokość 0.0087 mm (przecięcie powierzchni); oczekiwane {'kolizja': True}
+
+5. Minima par [mm] (po zagęszczeniu; „poza strefami” = bez styków zamierzonych przegubu osi)
+para                                wym.   praca_podazanie             praca       mechaniczny   wynik
+Gałka – Powieka górna               0.50             1.190             1.190             1.190   OK
+Gałka – Powieka dolna               0.50             0.997             0.997             0.997   OK
+Powieka górna – Powieka dolna       0.50     0.250 / 0.278     0.250 / 0.278     0.250 / 0.278   PONIŻEJ: praca_podazanie: 0.278 < 0.5; praca: 0.278 < 0.5; mechaniczny: 0.278 < 0.5
+Gałka – Rama                        0.50             5.698             5.698             5.698   OK
+Powieka górna – Rama                0.50     0.250 / 0.278     0.250 / 0.278     0.250 / 0.278   PONIŻEJ: praca_podazanie: 0.278 < 0.5; praca: 0.278 < 0.5; mechaniczny: 0.278 < 0.5
+Powieka dolna – Rama                0.50     1.567 / 1.567     1.567 / 1.567     1.567 / 1.567   OK
+Gałka – Słupek                      0.50             3.747             3.747             2.295   OK
+Powieka górna – Słupek              0.50            13.155            13.155            12.931   OK
+Powieka dolna – Słupek              0.50            18.805            18.805            18.586   OK
+
+6. Szczegóły par
+--- Gałka – Powieka górna: zmienne ['psi', 'theta', 'G']; węzłów 940386, póz względnych 21018, ocen stanów 21062, tryb blisko, 1560.2 s; wymagany 0.5 mm; czasze współśrodkowe, projekt 1,2 (luzCzasza)
+  praca_podazanie  wszystko       min 1.1902 (siatka 1.1902) przy ψ +2.500; θ +12.000; G -8.500; D ·; A [0.535, -1.796, 29.941] B [0.556, -1.867, 31.129]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca_podazanie  węzłów 643067, póz 16362; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.3927 mm): 0.7975 mm; węzłów z przenikaniem: 0
+  praca            wszystko       min 1.1902 (siatka 1.1902) przy ψ +2.500; θ +12.000; G -8.500; D ·; A [0.535, -1.796, 29.941] B [0.556, -1.867, 31.129]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca            węzłów 690032, póz 17372; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.3927 mm): 0.7975 mm; węzłów z przenikaniem: 0
+  mechaniczny      wszystko       min 1.1902 (siatka 1.1902) przy ψ +2.500; θ +11.500; G -9.000; D ·; A [0.535, -2.057, 29.925] B [0.556, -2.138, 31.112]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  mechaniczny      węzłów 940386, póz 21018; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.3927 mm): 0.7975 mm; węzłów z przenikaniem: 0
+--- Gałka – Powieka dolna: zmienne ['psi', 'theta', 'D']; węzłów 544434, póz względnych 15594, ocen stanów 15655, tryb blisko, 926.7 s; wymagany 0.5 mm; czasze współśrodkowe, projekt 1,2
+  praca_podazanie  wszystko       min 0.9966 (siatka 0.9966) przy ψ -20.500; θ -15.000; G ·; D -25.500; A [-29.955, 1.511, -0.65] B [-30.95, 1.561, -0.672]; wierzchołek A – ściana B; siatka
+  praca_podazanie  węzłów 347339, póz 11514; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.3927 mm): 0.6039 mm; węzłów z przenikaniem: 0
+                   miejsce 0.997 mm: A [-29.95, 1.51, -0.65] B [-30.95, 1.56, -0.67], kierunek [-0.998, 0.05, -0.022], wierzchołek A – ściana B, ψ -20.500; θ -15.000; G ·; D -25.500, wokseli 12, obszar (ukł. B) [[-31.0, -2.0, -2.0], [-30.0, 2.0, 2.0]]
+                   miejsce 0.997 mm: A [29.95, 1.51, -0.65] B [30.95, 1.56, -0.67], kierunek [0.998, 0.05, -0.022], wierzchołek A – ściana B, ψ +20.500; θ -15.000; G ·; D -40.500, wokseli 12, obszar (ukł. B) [[30.0, -2.0, -2.0], [31.0, 2.0, 2.0]]
+  praca            wszystko       min 0.9966 (siatka 0.9966) przy ψ -20.500; θ -15.000; G ·; D -25.500; A [-29.955, 1.511, -0.65] B [-30.95, 1.561, -0.672]; wierzchołek A – ściana B; siatka
+  praca            węzłów 394304, póz 12524; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.3927 mm): 0.6039 mm; węzłów z przenikaniem: 0
+                   miejsce 0.997 mm: A [-29.95, 1.51, -0.65] B [-30.95, 1.56, -0.67], kierunek [-0.998, 0.05, -0.022], wierzchołek A – ściana B, ψ -20.500; θ -15.000; G ·; D -25.500, wokseli 12, obszar (ukł. B) [[-31.0, -2.0, -2.0], [-30.0, 2.0, 2.0]]
+                   miejsce 0.997 mm: A [29.95, 1.51, -0.65] B [30.95, 1.56, -0.67], kierunek [0.998, 0.05, -0.022], wierzchołek A – ściana B, ψ +20.500; θ -15.000; G ·; D -40.500, wokseli 12, obszar (ukł. B) [[30.0, -2.0, -2.0], [31.0, 2.0, 2.0]]
+  mechaniczny      wszystko       min 0.9966 (siatka 0.9966) przy ψ -20.500; θ -18.000; G ·; D -28.500; A [-29.955, 1.543, -0.571] B [-30.95, 1.594, -0.59]; wierzchołek A – ściana B; siatka
+  mechaniczny      węzłów 544434, póz 15594; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.3927 mm): 0.6039 mm; węzłów z przenikaniem: 0
+                   miejsce 0.997 mm: A [-29.95, 1.54, -0.57] B [-30.95, 1.59, -0.59], kierunek [-0.998, 0.051, -0.019], wierzchołek A – ściana B, ψ -20.500; θ -18.000; G ·; D -28.500, wokseli 12, obszar (ukł. B) [[-31.0, -2.0, -2.0], [-30.0, 2.0, 2.0]]
+                   miejsce 0.997 mm: A [29.95, 1.54, -0.57] B [30.95, 1.59, -0.59], kierunek [0.998, 0.051, -0.019], wierzchołek A – ściana B, ψ +20.500; θ -18.000; G ·; D -43.500, wokseli 12, obszar (ukł. B) [[30.0, -2.0, -2.0], [31.0, 2.0, 2.0]]
+--- Powieka górna – Powieka dolna: zmienne ['G', 'D']; węzłów 7524, póz względnych 179, ocen stanów 206, tryb blisko, 17.6 s; wymagany 0.5 mm; strefy: oś powiek – luz osiowy
+  praca_podazanie  wszystko       min 0.2500 (siatka 0.25) przy ψ ·; θ ·; G -8.500; D -43.000; A [-33.85, -1.7, 0.0] B [-33.6, -1.7, 0.0]; wierzchołek A – ściana B; siatka
+  praca_podazanie  poza_strefami  min 0.2778 (siatka 0.2778) przy ψ ·; θ ·; G +33.625; D -43.000; A [33.85, 3.925, -0.408] B [33.6, 3.966, -0.522]; ściana A – wierzchołek B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca_podazanie  węzłów 7068, póz 165; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.324 mm): -0.074 mm; węzłów z przenikaniem: 0
+                   miejsce 0.250 mm [strefa zamierzona]: A [-33.85, -3.98, -0.35] B [-33.6, -3.98, -0.35], kierunek [1.0, 0.0, -0.0], ściana A – wierzchołek B, ψ ·; θ ·; G -8.500; D -16.500, wokseli 119, obszar (ukł. B) [[-34.0, -5.0, -5.0], [-30.0, 5.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [33.85, -3.41, -2.09] B [33.6, -3.41, -2.09], kierunek [-1.0, -0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +37.000; D -43.000, wokseli 121, obszar (ukł. B) [[30.0, -5.0, -5.0], [34.0, 5.0, 6.0]]
+                   miejsce 0.865 mm: A [29.5, -1.34, 10.07] B [29.5, -2.19, 9.92], kierunek [0.0, -0.985, -0.174], wierzchołek A – ściana B, ψ ·; θ ·; G -8.500; D -11.500, wokseli 5, obszar (ukł. B) [[28.0, -3.0, 9.0], [30.0, -1.0, 12.0]]
+                   miejsce 0.865 mm: A [-29.5, -1.34, 10.07] B [-29.5, -2.19, 9.92], kierunek [0.0, -0.985, -0.174], wierzchołek A – ściana B, ψ ·; θ ·; G -8.500; D -11.500, wokseli 5, obszar (ukł. B) [[-30.0, -3.0, 9.0], [-28.0, -1.0, 12.0]]
+  praca            wszystko       min 0.2500 (siatka 0.25) przy ψ ·; θ ·; G -8.500; D -43.000; A [-33.85, -1.7, 0.0] B [-33.6, -1.7, 0.0]; wierzchołek A – ściana B; siatka
+  praca            poza_strefami  min 0.2778 (siatka 0.2778) przy ψ ·; θ ·; G +33.625; D -43.000; A [33.85, 3.925, -0.408] B [33.6, 3.966, -0.522]; ściana A – wierzchołek B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca            węzłów 7168, póz 175; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.324 mm): -0.074 mm; węzłów z przenikaniem: 0
+                   miejsce 0.250 mm [strefa zamierzona]: A [-33.85, -3.98, -0.35] B [-33.6, -3.98, -0.35], kierunek [1.0, 0.0, -0.0], ściana A – wierzchołek B, ψ ·; θ ·; G -8.500; D -16.500, wokseli 119, obszar (ukł. B) [[-34.0, -5.0, -5.0], [-30.0, 5.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [33.85, -3.41, -2.09] B [33.6, -3.41, -2.09], kierunek [-1.0, -0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +37.000; D -43.000, wokseli 124, obszar (ukł. B) [[30.0, -5.0, -5.0], [34.0, 5.0, 6.0]]
+                   miejsce 0.865 mm: A [29.5, -1.34, 10.07] B [29.5, -2.19, 9.92], kierunek [0.0, -0.985, -0.174], wierzchołek A – ściana B, ψ ·; θ ·; G -8.500; D -11.500, wokseli 5, obszar (ukł. B) [[28.0, -3.0, 9.0], [30.0, -1.0, 12.0]]
+                   miejsce 0.865 mm: A [-29.5, -1.34, 10.07] B [-29.5, -2.19, 9.92], kierunek [0.0, -0.985, -0.174], wierzchołek A – ściana B, ψ ·; θ ·; G -8.500; D -11.500, wokseli 5, obszar (ukł. B) [[-30.0, -3.0, 9.0], [-28.0, -1.0, 12.0]]
+  mechaniczny      wszystko       min 0.2500 (siatka 0.25) przy ψ ·; θ ·; G -9.000; D -43.500; A [-33.85, -1.7, -0.015] B [-33.6, -1.7, -0.015]; wierzchołek A – ściana B; siatka
+  mechaniczny      poza_strefami  min 0.2778 (siatka 0.2778) przy ψ ·; θ ·; G +33.000; D -43.625; A [33.85, 3.93, -0.365] B [33.6, 3.971, -0.479]; ściana A – wierzchołek B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  mechaniczny      węzłów 7524, póz 179; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.324 mm): -0.074 mm; węzłów z przenikaniem: 0
+                   miejsce 0.250 mm [strefa zamierzona]: A [-33.85, -3.98, -0.38] B [-33.6, -3.98, -0.38], kierunek [1.0, 0.0, -0.0], ściana A – wierzchołek B, ψ ·; θ ·; G -9.000; D -17.000, wokseli 121, obszar (ukł. B) [[-34.0, -5.0, -5.0], [-30.0, 5.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [33.85, -3.39, -2.12] B [33.6, -3.39, -2.12], kierunek [-1.0, -0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +36.500; D -43.500, wokseli 125, obszar (ukł. B) [[30.0, -5.0, -5.0], [34.0, 5.0, 6.0]]
+                   miejsce 0.688 mm: A [-29.5, -1.42, 10.06] B [-29.5, -2.1, 9.94], kierunek [0.0, -0.985, -0.174], ściana A – wierzchołek B, ψ ·; θ ·; G -9.000; D -11.000, wokseli 13, obszar (ukł. B) [[-30.0, -3.0, 9.0], [-27.0, -1.0, 15.0]]
+                   miejsce 0.688 mm: A [29.5, -1.42, 10.06] B [29.5, -2.1, 9.94], kierunek [0.0, -0.985, -0.174], ściana A – wierzchołek B, ψ ·; θ ·; G -9.000; D -11.000, wokseli 13, obszar (ukł. B) [[27.0, -3.0, 9.0], [30.0, -1.0, 15.0]]
+                   miejsce 0.752 mm: A [-26.0, -2.62, 17.05] B [-26.0, -3.36, 16.92], kierunek [0.0, -0.985, -0.174], wierzchołek A – ściana B, ψ ·; θ ·; G -9.000; D -11.000, wokseli 47, obszar (ukł. B) [[-27.0, -6.0, 16.0], [-12.0, -3.0, 29.0]]
+                   miejsce 0.752 mm: A [26.0, -2.62, 17.05] B [26.0, -3.36, 16.92], kierunek [0.0, -0.985, -0.174], wierzchołek A – ściana B, ψ ·; θ ·; G -9.000; D -11.000, wokseli 52, obszar (ukł. B) [[12.0, -6.0, 16.0], [27.0, -3.0, 29.0]]
+--- Gałka – Rama: zmienne ['psi', 'theta']; węzłów 8249, póz względnych 8249, ocen stanów 721, tryb daleko, 1032.6 s; wymagany 0.5 mm
+  praca_podazanie  wszystko       min 5.6979 (siatka 5.6979) przy ψ +14.000; θ -4.000; G ·; D ·; A [11.642, -27.186, 5.041] B [13.853, -32.349, 6.0]; krawędź – krawędź; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca_podazanie  węzłów 375, póz 375; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.2618 mm): 4.6507 mm; węzłów z przenikaniem: 0
+  praca            wszystko       min 5.6979 (siatka 5.6979) przy ψ +14.000; θ -4.000; G ·; D ·; A [11.642, -27.186, 5.041] B [13.853, -32.349, 6.0]; krawędź – krawędź; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca            węzłów 375, póz 375; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.2618 mm): 4.6507 mm; węzłów z przenikaniem: 0
+  mechaniczny      wszystko       min 5.6979 (siatka 5.6979) przy ψ +14.000; θ -4.000; G ·; D ·; A [11.642, -27.186, 5.041] B [13.853, -32.349, 6.0]; krawędź – krawędź; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  mechaniczny      węzłów 551, póz 551; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.2618 mm): 4.6507 mm; węzłów z przenikaniem: 0
+--- Powieka górna – Rama: zmienne ['G']; węzłów 114, póz względnych 114, ocen stanów 164, tryb blisko, 20.1 s; wymagany 0.5 mm; strefy: oś powiek – luz osiowy
+  praca_podazanie  wszystko       min 0.2500 (siatka 0.25) przy ψ ·; θ ·; G -8.500; D ·; A [-36.25, -1.7, 0.0] B [-36.5, -1.7, 0.0]; wierzchołek A – ściana B; siatka
+  praca_podazanie  poza_strefami  min 0.2778 (siatka 0.2778) przy ψ ·; θ ·; G +38.500; D ·; A [-36.25, -3.617, -3.446] B [-36.5, -3.536, -3.536]; ściana A – wierzchołek B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca_podazanie  węzłów 112, póz 112; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.162 mm): 0.088 mm; węzłów z przenikaniem: 0
+                   miejsce 0.250 mm [strefa zamierzona]: A [-36.25, -5.0, -0.0] B [-36.5, -5.0, 0.0], kierunek [-1.0, 0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +44.000; D ·, wokseli 99, obszar (ukł. B) [[-37.0, -6.0, -6.0], [-34.0, 9.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [-36.25, -1.35, -1.03] B [-36.5, -1.35, -1.03], kierunek [-1.0, 0.0, 0.0], wierzchołek A – ściana B, ψ ·; θ ·; G +47.000; D ·, wokseli 12, obszar (ukł. B) [[-37.0, -2.0, -2.0], [-36.0, 2.0, 2.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [36.25, -4.57, -2.03] B [36.5, -4.57, -2.03], kierunek [1.0, 0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +47.000; D ·, wokseli 75, obszar (ukł. B) [[34.0, -6.0, -6.0], [37.0, 6.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [36.25, -1.35, -1.03] B [36.5, -1.35, -1.03], kierunek [1.0, 0.0, 0.0], wierzchołek A – ściana B, ψ ·; θ ·; G +47.000; D ·, wokseli 12, obszar (ukł. B) [[36.0, -2.0, -2.0], [37.0, 2.0, 2.0]]
+                   miejsce 0.595 mm: A [34.69, 5.9, 5.4] B [34.69, 5.9, 6.0], kierunek [0.0, 0.0, 1.0], krawędź – krawędź, ψ ·; θ ·; G -8.500; D ·, wokseli 22, obszar (ukł. B) [[34.0, 5.0, -6.0], [37.0, 9.0, 6.0]]
+  praca            wszystko       min 0.2500 (siatka 0.25) przy ψ ·; θ ·; G -8.500; D ·; A [-36.25, -1.7, 0.0] B [-36.5, -1.7, 0.0]; wierzchołek A – ściana B; siatka
+  praca            poza_strefami  min 0.2778 (siatka 0.2778) przy ψ ·; θ ·; G +38.500; D ·; A [-36.25, -3.617, -3.446] B [-36.5, -3.536, -3.536]; ściana A – wierzchołek B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca            węzłów 112, póz 112; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.162 mm): 0.088 mm; węzłów z przenikaniem: 0
+                   miejsce 0.250 mm [strefa zamierzona]: A [-36.25, -5.0, -0.0] B [-36.5, -5.0, 0.0], kierunek [-1.0, 0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +44.000; D ·, wokseli 99, obszar (ukł. B) [[-37.0, -6.0, -6.0], [-34.0, 9.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [-36.25, -1.35, -1.03] B [-36.5, -1.35, -1.03], kierunek [-1.0, 0.0, 0.0], wierzchołek A – ściana B, ψ ·; θ ·; G +47.000; D ·, wokseli 12, obszar (ukł. B) [[-37.0, -2.0, -2.0], [-36.0, 2.0, 2.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [36.25, -4.57, -2.03] B [36.5, -4.57, -2.03], kierunek [1.0, 0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +47.000; D ·, wokseli 75, obszar (ukł. B) [[34.0, -6.0, -6.0], [37.0, 6.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [36.25, -1.35, -1.03] B [36.5, -1.35, -1.03], kierunek [1.0, 0.0, 0.0], wierzchołek A – ściana B, ψ ·; θ ·; G +47.000; D ·, wokseli 12, obszar (ukł. B) [[36.0, -2.0, -2.0], [37.0, 2.0, 2.0]]
+                   miejsce 0.595 mm: A [34.69, 5.9, 5.4] B [34.69, 5.9, 6.0], kierunek [0.0, 0.0, 1.0], krawędź – krawędź, ψ ·; θ ·; G -8.500; D ·, wokseli 22, obszar (ukł. B) [[34.0, 5.0, -6.0], [37.0, 9.0, 6.0]]
+  mechaniczny      wszystko       min 0.2500 (siatka 0.25) przy ψ ·; θ ·; G -9.000; D ·; A [-36.25, -1.7, -0.015] B [-36.5, -1.7, -0.015]; wierzchołek A – ściana B; siatka
+  mechaniczny      poza_strefami  min 0.2778 (siatka 0.2778) przy ψ ·; θ ·; G +38.500; D ·; A [-36.25, -3.617, -3.446] B [-36.5, -3.536, -3.536]; ściana A – wierzchołek B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  mechaniczny      węzłów 114, póz 114; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.162 mm): 0.088 mm; węzłów z przenikaniem: 0
+                   miejsce 0.250 mm [strefa zamierzona]: A [-36.25, -5.0, -0.0] B [-36.5, -5.0, 0.0], kierunek [-1.0, 0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +44.000; D ·, wokseli 99, obszar (ukł. B) [[-37.0, -6.0, -6.0], [-34.0, 9.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [-36.25, -1.36, -1.02] B [-36.5, -1.36, -1.02], kierunek [-1.0, 0.0, 0.0], wierzchołek A – ściana B, ψ ·; θ ·; G +47.500; D ·, wokseli 12, obszar (ukł. B) [[-37.0, -2.0, -2.0], [-36.0, 2.0, 2.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [36.25, -4.57, -2.03] B [36.5, -4.57, -2.03], kierunek [1.0, 0.0, 0.0], ściana A – wierzchołek B, ψ ·; θ ·; G +47.500; D ·, wokseli 75, obszar (ukł. B) [[34.0, -6.0, -6.0], [37.0, 6.0, 6.0]]
+                   miejsce 0.250 mm [strefa zamierzona]: A [36.25, -1.36, -1.02] B [36.5, -1.36, -1.02], kierunek [1.0, 0.0, 0.0], wierzchołek A – ściana B, ψ ·; θ ·; G +47.500; D ·, wokseli 12, obszar (ukł. B) [[36.0, -2.0, -2.0], [37.0, 2.0, 2.0]]
+                   miejsce 0.544 mm: A [34.7, 5.85, 5.46] B [34.7, 5.85, 6.0], kierunek [0.0, 0.0, 1.0], krawędź – krawędź, ψ ·; θ ·; G -9.000; D ·, wokseli 22, obszar (ukł. B) [[34.0, 5.0, -6.0], [37.0, 9.0, 6.0]]
+--- Powieka dolna – Rama: zmienne ['D']; węzłów 66, póz względnych 66, ocen stanów 32, tryb daleko, 41.2 s; wymagany 0.5 mm; strefy: oś powiek – luz osiowy
+  praca_podazanie  wszystko       min 1.5669 (siatka 1.5673) przy ψ ·; θ ·; G ·; D -15.188; A [-23.2, -27.763, 0.003] B [-24.181, -28.984, 0.003]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca_podazanie  poza_strefami  min 1.5669 (siatka 1.5673) przy ψ ·; θ ·; G ·; D -15.188; A [-23.2, -27.763, 0.003] B [-24.181, -28.984, 0.003]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca_podazanie  węzłów 16, póz 16; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.1579 mm): 1.3421 mm; węzłów z przenikaniem: 0
+  praca            wszystko       min 1.5669 (siatka 1.5673) przy ψ ·; θ ·; G ·; D -15.188; A [-23.2, -27.763, 0.003] B [-24.181, -28.984, 0.003]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca            poza_strefami  min 1.5669 (siatka 1.5673) przy ψ ·; θ ·; G ·; D -15.188; A [-23.2, -27.763, 0.003] B [-24.181, -28.984, 0.003]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  praca            węzłów 16, póz 16; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.1579 mm): 1.3421 mm; węzłów z przenikaniem: 0
+  mechaniczny      wszystko       min 1.5669 (siatka 1.5673) przy ψ ·; θ ·; G ·; D -15.188; A [-23.2, -27.763, 0.003] B [-24.181, -28.984, 0.003]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  mechaniczny      poza_strefami  min 1.5669 (siatka 1.5673) przy ψ ·; θ ·; G ·; D -15.188; A [-23.2, -27.763, 0.003] B [-24.181, -28.984, 0.003]; wierzchołek A – ściana B; zagęszczenie (krok końcowy 0.0625° = 0.036 mm na R33)
+  mechaniczny      węzłów 17, póz 17; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.1579 mm): 1.3421 mm; węzłów z przenikaniem: 0
+--- Gałka – Słupek: zmienne ['psi', 'theta']; węzłów 8249, póz względnych 8249, ocen stanów 654, tryb daleko, 207.2 s; wymagany 0.5 mm
+  praca_podazanie  wszystko       min 3.7469 (siatka 4.2163) przy ψ -25.000; θ -15.000; G ·; D ·; A [-10.26, -4.956, -20.764] B [-6.878, -3.343, -20.764]; wierzchołek A – ściana B; narożnik zakresu
+  praca_podazanie  węzłów 375, póz 375; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.2618 mm): 3.1691 mm; węzłów z przenikaniem: 0
+  praca            wszystko       min 3.7469 (siatka 4.2163) przy ψ -25.000; θ -15.000; G ·; D ·; A [-10.26, -4.956, -20.764] B [-6.878, -3.343, -20.764]; wierzchołek A – ściana B; narożnik zakresu
+  praca            węzłów 375, póz 375; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.2618 mm): 3.1691 mm; węzłów z przenikaniem: 0
+  mechaniczny      wszystko       min 2.2950 (siatka 2.3287) przy ψ -28.050; θ -18.120; G ·; D ·; A [-9.247, -3.657, -21.496] B [-7.127, -2.779, -21.496]; wierzchołek A – ściana B; narożnik zakresu
+  mechaniczny      węzłów 551, póz 551; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.2618 mm): 1.2815 mm; węzłów z przenikaniem: 0
+--- Powieka górna – Słupek: zmienne ['G']; węzłów 114, póz względnych 114, ocen stanów 43, tryb daleko, 22.3 s; wymagany 0.5 mm
+  praca_podazanie  wszystko       min 13.1549 (siatka 13.1549) przy ψ ·; θ ·; G +47.000; D ·; A [-14.0, 15.389, -23.251] B [-5.119, 5.685, -23.251]; wierzchołek A – ściana B; narożnik zakresu
+  praca_podazanie  węzłów 28, póz 28; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.162 mm): 12.507 mm; węzłów z przenikaniem: 0
+  praca            wszystko       min 13.1549 (siatka 13.1549) przy ψ ·; θ ·; G +47.000; D ·; A [-14.0, 15.389, -23.251] B [-5.119, 5.685, -23.251]; wierzchołek A – ściana B; narożnik zakresu
+  praca            węzłów 28, póz 28; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.162 mm): 12.507 mm; węzłów z przenikaniem: 0
+  mechaniczny      wszystko       min 12.9310 (siatka 13.1549) przy ψ ·; θ ·; G +47.750; D ·; A [-14.0, 15.084, -23.45] B [-5.119, 5.685, -23.45]; wierzchołek A – ściana B; narożnik zakresu
+  mechaniczny      węzłów 29, póz 29; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.162 mm): 12.507 mm; węzłów z przenikaniem: 0
+--- Powieka dolna – Słupek: zmienne ['D']; węzłów 66, póz względnych 66, ocen stanów 31, tryb daleko, 32.0 s; wymagany 0.5 mm
+  praca_podazanie  wszystko       min 18.8049 (siatka 19.2286) przy ψ ·; θ ·; G ·; D -43.000; A [-0.0, -26.455, -16.531] B [0.0, -7.65, -16.531]; krawędź – krawędź; narożnik zakresu
+  praca_podazanie  węzłów 16, póz 16; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.1579 mm): 18.5971 mm; węzłów z przenikaniem: 0
+  praca            wszystko       min 18.8049 (siatka 19.2286) przy ψ ·; θ ·; G ·; D -43.000; A [-0.0, -26.455, -16.531] B [0.0, -7.65, -16.531]; krawędź – krawędź; narożnik zakresu
+  praca            węzłów 16, póz 16; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.1579 mm): 18.5971 mm; węzłów z przenikaniem: 0
+  mechaniczny      wszystko       min 18.5862 (siatka 18.6596) przy ψ ·; θ ·; G ·; D -43.750; A [-0.0, -26.236, -16.876] B [0.0, -7.65, -16.876]; krawędź – krawędź; narożnik zakresu
+  mechaniczny      węzłów 17, póz 17; ograniczenie dolne w ciągłym zakresie (Lipschitz, ½ kroku 0.1579 mm): 18.0281 mm; węzłów z przenikaniem: 0
+
+7. Ograniczenia metody
+  - Liczona jest odległość siatek trójkątnych z eksportu (tolerancja cięciwy eksportu ok. 0,01 mm), nie brył CAD: wklęsła czasza powieki ma ściany o strzałkę bliżej osi, wypukła gałka – o strzałkę dalej, więc współśrodkowa szczelina 1,2 wychodzi ok. 1,19.
+  - Odległość jest dokładna dla siatek (wierzchołek–ściana w obie strony + krawędź–krawędź, bez próbkowania), ale tylko poniżej odcięcia c; powyżej działa tryb daleki (klastry 4 mm, gałęzie i granice, też dokładny).
+  - Stany: krata co krok_deg (0,5° = 0,288 mm na R33; na rancie powieki R34,7: 0,303 mm), z kotwicą w położeniu modelu; brzegi zakresu mechanicznego, które nie leżą na kracie, są pokryte z dokładnością ≤ ½ kroku i liczone dokładnie w narożnikach; zagęszczenie to lokalne przeszukiwanie wzorcem od 3 najlepszych węzłów, nie pełna krata 0,05 mm. Ograniczenie dolne w ciągłym zakresie = minimum węzłów − L·½ kroku (L z obrotu wokół początku).
+  - Zakres „praca” to pełny iloczyn (G do otwG + podążanie przy każdym θ – nadzbiór); „praca_podazanie” sprawdza warunek podążania z koncepcji pkt 6. Zakres mechaniczny gałki to prostokąt ψ ±28,05 × θ ±18,12 (obwiednia granicy okna z koncepcji pkt 4) – nadzbiór rzeczywistego okna.
+  - Przenikanie: przecięcie powierzchni – test odcinek–trójkąt (Möller–Trumbore) dla wszystkich krawędzi obu siatek w pobliżu drugiej; zawieranie bez przecięcia – parzystość promienia z jednego wierzchołka każdej składowej (3 kierunki, większość głosów), tylko gdy obwiednia mieści się w obwiedni drugiej części. Głębokość = największa odległość wierzchołka leżącego w drugiej bryle od jej powierzchni (znak z pseudonormalnych, wymaga siatek zamkniętych i zgodnie zorientowanych – sprawdzone w pkt 1); głębokość większa niż c jest obcięta do c. Styk ściana–ściana współpłaszczyznowy daje odległość 0, ale może nie dać flagi przecięcia.
+  - Tryb daleki nie testuje przecięcia osobno: przy odległości > największy promień wpisany trójkąta obu siatek przecięcie jest niemożliwe (krawędź przebijająca trójkąt ma do jego brzegu ≤ promień wpisany).
+  - Strefy zamierzone (np. luz osiowy ucha powieki na osi M3) klasyfikuje się po położeniu środka odcinka najbliższych punktów (w układzie części B) i kierunku szczeliny; minimum „poza strefami” jest dokładne, gdy < rejestr_miejsc_mm, inaczej podawane jako ≥ tej wartości.
+  - Śruby, kable, serwa, Płyta i części etapu 2 nie są w modelu; siatki etapu 1 to „baza” (bez wycięć gałki, zaczepów, przycięcia kącików powiek), więc wynik dotyczy tylko tych brył.
