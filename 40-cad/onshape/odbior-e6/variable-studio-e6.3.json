@@ -1,0 +1,1298 @@
+[
+ {
+  "name": "kulaD",
+  "type": "LENGTH",
+  "expression": "60 mm",
+  "description": ""
+ },
+ {
+  "name": "kulaR",
+  "type": "LENGTH",
+  "expression": "#kulaD / 2",
+  "description": ""
+ },
+ {
+  "name": "scKuli",
+  "type": "LENGTH",
+  "expression": "2 mm",
+  "description": ""
+ },
+ {
+  "name": "czaszaKat",
+  "type": "ANGLE",
+  "expression": "115 deg",
+  "description": "krawędź czaszy od osi +z"
+ },
+ {
+  "name": "rimX",
+  "type": "ANGLE",
+  "expression": "104 deg",
+  "description": "wycięcie czaszy przy pręcie X"
+ },
+ {
+  "name": "rimXSzer",
+  "type": "ANGLE",
+  "expression": "25 deg",
+  "description": "± wokół φ 0"
+ },
+ {
+  "name": "rimY",
+  "type": "ANGLE",
+  "expression": "106 deg",
+  "description": ""
+ },
+ {
+  "name": "rimYSrodek",
+  "type": "ANGLE",
+  "expression": "80 deg",
+  "description": ""
+ },
+ {
+  "name": "rimYSzer",
+  "type": "ANGLE",
+  "expression": "35 deg",
+  "description": "v3.1: φ 80 ±35"
+ },
+ {
+  "name": "rimFaza",
+  "type": "ANGLE",
+  "expression": "5 deg",
+  "description": ""
+ },
+ {
+  "name": "nadlewKat1",
+  "type": "ANGLE",
+  "expression": "210 deg",
+  "description": ""
+ },
+ {
+  "name": "nadlewKat2",
+  "type": "ANGLE",
+  "expression": "330 deg",
+  "description": ""
+ },
+ {
+  "name": "nadlewR",
+  "type": "LENGTH",
+  "expression": "24 mm",
+  "description": ""
+ },
+ {
+  "name": "nadlewZ1",
+  "type": "LENGTH",
+  "expression": "-10 mm",
+  "description": ""
+ },
+ {
+  "name": "nadlewZ2",
+  "type": "LENGTH",
+  "expression": "-16 mm",
+  "description": ""
+ },
+ {
+  "name": "nadlewD",
+  "type": "LENGTH",
+  "expression": "7 mm",
+  "description": "v3.1 pkt 4: nadlewy Ø7"
+ },
+ {
+  "name": "glebokoscSrodka",
+  "type": "LENGTH",
+  "expression": "10 mm",
+  "description": "środek kuli za powierzchnią dyni (B5)"
+ },
+ {
+  "name": "otworD",
+  "type": "LENGTH",
+  "expression": "80 mm",
+  "description": ""
+ },
+ {
+  "name": "luzOtworu",
+  "type": "LENGTH",
+  "expression": "0.25 mm",
+  "description": ""
+ },
+ {
+  "name": "obwiedniaR",
+  "type": "LENGTH",
+  "expression": "#otworD / 2 - #luzOtworu",
+  "description": ""
+ },
+ {
+  "name": "rantSzer",
+  "type": "LENGTH",
+  "expression": "4 mm",
+  "description": "rant szerszy od otworu o tyle na średnicy"
+ },
+ {
+  "name": "rantD",
+  "type": "LENGTH",
+  "expression": "#otworD + #rantSzer",
+  "description": ""
+ },
+ {
+  "name": "rantT",
+  "type": "LENGTH",
+  "expression": "2 mm",
+  "description": ""
+ },
+ {
+  "name": "rantZabkiN",
+  "type": "NUMBER",
+  "expression": "8",
+  "description": ""
+ },
+ {
+  "name": "dyniaR",
+  "type": "LENGTH",
+  "expression": "150 mm",
+  "description": ""
+ },
+ {
+  "name": "dociskMin",
+  "type": "LENGTH",
+  "expression": "15 mm",
+  "description": ""
+ },
+ {
+  "name": "dociskMax",
+  "type": "LENGTH",
+  "expression": "35 mm",
+  "description": ""
+ },
+ {
+  "name": "scRury",
+  "type": "LENGTH",
+  "expression": "2 mm",
+  "description": ""
+ },
+ {
+  "name": "ruraWewR",
+  "type": "LENGTH",
+  "expression": "#obwiedniaR - #scRury",
+  "description": ""
+ },
+ {
+  "name": "ruraTyl",
+  "type": "LENGTH",
+  "expression": "37 mm",
+  "description": ""
+ },
+ {
+  "name": "kolnierzR",
+  "type": "LENGTH",
+  "expression": "35.2 mm",
+  "description": ""
+ },
+ {
+  "name": "kolnierzZ",
+  "type": "LENGTH",
+  "expression": "6 mm",
+  "description": "decyzja orkiestratora 23.10 (czoło rantu po sferze)"
+ },
+ {
+  "name": "bokRamyT",
+  "type": "LENGTH",
+  "expression": "3.25 mm",
+  "description": ""
+ },
+ {
+  "name": "uchaRamyKat1",
+  "type": "ANGLE",
+  "expression": "100 deg",
+  "description": ""
+ },
+ {
+  "name": "uchaRamyKat2",
+  "type": "ANGLE",
+  "expression": "200 deg",
+  "description": ""
+ },
+ {
+  "name": "uchaRamyKat3",
+  "type": "ANGLE",
+  "expression": "310 deg",
+  "description": ""
+ },
+ {
+  "name": "uchaRamyR1",
+  "type": "LENGTH",
+  "expression": "30.5 mm",
+  "description": ""
+ },
+ {
+  "name": "uchaRamyZ1",
+  "type": "LENGTH",
+  "expression": "-33 mm",
+  "description": ""
+ },
+ {
+  "name": "uchaRamyZ2",
+  "type": "LENGTH",
+  "expression": "-27 mm",
+  "description": ""
+ },
+ {
+  "name": "uchaGwintGl",
+  "type": "LENGTH",
+  "expression": "6 mm",
+  "description": ""
+ },
+ {
+  "name": "kardanD",
+  "type": "LENGTH",
+  "expression": "11 mm",
+  "description": ""
+ },
+ {
+  "name": "kardanL",
+  "type": "LENGTH",
+  "expression": "25.5 mm",
+  "description": ""
+ },
+ {
+  "name": "kardanB",
+  "type": "LENGTH",
+  "expression": "#kardanL / 2",
+  "description": ""
+ },
+ {
+  "name": "kardanSrubaOd",
+  "type": "LENGTH",
+  "expression": "9.1 mm",
+  "description": ""
+ },
+ {
+  "name": "kardanOtworGl",
+  "type": "LENGTH",
+  "expression": "7 mm",
+  "description": ""
+ },
+ {
+  "name": "luzKieszeni",
+  "type": "LENGTH",
+  "expression": "0.3 mm",
+  "description": "orkiestrator 23.10: pasowanie ślizgowe 0,25–0,3/str."
+ },
+ {
+  "name": "kieszenKardanaD",
+  "type": "LENGTH",
+  "expression": "#kardanD + 2 * #luzKieszeni",
+  "description": ""
+ },
+ {
+  "name": "slupekR",
+  "type": "LENGTH",
+  "expression": "7.65 mm",
+  "description": ""
+ },
+ {
+  "name": "slupekTop",
+  "type": "LENGTH",
+  "expression": "-5.5 mm",
+  "description": ""
+ },
+ {
+  "name": "slupekBot",
+  "type": "LENGTH",
+  "expression": "-33 mm",
+  "description": ""
+ },
+ {
+  "name": "slupekM4Z",
+  "type": "LENGTH",
+  "expression": "-#kardanSrubaOd",
+  "description": ""
+ },
+ {
+  "name": "m4Otwor",
+  "type": "LENGTH",
+  "expression": "4.2 mm",
+  "description": ""
+ },
+ {
+  "name": "nakrM5Z1",
+  "type": "LENGTH",
+  "expression": "-20 mm",
+  "description": ""
+ },
+ {
+  "name": "nakrM5H",
+  "type": "LENGTH",
+  "expression": "4 mm",
+  "description": ""
+ },
+ {
+  "name": "nakrM5S",
+  "type": "LENGTH",
+  "expression": "8.2 mm",
+  "description": ""
+ },
+ {
+  "name": "slupekSplaszcz",
+  "type": "LENGTH",
+  "expression": "0.6 mm",
+  "description": ""
+ },
+ {
+  "name": "oknoZ",
+  "type": "LENGTH",
+  "expression": "-6 mm",
+  "description": ""
+ },
+ {
+  "name": "plytaOknaT",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": ""
+ },
+ {
+  "name": "zapasOgr",
+  "type": "ANGLE",
+  "expression": "3 deg",
+  "description": ""
+ },
+ {
+  "name": "zakresPsi",
+  "type": "ANGLE",
+  "expression": "25 deg",
+  "description": ""
+ },
+ {
+  "name": "zakresTheta",
+  "type": "ANGLE",
+  "expression": "15 deg",
+  "description": ""
+ },
+ {
+  "name": "okno_r0",
+  "type": "LENGTH",
+  "expression": "12.65 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r5",
+  "type": "LENGTH",
+  "expression": "12.7 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r10",
+  "type": "LENGTH",
+  "expression": "12.86 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r15",
+  "type": "LENGTH",
+  "expression": "13.11 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r20",
+  "type": "LENGTH",
+  "expression": "13.46 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r25",
+  "type": "LENGTH",
+  "expression": "13.74 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r30",
+  "type": "LENGTH",
+  "expression": "13.9 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r35",
+  "type": "LENGTH",
+  "expression": "13.95 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r40",
+  "type": "LENGTH",
+  "expression": "13.9 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r45",
+  "type": "LENGTH",
+  "expression": "13.71 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r50",
+  "type": "LENGTH",
+  "expression": "13.41 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r55",
+  "type": "LENGTH",
+  "expression": "13.05 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r60",
+  "type": "LENGTH",
+  "expression": "12.57 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r65",
+  "type": "LENGTH",
+  "expression": "12.07 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r70",
+  "type": "LENGTH",
+  "expression": "11.53 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r75",
+  "type": "LENGTH",
+  "expression": "11.07 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r80",
+  "type": "LENGTH",
+  "expression": "10.73 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r85",
+  "type": "LENGTH",
+  "expression": "10.54 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "okno_r90",
+  "type": "LENGTH",
+  "expression": "10.48 mm",
+  "description": "window.py, brzeg 0,25 deg"
+ },
+ {
+  "name": "luzCzasza",
+  "type": "LENGTH",
+  "expression": "1.2 mm",
+  "description": ""
+ },
+ {
+  "name": "powiekaR1",
+  "type": "LENGTH",
+  "expression": "#kulaR + #luzCzasza",
+  "description": ""
+ },
+ {
+  "name": "scPowieki",
+  "type": "LENGTH",
+  "expression": "2.2 mm",
+  "description": ""
+ },
+ {
+  "name": "powiekaR2",
+  "type": "LENGTH",
+  "expression": "#powiekaR1 + #scPowieki",
+  "description": ""
+ },
+ {
+  "name": "rantPowieki",
+  "type": "LENGTH",
+  "expression": "3.5 mm",
+  "description": ""
+ },
+ {
+  "name": "rantPowiekiKat",
+  "type": "ANGLE",
+  "expression": "6.5 deg",
+  "description": ""
+ },
+ {
+  "name": "ucho",
+  "type": "LENGTH",
+  "expression": "2.4 mm",
+  "description": ""
+ },
+ {
+  "name": "luzOsiowy",
+  "type": "LENGTH",
+  "expression": "0.25 mm",
+  "description": ""
+ },
+ {
+  "name": "uchoOtwor",
+  "type": "LENGTH",
+  "expression": "3.4 mm",
+  "description": ""
+ },
+ {
+  "name": "uchoGX2",
+  "type": "LENGTH",
+  "expression": "#obwiedniaR - #bokRamyT - #luzOsiowy",
+  "description": ""
+ },
+ {
+  "name": "uchoGX1",
+  "type": "LENGTH",
+  "expression": "#uchoGX2 - #ucho",
+  "description": ""
+ },
+ {
+  "name": "uchoDX2",
+  "type": "LENGTH",
+  "expression": "#uchoGX1 - #luzOsiowy",
+  "description": ""
+ },
+ {
+  "name": "uchoDX1",
+  "type": "LENGTH",
+  "expression": "#uchoDX2 - #ucho",
+  "description": ""
+ },
+ {
+  "name": "zamkG",
+  "type": "ANGLE",
+  "expression": "-8.5 deg",
+  "description": ""
+ },
+ {
+  "name": "zamkD",
+  "type": "ANGLE",
+  "expression": "-11.5 deg",
+  "description": ""
+ },
+ {
+  "name": "otwG",
+  "type": "ANGLE",
+  "expression": "42 deg",
+  "description": ""
+ },
+ {
+  "name": "otwD",
+  "type": "ANGLE",
+  "expression": "-38 deg",
+  "description": ""
+ },
+ {
+  "name": "podazanie",
+  "type": "ANGLE",
+  "expression": "5 deg",
+  "description": ""
+ },
+ {
+  "name": "zapasZamk",
+  "type": "ANGLE",
+  "expression": "0.75 deg",
+  "description": ""
+ },
+ {
+  "name": "zapasOtw",
+  "type": "ANGLE",
+  "expression": "0.75 deg",
+  "description": ""
+ },
+ {
+  "name": "szczelinaZamk",
+  "type": "ANGLE",
+  "expression": "3 deg",
+  "description": ""
+ },
+ {
+  "name": "gMinKacik",
+  "type": "LENGTH",
+  "expression": "0.6 mm",
+  "description": ""
+ },
+ {
+  "name": "zakresG",
+  "type": "ANGLE",
+  "expression": "99.5 deg",
+  "description": ""
+ },
+ {
+  "name": "zakresD",
+  "type": "ANGLE",
+  "expression": "79 deg",
+  "description": ""
+ },
+ {
+  "name": "wyciecieG",
+  "type": "ANGLE",
+  "expression": "83.5 deg",
+  "description": ""
+ },
+ {
+  "name": "wyciecieX1",
+  "type": "LENGTH",
+  "expression": "-2 mm",
+  "description": ""
+ },
+ {
+  "name": "wyciecieX2",
+  "type": "LENGTH",
+  "expression": "24 mm",
+  "description": ""
+ },
+ {
+  "name": "zaczepX",
+  "type": "LENGTH",
+  "expression": "-22 mm",
+  "description": ""
+ },
+ {
+  "name": "zaczepRho",
+  "type": "LENGTH",
+  "expression": "25.6 mm",
+  "description": ""
+ },
+ {
+  "name": "zaczepKat",
+  "type": "ANGLE",
+  "expression": "92.01 deg",
+  "description": "atan2(25,6; −0,9)"
+ },
+ {
+  "name": "zaczepT",
+  "type": "LENGTH",
+  "expression": "2.4 mm",
+  "description": ""
+ },
+ {
+  "name": "zaczepR",
+  "type": "LENGTH",
+  "expression": "2 mm",
+  "description": ""
+ },
+ {
+  "name": "otworDrutu",
+  "type": "LENGTH",
+  "expression": "1.6 mm",
+  "description": ""
+ },
+ {
+  "name": "drutD",
+  "type": "LENGTH",
+  "expression": "1.2 mm",
+  "description": ""
+ },
+ {
+  "name": "riDrutu",
+  "type": "LENGTH",
+  "expression": "1.2 mm",
+  "description": ""
+ },
+ {
+  "name": "lacznikG",
+  "type": "LENGTH",
+  "expression": "49.95 mm",
+  "description": ""
+ },
+ {
+  "name": "lacznikD",
+  "type": "LENGTH",
+  "expression": "41.69 mm",
+  "description": ""
+ },
+ {
+  "name": "mostekGYmax",
+  "type": "LENGTH",
+  "expression": "16.4 mm",
+  "description": ""
+ },
+ {
+  "name": "m3StozekD",
+  "type": "LENGTH",
+  "expression": "6 mm",
+  "description": ""
+ },
+ {
+  "name": "m3StozekGl",
+  "type": "LENGTH",
+  "expression": "1.65 mm",
+  "description": ""
+ },
+ {
+  "name": "m3Os",
+  "type": "LENGTH",
+  "expression": "2.5 mm",
+  "description": ""
+ },
+ {
+  "name": "pktR",
+  "type": "LENGTH",
+  "expression": "19.5 mm",
+  "description": ""
+ },
+ {
+  "name": "pktZ",
+  "type": "LENGTH",
+  "expression": "-6 mm",
+  "description": ""
+ },
+ {
+  "name": "kulkaM5H",
+  "type": "LENGTH",
+  "expression": "7 mm",
+  "description": "B1; wariant odniesienia h 7 (Fable W1)"
+ },
+ {
+  "name": "czopX",
+  "type": "ANGLE",
+  "expression": "4.7 deg",
+  "description": ""
+ },
+ {
+  "name": "czopY",
+  "type": "ANGLE",
+  "expression": "19.5 deg",
+  "description": ""
+ },
+ {
+  "name": "ramieXC",
+  "type": "LENGTH",
+  "expression": "23.013 mm",
+  "description": ""
+ },
+ {
+  "name": "ramieYC",
+  "type": "LENGTH",
+  "expression": "15.229 mm",
+  "description": ""
+ },
+ {
+  "name": "kulkaM5X_X",
+  "type": "LENGTH",
+  "expression": "#ramieXC + #kulkaM5H * cos(#czopX)",
+  "description": ""
+ },
+ {
+  "name": "kulkaM5X_Y",
+  "type": "LENGTH",
+  "expression": "#ramieYC + #kulkaM5H * cos(#czopY)",
+  "description": ""
+ },
+ {
+  "name": "ramieX_x",
+  "type": "LENGTH",
+  "expression": "18 mm",
+  "description": ""
+ },
+ {
+  "name": "ramieY_x",
+  "type": "LENGTH",
+  "expression": "10.2 mm",
+  "description": ""
+ },
+ {
+  "name": "ramieGr",
+  "type": "LENGTH",
+  "expression": "6 mm",
+  "description": ""
+ },
+ {
+  "name": "zSerw",
+  "type": "LENGTH",
+  "expression": "-49 mm",
+  "description": ""
+ },
+ {
+  "name": "zSerwPG",
+  "type": "LENGTH",
+  "expression": "-60 mm",
+  "description": ""
+ },
+ {
+  "name": "walX_y",
+  "type": "LENGTH",
+  "expression": "-13 mm",
+  "description": ""
+ },
+ {
+  "name": "walY_y",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": ""
+ },
+ {
+  "name": "walPG_y",
+  "type": "LENGTH",
+  "expression": "18 mm",
+  "description": ""
+ },
+ {
+  "name": "walPD_y",
+  "type": "LENGTH",
+  "expression": "-27 mm",
+  "description": ""
+ },
+ {
+  "name": "walPG_x",
+  "type": "LENGTH",
+  "expression": "-30 mm",
+  "description": ""
+ },
+ {
+  "name": "walPD_x",
+  "type": "LENGTH",
+  "expression": "-21 mm",
+  "description": ""
+ },
+ {
+  "name": "orczykX",
+  "type": "LENGTH",
+  "expression": "13 mm",
+  "description": ""
+ },
+ {
+  "name": "orczykY",
+  "type": "LENGTH",
+  "expression": "15 mm",
+  "description": ""
+ },
+ {
+  "name": "ramieG",
+  "type": "LENGTH",
+  "expression": "20 mm",
+  "description": ""
+ },
+ {
+  "name": "ramieD",
+  "type": "LENGTH",
+  "expression": "17.5 mm",
+  "description": ""
+ },
+ {
+  "name": "pretX",
+  "type": "LENGTH",
+  "expression": "43.33 mm",
+  "description": ""
+ },
+ {
+  "name": "pretY",
+  "type": "LENGTH",
+  "expression": "45.82 mm",
+  "description": ""
+ },
+ {
+  "name": "pretD",
+  "type": "LENGTH",
+  "expression": "5 mm",
+  "description": ""
+ },
+ {
+  "name": "koncowkaM5D",
+  "type": "LENGTH",
+  "expression": "8 mm",
+  "description": "robocze, decyzja w etapie 2"
+ },
+ {
+  "name": "koncowkaM5L",
+  "type": "LENGTH",
+  "expression": "5 mm",
+  "description": ""
+ },
+ {
+  "name": "zArmWsp",
+  "type": "LENGTH",
+  "expression": "-35 mm",
+  "description": ""
+ },
+ {
+  "name": "slupekPlytyR",
+  "type": "LENGTH",
+  "expression": "33 mm",
+  "description": ""
+ },
+ {
+  "name": "tarczaZ1",
+  "type": "LENGTH",
+  "expression": "-68.3 mm",
+  "description": ""
+ },
+ {
+  "name": "tarczaT",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoL",
+  "type": "LENGTH",
+  "expression": "22.4 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoW",
+  "type": "LENGTH",
+  "expression": "12.1 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoH",
+  "type": "LENGTH",
+  "expression": "22.8 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoWalek",
+  "type": "LENGTH",
+  "expression": "35 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoWalekOd",
+  "type": "LENGTH",
+  "expression": "5.5 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoUszy",
+  "type": "LENGTH",
+  "expression": "31.8 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoUszyRozstaw",
+  "type": "LENGTH",
+  "expression": "27.7 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoUchoT",
+  "type": "LENGTH",
+  "expression": "2 mm",
+  "description": ""
+ },
+ {
+  "name": "serwoUchoZ",
+  "type": "LENGTH",
+  "expression": "18 mm",
+  "description": ""
+ },
+ {
+  "name": "luzKorpusSerwa",
+  "type": "LENGTH",
+  "expression": "0.4 mm",
+  "description": ""
+ },
+ {
+  "name": "srubaUcha",
+  "type": "LENGTH",
+  "expression": "2.5 mm",
+  "description": "B4"
+ },
+ {
+  "name": "m3Ciasny",
+  "type": "LENGTH",
+  "expression": "2.6 mm",
+  "description": ""
+ },
+ {
+  "name": "m3Luzny",
+  "type": "LENGTH",
+  "expression": "3.3 mm",
+  "description": ""
+ },
+ {
+  "name": "m3Gwint",
+  "type": "LENGTH",
+  "expression": "2.5 mm",
+  "description": ""
+ },
+ {
+  "name": "m5Luzny",
+  "type": "LENGTH",
+  "expression": "5.3 mm",
+  "description": ""
+ },
+ {
+  "name": "m5Gwint",
+  "type": "LENGTH",
+  "expression": "4.2 mm",
+  "description": ""
+ },
+ {
+  "name": "m2Gwint",
+  "type": "LENGTH",
+  "expression": "1.6 mm",
+  "description": ""
+ },
+ {
+  "name": "obejmaD",
+  "type": "LENGTH",
+  "expression": "96 mm",
+  "description": ""
+ },
+ {
+  "name": "obejmaH",
+  "type": "LENGTH",
+  "expression": "10 mm",
+  "description": ""
+ },
+ {
+  "name": "luzObejmy",
+  "type": "LENGTH",
+  "expression": "0.3 mm",
+  "description": ""
+ },
+ {
+  "name": "obejmaZ1",
+  "type": "LENGTH",
+  "expression": "#glebokoscSrodka - #dociskMin",
+  "description": "czoło Obejmy przy wewnętrznej ściance dyni (wartość robocza: ścianka dociskMin)"
+ },
+ {
+  "name": "obejmaZ2",
+  "type": "LENGTH",
+  "expression": "-35 mm",
+  "description": ""
+ },
+ {
+  "name": "obejmaSrubaL",
+  "type": "LENGTH",
+  "expression": "25 mm",
+  "description": ""
+ },
+ {
+  "name": "bokOsiR",
+  "type": "LENGTH",
+  "expression": "5 mm",
+  "description": "podkładka boku osi w Ramie"
+ },
+ {
+  "name": "bokOsiGl",
+  "type": "LENGTH",
+  "expression": "#scRury",
+  "description": "podkładka od x 36,5 w głąb ścianki"
+ },
+ {
+  "name": "fazaRantu",
+  "type": "LENGTH",
+  "expression": "1 mm",
+  "description": "fazka krawędzi czoła rantu"
+ },
+ {
+  "name": "p6Wys",
+  "type": "LENGTH",
+  "expression": "20 mm",
+  "description": "wysokość próbki P6 od szczytu Gałki"
+ },
+ {
+  "name": "uchoDR",
+  "type": "LENGTH",
+  "expression": "4 mm",
+  "description": "promień ucha D"
+ },
+ {
+  "name": "luzMostka",
+  "type": "LENGTH",
+  "expression": "0.5 mm",
+  "description": "mostek G od ucha D"
+ },
+ {
+  "name": "mostekR1",
+  "type": "LENGTH",
+  "expression": "#uchoDR + #luzMostka",
+  "description": ""
+ },
+ {
+  "name": "mostekR2",
+  "type": "LENGTH",
+  "expression": "8 mm",
+  "description": "orkiestrator: luz do rury 0,63"
+ },
+ {
+  "name": "mostekKat1",
+  "type": "ANGLE",
+  "expression": "20 deg",
+  "description": "od krawędzi przedniej G"
+ },
+ {
+  "name": "mostekKat2",
+  "type": "ANGLE",
+  "expression": "70 deg",
+  "description": ""
+ },
+ {
+  "name": "uchoGR",
+  "type": "LENGTH",
+  "expression": "6 mm",
+  "description": "promień ucha G"
+ },
+ {
+  "name": "trimG",
+  "type": "LENGTH",
+  "expression": "min(#uchoDX1, #powiekaR1) - #luzOsiowy",
+  "description": "przycięcie czasz obu powiek: 0,25 przed uchem D i zawsze wewnątrz sfery R1 (K9)"
+ },
+ {
+  "name": "nakrM5E",
+  "type": "LENGTH",
+  "expression": "9.47 mm",
+  "description": "nakrętka M5: wymiar po narożach kieszeni (S 8,2 / cos 30°)"
+ },
+ {
+  "name": "obejmaScianka",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": ""
+ },
+ {
+  "name": "kolnierzObejmyT",
+  "type": "LENGTH",
+  "expression": "2.5 mm",
+  "description": ""
+ },
+ {
+  "name": "szczelinaObejmy",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": ""
+ },
+ {
+  "name": "uchoObejmyT",
+  "type": "LENGTH",
+  "expression": "6 mm",
+  "description": ""
+ },
+ {
+  "name": "uchoObejmyR2",
+  "type": "LENGTH",
+  "expression": "50 mm",
+  "description": ""
+ },
+ {
+  "name": "obejmaSrubaR",
+  "type": "LENGTH",
+  "expression": "46.5 mm",
+  "description": ""
+ },
+ {
+  "name": "m3NakrS",
+  "type": "LENGTH",
+  "expression": "5.7 mm",
+  "description": "kieszeń nakrętki M3 (5,5 + 0,2)"
+ },
+ {
+  "name": "m3NakrH",
+  "type": "LENGTH",
+  "expression": "4 mm",
+  "description": "DIN 985 M3"
+ },
+ {
+  "name": "m3NakrE",
+  "type": "LENGTH",
+  "expression": "6.58 mm",
+  "description": "po narożach (S / cos 30°)"
+ },
+ {
+  "name": "uchoRamyRk",
+  "type": "LENGTH",
+  "expression": "4 mm",
+  "description": "promień ucha Ramy [Z]"
+ },
+ {
+  "name": "uchoRamyC",
+  "type": "LENGTH",
+  "expression": "#uchaRamyR1 + #uchoRamyRk",
+  "description": "środek ucha Ramy"
+ },
+ {
+  "name": "fazaUchaRamy",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": "fazka 45° spodu ucha"
+ },
+ {
+  "name": "wyciecieZaczepG",
+  "type": "ANGLE",
+  "expression": "96.5 deg",
+  "description": "v3.1"
+ },
+ {
+  "name": "wyciecieZaczepD",
+  "type": "ANGLE",
+  "expression": "76 deg",
+  "description": "v3.1"
+ },
+ {
+  "name": "zaczepPasX1",
+  "type": "LENGTH",
+  "expression": "-31 mm",
+  "description": "pas przycięcia przy zaczepie"
+ },
+ {
+  "name": "zaczepPasX2",
+  "type": "LENGTH",
+  "expression": "-17 mm",
+  "description": ""
+ },
+ {
+  "name": "zaczepRefG",
+  "type": "ANGLE",
+  "expression": "-9 deg",
+  "description": "J podane dla t = 0"
+ },
+ {
+  "name": "zaczepRefD",
+  "type": "ANGLE",
+  "expression": "-11 deg",
+  "description": ""
+ },
+ {
+  "name": "wypustL",
+  "type": "LENGTH",
+  "expression": "3 mm",
+  "description": "płytka zaczepu od J w stronę krawędzi"
+ },
+ {
+  "name": "kacikX1",
+  "type": "LENGTH",
+  "expression": "21.2 mm",
+  "description": ""
+ },
+ {
+  "name": "kacikX2",
+  "type": "LENGTH",
+  "expression": "26 mm",
+  "description": ""
+ },
+ {
+  "name": "kacikX3",
+  "type": "LENGTH",
+  "expression": "29.5 mm",
+  "description": ""
+ },
+ {
+  "name": "kacikD1",
+  "type": "ANGLE",
+  "expression": "0.25 deg",
+  "description": "δ(26)"
+ },
+ {
+  "name": "kacikD2",
+  "type": "ANGLE",
+  "expression": "0.94 deg",
+  "description": "δ(29,5)"
+ },
+ {
+  "name": "kacikD3",
+  "type": "ANGLE",
+  "expression": "3.6 deg",
+  "description": "δ(trimG)"
+ },
+ {
+  "name": "dnoNadlewu",
+  "type": "LENGTH",
+  "expression": "0.6 mm",
+  "description": "v3.1 tab. części: dno otworu M3 nadlewu ≥ 0,6 przed czołem"
+ }
+]
