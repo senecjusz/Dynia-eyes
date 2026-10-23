@@ -188,3 +188,17 @@ Dane: `odbior-e6/k1-e6.3.json` (commit wykonawcy 37d46d3; GET /features bez `inc
 Dane: `odbior-e6/k1-plyta.json` (commit wykonawcy 2ea8d62; noSketchGeometry), `znaczniki-plyta.json`. Wynik skryptu: K1 0 błędów, 0 bez stanu (197 operacji); K2 64/64 bez niedookreślenia; K3 (operacje) 0. K3/K4 szkiców – przy ostatnim odczycie z encjami. K6: Płyta 38 operacji (wyjątek D4 – jedna część drukowana). Odstępstwa 1–4 (klatka do spodu ucha, przegroda 0,7, kieszenie nakrętek 0,15 od korpusu, otwory M2 S_PD wycięciem) zaakceptowane.
 
 **Wynik: Płyta przyjęta warunkowo (K3/K4 szkiców).**
+
+## E6.3 – odbiór końcowy etapu 2a – 23.10, ok. 10:55
+
+Dane: `odbior-e6/features-e6.3-koniec.json` (commit wykonawcy 9ff7fa4; 219 operacji, 11 brył), `znaczniki-e6.3-koniec.json` (71 szkiców), raport wykonawcy `weryfikacja-e6-etap2a.md`.
+
+```
+K1 featureStatus != OK: brak | operacji bez stanu: 0 
+K2 szkice w JSON: 71 | wiersze w drzewie: 71 | niedookreślone: brak
+K3 wyrażenia ze stałymi spoza listy: 0
+(71 szkiców: FIX 0, wszystkie encje związane)
+```
+
+- K9 (wykonawca): `luzKorpusSerwa`, `zSerw` (wykrył oderwanie klatek od tarczy – poprawione), `wyciecieG`, `ramiePGb` – OK.
+- **Wynik: etap 2a przyjęty** (Rama, Gałka, Powieka górna i dolna, Słupek, Obejma, Płyta bez słupków stopu, Ramię PG, Ramię PD, przyrząd gięcia, Próbka P6). Poza zakresem: słupki stopu (v3.2), przyrząd zera (wgłębienie – zgoda użytkownika 23.10), napęd gałki (v3.2).
