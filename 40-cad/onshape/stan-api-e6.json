@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T06:00Z, wykonawca CAD",
+  "zapis": "2026-10-23T06:10Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 117,
-    "features": 72,
+    "total": 131,
+    "features": 83,
     "getFeatures": 4
   },
   "liczniki": {
@@ -218,15 +218,23 @@
       200,
       97,
       false
+    ],
+    [
+      "2026-10-23T06:01–06:08Z",
+      "Słupek: POST zmiennych (nakrM5E), mv, 11 zapisów + 1 edycja Hole, 2 × bodydetails, bbox",
+      200,
+      null,
+      false
     ]
   ],
   "stop": null,
   "etap1": {
     "budzet": {
-      "total": 140,
-      "getFeatures": 8
+      "total": 170,
+      "getFeatures": 8,
+      "uwaga": "podniesiony przez orkiestratora do 170; przyrządy przeniesione do etapu 2"
     },
-    "wywolania": 113,
+    "wywolania": 127,
     "getFeatures": 4
   },
   "mv": "58c65069b8d0f8a876634025",
@@ -411,10 +419,11 @@
     "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół."
   ],
   "zmienne": {
-    "liczba": 189,
+    "liczba": 190,
     "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1",
     "p6Wys": "20 (nowa)",
-    "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy"
+    "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy",
+    "nakrM5E": "9,47 (nowa: wymiar po narożach kieszeni nakrętki M5)"
   },
   "rama": {
     "pomiar": {
@@ -472,14 +481,23 @@
   },
   "rok": {
     "przedE6": 558,
-    "E6": 117,
-    "suma": 675,
-    "zrodlo": "stan-api.json e5.rokPo 558 + n.total tego pliku"
+    "E6": 131,
+    "suma": 689
   },
   "powiekaDolna": {
     "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
     "pomiar": "1 bryła, 16 ścian; sfery R31,2 / R33,4 / R34,7; ucha R4 przy x ±31,2…±33,6, otwór R1,7 (2 ściany); bbox x ±33,6, y −33,4…4, z −4…34,0 (czasza y −33,4…0, z −0,29…32,73 = zakres −11,5…−90,5°, oppositeDirection false)",
     "zrzut": "40-cad/onshape/e6.2-zrzuty/powieki.jpg",
     "wywolania": "ok. 14 (bez poprawek)"
+  },
+  "slupek": {
+    "czesc": "RNBD „Słupek”, folder „Słupek (10)”",
+    "pomiar": "1 bryła, 14 ścian; walec R7,65 (z −33…−5,5), kieszeń kardana R5,65 do z −12,75, przelot M5 R2,65 od z −33 (2 ściany – przerwany kanałem), kanał nakrętki: sześciokąt S 8,2 (ściany skośne ±30° na x ≈ 3,55, płaskie y ±4,1) z wylotem na −x, z −20…−16; otwór M4 R2,1 oś x na z −9,1 od +x; bbox ±7,65 × z −33…−5,5; ścianka kanał–kieszeń 3,25 (≥ 3, wymóg orkiestratora)",
+    "zrzut": "40-cad/onshape/e6.2-zrzuty/slupek.jpg",
+    "odstepstwa": [
+      "Hole M5 z płaszczyzny spodu: oppositeDirection true (pierwsza próba w −z = ERROR)",
+      "spłaszczenie i czop pod piastę Płyty odłożone do etapu 2 (decyzja orkiestratora)"
+    ],
+    "wywolania": 16
   }
 }
