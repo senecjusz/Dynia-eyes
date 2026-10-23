@@ -1,0 +1,118 @@
+{
+ "czas": "2026-10-23T19:12:47Z",
+ "sourceMicroversion": "dc51fef594e5dbfee41afb19",
+ "zrodlo": "GET /features pełny (bez includeGeometryIds=false i bez noSketchGeometry; noSketchGeometry=true usuwa encje i więzy szkiców – K3/K4 liczone z pełnego); port e6-kontrola-k.py w karcie (lokalny serwer z panelu niedostępny, pełny JSON 4,1 MB nie trafił do repo)",
+ "K1": {
+  "operacje": 349,
+  "stany": 353,
+  "nieOK": []
+ },
+ "K2": {
+  "szkiceJSON": 111,
+  "wiersze": 111,
+  "niedookreslone": [],
+  "brakWierszy": [],
+  "skan": "19 folderów rozwiniętych, lista przewijana z zrzutem ekranu po każdym kroku"
+ },
+ "K3": {
+  "wyrazenia": 1738,
+  "wyjatekZatwierdzony": "220 (n·#oknoKrok, n·#zebroKrok w Uchwycie – plan Uchwytu pkt 7; zero jako '0 mm'/'0 deg')",
+  "reszta": [
+   [
+    "Uchwyt: łączniki",
+    "op instanceCount",
+    "3"
+   ]
+  ]
+ },
+ "K4": {
+  "encje": 941,
+  "wiezy": 2805,
+  "fixLubWolne": []
+ },
+ "K5": [
+  [
+   "Rama: bok osi lewy",
+   "FEATURE"
+  ],
+  [
+   "Rama: otwór osi lewy",
+   "FACE"
+  ],
+  [
+   "Gałka: nadlew prawy",
+   "FEATURE"
+  ],
+  [
+   "Gałka: otwór M3 nadlewu prawy",
+   "FACE"
+  ],
+  [
+   "Powieka górna: mostek i ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Powieka górna: wycięcie ucha D lewe",
+   "FEATURE"
+  ],
+  [
+   "Powieka dolna: ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Obejma: ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Uchwyt: łączniki",
+   "PART"
+  ],
+  [
+   "Łapa Uchwytu: prawa",
+   "PART"
+  ]
+ ],
+ "K6": {
+  "Rama": 9,
+  "Gałka": 8,
+  "Próbka P6": 1,
+  "Powieka górna": 15,
+  "Powieka dolna": 11,
+  "Słupek": 5,
+  "Obejma": 6,
+  "Płyta": 41,
+  "Ramię PG": 4,
+  "Ramię PD": 4,
+  "Przyrząd gięcia": 2,
+  "Przyrząd zera": 1,
+  "P4": 14,
+  "Uchwyt": 18,
+  "Łapa Uchwytu": 5,
+  "Ramię X": 8,
+  "Ramię Y": 8,
+  "Komplet Y": 11
+ },
+ "K6szkice": {
+  "Layout": 2,
+  "Rama": 5,
+  "Gałka": 5,
+  "Powieka górna": 11,
+  "Powieka dolna": 8,
+  "Słupek": 5,
+  "Obejma": 5,
+  "Płyta": 27,
+  "Ramię PG": 3,
+  "Ramię PD": 3,
+  "Przyrząd gięcia": 1,
+  "Przyrząd zera": 1,
+  "P4": 5,
+  "Uchwyt": 13,
+  "Łapa Uchwytu": 2,
+  "Ramię X": 5,
+  "Ramię Y": 5,
+  "Komplet Y": 5
+ },
+ "K7": [],
+ "K8": [],
+ "K10duplikaty": []
+}
