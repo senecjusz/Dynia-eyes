@@ -12,7 +12,7 @@ Komplet pręta X na prosto, części „P4 …” w folderze „Próbka P4” (p
 |---|---|---|---|---|
 | P4 Widełki stałe G (wycinek Uchwytu) | 1 | na boku: płaski U z klockiem na stole | nie | 2 otwory M3 Ø3,3 w klocku do przykręcenia do deski |
 | P4 Widełki stałe O (wycinek Ramienia X) | 1 | jak G | nie | jw. |
-| P4 Krzyżak G (Ø5,5 × 4) | 1 | osią pionowo | nie | 4 otwory Ø1,8 → **rozwiercić wiertłem Ø2,0** |
+| P4 Krzyżak G (Ø5,75 × 4) | 1 | osią pionowo | nie | 4 otwory Ø1,8 → **rozwiercić wiertłem Ø2,0** (a1 głęb. 2,125, a2 1,825) |
 | P4 Krzyżak O (Ø8 × 4) | 1 | osią pionowo | nie | jw. |
 | P4 Pręt | 1 | pionowo, czopem na stole (brim), widełki u góry | nie | pod podstawą widełek trójkąty 45°; stopień czop → tulejka 1,3 mm bez podpór; otwór Ø2,6 pod M3 w osi |
 | P4 Widełki pręta O | 1 | podstawą (strona łożyska Ø4,8) na stole | nie | łożysko obrotnicy Ø4,8 × 3,3, pogłębienie łba M3 Ø6 × 3,2 |
@@ -21,24 +21,25 @@ Komplet pręta X na prosto, części „P4 …” w folderze „Próbka P4” (p
 
 | Okucie | Szt. | Gdzie |
 |---|---|---|
-| DIN 7991 M2×4 | 4 | przegub G: sworznie a1 (widełki stałe G) i a2 (widełki pręta), łeb w pogłębieniu Ø3,8 |
+| DIN 7985 M2×4 | 2 | przegub G, sworzeń a1 (widełki stałe G): łeb Ø4 na licu policzka, bez pogłębienia |
+| DIN 7991 M2×4 **skrócony do 3,7** | 2 | przegub G, sworzeń a2 (widełki pręta): łeb w pogłębieniu Ø3,8 |
 | DIN 7991 M2×5 | 2 | przegub O, sworzeń a1 (widełki stałe O) |
 | DIN 7985 M2×5 | 2 | przegub O, sworzeń a2 (widełki pręta O), łeb na licu policzka |
 | DIN 912 M3×12 | 1 | obrotnica: przez pogłębienie widełek pręta O w czop pręta |
 | M3 + nakrętki | 4 | klocki do deski |
 
 **Montaż:**
-- Wkręty M2 wkręcają się w policzki (otwory Ø1,6) i obracają w krążku. Otwory w krążku są drukowane Ø1,8 i rozwiercane ręcznie Ø2,0, co daje luz ok. 0,03–0,05 (B9).
-- Dna otworów krążka leżą 0,25 za końcem wkrętu. W krzyżaku G otwory a1 i a2 przecinają się o 0,15, ale wkręty się nie stykają.
+- Wkręty M2 wkręcają się w policzki (otwory Ø1,6) i obracają w krążku. Otwory w krążku są drukowane Ø1,8 i rozwiercane ręcznie Ø2,0, co daje luz ok. 0,03–0,05 (B9). Luz osiowy krzyżak – policzek 0,125 na stronę (korekta v3.2).
+- Dna otworów krążka leżą 0,25 za końcem wkrętu (tabela v3.2 pkt 3.3). Końce wkrętów a1 i a2 się nie stykają; dna otworów mogą się zejść w narożniku.
 - Obrotnica: czop Ø4,4 × 3,4 w łożysku Ø4,8 × 3,3 (luz osiowy 0,1). Łeb M3 dociska czoło czopu, a podstawę trzyma stopień łożyska (zakład 0,35).
-- Pogłębienie Ø3,8 w policzku widełek pręta G (grubość 3,6) wychodzi na boki po 0,1. Łeb siedzi na reszcie stożka.
+- Policzki widełek pręta G mają szerokość 4,6 (rP 2,3), więc wokół pogłębienia Ø3,8 zostaje ścianka 0,4. Widełki stałe G mają szerokość 3,8 (rS 1,9), łby DIN 7985 na licu.
 
 **Testy (v3.2 pkt 15):**
 - (a) pełne wychylenie bez zacięć, także w obu osiach naraz:
   - przy gałce a1 −33,5…+43,6°, a2 28,6°;
   - przy orczyku a1 −46,8…+47,7°, a2 17°;
   - Astra: przy a1 38,6° i a2 ok. 30° odstęp policzków spada do 0,5. Próbka nie ma ograniczników;
-- (b) luz zwrotny długości pręta pod ±5 N ≤ 0,3 mm;
+- (b) luz zwrotny długości pręta pod ±5 N ≤ **0,64 mm** (kryterium z pełnej macierzy, korekta v3.2 K3);
 - (c) ±80 N osiowo, 10 s × 5: bez pęknięć, bez trwałego wydłużenia > 0,05;
 - (d) 1000 cykli ±40° na serwie: wzrost luzu ≤ 0,1.
 

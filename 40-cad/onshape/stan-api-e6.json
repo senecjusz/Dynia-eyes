@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "P4 + C2–C5 odebrane na odczycie wykonawcy (K1–K4); następny krok: plan Uchwytu (zapis po korekcie v3.2)",
-  "wywolania": "E6.6 42/260 (GET /features 1/8); E6 523, rok 1081",
-  "aktualizacja": "2026-10-23T14:35:00Z"
+  "stan": "P4 dostosowana do korekty v3.2; następny: Uchwyt (plan do orkiestratora)",
+  "wywolania": "E6.6 53/260 (GET /features 1/8); E6 534, rok 1092",
+  "aktualizacja": "2026-10-23T16:42:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,7 +18,7 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 523,
+  "total": 534,
   "features": 326,
   "getFeatures": 14
  },
@@ -722,8 +722,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 523,
-  "suma": 1081
+  "E6": 534,
+  "suma": 1092
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2147,7 +2147,7 @@
    "getFeatures": 8
   },
   "n": {
-   "total": 42,
+   "total": 53,
    "getFeatures": 1
   },
   "log": [],
@@ -2300,6 +2300,30 @@
    "K5": "Mirror: + Powieka górna: wycięcie ucha D lewe (FEATURE)",
    "K6": "P4 14 (5 szkiców), Powieka górna 15, Gałka 8",
    "skan": "pane ukryty – lista renderowana zrzutem ekranu po każdym przewinięciu; 19 folderów rozwiniętych"
+  },
+  "p4korekta": {
+   "czas": "2026-10-23T16:40Z",
+   "powod": "korekta v3.2 (K3–K5): uGal Do 5,75, luzOs 0,125 (oba końce), rP 2,3, rS 1,9, a1 przy gałce DIN 7985 (bez pogłębienia), a2 przy gałce M2×4 skrócony do 3,7",
+   "zmienne": {
+    "uGal_Do": "5.5 → 5.75",
+    "uGal_luzOs": "0.25 → 0.125",
+    "uOrcz_luzOs": "0.25 → 0.125",
+    "uGal_rP": "1.8 → 2.3",
+    "uGal_rS": "2.6 → 1.9",
+    "sworzenLGalA2": "nowa 3.7",
+    "uGal_otwGlA2": "nowa (1,825)",
+    "uGal_otwGl": "a1 (2,125)"
+   },
+   "edycje": [
+    "P4: osie a1 (G bez pogłębienia)",
+    "P4: oś a1 G (oś ag5)",
+    "P4: osie a2 i obrotnica (G głęb. uGal_otwGlA2)",
+    "P4: zaokrąglenie widełek stałych (punkty obszarów)",
+    "P4: zaokrąglenie widełek pręta (punkty obszarów)"
+   ],
+   "lekcja": "obszary wybierane qContainsPoint z punktów liczonych z wartości startowych – po zmianie zmiennych punkt może wypaść poza obszar (ostrzeżenie); punkty liczyć z bieżących wartości. Przy edycji istniejącej operacji wiersz drzewa odświeża się z opóźnieniem – kontrola ikon po 2,5 s",
+   "bodydetails": "Krzyżak G R2,88 (x 78…82); Widełki stałe G y ±1,9, koniec R1,9, bez stożków; Pręt koniec R2,3 (x 77,7), 2 stożki; Widełki pręta O y ±6,125; Widełki stałe O bez zmian; 18 brył; drzewo bez ostrzeżeń",
+   "wywolania": 11
   }
  }
 }
