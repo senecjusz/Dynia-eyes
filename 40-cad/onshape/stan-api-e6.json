@@ -2350,7 +2350,8 @@
     "bryly": 21
    },
    "problem": "widełki stałe Y: wewnętrzny policzek y 15…17 zachodzi na płytę okna (węzeł φ 90° r 15,89) – otwór sworznia a1 zasłonięty na y 15…15,71, łeb DIN 7985 od wewnątrz (y 13,4…15) wypada w płycie; propozycja: sworzeń a1 przelotowy M2×10 DIN 7985 od zewnątrz (y 25), krążek z przelotem a1, gwint w policzku wewnętrznym – do decyzji orkiestratora/realizatora",
-   "wywolania": 84
+   "wywolania": 84,
+   "interfejs": "części: Uchwyt, Łapa Uchwytu 210, Łapa Uchwytu 330; foldery „Uchwyt” i „Łapa Uchwytu” jeszcze nie założone (menu „Add selection to folder” nie pojawia się przy ukrytym panelu)"
   }
  }
 }
