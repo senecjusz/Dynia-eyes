@@ -69,6 +69,7 @@ Zmierzony luz sworzni wpisać do tabeli luzów w `AGENTS.md`.
   - łeb dolnej śruby M2 z podkładką wystaje 0,25 za tarczę (moduł o 0,25 głębszy – B5);
   - kieszenie korpusów MG90S z luzem 0,4/str., kanały kabli w obu krótszych ścianach klatek, otwory kabli w tarczy pod S_X, S_Y, S_PD (S_PG – kabel przez okno G).
 - **Gałka:** nadlewy M3 (Ø7, otwory Ø2,6 na 5,4) leżą w płaszczyźnie krawędzi – Gałka stoi na krawędzi i nadlewach.
+- **Gałka – test nadlewów przed montażem:** wkręcić śrubę M3 w każdy nadlew i ciągnąć oraz zginać ją wagą bagażową siłą ok. 30 N. Nadlew 330° (prawy, przy wycięciu X) łączy się ze ścianką tylko łukiem ok. 70° przy tylnej krawędzi (E6.6). Jeśli pęknie, zmiana do zrobienia to przypora nadlewu (wariant 2, w Parkingu).
 - **Rama:** gwinty M3 uch to otwory Ø2,5 – pełny gwint 4,25 mm po fazce; śrubę wkręcać stalową M3 przed montażem (nacięcie).
 - **Ramiona PG/PD:** pogłębienie Ø4,5 przebija dno nad piastą – łeb wkrętu środkowego orczyka opiera się na orczyku. Wymiary kieszeni orczyka to szacunki (grubość 1,7, piasta Ø7, długość 17,5) – przed drukiem przymierzyć orczyk; poprawka to zmiana zmiennych `orczyk*`.
 - **Powieki:** szczelina krawędzi przednich ≥ 0,6 (kąciki przycięte schodkowo); ucha 2,4 z otworem osi Ø3,4.
