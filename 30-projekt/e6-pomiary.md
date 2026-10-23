@@ -13,3 +13,5 @@ Odpowiedzi na pytania blokujące koncepcji v3 (`20-analizy/2026-10-23-duze-oko-2
 | Orczyk jednoramienny | 7 otworów ok. Ø1 co 2,0 mm, 5,5–17,5 od osi (±0,3); długości orczyków 21 / 31,5 / 33,5 | zdjęcie użytkownika, rysunek |
 | **B1** przeguby kulowe RC M2 i M5 | **brak danych** – do pomiaru przez użytkownika | – |
 | **B5** wolne miejsce za wewnętrzną ścianką dyni (potrzeba ≥ 70 mm) | **brak** – dyni jeszcze nie ma | – |
+
+**Decyzja orkiestratora 23.10 (B4 zamknięte bez pomiaru):** źródłem wymiarów MG90S jest rysunek producenta (Miuzei MS60-4-D-V1). Uszy mocowane **M2×10 + nakrętka M2 w kieszeni bloku** (pasuje do każdego wycięcia ≥ 2,1 mm). Kanał kabla w klatce przyjmuje kabel z obu krótszych ścian. Użytkownik: „wykonawca dostał info o rodzaju serwa i ściągnął specyfikację modelu”.
