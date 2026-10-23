@@ -116,6 +116,8 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 
 ## Parking
 
+- E6: przypora nadlewu M3 Gałki przy 330° (łączy się ze ścianką tylko na łuku 70° po wycięciu X) – jeśli test 30 N po druku nie przejdzie; do sprawdzenia przez realizatora razem z łapami Uchwytu.
+
 - `AGENTS.md` (wnioski 19.10, do zatwierdzenia): status OK szyku nie dowodzi powielenia wszystkich operacji; po eksporcie test symetrii (obrót/odbicie) i porównanie powierzchni z poprzednią wersją; kontrola szkicu przez filtr nazw w drzewie; ukrywanie płaszczyzn i szkiców po użyciu; zlecenia dla agentów jako osobne, widoczne sesje.
 - Instrukcja montażu: kolejność przyrządu centrowania przy Ramieniu (plan v2.2: przyrząd przed Ramieniem); śruby M2/M3 użytkownika mają łby krzyżakowe – poprawić nazwy i wkrętak PH1.
 - Eksport 3MF: Bambu nie pokazuje „ę” w nazwie obiektu. Pojedyncze 3MF części z archiwum zip z Onshape wieszają Bambu Studio przy imporcie (20.10); działa eksport całego Part Studio do jednego 3MF i import jako geometria – do druku używać pliku całego zestawu (`… - FullProject.3mf`), pojedyncze pliki zostają do kontroli siatek.

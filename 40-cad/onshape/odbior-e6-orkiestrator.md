@@ -212,3 +212,9 @@ Dane: `odbior-e6/features-e6.4.json` (commit 135f0ad; 224 operacje), `znaczniki-
 ## E6.5: kolizja Powieki górnej z kołnierzem Ramy – 23.10, ok. 11:20
 
 Źródło: przemiatanie siatek CAD (`40-cad/narzedzia/e6-siatki-ruch-wynik-etap1.txt`): przenikanie do 1,13 mm (mostek i ucho G w kołnierz R35,2 od z 6). Wybranie w Ramie odrzucone (przebiłoby czoło rantu – widoczne wycięcia 6–7,6 mm przy oczach). Poprawka w Powiece górnej zmiennymi: `mostekKat1` 56, `mostekKat2` 95, `uchoGR` 5,5 (commity wykonawcy e57c6ef, 6818571). Pomiar: maks. z ucha G 5,50 (luz 0,50), mostka 5,40 (luz 0,60); Powieka górna jedna bryła; K1 224/228 OK. Do potwierdzenia przemiataniem po nowym eksporcie.
+
+## E6.6: Próbka P4 i zmiany C2–C5 – 23.10, ok. 16:40
+
+Dane: `odbior-e6/features-e6.6-p4-c.json` (commit adfb700), `znaczniki-e6.6-p4-c.json`. Skrypt: K1 0 błędów, 0 bez stanu; K2 79/79; K3 0; K4 0 Fix. C3: nadlewy Gałki za wycięciami X/Y – całe; nadlew 330° łączy się ze ścianką na łuku 70° (z −12,68), przyjęte z testem 30 N po druku (README).
+
+**Wynik: P4 i C2–C5 przyjęte.**
