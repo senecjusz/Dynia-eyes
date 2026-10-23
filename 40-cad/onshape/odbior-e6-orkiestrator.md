@@ -175,3 +175,10 @@ K4 Obejma: kieszeń nakrętki: encji 6, więzów 18, FIX 0, encje bez więzów: 
 - K1: `featureStates` puste w odczycie; przyjęte warunkowo na podstawie odpowiedzi zapisu (wszystkie OK) i skanu drzewa wykonawcy (128 wierszy, 0 ikon błędu/ostrzeżenia). Do zamknięcia pełnym odczytem.
 - K5: kąciki powiek – para profili ±x w jednym szkicu z tych samych zmiennych i jeden obrót na pasmo (Mirror FEATURE/FACE dla tych obrotów nie działa w Onshape) – wyjątek zaakceptowany przez orkiestratora.
 - **Wynik: dokończenie powiek przyjęte warunkowo (K1).**
+
+## E6.3: pełny K1 i zmiana nadlewów Gałki – 23.10, ok. 10:05
+
+Dane: `odbior-e6/k1-e6.3.json` (commit wykonawcy 37d46d3; GET /features bez `includeGeometryIds=false` – ten parametr zerował `featureStates`). Wynik skryptu: **K1 0 operacji z błędem, 0 operacji bez stanu (114 operacji, 118 stanów)**, K2 38/38, K3 0.
+
+- **Warunkowe odbiory E6.3 (Rama, Gałka, powieki) – zamknięte, przyjęte.**
+- Nadlewy Gałki (zmiana B): `nadlewR` 23,5, spód na płaszczyźnie krawędzi z −12,68, wysokość `nadlewH` 6 – zmiana tylko zmiennych.
