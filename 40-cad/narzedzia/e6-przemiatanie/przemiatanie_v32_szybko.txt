@@ -1,0 +1,43 @@
+kontrola: {'tuleja_punkt_Astry': -0.803069, 'stara_piasta_Y_przy_0_15': -0.859, 'plyta_punkt': 2.5}
+płyta okna: 18 węzłów wycięcia; najwęższy mostek (-10, 14.72, 1.86)
+gałka: 603 s
+powieki: 704 s
+gałka × powieki: 845 s
+zagęszczenie: 1564 s
+== 10 najciaśniejszych par w zakresie pracy
+  -1.274  G mostek ucha                    – rura                                 ['powieka G', 11.75]
+  -0.917  kardan dolny                     – piasta przednia Uchwytu              ['gałka', np.float64(-25.0), np.float64(-14.85)]
+  -0.359  D wypust zaczepu                 – nadlew Gałki 210                     ['gałka×powieka D', np.float64(-5.35), np.float64(14.75), np.float64(32.0)]
+  -0.057  G ucho                           – czasza dolnej                        ['powieki', 13.75, 0.5]
+  -0.057  D ucho                           – czasza górnej                        ['powieki', 13.75, 0.5]
+  -0.057  czasza dolnej                    – nadlew Gałki 210                     ['gałka×powieka D', 13.5, 13.5, 21.75]
+  -0.057  czasza dolnej                    – nadlew Gałki 330                     ['gałka×powieka D', -20.5, -4.5, 27.75]
+  -0.057  G ucho                           – rura                                 ['powieka G', 0.5]
+   0.079  D zaczep J                       – nadlew Gałki 210                     ['gałka×powieka D', np.float64(-5.75), np.float64(14.75), np.float64(32.0)]
+   0.427  D drut                           – nadlew Gałki 210                     ['gałka×powieka D', np.float64(-12.65), np.float64(14.75), np.float64(32.0)]
+== 10 najciaśniejszych par w całym zakresie (do ograniczników)
+  -1.274  G mostek ucha                    – rura                                 ['powieka G', 11.75]
+  -1.000  kardan dolny                     – piasta przednia Uchwytu              ['gałka', -28.027, 18.017]
+  -0.609  D wypust zaczepu                 – nadlew Gałki 210                     ['gałka×powieka D', np.float64(-8.284), np.float64(17.772), np.float64(32.75)]
+  -0.272  D zaczep J                       – nadlew Gałki 210                     ['gałka×powieka D', np.float64(-8.284), np.float64(17.972), np.float64(32.75)]
+  -0.095  D drut                           – nadlew Gałki 210                     ['gałka×powieka D', -14.356, 18.113, 32.75]
+  -0.057  G ucho                           – czasza dolnej                        ['powieki', 13.75, -0.25]
+  -0.057  D ucho                           – czasza górnej                        ['powieki', 13.75, -0.25]
+  -0.057  czasza dolnej                    – nadlew Gałki 210                     ['gałka×powieka D', 3.5, 13.5, 32.75]
+  -0.057  czasza dolnej                    – nadlew Gałki 330                     ['gałka×powieka D', -20.5, -4.5, 27.75]
+  -0.057  G ucho                           – rura                                 ['powieka G', -0.25]
+== styki zamierzone i pary obrotowe: w pracy / cały zakres
+   0.032 / -0.057  G ramię serwa – słupek stopu G zamknięcia (styk zamierzony)
+   0.038 / -0.057  G ramię serwa – słupek stopu G otwarcia (styk zamierzony)
+   0.047 / -0.057  D ramię serwa – słupek stopu D zamknięcia (styk zamierzony)
+   0.063 / -0.057  D ramię serwa – słupek stopu D otwarcia (styk zamierzony)
+   0.190 /  0.190  G mostek ucha – bok osi Ramy (para obrotowa, wym. 0,2)
+   0.193 /  0.193  D ucho (para obrotowa, wym. 0,2) – G ucho
+   0.193 /  0.193  G ucho – bok osi Ramy (para obrotowa, wym. 0,2)
+   1.437 /  1.437  D piasta ramienia – słupek stopu D zamknięcia (styk zamierzony)
+   1.437 /  1.437  D piasta ramienia – słupek stopu D otwarcia (styk zamierzony)
+   1.662 /  1.662  G piasta ramienia – słupek stopu G zamknięcia (styk zamierzony)
+   1.662 /  1.662  G piasta ramienia – słupek stopu G otwarcia (styk zamierzony)
+okno – Słupek (styk zamierzony): zapas w pracy [0.5605, -0.0, -15.0]
+powieki G–D i kołnierz: {'szczelina_min': np.float64(0.6), 'przy_x': np.float64(30.9), 'luz_osi': 0.4, 'po_luzie': np.float64(0.2), 'kolnierz_rant': 1.008}
+mostki płyty okna (φ, r zewn., szerokość): [(-15, 15.48, 2.36), (-10, 14.72, 1.86), (-5, 14.72, 2.01), (0, 14.8, 2.14), (5, 14.81, 2.1), (10, 14.81, 1.95), (15, 15.47, 2.35), (55, 15.96, 2.92), (60, 15.02, 2.44), (65, 14.68, 2.61), (70, 14.66, 3.13), (75, 14.66, 3.6), (80, 14.74, 4.0), (85, 14.82, 4.27), (90, 14.83, 4.34), (95, 14.9, 4.35), (100, 15.0, 4.26), (105, 15.48, 4.42)]

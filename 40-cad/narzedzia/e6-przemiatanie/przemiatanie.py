@@ -16,6 +16,7 @@ import e6model as M
 from e6model import d2r
 
 THR = 1.5
+SAMP = ('cap', 'cyl', 'obb', 'ann', 'cwedge')      # bryły z próbnikiem
 STEP_C, STEP_S, STEP_F = 0.5, 0.15, 0.08
 
 
@@ -23,6 +24,7 @@ STEP_C, STEP_S, STEP_F = 0.5, 0.15, 0.08
 def screen_cap(A):
     if A.kind == 'cap': return A
     if A.kind in ('cyl', 'ann'): return M.cap(A.name, A.p, A.q, A.r)
+    if A.kind == 'cwedge': return M.cap(A.name, np.array([A.x0, 0, 0.]), np.array([A.x1, 0, 0.]), A.r1)
     if A.kind == 'obb':
         i = int(np.argmax(A.h)); e = A.ax[:, i]; j, k = [m for m in range(3) if m != i]
         return M.cap(A.name, A.ctr - e * A.h[i], A.ctr + e * A.h[i], np.hypot(A.h[j], A.h[k]))
@@ -50,10 +52,10 @@ def seg_seg(p1, q1, p2, q2):
 
 def far(A, B, thr):
     """szybkie odrzucenie (zwraca dolne ograniczenie albo None)."""
-    if A.kind not in ('cap', 'cyl', 'obb', 'ann'): return None
+    if A.kind not in SAMP: return None
     cn = np.linalg.norm(A.c); rmin = max(cn - A.rad, 0); rmax = cn + A.rad
     k = B.kind
-    if k in ('cap', 'cyl', 'obb', 'sphere', 'ann'):
+    if k in SAMP + ('sphere',):
         d = np.linalg.norm(A.c - B.c) - A.rad - B.rad
         return d if d > thr else None
     if k == 'lid':
@@ -82,7 +84,7 @@ def dmin(A, B, thr=THR):
     if A.kind == 'cap' and B.kind == 'cap':
         return seg_seg(A.p, A.q, B.p, B.q) - A.r - B.r
     As = screen_cap(A)
-    if B.kind in ('cap', 'cyl', 'obb', 'ann'):
+    if B.kind in SAMP:
         Bs = screen_cap(B); lb = seg_seg(As.p, As.q, Bs.p, Bs.q) - As.r - Bs.r
     else:
         pts, r, eps = As.samples(STEP_C)
@@ -93,7 +95,7 @@ def dmin(A, B, thr=THR):
         return float((B.dist(pts) - r).min() - eps)
     pts, r, eps = A.samples(STEP_S)
     lb = float((B.dist(pts) - r).min() - eps)
-    if lb < 0.9:
+    if lb < 0.65:
         pts, r, eps = A.samples(STEP_F)
         lb = float((B.dist(pts) - r).min() - eps)
     return lb
@@ -101,6 +103,7 @@ def dmin(A, B, thr=THR):
 
 def area(A):
     if A.kind == 'cap': return 0.0
+    if A.kind == 'cwedge': return (A.a1 - A.a0) * (A.r0 + A.r1) * (A.x1 - A.x0) + 2 * (A.r1 - A.r0) * (A.x1 - A.x0)
     if A.kind == 'cyl': return 2 * np.pi * A.r * (np.linalg.norm(A.q - A.p) + A.r)
     if A.kind == 'ann': return 2 * np.pi * (A.r + A.ri) * np.linalg.norm(A.q - A.p) + 2 * np.pi * (A.r ** 2 - A.ri ** 2)
     if A.kind == 'obb': h = A.h; return 8 * (h[0] * h[1] + h[1] * h[2] + h[0] * h[2])
@@ -109,7 +112,7 @@ def area(A):
 
 def ev(A, B):
     """próbkuję bryłę o mniejszej powierzchni (kapsuła: oś), drugą liczę dokładnie."""
-    S = ('cap', 'cyl', 'obb', 'ann')
+    S = SAMP
     if A.kind in S and B.kind in S:
         return dmin(A, B) if area(A) <= area(B) else dmin(B, A)
     if A.kind in S: return dmin(A, B)
@@ -143,8 +146,13 @@ class EyeRange:
 # ------------------------------------------------------------------ model
 class Model:
     def __init__(self, P, W):
-        self.P = P; self.W = W[::80]          # otwór okna w płycie: wierzchołki co 1° na splajnie (cięciwy wewnątrz – płyta zachowawczo większa)
+        self.P = P; self.W = W[::20]          # otwór okna w płycie: co 20. wierzchołek splajnu (0,5°; strzałka cięciwy < 5e-4 mm)
+        self.rib = None
         self.hX = M.Horn(P, 'X'); self.hY = M.Horn(P, 'Y')
+        if P.get('przeguby') == 'UU':
+            for nm, h in (('X', self.hX), ('Y', self.hY)):
+                P0 = M.pkt0(P, nm)
+                P['_m' + nm] = -M.uu_frames(P, h, P0)[0]
         self.F = M.fixed_prims(P)
         self.plate_outer = None
 
@@ -153,13 +161,19 @@ class Model:
         R, PX, PY = M.eye_points(P, p, t)
         aX = self.hX.ik(PX); aY = self.hY.ik(PY)
         if aX is None or aY is None: return None
-        rx, (Ax, Hx, dx, ex) = M.rod_prims(P, 'X', PX, self.hX, aX, R)
-        ry, (Ay, Hy, dy, ey) = M.rod_prims(P, 'Y', PY, self.hY, aY, R)
-        hx = M.horn_prims(P, 'X', self.hX, aX, Ax, Hx, dx)
-        hy = M.horn_prims(P, 'Y', self.hY, aY, Ay, Hy, dy)
+        if P.get('przeguby') == 'UU':
+            rx, (Ax, Hx, dx, ex) = M.rod_prims_uu(P, 'X', PX, self.hX, aX, R)
+            ry, (Ay, Hy, dy, ey) = M.rod_prims_uu(P, 'Y', PY, self.hY, aY, R)
+            hx = M.horn_prims_uu(P, 'X', self.hX, aX, Ax, Hx, dx, R)
+            hy = M.horn_prims_uu(P, 'Y', self.hY, aY, Ay, Hy, dy, R)
+        else:
+            rx, (Ax, Hx, dx, ex) = M.rod_prims(P, 'X', PX, self.hX, aX, R)
+            ry, (Ay, Hy, dy, ey) = M.rod_prims(P, 'Y', PY, self.hY, aY, R)
+            hx = M.horn_prims(P, 'X', self.hX, aX, Ax, Hx, dx)
+            hy = M.horn_prims(P, 'Y', self.hY, aY, Ay, Hy, dy)
         bf = M.ball_prims(P, R)
         if self.plate_outer is not None:
-            bf += M.uchwyt_prims(P, R, self.W, self.plate_outer)
+            bf += M.uchwyt_prims(P, R, self.W, self.plate_outer, self.rib)
         return dict(R=R, rx=rx, ry=ry, hx=hx, hy=hy, bf=bf, aX=aX, aY=aY)
 
     def lids(self, which, ts):
@@ -172,6 +186,16 @@ class Model:
 def excluded(A, B):
     pair = {A.name, B.name}
     if pair == {'kardan dolny', 'kardan górny'}: return True                    # wnętrze kardana (zgięcie > 90°)
+    for s in ('X', 'Y'):
+        J = {s + ' kardan 2/2', 'piasta kardana ' + s, 'ramię piasty kardana ' + s}
+        if pair <= J and pair != {s + ' kardan 2/2', 'ramię piasty kardana ' + s}: return True   # bolec w piaście
+        # przegub przy gałce: wnętrze przegubu (zakres kątów sprawdza u_zakres); pręt i widełki pręta to jedna bryła
+        Gm = {s + ' widełki pręta przy gałce', s + ' łby sworzni pręta przy gałce', s + ' pręt Ø4,5'}
+        Gf = {'widełki przy gałce ' + s, 'łeb i nakrętka sworznia przy gałce ' + s, 'wspornik widełek ' + s, 'płyta okna'}
+        if pair <= Gm | Gf | {s + ' krzyżak przy gałce'} and not (pair & Gm and pair & {'wspornik widełek ' + s, 'płyta okna'}): return True
+        Um = {s + ' widełki pręta', s + ' łby sworzni pręta', s + ' tulejka obrotnicy'}
+        Uf = {s + ' widełki orczyka', s + ' łeb i nakrętka sworznia orczyka', s + ' Ramię', s + ' piasta Ramienia'}
+        if pair <= Um | Uf | {s + ' krzyżak'} and not (pair & Um and pair & {s + ' Ramię', s + ' piasta Ramienia'}): return True
     for s, srv in (('X', 'S_X'), ('Y', 'S_Y')):
         if pair == {s + ' obudowa M5', s + ' czop M5'}: return True          # przegub
         if pair == {s + ' obudowa M2', 'czop M2 ' + s}: return True          # przegub
@@ -180,6 +204,13 @@ def excluded(A, B):
     for w, srv in (('G', 'S_PG'), ('D', 'S_PD')):
         if srv + ' wieża' in pair and (pair & {w + ' ramię serwa', w + ' piasta ramienia'}): return True
     return False
+
+
+ROTARY = [{'G ucho', 'bok osi Ramy'}, {'G ucho', 'D ucho'}, {'G mostek ucha', 'bok osi Ramy'}, {'D ucho', 'G mostek ucha'}]
+
+
+def rotary(A, B):
+    return {A.name, B.name} in ROTARY
 
 
 def intended(A, B):
@@ -203,8 +234,12 @@ def eye_pairs(S, Fs, near_ball):
     for A in S['rx'] + S['ry']:
         for B in S['bf']: yield A, B
     for A in S['bf']:
-        if A.kind in ('cap', 'cyl', 'obb'):
+        if A.kind in SAMP:
             for B in near_ball: yield A, B
+        elif A.kind == 'prism':          # płyta okna, żebro: wobec stałych; płyta–Słupek/kardan to styk okna (okno.py)
+            for B in near_ball:
+                if A.name == 'płyta okna' and B.name in ('Słupek', 'kardan dolny'): continue
+                yield B, A
     for B in near_ball: yield B, S['bf'][0]
 
 
@@ -247,6 +282,8 @@ def put(reg, A, B, work, info, sel=None):
     if v is None: return
     if intended(A, B):
         reg.up(A.name, B.name + ' (styk zamierzony)', v, work, info)
+    elif rotary(A, B):
+        reg.up(A.name, B.name + ' (para obrotowa, wym. 0,2)', v, work, info)
     else:
         reg.up(A.name, B.name, v, work, info)
 
@@ -274,6 +311,8 @@ def plate_cut(model, poses):
 def surface_pts(pr, step):
     if pr.kind == 'cyl':
         return M.cyl_samples(pr.p, pr.q, pr.r, step)[0]
+    if pr.kind != 'cap':
+        return pr.samples(step)[0]
     a = pr.q - pr.p
     cy = M.cyl_samples(pr.p, pr.q, pr.r, step)[0] if np.linalg.norm(a) > 1e-6 else np.zeros((0, 3))
     n = int(4 * np.pi * pr.r ** 2 / step ** 2) + 50
@@ -292,6 +331,44 @@ def plate_polygon(P, rmin, clear=0.6):
     return poly, nodes
 
 
+def rib_polygon(P, rrib, W, sector=(-17.5, 17.5), clear=1.3):
+    """żebro mostka X nad płytą (z_b -4,5…-2,0): od okna do obwiedni prętów w tej warstwie minus luz 1,3 (ruch między położeniami siatki), węzły co 2,5°."""
+    nb = len(rrib); deg = np.degrees((np.arange(nb) + 0.5) / nb * 2 * np.pi - np.pi)
+    out = []
+    for f in np.arange(sector[0], sector[1] + 1e-9, 2.5):
+        m = np.abs(((deg - f + 180) % 360) - 180) <= 2.5
+        r = min(float(np.floor((rrib[m].min() - clear) * 100) / 100), P['plytaRout'])
+        out.append([r * np.cos(np.radians(f)), r * np.sin(np.radians(f))])
+    aw = np.degrees(np.arctan2(W[:, 1], W[:, 0]))
+    inner = W[(aw >= sector[0]) & (aw <= sector[1])]
+    inner = inner[np.argsort(-np.degrees(np.arctan2(inner[:, 1], inner[:, 0])))]
+    return np.vstack([np.array(out), inner])
+
+
+def kontrola(P, W):
+    """przypadki kontrolne (Astra, weryfikacja v3.1): błąd = przerwanie."""
+    F = M.fixed_prims(P)
+    tul = [f for f in F if f.kind == 'ann' and f.name == 'Słupek'][0]
+    d = tul.dist(np.array([[0.007714197, 6.846926511, -11.152103785]]))[0]
+    assert abs(d + 0.803069) < 1e-4, 'kontrola 1: punkt Astry w tulei Słupka %.6f' % d
+    Fs = [f for f in F if f.kind in SAMP] + [f for f in F if f.kind in ('tube', 'prism')]
+    assert tul in Fs, 'kontrola 2: tuleja poza listą par'
+    # stara piasta M2 Y (5 mm) przy (0; 15) musi zostać wykryta jako kolizja z tuleją
+    Po = M.params(None, dict(przeguby='SS', pktR=19.5, pktRY=19.5, rX=13.0, rY=15.0, M2=dict(bossLY=5.0)))   # geometria v3.1 (kulki RC)
+    m = Model(Po, W); m.plate_outer = np.array([[27 * np.cos(a), 27 * np.sin(a)] for a in np.linspace(0, 2 * np.pi, 72, endpoint=False)])
+    S = m.eye(0.0, 15.0); r = Reg()
+    near_ball = [f for f in F if f.kind in SAMP and np.linalg.norm(f.c) - f.rad < Po['kulaR'] + THR]
+    for A, B in eye_pairs(S, Fs, near_ball): put(r, A, B, True, ['k'], {'piasta M2 Y', 'Słupek'})
+    v3 = r.d[('Słupek', 'piasta M2 Y')]['praca'][0]
+    assert v3 < -0.5, 'kontrola 3: stara piasta M2 Y nie wykryta (%.3f)' % v3
+    # płyta: punkt nad pełną płytą
+    outer = np.array([[27 * np.cos(a), 27 * np.sin(a)] for a in np.linspace(0, 2 * np.pi, 72, endpoint=False)])
+    pl = M.prism('p', outer, [W[::8]], -7.5, -4.5, Rm=np.eye(3), star=True)
+    v = pl.dist(np.array([[-20.0, 0, -2.0]]))[0]
+    assert abs(v - 2.5) < 1e-9, 'kontrola 4: płyta %.4f' % v
+    return dict(tuleja_punkt_Astry=round(float(d), 6), stara_piasta_Y_przy_0_15=round(float(v3), 3), plyta_punkt=round(float(v), 3))
+
+
 def lid_lid_gap(P):
     """szczelina krawędzi przednich na ogranicznikach zamknięcia: 2ρ·sin(Δ/2), Δ = 3° − 2·0,75° + 2δ(x)."""
     Ri = P['LID']['Rin']
@@ -303,7 +380,7 @@ def lid_lid_gap(P):
         g = 2 * rho * np.sin((gap_nom * d2r + 2 * delta) / 2)
         if g < best[0]: best = (g, x)
     return dict(szczelina_min=round(best[0], 3), przy_x=round(best[1], 1), luz_osi=0.4, po_luzie=round(best[0] - 0.4, 3),
-                kolnierz_rant=round(P['rura']['kolnR'] - np.sqrt(max(P['LID']['Rrant'] ** 2 - P['rura']['kolnZ0'] ** 2, 0)), 3))
+                kolnierz_rant=round(float(np.hypot(P['rura']['kolnR'], P['rura']['kolnZ0']) - P['LID']['Rrant']), 3))
 
 
 # ------------------------------------------------------------------ równoległość (fork: kontekst dziedziczony)
@@ -328,19 +405,31 @@ def par(fn, items, reg, nproc=None):
 
 
 # ------------------------------------------------------------------ przebieg
+def skrot(P, szybko=False):
+    """skrót parametrów, trybu i plików modelu (e6model.py, przemiatanie.py, okno.json): wynik zapisany pasuje tylko do nich."""
+    import hashlib
+    h = hashlib.sha256(json.dumps(P, sort_keys=True, default=str).encode() + (b'szybko' if szybko else b'pelne'))
+    d = os.path.dirname(os.path.abspath(__file__))
+    for f in ('e6model.py', 'przemiatanie.py', os.environ.get('OKNO', 'okno.json')):
+        h.update(open(os.path.join(d, f), 'rb').read())
+    return h.hexdigest()[:16]
+
+
 def run(P, szybko=False, out='przemiatanie.json', log=print):
-    t00 = time.time()
+    t00 = time.time(); hsh = skrot(P, szybko)
     on = os.environ.get('OKNO', 'okno.json')
     okno = json.load(open(on)); W = np.load(on.replace('.json', '_splajn.npy'))
+    kon = kontrola(P, W); log("kontrola: %s" % kon)
     model = Model(P, W); ER = EyeRange(okno); Wk = P['praca']
     st = 2.0 if szybko else 1.0
     grid = [(float(p), float(t)) for p in np.arange(-28.5, 28.5 + 1e-9, st) for t in np.arange(-18.5, 18.5 + 1e-9, st) if ER.inside(p, t)]
     poses = grid + ER.boundary(120 if szybko else 360)
     def ework(p, t): return abs(p) <= Wk[0] + 1e-9 and abs(t) <= Wk[1] + 1e-9
     # płyta okna
-    rmin, rrib = plate_cut(model, poses[::(3 if szybko else 1)])
+    rmin, rrib = plate_cut(model, poses)
     poly, nodes = plate_polygon(P, rmin)
     model.plate_outer = poly
+    model.rib = rib_polygon(P, rrib, model.W)
     import okno as O
     rW = O.radial_fn(W)
     bridges = [(f, r, round(r - float(rW(np.radians(f))), 2)) for f, r in nodes if r < P['plytaRout'] - 1e-6]
@@ -351,9 +440,10 @@ def run(P, szybko=False, out='przemiatanie.json', log=print):
     log("płyta okna: %d węzłów wycięcia; najwęższy mostek %s" % (len(bridges), min(bridges, key=lambda b: b[2]) if bridges else None))
 
     F = model.F
-    Fs = [f for f in F if f.kind in ('cap', 'cyl', 'obb')] + [f for f in F if f.kind in ('tube', 'prism')]
-    near_ball = [f for f in F if f.kind in ('cap', 'cyl', 'obb') and np.linalg.norm(f.c) - f.rad < P['kulaR'] + THR]
-    near_lid = [f for f in F if f.kind in ('cap', 'cyl', 'obb') and np.linalg.norm(f.c) - f.rad < P['LID']['Rrant'] + THR]
+    Fs = [f for f in F if f.kind in SAMP] + [f for f in F if f.kind in ('tube', 'prism')]
+    near_ball = [f for f in F if f.kind in SAMP and np.linalg.norm(f.c) - f.rad < P['kulaR'] + THR]
+    near_lid = [f for f in F if f.kind in SAMP and np.linalg.norm(f.c) - f.rad < P['LID']['Rrant'] + THR]
+    assert any(f.kind == 'ann' and f.name == 'Słupek' for f in Fs + near_ball), 'tuleja Słupka poza listą par'
     sphere = M.Prim('sphere', 'gałka R30 (dowolne położenie)', c=np.zeros(3), r=P['kulaR'])
     reg = Reg()
     tG, tD = P['tG'], P['tD']; stL = 2.0 if szybko else 1.0
@@ -405,7 +495,7 @@ def run(P, szybko=False, out='przemiatanie.json', log=print):
             S = model.eye(p, t)
             if S is None: continue
             we = ework(p, t)
-            mov = S['rx'] + S['ry'] + S['hx'] + S['hy']
+            mov = S['rx'] + S['ry'] + S['hx'] + S['hy'] + [b for b in S['bf'] if b.kind in SAMP]
             for (w, tl, prims, bb) in (lsel if lsel is not None else Lall):
                 wk = we and lwork(w, tl); info = ['gałka×powieka ' + w, round(p, 3), round(t, 3), round(tl, 3)]
                 for A in mov:
@@ -419,9 +509,10 @@ def run(P, szybko=False, out='przemiatanie.json', log=print):
 
     # zagęszczenie przy minimach: ±1° co 0,25, potem ±0,25 co 0,05 (gałka i powieki)
     cand = sorted([(min(v['praca'][0], v['calosc'][0]), k) for k, v in reg.d.items()])
-    cand = [c for c in cand if c[0] < 1.0 and 'zamierzony' not in c[1][0] + c[1][1] and c[1] != ('D części', 'G części')][:30]
+    cand = [c for c in cand if c[0] < 1.0 and 'zamierzony' not in c[1][0] + c[1][1] and 'obrotowa' not in c[1][0] + c[1][1]
+            and c[1] != ('D części', 'G części')][:30]
     for (val, k) in cand:
-        sel = set(x.replace(' (styk zamierzony)', '') for x in k)
+        sel = set(x.replace(' (styk zamierzony)', '').replace(' (para obrotowa, wym. 0,2)', '') for x in k)
         for key in ('praca', 'calosc'):
             for (span, stp) in ((1.0, 0.25), (0.25, 0.05)):
                 info = reg.d[k][key][1]
@@ -440,6 +531,19 @@ def run(P, szybko=False, out='przemiatanie.json', log=print):
                     for tt, prims in zip(tl, model.lids(w, tl)):
                         for A, B in lid_pairs(prims, w, Fs, sphere, near_lid):
                             put(reg, A, B, lwork(w, tt), ['powieka ' + w, round(tt, 3)], sel)
+                elif kind == 'powieki':
+                    g0, d0_ = info[1], info[2]
+                    tg_ = [g0 + a for a in np.arange(-span, span + 1e-9, stp) if tG[0] - 1e-9 <= g0 + a <= tG[3] + 1e-9]
+                    td_ = [d0_ + a for a in np.arange(-span, span + 1e-9, stp) if tD[0] - 1e-9 <= d0_ + a <= tD[3] + 1e-9]
+                    if key == 'praca':
+                        tg_ = [x for x in tg_ if lwork('G', x)]; td_ = [x for x in td_ if lwork('D', x)]
+                    for tg2, pg2 in zip(tg_, model.lids('G', tg_)):
+                        for td2, pd2 in zip(td_, model.lids('D', td_)):
+                            wk2 = lwork('G', tg2) and lwork('D', td2); inf2 = ['powieki', round(tg2, 3), round(td2, 3)]
+                            for A in pg2[1:]:
+                                for B in pd2[1:]: put(reg, A, B, wk2, inf2, sel)
+                                put(reg, A, pd2[0], wk2, inf2, sel)
+                            for B in pd2[1:]: put(reg, B, pg2[0], wk2, inf2, sel)
                 elif kind.startswith('gałka×powieka'):
                     w = kind[-1]; rr = tG if w == 'G' else tD; p0, t0, l0 = info[1], info[2], info[3]
                     tl = [l0 + a for a in np.arange(-span, span + 1e-9, stp) if rr[0] - 1e-9 <= l0 + a <= rr[3] + 1e-9]
@@ -455,15 +559,16 @@ def run(P, szybko=False, out='przemiatanie.json', log=print):
                plyta_wezly=nodes, mostki=bridges, zebro=rib, powieki=lid_lid_gap(P),
                okno=dict(zapas_praca=okno['zapas_praca'], tabela=okno['tabela_r'], styk=okno['styk_z_azymut'], M4=okno['odl_od_otworu_M4']),
                stale=dict(LX=model.hX.L, LY=model.hY.L, dX=list(model.hX.d0), dY=list(model.hY.d0)))
+    res['skrot'] = hsh
     json.dump(res, open(out, 'w'), indent=0, ensure_ascii=False, default=float)
     return res
 
 
 def top(res, n=10):
-    rows = [r for r in res['pary'] if not any('zamierzony' in x for x in r[0]) and r[0] != ['D części', 'G części']]
+    rows = [r for r in res['pary'] if not any(('zamierzony' in x) or ('obrotowa' in x) for x in r[0]) and r[0] != ['D części', 'G części']]
     tw = sorted([r for r in rows if r[1] < 50], key=lambda r: r[1])[:n]
     tc = sorted([r for r in rows if r[3] < 50], key=lambda r: r[3])[:n]
-    st = sorted([r for r in res['pary'] if any('zamierzony' in x for x in r[0])], key=lambda r: r[1])
+    st = sorted([r for r in res['pary'] if any(('zamierzony' in x) or ('obrotowa' in x) for x in r[0])], key=lambda r: r[1])
     return tw, tc, st
 
 
@@ -473,7 +578,7 @@ def report(res, log=print):
     for r in tw: log("  %6.3f  %-32s – %-36s %s" % (r[1], r[0][0], r[0][1], r[2]))
     log("== 10 najciaśniejszych par w całym zakresie (do ograniczników)")
     for r in tc: log("  %6.3f  %-32s – %-36s %s" % (r[3], r[0][0], r[0][1], r[4]))
-    log("== styki zamierzone (ramię powieki – słupek stopu): w pracy / cały zakres")
+    log("== styki zamierzone i pary obrotowe: w pracy / cały zakres")
     for r in st: log("  %6.3f / %6.3f  %s – %s" % (r[1], r[3], r[0][0], r[0][1]))
     log("okno – Słupek (styk zamierzony): zapas w pracy %s" % res['okno']['zapas_praca'])
     log("powieki G–D i kołnierz: %s" % res['powieki'])

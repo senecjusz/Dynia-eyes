@@ -17,9 +17,9 @@ d2r = np.pi / 180.0
 # ============================================================== parametry
 DEF = dict(
     # gałka
-    kulaR=30.0, kulaRin=28.0, rim=115.0,
-    rimCuts=[[0.0, 25.0, 104.0], [80.0, 35.0, 106.0]],   # [azymut środka, pół-szerokość, krawędź] (stopnie)
-    pktR=19.5, pktZ=-6.0,
+    kulaR=30.0, kulaRin=28.0, rim=115.0, kulaZcut=-12.68,      # tył czaszy: płaskie cięcie z_b = -12,68 (jak w CAD)
+    rimCuts=[[0.0, 30.0, 98.0], [80.0, 40.0, 102.0]],   # [azymut środka, pół-szerokość, krawędź] (stopnie)
+    pktR=21.25, pktRY=20.0, pktZ=-6.0,           # punkt przegubu przy gałce: X (pktR; 0; pktZ), Y (0; pktRY; pktZ)
     # serwa (płaszczyzna orczyka fabrycznego xh, wałek y/z, n: +1 orczyk w +x)
     ramieTipR=4.5,
     S_X=dict(xh=18.013, yc=-13.0, zs=-49.0, n=+1, flip=False),
@@ -27,16 +27,36 @@ DEF = dict(
     S_PG=dict(xh=-30.0, yc=18.0, zs=-60.0, n=-1, flip=True),
     S_PD=dict(xh=-21.0, yc=-27.0, zs=-49.0, n=-1, flip=False),
     serwoW=12.5, luzSerwa=0.4, klatka=2.0,
-    kabelStrona='przeciwna',          # 'przeciwna' do wałka (e6-pomiary.md) albo 'walek'
-    rX=13.0, rY=15.0, ramieT=6.0, ramieW=8.0, ramieHubR=7.0,
+    kabelStrona='oba',                # kanał przyjmuje kabel z obu krótszych ścian (decyzja 23.10): obie trasy w modelu
+    rX=14.7, rY=15.4, ramieT=6.0, ramieW=8.0, ramieHubR=7.0,
     # przeguby (B1) – wariant odniesienia h 7 / obudowa M5 Ø12
     # gniazdo: walec o osi wzdłuż czopu (gD × gH, środek w środku kuli); trzon: walec wzdłuż pręta (sD, od środka kuli do L)
-    M2=dict(h=4.0, cokol=1.0, cokolR=2.0, gD=7.0, gH=6.0, sD=5.0, L=9.0, nutR=2.31, nutL=1.6, bossR=3.0, bossL=5.0, kat=30.0),
+    M2=dict(h=4.0, cokol=1.0, cokolR=2.0, gD=7.0, gH=6.0, sD=5.0, L=9.0, nutR=2.31, nutL=1.6, bossR=3.0, bossLX=5.0, bossLY=2.8, kat=30.0),
     M5=dict(h=7.0, cokol=1.0, cokolR=4.0, gD=12.0, gH=10.0, sD=8.0, L=12.0, nutR=4.62, nutL=4.0, studR=2.5, studTailX=0.0, studTailY=0.5, kat=25.0),
     rodR=2.25, endR=4.0, endL=5.0, fazaGniazdaM5=1.0, fazaPiastyM2=0.75,
+    # v3.2: przeguby U–U zamiast kulek RC (końcówek kulowych nie ma; decyzja 23.10)
+    przeguby='UU',
+    # przy gałce: kardan 2/2 z warsztatu (Ø9 × 23,5, otwory Ø2, wkręty M3, zgięcie > 90°); środek krzyżaka = P
+    kard22=dict(D=9.0, L=23.5, tyl=3.5, bolec=2.0, bolecGl=6.0, piastaD=6.0, piastaL=6.0, luz=0.5, ramieW=5.0, katMax=60.0),
+    # v3.2b: 4 przeguby krzyżowe drukowane (wariant a). Krzyżak: krążek Do × Hr (oś krążka wzdłuż pręta) z czterema
+    # promieniowymi otworami Ø2,0 (rozwiercone) na sworznie a1 i a2; każdy sworzeń to wkręt M2×5 wkręcony w policzek widełek
+    # (otwór Ø1,6, łeb dociska) i obracający się w otworze krążka. Oznaczenia (od środka krzyżaka): rP – promień końca policzka
+    # widełek pręta = połowa ich grubości, cP – lico podstawy widełek pręta, pP – grubość podstawy; rS, cS, pS – to samo dla
+    # widełek stałych; łby sworzni: lebR (promień), lebH (widełki stałe), lebHP (widełki pręta), nakrH (nakrętka, tu 0).
+    # Zakresy kątów liczy u_zakres() (luz 0,5 mm w całym obrocie); wymagane kąty liczy kinematyka.py.
+    # Przy orczyku: obrotnica M3 wzdłuż pręta – podstawa widełek pP = pogłębienie łba 3,2 + łożysko 3,3 na tulejce pręta.
+    uOrcz=dict(Do=8.0, Hr=4.0, luzOs=0.25, policzek=2.0, rP=2.6, cP=5.5, pP=6.5, rS=2.6, cS=8.25, pS=1.5,
+               lebR=2.0, lebH=0.0, nakrH=0.0, lebHP=1.6, tulejaD=7.0, tulejaL=6.0, katWidelekX=-12.0, katWidelekY=0.0),
+    pretUU=dict(D=4.5),
+    # przy gałce: bez obrotnicy; widełki stałe na Uchwycie (oś m = -e0, sworzeń a1 dobrany pod najmniejsze wychylenie wokół a2),
+    # wspornik widełek od płyty okna (φ, R)
+    uGal=dict(Do=5.5, Hr=4.0, luzOs=0.25, policzek=2.0, rP=1.8, cP=5.5, pP=2.0, rS=2.6, cS=7.0, pS=2.0,
+              lebR=2.0, lebH=0.0, nakrH=0.0, lebHP=0.0,     # przy gałce wszystkie sworznie DIN 7991 M2×5 w pogłębieniu (łby równo z policzkiem)
+              a1X=[-0.049, -0.998, -0.049], a1Y=[-0.055, -0.998, 0.007], wsporR=8.6, wsporZ=9.0, wsporA=4.0),
+    przegubGalki='druk',              # 'druk' (4 przeguby drukowane) albo 'kardan22'
     # Słupek, kardan, wspornik, Rama, Płyta
     slupekR=7.65, slupekZ0=-33.0, slupekZ1=-5.5,
-    kardanR=5.5, kardanDolZ0=-12.75, kardanDolZ1=5.5, kardanGoraZ0=-4.0, kardanGoraZ1=12.75,
+    kardanR=5.5, luzKieszeni=0.3, kardanDolZ0=-12.75, kardanDolZ1=4.0, kardanGoraZ0=-4.0, kardanGoraZ1=12.75,
     piastaZ0=-37.0, piastaZ1=-33.0, piastaR=9.0,
     ramionaKaty=[100.0, 200.0, 310.0], ramieWspW=5.0, ramieWspH=4.0, slupekPlytyR=33.0, slupekPlytyD=6.0,
     uchoRamyR0=30.5, uchoRamyR1=37.75, uchoRamyW=8.0, uchoRamyZ0=-33.0, uchoRamyZ1=-27.0,
@@ -44,13 +64,18 @@ DEF = dict(
     oknaTarczy=[[-35.5, -24.5, -7.0, 14.0], [-26.0, -17.0, -21.0, -6.0]],
     rura=dict(R=37.75, z0=-37.0, z1=12.0, kolnR=35.2, kolnZ0=6.0, obwR=39.75, rantSferaR=152.0),
     # Uchwyt (układ gałki)
-    oknoZ=-6.0, plytaT=3.0, plytaRout=27.0, zebroZ1=-2.0,
+    oknoZ=-6.0, plytaT=3.0, plytaRout=26.6, zebroZ1=-2.0,      # R zewn. płyty: przy z_b -7,5 do R28 czaszy 0,36
     laczniki=[135.0, 225.0, 315.0], lacznikR=2.0,
-    nadlewy=[210.0, 330.0], nadlewR=3.5, nadlewRpol=24.0, nadlewZ=[-16.0, -10.0],
-    piastaPrzodZ0=6.3, piastaPrzodR=7.65,
+    nadlewy=[210.0, 330.0], nadlewR=3.5, nadlewRpol=23.5, nadlewZ=[-12.68, -6.68],     # CAD 23.10
+    lapaUchwytu=dict(r0=20.0, r1=25.0, t=2.0, grub=2.5, luz=0.3),   # łapy Uchwytu pod nadlewy (płyta ma nad nadlewami wycięcia Ø7,6)
+    piastaPrzodZ0=7.0, piastaPrzodR=7.65,
     # powieki
     LID=dict(Rin=31.2, Rout=33.4, Rrant=34.7, rantKat=6.5),
-    G_SPAN=99.5, D_SPAN=79.0, G_CUT=[-2.0, 24.0, 83.5], G_CUT2=[-31.0, -17.0, 96.5], D_CUT2=[-31.0, -17.0, 76.0],
+    # ucha i mostek (jak w CAD etapu 1): mostek G R4,5–8, x 30,95–36,25, kąt od krawędzi przedniej 20–70°; ucho G R6 x 33,85–36,25;
+    # ucho D R4 x 30,95–33,6; boki osi Ramy R5 x 36,5–38,5 (obie strony)
+    wycKolnierza=[8.6, 30.35, 36.85], wycUchaD=[4.6, 30.35],     # ustalenia CAD v3.2 (mostek G R8 i ucho D R4 + 0,6)
+    uszy=dict(mostG=[4.5, 8.0, 30.95, 36.25, 20.0, 70.0], uchoG=[6.0, 33.85, 36.25], uchoD=[4.0, 30.95, 33.6], bokOsi=[5.0, 36.5, 38.5]),
+    G_SPAN=99.5, D_SPAN=79.0, G_CUT=[-14.0, 24.0, 82.5], G_CUT2=[-31.0, -17.0, 96.5], D_CUT2=[-31.0, -17.0, 76.0],
     LG=dict(xJ=-22.0, rho=25.61694307060082, ph=92.0, xh=-30.0, yc=18.0, zs=-60.0, r=20.0, b0=135.0,
             ramieT=3.0, ramieW=6.0, hubR=4.5, legJ=-1, legH=+1, f=0.40),
     LD=dict(xJ=-22.0, rho=25.61694307060082, ph=-92.0, xh=-21.0, yc=-27.0, zs=-49.0, r=17.5, b0=30.0,
@@ -58,9 +83,16 @@ DEF = dict(
     tG=[-0.25, 0.5, 56.0, 56.75], tD=[-0.25, 0.5, 32.0, 32.75],   # ogr. zamknięcia, praca od, praca do, ogr. otwarcia
     drutR=0.6, drutRi=1.2, drutOgon=2.0, zaczepT=2.4, zaczepR=2.0,
     slupkiStopuA=6.0, slupkiStopuRho=8.5,
+    stopy=dict(G_zam=dict(rho=10.0, x=[-32.0, -18.8], wsp='klatka'), G_otw=dict(rho=10.0, x=[-32.0, -18.8], wsp='klatka'),
+               D_zam=dict(rho=14.0, x=[-22.5, -16.6], wsp='wspornik200'), D_otw=dict(rho=10.0, x=[-22.5, -16.6], wsp='tarcza')),
     # zakres gałki
     praca=[25.0, 15.0], ogr=[28.0, 18.0],
 )
+
+
+def pkt0(P, name):
+    """środek przegubu przy gałce w zerze (układ gałki)."""
+    return np.array([P['pktR'], 0, P['pktZ']]) if name == 'X' else np.array([0, P.get('pktRY', P['pktR']), P['pktZ']])
 
 
 def params(path=None, over=None):
@@ -119,6 +151,9 @@ class Prim:
             self.c = self.ctr; self.rad = np.linalg.norm(self.h)
         elif k == 'ann':
             self.c = (self.p + self.q) / 2; self.rad = np.hypot(np.linalg.norm(self.q - self.p) / 2, self.r)
+        elif k == 'cwedge':
+            xm = (self.x0 + self.x1) / 2; am = (self.a0 + self.a1) / 2
+            self.c = np.array([xm, 0, 0]); self.rad = np.hypot((self.x1 - self.x0) / 2, self.r1)
         elif k == 'sphere':
             self.rad = self.r
         else:
@@ -126,6 +161,13 @@ class Prim:
 
     # ---------- odległość ze znakiem
     def dist(self, X):
+        d = self._dist(X)
+        for (Rc, x0, x1) in getattr(self, 'wyc', ()):       # wycięcia walcem o osi x (oś powiek): A∖B, max(dA, -dB) – dolne ograniczenie
+            dc = np.maximum(np.hypot(X[:, 1], X[:, 2]) - Rc, np.maximum(x0 - X[:, 0], X[:, 0] - x1))
+            d = np.maximum(d, -dc)
+        return d
+
+    def _dist(self, X):
         k = self.kind
         if k == 'cap':
             return seg_pt(self.p, self.q, X) - self.r
@@ -135,6 +177,8 @@ class Prim:
             return obb_d(self.ctr, self.ax, self.h, X)
         if k == 'ann':
             return ann_d(self.p, self.q, self.ri, self.r, X)
+        if k == 'cwedge':
+            return cwedge_d(self, X)
         if k == 'sphere':
             return np.linalg.norm(X - self.c, axis=1) - self.r
         if k == 'tube':
@@ -159,6 +203,8 @@ class Prim:
             return cyl_samples(self.p, self.q, self.r, step)
         if k == 'obb':
             return obb_samples(self.ctr, self.ax, self.h, step)
+        if k == 'cwedge':
+            return cwedge_samples(self, step)
         if k == 'ann':
             a, _, e1 = cyl_samples(self.p, self.q, self.r, step)
             b, _, e2 = cyl_samples(self.p, self.q, self.ri, step)
@@ -168,6 +214,42 @@ class Prim:
 
 def cap(name, p, q, r): return Prim('cap', name, p=np.asarray(p, float), q=np.asarray(q, float), r=float(r))
 def cyl(name, p, q, r): return Prim('cyl', name, p=np.asarray(p, float), q=np.asarray(q, float), r=float(r))
+
+
+def cwedge(name, r0, r1, a0, a1, x0, x1):
+    """klin walcowy wokół osi x: {r0<=rho_yz<=r1, a0<=alfa<=a1 (alfa = atan2(y,z)), x0<=x<=x1}; kąty w stopniach."""
+    return Prim('cwedge', name, r0=r0, r1=r1, a0=a0 * d2r, a1=a1 * d2r, x0=x0, x1=x1)
+
+
+def _d2_rect(u, v, u0, u1, v0, v1):
+    du = np.maximum(np.maximum(u0 - u, 0), u - u1); dv = np.maximum(np.maximum(v0 - v, 0), v - v1)
+    return np.hypot(du, dv)
+
+
+def cwedge_d(w, X):
+    x = X[:, 0]; rho = np.hypot(X[:, 1], X[:, 2]); al = np.arctan2(X[:, 1], X[:, 2])
+    mid = (w.a0 + w.a1) / 2; half = (w.a1 - w.a0) / 2
+    da = (al - mid + np.pi) % (2 * np.pi) - np.pi
+    out = np.where(np.abs(da) <= half, _d2_rect(x, rho, w.x0, w.x1, w.r0, w.r1), 1e9)
+    for ae in (w.a0, w.a1):
+        dd = al - ae; u = rho * np.cos(dd); ww = rho * np.sin(dd)
+        out = np.minimum(out, np.hypot(ww, _d2_rect(x, u, w.x0, w.x1, w.r0, w.r1)))
+    return out
+
+
+def cwedge_samples(w, step):
+    pts = []
+    xs = np.arange(w.x0, w.x1 + 1e-9, step); rs = np.arange(w.r0, w.r1 + 1e-9, step)
+    for r in (w.r0, w.r1):
+        na = max(2, int(np.ceil(r * (w.a1 - w.a0) / step)) + 1); al = np.linspace(w.a0, w.a1, na)
+        X, A = np.meshgrid(xs, al); pts.append(np.stack([X.ravel(), r * np.sin(A.ravel()), r * np.cos(A.ravel())], 1))
+    for a in (w.a0, w.a1):
+        X, Rr = np.meshgrid(xs, rs); pts.append(np.stack([X.ravel(), Rr.ravel() * np.sin(a), Rr.ravel() * np.cos(a)], 1))
+    for xe in (w.x0, w.x1):
+        for r in rs:
+            na = max(2, int(np.ceil(r * (w.a1 - w.a0) / step)) + 1); al = np.linspace(w.a0, w.a1, na)
+            pts.append(np.stack([np.full(na, xe), r * np.sin(al), r * np.cos(al)], 1))
+    return np.vstack(pts), 0.0, step * 0.75
 
 
 def ann(name, p, q, ri, r):
@@ -229,7 +311,7 @@ def tube_d(T, X):
     best = np.full(len(X), 1e9)
     for (R, z0, z1) in T:
         dz = np.maximum(np.maximum(z0 - z, 0), z - z1); dr = np.maximum(R - rho, 0)
-        d = np.hypot(dz, dr)
+        d = np.hypot(dz, dr)   # dokładnie dla pierścienia {rho>=R, z0<=z<=z1}
         ins = (dz == 0) & (dr == 0)
         d[ins] = -np.minimum(rho[ins] - R, np.minimum(z[ins] - z0, z1 - z[ins]))
         best = np.minimum(best, d)
@@ -316,38 +398,51 @@ def _arc_ends(R, x0, x1):
     return pts
 
 
-def lid_d(blocks, X):
-    """powieka = suma bloków (Ri, Ro, a0, a1, x0, x1); odległość bez znaku (wewnątrz 0)."""
-    best = np.full(len(X), 1e9)
-    for b in blocks:
-        best = np.minimum(best, _d_shellwedge(X, *b))
+def lid_d(blocks, X, far=2.0):
+    """powieka = suma bloków (Ri, Ro, a0, a1, x0, x1); odległość bez znaku (wewnątrz 0); poza warstwą promieni o > far
+    odległość promieniowa (dolne ograniczenie)."""
+    Ri = min(b[0] for b in blocks); Ro = max(b[1] for b in blocks)
+    r = np.linalg.norm(X, axis=1); gap = np.maximum(Ri - r, r - Ro)
+    best = np.maximum(gap, 0.0); near = gap < far
+    if near.any():
+        q = X[near]; bb = np.full(len(q), 1e9)
+        for b in blocks:
+            bb = np.minimum(bb, _d_shellwedge(q, *b))
+        best[near] = bb
     return best
 
 
-def _d_cone_wedge(Xb, Ri, Ro, pol, f0, f1):
-    """bryła w układzie gałki: {Ri<=|p|<=Ro, kąt biegunowy od +z <= pol, azymut w [f0,f1]} (f1-f0 <= 180°).
-    Dokładnie jak w _d_shellwedge, w półpłaszczyźnie południka (rho, z)."""
+def _d_cone_wedge(Xb, Ri, Ro, pol, f0, f1, zc=None):
+    """bryła w układzie gałki: {Ri<=|p|<=Ro, kąt biegunowy od +z <= pol (albo z >= zc, gdy zc podane), azymut w [f0,f1]}
+    (f1-f0 <= 180°). Dokładnie jak w _d_shellwedge, w półpłaszczyźnie południka (z, rho)."""
     x, y, z = Xb[:, 0], Xb[:, 1], Xb[:, 2]
     rho = np.hypot(x, y); fi = np.arctan2(y, x)
     mid = (f0 + f1) / 2; half = (f1 - f0) / 2
     dfi = (fi - mid + np.pi) % (2 * np.pi) - np.pi
     inw = np.abs(dfi) <= half
     # w półpłaszczyźnie: współrzędne (z, rho): kąt od +z
-    d_in = _d2_annsector(z, rho, Ri, Ro, 0.0, pol)
+    f2 = (lambda zz, vv: _d2_annsector(zz, vv, Ri, Ro, 0.0, pol)) if zc is None else \
+         (lambda zz, vv: _d2_ring_strip(zz, vv, Ri, Ro, zc, 1e3))
+    d_in = f2(z, rho)
     out = np.where(inw, d_in, 1e9)
     for fe in (f0, f1):
         dd = fi - fe
         u = rho * np.cos(dd); w = rho * np.sin(dd)
-        # półpłaszczyzna południka fe: punkty (rho'>=0, z); wycinek kąta biegunowego [0,pol]
-        d2 = _d2_annsector(z, u, Ri, Ro, 0.0, pol)
+        d2 = f2(z, u)
         out = np.minimum(out, np.hypot(w, d2))
     return out
 
 
-def ball_d(blocks, Xb):
-    best = np.full(len(Xb), 1e9)
-    for b in blocks:
-        best = np.minimum(best, _d_cone_wedge(Xb, *b))
+def ball_d(blocks, Xb, far=2.0):
+    """czasza gałki; punkty dalej niż far od warstwy R28–30 dostają odległość promieniową (dolne ograniczenie)."""
+    Ri = min(b[0] for b in blocks); Ro = max(b[1] for b in blocks)
+    r = np.linalg.norm(Xb, axis=1); gap = np.maximum(Ri - r, r - Ro)
+    best = np.maximum(gap, 0.0); near = gap < far
+    if near.any():
+        q = Xb[near]; bb = np.full(len(q), 1e9)
+        for b in blocks:
+            bb = np.minimum(bb, _d_cone_wedge(q, *b))
+        best[near] = bb
     return best
 
 
@@ -382,32 +477,26 @@ def _radial_of(H):
 
 
 def prism_d(pr, Xb, far=2.0):
-    """graniastosłup (wielokąt zewnętrzny z otworami) między z0 i z1. Odległość dokładna dla punktów bliżej niż `far`
-    (krawędzie wielokątów); dalej zwraca dolne ograniczenie >= far."""
+    """graniastosłup (wielokąt zewnętrzny z otworami) między z0 i z1, odległość ze znakiem.
+    Punkty z |dz| >= far dostają dz (dolne ograniczenie: odległość >= dz); bliżej – dokładnie
+    (przynależność: parzystość przecięć; krawędzie: wszystkie albo okno kątowe obejmujące każdą krawędź bliższą niż reach)."""
     Q = Xb[:, :2]; z = Xb[:, 2]
     dz = np.maximum(np.maximum(pr.z0 - z, 0), z - pr.z1)
-    out = np.full(len(Xb), far + 1.0)
-    out = np.maximum(out, dz)
+    out = dz.copy()
     near = dz < far
     if not near.any():
         return out
     q = Q[near]
+    reach = far
     if getattr(pr, 'star', False):
-        # wielokąty gwiaździste względem środka: przynależność z funkcji promieniowych
-        ph = np.arctan2(q[:, 1], q[:, 0]); r = np.hypot(q[:, 0], q[:, 1])
-        ro = np.interp(ph, *pr._ro); rh = np.interp(ph, *pr._rh)
-        ins = (r <= ro) & (r >= rh)
-        cand = (np.abs(r - ro) < far + 1.5) | (np.abs(r - rh) < far + 1.5)
-        d2 = np.full(len(q), far + 1.0)
-        if cand.any():
-            qq = q[cand]
-            dd = star_edge_d(qq, pr._so, far + 1.5)
-            dd = np.minimum(dd, star_edge_d(qq, pr._sh, far + 1.5))
-            d2[cand] = dd
+        ins = star_inside(q, pr._so) & ~star_inside(q, pr._sh)
     else:
         ins = poly_inside(q, pr.outer)
         for h in pr.holes:
             ins &= ~poly_inside(q, h)
+    if getattr(pr, 'star', False):
+        d2 = np.minimum(star_edge_d(q, pr._so, reach), star_edge_d(q, pr._sh, reach))
+    else:
         d2 = poly_edge_d(q, pr.outer)
         for h in pr.holes:
             d2 = np.minimum(d2, poly_edge_d(q, h))
@@ -433,21 +522,40 @@ def _sorted_poly(H):
     return H[o], ang[o]
 
 
+def star_inside(Q, S):
+    """dokładny test wnętrza wielokąta gwiaździstego względem (0,0) o wierzchołkach monotonicznych kątowo:
+    promień przecięcia półprostej pod kątem punktu z krawędzią obejmującą ten kąt."""
+    H, ang = S; N = len(H)
+    ph = np.arctan2(Q[:, 1], Q[:, 0])
+    i0 = (np.searchsorted(ang, ph) - 1) % N
+    A = H[i0]; B = H[(i0 + 1) % N]
+    dx, dy = np.cos(ph), np.sin(ph)
+    E = B - A
+    den = dx * E[:, 1] - dy * E[:, 0]
+    t = (A[:, 0] * E[:, 1] - A[:, 1] * E[:, 0]) / np.where(np.abs(den) < 1e-15, 1e-15, den)
+    return np.hypot(Q[:, 0], Q[:, 1]) <= t
+
+
 def star_edge_d(Q, S, reach):
     """odległość punktów od brzegu wielokąta gwiaździstego (wierzchołki posortowane kątowo): krawędzie w oknie kątowym,
     które obejmuje wszystkie krawędzie bliższe niż `reach` (dla punktów dalej niż reach wynik >= reach)."""
     H, ang = S; N = len(H)
     ph = np.arctan2(Q[:, 1], Q[:, 0]); r = np.hypot(Q[:, 0], Q[:, 1])
-    rmin = np.hypot(H[:, 0], H[:, 1]).min()
-    dphi = np.arcsin(np.clip(reach / max(rmin, reach + 1e-6), 0, 1)) + 1e-3
+    rmin = min(np.hypot(H[:, 0], H[:, 1]).min(), r.min())
+    if rmin <= reach * 1.01:
+        return np.minimum(poly_edge_d(Q, H), reach)
+    dphi = np.arcsin(reach / rmin) + 1e-3
     step = 2 * np.pi / N
     k = int(np.ceil(dphi / step)) + 2
+    if 2 * k + 1 >= N:
+        return np.minimum(poly_edge_d(Q, H), reach)
     i0 = np.searchsorted(ang, ph) - 1
     idx = (i0[:, None] + np.arange(-k, k + 1)[None, :]) % N
     A = H[idx]; B = H[(idx + 1) % N]; AB = B - A
     AP = Q[:, None, :] - A
     t = np.clip(np.sum(AP * AB, -1) / np.maximum(np.sum(AB * AB, -1), 1e-12), 0, 1)
-    return np.linalg.norm(AP - t[..., None] * AB, axis=-1).min(1)
+    # krawędzie poza oknem są dalej niż reach, więc min(…, reach) jest dokładne poniżej reach i dolnym ograniczeniem powyżej
+    return np.minimum(np.linalg.norm(AP - t[..., None] * AB, axis=-1).min(1), reach)
 
 
 # ---------- próbniki
@@ -505,7 +613,7 @@ def pair_dist(A, B, step=0.35, fine=0.06, thr=1.2, want_pt=False):
 # ============================================================== kinematyka gałki
 def eye_points(P, psi, theta):
     R = Reye(psi, theta)
-    PX = R @ np.array([P['pktR'], 0, P['pktZ']]); PY = R @ np.array([0, P['pktR'], P['pktZ']])
+    PX = R @ pkt0(P, 'X'); PY = R @ pkt0(P, 'Y')
     return R, PX, PY
 
 
@@ -516,7 +624,7 @@ class Horn:
         self.r = P['r' + name]; self.h = P['M5']['h']
         self.C = np.array([s['xh'] + 5.0, s['yc'], s['zs']])
         self.xh = s['xh']
-        P0 = np.array([P['pktR'], 0, P['pktZ']]) if name == 'X' else np.array([0, P['pktR'], P['pktZ']])
+        P0 = pkt0(P, name)
         A0 = self.C + self.r * np.array([0, 1.0, 0])
         u = P0 - A0; u /= np.linalg.norm(u)
         d = np.array([1.0, 0, 0]) - u[0] * u; self.d0 = d / np.linalg.norm(d)
@@ -594,32 +702,34 @@ def servo_prims(P, key):
     # ucha: 18..20 nad spodem korpusu (e6-pomiary.md), 31,8 wzdłuż z
     e0 = bot + n * 18.0; e1 = bot + n * 20.0
     out.append(obb(key + ' ucho', [(e0 + e1) / 2, yc, zc], np.eye(3), [1.0, W2, 15.9]))
-    # łby śrub uszu z podkładką (M2,5: Ø6 × 2,5 nad uchem, w stronę orczyka)
+    # łby śrub uszu: M2×10 z podkładką Ø5 (łeb Ø3,8 × 1,6 + podkładka 0,5), nakrętka M2 w kieszeni bloku pod uchem
     for dz in (-13.85, 13.85):
-        out.append(cyl(key + ' łeb śruby ucha', [e1, yc, zc + dz], [e1 + n * 2.5, yc, zc + dz], 3.0))
+        out.append(cyl(key + ' łeb śruby ucha', [e1, yc, zc + dz], [e1 + n * 2.1, yc, zc + dz], 2.5))
     # wieżyczka R6 od korpusu do płaszczyzny orczyka - 1
     out.append(cyl(key + ' wieża', [top, yc, zs], [xh - n * 1.0, yc, zs], 6.0))
     # kabel płaski 3,6 × 1,2 (dwie kapsuły R0,6 co 2,4, szerokość wzdłuż y)
-    cx = bot + n * 2.0
-    if P['kabelStrona'] == 'przeciwna':           # e6-pomiary.md: krótsza ściana po stronie przeciwnej do wałka, nisko
-        if not flip:
-            pts = [[cx, yc, zr[0]], [cx, yc, -72.0]]
-        else:                                     # S_PG: wyjście z przedniego czoła, pętla i wzdłuż spodu do tyłu
-            xb = bot - n * 1.0
-            pts = [[cx, yc, zr[1]], [cx, yc, zr[1] + 2.2], [xb, yc, zr[1] + 2.2], [xb, yc, -72.0]]
-    else:                                         # strona wałka (wariant v3)
-        if not flip:
-            z0 = zr[1] + 1.2
-            pts = [[cx, yc, z0], [0.0, yc, z0], [0.0, -5.0, z0], [0.0, -5.0, -72.0]]
-        else:
-            pts = [[cx, yc, zr[0] - 1.2], [cx, yc, -72.0]]
-    pts = np.array(pts, float)
-    for i in range(len(pts) - 1):
-        a, b = pts[i], pts[i + 1]
+    cx = bot + n * 2.0; xb = bot - n * 1.0
+    zf, zt = (zr[1], zr[0]) if not flip else (zr[0], zr[1])   # ściana od strony wałka / przeciwna
+    sgn = 1.0 if zf > zt else -1.0
+    trasy = {'tyl': [[cx, yc, zt], [cx, yc, -72.0]] if zt < zf else [[cx, yc, zt], [cx, yc, zt + 2.2], [xb, yc, zt + 2.2], [xb, yc, -72.0]],
+             'przod': [[cx, yc, zf], [cx, yc, zf + sgn * 2.2], [xb, yc, zf + sgn * 2.2], [xb, yc, -72.0]] if zf > zt else [[cx, yc, zf], [cx, yc, -72.0]]}
+    zc_ = zf + 1.2
+    if key == 'S_X':      # przód: po czole do szczeliny S_X–S_Y (y -5), dalej do tyłu
+        trasy['przod'] = [[cx, yc, zc_], [cx, -5.0, zc_], [cx, -5.0, -72.0]]
+    if key == 'S_Y':      # przód: po czole w +x do x -10, w dół do szczeliny y -5, do tyłu (z dala od drutu D i G)
+        trasy['przod'] = [[cx, yc, zc_], [-10.0, yc, zc_], [-10.0, -5.0, zc_], [-10.0, -5.0, -72.0]]
+    wyb = {'oba': ['tyl', 'przod'], 'przeciwna': ['tyl'], 'walek': ['przod']}[P['kabelStrona']]
+    segs = []
+    for k_ in wyb:
+        pp = np.array(trasy[k_], float); segs += [(pp[i], pp[i + 1]) for i in range(len(pp) - 1)]
+    for a, b in segs:
         e = (b - a) / np.linalg.norm(b - a)
-        side = np.array([0, 1.0, 0]) if abs(e[1]) < 0.9 else np.array([1.0, 0, 0])
-        for o in (-1.2, 1.2):
-            out.append(cap(key + ' kabel', a + o * side, b + o * side, 0.6))
+        e = (b - a) / np.linalg.norm(b - a)
+        wdir = np.array([0, 1.0, 0]) if abs(e[1]) < 0.9 else np.array([1.0, 0, 0])   # szerokość taśmy
+        if abs(a[1] + 5.0) < 1e-9 and abs(b[1] + 5.0) < 1e-9 and abs(e[2]) > 0.9:
+            wdir = np.array([1.0, 0, 0])               # w szczelinie S_X–S_Y taśma leży szerokością wzdłuż x
+        tdir = np.cross(e, wdir); tdir /= np.linalg.norm(tdir)                        # grubość
+        out.append(obb_seg(key + ' kabel', a, b, tdir, 1.2, 3.6))                     # pełny prostokąt 3,6 × 1,2
     return out
 
 
@@ -628,11 +738,16 @@ def fixed_prims(P):
     for key in ('S_X', 'S_Y', 'S_PG', 'S_PD'):
         F += servo_prims(P, key)
     T = P['rura']
-    F.append(Prim('tube', 'rura', T=[(T['R'], T['z0'], T['z1']), (T['kolnR'], T['kolnZ0'], T['z1']), (T['obwR'], -200.0, T['z0'])]))
+    wk = P['wycKolnierza']          # wycięcie kołnierza przy uszach powiek: walec R wokół osi x, |x| w [x0; x1]
+    F.append(Prim('tube', 'rura', T=[(T['R'], T['z0'], T['z1']), (T['kolnR'], T['kolnZ0'], T['z1']), (T['obwR'], -200.0, T['z0'])],
+                  wyc=[(wk[0], wk[1], wk[2]), (wk[0], -wk[2], -wk[1])]))
     F.append(cyl('Słupek', [0, 0, P['slupekZ0']], [0, 0, P['kardanDolZ0']], P['slupekR']))
-    F.append(ann('Słupek', [0, 0, P['kardanDolZ0']], [0, 0, P['slupekZ1']], P['kardanR'] + 0.15, P['slupekR']))
+    F.append(ann('Słupek', [0, 0, P['kardanDolZ0']], [0, 0, P['slupekZ1']], P['kardanR'] + P['luzKieszeni'], P['slupekR']))
     F.append(cyl('kardan dolny', [0, 0, P['kardanDolZ0']], [0, 0, P['kardanDolZ1']], P['kardanR']))
     F.append(cyl('piasta wspornika', [0, 0, P['piastaZ0']], [0, 0, P['piastaZ1']], P['piastaR']))
+    r, x0, x1 = P['uszy']['bokOsi']
+    for sx in (1, -1):
+        F.append(cyl('bok osi Ramy', [sx * x0, 0, 0], [sx * x1, 0, 0], r))
     zA = (P['piastaZ0'] + P['piastaZ1']) / 2
     for a in P['ramionaKaty']:
         ca, sa = np.cos(a * d2r), np.sin(a * d2r)
@@ -640,9 +755,7 @@ def fixed_prims(P):
                          [0, 0, 1.0], P['ramieWspH'], P['ramieWspW']))
         F.append(cyl('słupek Płyty %d' % a, [P['slupekPlytyR'] * ca, P['slupekPlytyR'] * sa, P['tarczaZ1']],
                      [P['slupekPlytyR'] * ca, P['slupekPlytyR'] * sa, P['piastaZ1']], P['slupekPlytyD'] / 2))
-        F.append(obb_seg('ucho Ramy %d' % a, [P['uchoRamyR0'] * ca, P['uchoRamyR0'] * sa, (P['uchoRamyZ0'] + P['uchoRamyZ1']) / 2],
-                         [P['uchoRamyR1'] * ca, P['uchoRamyR1'] * sa, (P['uchoRamyZ0'] + P['uchoRamyZ1']) / 2],
-                         [0, 0, 1.0], P['uchoRamyZ1'] - P['uchoRamyZ0'], P['uchoRamyW']))
+        F.append(cyl('ucho Ramy %d' % a, [34.5 * ca, 34.5 * sa, P['uchoRamyZ0']], [34.5 * ca, 34.5 * sa, P['uchoRamyZ1']], 4.0))   # CAD: R4 na R34,5
     # tarcza ażurowa: pierścień R30–39,5 + otwory (graniastosłup w świecie)
     ang = np.linspace(0, 2 * np.pi, 180, endpoint=False)
     outer = np.stack([P['tarczaR'] * np.cos(ang), P['tarczaR'] * np.sin(ang)], 1)
@@ -655,26 +768,40 @@ def fixed_prims(P):
     return F
 
 
-def stop_posts(P):
-    out = []
-    for key, c, sgn, ts, xlim in (('G', P['LG'], +1, P['tG'], None), ('D', P['LD'], -1, P['tD'], None)):
+def stop_posts(P, with_support=True):
+    """słupki stopu powiek 6 × 6: bok ramienia serwa opiera się o słupek przy kącie ogranicznika.
+    Położenie: odległość rho od osi wałka wzdłuż ramienia w położeniu ogranicznika, odsunięcie w bok ½ szer. ramienia + 3.
+    Podparcia (bryły stałe): G – z płytki na wierzchu klatki S_PG; D otwarcia – filar z tarczy; D zamknięcia – wspornik
+    z ramienia wspornika Słupka 200°."""
+    out = []; S = P['stopy']; a = P['slupkiStopuA']
+    for key, c, sgn, ts in (('G', P['LG'], +1, P['tG']), ('D', P['LD'], -1, P['tD'])):
         st, L = lid_traj(c, sgn, [ts[0], ts[3]])
-        a = P['slupkiStopuA']; rho = P['slupkiStopuRho']
-        s = P['S_P' + key]
-        top = s['xh'] - s['n'] * 11.2                                   # górna ściana korpusu (od strony orczyka)
-        far = c['xh'] + s['n'] * (c['ramieT'] / 2 + 0.5)                 # 0,5 za zewnętrzną ścianą ramienia
-        x0, x1 = sorted([top, far])
         for (J, H, b), side in zip(st, ('zamknięcia', 'otwarcia')):
+            cfg = S[key + '_' + side[:3]]
             e = np.array([np.cos(b), np.sin(b)])
-            # ogranicznik zamknięcia leży po stronie, z której ramię przychodzi przy zamykaniu
-            # G: zamykanie = malejące b; D: zamykanie = rosnące b
-            closing_dir = -1 if key == 'G' else +1
+            closing_dir = -1 if key == 'G' else +1           # G: zamykanie = malejące b; D: rosnące
             sg = closing_dir if side == 'zamknięcia' else -closing_dir
             perp = sg * np.array([-e[1], e[0]])
             off = c['ramieW'] / 2 + a / 2
-            cy, cz = np.array([c['yc'], c['zs']]) + rho * e + off * perp
+            cy, cz = np.array([c['yc'], c['zs']]) + cfg['rho'] * e + off * perp
+            x0, x1 = cfg['x']
             ax = np.array([[1, 0, 0], [0, e[0], perp[0]], [0, e[1], perp[1]]], float)
-            out.append(obb('słupek stopu %s %s' % (key, side), [(x0 + x1) / 2, cy, cz], ax, [(x1 - x0) / 2, a / 2, a / 2]))
+            ctr = np.array([(x0 + x1) / 2, cy, cz])
+            out.append(obb('słupek stopu %s %s' % (key, side), ctr, ax, [(x1 - x0) / 2, a / 2, a / 2]))
+            if not with_support:
+                continue
+            if cfg['wsp'] == 'tarcza':                       # filar z tarczy do spodu słupka
+                zb = cz - a / 2 * (abs(e[1]) + abs(perp[1]))
+                out.append(obb('filar słupka %s %s' % (key, side), [(x0 + x1) / 2, cy, (zb + P['tarczaZ1']) / 2], np.eye(3),
+                               [(x1 - x0) / 2, a / 2, (zb - P['tarczaZ1']) / 2]))
+            elif cfg['wsp'] == 'wspornik200':                # łącznik w płaszczyźnie ramion wspornika (z -37…-33)
+                zA = (P['piastaZ0'] + P['piastaZ1']) / 2; ca, sa = np.cos(200 * d2r), np.sin(200 * d2r)
+                xm = (x0 + x1) / 2; ya = xm * sa / ca                     # punkt na osi ramienia 200° przy x słupka
+                ztop = cz + a / 2 * (abs(e[1]) + abs(perp[1]))
+                zz0, zz1 = min(cz, zA - 2.0), max(ztop, zA + 2.0)
+                yy0, yy1 = min(cy, ya), max(cy, ya)
+                out.append(obb('łącznik słupka %s %s' % (key, side), [xm, (yy0 + yy1) / 2, (zz0 + zz1) / 2], np.eye(3),
+                               [(x1 - x0) / 2, (yy1 - yy0) / 2 + 1.5, 2.0]))
     return out
 
 
@@ -733,6 +860,136 @@ def horn_prims(P, name, horn, a, A, H, d):
     return out
 
 
+
+# ------------------------------------------------------------------ zakres kątowy przegubu krzyżowego drukowanego
+def _u_rect_pts(r, h=0.05):
+    e0, e1, y0, y1 = r; out = []
+    for a, b in (((e0, y0), (e1, y0)), ((e1, y0), (e1, y1)), ((e1, y1), (e0, y1)), ((e0, y1), (e0, y0))):
+        n = max(2, int(np.hypot(b[0] - a[0], b[1] - a[1]) / h) + 1)
+        t = np.linspace(0, 1, n)[:, None]; out.append(np.array(a) + (np.array(b) - np.array(a)) * t)
+    return np.vstack(out)
+
+
+def _u_sd(p, r):
+    e0, e1, y0, y1 = r; c = np.array([(e0 + e1) / 2, (y0 + y1) / 2]); hw = np.array([(e1 - e0) / 2, (y1 - y0) / 2])
+    q = np.abs(p - c) - hw; return np.linalg.norm(np.maximum(q, 0), axis=1) + np.minimum(np.max(q, axis=1), 0)
+
+
+def _u_limit(mov, fix, clr, step=0.25):
+    def mind(g):
+        c, s_ = np.cos(g), np.sin(g); Rm = np.array([[c, s_], [-s_, c]]); d = 9e9
+        for m in mov:
+            Pp = _u_rect_pts(m) @ Rm
+            for f in fix: d = min(d, _u_sd(Pp, f).min())
+        for f in fix:
+            Q = _u_rect_pts(f) @ Rm.T
+            for m in mov: d = min(d, _u_sd(Q, m).min())
+        return d
+    g = 0.0
+    while g < 120:
+        if mind(np.radians(g)) < clr: return g - step
+        g += step
+    return 120.0
+
+
+def u_zakres(u, rodR=2.25, clr=0.5):
+    """(obrót wokół a1, obrót wokół a2) w stopniach, do pierwszego zbliżenia < clr; przekroje w płaszczyznach obrotu
+    (prostokąty: policzki, podstawy, łby sworzni, pierścień, pręt; zaokrąglenia końców policzków pominięte – ostrożnie)."""
+    hi = u['Do'] / 2 + u['luzOs']; ho = hi + u['policzek']; Do, Hr = u['Do'], u['Hr']
+    rP, cP, pP, rS, cS, pS = u['rP'], u['cP'], u['pP'], u['rS'], u['cS'], u['pS']
+    lR, lH, nH, lP = u['lebR'], u['lebH'], u['nakrH'], u.get('lebHP', 0.0)
+    mov1 = [(-rP, cP + pP, hi, ho), (-rP, cP + pP, -ho, -hi), (-Hr / 2, Hr / 2, -Do / 2, Do / 2)]
+    if lP > 0: mov1 += [(-lR, lR, ho, ho + lP), (-lR, lR, -ho - lP, -ho)]
+    fix1 = [(-cS - pS, -cS, -rS, rS)]
+    L = max(lH, nH)
+    mov2 = [(cP, cP + pP, -rP, rP), (cP + pP, cP + pP + 15, -rodR, rodR)]
+    fix2 = [(-Hr / 2, Hr / 2, -Do / 2, Do / 2), (-cS - pS, rS, hi, ho), (-cS - pS, rS, -ho, -hi)]
+    if L > 0: fix2 += [(-lR, lR, ho, ho + L), (-lR, lR, -ho - L, -ho)]
+    return _u_limit(mov1, fix1, clr), _u_limit(mov2, fix2, clr)
+
+
+def _u_heads(name, c, ax, u, L=None):
+    ho = u['Do'] / 2 + u['luzOs'] + u['policzek']; L = max(u['lebH'], u['nakrH']) if L is None else L
+    if L <= 0: return []
+    return [cyl(name, c + ax * ho, c + ax * (ho + L), u['lebR']), cyl(name, c - ax * ho, c - ax * (ho + L), u['lebR'])]
+
+
+def horn_uf0(P, name, e0, a10):
+    """oś widełek orczyka w zerze: e0 obrócone wokół a1 o kąt katWidelek (wyśrodkowanie zakresu obrotu wokół a1)."""
+    b = np.radians(P['uOrcz'].get('katWidelek' + name, 0.0)); k = a10
+    return e0 * np.cos(b) + np.cross(k, e0) * np.sin(b) + k * (k @ e0) * (1 - np.cos(b))
+
+
+def uu_frames(P, horn, P0):
+    """kierunki stałe przegubów U–U: pręt w zerze e0 (od P do H), oś sworznia widełek orczyka a1 (⊥ e0, w Ramieniu)."""
+    H0 = horn.C + horn.w
+    e0 = (H0 - P0) / np.linalg.norm(H0 - P0)
+    a1 = horn.d0 - (horn.d0 @ e0) * e0; a1 /= np.linalg.norm(a1)
+    return e0, a1
+
+
+def rod_prims_uu(P, name, P_pt, horn, a, R):
+    """pręt U–R–U: przegub przy gałce (drukowany albo kardan 2/2, środek P), pręt Ø4,5, tulejka obrotnicy,
+    przegub drukowany przy orczyku (środek H, z obrotnicą wzdłuż pręta)."""
+    A, H, d = horn.AHd(a)
+    e = (H - P_pt); Lr = np.linalg.norm(e); e /= Lr
+    k = P['kard22']; u = P['uOrcz']; g = P['uGal']
+    P0 = pkt0(P, name)
+    e0, a10 = uu_frames(P, horn, P0)
+    m = R @ (-e0)
+    out = []
+    if P.get('przegubGalki') == 'kardan22':
+        hL = k['L'] / 2
+        out.append(cyl(name + ' kardan 2/2', P_pt - e * k['tyl'], P_pt + e * hL, k['D'] / 2))
+        out.append(cyl(name + ' kardan 2/2', P_pt - m * k['tyl'], P_pt + m * hL, k['D'] / 2))
+        s0 = hL + 0.5
+    else:
+        a1g = R @ np.array(g['a1' + name]); a1g = a1g - (a1g @ e) * e
+        a2g = np.cross(e, a1g); a2g /= np.linalg.norm(a2g); w2g = np.cross(e, a2g)
+        half = g['Do'] / 2 + g['luzOs'] + g['policzek']; hi = g['cP'] + g['pP']
+        # policzki z końcem zaokrąglonym R rP wokół sworznia a2: prostopadłościan od środka do podstawy + walec wzdłuż a2
+        out.append(obb(name + ' widełki pręta przy gałce', P_pt + e * hi / 2, np.stack([e, a2g, w2g], 1), [hi / 2, half, g['rP']]))
+        out.append(cyl(name + ' widełki pręta przy gałce', P_pt - a2g * half, P_pt + a2g * half, g['rP']))
+        out += _u_heads(name + ' łby sworzni pręta przy gałce', P_pt, a2g, g, g.get('lebHP', 0.0))
+        out.append(cap(name + ' krzyżak przy gałce', P_pt, P_pt, np.hypot(g['Do'] / 2, g['Hr'] / 2)))
+        s0 = hi
+    s_t = Lr - (u['cP'] + u['pP'])
+    out.append(cyl(name + ' pręt Ø%s' % ('%g' % P['pretUU']['D']).replace('.', ','), P_pt + e * s0, P_pt + e * (s_t - u['tulejaL']), P['pretUU']['D'] / 2))
+    out.append(cyl(name + ' tulejka obrotnicy', P_pt + e * (s_t - u['tulejaL']), P_pt + e * s_t, u['tulejaD'] / 2))
+    a1 = rot_x(a10, a)
+    a2 = np.cross(e, a1); a2 /= np.linalg.norm(a2); w2 = np.cross(e, a2)
+    half = u['Do'] / 2 + u['luzOs'] + u['policzek']
+    lo = -(u['cP'] + u['pP'])
+    out.append(obb(name + ' widełki pręta', H + e * lo / 2, np.stack([e, a2, w2], 1), [-lo / 2, half, u['rP']]))
+    out.append(cyl(name + ' widełki pręta', H - a2 * half, H + a2 * half, u['rP']))
+    out += _u_heads(name + ' łby sworzni pręta', H, a2, u, u.get('lebHP', 0.0))
+    out.append(cap(name + ' krzyżak', H, H, np.hypot(u['Do'] / 2, u['Hr'] / 2)))
+    return out, (A, H, d, e)
+
+
+def horn_prims_uu(P, name, horn, a, A, H, d, R):
+    """Ramię: płytka 6 × 8 do punktu A, widełki stałe na Ramieniu (sworzeń a1, otwarte w stronę pręta), piasta Ø14."""
+    out = []
+    T = P['ramieT']; Wd = P['ramieW']; u = P['uOrcz']
+    v = rot_x(np.array([0, 1.0, 0]), a)
+    Cm = horn.C - np.array([T / 2, 0, 0]); Am = A - np.array([T / 2, 0, 0])
+    out.append(obb_seg(name + ' Ramię', Cm - v * 4.0, Am + v * 4.0, [1.0, 0, 0], T, Wd))
+    out.append(cyl(name + ' piasta Ramienia', horn.C - np.array([T, 0, 0]), horn.C, P['ramieHubR']))
+    P0 = pkt0(P, name)
+    e0, a10 = uu_frames(P, horn, P0)
+    uf = rot_x(horn_uf0(P, name, e0, a10), a); a1 = rot_x(a10, a); wf = np.cross(uf, a1)      # widełki po stronie przeciwnej do pręta
+    half = u['Do'] / 2 + u['luzOs'] + u['policzek']
+    # widełki stałe: wzdłuż uf od -rS (w stronę pręta) do cS + pS; wzdłuż a1 od -h (do Ramienia) do +half
+    hi_u = u['cS'] + u['pS']
+    hh = horn.h * abs(d @ a1)
+    lo_a, hi_a = -max(hh, half), half
+    ctr = H + uf * hi_u / 2 + a1 * (lo_a + hi_a) / 2
+    out.append(obb(name + ' widełki orczyka', ctr, np.stack([uf, a1, wf], 1), [hi_u / 2, (hi_a - lo_a) / 2, u['rS']]))
+    out.append(cyl(name + ' widełki orczyka', H + a1 * lo_a, H + a1 * hi_a, u['rS']))      # koniec policzków R rS wokół a1
+    out += _u_heads(name + ' łeb i nakrętka sworznia orczyka', H, a1, u)
+    return out
+
+
 def ball_prims(P, R):
     """bryły związane z gałką, w świecie (Rm = R: X_świat @ R = X_gałka)."""
     out = []
@@ -749,7 +1006,7 @@ def ball_prims(P, R):
             n = int(np.ceil((g1 - g0) / 120.0))
             for m in range(n):
                 b0 = g0 + (g1 - g0) * m / n; b1 = g0 + (g1 - g0) * (m + 1) / n
-                blocks.append((Ri, Ro, P['rim'] * d2r, b0 * d2r, b1 * d2r))
+                blocks.append((Ri, Ro, P['rim'] * d2r, b0 * d2r, b1 * d2r, P.get('kulaZcut')))
     out.append(Prim('ball', 'czasza gałki', blocks=blocks, Rm=R))
     return out
 
@@ -766,9 +1023,11 @@ def lid_blocks(P, which, t):
         hi = -11.0 - t; lo = hi - P['D_SPAN']; y1, y2, sp2 = P['D_CUT2']; lc2 = hi - sp2
         bl = [(Ri, Ro, lo, hi, -big, y1), (Ri, Ro, lc2, hi, y1, y2), (Ri, Ro, lo, hi, y2, big), (Ro, Rr, hi - rk, hi, -big, big)]
     out = []
+    xt = P['uszy']['uchoD'][1]                     # czasze kończą się na |x| = trimG 30,95 (dalej ucha i mostek)
     for (a, b, c0, c1, x0, x1) in bl:
-        # kliny > 180° nie występują (zakres 99,5°)
-        out.append((a, b, c0 * d2r, c1 * d2r, x0, x1))
+        x0, x1 = max(x0, -xt), min(x1, xt)
+        if x1 > x0:
+            out.append((a, b, c0 * d2r, c1 * d2r, x0, x1))
     return out
 
 
@@ -823,7 +1082,9 @@ def wire_points(P, c, J, H, which):
 
 def lid_prims(P, which, t, J, H, b):
     c = P['LG'] if which == 'G' else P['LD']
-    out = [Prim('lid', 'czasza ' + ('górnej' if which == 'G' else 'dolnej'), blocks=lid_blocks(P, which, t))]
+    wu = P['wycUchaD'] if which == 'G' else None      # czasza G wycięta walcem wokół ucha D (oś x)
+    out = [Prim('lid', 'czasza ' + ('górnej' if which == 'G' else 'dolnej'), blocks=lid_blocks(P, which, t),
+                wyc=[(wu[0], wu[1], 99.0), (wu[0], -99.0, -wu[1])] if wu else [])]
     W = wire_points(P, c, J, H, which)
     for i in range(len(W) - 1):
         if np.linalg.norm(W[i + 1] - W[i]) > 1e-9:
@@ -838,20 +1099,54 @@ def lid_prims(P, which, t, J, H, b):
     out.append(obb_seg(which + ' ramię serwa', Cs - v * 4.0, Hx, [1.0, 0, 0], c['ramieT'], c['ramieW']))
     out.append(cyl(which + ' ramię serwa', Hx - np.array([c['ramieT'] / 2, 0, 0]), Hx + np.array([c['ramieT'] / 2, 0, 0]), c['ramieW'] / 2))
     out.append(cyl(which + ' piasta ramienia', Cs - np.array([c['ramieT'] / 2, 0, 0]), Cs + np.array([c['ramieT'] / 2, 0, 0]), c['hubR']))
+    U = P['uszy']
+    for sx in (1, -1):
+        if which == 'G':
+            r0, r1, x0, x1, e0, e1 = U['mostG']; fr = -9.0 + t
+            xa, xb = (x0, x1) if sx > 0 else (-x1, -x0)
+            out.append(cwedge('G mostek ucha', r0, r1, fr + e0, fr + e1, xa, xb))
+            r, x0, x1 = U['uchoG']
+        else:
+            r, x0, x1 = U['uchoD']
+        xa, xb = (x0, x1) if sx > 0 else (-x1, -x0)
+        out.append(cyl(which + ' ucho', [xa, 0, 0], [xb, 0, 0], r))
     return out
 
 
-def uchwyt_prims(P, R, okno_poly, plate_outer):
+def uchwyt_prims(P, R, okno_poly, plate_outer, rib=None):
     """Uchwyt i inne bryły wewnątrz gałki (układ gałki, Rm=R)."""
     out = []
     z0 = P['oknoZ'] - P['plytaT'] / 2; z1 = P['oknoZ'] + P['plytaT'] / 2
     out.append(prism('płyta okna', plate_outer, [okno_poly], z0, z1, Rm=R, star=True))
+    if rib is not None:
+        out.append(prism('żebro mostka X', rib, [], z1, P['zebroZ1'], Rm=R))
     m2 = P['M2']; pk = P['pktR']; z = P['pktZ']
-    # piasty kulek M2 (czop ∥ y gałki): X po stronie -y, Y do środka
-    for nm, p0, dirv in (('X', np.array([pk, 0, z]), np.array([0, -1.0, 0])), ('Y', np.array([0, pk, z]), np.array([0, -1.0, 0]))):
+    if P.get('przeguby') == 'UU' and P.get('przegubGalki') != 'kardan22':
+        g = P['uGal']
+        for nm, p0, mvec in (('X', pkt0(P, 'X'), P['_mX']), ('Y', pkt0(P, 'Y'), P['_mY'])):
+            a1 = np.array(g['a1' + nm]); a1 = a1 - (a1 @ mvec) * mvec; a1 /= np.linalg.norm(a1); wv = np.cross(mvec, a1)
+            half = g['Do'] / 2 + g['luzOs'] + g['policzek']; hi = g['cS'] + g['pS']
+            out.append(obb('widełki przy gałce ' + nm, R @ (p0 + mvec * hi / 2), R @ np.stack([mvec, a1, wv], 1), [hi / 2, half, g['rS']]))
+            out.append(cyl('widełki przy gałce ' + nm, R @ (p0 - a1 * half), R @ (p0 + a1 * half), g['rS']))
+            out += _u_heads('łeb i nakrętka sworznia przy gałce ' + nm, R @ p0, R @ a1, g)
+            base = p0 + mvec * (hi - g['pS'] / 2)
+            # wspornik od podstawy widełek do tulei przedniej (nad drogą widełek pręta), w płaszczyźnie promieniowej przegubu
+            ph = np.arctan2(p0[1], p0[0]); rd = np.array([np.cos(ph), np.sin(ph), 0.0]); tg = np.array([-np.sin(ph), np.cos(ph), 0.0])
+            att = rd * g['wsporR'] + np.array([0, 0, g['wsporZ']])
+            out.append(obb_seg('wspornik widełek ' + nm, R @ att, R @ base, R @ tg, g['wsporA'], g['wsporA']))
+    elif P.get('przeguby') == 'UU':
+        k = P['kard22']
+        for nm, p0, mvec in (('X', pkt0(P, 'X'), P['_mX']), ('Y', pkt0(P, 'Y'), P['_mY'])):
+            a = p0 + mvec * (k['L'] / 2 + k['luz']); b = a + mvec * k['piastaL']
+            out.append(cyl('piasta kardana ' + nm, R @ a, R @ b, k['piastaD'] / 2))
+            # ramię od tulei przedniej do piasty (w płaszczyźnie z_b środka piasty)
+            c = b - mvec * 1.5; rad = np.array([c[0], c[1], 0]); rad /= np.linalg.norm(rad)   # ramię przy dalszym końcu piasty
+            st = rad * (P['piastaPrzodR'] - 0.5) + np.array([0, 0, c[2]])
+            out.append(obb_seg('ramię piasty kardana ' + nm, R @ st, R @ c, R @ np.array([0, 0, 1.0]), k['ramieW'], k['ramieW']))
+    for nm, p0, dirv in ([] if P.get('przeguby') == 'UU' else (('X', np.array([pk, 0, z]), np.array([0, -1.0, 0])), ('Y', np.array([0, pk, z]), np.array([0, -1.0, 0])))):
         ck = m2.get('cokol', 0.0)
         top = p0 + dirv * m2['h']                      # płaszczyzna oporowa kołnierza czopu M2
-        a = top + dirv * ck; b = a + dirv * m2['bossL']
+        a = top + dirv * ck; b = a + dirv * m2['bossL' + nm]
         fz = P.get('fazaPiastyM2', 0.0)
         out.append(cyl('piasta M2 ' + nm, R @ (a + dirv * fz), R @ b, m2['bossR']))
         for k in range(4):
@@ -867,6 +1162,17 @@ def uchwyt_prims(P, R, okno_poly, plate_outer):
         cf, sf = np.cos(f * d2r), np.sin(f * d2r)
         a = np.array([P['nadlewRpol'] * cf, P['nadlewRpol'] * sf, P['nadlewZ'][0]]); b = a.copy(); b[2] = P['nadlewZ'][1]
         out.append(cyl('nadlew Gałki %d' % f, R @ a, R @ b, P['nadlewR']))
+        # łapa Uchwytu pod czołem nadlewu (DIN 7991 M3×8 od tyłu, łeb w pogłębieniu łapy, w otwór Ø2,6 nadlewu) i żeberko
+        # obok nadlewu (po stronie φ 270°) od spodu płyty do łapy; łapa w R lr0…lr1, żeberko w tej samej strefie promieni
+        L = P['lapaUchwytu']; rad = np.array([cf, sf, 0.0]); tan = np.array([-sf, cf, 0.0]); ez = np.array([0, 0, 1.0])
+        sg = 1.0 if np.sin(f * d2r - np.pi * 1.5) < 0 else -1.0          # strona ku φ 270°
+        zt = P['nadlewZ'][0]; zp = P['oknoZ'] - P['plytaT'] / 2
+        t0 = -P['nadlewR']; t1 = P['nadlewR'] + L['luz'] + L['grub']           # łapa od -R nadlewu do zewnętrznej ściany żeberka
+        rc = (L['r0'] + L['r1']) / 2; hr = (L['r1'] - L['r0']) / 2
+        out.append(obb('łapa Uchwytu %d' % f, R @ (rad * rc + tan * sg * (t0 + t1) / 2 + ez * (zt - L['t'] / 2)), R @ np.stack([rad, tan, ez], 1), [hr, (t1 - t0) / 2, L['t'] / 2]))
+        tz = P['nadlewR'] + L['luz'] + L['grub'] / 2
+        out.append(obb('łapa Uchwytu %d' % f, R @ (rad * rc + tan * sg * tz + ez * (zp + zt - L['t']) / 2), R @ np.stack([rad, tan, ez], 1),
+                       [hr, L['grub'] / 2, (zp - (zt - L['t'])) / 2]))
     out.append(cyl('kardan górny', R @ np.array([0, 0, P['kardanGoraZ0']]), R @ np.array([0, 0, P['kardanGoraZ1']]), P['kardanR']))
-    out.append(ann('piasta przednia Uchwytu', R @ np.array([0, 0, P['piastaPrzodZ0']]), R @ np.array([0, 0, P['kardanGoraZ1']]), P['kardanR'] + 0.15, P['piastaPrzodR']))
+    out.append(ann('piasta przednia Uchwytu', R @ np.array([0, 0, P['piastaPrzodZ0']]), R @ np.array([0, 0, P['kardanGoraZ1']]), P['kardanR'] + P['luzKieszeni'], P['piastaPrzodR']))
     return out

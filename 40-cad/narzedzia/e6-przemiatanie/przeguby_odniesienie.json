@@ -1,0 +1,40 @@
+{
+ "_opis": "Wariant odniesienia v3.2 (wariant a): 4 przeguby krzyżowe drukowane. Krzyżak = krążek z czterema otworami promieniowymi Ø2,0; sworznie = wkręty M2×5 wkręcone w policzki widełek. Przy gałce bez obrotnicy, łby DIN 7991 w pogłębieniu; przy orczyku łby DIN 7985 i obrotnica M3 wzdłuż pręta. Oznaczenia pól: e6model.py (uGal, uOrcz).",
+ "hPrzegubu": 7.0,
+ "uGal": {
+  "Do": 5.5,
+  "Hr": 4.0,
+  "luzOs": 0.25,
+  "policzek": 2.0,
+  "rP": 1.8,
+  "cP": 5.5,
+  "pP": 2.0,
+  "rS": 2.6,
+  "cS": 7.0,
+  "pS": 2.0,
+  "lebR": 2.0,
+  "lebH": 0.0,
+  "nakrH": 0.0,
+  "lebHP": 0.0
+ },
+ "uOrcz": {
+  "Do": 8.0,
+  "Hr": 4.0,
+  "luzOs": 0.25,
+  "policzek": 2.0,
+  "rP": 2.6,
+  "cP": 5.5,
+  "pP": 6.5,
+  "rS": 2.6,
+  "cS": 8.25,
+  "pS": 1.5,
+  "lebR": 2.0,
+  "lebH": 0.0,
+  "nakrH": 0.0,
+  "lebHP": 1.6,
+  "tulejaD": 7.0,
+  "tulejaL": 6.0,
+  "katWidelekX": -12.0,
+  "katWidelekY": 0.0
+ }
+}
