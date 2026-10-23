@@ -218,3 +218,12 @@ Dane: `odbior-e6/features-e6.4.json` (commit 135f0ad; 224 operacje), `znaczniki-
 Dane: `odbior-e6/features-e6.6-p4-c.json` (commit adfb700), `znaczniki-e6.6-p4-c.json`. Skrypt: K1 0 błędów, 0 bez stanu; K2 79/79; K3 0; K4 0 Fix. C3: nadlewy Gałki za wycięciami X/Y – całe; nadlew 330° łączy się ze ścianką na łuku 70° (z −12,68), przyjęte z testem 30 N po druku (README).
 
 **Wynik: P4 i C2–C5 przyjęte.**
+
+## E6.6 – odbiór etapu 2b (napęd gałki, słupki stopu) – 23.10 wieczór
+
+Dane wykonawcy: `odbior-e6/k1-k8-e6.6-koniec.json`, `znaczniki-e6.6-koniec.json` (commit b8c6c8c), raport `weryfikacja-e6-etap2b.md`. Pełnego JSON drzewa (4,1 MB) nie ma w repo – K1, K3, K4 policzył wykonawca w karcie; orkiestrator sprawdził znaczniki (plik w repo) i wynik skryptu wykonawcy, **bez własnego przeliczenia K1/K3/K4 na surowym JSON**.
+
+- K1 349 operacji / 353 stany, 0 ≠ OK; K2 111/111, 0 niedookreślonych; K3 1738 wyrażeń, poza wyjątkiem n·krok tylko `instanceCount` 3 szyku łączników (liczba sztuk – dozwolona stała); K4 0 Fix.
+- K9: `uGal_cP`, `uOrcz_cS` OK; `pktRY`, `pretY` – w 1. przebiegu 5 × ERROR (obszary szkiców przez `qContainsPoint` z punktów startowych), poprawione na `qClosestTo`, powtórka OK.
+- K11: foldery Uchwyt, Łapa, Ramię X/Y, Komplet Y, Płyta–stopy – do założenia ręcznie (UI).
+- **Wynik: etap 2b przyjęty warunkowo** (do własnego K1–K4 orkiestratora na surowym JSON i do przemiatania siatek napędu po eksporcie).
