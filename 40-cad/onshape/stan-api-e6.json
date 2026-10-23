@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T06:35Z, wykonawca CAD",
+  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 163,
-    "features": 98,
+    "total": 174,
+    "features": 100,
     "getFeatures": 5
   },
   "liczniki": {
@@ -242,15 +242,22 @@
       200,
       null,
       false
+    ],
+    [
+      "2026-10-23T06:40–06:48Z",
+      "poprawka K9: POST zmiennych (trimG), mv, edycja przekroju PD, edycja wyciągnięcia ucha D, 2 × bodydetails; K9: 3 × (POST + bodydetails)",
+      200,
+      null,
+      false
     ]
   ],
-  "stop": "etap 1 zakończony – raport weryfikacja-e6-etap1.md; błąd K9 Powieki dolnej do decyzji orkiestratora",
+  "stop": "etap 1 zakończony po poprawce K9; nowy eksport 3MF ręcznie (licznik translations 10)",
   "etap1": {
     "budzet": {
-      "total": 170,
+      "total": 180,
       "getFeatures": 8
     },
-    "wywolania": 159,
+    "wywolania": 170,
     "getFeatures": 5
   },
   "mv": "58c65069b8d0f8a876634025",
@@ -441,7 +448,8 @@
     "p6Wys": "20 (nowa)",
     "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy",
     "nakrM5E": "9,47 (nowa: wymiar po narożach kieszeni nakrętki M5)",
-    "obejma": "obejmaZ1 = glebokoscSrodka − dociskMin (było −5 stałe), nowe: obejmaScianka 3, kolnierzObejmyT 2,5, szczelinaObejmy 3, uchoObejmyT 6, uchoObejmyR2 50, obejmaSrubaR 46,5, m3NakrS 5,7, m3NakrH 4, m3NakrE 6,58"
+    "obejma": "obejmaZ1 = glebokoscSrodka − dociskMin (było −5 stałe), nowe: obejmaScianka 3, kolnierzObejmyT 2,5, szczelinaObejmy 3, uchoObejmyT 6, uchoObejmyR2 50, obejmaSrubaR 46,5, m3NakrS 5,7, m3NakrH 4, m3NakrE 6,58",
+    "trimG": "min(#uchoDX1, #powiekaR1) - #luzOsiowy (poprawka K9)"
   },
   "rama": {
     "pomiar": {
@@ -501,8 +509,8 @@
   },
   "rok": {
     "przedE6": 558,
-    "E6": 163,
-    "suma": 721
+    "E6": 174,
+    "suma": 732
   },
   "powiekaDolna": {
     "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -539,5 +547,12 @@
     "translacja": "6adaf95281e858714ce0b71c DONE",
     "bajty": 1329812,
     "siatki": "7/7 OK (sprawdz_siatki.js na STL z 3mf_do_stl.py --rozdziel), brył 7 = 7"
+  },
+  "k9poPoprawce": {
+    "poprawka": "trimG = min(uchoDX1, powiekaR1) − luzOsiowy; przekrój PD przycięty na ±trimG; ucho D z drugim kierunkiem uchoDX1 − trimG",
+    "luzCzasza 1,0": "Gałka 28/30; PG i PD 31,0/33,2/34,5; przycięcie ±30,75 – OK",
+    "kulaD 58": "Gałka i P6 27/29; PG i PD 30,2/32,4/33,7; przycięcie ±29,95 – OK",
+    "przywrocone": "PG i PD 31,2/33,4/34,7, ±30,95; 7 brył, bez błędów",
+    "znacznikPD": "Powieka dolna: przekrój – w pełni zdefiniowany"
   }
 }

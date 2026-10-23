@@ -26,7 +26,7 @@ Wykonawca CAD, 23.10.2026. Dokument „Duże oko v1” (did `b8cc184e37d6a8dbfb6
 | K6 | ≤ 15 operacji bryłowych na część; szkice z uzasadnieniem | **TAK** – Rama 6, Gałka 1, P6 1, Powieka górna 6, Powieka dolna 5, Słupek 4, Obejma 6; szkice: Layout 2, Rama 3, Gałka 1 (wspólny z P6), PG 4, PD 3, Słupek 4, Obejma 5 – każdy wg zatwierdzonego planu (płaszczyzna lub punkt Hole) | k1-k8.json |
 | K7 | zmienne i layout przed użyciem | **TAK** – VS przed operacjami; layout na górze; po poprawce mostka G kolejność płaszczyzna → szkic → wyciągnięcie | kolejność w JSON |
 | K8 | szkice na płaszczyznach | **TAK** – 22/22 na Right/Top albo na `cPlane` (żaden na ścianie operacji) | k1-k8.json |
-| K9 | test zginania | **CZĘŚCIOWO** – patrz niżej (błąd w Powiece dolnej) | stan `k9` |
+| K9 | test zginania | **TAK po poprawce** – błąd przycięcia Powieki dolnej wykryty i poprawiony, powtórka zaliczona (niżej) | stan `k9`, `k9poPoprawce` |
 | K10 | nazwy | do oceny użytkownika; duplikatów nazw brak (wyciągnięcia z dopiskiem „(wyciągnięcie)”, „Rama: podkładka boku osi”) | – |
 | K11 | operacje w folderach | **TAK** – Layout (8), Rama (11), Gałka (2), Próbka P6 (1), Powieka górna (14), Powieka dolna (10), Słupek (10), Obejma (14) | drzewo w karcie |
 
@@ -46,6 +46,30 @@ Każda zmiana: zapis zmiennych, odczyt ikon drzewa (ostrzeżenia/błędy) i `bod
 **Poprawka (proponowana, 3 edycje):** przyciąć czaszę D tak jak G – na x = ±`trimG` (`uchoDX1` − `luzOsiowy`, 30,95), a ucho D wyciągać od płaszczyzny x = `trimG` na głębokość `uchoDX2` − `trimG` (zachodzi na czaszę, łączy się z nią). Warunek poprawności dla obu powiek: `kulaR` + `luzCzasza` > `trimG` (dziś 31,2 > 30,95; przy `luzCzasza` 1,0: 31,0 > 30,95). Po poprawce powtórzyć K9 `luzCzasza`.
 
 **Wniosek do AGENTS.md:** szkic, który traci rozwiązanie po zmianie zmiennej, potrafi zostać w starej geometrii bez ostrzeżenia – K9 musi mierzyć bryły (bodydetails), nie tylko czytać stany.
+
+
+### Poprawka i powtórka K9 (23.10, ok. 06:45)
+
+Decyzja orkiestratora: poprawić od razu (budżet etapu 1 → 180).
+
+- `trimG` = **min(`uchoDX1`, `powiekaR1`) − `luzOsiowy`** (było `uchoDX1` − `luzOsiowy`) – przycięcie zawsze 0,25 przed uchem D i 0,25 wewnątrz sfery R1, także przy `kulaD` < 60 (samo przycięcie na 30,95 nie przeszłoby `kulaD` 58: R1 = 30,2).
+- Przekrój Powieki dolnej przycięty na ±`trimG` (jak górnej); znacznik: w pełni zdefiniowany.
+- Ucho D: wyciągnięcie z drugim kierunkiem `uchoDX1` − `trimG` (od x `trimG` do `uchoDX2`) – zachodzi na czaszę, jedna bryła.
+- Kontrola po poprawce: 7 brył, Powieka dolna płaszczyzny x ±30,95 i ±33,6, 16 ścian, drzewo bez ostrzeżeń.
+
+| Zmienna | Zmiana | Gałka | Powieka górna | Powieka dolna | Przycięcie | Wynik |
+|---|---|---|---|---|---|---|
+| `luzCzasza` | 1,2 → 1,0 | 28 / 30 | 31,0 / 33,2 / 34,5 | 31,0 / 33,2 / 34,5 | x ±30,75 | **OK** |
+| `kulaD` | 60 → 58 | 27 / 29 (P6 27 / 29) | 30,2 / 32,4 / 33,7 | 30,2 / 32,4 / 33,7 | x ±29,95 | **OK** |
+| przywrócenie | – | 28 / 30 | 31,2 / 33,4 / 34,7 | 31,2 / 33,4 / 34,7 | x ±30,95 | OK |
+
+Za każdym razem: 7 brył, brak ikon błędów i ostrzeżeń w drzewie.
+
+**Wniosek (do AGENTS.md):** `featureStatus` = OK nie dowodzi, że szkic się przeliczył – po zmianie zmiennej szkic bez rozwiązania zostaje w starej geometrii bez ostrzeżenia. K9 musi mierzyć bryły (`bodydetails`).
+
+**Eksport:** 3MF w repo jest sprzed poprawki (Powieka dolna: czasza do x ±31,2, ucho od 31,2 – geometria w wartościach bazowych różni się tylko przycięciem 0,25 przy biegunach). Nowego eksportu przez API nie robię (licznik translations 10 < progu) – zrobi go rano użytkownik ręcznie albo po odnowieniu licznika.
+
+**API po poprawce:** etap 1 – 170 z 180 wywołań, `GET /features` 5 z 8; suma w roku 558 + 174 = **732**.
 
 ## Eksport i kontrola siatek
 
@@ -70,4 +94,4 @@ Rama tyłem (z −37) w dół; Gałka krawędzią tylną w dół, front do góry
 
 ## Werdykt
 
-Bazy części etapu 1 spełniają K1–K8 i K11; K9 wykazał jeden błąd parametryzacji w Powiece dolnej (przycięcie na `uchoDX1`) – do poprawki przed wydrukiem powiek. Siatki szczelne, 7/7.
+Bazy części etapu 1 spełniają K1–K11 (K10 – ocena użytkownika). K9 wykrył błąd parametryzacji Powieki dolnej; poprawiony i powtórzony z wynikiem pozytywnym. Siatki z eksportu (sprzed poprawki) szczelne, 7/7 – przed drukiem powiek potrzebny nowy 3MF (ręcznie).
