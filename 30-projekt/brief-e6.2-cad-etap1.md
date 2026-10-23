@@ -31,7 +31,7 @@ Brakują pomiary przegubów kulowych (B1), ucha i kabla MG90S (B4) i głębokoś
 
 - Gałka: nawis wnętrza > 45° od Ø39,6 – próbka P6 (czasza 20 mm od szczytu) jako osobna bryła w tym samym Part Studio; podpory tylko od środka, jeśli P6 nie przejdzie.
 - Wycięcia `rimX`, `rimY`, `wyciecieG` jako zmienne (ryzyko 1–2° do skorygowania po B1).
-- (uzupełnię po raporcie Astry v3, jeśli dotyczy części etapu 1)
+- **Astra v3 (NIE dla modelu kontrolnego, architektura bez zmian):** przed zamknięciem koncepcji v3.1 buduj najpierw **bazę każdej części**: Rama – rura Ø79,5/75,5 i rant Ø84 (bez uch wewnętrznych i interfejsów z Płytą), Gałka – czasza R28–30 z krawędzią 115°, powieki – czasze R31,2–33,4 z rantem i uchami na osi, Słupek, Obejma. Elementy zależne od B1/B2/B5 (wycięcia `rimX`/`rimY`, `wyciecieG`, nadlewy M3 Gałki, zaczepy drutu, ucha wewnętrzne Ramy) dodaj jako **ostatnie operacje w folderze części** i dopiero po moim „zatwierdzone” dla koncepcji v3.1 – żeby ewentualna korekta była edycją tych operacji, nie przebudową.
 
 ## Proces
 
