@@ -21,3 +21,31 @@ K4 Gałka: przekrój: encji 5, więzów 17, FIX 0, encje bez więzów: brak
 - Wymiary z odczytów wykonawcy (bodydetails, bbox) zgodne z planem. Kolejność Chamfer przed Mirror otworu – bez wpływu.
 - K10: wyciągnięcie „Rama: bok osi” → „Rama: podkładka boku osi” (zgoda, przy następnej sekcji).
 - **Wynik: Rama (baza), Gałka (baza) i Próbka P6 przyjęte.** Elementy zależne od B1/B2/B5 (ucha Ramy, wycięcia i nadlewy Gałki) – po koncepcji v3.1.
+
+## Powieka górna i Powieka dolna (baza) – 23.10, ok. 07:55
+
+Dane: `odbior-e6/features-powieki.json` (commit wykonawcy 20f638b; 46 operacji), `znaczniki-powieki.json`, `variable-studio.json` (189 zmiennych).
+
+```
+K1 featureStatus != OK: brak
+K2 szkice w JSON: 13 | wiersze w drzewie: 13 | niedookreślone: brak
+K3 wyrażenia ze stałymi spoza listy: 0
+K4 Layout: przekrój: encji 14, więzów 42, FIX 0, encje bez więzów: brak
+K4 Layout: czoło: encji 10, więzów 30, FIX 0, encje bez więzów: brak
+K4 Rama: przekrój: encji 8, więzów 25, FIX 0, encje bez więzów: brak
+K4 Rama: bok osi: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Rama: punkt otworu osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Gałka: przekrój: encji 5, więzów 17, FIX 0, encje bez więzów: brak
+K4 Powieka górna: przekrój: encji 7, więzów 20, FIX 0, encje bez więzów: brak
+K4 Powieka górna: mostek: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Powieka górna: ucho: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Powieka górna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: przekrój: encji 7, więzów 20, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: ucho: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+```
+
+- K3: liczby poza `#zmiennymi` tylko `90 deg`, `360 deg`; kąty mostka wymiarem `#mostekR1 * sin(#zamkG + #mostekKat)` (więz ANGLE przez API niedostępny) – zgodne z K3.
+- K5: mostek i ucha G ±x – jeden Mirror; ucha D ±x – Mirror; otwór osi jednym Hole THROUGH przez oba ucha.
+- Wymiary z odczytów wykonawcy zgodne z planem (`mostekR2` 8, luz do rury 0,63).
+- **Wynik: Powieka górna i Powieka dolna (baza) przyjęte.** Wycięcie `wyciecieG`, zaczepy drutu i przycięcie kącików – po koncepcji v3.1.
