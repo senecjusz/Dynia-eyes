@@ -41,3 +41,8 @@ Zebrane z pracy nad E6 (duże oko): plik stanu wykonawcy (`40-cad/onshape/stan-a
 - Plan drzewa do orkiestratora przed zapisem i szybkie zatwierdzanie; wykonawca sam wyłapywał błędy koncepcji (słupki stopu, nadlew w wycięciu, przebicie czoła rantu, zła wysokość oparcia przyrządu zera).
 - Niezależny odbiór K1–K4 przez orkiestratora na surowych danych (`odbior-e6-orkiestrator.md`).
 - Commit i push na bieżąco z upoważnienia użytkownika (23.10).
+
+## Uzupełnienie 23.10 wieczór
+
+26. **Przy ukrytej karcie skan drzewa potrafi zwrócić zaślepkę** (`under=false` bez podpowiedzi) – fałszywie pozytywny odczyt znacznika. Znacznik przyjmować tylko z odczytu z dosłowną podpowiedzią (z „is not fully defined” albo bez), najlepiej po zrzucie ekranu.
+27. **Test na sucho skryptu budowy** porównuje każdy wymiar `#zmienna` z położeniem startowym encji – wyłapał brak nawiasów w wyrażeniu (y0 − a − b zamiast y0 − (a − b)).
