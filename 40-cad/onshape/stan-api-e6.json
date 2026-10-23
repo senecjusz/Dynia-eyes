@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T05:21Z, wykonawca CAD",
+  "zapis": "2026-10-23T05:27Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 24,
-    "features": 13,
+    "total": 44,
+    "features": 26,
     "getFeatures": 1
   },
   "liczniki": {
@@ -171,15 +171,14 @@
       false
     ]
   ],
-  "stop": null,
+  "stop": "budżet Ramy przekroczony (20/18); czeka na zgodę orkiestratora na +5 wywołań",
   "etap1": {
     "budzet": {
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 20,
-    "getFeatures": 1,
-    "uwaga": "sekcja Zmienne+layout: 20 wywołań wobec planu ≤ 15 – nadwyżka 5 to próby diagnostyczne znacznika zlecone przez orkiestratora (2 + 3)"
+    "wywolania": 40,
+    "getFeatures": 1
   },
   "mv": "5e30e6e06aa4734f64a8b1e3",
   "variableStudio": {
@@ -195,7 +194,17 @@
     "Layout: pł. uch Ramy tył": "FwwFCKVtfpN8MG9_0",
     "Layout: pł. uch Ramy przód": "FBTHbpeQKRRerp2_0",
     "Layout: pł. spodu Słupka": "F1YvoFCIuZraYth_0",
-    "Layout: pł. ucha D": "F4kAjYHOC9yz9vg_0"
+    "Layout: pł. ucha D": "F4kAjYHOC9yz9vg_0",
+    "Rama: przekrój": "FUiIxQkyzZseizt_0",
+    "Rama: korpus": "FtKz4BOJ8fEsOLB_0",
+    "Rama: płaszczyzna boku": "FCnPBGeVDIxwC46_1",
+    "Rama: bok osi (szkic)": "FVzeYdUtE9ZmZjk_1",
+    "Rama: bok osi (extrude)": "FBHMlUQqQqgIOlq_1",
+    "Rama: płaszczyzna otworu osi": "F8bD76LPhvuJJ9J_1",
+    "Rama: punkt otworu osi": "FWBgJNIwKNTMcSD_1",
+    "Rama: otwór osi": "F5UPiRG1ed42NSX_1",
+    "Rama: bok i otwór lewy": "FwXY4GqWzOhHNcL_1",
+    "Rama: fazka rantu": "FY18JQmIo1HQljk_1"
   },
   "testBramki": {
     "t": "2026-10-23T02:44:35Z",
@@ -289,6 +298,29 @@
       "ponownyOdczyt1500ms": "bez zmian",
       "sourceMicroversion": "2809679b339ebcbd04c18207",
       "encje": "wszystkie zwykłe"
+    },
+    {
+      "t": "2026-10-23T05:22:07Z",
+      "nazwa": "Rama: przekrój",
+      "featureId": "FUiIxQkyzZseizt_0",
+      "dataId": "MxmifMk4W673yV/xv",
+      "podpowiedz": "Rama: przekrój [Sketch]",
+      "niedookreslony": false
+    },
+    {
+      "t": "2026-10-23T05:22:3xZ",
+      "nazwa": "Rama: bok osi",
+      "featureId": "FVzeYdUtE9ZmZjk_1",
+      "podpowiedz": "Rama: bok osi [Sketch]",
+      "niedookreslony": false
+    },
+    {
+      "t": "2026-10-23T05:22:59Z",
+      "nazwa": "Rama: punkt otworu osi",
+      "featureId": "FWBgJNIwKNTMcSD_1",
+      "dataId": "M1PqlTiZMFl/1d4oo",
+      "podpowiedz": "Rama: punkt otworu osi [Sketch]",
+      "niedookreslony": false
     }
   ],
   "layout": {
@@ -302,5 +334,26 @@
     "Encje pomocnicze (construction) nie liczą się do dookreślenia szkicu: niedookreślona linia pomocnicza nie daje znacznika „underdefined”. Test znacznika i szkice kontrolowane znacznikiem muszą mieć encje zwykłe (layout: decyzja orkiestratora 23.10 – encje zwykłe); pomocnicze encje w szkicach części wymiarować zawsze, K4 z JSON przy odbiorze.",
     "document.visibilityState w karcie panelu przeglądarki aplikacji bywa „hidden” także przy widocznym panelu – nie jest wskaźnikiem widoczności; get_layout (views) mówi, czy sesja jest w oknie.",
     "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie)."
-  ]
+  ],
+  "zmienne": {
+    "liczba": 180,
+    "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1"
+  },
+  "rama": {
+    "pomiar": {
+      "bryly": 1,
+      "sciany": 17,
+      "walce": "R39,75 / 37,75 / 42 / 35,2 (oś z); R5 przy x ±38,5 (boki); otwór +x: R1,25 i R3 przy x 39,75, stożek 45° przy x 39,64",
+      "sfery": "R150 i R152, środek z −140",
+      "plaszczyzny": "z −37, z 6 (kołnierz), x ±36,5",
+      "fazka": "stożek 37,1° przy z 5,08 (fazka krawędzi czoła)",
+      "bbox": "x ±42, y ±42, z −37…7,87"
+    },
+    "odstepstwa": [
+      "Hole wymagał parametru scope (bryła Ramy) – bez niego ERROR „Error regenerating” (2 edycje)",
+      "Mirror FEATURE (także z fullFeaturePattern) odbija podkładkę, ale NIE odbija Hole – po stronie −x brak otworu (bodydetails)"
+    ],
+    "stan": "STOP na budżecie Ramy (≤ 18; zużyte 20 od początku sekcji). Brakuje otworu osi po −x.",
+    "proponowanaPoprawka": "edycja Mirror → tylko podkładka; nowe Mirror typu FACE ścian otworu (qCreatedBy(Hole, FACE)) względem Right; bodydetails – razem 3 wywołania"
+  }
 }
