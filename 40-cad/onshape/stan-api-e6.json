@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T05:31Z, wykonawca CAD",
+  "zapis": "2026-10-23T05:36Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,9 +13,9 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 47,
-    "features": 28,
-    "getFeatures": 1
+    "total": 59,
+    "features": 33,
+    "getFeatures": 3
   },
   "liczniki": {
     "GET /documents/{id}": 3000,
@@ -183,6 +183,27 @@
       200,
       null,
       false
+    ],
+    [
+      "2026-10-23T05:30Z",
+      "GET /features (2/8, odbiór Ramy – plik niezapisany, zastąpiony 3.) + GET zmiennych",
+      200,
+      99,
+      false
+    ],
+    [
+      "2026-10-23T05:32–05:34Z",
+      "Gałka: POST zmiennych (p6Wys), currentmicroversion, szkic, 2 × Revolve, bodydetails, 2 × boundingboxes",
+      200,
+      null,
+      false
+    ],
+    [
+      "2026-10-23T05:35Z",
+      "GET /features (3/8, z encjami) + GET zmiennych – odbiór Ramy i Gałki",
+      200,
+      98,
+      false
     ]
   ],
   "stop": null,
@@ -191,10 +212,10 @@
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 43,
-    "getFeatures": 1
+    "wywolania": 55,
+    "getFeatures": 3
   },
-  "mv": "5e30e6e06aa4734f64a8b1e3",
+  "mv": "0d2be67658747887928cf9e8",
   "variableStudio": {
     "liczba": 177,
     "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
@@ -219,7 +240,10 @@
     "Rama: otwór osi": "F5UPiRG1ed42NSX_1",
     "Rama: fazka rantu": "FY18JQmIo1HQljk_1",
     "Rama: bok osi lewy": "FwXY4GqWzOhHNcL_1",
-    "Rama: otwór osi lewy": "FjpsCi7pQevuYS9_1"
+    "Rama: otwór osi lewy": "FjpsCi7pQevuYS9_1",
+    "Gałka: przekrój": "FiheSZ0iFarFXiR_1",
+    "Gałka: czasza": "(revolve – patrz features-rama-galka.json)",
+    "Próbka P6: czasza": "(revolve – patrz features-rama-galka.json)"
   },
   "testBramki": {
     "t": "2026-10-23T02:44:35Z",
@@ -336,6 +360,14 @@
       "dataId": "M1PqlTiZMFl/1d4oo",
       "podpowiedz": "Rama: punkt otworu osi [Sketch]",
       "niedookreslony": false
+    },
+    {
+      "t": "2026-10-23T05:33Z",
+      "nazwa": "Gałka: przekrój",
+      "featureId": "FiheSZ0iFarFXiR_1",
+      "dataId": "MfmKyIRO9rdf1XReH",
+      "podpowiedz": "Gałka: przekrój [Sketch]",
+      "niedookreslony": false
     }
   ],
   "layout": {
@@ -353,8 +385,9 @@
     "Hole przez API wymaga parametru scope (bryła) – bez niego featureStatus ERROR „Error regenerating” bez dalszego opisu."
   ],
   "zmienne": {
-    "liczba": 180,
-    "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1"
+    "liczba": 181,
+    "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1",
+    "p6Wys": "20 (nowa)"
   },
   "rama": {
     "pomiar": {
@@ -375,5 +408,25 @@
     "proponowanaPoprawka": "edycja Mirror → tylko podkładka; nowe Mirror typu FACE ścian otworu (qCreatedBy(Hole, FACE)) względem Right; bodydetails – razem 3 wywołania",
     "budzet": "23 wywołania (budżet 18 + 5 za zgodą orkiestratora)",
     "kolejnoscOdstepstwo": "Chamfer „Rama: fazka rantu” stoi przed Mirror „Rama: otwór osi lewy” (plan: Chamfer ostatni) – bez wpływu na geometrię"
+  },
+  "galka": {
+    "pomiar": {
+      "Gałka (JhD)": "3 ściany: sfery R28 i R30, płaszczyzna z −12,68; bbox ±30 × ±30 × z −12,68…30",
+      "Próbka P6 (JiD)": "3 ściany: sfery R28 i R30, płaszczyzna z 10; bbox ±28,28 × z 10…30"
+    },
+    "stan": "PRZYJĘTA DO ODBIORU (baza): foldery „Gałka (2)” i „Próbka P6 (1)”, nazwy części Gałka i Próbka P6 (UI), zrzut 40-cad/onshape/e6.2-zrzuty/galka-p6.jpg",
+    "budzet": "10 wywołań z ≤ 12 (GET+POST zmiennych: tylko POST – GET z odbioru Ramy, mv, 3 zapisy, bodydetails, 2 × bbox; + GET /features i GET zmiennych do odbioru)"
+  },
+  "odbior": {
+    "katalog": "40-cad/onshape/odbior-e6/",
+    "pliki": {
+      "features-rama-galka.json": "GET /features z encjami (bez noSketchGeometry), 22 operacje, mv 0d2be676…, wszystkie featureStatus OK",
+      "znaczniki-rama-galka.json": "odczyt znaczników wszystkich 6 szkiców z drzewa (foldery rozwinięte), dosłownie – wszystkie niedookreslony false",
+      "variable-studio.json": "GET zmiennych, 181"
+    },
+    "uwagi": [
+      "GET /features wykonane dwukrotnie: 2. (przed Gałką, na prośbę odbioru Ramy) i 3. (po Gałce, wspólne dla Ramy i Gałki) – zapisany tylko 3., bo obejmuje obie części",
+      "szkic i wyciągnięcie mają tę samą nazwę „Rama: bok osi” – do rozróżnienia przy K10 (proponuję zmienić nazwę wyciągnięcia na „Rama: podkładka boku osi”)"
+    ]
   }
 }
