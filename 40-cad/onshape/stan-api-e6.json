@@ -1,9 +1,9 @@
 {
  "zadanie": {
-  "id": "E6.4 zero gałki",
-  "stan": "gotowe, czekam na odbiór orkiestratora",
-  "wywolania": "E6.4 9/30, GET /features 1/2; E6 razem 474, rok 1032",
-  "aktualizacja": "2026-10-23T09:00:22Z"
+  "id": "E6.5",
+  "stan": "poprawka zmiennymi wykonana i zmierzona; czekam na odbiór i nowy eksport/przemiatanie",
+  "wywolania": "E6.5 5/6; E6 razem 479, rok 1037",
+  "aktualizacja": "2026-10-23T09:17:19Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,9 +18,9 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 474,
-  "features": 325,
-  "getFeatures": 13
+  "total": 479,
+  "features": 326,
+  "getFeatures": 14
  },
  "liczniki": {
   "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
@@ -699,8 +699,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 474,
-  "suma": 1032
+  "E6": 479,
+  "suma": 1037
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2099,5 +2099,18 @@
    "k": "odbior-e6/k1-k8-e6.4.json: K1 0, K3 0/711, K4 0"
   },
   "druk": "czapka dnem na stół, trzpień i ścianki do góry – bez podpór; kalibracja przy otwartych powiekach"
+ },
+ "e65": {
+  "czas": "2026-10-23T09:17:19Z",
+  "zlecenie": "kolizja Powieki górnej z kołnierzem Ramy (przemiatanie siatek etap 1: 1,13 mm)",
+  "plan1": "wybranie w Ramie (e6.5-plan-wybranie-ucha-G.md) – ODRZUCONE przez orkiestratora (przebicie czoła rantu 6,2–7,6 mm przy zawiasach)",
+  "poprawka": "tylko zmienne: mostekKat1 20→55 deg, mostekKat2 70→95 deg, uchoGR 6→5,5",
+  "pomiar": "bodydetails: ucho G walec R5,5 (z ±5,5); mostek – walec R8 z 0,49…5,51, płaszczyzny boków przy 46,5° (y 5,80; z 5,51) i 86,5° (y 7,99; z 0,49) od +z – maks. z 5,51 = 8·cos 46,5°, 0,49 pod kołnierzem z 6; mostek R4,5…8 na x 30,95…36,25 łączy się z czaszą na x 30,95 (1 bryła, 12 brył w Part Studio); luzy mostka do ucha D (0,5) i do rury (0,63) bez zmian (zależą od R, nie od kąta)",
+  "K1": "GET /features?noSketchGeometry=true: 224 operacje, 228 stanów, 0 ≠ OK",
+  "zuzyte": {
+   "total": 5,
+   "getFeatures": 1
+  },
+  "budzet": 6
  }
 }
