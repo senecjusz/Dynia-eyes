@@ -49,3 +49,38 @@ K4 Powieka dolna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: bra
 - K5: mostek i ucha G ±x – jeden Mirror; ucha D ±x – Mirror; otwór osi jednym Hole THROUGH przez oba ucha.
 - Wymiary z odczytów wykonawcy zgodne z planem (`mostekR2` 8, luz do rury 0,63).
 - **Wynik: Powieka górna i Powieka dolna (baza) przyjęte.** Wycięcie `wyciecieG`, zaczepy drutu i przycięcie kącików – po koncepcji v3.1.
+
+## Słupek i Obejma – 23.10, ok. 08:10
+
+Dane: `odbior-e6/features-slupek-obejma.json` (commit wykonawcy 8f30bca; 70 operacji), `znaczniki-wszystkie.json` (22 szkice), `variable-studio.json` (199).
+
+```
+K1 featureStatus != OK: brak
+K2 szkice w JSON: 22 | wiersze w drzewie: 22 | niedookreślone: brak
+K3 wyrażenia ze stałymi spoza listy: 0
+K4 Layout: przekrój: encji 14, więzów 42, FIX 0, encje bez więzów: brak
+K4 Layout: czoło: encji 10, więzów 30, FIX 0, encje bez więzów: brak
+K4 Rama: przekrój: encji 8, więzów 25, FIX 0, encje bez więzów: brak
+K4 Rama: bok osi: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Rama: punkt otworu osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Gałka: przekrój: encji 5, więzów 17, FIX 0, encje bez więzów: brak
+K4 Powieka górna: przekrój: encji 7, więzów 20, FIX 0, encje bez więzów: brak
+K4 Powieka górna: mostek: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Powieka górna: ucho: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Powieka górna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: przekrój: encji 7, więzów 20, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: ucho: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Słupek: przekrój: encji 6, więzów 19, FIX 0, encje bez więzów: brak
+K4 Słupek: punkt trzpienia: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Słupek: kanał nakrętki M5: encji 5, więzów 15, FIX 0, encje bez więzów: brak
+K4 Słupek: punkt M4: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Obejma: przekrój: encji 6, więzów 18, FIX 0, encje bez więzów: brak
+K4 Obejma: ucho: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Obejma: szczelina: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Obejma: punkt śruby: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Obejma: kieszeń nakrętki: encji 6, więzów 18, FIX 0, encje bez więzów: brak
+```
+
+- K3: liczby poza `#zmiennymi` tylko `/ 2`, `90 deg`, `360 deg`.
+- **Wynik: Słupek (bez interfejsu z Płytą) i Obejma przyjęte.** Cały etap 1 (bazy 6 części + Próbka P6) przyjęty przez orkiestratora; dalej runda K1–K11 wykonawcy i eksport.
