@@ -1,0 +1,24 @@
+# Brief E6.1c: koncepcja dużego oka 2c, wersja 3 – poprawki geometrii po drugiej rundzie review (23.10)
+
+Dla: **Opus** (realizator v1/v2). Po polsku. Tylko do odczytu w repo (bez `git pull`, commitów, pushy). Zapisujesz jeden plik: `20-analizy/2026-10-23-duze-oko-2c-koncepcja-v3.md` – pełna koncepcja (wykonawca CAD czyta tylko v3), z tabelą „uwaga → co zrobiono” dla każdej uwagi KRYTYCZNEJ i WAŻNEJ z drugiej rundy. Briefy v1 i v2 obowiązują dalej. Bez prognoz czasu. Bez zakupów modelarskich.
+
+## Stan po drugiej rundzie
+
+Raporty (przeczytaj wszystkie trzy w całości, z rachunkami): `20-analizy/review/2026-10-23-e6-koncepcja-v2-astra.md` (NIE), `…-v2-fable.md` (TAK PO POPRAWKACH), `…-v2-opus.md` (TAK PO POPRAWKACH). Skrypty recenzentów: `/tmp/claude-1000/-home-rkp--claude-spares-spare-mfMMBV/81adf3b7-b77e-42b1-b39b-151f54c8e062/scratchpad/e6-v2-fable/` i `…/e6-v2-opus/`.
+
+**Architektura przyjęta przez wszystkich trzech – nie zmieniaj jej:** gałka Ø60 na kardanie 5/5, pręty S–S (kulka M2 przy gałce, M5 przy orczyku), 4 × MG90S, dwa osobne czworoboki powiek z łącznikiem z drutu Ø1,2, oś powiek wspólna z osią góra–dół, Obejma. Kinematyka obu napędów odtworzona niezależnie przez trzech recenzentów co do 0,1°.
+
+## Poprawki obowiązkowe (zbieżne uwagi recenzentów)
+
+1. **Pręty a gałka i powieki** (Astra K1, Opus K1): przemiatanie v2 liczyło pręty Ø4 zamiast Ø6/6×5 i sprawdzało pręt w 10 punktach. Pręt Y wchodzi w otwierającą się górną powiekę (−0,06…−0,96 mm), pręt X przechodzi 1,25 mm (oś) od krawędzi czaszy gałki. Popraw trasę, przekrój albo wycięcia (Opus: lokalne wycięcia krawędzi czaszy, wycięcie powieki 77° zamiast 80°) tak, żeby rzeczywisty przekrój z końcówkami miał ≥ 0,5 mm nominalnie.
+2. **Nakrętka M5 przy Ramieniu Y przenika korpus serwa powieki górnej o 2,5 mm** (Fable K1, Opus K2). Wybierz jedno: Opus – serwo góra–dół z Ramieniem Y o +3,5 mm w x (usuwa też ciasnotę drutu powieki górnej, Fable W1); Fable – `ramieY_x` 11 z czopem M5 pochylonym albo nakrętka na zewnątrz. Uzasadnij liczbą.
+3. **Kolejność montażu niewykonalna** (Fable K2, Opus K3): wspornik Słupka w Płycie, gałka przyjeżdża z Płytą od tyłu w zamknięte powieki; ograniczniki powiek na ramionach serw (Opus). Nowa kolejność montażu krok po kroku, kroki syna oznaczone.
+4. **Ogranicznik gałki** (Astra K2, Opus W1): elipsa 12,04 × 11,04 jest źle wyznaczona (koło `R/cos t` zamiast przekroju eliptycznego; brak grubości płyty i skończonego Słupka). Wyznacz kontakt na pełnych bryłach (płyta z grubością, Słupek do końca, otwór M4), dla każdej osi i kombinacji; zapas w zakresie pracy ≥ 0,5; kulka M2 do ramy ≥ 0,5 (dziś 0,46).
+5. **Zakończenia prętów** (Astra K4, Fable W2): gwint M5 w pręcie Ø6 ma 0,5 mm ścianki. Zdefiniuj zakończenia (lokalne pogrubienie ≥ Ø9 przy gwincie M5 albo nakrętka uwięziona), długości gwintów M2/M5, blokadę regulacji; wysokość kulki nad Ramieniem jako zmienna z B1.
+6. **Przejścia rozruchowe w przestrzeni kątów serw** (Astra K3): ruch X i Y z różnym postępem może wyjść poza ±27°/±17° (przykład Astry: ψ 27,4°, θ −21,6°). Rozwiązanie mechaniczne albo firmware: rampa liczona w kątach gałki (ψ, θ) z kinematyką odwrotną, X i Y jednocześnie; pokaż, że tor po zapisanej pozycji z NVS mieści się w sprawdzonym zakresie, a przy skoku po zaniku prądu (akceptowanym przez użytkownika) mechanizm trafia w ogranicznik Słupka, nie w pręty i powieki.
+7. **Ochrona przekładni MG90S** (wszyscy: z warsztatu brak pełnej ochrony; do 0,64 N·m). Decyzja orkiestratora: (a) firmware – PWM tylko na czas ruchu i krótko po nim (Opus W4; uwaga: mniejszy pobór pogarsza podtrzymanie powerbanku z E5.5 – zapisz to jako zależność); (b) stopniowany test T1 na jednym serwie przed drukiem całości (Fable W4), z kryterium zaliczenia; (c) plan B jako próbka: sprzęgło cierne na wkręcie M2 orczyka (Fable) albo bezpiecznik na kulce M2 po pomiarze siły wypięcia (Opus). Opisz wszystkie trzy z liczbami.
+8. **Przemiatanie na pełnym modelu:** pręty w rzeczywistym przekroju z obudowami przegubów M2/M5, nakrętki i podkładki, zagięcia Z z realnym promieniem gięcia (Fable W1: przyrząd do gięcia drutu), klatka serw z uszami i kablami, płyta okna z grubością, wszystkie pary; odległości do całych odcinków i powierzchni, zagęszczenie przy minimum. Wynik: lista 10 najciaśniejszych par w zakresie pracy i w zakresie ograniczników.
+9. **Pozostałe WAŻNE** z trzech raportów – każda w tabeli (m.in. `zSerw` jako zmienna i tarcza ażurowa, głębokość ok. 83 mm za ścianką – Fable W3; `pktR` 18,5 i otwory na drut Ø1,6 – W5; M2,5 w uszach MG90S do B4 – W6; źródło łącznika powiek jako adaptacja, nie fakt – W7; znaki serw, stosy, zależności parametrów).
+10. **Pytania blokujące** (B1 z wysokością kulki i znaczeniem „M5” – gwint czy średnica kuli; B4) z przedziałami i warunkami odrzucenia.
+
+Na końcu werdykt jednym zdaniem: czy v3 jest gotowa do weryfikacji poprawek i briefu CAD, i co jest najsłabszym punktem.
