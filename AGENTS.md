@@ -26,14 +26,19 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 - **Po korekcie użytkownika** następna odpowiedź ma do 5 linii i robi wyłącznie to, o co prosił. Do końca zadania bez nowych propozycji.
 - **„Informacyjnie” = jedna linijka potwierdzenia**, bez analizy.
 - **Zamknięte decyzje są zamknięte.** Co jest w `decyzje.md` albo co użytkownik powiedział w sesji, przyjmuj jako fakt. Przy sprzeczności albo nowym dowodzie zadaj jedno pytanie: „To przeczy X – zmieniasz decyzję?”.
+- **Użytkownik decyduje o funkcji, agenci o technice.** Do użytkownika idą tylko decyzje funkcjonalne (co część robi, liczba serw, otwór, wygląd) i fakty, które zna tylko on (co jest w warsztacie). Szczegóły geometrii rozstrzyga orkiestrator z wykonawcą i recenzentami.
+- **Nie czekamy na dane.** Brak pomiaru = najlepszy szacunek ze źródłem (karta producenta, zdjęcie, typowa wartość) wpisany jako zmienna; wątpliwość w planie, praca idzie dalej. Istnienie części w warsztacie (czy w ogóle jest) sprawdzić linkiem albo zdjęciem od razu, zanim powstanie koncepcja.
+- **Bez prognoz czasu** w odpowiedziach, briefach i raportach.
 - **Fakt przed rekomendacją.** Cenę, limit, wydajność sprawdź przed poleceniem albo nazwij założeniem. Oddzielaj pomiar, interpretację i założenie.
 - **Zapis do repo:** zmianę pokaż (treść albo diff) przed commitem; commit i push dopiero po „ok”. Na początku sesji `git pull`.
 - **Brief do wykonawcy i recenzenta:** pytania i zakres obejmują bieżące zadanie. Materiał obejmuje cały kontekst potrzebny do oceny, także pełną rozmowę, gdy oceniane są intencje użytkownika. Brief pokaż użytkownikowi przed wysłaniem. Surowe raporty zapisuj do pliku; w rozmowie podaj ścieżkę i to, co dotyczy zadania.
 - **`00-inbox/`:** na starcie sesji jedna linijka, czy coś w nim jest. Rozkładanie plików to osobne zadanie w `teraz.md`.
-- **Procesy:** każde polecenie z limitem czasu obejmującym procesy potomne. Na koniec zadania wypisz, co działa w tle. Testy na narzędziach użytkownika (codex, gh) tylko za jego zgodą i nigdy w tle.
+- **Procesy:** każde polecenie z limitem czasu obejmującym procesy potomne. Na koniec zadania wypisz, co działa w tle. Testy na narzędziach użytkownika (codex, gh) tylko za jego zgodą. Review Codeksa (Astra) wolno w tle z limitem 60 min bez pytania za każdym razem (zgoda 23.10); `codex exec` w tle zawsze z `< /dev/null`.
 
 ## Nadzór nad wykonawcą (orkiestrator)
 
+- **Każde zlecenie dla wykonawcy zaczyna się od roli:** „jesteś wykonawcą; plan drzewa do orkiestratora przed zapisem; commity tylko na swoją gałąź; decyzje techniczne podejmuje orkiestrator”.
+- **Nie czekać na powiadomienia.** Przy każdym sygnale i co najmniej co 30 min sprawdzić daty plików wynikowych agentów i stan wykonawcy. Wykonawcy, który czeka, dać pracę niezależną od tego, co się zmienia (dokumentacja, części bez zależności).
 - **Obserwacja w tle przez cały czas pracy wykonawcy:** `40-cad/narzedzia/pilnuj-wykonawcy.sh <worktree wykonawcy> <plik stanu> [minuty]`, uruchomiona w tle zaraz po zleceniu. Daje sygnał przy commicie wykonawcy, nowym „stop” w pliku stanu albo po 6 minutach bez zmiany pliku stanu. Po każdym sygnale sprawdzasz i uruchamiasz ją ponownie, aż do odbioru zadania. Bez działającej obserwacji nie obiecujesz użytkownikowi żadnego sprawdzenia.
 - **Przy commicie:** sprawdzasz w commicie i pliku stanu pomiary części wobec planu i poprzedniej wersji, odstępstwa i zużycie API. Dopiero potem podajesz użytkownikowi wynik, z hashem commita.
 - **Przy braku postępu:** sprawdzasz, czy sesja wykonawcy pracuje, czy czeka (status sesji, ostatnie działanie). Czeka na użytkownika = mówisz mu od razu, co ma zrobić. Pracuje bez zapisu dłużej niż 5 minut = żądasz zapisu stanu.
@@ -60,7 +65,7 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 
 1. Budowa (wykonawca) z kontrolą szkiców i rundą weryfikacji modelu; przyjęcie przez orkiestratora.
 2. Eksport 3MF i kontrola po eksporcie (wykonawca, w ramach zlecenia); orkiestrator powtarza kontrolę siatek.
-3. Review dwoma recenzentami (zleca orkiestrator).
+3. Review dwoma recenzentami (zleca orkiestrator). Koncepcję (przed CAD) recenzujemy najwyżej w 2 rundach; potem budowa w CAD na zmiennych, a kolizje sprawdza przemiatanie **na siatkach z CAD z kinematyką** (`40-cad/narzedzia/e6-siatki-ruch.py`), także pary części nieruchomych.
 4. Orkiestrator łączy wyniki, użytkownik decyduje, co poprawić teraz, a co w następnej wersji.
 5. Poprawki (wykonawca), znowu z kontrolą i rundą weryfikacji.
 6. Wydruk testowy (użytkownik).
@@ -114,6 +119,8 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 - **Parametry w Variable Studio** (luzy, średnice otworów pod śruby i wkładki, średnica piłeczki, rozstawy).
 - **FeatureScript** tylko tam, gdzie natywne operacje nie wystarczają (np. gwint drukowany), jako mała, pojedyncza operacja w drzewie. Nigdy jedna operacja generująca całą część.
 
+**Pułapki Onshape przez API (sprawdzone 23.10).** Mirror FEATURE nie odbija Hole – otwór odbijać Mirror FACE (`qCreatedBy(Hole, FACE)`); Mirror obrotów (Revolve REMOVE) nie działa – para profili ±x w jednym szkicu to dozwolony wyjątek K5. Hole wymaga `scope` (bryła), a w litej tarczy wierci do krawędzi – wtedy wycięcie okręgu. Więz ANGLE przez API nie działa – kąt wymiarować położeniem punktu (R·sin). Szkic nie może leżeć na płaszczyźnie utworzonej później w drzewie. Revolve częściowy: `endBound` BLIND; obszar szkicu przez `qLargest`/`qSmallest`. Płaszczyzny LINE_ANGLE mają niespójne kierunki osi szkicu – każde cięcie sprawdzić `bodydetails`. Variable Studio liczy po kolei: zmienna odwołuje się tylko do zmiennych wyżej. Lista drzewa jest wirtualizowana – przewinąć przed odczytem wiersza.
+
 **Kolejność budowy części.** Plan drzewa z punktami 1–4 zatwierdza orkiestrator przed pierwszym zapisem.
 
 1. **Zmienne najpierw.** Lista parametrów wejściowych i zależności między nimi, w Variable Studio, zanim powstanie operacja, która ich używa. W planie lista dozwolonych stałych (np. `0`, `90 deg`, `180 deg`, `360 deg`); każda inna liczba w drzewie musi być zmienną.
@@ -136,6 +143,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 
 **Kontrola szkicu na bieżąco.** Po każdym utworzeniu lub edycji szkicu jego stan odczytuje się w drzewie operacji, w otwartej karcie Onshape, bez wywołań API.
 
+0. **Encje pomocnicze (construction) nie liczą się do znacznika:** szkic z samymi encjami pomocniczymi nie pokazuje ikony, choć jest niedookreślony. Szkice kontrolowane znacznikiem (layout) mają encje zwykłe; encje pomocnicze w szkicach części zawsze wymiarujemy. `document.visibilityState` w panelu przeglądarki aplikacji bywa „hidden” przy widocznym panelu – nie świadczy o widoczności.
 0. **Test znacznika przed budową.** Na jednym szkicu zapisanym przez API wykonawca sprawdza, że znacznik pojawia się przy szkicu niedookreślonym i znika po dodaniu wymiaru, i mierzy czas odświeżenia drzewa po zapisie. Wynik i czas zapisuje w pliku stanu. Bez tego testu nie wolno opierać się na znaczniku.
 1. **Sprawdzenie w skrypcie.** Funkcja, która tworzy albo edytuje szkic, zaraz po zapisie odpytuje drzewo, aż pojawi się wiersz tego szkicu w aktualnym stanie (limit czasu z testu w punkcie 0; to nie jest pauza z zasady 7 API). Wiersz dopasowuje po identyfikatorze (`data-id`), nie po nazwie. Szkic niedookreślony, brak wiersza albo przekroczony limit czasu = wyjątek i stop budowy. Nie ma ścieżki do kolejnej operacji, która omija ten krok.
 2. **Ślad w pliku.** Każde sprawdzenie, także z wynikiem pozytywnym, zapisuje się w `40-cad/onshape/stan-api.json`: nazwa szkicu, `featureId`, `data-id`, dosłowna podpowiedź z drzewa, czas i `sourceMicroversion`. Szkic bez wpisu albo z wpisem „not fully defined” = część nieprzyjęta.
@@ -154,7 +162,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 
 | # | Kryterium | Jak sprawdzić |
 |---|---|---|
-| K1 | Każdy `featureStatus` = `OK` | `featureStates` z `GET /features` |
+| K1 | Każdy `featureStatus` = `OK`; każda operacja ma stan | `featureStates` z `GET /features` **bez** `includeGeometryIds=false` (ten parametr zeruje `featureStates`); puste stany = K1 niezaliczony |
 | K2 | Żaden szkic nie jest niedookreślony; liczba wierszy szkiców w drzewie = liczba szkiców w JSON | znacznik w drzewie, całe drzewo (przewinąć, rozwinąć foldery) |
 | K3 | Po usunięciu nazw `#zmiennych` z każdego wyrażenia w operacjach i wymiarach szkiców zostają tylko stałe z listy dozwolonych (`#a + 4.7 mm` nie przechodzi) | JSON drzewa i Variable Studio; każdy wyjątek zatwierdzony w planie |
 | K4 | Zero więzów `Fix`; każda encja szkicu związana wymiarem `#zmienna` albo więzem z layoutem | `constraints` w JSON szkiców |
@@ -162,7 +170,7 @@ Każda para części, które wchodzą jedna w drugą, ślizgają się, obracają
 | K6 | Operacje bryłowe na część wobec budżetu; wypisane szkice użyte przez jedną operację, każdy z uzasadnieniem w planie, inaczej zwrot | JSON drzewa wobec planu |
 | K7 | Zmienne i layout stoją przed operacjami, które ich używają | kolejność w JSON drzewa |
 | K8 | Szkice leżą na płaszczyznach, szkicach albo wczesnych operacjach, nie na ścianach z późnych operacji | `sketchPlane` w JSON; każdy wyjątek zatwierdzony w planie |
-| K9 | Test zginania: plan podaje dla 3–5 kluczowych zmiennych wartości min i max i oczekiwany efekt (który wymiar, o ile). Wykonawca zmienia każdą zmienną, sprawdza `featureStates` = `OK`, mierzy wymiary brył i porównuje z oczekiwanym, potem przywraca wartości | Variable Studio, `featureStates`, `boundingboxes` przez API, w budżecie; bez endpointu FeatureScript |
+| K9 | Test zginania: plan podaje dla 3–5 kluczowych zmiennych wartości min i max i oczekiwany efekt (który wymiar, o ile). Wykonawca zmienia każdą zmienną, sprawdza `featureStates` = `OK` i **mierzy wymiary brył** (szkic bez rozwiązania zostaje w starej geometrii przy `featureStatus` OK – sam stan niczego nie dowodzi) i porównuje z oczekiwanym, potem przywraca wartości | Variable Studio, `featureStates`, `boundingboxes` przez API, w budżecie; bez endpointu FeatureScript |
 | K10 | Nazwy operacji i zmiennych mówią, co robią | użytkownik |
 | K11 | Operacje każdej bryły leżą w jej folderze | drzewo w karcie |
 
