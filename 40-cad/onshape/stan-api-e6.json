@@ -1,9 +1,9 @@
 {
  "zadanie": {
-  "id": "E6.3 etap 2a – koniec",
-  "stan": "zbudowane wszystko z zakresu poza słupkami stopu (v3.2) i przyrządem zera (decyzja użytkownika); K9 i odbiór końcowy zrobione",
-  "wywolania": "etap 2a 291/300, GET /features 7/7",
-  "aktualizacja": "2026-10-23T08:47:54Z"
+  "id": "E6.4 zero gałki",
+  "stan": "gotowe, czekam na odbiór orkiestratora",
+  "wywolania": "E6.4 9/30, GET /features 1/2; E6 razem 474, rok 1032",
+  "aktualizacja": "2026-10-23T09:00:22Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,9 +18,9 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 465,
-  "features": 319,
-  "getFeatures": 12
+  "total": 474,
+  "features": 325,
+  "getFeatures": 13
  },
  "liczniki": {
   "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
@@ -699,8 +699,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 465,
-  "suma": 1023
+  "E6": 474,
+  "suma": 1032
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2072,6 +2072,32 @@
    "features": "odbior-e6/features-e6.3-koniec.json (GET /features bez parametrów, 219 operacji, 223 stany, 0 ≠ OK)",
    "znaczniki": "odbior-e6/znaczniki-e6.3-koniec.json (71 = 71, 0 niedookreślonych)",
    "k": "odbior-e6/k1-k8-e6.3-koniec.json: K1 0, K3 0/697, K4 0 Fix, 0 wolnych encji; K6: Rama 9, Gałka 7, P6 1, PG 13, PD 11, Słupek 5, Obejma 6, Płyta 38 (D4), Ramię PG 4, Ramię PD 4, Przyrząd 2"
-  }
+  },
+  "odbior": "PRZYJĘTY przez orkiestratora (niezależny K1–K4), scalone z main 698613f"
+ },
+ "e64": {
+  "start_n_total": 465,
+  "budzet": {
+   "total": 30,
+   "getFeatures": 2
+  },
+  "plan": "40-cad/onshape/e6.4-plan-zero.md",
+  "stan": "zbudowane i odebrane (własny K1–K4)",
+  "zuzyte": {
+   "total": 9,
+   "getFeatures": 1
+  },
+  "zbudowane": {
+   "Gałka: zero": "płaszczyzna z +30 (Top, #kulaR), okrąg Ø#zeroD 3,2, wycięcie #zeroGl 1,0 w −z, scope Gałka; pomiar: walec R1,6 z 29,0…29,96, dno z 29,0 (ścianka 1,0); Gałka 8 operacji",
+   "Przyrząd zera": "Revolve przekroju 10 krawędzi: trzpień Ø(zeroD − 2·zeroLuz) = 3,0 do z kulaR − zeroGl + zeroLuzZ = 29,1; dno R44,2 z 32…34; oparcie = łuk sfery R(dyniaR + rantT) 152 ze środkiem z glebokoscSrodka − dyniaR (−140) od R36 (z 7,68) do R42,2 (z 6,02) – styka się z czołem rantu Ramy; fartuch R42,2…44,2 z 4…6,02 (kolnierzZ − rantT), luz 0,2 na Ø84",
+   "foldery": "Gałka (16) – operacje zera na końcu; Przyrząd zera (2); część „Przyrząd zera”"
+  },
+  "korektaOrkiestratora": "oparcie na sferze R152 (nie płaskie 9,6 [Z]) – przy 9,6 trzpień zatrzymałby się 1,9 przed wgłębieniem",
+  "odbior": {
+   "features": "odbior-e6/features-e6.4.json (224 operacje, 228 stanów, 0 ≠ OK)",
+   "znaczniki": "odbior-e6/znaczniki-e6.4.json (73 = 73, 0 niedookreślonych)",
+   "k": "odbior-e6/k1-k8-e6.4.json: K1 0, K3 0/711, K4 0"
+  },
+  "druk": "czapka dnem na stół, trzpień i ścianki do góry – bez podpór; kalibracja przy otwartych powiekach"
  }
 }
