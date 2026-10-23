@@ -11,7 +11,7 @@
 (() => {
 const G = window.G || {};
 G.PROG = 20;                       // zasada 1: remaining <= PROG -> wyjatek, bez wysylki
-G.BUDZET = { features: 400, total: 40, getFeatures: 2 };    // E6 etap 1: dokument, elementy, Variable Studio, odczyty startowe; etap 2 wg e6-plan.md
+G.BUDZET = { features: 400, total: 84, getFeatures: 8 };    // E6.2 etap 1: 80 wywołań od stanu 4 (22.10), GET /features <= 8
 G.rem = G.rem || {};               // klucz endpointu -> { remaining: liczba | null, t }
 G.log = G.log || [];               // kazde wywolanie i kazda blokada
 G.n = G.n || { total: 0, features: 0, getFeatures: 0 };   // wywolania HTTP wyslane w tym zadaniu
@@ -202,7 +202,7 @@ G.q = {
   vtx: (n, v) => `query=sketchEntityQuery(makeId("${fid(n)}"), EntityType.VERTEX, "${v}");`,
 };
 G.osZ = () => G.q.ent('Layout: osie i punkty', 'osZ');
-G.TYPY = ['extrude', 'revolve', 'helix', 'sweep', 'booleanBodies', 'circularPattern', 'linearPattern', 'mirror', 'cPlane', 'hole', 'transform', 'chamfer'];
+G.TYPY = ['extrude', 'revolve', 'helix', 'sweep', 'booleanBodies', 'circularPattern', 'linearPattern', 'mirror', 'cPlane', 'hole', 'transform', 'chamfer', 'fillet', 'shell', 'splitPart', 'deleteBodies'];
 G.wczytajSpecs = async () => {
   const r = await G.req('GET', G.ps() + '/featurespecs');
   if (!r.ok) throw new Error('featurespecs HTTP ' + r.status);
@@ -282,8 +282,9 @@ G.Sk = class {
   eq(a, b) { this.con('EQUAL', [pstr('localFirst', a), pstr('localSecond', b)]); }
   par(a, b) { this.con('PARALLEL', [pstr('localFirst', a), pstr('localSecond', b)]); }
   perp(a, b) { this.con('PERPENDICULAR', [pstr('localFirst', a), pstr('localSecond', b)]); }
+  ang(a, b, expr) { this.con('ANGLE', [pstr('localFirst', a), pstr('localSecond', b), pn('angle', expr)]); }
   sym(a, b, axis) { this.con('SYMMETRIC', [pstr('localFirst', a), pstr('localSecond', b), pstr('localMirror', axis)]); }
-  feature() { return { btType: 'BTMSketch-151', featureType: 'newSketch', name: this.name, parameters: [pq('sketchPlane', this.planeQ)], entities: this.e, constraints: this.c }; }
+  feature(fidEdit) { const f = { btType: 'BTMSketch-151', featureType: 'newSketch', name: this.name, parameters: [pq('sketchPlane', this.planeQ)], entities: this.e, constraints: this.c }; if (fidEdit) f.featureId = fidEdit; return f; }
 };
 G.op = (name, featureType, parameters) => G.zapisz({ btType: 'BTMFeature-134', featureType, name, parameters });
 
@@ -340,7 +341,7 @@ G.drzewoUI = () => [...document.querySelectorAll('.os-list-item[feature-id]')].m
 G.pozycjeBryly = (N) => Object.keys(G.F).filter((k) => k.startsWith(N + ':')).map((k) => { const it = document.querySelector(`.os-list-item[feature-id="${G.F[k]}"]`); if (!it) return [k, null];
   const r = it.getBoundingClientRect(); return [k, Math.round((r.top + r.height / 2) * 800 / innerWidth)]; });
 // Variable Studio: lista [nazwa, typ, wyrazenie, wartosc liczbowa, opis]; zapis: liczby, potem wyrazenia (pomiar E2.0)
-G.VS = G.VS || null;   // Variable Studio "Zmienne duze oko": ustawiane po utworzeniu (etap 1)
+G.VS = '5d1a01286f0f4439abd87cc4';   // Variable Studio "Zmienne duże oko"
 G.zapiszZmienne = async (V) => { const c = G.ctx(); const url = `/api/v12/variables/d/${c.did}/w/${c.wid}/e/${G.VS}/variables`;
   const jedn = { LENGTH: ' mm', ANGLE: ' deg', NUMBER: '' };
   const r1 = await G.req('POST', url, V.map(([name, type, , v, description]) => ({ name, type, expression: String(v) + jedn[type], description: description || '' })));

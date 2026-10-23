@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T~01:00Z, wykonawca CAD",
+  "zapis": "2026-10-23T02:55Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 5,
-    "features": 1,
+    "total": 11,
+    "features": 2,
     "getFeatures": 1
   },
   "liczniki": {
@@ -71,16 +71,83 @@
     {
       "t": "2026-10-23T~01:00Z",
       "uwaga": "plan e6.2-plan-zmienne-layout.md zastępuje e6-plan.md (brief E6.2); 22.10 plan e6-plan.md odrzucony przez orkiestratora"
+    },
+    [
+      "2026-10-23T02:44:35Z",
+      "GET …/featurespecs",
+      200,
+      100,
+      true
+    ],
+    [
+      "2026-10-23T02:45:0xZ",
+      "POST …/variables ×2 (177 zmiennych: liczby, potem wyrażenia)",
+      204,
+      2999,
+      true
+    ],
+    [
+      "2026-10-23T02:45:2xZ",
+      "GET …/variablestudioreferences (VS widoczne w Part Studio)",
+      200,
+      3000,
+      true
+    ],
+    [
+      "2026-10-23T02:45:4xZ",
+      "GET …/currentmicroversion",
+      200,
+      null,
+      true
+    ],
+    [
+      "2026-10-23T02:45:49Z",
+      "POST …/features Layout: przekrój (test znacznika, bez wymiaru osY) – featureStatus OK",
+      200,
+      2998,
+      true
+    ],
+    {
+      "t": "2026-10-23T02:46Z",
+      "uwaga": "brak wiersza w drzewie 5 s + 15 s (karta hidden); banner „session has timed out”; klik „reconnect” przeładował stronę i skasował window.G i timer; po przeładowaniu wiersz jest, znacznika niedookreślenia brak"
     }
   ],
-  "stop": null,
+  "stop": "test znacznika niezaliczony przy ukrytym panelu; budowa szkiców wstrzymana do decyzji orkiestratora",
   "etap1": {
     "budzet": {
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 1,
+    "wywolania": 7,
     "getFeatures": 1
   },
-  "mv": "c988156c6aa5ff068434adb9"
+  "mv": "po zapisie szkicu Layout: przekrój (odczyt z odpowiedzi zapisu utracony przy przeładowaniu karty)",
+  "variableStudio": {
+    "liczba": 177,
+    "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
+    "dodatkowa": "rantSzer 4 (rantD = otworD + rantSzer, bez stałej 4)"
+  },
+  "F": {
+    "Layout: przekrój": "FXtwYQCQ4yOgcrx_0"
+  },
+  "testBramki": {
+    "t": "2026-10-23T02:44:35Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "remaining": 100,
+    "prog": 100,
+    "wyjatek": true,
+    "brakNaglowkaWyjatek": true,
+    "wyslanoRazem": 0,
+    "zaliczony": true
+  },
+  "testZnacznika": {
+    "t": "2026-10-23T02:46–02:55Z",
+    "szkic": "Layout: przekrój",
+    "featureId": "FXtwYQCQ4yOgcrx_0",
+    "dataId": "MM7NRmWBfxHjHS8uy",
+    "krok1": "zapis celowo bez wymiaru długości osY (koniec osY wolny wzdłuż osi) -> featureStatus OK",
+    "wynik": "NIEZALICZONY: wiersz pojawił się dopiero po przeładowaniu karty; ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]” (bez „is not fully defined”)",
+    "przyczyna": "panel przeglądarki ukryty (sesja Claude nie jest otwarta w żadnym oknie, document.visibilityState = hidden); przed przeładowaniem wiersz był „not-computed”, a edytor pokazał „Your Onshape session has timed out … Click here to reconnect” mimo działającego API i timera podtrzymania",
+    "krok2": "nie wykonany (edycja z wymiarem) – bez działającego znacznika nie ma czego porównać"
+  }
 }
