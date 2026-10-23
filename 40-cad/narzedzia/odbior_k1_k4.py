@@ -4,6 +4,8 @@ import json, re, sys
 feat_path, znacz_path = sys.argv[1], sys.argv[2]
 f = json.load(open(feat_path))
 z = json.load(open(znacz_path))
+if isinstance(z, dict):
+    z = z.get("lista", [])
 DOZWOLONE = {'0', '90deg', '180deg', '360deg', '2', '0deg', '1', '-1'}
 
 # K1

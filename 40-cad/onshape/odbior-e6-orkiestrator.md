@@ -84,3 +84,42 @@ K4 Obejma: kieszeń nakrętki: encji 6, więzów 18, FIX 0, encje bez więzów: 
 
 - K3: liczby poza `#zmiennymi` tylko `/ 2`, `90 deg`, `360 deg`.
 - **Wynik: Słupek (bez interfejsu z Płytą) i Obejma przyjęte.** Cały etap 1 (bazy 6 części + Próbka P6) przyjęty przez orkiestratora; dalej runda K1–K11 wykonawcy i eksport.
+
+## E6.3: Rama (ucha, gwinty M3, fazka) i Gałka (nadlewy, wycięcia X/Y) – 23.10, ok. 09:25
+
+Dane: `odbior-e6/features-e6.3-rama-galka.json` (commit wykonawcy 8b3ee9e), `znaczniki-e6.3-rama-galka.json`.
+
+```
+K1 featureStatus != OK: brak
+K2 szkice w JSON: 27 | wiersze w drzewie: 27 | niedookreślone: brak
+K3 wyrażenia ze stałymi spoza listy: 0
+K4 Layout: przekrój: encji 14, więzów 42, FIX 0, encje bez więzów: brak
+K4 Layout: czoło: encji 10, więzów 30, FIX 0, encje bez więzów: brak
+K4 Rama: przekrój: encji 8, więzów 25, FIX 0, encje bez więzów: brak
+K4 Rama: bok osi: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Rama: punkt otworu osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Rama: ucha wewnętrzne: encji 3, więzów 9, FIX 0, encje bez więzów: brak
+K4 Rama: punkty gwintów uch: encji 3, więzów 6, FIX 0, encje bez więzów: brak
+K4 Gałka: przekrój: encji 5, więzów 17, FIX 0, encje bez więzów: brak
+K4 Gałka: nadlew: encji 1, więzów 3, FIX 0, encje bez więzów: brak
+K4 Gałka: wycięcie X: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Gałka: wycięcie Y: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Powieka górna: przekrój: encji 7, więzów 20, FIX 0, encje bez więzów: brak
+K4 Powieka górna: mostek: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Powieka górna: ucho: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Powieka górna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: przekrój: encji 7, więzów 20, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: ucho: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Powieka dolna: punkt osi: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Słupek: przekrój: encji 6, więzów 19, FIX 0, encje bez więzów: brak
+K4 Słupek: punkt trzpienia: encji 1, więzów 1, FIX 0, encje bez więzów: brak
+K4 Słupek: kanał nakrętki M5: encji 5, więzów 15, FIX 0, encje bez więzów: brak
+K4 Słupek: punkt M4: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Obejma: przekrój: encji 6, więzów 18, FIX 0, encje bez więzów: brak
+K4 Obejma: ucho: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Obejma: szczelina: encji 4, więzów 12, FIX 0, encje bez więzów: brak
+K4 Obejma: punkt śruby: encji 1, więzów 2, FIX 0, encje bez więzów: brak
+K4 Obejma: kieszeń nakrętki: encji 6, więzów 18, FIX 0, encje bez więzów: brak
+```
+
+**Wynik: dokończenie Ramy i Gałki przyjęte** (27/27 szkiców w pełni zdefiniowanych, 0 Fix, K3 bez stałych spoza listy).
