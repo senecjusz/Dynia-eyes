@@ -1,6 +1,6 @@
 {
-  "zadanie": "E6 duże oko, etap 1 (dokument, elementy, plan)",
-  "zapis": "2026-10-22T21:11Z, wykonawca CAD",
+  "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
+  "zapis": "2026-10-23T~01:00Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,15 +13,16 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 4,
-    "features": 0,
-    "getFeatures": 0
+    "total": 5,
+    "features": 1,
+    "getFeatures": 1
   },
   "liczniki": {
     "GET /documents/{id}": 3000,
     "GET /documents (szukaj)": 1000,
     "POST /documents": 200,
-    "POST /variables/d/{id}/w/{id}/variablestudio": 3000
+    "POST /variables/d/{id}/w/{id}/variablestudio": 3000,
+    "GET /partstudios/.../features": 100
   },
   "log": [
     [
@@ -59,7 +60,27 @@
     {
       "t": "2026-10-22T21:10:52Z",
       "uwaga": "Part Studio 1 -> „Duże oko v1” w UI (menu zakładki, Rename); API nie zmienia nazwy elementu"
+    },
+    [
+      "2026-10-23T~01:00Z",
+      "GET /features (stan wyjściowy E6.2: 0 operacji, 4 domyślne)",
+      200,
+      100,
+      true
+    ],
+    {
+      "t": "2026-10-23T~01:00Z",
+      "uwaga": "plan e6.2-plan-zmienne-layout.md zastępuje e6-plan.md (brief E6.2); 22.10 plan e6-plan.md odrzucony przez orkiestratora"
     }
   ],
-  "stop": null
+  "stop": null,
+  "etap1": {
+    "budzet": {
+      "total": 80,
+      "getFeatures": 8
+    },
+    "wywolania": 1,
+    "getFeatures": 1
+  },
+  "mv": "c988156c6aa5ff068434adb9"
 }
