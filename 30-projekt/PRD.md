@@ -26,10 +26,10 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 | Góra–dół | cel ±25°, minimum ±20° |
 | Narożniki | pełny zakres każdej osi przy drugiej w środku; w narożnikach (obie osie naraz) zakres elastyczny, mniejszy dopuszczalny |
 | Powieki | od pełnego zamknięcia do pełnego otwarcia; **całkowicie otwarte** nie zasłaniają źrenicy w zakresie ruchu (nie dotyczy mrugania i przymykania); wielkość źrenicy projektant przyjmuje jako założenie do akceptacji użytkownika |
-| Napęd powiek | **A: obie powieki na jednym serwie.** B (dolna nieruchoma, rusza się tylko górna) albo C (osobne serwo na powiekę) – tylko za zgodą użytkownika; projektant wraca z porównaniem, nie wybiera sam |
+| Napęd powiek | **A: obie powieki na jednym serwie.** Jeśli A się nie mieści – **B (dolna nieruchoma, rusza się tylko górna)**, zatwierdzone przez użytkownika z góry 24.10. C (osobne serwo na powiekę) tylko za zgodą użytkownika |
 | Serwa | MG90S: 3 (A, B) albo 4 (C) |
 | Otwór w dyni | ≤ Ø80; z zewnątrz prosty rant ≤ 2 mm poza otwór |
-| Montaż | skręcane i kalibrowane na stole; w dyni **wcisk w otwór**, awaryjnie mocowanie od środka (np. wkręty do drewna w miąższ); nic ponad to bez uzasadnienia (masa modułu, co go wyciąga) |
+| Montaż | skręcane i kalibrowane na stole; **moduł wkładany od środka dyni** (tuba w otworze, kołnierz z łapami od środka, wkręty do drewna 4 × 30–40 w miąższ), z zewnątrz **maskownica** krawędzi otworu ≤ 2 mm poza otwór (zmiana użytkownika 24.10, zastępuje wcisk od zewnątrz); nic ponad to bez uzasadnienia |
 | Wyjmowanie | mile widziane, nie wymagane – odpada, jeśli komplikuje (zastosowanie praktycznie jednorazowe) |
 | Kolor | mechanizm pomarańczowy, gałka biała |
 | Druk | do niedzieli wieczorem tylko A1 mini – każda część ≤ 180 mm |
