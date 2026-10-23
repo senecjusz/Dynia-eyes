@@ -1,5 +1,16 @@
 {
- "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
+ "zadanie": {
+  "id": "E6.3 etap 2a",
+  "brief": "30-projekt/brief-e6.3-cad-etap2a.md",
+  "stan": "czekam na decyzje orkiestratora – bez zapisów w Onshape",
+  "zrobione": [
+   "dokończenie etapu 1: Rama, Gałka (8b3ee9e), powieki (6542d15)",
+   "plan Płyty e6.3-plan-plyta.md (9fbd433)"
+  ],
+  "dlaczego_stoje": "plan Płyty (D1–D6) wymaga zatwierdzenia przed pierwszym zapisem (AGENTS: plan drzewa → zgoda orkiestratora); budżet 2a: 103/160 zużyte, Płyta + reszta etapu ok. 213 → prośba o ~230 albo przeniesienie Ramion/przyrządów/K9 do 2b; otwarte sprawy A (fazka uch Ramy), B (nadlewy a druk Gałki), kąciki bez Mirror (K5)",
+  "wtle": "cron e343f71c co 10 min – kontrola sesji Onshape bez /api/",
+  "aktualizacja": "2026-10-23T07:47:20Z"
+ },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
   "did": "b8cc184e37d6a8dbfb63c30b",
@@ -320,7 +331,7 @@
    false
   ]
  ],
- "stop": "etap 1 zakończony po poprawce K9; nowy eksport 3MF ręcznie (licznik translations 10)",
+ "stop": null,
  "etap1": {
   "budzet": {
    "total": 180,
@@ -1971,6 +1982,15 @@
     "K6": "PG 13, PD 11 (≤ 15)",
     "K8": "szkice na płaszczyznach LINE_ANGLE / offset / płaszczyznach krawędzi"
    }
+  },
+  "licznik": {
+   "n_total": 277,
+   "etap2a": 103,
+   "budzet": 160,
+   "getFeatures_etap2a": 3,
+   "budzetGetFeatures": 6,
+   "rok": 835,
+   "czas": "2026-10-23T07:47:20Z"
   }
  }
 }
