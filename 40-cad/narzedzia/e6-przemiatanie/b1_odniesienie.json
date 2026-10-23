@@ -1,0 +1,33 @@
+{
+  "_opis": "Wariant odniesienia v3.1 (orkiestrator: kulkaM5H 7, obudowa M5 Ø12). Wymiary obudów ZAŁOŻONE do czasu pomiaru B1; zastąpić zmierzonymi. cokol/cokolR to projekt (cokół pod kołnierzem czopu), nie pomiar.",
+  "M2": {
+    "kula_D": 4.8,
+    "h": 4.0,
+    "gniazdo_D": 7.0,
+    "gniazdo_H": 6.0,
+    "trzon_D": 5.0,
+    "obudowa_L": 9.0,
+    "gwint_obudowy_gl": 4.0,
+    "kat_do_oporu": 30.0,
+    "sila_wypiecia_N": null,
+    "cokol": 1.0,
+    "cokolR": 2.0
+  },
+  "M5": {
+    "znaczenie": "gwint czopa M5",
+    "kula_D": 8.0,
+    "h": 7.0,
+    "gniazdo_D": 12.0,
+    "gniazdo_H": 10.0,
+    "trzon_D": 8.0,
+    "obudowa_L": 12.0,
+    "gwint_obudowy_gl": 6.0,
+    "kolnierz_D": 8.0,
+    "gwint_czopa_L": 6.0,
+    "kat_do_oporu": 25.0,
+    "cokol": 1.0,
+    "cokolR": 4.0
+  },
+  "koncowkaM5_D": 8.0,
+  "kabelStrona": "przeciwna"
+}

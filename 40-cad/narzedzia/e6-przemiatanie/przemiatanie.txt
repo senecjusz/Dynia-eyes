@@ -1,0 +1,39 @@
+płyta okna: 18 węzłów wycięcia; najwęższy mostek (-10, 14.72, 1.86)
+gałka: 433 s
+powieki: 548 s
+gałka × powieki: 1187 s
+zagęszczenie: 1256 s
+== 10 najciaśniejszych par w zakresie pracy
+   0.617  G drut                           – gałka R30 (dowolne położenie)        ['powieka G', 0.5]
+   0.648  D drut                           – ramię wspornika 200                  ['powieka D', np.float64(5.35)]
+   0.690  G ramię serwa                    – rura                                 ['powieka G', np.float64(6.7)]
+   0.730  X obudowa M2                     – płyta okna                           ['gałka', np.float64(25.0), np.float64(-15.0)]
+   0.753  Y obudowa M2                     – płyta okna                           ['gałka', np.float64(25.0), np.float64(-15.0)]
+   0.793  D drut                           – gałka R30 (dowolne położenie)        ['powieka D', 0.5]
+   0.900  Y pręt Ø4,5                      – czasza górnej                        ['gałka×powieka G', np.float64(-24.25), np.float64(-7.0), np.float64(56.0)]
+   0.900  Y obudowa M2                     – piasta M2 Y                          ['gałka', np.float64(25.0), np.float64(-14.85)]
+   0.900  X obudowa M2                     – piasta M2 X                          ['gałka', np.float64(25.0), np.float64(-14.55)]
+   0.934  G piasta ramienia                – rura                                 ['powieka G', 0.5]
+== 10 najciaśniejszych par w całym zakresie (do ograniczników)
+   0.551  Y obudowa M2                     – płyta okna                           ['gałka', 23.733, -18.183]
+   0.554  X obudowa M2                     – płyta okna                           ['gałka', 28.027, -18.017]
+   0.605  G drut                           – gałka R30 (dowolne położenie)        ['powieka G', -0.25]
+   0.627  Y pręt Ø4,5                      – czasza górnej                        ['gałka×powieka G', -28.047, -8.794, 56.75]
+   0.648  D drut                           – ramię wspornika 200                  ['powieka D', np.float64(5.35)]
+   0.688  kardan dolny                     – piasta M2 Y                          ['gałka', 0.0, 18.049]
+   0.690  G ramię serwa                    – rura                                 ['powieka G', np.float64(6.7)]
+   0.696  Słupek                           – piasta M2 Y                          ['gałka', 0.0, 18.049]
+   0.778  Y obudowa M2                     – piasta M2 Y                          ['gałka', 28.027, -18.017]
+   0.779  D drut                           – gałka R30 (dowolne położenie)        ['powieka D', -0.25]
+== styki zamierzone (ramię powieki – słupek stopu): w pracy / cały zakres
+   0.032 / -0.057  G ramię serwa – słupek stopu G zamknięcia (styk zamierzony)
+   0.038 / -0.057  G ramię serwa – słupek stopu G otwarcia (styk zamierzony)
+   0.047 / -0.057  D ramię serwa – słupek stopu D zamknięcia (styk zamierzony)
+   0.063 / -0.057  D ramię serwa – słupek stopu D otwarcia (styk zamierzony)
+   1.437 /  1.437  D piasta ramienia – słupek stopu D zamknięcia (styk zamierzony)
+   1.437 /  1.437  D piasta ramienia – słupek stopu D otwarcia (styk zamierzony)
+   1.662 /  1.662  G piasta ramienia – słupek stopu G zamknięcia (styk zamierzony)
+   1.662 /  1.662  G piasta ramienia – słupek stopu G otwarcia (styk zamierzony)
+okno – Słupek (styk zamierzony): zapas w pracy [0.5605, -0.0, -15.0]
+powieki G–D i kołnierz: {'szczelina_min': np.float64(0.6), 'przy_x': np.float64(30.9), 'luz_osi': 0.4, 'po_luzie': np.float64(0.2), 'kolnierz_rant': np.float64(1.023)}
+mostki płyty okna (φ, r zewn., szerokość): [(-15, 15.47, 2.35), (-10, 14.72, 1.86), (-5, 14.72, 2.01), (0, 14.8, 2.14), (5, 14.81, 2.1), (10, 14.81, 1.95), (15, 15.47, 2.35), (55, 15.96, 2.92), (60, 15.02, 2.44), (65, 14.68, 2.61), (70, 14.66, 3.13), (75, 14.66, 3.6), (80, 14.74, 4.0), (85, 14.82, 4.27), (90, 14.83, 4.34), (95, 14.9, 4.35), (100, 14.99, 4.25), (105, 15.47, 4.41)]
