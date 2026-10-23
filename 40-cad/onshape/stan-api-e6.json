@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T02:50Z, wykonawca CAD",
+  "zapis": "2026-10-23T05:15Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 13,
-    "features": 3,
+    "total": 16,
+    "features": 5,
     "getFeatures": 1
   },
   "liczniki": {
@@ -124,18 +124,39 @@
       200,
       3000,
       false
+    ],
+    [
+      "2026-10-23T05:14:2xZ",
+      "GET …/currentmicroversion",
+      200,
+      null,
+      false
+    ],
+    [
+      "2026-10-23T05:14:27Z",
+      "POST featureid Layout: przekrój (osY zwykła, bez długości) – znacznik JEST",
+      200,
+      null,
+      false
+    ],
+    [
+      "2026-10-23T05:14:39Z",
+      "POST featureid Layout: przekrój (osY zwykła z długością) – znacznik znika",
+      200,
+      null,
+      false
     ]
   ],
-  "stop": "znacznik wymaga widocznego panelu – czeka na użytkownika (otwarcie sesji Wykonawca CAD w oknie); szkic testowy Layout: przekrój (FXtwYQCQ4yOgcrx_0) zostaje celowo bez wymiaru osY",
+  "stop": "test znacznika zaliczony; czekam na decyzję orkiestratora w sprawie encji pomocniczych w layoucie",
   "etap1": {
     "budzet": {
       "total": 80,
       "getFeatures": 8
     },
-    "wywolania": 9,
+    "wywolania": 12,
     "getFeatures": 1
   },
-  "mv": "po zapisie szkicu Layout: przekrój (odczyt z odpowiedzi zapisu utracony przy przeładowaniu karty)",
+  "mv": "e7863df5560c4b8fa5f6cf89",
   "variableStudio": {
     "liczba": 177,
     "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
@@ -167,6 +188,18 @@
       "t": "2026-10-23T02:49:51Z",
       "opis": "po przeładowaniu: bramka odtworzona, timer wstawiony; visibilityState hidden; baner timeout zniknął; wiersz szkicu computed. Edycja featureid tej samej treści (bez wymiaru osY): HTTP 200, featureStatus OK, zapis 971 ms; odpytywanie drzewa co 100 ms przez 5000 ms: ikona underdefined BRAK, podpowiedź „Layout: przekrój [Sketch]”",
       "wynik": "NIEZALICZONY – znacznik nie działa przy ukrytym panelu"
-    }
+    },
+    "proba3": {
+      "t": "2026-10-23T05:14:27Z",
+      "opis": "panel widoczny (zrzut użytkownika; visibilityState w webview i tak „hidden” – nie jest wskaźnikiem). Edycja: osY jako ZWYKŁA linia bez wymiaru długości",
+      "wynik": "ikona underdefined JEST, podpowiedź „Layout: przekrój [Sketch] is not fully defined”, od razu po odpowiedzi zapisu (0 ms przy odpytywaniu co 100 ms)"
+    },
+    "proba4": {
+      "t": "2026-10-23T05:14:39Z",
+      "opis": "edycja: osY zwykła z wymiarem #obwiedniaR",
+      "wynik": "ikona znika, podpowiedź „Layout: przekrój [Sketch]”, 0 ms po odpowiedzi (odpytywanie co 50 ms), zapis 486 ms"
+    },
+    "wniosek": "ZALICZONY. Przyczyna wcześniejszych prób: szkic miał wyłącznie encje pomocnicze (construction) – Onshape nie liczy ich do dookreślenia, więc znacznik nie pojawia się dla niedookreślonej linii pomocniczej. Ukryty panel nie był przyczyną. Skutek: szkice layoutu z samymi encjami pomocniczymi nie są sprawdzalne znacznikiem – potrzebna decyzja orkiestratora (K4 z JSON albo encje zwykłe w layoucie).",
+    "limitMs": 5000
   }
 }
