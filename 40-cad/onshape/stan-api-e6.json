@@ -2,14 +2,14 @@
  "zadanie": {
   "id": "E6.3 etap 2a",
   "brief": "30-projekt/brief-e6.3-cad-etap2a.md",
-  "stan": "czekam na decyzje orkiestratora – bez zapisów w Onshape",
+  "stan": "zmiana B gotowa, K1 zamknięte; dalej Płyta wg zatwierdzonego planu (D1: oba ucha M2, D2: słupki ze stożkiem 45°, D5, D4 foldery podgrup)",
   "zrobione": [
    "dokończenie etapu 1: Rama, Gałka (8b3ee9e), powieki (6542d15)",
    "plan Płyty e6.3-plan-plyta.md (9fbd433)"
   ],
   "dlaczego_stoje": "plan Płyty (D1–D6) wymaga zatwierdzenia przed pierwszym zapisem (AGENTS: plan drzewa → zgoda orkiestratora); budżet 2a: 103/160 zużyte, Płyta + reszta etapu ok. 213 → prośba o ~230 albo przeniesienie Ramion/przyrządów/K9 do 2b; otwarte sprawy A (fazka uch Ramy), B (nadlewy a druk Gałki), kąciki bez Mirror (K5)",
   "wtle": "cron e343f71c co 10 min – kontrola sesji Onshape bez /api/",
-  "aktualizacja": "2026-10-23T07:47:20Z"
+  "aktualizacja": "2026-10-23T07:50:49Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -24,9 +24,9 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 277,
-  "features": 183,
-  "getFeatures": 8
+  "total": 283,
+  "features": 184,
+  "getFeatures": 9
  },
  "liczniki": {
   "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
@@ -632,7 +632,10 @@
   "Szkic nie może leżeć na płaszczyźnie utworzonej później w drzewie (nowe operacje idą na koniec) – przy poprawce usuwać i tworzyć w kolejności.",
   "Revolve częściowy: endBound BLIND; wybór obszaru szkicu przez qLargest/qSmallest działa, qContainsPoint na obszarze szkicu nie zadziałał.",
   "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół.",
-  "Szkic, który po zmianie zmiennej traci rozwiązanie, może zostać w starej geometrii bez ostrzeżenia i z featureStatus OK – K9 musi mierzyć bryły (bodydetails), nie tylko stany i ikony."
+  "Szkic, który po zmianie zmiennej traci rozwiązanie, może zostać w starej geometrii bez ostrzeżenia i z featureStatus OK – K9 musi mierzyć bryły (bodydetails), nie tylko stany i ikony.",
+  "GET /features z includeGeometryIds=false zwraca puste featureStates – do K1 wołać bez tego parametru",
+  "Variable Studio liczy zmienne po kolei – zmienna może odwołać się tylko do zmiennych wyżej na liście",
+  "LINE_ANGLE: kierunki osi szkicu niespójne między kątami – każde cięcie sprawdzać bodydetails"
  ],
  "zmienne": {
   "liczba": 199,
@@ -701,8 +704,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 277,
-  "suma": 835
+  "E6": 283,
+  "suma": 841
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -752,12 +755,12 @@
   "plan": "40-cad/onshape/e6.3-plan-dokonczenie-etapu1.md",
   "start_n_total": 174,
   "budzet": {
-   "total": 160,
-   "getFeatures": 6
+   "total": 260,
+   "getFeatures": 7
   },
   "zuzyte": {
-   "total": 103,
-   "getFeatures": 3
+   "total": 109,
+   "getFeatures": 4
   },
   "log": [
    {
@@ -1984,13 +1987,26 @@
    }
   },
   "licznik": {
-   "n_total": 277,
-   "etap2a": 103,
-   "budzet": 160,
-   "getFeatures_etap2a": 3,
-   "budzetGetFeatures": 6,
-   "rok": 835,
-   "czas": "2026-10-23T07:47:20Z"
+   "etap2a": 109,
+   "budzet": 260,
+   "getFeatures_etap2a": 4,
+   "budzetGetFeatures": 7,
+   "rok": 841,
+   "czas": "2026-10-23T07:50:49Z"
+  },
+  "zmianaB": {
+   "czas": "2026-10-23T07:50:49Z",
+   "decyzja": "orkiestrator 23.10: nadlewy Gałki spodem na płaszczyźnie krawędzi, wys. 6 w górę, nadlewR 23,5",
+   "zmienne": "nadlewR 24 → 23,5; nowa nadlewH 6; nadlewZ2 = #kulaR * cos(#czaszaKat) (−12,68); nadlewZ1 = #nadlewZ2 + #nadlewH; operacje bez zmian",
+   "blad": "pierwszy zapis: nadlewZ1 przed nadlewZ2 na liście VS → „Variable not found” w wyciągnięciu i otworze (+ lustra); poprawka: kolejność zmiennych",
+   "pomiar": "nadlewy R3,5 w (±20,35; −11,75) = R23,5, z −12,68…−6,68; otwory R1,3 z −12,68…−7,28 (5,4); spód w płaszczyźnie krawędzi; Gałka 19 ścian"
+  },
+  "K1": {
+   "plik": "odbior-e6/k1-e6.3.json",
+   "wywolanie": "GET /features bez parametrów (jak w etapie 1)",
+   "wynik": "114 operacji, 118 featureStates, 0 ≠ OK, rollback 114 (koniec)",
+   "przyczyna": "parametr includeGeometryIds=false usuwa featureStates z odpowiedzi",
+   "k1k8": "odbior-e6/k1-k8-e6.3.json: K1 0, K2 38/38, K3 0/265, K4 0"
   }
  }
 }
