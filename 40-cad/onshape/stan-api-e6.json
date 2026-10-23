@@ -13,26 +13,26 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 206,
-  "features": 122,
-  "getFeatures": 6
+  "total": 277,
+  "features": 183,
+  "getFeatures": 8
  },
  "liczniki": {
   "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
-   "remaining": 95,
-   "t": "2026-10-23T07:16:32.089Z"
+   "remaining": 93,
+   "t": "2026-10-23T07:37:52.680Z"
   },
   "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": {
-   "remaining": 2997,
-   "t": "2026-10-23T07:14:43.670Z"
+   "remaining": 2996,
+   "t": "2026-10-23T07:36:13.325Z"
   },
   "GET /documents/d/{id}/w/{id}/currentmicroversion": {
    "remaining": 400,
    "t": "2026-10-23T07:03:25.282Z"
   },
   "POST /partstudios/d/{id}/w/{id}/e/{id}/features": {
-   "remaining": 2998,
-   "t": "2026-10-23T07:14:13.823Z"
+   "remaining": 2992,
+   "t": "2026-10-23T07:36:51.876Z"
   },
   "GET /partstudios/d/{id}/w/{id}/e/{id}/featurespecs": {
    "remaining": 99,
@@ -47,8 +47,8 @@
    "t": "2026-10-23T07:11:45.283Z"
   },
   "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails": {
-   "remaining": 476,
-   "t": "2026-10-23T07:14:45.191Z"
+   "remaining": 466,
+   "t": "2026-10-23T07:36:53.331Z"
   },
   "GET /parts/d/{id}/w/{id}/e/{id}/partid/JRD/boundingboxes": {
    "remaining": 500,
@@ -67,8 +67,8 @@
    "t": "2026-10-23T05:46:20.183Z"
   },
   "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}": {
-   "remaining": 2997,
-   "t": "2026-10-23T05:45:41.829Z"
+   "remaining": 2998,
+   "t": "2026-10-23T07:33:51.038Z"
   },
   "GET /parts/d/{id}/w/{id}/e/{id}/partid/J+D/boundingboxes": {
    "remaining": 492,
@@ -95,8 +95,8 @@
    "t": "2026-10-23T06:06:39.125Z"
   },
   "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback": {
-   "remaining": 98,
-   "t": "2026-10-23T07:10:39.743Z"
+   "remaining": 95,
+   "t": "2026-10-23T07:37:51.515Z"
   }
  },
  "log": [
@@ -329,7 +329,7 @@
   "wywolania": 170,
   "getFeatures": 5
  },
- "mv": "b1ba52c13923afd7183fed3d",
+ "mv": "a3b1c6ad42fe9fb00064b5d7",
  "variableStudio": {
   "liczba": 177,
   "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
@@ -441,7 +441,43 @@
   "revRimX": "F7Olv1S8n3w9tP5_2",
   "plRimY": "Fs7QBAeazT05TwX_2",
   "skRimY": "F01rg56Dam6PRyF_2",
-  "revRimY": "FmIpIK46xDDL5pZ_2"
+  "revRimY": "FmIpIK46xDDL5pZ_2",
+  "plWycG": "FBF1AuTk6ArwUts_4",
+  "skWycG": "FA7eFECtrb3mtav_4",
+  "revWycG": "F4uo9wq7UknuKTf_4",
+  "plPrzG": "FowaoAz8dzSPY8K_4",
+  "skPrzG": "F3AQR5KxEqnegSx_4",
+  "revPrzG": "F5uOMljfUcYHfR9_4",
+  "plZacG": "FgvV3sUV9aaM1D4_4",
+  "skZacG": "FG9P4moDAzKVmnp_4",
+  "exZacG": "FQJWQfxgOB6oeLJ_4",
+  "holeZacG": "Fcy5msyGTv802zE_4",
+  "skKacG": [
+   "Fhicp7kc8G89g9Z_4",
+   "FTt6tasDFuNMgsx_4",
+   "FSFk9wBRl2kXfOm_4"
+  ],
+  "revKacG": [
+   "FzJROMZZbbjVytb_4",
+   "F2VelrJ4e8flspL_4",
+   "F8Wc5dwqv9UrNBa_4"
+  ],
+  "plPrzD": "F6Hw4JOh6ypw2qX_5",
+  "skPrzD": "FQUZtXMg9S3BLoz_5",
+  "revPrzD": "FFL0LmdDOLg34sz_5",
+  "skZacD": "FAiNoDs7Ix10PHQ_5",
+  "exZacD": "FZzpmx40hburRel_5",
+  "holeZacD": "FLEB32v2qN3jSGn_5",
+  "skKacD": [
+   "Fqpk1RGl0ZLPyiA_5",
+   "Fe2IJMbo5Gnkxjj_5",
+   "FdtVlx8bHNKZTQf_5"
+  ],
+  "revKacD": [
+   "FG5Ttoc1bt46oz3_5",
+   "FkzOX3s23T6OPht_5",
+   "FMdzSaaMlDieO0G_5"
+  ]
  },
  "testBramki": {
   "t": "2026-10-23T02:44:35Z",
@@ -654,8 +690,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 206,
-  "suma": 764
+  "E6": 277,
+  "suma": 835
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -709,8 +745,8 @@
    "getFeatures": 6
   },
   "zuzyte": {
-   "total": 32,
-   "getFeatures": 1
+   "total": 103,
+   "getFeatures": 3
   },
   "log": [
    {
@@ -936,6 +972,503 @@
     "method": "GET",
     "status": 200,
     "remaining": 95
+   },
+   {
+    "t": "2026-10-23T07:22:21.569Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 97
+   },
+   {
+    "t": "2026-10-23T07:23:32.365Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:23:36.084Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:23:37.328Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:23:51.322Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:23:52.013Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "GET",
+    "status": 200,
+    "remaining": 94
+   },
+   {
+    "t": "2026-10-23T07:24:12.023Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:24:13.390Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:24:14.638Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:24:30.581Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:24:32.080Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 475
+   },
+   {
+    "t": "2026-10-23T07:26:00.044Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:26:15.732Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:26:40.978Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:27:28.793Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:27:29.939Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:27:30.704Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:27:43.789Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:27:46.755Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:27:48.354Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 474
+   },
+   {
+    "t": "2026-10-23T07:28:43.303Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:30:07.986Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:30:09.428Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:30:10.148Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 473
+   },
+   {
+    "t": "2026-10-23T07:30:56.413Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:30:58.458Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:31:00.084Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:31:01.689Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:31:02.941Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:31:04.700Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:31:20.056Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:31:42.911Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 472
+   },
+   {
+    "t": "2026-10-23T07:32:11.280Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:32:12.623Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:32:14.014Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:32:15.258Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:32:25.728Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:32:49.602Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:33:00.266Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 471
+   },
+   {
+    "t": "2026-10-23T07:33:18.643Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:33:49.865Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:33:50.621Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:33:51.531Z",
+    "k": "DELETE /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "DELETE",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:34:05.511Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:34:07.087Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:34:08.522Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:34:09.839Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:34:11.786Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:34:13.458Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2992
+   },
+   {
+    "t": "2026-10-23T07:34:14.171Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 470
+   },
+   {
+    "t": "2026-10-23T07:35:25.546Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 96
+   },
+   {
+    "t": "2026-10-23T07:35:29.444Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:35:30.159Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:35:32.506Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:35:33.229Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 469
+   },
+   {
+    "t": "2026-10-23T07:35:51.805Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:35:53.305Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 468
+   },
+   {
+    "t": "2026-10-23T07:36:13.891Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/featureid/{id}",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:36:15.417Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 467
+   },
+   {
+    "t": "2026-10-23T07:36:39.901Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 3000
+   },
+   {
+    "t": "2026-10-23T07:36:41.798Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2999
+   },
+   {
+    "t": "2026-10-23T07:36:43.240Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2998
+   },
+   {
+    "t": "2026-10-23T07:36:45.101Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2997
+   },
+   {
+    "t": "2026-10-23T07:36:46.548Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2996
+   },
+   {
+    "t": "2026-10-23T07:36:47.928Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2995
+   },
+   {
+    "t": "2026-10-23T07:36:49.257Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2994
+   },
+   {
+    "t": "2026-10-23T07:36:50.952Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2993
+   },
+   {
+    "t": "2026-10-23T07:36:52.615Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "POST",
+    "status": 200,
+    "remaining": 2992
+   },
+   {
+    "t": "2026-10-23T07:36:53.429Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/bodydetails",
+    "method": "GET",
+    "status": 200,
+    "remaining": 466
+   },
+   {
+    "t": "2026-10-23T07:37:51.664Z",
+    "k": "POST /partstudios/d/{id}/w/{id}/e/{id}/features/rollback",
+    "method": "POST",
+    "status": 200,
+    "remaining": 95
+   },
+   {
+    "t": "2026-10-23T07:37:53.032Z",
+    "k": "GET /partstudios/d/{id}/w/{id}/e/{id}/features",
+    "method": "GET",
+    "status": 200,
+    "remaining": 93
    }
   ],
   "kontrolaZapisow": [
@@ -1091,6 +1624,279 @@
     "tytul": "Gałka: wycięcie Y [Sketch] (Hidden)",
     "under": false,
     "mv": "35d2bbf1177a9b97c866fa12"
+   },
+   {
+    "t": "2026-10-23T07:23:35.085Z",
+    "nazwa": "Powieka górna: płaszczyzna wycięcia",
+    "featureId": "FBF1AuTk6ArwUts_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:23:36.455Z",
+    "nazwa": "Powieka górna: wycięcie",
+    "featureId": "FA7eFECtrb3mtav_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:23:51.674Z",
+    "nazwa": "Powieka górna: wycięcie",
+    "featureId": "FA7eFECtrb3mtav_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:24:12.376Z",
+    "nazwa": "Powieka górna: płaszczyzna przycięcia przy zaczepie",
+    "featureId": "FowaoAz8dzSPY8K_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:24:13.750Z",
+    "nazwa": "Powieka górna: przycięcie przy zaczepie",
+    "featureId": "F3AQR5KxEqnegSx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:24:30.977Z",
+    "nazwa": "Powieka górna: przycięcie przy zaczepie",
+    "featureId": "F3AQR5KxEqnegSx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:27:45.929Z",
+    "nazwa": "Powieka górna: wycięcie",
+    "featureId": "FA7eFECtrb3mtav_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:27:47.260Z",
+    "nazwa": "Powieka górna: przycięcie przy zaczepie",
+    "featureId": "F3AQR5KxEqnegSx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:28:51.455Z",
+    "nazwa": "Powieka górna: płaszczyzna zaczepu",
+    "featureId": "FgvV3sUV9aaM1D4_4",
+    "featureStatus": "OK",
+    "under": null
+   },
+   {
+    "t": "2026-10-23T07:30:08.485Z",
+    "nazwa": "Powieka górna: zaczep",
+    "featureId": "FG9P4moDAzKVmnp_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:30:09.838Z",
+    "nazwa": "Powieka górna: zaczep (wyciągnięcie)",
+    "featureId": "FQJWQfxgOB6oeLJ_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:30:56.768Z",
+    "nazwa": "Powieka górna: otwór drutu",
+    "featureId": "Fcy5msyGTv802zE_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:30:58.873Z",
+    "nazwa": "Powieka górna: kąciki",
+    "featureId": "Fhicp7kc8G89g9Z_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:31:00.479Z",
+    "nazwa": "Powieka górna: kącik 1 (cięcie)",
+    "featureId": "FzJROMZZbbjVytb_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:31:02.051Z",
+    "nazwa": "Powieka górna: kącik 2 (cięcie)",
+    "featureId": "FMYcZQEzoUny4mj_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:31:03.287Z",
+    "nazwa": "Powieka górna: kącik 3 (cięcie)",
+    "featureId": "F4B9fnxDCSHAlQe_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:32:11.639Z",
+    "nazwa": "Powieka górna: kącik 1 (cięcie)",
+    "featureId": "FzJROMZZbbjVytb_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:32:12.987Z",
+    "nazwa": "Powieka górna: kącik 2 (cięcie)",
+    "featureId": "FMYcZQEzoUny4mj_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:32:14.399Z",
+    "nazwa": "Powieka górna: kącik 3 (cięcie)",
+    "featureId": "F4B9fnxDCSHAlQe_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:05.890Z",
+    "nazwa": "Powieka górna: kącik 1",
+    "featureId": "Fhicp7kc8G89g9Z_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:07.452Z",
+    "nazwa": "Powieka górna: kącik 1 (cięcie)",
+    "featureId": "FzJROMZZbbjVytb_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:08.878Z",
+    "nazwa": "Powieka górna: kącik 2",
+    "featureId": "FTt6tasDFuNMgsx_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:10.360Z",
+    "nazwa": "Powieka górna: kącik 2 (cięcie)",
+    "featureId": "F2VelrJ4e8flspL_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:12.171Z",
+    "nazwa": "Powieka górna: kącik 3",
+    "featureId": "FSFk9wBRl2kXfOm_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:34:13.825Z",
+    "nazwa": "Powieka górna: kącik 3 (cięcie)",
+    "featureId": "F8Wc5dwqv9UrNBa_4",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:29.827Z",
+    "nazwa": "Powieka dolna: płaszczyzna przycięcia przy zaczepie",
+    "featureId": "F6Hw4JOh6ypw2qX_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:31.312Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie",
+    "featureId": "FQUZtXMg9S3BLoz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:32.866Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie (cięcie)",
+    "featureId": "FFL0LmdDOLg34sz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:35:52.257Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie",
+    "featureId": "FQUZtXMg9S3BLoz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:14.326Z",
+    "nazwa": "Powieka dolna: przycięcie przy zaczepie",
+    "featureId": "FQUZtXMg9S3BLoz_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:40.480Z",
+    "nazwa": "Powieka dolna: zaczep",
+    "featureId": "FAiNoDs7Ix10PHQ_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:42.188Z",
+    "nazwa": "Powieka dolna: zaczep (wyciągnięcie)",
+    "featureId": "FZzpmx40hburRel_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:43.744Z",
+    "nazwa": "Powieka dolna: otwór drutu",
+    "featureId": "FLEB32v2qN3jSGn_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:45.493Z",
+    "nazwa": "Powieka dolna: kącik 1",
+    "featureId": "Fqpk1RGl0ZLPyiA_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:46.905Z",
+    "nazwa": "Powieka dolna: kącik 1 (cięcie)",
+    "featureId": "FG5Ttoc1bt46oz3_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:48.334Z",
+    "nazwa": "Powieka dolna: kącik 2",
+    "featureId": "Fe2IJMbo5Gnkxjj_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:49.623Z",
+    "nazwa": "Powieka dolna: kącik 2 (cięcie)",
+    "featureId": "FkzOX3s23T6OPht_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:51.342Z",
+    "nazwa": "Powieka dolna: kącik 3",
+    "featureId": "FdtVlx8bHNKZTQf_5",
+    "featureStatus": "OK",
+    "under": false
+   },
+   {
+    "t": "2026-10-23T07:36:53.036Z",
+    "nazwa": "Powieka dolna: kącik 3 (cięcie)",
+    "featureId": "FMdzSaaMlDieO0G_5",
+    "featureStatus": "OK",
+    "under": false
    }
   ],
   "zmienne": [
@@ -1136,6 +1942,35 @@
    "K5": "Gałka: nadlew prawy FEATURE, otwór M3 nadlewu prawy FACE",
    "K6": "Rama 9, Gałka 7 (≤ 15)",
    "K8": "nowe szkice na: pł. uch Ramy tył, pł. nadlewów, Front, pł. wycięcia Y"
+  },
+  "powieki": {
+   "zbudowane": {
+    "Powieka górna": "wycięcie x −2…24 krawędź 75°; przycięcie x −31…−17 krawędź 88°; zaczep: płytka x −23,2…−20,8, oko R2 w (y 25,58; z −1,12), otwór Ø1,6 THROUGH; kąciki 3 pasma ×2 strony (0,25°/0,94°/3,6°)",
+    "Powieka dolna": "przycięcie x −trimG…−17 krawędź −87,5°; zaczep: oko R2 w (y −25,58; z −1,12), otwór Ø1,6; kąciki jw."
+   },
+   "odstepstwa": [
+    "Zakres ρ profili wycięć/przycięć/kącików: od osi X (ρ 0) do powiekaR1 + rantPowieki + luzOsiowy – plan podawał ρ od powiekaR1 − luzOsiowy, co trafia w czaszę tylko przy x ≈ 0 (przy |x| > 12,6 nic nie tnie). Błąd planu, poprawiony.",
+    "Kąciki: zamiast 1 szkicu × 3 obroty + Mirror – 3 szkice, każdy z parą prostokątów ±x (wymiary od origin tymi samymi zmiennymi), obroty symetryczne 2·kacikDi. Mirror FEATURE obrotów: „Could not pattern selected features” (także dla 1 obrotu; z dołączonym szkicem: INFO, brak cięcia po +x); Mirror FACE: „Failed to create pattern, check input”. K5: pary kącików nie są Mirror – do zatwierdzenia.",
+    "Płaszczyzna zaczepu na zewnętrznej ścianie płytki (x = zaczepX − zaczepT/2), wyciągnięcie zaczepT w +x – żeby Hole THROUGH startował od ściany płytki (Hole z płaszczyzny środkowej ciąłby tylko połowę).",
+    "Zaczep D na wspólnej płaszczyźnie „Powieka górna: płaszczyzna zaczepu” (ta sama x) – bez osobnej płaszczyzny.",
+    "Przycięcie D od x = −trimG (zaczepPasX1 −31 zahaczał 0,05 mm o ucho D przy x −31…−30,95)."
+   ],
+   "bledyWykonawcy": [
+    "3 szkice utworzone omyłkowo jako nowe (puste G.ids po wyjątku INFO → edycja bez featureId) – usunięte DELETE; dodano kontrolę featureId przed edycją",
+    "1 zbędny GET /features (07:23:52) – odczyt stanu jednej operacji"
+   ],
+   "orientacjaPlaszczyzn": "LINE_ANGLE z osX/Top: oś ρ szkicu odwrócona dla kątów 15° i 177,5°, zgodna dla 2°, 98,5°, 101,5°; na płaszczyźnie krawędzi G (98,5°) oś x szkicu = −X. Sprawdzane bodydetails po każdym cięciu.",
+   "odbior2": {
+    "features": "odbior-e6/features-e6.3-powieki.json (114 operacji, rollback na końcu)",
+    "znaczniki": "odbior-e6/znaczniki-e6.3-powieki.json",
+    "k": "odbior-e6/k1-k8-e6.3.json",
+    "K1": "featureStates w GET /features puste (także z rollbackiem na końcu, 114/114) – K1 z odpowiedzi zapisu (wszystkie OK) i skanu drzewa: 128 wierszy, 0 ikon błędu/ostrzeżenia/info",
+    "K2": "38 = 38, 0 niedookreślonych",
+    "K3": "265 wyrażeń, 0 naruszeń",
+    "K4": "0 Fix, 0 wolnych encji",
+    "K6": "PG 13, PD 11 (≤ 15)",
+    "K8": "szkice na płaszczyznach LINE_ANGLE / offset / płaszczyznach krawędzi"
+   }
   }
  }
 }

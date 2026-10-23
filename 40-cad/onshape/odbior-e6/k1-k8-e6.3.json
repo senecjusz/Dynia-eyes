@@ -1,0 +1,671 @@
+{
+ "K1": [
+  [
+   "Layout: przekrój",
+   null
+  ],
+  [
+   "Layout: czoło",
+   null
+  ],
+  [
+   "Layout: pł. powierzchni dyni",
+   null
+  ],
+  [
+   "Layout: pł. tyłu rury",
+   null
+  ],
+  [
+   "Layout: pł. uch Ramy tył",
+   null
+  ],
+  [
+   "Layout: pł. uch Ramy przód",
+   null
+  ],
+  [
+   "Layout: pł. spodu Słupka",
+   null
+  ],
+  [
+   "Layout: pł. ucha D",
+   null
+  ],
+  [
+   "Rama: przekrój",
+   null
+  ],
+  [
+   "Rama: korpus",
+   null
+  ],
+  [
+   "Rama: płaszczyzna boku",
+   null
+  ],
+  [
+   "Rama: bok osi",
+   null
+  ],
+  [
+   "Rama: podkładka boku osi",
+   null
+  ],
+  [
+   "Rama: płaszczyzna otworu osi",
+   null
+  ],
+  [
+   "Rama: punkt otworu osi",
+   null
+  ],
+  [
+   "Rama: otwór osi",
+   null
+  ],
+  [
+   "Rama: bok osi lewy",
+   null
+  ],
+  [
+   "Rama: fazka rantu",
+   null
+  ],
+  [
+   "Rama: otwór osi lewy",
+   null
+  ],
+  [
+   "Rama: ucha wewnętrzne",
+   null
+  ],
+  [
+   "Rama: ucha wewnętrzne (wyciągnięcie)",
+   null
+  ],
+  [
+   "Rama: punkty gwintów uch",
+   null
+  ],
+  [
+   "Rama: gwinty uch M3",
+   null
+  ],
+  [
+   "Rama: fazka uch",
+   null
+  ],
+  [
+   "Gałka: przekrój",
+   null
+  ],
+  [
+   "Gałka: czasza",
+   null
+  ],
+  [
+   "Gałka: płaszczyzna nadlewów",
+   null
+  ],
+  [
+   "Gałka: nadlew",
+   null
+  ],
+  [
+   "Gałka: nadlew (wyciągnięcie)",
+   null
+  ],
+  [
+   "Gałka: nadlew prawy",
+   null
+  ],
+  [
+   "Gałka: otwór M3 nadlewu",
+   null
+  ],
+  [
+   "Gałka: otwór M3 nadlewu prawy",
+   null
+  ],
+  [
+   "Gałka: wycięcie X",
+   null
+  ],
+  [
+   "Gałka: wycięcie X (cięcie)",
+   null
+  ],
+  [
+   "Gałka: płaszczyzna wycięcia Y",
+   null
+  ],
+  [
+   "Gałka: wycięcie Y",
+   null
+  ],
+  [
+   "Gałka: wycięcie Y (cięcie)",
+   null
+  ],
+  [
+   "Próbka P6: czasza",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna krawędzi",
+   null
+  ],
+  [
+   "Powieka górna: przekrój",
+   null
+  ],
+  [
+   "Powieka górna: czasza",
+   null
+  ],
+  [
+   "Powieka górna: rant",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna mostka",
+   null
+  ],
+  [
+   "Powieka górna: mostek",
+   null
+  ],
+  [
+   "Powieka górna: mostek (wyciągnięcie)",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna ucha",
+   null
+  ],
+  [
+   "Powieka górna: ucho",
+   null
+  ],
+  [
+   "Powieka górna: ucho (wyciągnięcie)",
+   null
+  ],
+  [
+   "Powieka górna: mostek i ucho lewe",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna osi",
+   null
+  ],
+  [
+   "Powieka górna: punkt osi",
+   null
+  ],
+  [
+   "Powieka górna: otwór osi",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna wycięcia",
+   null
+  ],
+  [
+   "Powieka górna: wycięcie",
+   null
+  ],
+  [
+   "Powieka górna: wycięcie (cięcie)",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna przycięcia przy zaczepie",
+   null
+  ],
+  [
+   "Powieka górna: przycięcie przy zaczepie",
+   null
+  ],
+  [
+   "Powieka górna: przycięcie przy zaczepie (cięcie)",
+   null
+  ],
+  [
+   "Powieka górna: płaszczyzna zaczepu",
+   null
+  ],
+  [
+   "Powieka górna: zaczep",
+   null
+  ],
+  [
+   "Powieka górna: zaczep (wyciągnięcie)",
+   null
+  ],
+  [
+   "Powieka górna: otwór drutu",
+   null
+  ],
+  [
+   "Powieka górna: kącik 1",
+   null
+  ],
+  [
+   "Powieka górna: kącik 1 (cięcie)",
+   null
+  ],
+  [
+   "Powieka górna: kącik 2",
+   null
+  ],
+  [
+   "Powieka górna: kącik 2 (cięcie)",
+   null
+  ],
+  [
+   "Powieka górna: kącik 3",
+   null
+  ],
+  [
+   "Powieka górna: kącik 3 (cięcie)",
+   null
+  ],
+  [
+   "Powieka dolna: płaszczyzna krawędzi",
+   null
+  ],
+  [
+   "Powieka dolna: przekrój",
+   null
+  ],
+  [
+   "Powieka dolna: czasza",
+   null
+  ],
+  [
+   "Powieka dolna: rant",
+   null
+  ],
+  [
+   "Powieka dolna: ucho",
+   null
+  ],
+  [
+   "Powieka dolna: ucho (wyciągnięcie)",
+   null
+  ],
+  [
+   "Powieka dolna: ucho lewe",
+   null
+  ],
+  [
+   "Powieka dolna: płaszczyzna osi",
+   null
+  ],
+  [
+   "Powieka dolna: punkt osi",
+   null
+  ],
+  [
+   "Powieka dolna: otwór osi",
+   null
+  ],
+  [
+   "Powieka dolna: płaszczyzna przycięcia przy zaczepie",
+   null
+  ],
+  [
+   "Powieka dolna: przycięcie przy zaczepie",
+   null
+  ],
+  [
+   "Powieka dolna: przycięcie przy zaczepie (cięcie)",
+   null
+  ],
+  [
+   "Powieka dolna: zaczep",
+   null
+  ],
+  [
+   "Powieka dolna: zaczep (wyciągnięcie)",
+   null
+  ],
+  [
+   "Powieka dolna: otwór drutu",
+   null
+  ],
+  [
+   "Powieka dolna: kącik 1",
+   null
+  ],
+  [
+   "Powieka dolna: kącik 1 (cięcie)",
+   null
+  ],
+  [
+   "Powieka dolna: kącik 2",
+   null
+  ],
+  [
+   "Powieka dolna: kącik 2 (cięcie)",
+   null
+  ],
+  [
+   "Powieka dolna: kącik 3",
+   null
+  ],
+  [
+   "Powieka dolna: kącik 3 (cięcie)",
+   null
+  ],
+  [
+   "Słupek: przekrój",
+   null
+  ],
+  [
+   "Słupek: korpus",
+   null
+  ],
+  [
+   "Słupek: punkt trzpienia",
+   null
+  ],
+  [
+   "Słupek: otwór trzpienia",
+   null
+  ],
+  [
+   "Słupek: płaszczyzna nakrętki",
+   null
+  ],
+  [
+   "Słupek: kanał nakrętki M5",
+   null
+  ],
+  [
+   "Słupek: kanał nakrętki M5 (wycięcie)",
+   null
+  ],
+  [
+   "Słupek: płaszczyzna M4",
+   null
+  ],
+  [
+   "Słupek: punkt M4",
+   null
+  ],
+  [
+   "Słupek: otwór M4",
+   null
+  ],
+  [
+   "Obejma: przekrój",
+   null
+  ],
+  [
+   "Obejma: korpus",
+   null
+  ],
+  [
+   "Obejma: płaszczyzna czoła",
+   null
+  ],
+  [
+   "Obejma: ucho",
+   null
+  ],
+  [
+   "Obejma: ucho (wyciągnięcie)",
+   null
+  ],
+  [
+   "Obejma: ucho lewe",
+   null
+  ],
+  [
+   "Obejma: szczelina",
+   null
+  ],
+  [
+   "Obejma: szczelina (wycięcie)",
+   null
+  ],
+  [
+   "Obejma: płaszczyzna śruby",
+   null
+  ],
+  [
+   "Obejma: punkt śruby",
+   null
+  ],
+  [
+   "Obejma: otwór śruby",
+   null
+  ],
+  [
+   "Obejma: płaszczyzna nakrętki",
+   null
+  ],
+  [
+   "Obejma: kieszeń nakrętki",
+   null
+  ],
+  [
+   "Obejma: kieszeń nakrętki (wycięcie)",
+   null
+  ]
+ ],
+ "K2": {
+  "szkiceJSON": 38,
+  "wierszeZnacznikow": 38,
+  "niedookreslone": []
+ },
+ "K3": [],
+ "K4": [],
+ "K5": [
+  [
+   "Rama: bok osi lewy",
+   "FEATURE"
+  ],
+  [
+   "Rama: otwór osi lewy",
+   "FACE"
+  ],
+  [
+   "Gałka: nadlew prawy",
+   "FEATURE"
+  ],
+  [
+   "Gałka: otwór M3 nadlewu prawy",
+   "FACE"
+  ],
+  [
+   "Powieka górna: mostek i ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Powieka dolna: ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Obejma: ucho lewe",
+   "FEATURE"
+  ]
+ ],
+ "K6": {
+  "Rama": 9,
+  "Gałka": 7,
+  "Próbka P6": 1,
+  "Powieka górna": 13,
+  "Powieka dolna": 11,
+  "Słupek": 4,
+  "Obejma": 6
+ },
+ "K8": [
+  [
+   "Layout: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Layout: czoło",
+   "query=qCreatedBy(makeId(\"Top\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: bok osi",
+   "query=qCreatedBy(makeId(\"FCnPBGeVDIxwC46_1\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: punkt otworu osi",
+   "query=qCreatedBy(makeId(\"F8bD76LPhvuJJ9J_1\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: ucha wewnętrzne",
+   "query=qCreatedBy(makeId(\"FwwFCKVtfpN8MG9_0\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: punkty gwintów uch",
+   "query=qCreatedBy(makeId(\"FwwFCKVtfpN8MG9_0\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: nadlew",
+   "query=qCreatedBy(makeId(\"FdsbCBYCQkXf39S_2\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: wycięcie X",
+   "query=qCreatedBy(makeId(\"Front\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: wycięcie Y",
+   "query=qCreatedBy(makeId(\"Fs7QBAeazT05TwX_2\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: przekrój",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: mostek",
+   "query=qCreatedBy(makeId(\"FrqgDKx8O7yHBFm_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: ucho",
+   "query=qCreatedBy(makeId(\"F6bWH7u4OadRjRX_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: punkt osi",
+   "query=qCreatedBy(makeId(\"FxjugcFMzN2eMjI_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: wycięcie",
+   "query=qCreatedBy(makeId(\"FBF1AuTk6ArwUts_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: przycięcie przy zaczepie",
+   "query=qCreatedBy(makeId(\"FowaoAz8dzSPY8K_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: zaczep",
+   "query=qCreatedBy(makeId(\"FgvV3sUV9aaM1D4_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: kącik 1",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: kącik 2",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: kącik 3",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: przekrój",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: ucho",
+   "query=qCreatedBy(makeId(\"F4kAjYHOC9yz9vg_0\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: punkt osi",
+   "query=qCreatedBy(makeId(\"F6yIFkJIbVIGho5_5\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: przycięcie przy zaczepie",
+   "query=qCreatedBy(makeId(\"F6Hw4JOh6ypw2qX_5\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: zaczep",
+   "query=qCreatedBy(makeId(\"FgvV3sUV9aaM1D4_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: kącik 1",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: kącik 2",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: kącik 3",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: punkt trzpienia",
+   "query=qCreatedBy(makeId(\"F1YvoFCIuZraYth_0\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: kanał nakrętki M5",
+   "query=qCreatedBy(makeId(\"FRce4rRx2gHE5B9_6\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: punkt M4",
+   "query=qCreatedBy(makeId(\"FvHiYXAymkvKYNA_6\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: ucho",
+   "query=qCreatedBy(makeId(\"F7Qx4f8FDrK2pf3_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: szczelina",
+   "query=qCreatedBy(makeId(\"F7Qx4f8FDrK2pf3_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: punkt śruby",
+   "query=qCreatedBy(makeId(\"FGs8ToNIq9iWPzC_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: kieszeń nakrętki",
+   "query=qCreatedBy(makeId(\"FdNoDEiuTutNGFM_7\"), EntityType.FACE);"
+  ]
+ ],
+ "K3licz": 265,
+ "K6szkice": {
+  "Layout": 2,
+  "Rama": 5,
+  "Gałka": 4,
+  "Powieka górna": 10,
+  "Powieka dolna": 8,
+  "Słupek": 4,
+  "Obejma": 5
+ },
+ "K10duplikaty": []
+}
