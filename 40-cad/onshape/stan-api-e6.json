@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T05:36Z, wykonawca CAD",
+  "zapis": "2026-10-23T05:52Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,8 +13,8 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 59,
-    "features": 33,
+    "total": 99,
+    "features": 61,
     "getFeatures": 3
   },
   "liczniki": {
@@ -204,15 +204,23 @@
       200,
       98,
       false
+    ],
+    [
+      "2026-10-23T05:38–05:51Z",
+      "Powieka górna: zmienne (3 POST, 1 × 400), mv ×2, zmiana nazwy podkładki Ramy, 14 zapisów + 9 edycji/powtórzeń, 3 DELETE, 4 × bodydetails/bbox",
+      200,
+      null,
+      false
     ]
   ],
   "stop": null,
   "etap1": {
     "budzet": {
-      "total": 80,
-      "getFeatures": 8
+      "total": 140,
+      "getFeatures": 8,
+      "uwaga": "podniesiony przez orkiestratora 23.10 z 80"
     },
-    "wywolania": 55,
+    "wywolania": 95,
     "getFeatures": 3
   },
   "mv": "0d2be67658747887928cf9e8",
@@ -243,7 +251,15 @@
     "Rama: otwór osi lewy": "FjpsCi7pQevuYS9_1",
     "Gałka: przekrój": "FiheSZ0iFarFXiR_1",
     "Gałka: czasza": "(revolve – patrz features-rama-galka.json)",
-    "Próbka P6: czasza": "(revolve – patrz features-rama-galka.json)"
+    "Próbka P6: czasza": "(revolve – patrz features-rama-galka.json)",
+    "Rama: podkładka boku osi": "FBHMlUQqQqgIOlq_1 (zmiana nazwy z „Rama: bok osi”, K10)",
+    "Powieka górna: płaszczyzna krawędzi": "FHkRivqJoCYPvOe_3",
+    "Powieka górna: przekrój": "FHtdzdXAfXIOaou_3",
+    "Powieka górna: czasza": "FjJFtCDjQ43qFLk_3",
+    "Powieka górna: rant": "F1ZofAPMjlZ6y9A_4",
+    "Powieka górna: płaszczyzna mostka": "(nowa, po usunięciu pierwszej)",
+    "Powieka górna: mostek": "F7P32GoKpm3lssD_4",
+    "Powieka górna: mostek (wyciągnięcie)": "FLQP3J4TiJNY4jw_4"
   },
   "testBramki": {
     "t": "2026-10-23T02:44:35Z",
@@ -382,12 +398,17 @@
     "document.visibilityState w karcie panelu przeglądarki aplikacji bywa „hidden” także przy widocznym panelu – nie jest wskaźnikiem widoczności; get_layout (views) mówi, czy sesja jest w oknie.",
     "Timer HEAD /documents podtrzymuje logowanie (cookie), ale nie połączenie edytora: edytor pokazuje „Your Onshape session has timed out … Click here to reconnect”; kliknięcie czasem przeładowuje stronę (window.G ginie – stan trzymać w pliku, skrypt wstrzykiwać ponownie).",
     "Mirror FEATURE nie odbija operacji Hole (także z fullFeaturePattern) – otwór po drugiej stronie trzeba odbić Mirror typu FACE (qCreatedBy(Hole, FACE)); para z otworem = dwa Mirror (orkiestrator 23.10).",
-    "Hole przez API wymaga parametru scope (bryła) – bez niego featureStatus ERROR „Error regenerating” bez dalszego opisu."
+    "Hole przez API wymaga parametru scope (bryła) – bez niego featureStatus ERROR „Error regenerating” bez dalszego opisu.",
+    "Więz ANGLE wysyłany przez API (localFirst/localSecond|externalSecond + angle) daje ostrzeżenie „Some constraints are not applicable…” – kąty wymiarować położeniem punktu (np. R·sin(kąt)).",
+    "Szkic nie może leżeć na płaszczyźnie utworzonej później w drzewie (nowe operacje idą na koniec) – przy poprawce usuwać i tworzyć w kolejności.",
+    "Revolve częściowy: endBound BLIND; wybór obszaru szkicu przez qLargest/qSmallest działa, qContainsPoint na obszarze szkicu nie zadziałał.",
+    "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół."
   ],
   "zmienne": {
-    "liczba": 181,
+    "liczba": 189,
     "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1",
-    "p6Wys": "20 (nowa)"
+    "p6Wys": "20 (nowa)",
+    "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy"
   },
   "rama": {
     "pomiar": {
@@ -428,5 +449,17 @@
       "GET /features wykonane dwukrotnie: 2. (przed Gałką, na prośbę odbioru Ramy) i 3. (po Gałce, wspólne dla Ramy i Gałki) – zapisany tylko 3., bo obejmuje obie części",
       "szkic i wyciągnięcie mają tę samą nazwę „Rama: bok osi” – do rozróżnienia przy K10 (proponuję zmienić nazwę wyciągnięcia na „Rama: podkładka boku osi”)"
     ]
+  },
+  "powiekaGorna": {
+    "czesc": "JmD „Powieka górna”, folder „Powieka górna (14)”",
+    "pomiar": "1 bryła, 24 ściany; sfery R31,2 / R33,4 / R34,7 (rant); walce osi X: mostek R4,5 i R8, ucho R6 (po obu stronach), otwór R1,7 (2 ściany – oba ucha); płaszczyzny x ±30,95 (przycięcie, start mostka), ±33,85, ±36,25; bbox x ±36,25, y −6…33,4, z −6…34,68 (czasza y −4,94…33,4 i z −0,58…33,4 = zakres −8,5…91°; rant y −5,13, z 34,68)",
+    "zrzut": "40-cad/onshape/e6.2-zrzuty/powieka-gorna.jpg",
+    "odstepstwa": [
+      "Revolve częściowy wymaga endBound BLIND; obszary szkicu wybrane qLargest (czasza) i qSmallest (rant) zamiast qContainsPoint (punkt nie trafiał – błąd ERROR)",
+      "obrót czaszy: oppositeDirection true (bbox po pierwszej próbie pokazał obrót w −y)",
+      "szkic mostka: wymiar ANGLE przez API dawał „constraints not applicable” – kąty promieni zastąpione wymiarem poziomym R1·sin(zamkG + mostekKat); pierwsza płaszczyzna mostka, szkic i wyciągnięcie usunięte i utworzone ponownie w kolejności płaszczyzna → szkic → wyciągnięcie (szkic nie może odwołać się do późniejszej płaszczyzny)",
+      "nazwy wyciągnięć z dopiskiem „(wyciągnięcie)”, żeby różniły się od szkiców (K10)"
+    ],
+    "wywolania": "ok. 37 (w tym 4 edycje kierunku/obszaru Revolve, 3 nieudane wersje szkicu mostka, 1 nieudane wyciągnięcie ze startOffset, 3 DELETE)"
   }
 }
