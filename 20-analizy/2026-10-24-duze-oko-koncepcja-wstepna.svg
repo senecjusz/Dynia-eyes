@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 1170" width="1120" height="1170" font-family="Arial, sans-serif" font-size="13">
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+  <style>
+    .pk{fill:#f3c58a;stroke:#c98a3a;stroke-width:1}
+    .or{fill:#f39a3c;stroke:#a85a12;stroke-width:1.5}
+    .orl{fill:none;stroke:#a85a12;stroke-width:1.5}
+    .ball{fill:#fff;stroke:#444;stroke-width:2}
+    .hw{fill:#b9b9b9;stroke:#555;stroke-width:1.2}
+    .sv{fill:#c9d6ea;stroke:#2f5590;stroke-width:1.5}
+    .svd{fill:none;stroke:#2f5590;stroke-width:1.3;stroke-dasharray:5 3}
+    .wr{stroke:#c0102a;stroke-width:2.5;fill:none}
+    .wrd{stroke:#c0102a;stroke-width:2;fill:none;stroke-dasharray:6 3}
+    .lid{fill:none;stroke:#e06d00;stroke-width:6}
+    .lidc{fill:none;stroke:#e06d00;stroke-width:2;stroke-dasharray:4 3}
+    .ax{stroke:#777;stroke-width:1;stroke-dasharray:12 3 2 3}
+    .env{fill:none;stroke:#e06d00;stroke-width:1.5;stroke-dasharray:8 4}
+    .t{fill:#222}
+    .h{font-size:16px;font-weight:bold;fill:#222}
+    .s{font-size:11px;fill:#444}
+  </style>
+</defs>
+<rect width="1120" height="1170" fill="#fff"/>
+<text x="20" y="28" font-size="20" font-weight="bold">Duże oko – wstępna koncepcja (krok 1), 24.10.2026</text>
+<text x="20" y="48" class="s">Szkic orientacyjny, skala ok. 1 mm = 3 px. Środek gałki = (0,0,0), z do przodu. Pomarańczowe = druk, białe = gałka, niebieskie = MG90S, czerwone = drut Ø1,0, szare = kupne.</text>
+
+<!-- ============ WIDOK Z PRZODU ============ -->
+<text x="20" y="85" class="h">1. Widok z przodu (powieki otwarte)</text>
+<path class="pk" fill-rule="evenodd" d="M40,330 a190,190 0 1,0 380,0 a190,190 0 1,0 -380,0 Z M110,330 a120,120 0 1,0 240,0 a120,120 0 1,0 -240,0 Z"/>
+<circle cx="230" cy="330" r="126" class="or"/>
+<circle cx="230" cy="330" r="114" fill="#4a3526"/>
+<circle cx="230" cy="330" r="90" class="ball"/>
+<circle cx="230" cy="330" r="36" fill="#7fb58a" stroke="#3d7a4a" stroke-width="1.5"/>
+<circle cx="230" cy="330" r="13" fill="#111"/>
+<path d="M131,330 A99,99 0 0,1 329,330 A99,75.8 0 0,0 131,330 Z" fill="#d9661a" stroke="#7a3a08" stroke-width="1.5" opacity="0.9"/>
+<path d="M131,330 A99,99 0 0,0 329,330 A99,75.8 0 0,1 131,330 Z" fill="#d9661a" stroke="#7a3a08" stroke-width="1.5" opacity="0.9"/>
+<line x1="95" y1="330" x2="365" y2="330" class="ax"/>
+<circle cx="122" cy="330" r="6" class="hw"/><circle cx="338" cy="330" r="6" class="hw"/>
+<text x="250" y="140" class="t">maskownica Ø84 (rant 2 mm)</text>
+<line x1="300" y1="146" x2="300" y2="226" stroke="#333" marker-end="url(#ar)"/>
+<text x="20" y="560" class="s">Moduł od środka: tuba Ø79 w otworze Ø80, z zewnątrz tylko maskownica Ø84. Gałka Ø60, tęczówka Ø24 (założenie, rysuje syn).</text>
+<text x="20" y="575" class="s">Oś powiek = pozioma oś kardana przez środek gałki; osie M3 w uszach pierścienia (x = ±36).</text>
+<text x="345" y="322" class="s">oś M3</text>
+
+<!-- ============ PRZEKRÓJ Z BOKU ============ -->
+<text x="470" y="85" class="h">2. Przekrój z boku (płaszczyzna pionowa przez oś)</text>
+<!-- dynia -->
+<rect x="634" y="120" width="120" height="91.5" class="pk"/>
+<rect x="634" y="448.5" width="120" height="91.5" class="pk"/>
+<text x="640" y="112" class="s">ścianka dyni ~40 (zał.)</text>
+<!-- kołnierz + tuba + ramiona -->
+<rect x="628" y="204" width="6" height="7.5" class="or"/>
+<rect x="628" y="448.5" width="6" height="7.5" class="or"/>
+<rect x="628" y="211.5" width="126" height="6" class="or"/>
+<rect x="628" y="442.5" width="126" height="6" class="or"/>
+<rect x="754" y="156" width="9" height="61.5" class="or"/>
+<rect x="754" y="442.5" width="9" height="61.5" class="or"/>
+<line x1="785" y1="182" x2="735" y2="165" stroke="#555" stroke-width="3"/>
+<line x1="785" y1="478" x2="735" y2="495" stroke="#555" stroke-width="3"/>
+<text x="770" y="150" class="s">łapa + wkręt do drewna</text>
+<text x="560" y="196" class="s">maskownica</text>
+<rect x="763" y="211.5" width="45" height="6" class="or" opacity="0.7"/>
+<rect x="763" y="442.5" width="45" height="6" class="or" opacity="0.7"/>
+<!-- uchwyt serw -->
+<rect x="808" y="216" width="90" height="228" class="orl" stroke-dasharray="6 3"/>
+<text x="812" y="208" class="s">uchwyt serw</text>
+<!-- gałka -->
+<path class="ball" d="M724,243.3 A90,90 0 1,0 724,416.7 Z"/>
+<rect x="616" y="312" width="46" height="36" fill="#fff" stroke="#888"/>
+<rect x="700" y="258" width="24" height="12" fill="#fff" stroke="#888"/>
+<!-- kardan -->
+<rect x="662" y="313.5" width="38" height="33" class="hw"/>
+<rect x="700" y="313.5" width="38" height="33" class="hw"/>
+<circle cx="700" cy="330" r="7" fill="#777"/>
+<!-- słupek L -->
+<path class="or" d="M738,312 L766,312 L766,405 L814,405 L814,423 L748,423 L748,348 L738,348 Z"/>
+<!-- powieki -->
+<path class="lid" d="M637.6,255.8 A97,97 0 0,1 755.5,250.6"/>
+<path class="lid" d="M637.6,404.2 A97,97 0 0,0 755.5,409.4"/>
+<path class="lidc" d="M603,330 A97,97 0 0,1 674.8,236.4"/>
+<path class="lidc" d="M603,330 A97,97 0 0,0 674.8,423.6"/>
+<!-- dźwignie powiek -->
+<line x1="700" y1="330" x2="706" y2="300" stroke="#a85a12" stroke-width="5"/>
+<line x1="700" y1="330" x2="706" y2="360" stroke="#a85a12" stroke-width="5"/>
+<!-- serwa -->
+<rect x="814" y="330" width="69" height="103.5" class="svd"/>
+<rect x="814" y="275" width="69" height="37.5" class="sv"/>
+<rect x="814" y="347.3" width="69" height="37.5" class="sv"/>
+<text x="888" y="298" class="s">S2</text><text x="888" y="370" class="s">S3</text><text x="888" y="425" class="s">S1 (za)</text>
+<line x1="830.5" y1="294" x2="830.5" y2="264" stroke="#222" stroke-width="3"/>
+<line x1="830.5" y1="366" x2="830.5" y2="339" stroke="#222" stroke-width="3"/>
+<!-- druty -->
+<line x1="712" y1="264" x2="830.5" y2="264" class="wr"/>
+<line x1="706" y1="300" x2="830.5" y2="339" class="wrd"/>
+<line x1="706" y1="360" x2="830.5" y2="339" class="wrd"/>
+<line x1="712" y1="330" x2="830.5" y2="330" class="wrd"/>
+<circle cx="712" cy="264" r="3" fill="#c0102a"/>
+<line x1="560" y1="330" x2="930" y2="330" class="ax"/>
+<!-- opisy -->
+<text x="905" y="268" class="s">orczyk S2 → góra–dół</text>
+<text x="905" y="345" class="s">orczyk S3: 2 druty</text>
+<text x="905" y="358" class="s">→ obie powieki</text>
+<text x="560" y="600" class="s">Powieki: otwarte (gruba linia) 50°…125°, zamknięte (przerywana) 0°…75°.</text>
+<text x="560" y="615" class="s">Druty powiek (przerywane) na x = −36, poza przekrojem.</text>
+<text x="560" y="645" class="s">Dźwignie: górna w górę, dolna w dół; oba druty do tego samego otworu orczyka S3.</text>
+<text x="560" y="630" class="s">Kardan 5/5: środek krzyżaka = środek gałki; przód: czop M5 w słupku gałki; tył: czop M5 w słupku L.</text>
+<line x1="628" y1="575" x2="898" y2="575" stroke="#333" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="735" y="570" class="t">ok. 90</text>
+<line x1="610" y1="470" x2="628" y2="470" stroke="#333"/>
+<text x="560" y="490" class="s">gałka +6 przed maskownicą</text>
+<line x1="610" y1="420" x2="610" y2="475" stroke="#333" stroke-dasharray="2 2"/>
+<line x1="628" y1="455" x2="628" y2="475" stroke="#333" stroke-dasharray="2 2"/>
+
+<g transform="translate(0,90)">
+<!-- ============ PRZEKRÓJ A-A ============ -->
+<text x="20" y="660" class="h">3. Przekrój A–A (z ≈ −50), widok od przodu</text>
+<circle cx="230" cy="820" r="118.5" class="env"/>
+<text x="40" y="690" class="s">obrys tuby Ø79 (od środka już nie limit, ale się mieści)</text>
+<!-- S3 powieki -->
+<rect x="128" y="838" width="36" height="36" class="sv"/>
+<rect x="164" y="837.3" width="69" height="37.5" class="sv"/>
+<line x1="123.5" y1="856" x2="123.5" y2="829" stroke="#222" stroke-width="3"/>
+<text x="175" y="860" class="t">S3 powieki</text>
+<!-- S2 góra-dół -->
+<rect x="150.5" y="765.3" width="67.5" height="37.5" class="sv"/>
+<rect x="218" y="766" width="36" height="36" class="sv"/>
+<line x1="257" y1="784" x2="257" y2="754" stroke="#222" stroke-width="3"/>
+<text x="158" y="788" class="t">S2 góra–dół</text>
+<!-- S1 lewo-prawo -->
+<rect x="242" y="820" width="36" height="36" class="sv"/>
+<rect x="241.3" y="856" width="37.5" height="67.5" class="sv"/>
+<line x1="260" y1="817" x2="296" y2="817" stroke="#222" stroke-width="3"/>
+<text x="285" y="900" class="t">S1 lewo–prawo</text>
+<!-- druty na czoło -->
+<circle cx="296" cy="820" r="4" fill="#c0102a"/>
+<circle cx="254" cy="754" r="4" fill="#c0102a"/>
+<circle cx="122" cy="829" r="4" fill="#c0102a"/>
+<line x1="222" y1="820" x2="238" y2="820" stroke="#555"/><line x1="230" y1="812" x2="230" y2="828" stroke="#555"/>
+<text x="20" y="965" class="s">Wałki: S1 pionowy (orczyk r 12 w poziomie, y ≈ 0), S2 i S3 poziome (orczyki w pionie).</text>
+<text x="20" y="980" class="s">Czerwone kropki = druty widziane z czoła. S1 w narożniku: r 38 – najciaśniejsze miejsce.</text>
+
+<!-- ============ WIDOK Z GÓRY ============ -->
+<text x="470" y="598" class="h">4. Przekrój z góry (płaszczyzna pozioma przez oś)</text>
+<rect x="634" y="610" width="120" height="91.5" class="pk"/>
+<rect x="634" y="938.5" width="120" height="91.5" class="pk"/>
+<rect x="628" y="694" width="6" height="7.5" class="or"/>
+<rect x="628" y="938.5" width="6" height="7.5" class="or"/>
+<rect x="628" y="701.5" width="126" height="6" class="or"/>
+<rect x="628" y="932.5" width="126" height="6" class="or"/>
+<rect x="754" y="646" width="9" height="61.5" class="or"/>
+<rect x="754" y="932.5" width="9" height="61.5" class="or"/>
+<rect x="808" y="706" width="90" height="228" class="orl" stroke-dasharray="6 3"/>
+<path class="ball" d="M724,733.3 A90,90 0 1,0 724,906.7 Z"/>
+<rect x="616" y="802" width="46" height="36" fill="#fff" stroke="#888"/>
+<rect x="700" y="880" width="24" height="12" fill="#fff" stroke="#888"/>
+<rect x="662" y="803.5" width="38" height="33" class="hw"/>
+<rect x="700" y="803.5" width="38" height="33" class="hw"/>
+<circle cx="700" cy="820" r="7" fill="#777"/>
+<rect x="738" y="802" width="28" height="36" class="or"/>
+<rect x="766" y="790" width="48" height="30" class="orl" stroke-dasharray="4 3"/>
+<!-- powieki: uszy -->
+<rect x="694" y="708" width="12" height="9" class="or"/>
+<rect x="694" y="923" width="12" height="9" class="or"/>
+<!-- serwa -->
+<rect x="814" y="831" width="69" height="38" class="sv"/>
+<line x1="830.5" y1="850" x2="830.5" y2="886" stroke="#222" stroke-width="3"/>
+<rect x="814" y="740.5" width="69" height="67.5" class="sv"/>
+<rect x="821.5" y="808" width="18" height="36" class="sv"/>
+<rect x="814" y="754" width="69" height="69" class="svd"/>
+<line x1="830.5" y1="718" x2="830.5" y2="712" stroke="#222" stroke-width="3"/>
+<text x="888" y="855" class="s">S1</text><text x="888" y="775" class="s">S2 (S3 pod)</text>
+<!-- druty -->
+<line x1="712" y1="886" x2="830.5" y2="886" class="wr"/>
+<line x1="712" y1="820" x2="830.5" y2="847" class="wr"/>
+<line x1="706" y1="712" x2="830.5" y2="712" class="wr"/>
+<circle cx="712" cy="886" r="3" fill="#c0102a"/>
+<line x1="560" y1="820" x2="930" y2="820" class="ax"/>
+<text x="905" y="890" class="s">S1 → żebro x = 22</text>
+<text x="905" y="716" class="s">S3 → dźwignie x = −36</text>
+<text x="560" y="1060" class="s">Lewo–prawo: ±35° = ±12,6 mm na żebrze r 22. Góra–dół: ±25° = ±9,3 mm. Druty ok. 40–45 mm, zagięcia Z na obu końcach.</text>
+</g>
+</svg>
