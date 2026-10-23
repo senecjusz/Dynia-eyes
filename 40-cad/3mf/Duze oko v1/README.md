@@ -68,6 +68,8 @@ Zmierzony luz sworzni wpisać do tabeli luzów w `AGENTS.md`.
   - kieszenie nakrętek M2 górnych uch są 0,15 mm od kieszeni korpusu serwa (śruba leży 0,25 za ścianką klatki); jeśli ta ścianka się nie wydrukuje, nakrętkę i tak blokuje korpus serwa (luz 0,4);
   - przegroda między klatkami S_X i S_PD ma 0,7 mm – nienośna, serwa trzymają ucha;
   - łeb dolnej śruby M2 z podkładką wystaje 0,25 za tarczę (moduł o 0,25 głębszy – B5);
+  - słupki stopu powiek (E6.6): G zamknięcia z płytką 2 mm przy klatce S_PG, G otwarcia przez tarczę i przycięty do jej spodu (z −71,3 – płaski stół), D zamknięcia z łącznikiem do ramienia wspornika 200°, D otwarcia na filarze z tarczy; słupki bez podpór;
+  - **głębokość modułu (B5):** Ramię PG przy pełnym otwarciu powieki sięga z −73,27, czyli ok. 2 mm za tył tarczy (−71,3) – za Płytą trzeba zostawić co najmniej tyle wolnego miejsca;
   - kieszenie korpusów MG90S z luzem 0,4/str., kanały kabli w obu krótszych ścianach klatek, otwory kabli w tarczy pod S_X, S_Y, S_PD (S_PG – kabel przez okno G).
 - **Gałka:** nadlewy M3 (Ø7, otwory Ø2,6 na 5,4) leżą w płaszczyźnie krawędzi – Gałka stoi na krawędzi i nadlewach.
 - **Gałka – test nadlewów przed montażem:** wkręcić śrubę M3 w każdy nadlew i ciągnąć oraz zginać ją wagą bagażową siłą ok. 30 N. Nadlew 330° (prawy, przy wycięciu X) łączy się ze ścianką tylko łukiem ok. 70° przy tylnej krawędzi (E6.6). Jeśli pęknie, zmiana do zrobienia to przypora nadlewu (wariant 2, w Parkingu).

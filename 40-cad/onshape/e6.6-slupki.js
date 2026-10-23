@@ -35,11 +35,14 @@ SS.zmienne = async () => {
   const kol = SS.NOWE.filter((x) => nazwy.has(x.name)); if (kol.length) throw new Error('już są: ' + kol.map((k) => k.name));
   const brak = Object.keys(SS.ZMIANY).filter((n) => !nazwy.has(n)); if (brak.length) throw new Error('brak: ' + brak);
   SS.vsPrzed = lista.map((x) => [x.name, x.expression]);
-  // nowe przed zmienionymi wzorami nie jest potrzebne: Onshape rozwiązuje odwołania w całej liście
-  const baza = lista.map((x) => ({ name: x.name, type: x.type, expression: SS.ZMIANY[x.name] || x.expression, description: x.description || '' }));
-  const r1 = await G.req('POST', url, [...baza, ...SS.NOWE]);
-  if (!r1.ok) throw new Error('VS ' + r1.status + ' ' + JSON.stringify(r1.json || r1.text).slice(0, 300));
-  await G.mvOdswiez(); return { przed: lista.length, po: baza.length + SS.NOWE.length };
+  // VS liczy po kolei (wzory stop*_y/z na koniec listy) i w jednym zapisie nie przyjmuje odwołań do nowych zmiennych: najpierw liczby, potem wzory
+  const licz = { stopGx0: '-32 mm', stopDx0: '-22.5 mm', stopGz_y: '15.233 mm', stopGz_z: '-48.671 mm', stopGo_y: '12.499 mm', stopGo_z: '-70.283 mm', stopDz_y: '-17.699 mm', stopDz_z: '-37.179 mm', stopDo_y: '-19.464 mm', stopDo_z: '-57.571 mm' };
+  const wzory = new Set(Object.keys(SS.ZMIANY).filter((n) => n !== 'stopRho'));
+  const lista2 = (krok) => [...lista.filter((x) => !wzory.has(x.name)).map((x) => ({ name: x.name, type: x.type, expression: x.name === 'stopRho' ? SS.ZMIANY.stopRho : x.expression, description: x.description || '' })),
+    ...SS.NOWE.map((x) => ({ ...x, expression: krok === 1 && licz[x.name] ? licz[x.name] : x.expression })),
+    ...lista.filter((x) => wzory.has(x.name)).map((x) => ({ name: x.name, type: x.type, expression: krok === 1 ? licz[x.name] : SS.ZMIANY[x.name], description: x.description || '' }))];
+  for (const k of [1, 2]) { const r = await G.req('POST', url, lista2(k)); if (!r.ok) throw new Error('VS' + k + ' ' + r.status + ' ' + JSON.stringify(r.json || r.text).slice(0, 300)); }
+  await G.mvOdswiez(); return { przed: lista.length, po: lista2(2).length };
 };
 // wartości startowe (mm) z modelu v3.2 – tylko położenie startowe encji
 const a = 6, v = SS.v = {
@@ -75,8 +78,8 @@ SS.g = async () => {
   prost(s, 'cl', v.Go.y - a, v.Go.y + a, zClip - a, zClip, '#stopGo_y - #stopA', '#stopGo_y + #stopA', '#tarczaZ1 - #tarczaT - #stopA', '#tarczaZ1 - #tarczaT');
   const p = await szkic('skG', s); if (p) return p;
   const P = SS.punktyG();
-  const e1 = await zap('extG', G.ext('Płyta: słupki stopu G (wyciągnięcie)', G.regs(SS.Fz.skG, [P.gzIn, P.gzOut, P.go].map((q) => X(v.gx1, q))), { op: 'ADD', depth: '#stopGx1 - #stopGx0', scope: [PLYTA] }), false);
-  const e2 = await zap('extPl', G.ext('Płyta: płytka słupka G zamknięcia', G.regs(SS.Fz.skG, [X(v.gx1, P.pl)]), { op: 'ADD', depth: '#klatkaT', scope: [PLYTA] }), false);
+  const e1 = await zap('extG', G.ext('Płyta: słupki stopu G (wyciągnięcie)', G.regs(SS.Fz.skG, [P.gzIn, P.gzOut, P.go].map((q) => X(v.gx1, q))), { op: 'ADD', depth: '#stopGx1 - #stopGx0', opp: true, scope: [PLYTA] }), false);
+  const e2 = await zap('extPl', G.ext('Płyta: płytka słupka G zamknięcia', G.regs(SS.Fz.skG, [X(v.gx1, P.pl)]), { op: 'ADD', depth: '#klatkaT', opp: true, scope: [PLYTA] }), false);
   return st([e1, e2]);
 };
 SS.d = async () => {
@@ -88,7 +91,7 @@ SS.d = async () => {
   prost(s, 'fl', v.Do.y - a / 2, v.Do.y + a / 2, v.tarczaZ1, v.Do.z, '#stopDo_y - #stopA / 2', '#stopDo_y + #stopA / 2', '#tarczaZ1', '#stopDo_z');
   const p = await szkic('skD', s); if (p) return p;
   const wsz = `query=qSketchRegion(makeId("${SS.Fz.skD}"), false);`;
-  const e3 = await zap('extD', G.ext('Płyta: słupki stopu D (wyciągnięcie)', [wsz], { op: 'ADD', depth: '#stopDx1 - #stopDx0', scope: [PLYTA] }), false);
+  const e3 = await zap('extD', G.ext('Płyta: słupki stopu D (wyciągnięcie)', [wsz], { op: 'ADD', depth: '#stopDx1 - #stopDx0', opp: true, scope: [PLYTA] }), false);
   return st([e3]);
 };
 return 'SS ok';

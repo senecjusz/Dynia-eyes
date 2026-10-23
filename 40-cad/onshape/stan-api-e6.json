@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "Komplet pręta Y zbudowany; następne: słupki stopu (plan do orkiestratora), K9, odbiór",
-  "wywolania": "E6.6 231/320 (GET /features 1/8); E6 712, rok 1270",
-  "aktualizacja": "2026-10-23T19:00:00Z"
+  "stan": "Słupki stopu zbudowane; następne: K9, odbiór",
+  "wywolania": "E6.6 249/320 (GET /features 1/8); E6 730, rok 1288",
+  "aktualizacja": "2026-10-23T19:12:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,8 +18,8 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 712,
-  "features": 344,
+  "total": 730,
+  "features": 354,
   "getFeatures": 14
  },
  "liczniki": {
@@ -722,8 +722,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 712,
-  "suma": 1270
+  "E6": 730,
+  "suma": 1288
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2148,7 +2148,7 @@
    "zrodlo": "orkiestrator 23.10 (plan b774b5e)"
   },
   "n": {
-   "total": 231,
+   "total": 249,
    "getFeatures": 1
   },
   "log": [],
@@ -2509,6 +2509,51 @@
    "wywolania": 26,
    "n": {
     "etap2b": 231
+   }
+  },
+  "slupkiStopu": {
+   "plan": "e6.6-plan-slupki-stopu.md (f07f6a6), zatwierdzony z odstępstwami (1) płytka do środka słupka, (2) łącznik w warstwie z −37…−33, (3) G otwarcia przycięty do z −71,3",
+   "skrypt": "e6.6-slupki.js",
+   "featureId": {
+    "plG": "F6bjJCLqD14D9hy_26",
+    "skG": "FzHenjS59jvUDFp_26",
+    "extG": "FV1TGHerN0uX5ML_26",
+    "extPl": "F67r0C4Qx0t8xd1_26",
+    "plD": "FXkDTUmOt0bNsHE_26",
+    "skD": "FRUtaq7idE3rxAl_26",
+    "extD": "FMMf4CM6gkLGowA_26"
+   },
+   "zmienne": "stopRho 8,5 → 10; nowe stopRhoDz, walPD_z, stopZapasX, stopGx1, stopDx1, stopPlytkaY0, stopPlytkaZ1, stopLacznikKat, stopLacznikZak, stopGx0, stopDx0; stop*_y/z jako wzory przeniesione na koniec listy (VS liczy po kolei). Dwa zapisy VS: najpierw liczby, potem wzory – w jednym zapisie wzór nie może odwołać się do nowej zmiennej (400 Bad variable expression)",
+   "kontrolaSzkicow": [
+    {
+     "nazwa": "Płyta: słupki stopu G",
+     "featureId": "FzHenjS59jvUDFp_26",
+     "dataId": "Mxz2YD9wSmVlZN6n5",
+     "podpowiedz": "Płyta: słupki stopu G [Sketch]",
+     "niedookreslony": false,
+     "czas": "2026-10-23T19:05:28.588Z",
+     "mv": "0d3b9f897de117eb7465611a"
+    },
+    {
+     "nazwa": "Płyta: słupki stopu D",
+     "featureId": "FRUtaq7idE3rxAl_26",
+     "dataId": "M5D/gau50wxReUQMY",
+     "podpowiedz": "Płyta: słupki stopu D [Sketch]",
+     "niedookreslony": false,
+     "czas": "2026-10-23T19:05:36.194Z",
+     "mv": "7d28330fd7a60e853ca8fddc"
+    }
+   ],
+   "poprawka": "3 wyciągnięcia poszły w +x (lica końcowe x −5,6 / −16,8 / −10,7): płaszczyzna Right offset z oppositeDirection ma normalną +x. Edycja 3 operacji z oppositeDirection = true. W trakcie edycji podpowiedź płytki chwilowo 'non-manifold body' (płytka jeszcze w +x przy słupkach G już w −x); po edycji płytki wiersz bez ostrzeżeń",
+   "bodydetails": {
+    "ile": 27,
+    "Płyta (RTDD)": "lica końcowe: x −32: G zamknięcia y 10,99…19,48 z −52,91…−44,43; G otwarcia y 8,38…14,81 z −71,3…−66,17 (przycięty); x −20,8: płytka y 10,4…15,23 z …−40,7; x −22,5: D zamknięcia z łącznikiem y −21,8…−10,85 z −41,28…−33 (dalej zrośnięty z ramieniem 200°), D otwarcia z filarem y −23,31…−15,62 z −68,3…−53,73"
+   },
+   "plaszczyzny": "Hide all planes – obie (Hidden)",
+   "readme": "README Duże oko v1 (Płyta: słupki, głębokość modułu B5: Ramię PG do z −73,27) i montaż krok 10.5",
+   "wywolania": 18,
+   "n": {
+    "etap2b": 249
    }
   }
  }

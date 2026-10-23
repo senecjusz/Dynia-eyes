@@ -162,6 +162,7 @@ Wiertła: Ø1,6 (otwory zaczepów drutu, Ramion i orczyków), **Ø2,0 do rozwier
 2. Rodzic: 3 × **M3×45** od tyłu tarczy przez słupki w gwinty uch Ramy.
 3. Rodzic dopina druty w otwory Ramion PG/PD (od boku między z −37 a tarczą albo przez okna tarczy): odegnij cały drut, nie sam koniec.
 4. Zdejmij taśmę z powiek i drutów.
+5. Za tarczą zostaw wolne ok. 2 mm: Ramię PG przy pełnym otwarciu powieki wychodzi do z −73,27 (tył tarczy −71,3).
 
 ## Krok 11. Kalibracja z Przyrządem zera (syn w telefonie, rodzic zapisuje)
 
