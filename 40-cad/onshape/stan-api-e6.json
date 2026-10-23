@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "P4 gotowa do eksportu (przelot a1); Uchwyt z gwintem a1 Y; następne: foldery, plany Ramion X/Y i prętów",
-  "wywolania": "E6.6 151/260 (GET /features 1/8); E6 632, rok 1190",
-  "aktualizacja": "2026-10-23T16:58:00Z"
+  "stan": "P4 gotowa do ponownego eksportu (a1 przelotowy po obu stronach); następne: Ramiona X/Y",
+  "wywolania": "E6.6 164/320 (GET /features 1/8); E6 645, rok 1203",
+  "aktualizacja": "2026-10-23T17:20:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,7 +18,7 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 632,
+  "total": 645,
   "features": 326,
   "getFeatures": 14
  },
@@ -722,8 +722,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 632,
-  "suma": 1190
+  "E6": 645,
+  "suma": 1203
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2143,11 +2143,12 @@
  },
  "e66": {
   "budzet": {
-   "total": 260,
-   "getFeatures": 8
+   "total": 320,
+   "getFeatures": 8,
+   "zrodlo": "orkiestrator 23.10 (plan b774b5e)"
   },
   "n": {
-   "total": 151,
+   "total": 164,
    "getFeatures": 1
   },
   "log": [],
@@ -2362,6 +2363,10 @@
    {
     "czas": "2026-10-23T16:50Z",
     "zdarzenie": "użytkownik zalogował się ponownie (strona przeładowana: biblioteka i timer wczytane od nowa); płaszczyzny schowane (Hide all planes)"
+   },
+   {
+    "czas": "2026-10-23T17:15Z",
+    "zdarzenie": "strona przeładowała się w trakcie skryptu (nie przez wykonawcę); VS i szkic osi a1 zapisane, V2/V4 dokończone po ponownym wczytaniu; biblioteka zapisana w localStorage karty (G_lib_e66)"
    }
   ],
   "sworzenA1": {
@@ -2373,6 +2378,15 @@
     "Uchwyt: sworzeń a1 widełek Y (+ otwór)": "Ø1,6 sym. ±5 od y 20 – otwiera gwint w policzku wewnętrznym zasłonięty płytą (y 15…15,71)"
    },
    "bodydetails": "P4 Krzyżak G: Z R0,9 −2,88…2,88 (przelot), Y R0,9 1,30…2,88 i −2,88…−1,30; Uchwyt: R0,8 y 15…17 i 23…25 przy (0; −6); drzewo bez ostrzeżeń; 21 brył"
+  },
+  "sworzenA1orczyk": {
+   "decyzja": "orkiestrator (b774b5e): a1 przy orczyku przelotowy DIN 7985 M2×14 (P4: M2×12), a2 przy orczyku DIN 7985 M2×4",
+   "zmiany": {
+    "sworzenLOrcz": "5 → 4 (uOrcz_otwGl 2,125)",
+    "P4: osie a1": "przy orczyku profil przelotowy (oś ao7), bez pogłębień",
+    "P4: oś a1 O / oś a2 O": "zakres krzyżaka punktem (125,135; 1,5; 1,5)"
+   },
+   "bodydetails": "Krzyżak O: Z R0,9 −4…4, Y R0,9 1,88…4 i −4…−1,87; Widełki stałe O: 0 stożków, R0,8 w obu policzkach; Krzyżak G bez zmian; 21 brył; drzewo bez ostrzeżeń"
   }
  }
 }
