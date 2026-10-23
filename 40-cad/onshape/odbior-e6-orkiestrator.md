@@ -122,4 +122,4 @@ K4 Obejma: punkt śruby: encji 1, więzów 2, FIX 0, encje bez więzów: brak
 K4 Obejma: kieszeń nakrętki: encji 6, więzów 18, FIX 0, encje bez więzów: brak
 ```
 
-**Wynik: dokończenie Ramy i Gałki przyjęte** (27/27 szkiców w pełni zdefiniowanych, 0 Fix, K3 bez stałych spoza listy).
+**Wynik: dokończenie Ramy i Gałki przyjęte WARUNKOWO** – K1 nie sprawdzony: `featureStates` w odczycie puste (rollback za Gałką); pełny K1 przy następnym GET z rollbackiem na końcu (27/27 szkiców w pełni zdefiniowanych, 0 Fix, K3 bez stałych spoza listy).

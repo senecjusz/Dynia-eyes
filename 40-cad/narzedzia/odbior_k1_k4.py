@@ -9,8 +9,10 @@ if isinstance(z, dict):
 DOZWOLONE = {'0', '90deg', '180deg', '360deg', '2', '0deg', '1', '-1'}
 
 # K1
-bad = {k: v['featureStatus'] for k, v in f['featureStates'].items() if v['featureStatus'] != 'OK'}
-print('K1 featureStatus != OK:', bad or 'brak')
+st = f.get('featureStates') or {}
+bad = {k: v['featureStatus'] for k, v in st.items() if v['featureStatus'] != 'OK'}
+brak_stanu = [x.get('name') for x in f['features'] if x.get('featureId') not in st]
+print('K1 featureStatus != OK:', bad or 'brak', '| operacji bez stanu:', len(brak_stanu), '(K1 NIEZALICZONY – brak danych)' if brak_stanu else '')
 
 feats = f['features']
 szkice = [x for x in feats if x['btType'].startswith('BTMSketch')]
