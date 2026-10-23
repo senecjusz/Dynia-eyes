@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "P4 zbudowana (25/34), następny krok: plan C2–C6 do orkiestratora",
-  "wywolania": "E6.6 25/260 (GET /features 0/8); E6 razem 506, rok 1064",
-  "aktualizacja": "2026-10-23T14:05:00Z"
+  "stan": "P4 gotowa (+m2PoglD 3,8), C2/C4/C5 zrobione, C3 czeka na decyzję (nadlew), README P4",
+  "wywolania": "E6.6 37/260 (GET /features 0/8); E6 518, rok 1076",
+  "aktualizacja": "2026-10-23T14:25:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,7 +18,7 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 506,
+  "total": 518,
   "features": 326,
   "getFeatures": 14
  },
@@ -501,7 +501,11 @@
   "P4: osie a2 i obrotnica": "F4oiadcy8dBysC1_18",
   "P4: oś a2 G": "FUQbo0uofddJwrR_18",
   "P4: oś a2 O": "FbZdQDEgWIzZ4Oq_18",
-  "P4: obrotnica – łożysko i pogłębienie": "FXLRL3hwBogtXV9_18"
+  "P4: obrotnica – łożysko i pogłębienie": "FXLRL3hwBogtXV9_18",
+  "Powieka górna: płaszczyzna wycięcia ucha D": "FCBaTRMwab3gb9U_18",
+  "Powieka górna: wycięcie ucha D": "Fx4svQiBzuEpxbH_18",
+  "Powieka górna: wycięcie ucha D (cięcie)": "FtGceSTFoZgyAEr_18",
+  "Powieka górna: wycięcie ucha D lewe": "FMXnAt8eiszmRiC_18"
  },
  "testBramki": {
   "t": "2026-10-23T02:44:35Z",
@@ -718,8 +722,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 506,
-  "suma": 1064
+  "E6": 518,
+  "suma": 1076
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2143,7 +2147,7 @@
    "getFeatures": 8
   },
   "n": {
-   "total": 25,
+   "total": 37,
    "getFeatures": 0
   },
   "log": [],
@@ -2233,7 +2237,35 @@
     "bodydetails": 429,
     "featurespecs": 97,
     "POST VS": 2999
+   },
+   "poprawkaAstra": {
+    "czas": "2026-10-23T14:20Z",
+    "zmiana": "m2PoglD 4,2 → 3,8 (uwaga Astry c)",
+    "wynik": "stożki pogłębień Ø3,8 (widełki stałe G/O: 3,8 × 3,8; Pręt: 3,7 × 3,6 – wychodzi 0,1 na boki policzka 3,6)",
+    "wywolania": 4
    }
+  },
+  "c": {
+   "decyzja": "orkiestrator: C2–C5 od razu, C6 po korekcie v3.2; C3 wstrzymane (nadlew 330°, decyzja a/b)",
+   "zmienne": {
+    "rimY": "106 → 102 deg",
+    "rimYSzer": "35 → 40 deg",
+    "wyciecieX1": "-2 → -14 mm",
+    "wyciecieG": "83.5 → 82.5 deg",
+    "luzUchaD": "nowa 0.6 mm"
+   },
+   "C2": {
+    "operacje": {
+     "Powieka górna: płaszczyzna wycięcia ucha D": "FCBaTRMwab3gb9U_18",
+     "Powieka górna: wycięcie ucha D": "Fx4svQiBzuEpxbH_18",
+     "Powieka górna: wycięcie ucha D (cięcie)": "FtGceSTFoZgyAEr_18",
+     "Powieka górna: wycięcie ucha D lewe": "FMXnAt8eiszmRiC_18"
+    },
+    "stan": "4 × OK, szkic zdefiniowany",
+    "bodydetails": "PG: walec R4,6 o osi x na x 30,86…30,95 i −30,95…−30,86 (cięcie +x, zdejmuje koniec czaszy przy ρ<4,6); mostek R4,5/R8, ucho G R5,5 bez zmian; płaszczyzna wycięcia C5 na x −14; 18 brył",
+    "folder": "4 operacje przeciągnięte do folderu „Powieka górna” (30 → 34), drzewo bez ikon błędów"
+   },
+   "wywolania": 8
   }
  }
 }
