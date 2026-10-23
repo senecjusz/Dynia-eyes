@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "plan P4 (e6.6-plan-p4.md) wysłany do orkiestratora, czekam na zatwierdzenie; strona Onshape przeładowana – biblioteka G do ponownego wczytania przed zapisami",
-  "wywolania": "E6.6 0/260 (GET /features 0/8); E6 razem 481, rok 1039",
-  "aktualizacja": "2026-10-23T13:42:54Z"
+  "stan": "P4 zbudowana (25/34), następny krok: plan C2–C6 do orkiestratora",
+  "wywolania": "E6.6 25/260 (GET /features 0/8); E6 razem 506, rok 1064",
+  "aktualizacja": "2026-10-23T14:05:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,7 +18,7 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 481,
+  "total": 506,
   "features": 326,
   "getFeatures": 14
  },
@@ -334,7 +334,7 @@
   "wywolania": 170,
   "getFeatures": 5
  },
- "mv": "a3b1c6ad42fe9fb00064b5d7",
+ "mv": "a52266e4bec4a5bf6c241faf",
  "variableStudio": {
   "liczba": 177,
   "referencja": "Part Studio widzi całe VS (entireVariableStudio true)",
@@ -482,7 +482,26 @@
    "FG5Ttoc1bt46oz3_5",
    "FkzOX3s23T6OPht_5",
    "FMdzSaaMlDieO0G_5"
-  ]
+  ],
+  "P4: przekroje obrotowe": "F8vwoO1NqiuC18i_12",
+  "P4: krzyżaki": "FgCu6ValuZpPcxj_12",
+  "P4: pręt – czop, tulejka, pręt": "FizgO6XysNzv4wI_14",
+  "P4: widełki stałe": "FAaqvRVs1bsRvJT_15",
+  "P4: widełki stałe G": "F9EXMwY1JWL1Nv7_15",
+  "P4: widełki stałe O": "FpyALQdOoz3khrl_16",
+  "P4: widełki pręta O – podstawa": "F30PWb3kRogcG97_17",
+  "P4: widełki pręta": "F6ZxRghARbFYkaT_18",
+  "P4: widełki pręta G": "FDkGj5meGvfaadM_18",
+  "P4: widełki pręta O – policzki": "FfIO0PcFoaty7PR_18",
+  "P4: zaokrąglenie widełek stałych": "FsuJbhgqa0E8DhH_18",
+  "P4: zaokrąglenie widełek pręta": "FvvCv6pJkYiEa0x_18",
+  "P4: osie a1": "F2hgpyzSvDFeIAF_18",
+  "P4: oś a1 G": "F1JQtQ3Lelhf6uG_18",
+  "P4: oś a1 O": "FkbYeVvvqXARfUi_18",
+  "P4: osie a2 i obrotnica": "F4oiadcy8dBysC1_18",
+  "P4: oś a2 G": "FUQbo0uofddJwrR_18",
+  "P4: oś a2 O": "FbZdQDEgWIzZ4Oq_18",
+  "P4: obrotnica – łożysko i pogłębienie": "FXLRL3hwBogtXV9_18"
  },
  "testBramki": {
   "t": "2026-10-23T02:44:35Z",
@@ -699,8 +718,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 481,
-  "suma": 1039
+  "E6": 506,
+  "suma": 1064
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2124,9 +2143,97 @@
    "getFeatures": 8
   },
   "n": {
-   "total": 0,
+   "total": 25,
    "getFeatures": 0
   },
-  "log": []
+  "log": [],
+  "skrypty": [
+   "40-cad/onshape/e6.6-build.js",
+   "40-cad/onshape/e6.6-p4.js"
+  ],
+  "p4": {
+   "plan": "40-cad/onshape/e6.6-plan-p4.md (zatwierdzony 23.10, uwagi 1–5 przyjęte; 5 tylko w P4)",
+   "zmienne": {
+    "przed": 306,
+    "po": 353,
+    "nowe": 47,
+    "zmienione": {
+     "pretX": "43,33 → 43,635",
+     "pretD": "5 → 4,5"
+    },
+    "odstepstwo": "8 zmiennych pochodnych (uGal_hi/ho, uOrcz_hi/ho, uGal_otwGl, uOrcz_otwGl, lozyskoL, p4XO) – plan miał hi/ho w wyrażeniach; czytelniej jako zmienne"
+   },
+   "operacje": "19 zapisów (5 szkiców, 14 operacji bryłowych), każdy featureStatus OK, wiersz w drzewie bez ostrzeżeń, szkice bez znacznika underdefined",
+   "kontrolaSzkicow": [
+    {
+     "nazwa": "P4: przekroje obrotowe",
+     "featureId": "F8vwoO1NqiuC18i_12",
+     "dataId": "MO2cRcNOPRuKZsYTL",
+     "podpowiedz": "P4: przekroje obrotowe [Sketch]",
+     "niedookreslony": false,
+     "mv": "cb74a7584dd099f48ba1e075"
+    },
+    {
+     "nazwa": "P4: widełki stałe",
+     "featureId": "FAaqvRVs1bsRvJT_15",
+     "dataId": "MMax0APWpbbWaM4+o",
+     "podpowiedz": "P4: widełki stałe [Sketch]",
+     "niedookreslony": false,
+     "mv": "0f2db840255f7fc0b4230036"
+    },
+    {
+     "nazwa": "P4: widełki pręta",
+     "featureId": "F6ZxRghARbFYkaT_18",
+     "dataId": "MCtqmKnE/YtOQhkhX",
+     "podpowiedz": "P4: widełki pręta [Sketch]",
+     "niedookreslony": false,
+     "mv": "73bf996f4b2b3ba600f1cd4a"
+    },
+    {
+     "nazwa": "P4: osie a1",
+     "featureId": "F2hgpyzSvDFeIAF_18",
+     "dataId": "MXa5973tJuMuWXdSt",
+     "podpowiedz": "P4: osie a1 [Sketch]",
+     "niedookreslony": false,
+     "mv": "63affc5872aab1a35057d9f8"
+    },
+    {
+     "nazwa": "P4: osie a2 i obrotnica",
+     "featureId": "F4oiadcy8dBysC1_18",
+     "dataId": "MeKzpq/7dlWp2k0Te",
+     "podpowiedz": "P4: osie a2 i obrotnica [Sketch]",
+     "niedookreslony": false,
+     "mv": "74e363e32818cebc5a9f212d"
+    }
+   ],
+   "ponownyOdczytZnacznikow": "po założeniu folderu, 5/5 bez underdefined (podpowiedzi „[Sketch] (Hidden)”)",
+   "bodydetails": {
+    "P4 Krzyżak G (RAGD)": "x 78…82, y/z ±2,75; walec X R2,75; otwory Y R0,9 ×2, Z R0,9 ×2",
+    "P4 Krzyżak O (RAGH)": "x 121,64…125,64, ±4; walec X R4; otwory Y/Z R0,9 ×2",
+    "P4 Pręt (RBGD)": "x 78,2…115,04, y ±5, z ±3,5; X: R1,3 (otwór M3), R2,2 (czop), R2,25 (pręt), R3,5 (tulejka); Y: R0,8 ×2, R1,8 ×2 (koniec policzków); 2 stożki pogłębień",
+    "P4 Widełki stałe G (REGD)": "x 63…82,6, y ±2,6, z ±8; Y R1,65 ×2 (M3 klocka); Z R0,8 ×2, R2,6 ×2; 2 stożki",
+    "P4 Widełki stałe O (RFGD)": "x 121,03…141,38, y ±2,6, z ±8; jak G",
+    "P4 Widełki pręta O (RGGD)": "x 111,63…126,23, y ±6,25, z ±4; X R2,4 (łożysko), R3 (pogłębienie M3), R4 ×2 (walec podstawy); Y R0,8 ×2, R2,6 ×2"
+   },
+   "wynik": "6 brył zgodnych z planem; dokument 18 brył",
+   "interfejs": "folder „Próbka P4 (19)”; części: P4 Krzyżak G, P4 Krzyżak O, P4 Pręt, P4 Widełki stałe G, P4 Widełki stałe O, P4 Widełki pręta O",
+   "zrzut": "40-cad/onshape/e6.6-zrzuty/p4-po-budowie.jpg",
+   "wywolania": {
+    "featurespecs": 1,
+    "GET VS": 1,
+    "POST VS": 2,
+    "currentmicroversion": 1,
+    "zapisy": 19,
+    "bodydetails": 1,
+    "razem": 25,
+    "budzet": 34
+   },
+   "liczniki": {
+    "POST /features": 2980,
+    "bodydetails": 429,
+    "featurespecs": 97,
+    "POST VS": 2999
+   }
+  }
  }
 }
