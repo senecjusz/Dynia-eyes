@@ -1224,8 +1224,8 @@
     "type": "LENGTH",
     "name": "obejmaZ1",
     "value": null,
-    "description": "",
-    "expression": "-5 mm"
+    "description": "czoło Obejmy przy wewnętrznej ściance dyni (wartość robocza: ścianka dociskMin)",
+    "expression": "#glebokoscSrodka - #dociskMin"
    },
    {
     "type": "LENGTH",
@@ -1324,6 +1324,76 @@
     "value": null,
     "description": "przycięcie czaszy G",
     "expression": "#uchoDX1 - #luzOsiowy"
+   },
+   {
+    "type": "LENGTH",
+    "name": "nakrM5E",
+    "value": null,
+    "description": "nakrętka M5: wymiar po narożach kieszeni (S 8,2 / cos 30°)",
+    "expression": "9.47 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "obejmaScianka",
+    "value": null,
+    "description": "",
+    "expression": "3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "kolnierzObejmyT",
+    "value": null,
+    "description": "",
+    "expression": "2.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "szczelinaObejmy",
+    "value": null,
+    "description": "",
+    "expression": "3 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoObejmyT",
+    "value": null,
+    "description": "",
+    "expression": "6 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "uchoObejmyR2",
+    "value": null,
+    "description": "",
+    "expression": "50 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "obejmaSrubaR",
+    "value": null,
+    "description": "",
+    "expression": "46.5 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m3NakrS",
+    "value": null,
+    "description": "kieszeń nakrętki M3 (5,5 + 0,2)",
+    "expression": "5.7 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m3NakrH",
+    "value": null,
+    "description": "DIN 985 M3",
+    "expression": "4 mm"
+   },
+   {
+    "type": "LENGTH",
+    "name": "m3NakrE",
+    "value": null,
+    "description": "po narożach (S / cos 30°)",
+    "expression": "6.58 mm"
    }
   ]
  }

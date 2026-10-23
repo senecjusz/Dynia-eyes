@@ -1,6 +1,6 @@
 {
   "zadanie": "E6.2 etap 1 (brief 30-projekt/brief-e6.2-cad-etap1.md, e008659): plan Zmiennych + layoutu wysłany do orkiestratora",
-  "zapis": "2026-10-23T06:10Z, wykonawca CAD",
+  "zapis": "2026-10-23T06:22Z, wykonawca CAD",
   "doc": {
     "did": "b8cc184e37d6a8dbfb63c30b",
     "wid": "abf573bb580a27e085f1d73e",
@@ -13,9 +13,9 @@
     "assembly": "Assembly 1 (domyślne, do etapu 3)"
   },
   "n": {
-    "total": 131,
-    "features": 83,
-    "getFeatures": 4
+    "total": 152,
+    "features": 98,
+    "getFeatures": 5
   },
   "liczniki": {
     "GET /documents/{id}": 3000,
@@ -225,17 +225,23 @@
       200,
       null,
       false
+    ],
+    [
+      "2026-10-23T06:12–06:21Z",
+      "Obejma: POST zmiennych, mv, 14 zapisów, 2 × bodydetails, bbox; GET /features (5/8) + GET zmiennych",
+      200,
+      96,
+      false
     ]
   ],
   "stop": null,
   "etap1": {
     "budzet": {
       "total": 170,
-      "getFeatures": 8,
-      "uwaga": "podniesiony przez orkiestratora do 170; przyrządy przeniesione do etapu 2"
+      "getFeatures": 8
     },
-    "wywolania": 127,
-    "getFeatures": 4
+    "wywolania": 148,
+    "getFeatures": 5
   },
   "mv": "58c65069b8d0f8a876634025",
   "variableStudio": {
@@ -419,11 +425,12 @@
     "Lista drzewa jest wirtualizowana: przed odczytem wiersza nowej operacji przewinąć listę na dół."
   ],
   "zmienne": {
-    "liczba": 190,
+    "liczba": 199,
     "zmiany_23_10": "kolnierzZ 8 -> 6 (orkiestrator), nowe bokOsiR 5, bokOsiGl = #scRury, fazaRantu 1",
     "p6Wys": "20 (nowa)",
     "nowe_powieki": "uchoDR 4, luzMostka 0,5, mostekR1 = uchoDR + luzMostka, mostekR2 8 (orkiestrator), mostekKat1/2 20/70, uchoGR 6, trimG = uchoDX1 − luzOsiowy",
-    "nakrM5E": "9,47 (nowa: wymiar po narożach kieszeni nakrętki M5)"
+    "nakrM5E": "9,47 (nowa: wymiar po narożach kieszeni nakrętki M5)",
+    "obejma": "obejmaZ1 = glebokoscSrodka − dociskMin (było −5 stałe), nowe: obejmaScianka 3, kolnierzObejmyT 2,5, szczelinaObejmy 3, uchoObejmyT 6, uchoObejmyR2 50, obejmaSrubaR 46,5, m3NakrS 5,7, m3NakrH 4, m3NakrE 6,58"
   },
   "rama": {
     "pomiar": {
@@ -458,9 +465,11 @@
     "pliki": {
       "features-rama-galka.json": "GET /features z encjami (bez noSketchGeometry), 22 operacje, mv 0d2be676…, wszystkie featureStatus OK",
       "znaczniki-rama-galka.json": "odczyt znaczników wszystkich 6 szkiców z drzewa (foldery rozwinięte), dosłownie – wszystkie niedookreslony false",
-      "variable-studio.json": "nadpisany: 189 zmiennych",
+      "variable-studio.json": "nadpisany: 199 zmiennych",
       "features-powieki.json": "GET /features (4/8) z encjami, 46 operacji, mv 58c65069…, wszystkie OK",
-      "znaczniki-powieki.json": "13 szkiców (foldery rozwinięte, lista przewijana), wszystkie niedookreslony false"
+      "znaczniki-powieki.json": "13 szkiców (foldery rozwinięte, lista przewijana), wszystkie niedookreslony false",
+      "features-slupek-obejma.json": "GET /features (5/8) z encjami, 70 operacji, mv 0f5c55ec…, wszystkie OK",
+      "znaczniki-wszystkie.json": "22 szkice (13 z odbioru powiek + 9 Słupka i Obejmy), wszystkie niedookreslony false"
     },
     "uwagi": [
       "GET /features wykonane dwukrotnie: 2. (przed Gałką, na prośbę odbioru Ramy) i 3. (po Gałce, wspólne dla Ramy i Gałki) – zapisany tylko 3., bo obejmuje obie części",
@@ -481,8 +490,8 @@
   },
   "rok": {
     "przedE6": 558,
-    "E6": 131,
-    "suma": 689
+    "E6": 152,
+    "suma": 710
   },
   "powiekaDolna": {
     "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -499,5 +508,12 @@
       "spłaszczenie i czop pod piastę Płyty odłożone do etapu 2 (decyzja orkiestratora)"
     ],
     "wywolania": 16
+  },
+  "obejma": {
+    "czesc": "RcBD „Obejma”, folder „Obejma (14)”",
+    "pomiar": "1 bryła, 22 ściany; pierścień R40,05–43,05, kołnierz R48 (z −5…−7,5), dół z −15; szczelina x ±1,5 przez całą wysokość, ucha do x ±7,5 i y 50; otwór M3 R1,65 (2 ściany – oba ucha) w osi x na y 46,5, z −10; kieszeń nakrętki x −7,5…−3,5 (głęb. 4); bbox x ±48, y −48…50, z −15…−5",
+    "zrzut": "40-cad/onshape/e6.2-zrzuty/obejma.jpg",
+    "wywolania": 17,
+    "druk": "kołnierzem w dół, PETG (do README)"
   }
 }
