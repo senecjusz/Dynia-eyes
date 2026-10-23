@@ -1,9 +1,9 @@
 {
  "zadanie": {
   "id": "E6.6",
-  "stan": "P4 gotowa do ponownego eksportu (a1 przelotowy po obu stronach); następne: Ramiona X/Y",
-  "wywolania": "E6.6 164/320 (GET /features 1/8); E6 645, rok 1203",
-  "aktualizacja": "2026-10-23T17:20:00Z"
+  "stan": "Ramiona X/Y zbudowane; następne: komplet prętów Y, słupki stopu, K9, odbiór",
+  "wywolania": "E6.6 205/320 (GET /features 1/8); E6 686, rok 1244",
+  "aktualizacja": "2026-10-23T18:42:00Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,7 +18,7 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 645,
+  "total": 686,
   "features": 326,
   "getFeatures": 14
  },
@@ -722,8 +722,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 645,
-  "suma": 1203
+  "E6": 686,
+  "suma": 1244
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -2148,7 +2148,7 @@
    "zrodlo": "orkiestrator 23.10 (plan b774b5e)"
   },
   "n": {
-   "total": 164,
+   "total": 205,
    "getFeatures": 1
   },
   "log": [],
@@ -2367,6 +2367,10 @@
    {
     "czas": "2026-10-23T17:15Z",
     "zdarzenie": "strona przeładowała się w trakcie skryptu (nie przez wykonawcę); VS i szkic osi a1 zapisane, V2/V4 dokończone po ponownym wczytaniu; biblioteka zapisana w localStorage karty (G_lib_e66)"
+   },
+   {
+    "czas": "2026-10-23T18:38Z",
+    "zdarzenie": "baner session timed out – reconnect bez przeładowania"
    }
   ],
   "sworzenA1": {
@@ -2387,6 +2391,25 @@
     "P4: oś a1 O / oś a2 O": "zakres krzyżaka punktem (125,135; 1,5; 1,5)"
    },
    "bodydetails": "Krzyżak O: Z R0,9 −4…4, Y R0,9 1,88…4 i −4…−1,87; Widełki stałe O: 0 stożków, R0,8 w obu policzkach; Krzyżak G bez zmian; 21 brył; drzewo bez ostrzeżeń"
+  },
+  "ramiona": {
+   "czas": "2026-10-23T18:40Z",
+   "plan": "e6.6-plan-ramiona-prety.md (zatwierdzony b774b5e)",
+   "skrypt": "e6.6-ramiona.js",
+   "zmienne": "orczykX 13 → 14,7, orczykY 15 → 15,4 (nieużywane wcześniej); +19 nowych (ramieXYW, ramieHubR, ramieWKoniec, ramieLKoniec, ramieKoniecDod, ramieXYKieszenGl 1,15 [Z], hPrzegubu, ramieWglabWid, ramieX/YH x/y/z, katA1X/Y, katWidOrczX/Y, sworzenLOrczA1 12)",
+   "operacje": "2 × 17 zapisów, wszystkie featureStatus OK",
+   "odstepstwa": [
+    "orczyk fabryczny wzdłuż Ramienia (+y, pod płytką), nie „przeciwnie do widełek”: przy −y ramię orczyka 17,5 wystawałoby poza płytkę (4 mm za wałkiem) i otwory M2 nie trafiłyby w materiał",
+    "sworzeń a1 przy orczyku DIN 7985 M2×12 zamiast M2×14: M2×14 sięgałby 0,875 w wierzch Ramienia (po scaleniu lity); M2×12 kończy się w policzku bliższym, gwint 1,75 (jak w P4)",
+    "widełki orczyka: bryła obejmuje słupek pod policzkiem bliższym do 2 mm w głąb Ramienia (jak obb w modelu: od −h do +ho)"
+   ],
+   "bodydetails": {
+    "Ramię X (Part 22)": "jedna bryła, x 17,01…38,02, y −20…5,7, z −60,36…−42; otwory M2 R1,2 w (y −13 / −5,5 / −1,5); sworzeń a1 R0,8 oś (0,98; 0; 0,201) = a1 modelu",
+    "Ramię Y (Part 23)": "jedna bryła, x 9,23…31,87, y −4…22,4, z −59,58…−41,48; otwory M2 w (y 3 / 10,5 / 14,5); a1 (0,881; 0; 0,472) = a1 modelu",
+    "bryly": 23
+   },
+   "znaczniki": "karta ukryta (visibilityState hidden) – wiersze drzewa nie renderowały się; 10 szkiców Ramion sprawdzonych tylko featureStatus OK, znaczniki do skanu K2 przy odbiorze; test na sucho: bilans stopni swobody 0 dla wszystkich 10",
+   "interfejs": "części nazwane Ramię X, Ramię Y; płaszczyzny schowane"
   }
  }
 }
