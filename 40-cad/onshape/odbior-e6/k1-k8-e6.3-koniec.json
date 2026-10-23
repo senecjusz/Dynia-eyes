@@ -1,0 +1,354 @@
+{
+ "K1": [],
+ "K2": {
+  "szkiceJSON": 71,
+  "wierszeZnacznikow": 64,
+  "niedookreslone": []
+ },
+ "K3": [],
+ "K4": [],
+ "K5": [
+  [
+   "Rama: bok osi lewy",
+   "FEATURE"
+  ],
+  [
+   "Rama: otwór osi lewy",
+   "FACE"
+  ],
+  [
+   "Gałka: nadlew prawy",
+   "FEATURE"
+  ],
+  [
+   "Gałka: otwór M3 nadlewu prawy",
+   "FACE"
+  ],
+  [
+   "Powieka górna: mostek i ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Powieka dolna: ucho lewe",
+   "FEATURE"
+  ],
+  [
+   "Obejma: ucho lewe",
+   "FEATURE"
+  ]
+ ],
+ "K6": {
+  "Rama": 9,
+  "Gałka": 7,
+  "Próbka P6": 1,
+  "Powieka górna": 13,
+  "Powieka dolna": 11,
+  "Słupek": 5,
+  "Obejma": 6,
+  "Płyta": 38,
+  "Ramię PG": 4,
+  "Ramię PD": 4,
+  "Przyrząd gięcia": 2
+ },
+ "K8": [
+  [
+   "Layout: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Layout: czoło",
+   "query=qCreatedBy(makeId(\"Top\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: bok osi",
+   "query=qCreatedBy(makeId(\"FCnPBGeVDIxwC46_1\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: punkt otworu osi",
+   "query=qCreatedBy(makeId(\"F8bD76LPhvuJJ9J_1\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: ucha wewnętrzne",
+   "query=qCreatedBy(makeId(\"FwwFCKVtfpN8MG9_0\"), EntityType.FACE);"
+  ],
+  [
+   "Rama: punkty gwintów uch",
+   "query=qCreatedBy(makeId(\"FwwFCKVtfpN8MG9_0\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: nadlew",
+   "query=qCreatedBy(makeId(\"FdsbCBYCQkXf39S_2\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: wycięcie X",
+   "query=qCreatedBy(makeId(\"Front\"), EntityType.FACE);"
+  ],
+  [
+   "Gałka: wycięcie Y",
+   "query=qCreatedBy(makeId(\"Fs7QBAeazT05TwX_2\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: przekrój",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: mostek",
+   "query=qCreatedBy(makeId(\"FrqgDKx8O7yHBFm_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: ucho",
+   "query=qCreatedBy(makeId(\"F6bWH7u4OadRjRX_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: punkt osi",
+   "query=qCreatedBy(makeId(\"FxjugcFMzN2eMjI_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: wycięcie",
+   "query=qCreatedBy(makeId(\"FBF1AuTk6ArwUts_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: przycięcie przy zaczepie",
+   "query=qCreatedBy(makeId(\"FowaoAz8dzSPY8K_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: zaczep",
+   "query=qCreatedBy(makeId(\"FgvV3sUV9aaM1D4_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: kącik 1",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: kącik 2",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka górna: kącik 3",
+   "query=qCreatedBy(makeId(\"FHkRivqJoCYPvOe_3\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: przekrój",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: ucho",
+   "query=qCreatedBy(makeId(\"F4kAjYHOC9yz9vg_0\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: punkt osi",
+   "query=qCreatedBy(makeId(\"F6yIFkJIbVIGho5_5\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: przycięcie przy zaczepie",
+   "query=qCreatedBy(makeId(\"F6Hw4JOh6ypw2qX_5\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: zaczep",
+   "query=qCreatedBy(makeId(\"FgvV3sUV9aaM1D4_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: kącik 1",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: kącik 2",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Powieka dolna: kącik 3",
+   "query=qCreatedBy(makeId(\"FJUf5ncC4fsX8Dt_4\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: punkt trzpienia",
+   "query=qCreatedBy(makeId(\"F1YvoFCIuZraYth_0\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: kanał nakrętki M5",
+   "query=qCreatedBy(makeId(\"FRce4rRx2gHE5B9_6\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: punkt M4",
+   "query=qCreatedBy(makeId(\"FvHiYXAymkvKYNA_6\"), EntityType.FACE);"
+  ],
+  [
+   "Słupek: spłaszczenie",
+   "query=qCreatedBy(makeId(\"F1YvoFCIuZraYth_0\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: przekrój",
+   "query=qCreatedBy(makeId(\"Right\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: ucho",
+   "query=qCreatedBy(makeId(\"F7Qx4f8FDrK2pf3_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: szczelina",
+   "query=qCreatedBy(makeId(\"F7Qx4f8FDrK2pf3_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: punkt śruby",
+   "query=qCreatedBy(makeId(\"FGs8ToNIq9iWPzC_7\"), EntityType.FACE);"
+  ],
+  [
+   "Obejma: kieszeń nakrętki",
+   "query=qCreatedBy(makeId(\"FdNoDEiuTutNGFM_7\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: tarcza",
+   "query=qCreatedBy(makeId(\"FIJfwhZlrsiQL07_7\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: klatka S_X",
+   "query=qCreatedBy(makeId(\"FDVrrXjx2X19dwf_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: klatka S_Y",
+   "query=qCreatedBy(makeId(\"FVHaKAQToi5zOzN_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: klatka S_PD",
+   "query=qCreatedBy(makeId(\"FHwMOJwJvqsLECn_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: klatka S_PG",
+   "query=qCreatedBy(makeId(\"FovHBz2em1h5NcF_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: blok S_X",
+   "query=qCreatedBy(makeId(\"FkhV8xJuTFdKH0v_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: nakrętki M2 S_X",
+   "query=qCreatedBy(makeId(\"FkhV8xJuTFdKH0v_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: ucha S_X",
+   "query=qCreatedBy(makeId(\"FCZaItaCAhSo2ty_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: blok S_Y",
+   "query=qCreatedBy(makeId(\"FjeEBlEvlRkj5Ad_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: nakrętki M2 S_Y",
+   "query=qCreatedBy(makeId(\"FjeEBlEvlRkj5Ad_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: ucha S_Y",
+   "query=qCreatedBy(makeId(\"FPYdErpeah40O3d_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: blok S_PD",
+   "query=qCreatedBy(makeId(\"F9Vs7wlCNj1fGpm_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: nakrętki M2 S_PD",
+   "query=qCreatedBy(makeId(\"F9Vs7wlCNj1fGpm_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: ucha S_PD",
+   "query=qCreatedBy(makeId(\"F46GniQWGJsLEut_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: blok S_PG",
+   "query=qCreatedBy(makeId(\"FwK3p5V1CdJolm1_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: nakrętki M2 S_PG",
+   "query=qCreatedBy(makeId(\"FwK3p5V1CdJolm1_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: ucha S_PG",
+   "query=qCreatedBy(makeId(\"FdUzNIbtWmw9Cy3_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: otwory M2 S_PD",
+   "query=qCreatedBy(makeId(\"F9Vs7wlCNj1fGpm_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: wspornik",
+   "query=qCreatedBy(makeId(\"FVbnByk8M6qJcC7_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: słupki Płyty",
+   "query=qCreatedBy(makeId(\"FIJfwhZlrsiQL07_7\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: stożek słupka 1",
+   "query=qCreatedBy(makeId(\"FtNvkadgiNcL7H8_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: stożek słupka 2",
+   "query=qCreatedBy(makeId(\"F5atTuMjHIKMsJa_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: stożek słupka 3",
+   "query=qCreatedBy(makeId(\"FhIA9LXxorm35YR_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: kieszeń Słupka",
+   "query=qCreatedBy(makeId(\"FdkOLlhlKjJpXZc_8\"), EntityType.FACE);"
+  ],
+  [
+   "Płyta: otwory kabli",
+   "query=qCreatedBy(makeId(\"FIJfwhZlrsiQL07_7\"), EntityType.FACE);"
+  ],
+  [
+   "Ramię PG: obrys",
+   "query=qCreatedBy(makeId(\"FVwqbx99kT1sGs5_8\"), EntityType.FACE);"
+  ],
+  [
+   "Ramię PG: orczyk",
+   "query=qCreatedBy(makeId(\"FVwqbx99kT1sGs5_8\"), EntityType.FACE);"
+  ],
+  [
+   "Ramię PG: otwory",
+   "query=qCreatedBy(makeId(\"F8or4uHuvOrssgM_9\"), EntityType.FACE);"
+  ],
+  [
+   "Ramię PD: obrys",
+   "query=qCreatedBy(makeId(\"FCp2xZiRankkgDH_9\"), EntityType.FACE);"
+  ],
+  [
+   "Ramię PD: orczyk",
+   "query=qCreatedBy(makeId(\"FCp2xZiRankkgDH_9\"), EntityType.FACE);"
+  ],
+  [
+   "Ramię PD: otwory",
+   "query=qCreatedBy(makeId(\"FmYgdE9RROSy54R_10\"), EntityType.FACE);"
+  ],
+  [
+   "Przyrząd gięcia: płytka i kołki",
+   "query=qCreatedBy(makeId(\"FH5idcLdeRzoKwx_10\"), EntityType.FACE);"
+  ]
+ ],
+ "K3licz": 697,
+ "K6szkice": {
+  "Layout": 2,
+  "Rama": 5,
+  "Gałka": 4,
+  "Powieka górna": 10,
+  "Powieka dolna": 8,
+  "Słupek": 5,
+  "Obejma": 5,
+  "Płyta": 25,
+  "Ramię PG": 3,
+  "Ramię PD": 3,
+  "Przyrząd gięcia": 1
+ },
+ "K10duplikaty": []
+}

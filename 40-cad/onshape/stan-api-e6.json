@@ -1,9 +1,9 @@
 {
  "zadanie": {
-  "id": "E6.3 Ramiona PG/PD i przyrządy",
-  "stan": "plan e6.3-plan-ramiona-przyrzady.md wysłany (9000178), czekam na zatwierdzenie; styk bokiem zatwierdzony, kąt montażowy ramion jako zmienna",
-  "wywolania": "etap 2a 241/300, GET /features 6/7",
-  "aktualizacja": "2026-10-23T08:31:21Z"
+  "id": "E6.3 etap 2a – koniec",
+  "stan": "zbudowane wszystko z zakresu poza słupkami stopu (v3.2) i przyrządem zera (decyzja użytkownika); K9 i odbiór końcowy zrobione",
+  "wywolania": "etap 2a 291/300, GET /features 7/7",
+  "aktualizacja": "2026-10-23T08:47:54Z"
  },
  "zapis": "2026-10-23T06:50Z, wykonawca CAD",
  "doc": {
@@ -18,9 +18,9 @@
   "assembly": "Assembly 1 (domyślne, do etapu 3)"
  },
  "n": {
-  "total": 415,
-  "features": 293,
-  "getFeatures": 11
+  "total": 465,
+  "features": 319,
+  "getFeatures": 12
  },
  "liczniki": {
   "GET /partstudios/d/{id}/w/{id}/e/{id}/features": {
@@ -699,8 +699,8 @@
  },
  "rok": {
   "przedE6": 558,
-  "E6": 415,
-  "suma": 973
+  "E6": 465,
+  "suma": 1023
  },
  "powiekaDolna": {
   "czesc": "J+D „Powieka dolna”, folder „Powieka dolna (10)”",
@@ -754,8 +754,8 @@
    "getFeatures": 7
   },
   "zuzyte": {
-   "total": 241,
-   "getFeatures": 6
+   "total": 291,
+   "getFeatures": 7
   },
   "log": [
    {
@@ -1982,12 +1982,12 @@
    }
   },
   "licznik": {
-   "etap2a": 241,
+   "etap2a": 291,
    "budzet": 300,
-   "getFeatures_etap2a": 6,
+   "getFeatures_etap2a": 7,
    "budzetGetFeatures": 7,
-   "rok": 973,
-   "czas": "2026-10-23T08:28:06Z"
+   "rok": 1023,
+   "czas": "2026-10-23T08:47:54Z"
   },
   "zmianaB": {
    "czas": "2026-10-23T07:50:49Z",
@@ -2041,6 +2041,37 @@
     "propozycja": "słupki D od x −16,49 (spód S_X − 0,5) do −22,5; D otwarcia na filarze z tarczy (x −16,49…−22,5, z −68,3…−53,2; od wieżyczki S_PD 1,3, od drutu D 1,4 w x); D zamknięcia – do decyzji (filar z tarczy przechodzi przez wieżyczkę S_PD); słupki przesunięte o +0,5 od wieżyczek (zmiana stopRho albo przesunięcia bocznego – zmienia kąt styku, przeliczyć w e6model)",
     "decyzja": "orkiestrator 23.10: przekazane realizatorowi do v3.2, w 2a nie budować"
    }
+  },
+  "ramiona": {
+   "czas": "2026-10-23T08:47:54Z",
+   "PG": "płytka T3 x −28,5…−31,5, piasta R4,5 w (18; −60), koniec R3 w (3,71; −46,01) = r20 pod ramiePGb 135,62°; kieszeń orczyka głęb. 2 (dno 1); otwór drutu Ø1,6; M2 Ø2,4 w osi + 2 × Ø2,4 na r 7,5/11,5; pogłębienie Ø4,5 × 1,5 (przebija dno 1,0 nad piastą – łeb M2 opiera się na orczyku)",
+   "PD": "płytka T2 x −20…−22, piasta w (−27; −49), koniec R2,5 w (−11,74; −40,44) = r17,5 pod 29,29°; wybranie orczyka 0,5; otwory jak PG",
+   "czesci": "Ramię PG, Ramię PD (foldery 9 + 9)",
+   "otwory": "wycięcia okręgów zamiast Hole (lekcja z Płyty)"
+  },
+  "przyrzadGiecia": {
+   "czas": "2026-10-23T08:47:54Z",
+   "opis": "płytka 62 × 46 × 4 na z −124…−120, 12 kołków Ø2,4 × 4: środki zagięć Z (J, H), środki łuków wykorbienia S (2), oporniki końców nóg (2) dla G i D; położenia ze zmiennych drutu (lacznikG/D, wykGf/wykDf, wykGkat/wykDkat, drutOsR, nogaJx, zaczepX/T, ramię)",
+   "pomiar": "kołki: G (0;1,8) (18,52;−1,8) (21,44;0,32) (49,95;−3,28) (−1,8;7,5) (51,75;−9,6); D (0;21,8) (4,9;21,8) (7,61;19,44) (41,69;23,04) (−1,8;27,5) (43,49;28,3)",
+   "odstepstwo": "bez rowka R0,6 (offset ścieżki przez API zbyt kosztowny przy budżecie) – drut prowadzą kołki; rowek do dodania w 2b"
+  },
+  "przyrzadZera": "wstrzymany – decyzja użytkownika (wgłębienie w Gałce przeczy „front gładki”)",
+  "K9": {
+   "czas": "2026-10-23T08:47:54Z",
+   "wyniki": {
+    "luzKorpusSerwa 0,4→0,6": "kieszenie i pierścienie ±0,2 w y i z (np. y −35,65→−35,85, −19,65→−19,85, z −66,3→−66,5, −43,1→−42,9), 11 brył – OK",
+    "zSerw −49→−48 (1. próba)": "BŁĄD: Płyta rozpada się na 7 brył – klatki S_X/S_Y/S_PD odrywają się od tarczy (spód zewn. wymiarowany od wałka)",
+    "poprawka": "spód zewnętrznego prostokąta klatek S_X/S_Y/S_PD = abs(#tarczaZ1) (jak S_PG) – 3 edycje szkiców",
+    "zSerw −49→−48 (po poprawce)": "11 brył, kieszenie +1 w z (−66,3→−65,3; −43,1→−42,1), piasta PD z −48, wierzch górnych bloków −37,3 (0,3 pod ramionami wspornika – brak rezerwy, jak w v3.1) – OK",
+    "wyciecieG 83,5→85,5": "krawędź tylna PG 75°→77° – OK",
+    "ramiePGb 135,62→140": "koniec Ramienia PG (3,71;−46,01)→(2,68;−47,14) = obliczone – OK",
+    "przywrócenie": "geometria identyczna z bazą (płaszczyzny, ściany, położenia)"
+   }
+  },
+  "odbiorKoncowy": {
+   "features": "odbior-e6/features-e6.3-koniec.json (GET /features bez parametrów, 219 operacji, 223 stany, 0 ≠ OK)",
+   "znaczniki": "odbior-e6/znaczniki-e6.3-koniec.json (71 = 71, 0 niedookreślonych)",
+   "k": "odbior-e6/k1-k8-e6.3-koniec.json: K1 0, K3 0/697, K4 0 Fix, 0 wolnych encji; K6: Rama 9, Gałka 7, P6 1, PG 13, PD 11, Słupek 5, Obejma 6, Płyta 38 (D4), Ramię PG 4, Ramię PD 4, Przyrząd 2"
   }
  }
 }
