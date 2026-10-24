@@ -26,7 +26,7 @@ luzOtwor = 0.5;     // tuba w otworze dyni (na promieniu)
 // ---------- BAZOWE: części kupne ----------
 Lkardan = 25.5; dKardan = 11; glOtwKardana = 7;      // kardan 5/5: długość, Ø piasty, głębokość otworu Ø5
 lM5tyl = 16; dLebM5 = 9.5; hLebM5 = 3.5; dTrzpM5 = 5.5; dTrzpTyl = 5.3;   // M5 × 12 (przód) i × 16 (tył), łeb krzyżakowy (założenie)
-lM2 = 6; hLebM2 = 1.6; dLebM2 = 3.8; dOsM2 = 2.4; dPadM2 = 1.7;           // M2 × 6: łeb, otwór luźny w uchu, ciasny w podkładce
+lM2 = 6; dM2 = 2; hLebM2 = 1.6; dLebM2 = 3.8; dPadM2 = 1.7;               // M2 × 6: trzpień, łeb, otwór ciasny w podkładce (wkręcana)
 dM3luz = 3.3; dM3ciasny = 2.6; dPoglM3 = 6.5; hPoglM3 = 2.6; dWkret = 4.5;  // M3, wkręty do drewna
 Lsv = 22.8; Wsv = 12.5; Hsv = 22.8; wiezaH = 12.2; uchoOd = 15; uchoT = 2; rozstUch = 27.7; osOdCzola = 5.5; dlUszu = 31.8; dWkrSerwa = 1.7;   // MG90S (Miuzei)
 rOrcz1 = 17.5; rOrcz2 = 13.5; rOrcz3 = 7.5;          // otwory orczyka (5,5…17,5 co 2) wybrane dla S1, S2, S3
@@ -59,8 +59,9 @@ tPlyta = 3; tRamki = 4; aRamie = 8; polRamki = 8.5; ramkaNadUchem = 2; zapasPlyt
 wkladSlupka = 2.5;          // ścianka słupka wokół piasty
 oknoDl = 20;
 // ---------- BAZOWE: próbka, druk, siatka ----------
-pPlyta = [34, 12, 2]; pXucha = 3; pZebroB = [24, 5.25]; pDlB = 8; pWysZebra = 6; pUchoB = 3; pOtw2 = [21, 9.5]; pOknoY = 4; pSkorupa = 2;
+pMargines = 3; pOdst = 4; pSzer = 12; pGrub = 2; pDlB = 8; pWysZebra = 6; pUchoB = 3; pOknoY = 4; pSkorupa = 2;   // próbka: margines od brzegu, odstęp między elementami
 odstep = 10; stopka = 0.6;
+rWiezy = 6; szerOrcz = 5; rPiastyOrcz = 3.5; dlWidelek = 2; fnPodglad = 8;   // bryły zastępcze (podgląd i kontrola kolizji): wieżyczka serwa, ramię i piasta orczyka, widełki kardana
 nad = 1; e = 0.01; fnDuze = 192; fnSr = 64; fnMale = 24; krokKata = 1; nSektor = 48; lOtwOsi = 8;
 
 // ---------- POCHODNE (wartość dla bazowych powyżej) ----------
@@ -74,6 +75,7 @@ aStozek    = atan2(uStozek + stozekK, uStozek);    // 55,2°
 aRantZ     = asin(zRant / Rg);  aRantW = asin(zRant / (Rg - tg));   // -15,5° / -16,6°
 yRowek     = -uStozek;                             // -15,99 wylot rowka T do wnętrza gałki
 dDzwOtw    = dDrut + 2 * luzObr;                   // 1,4
+dOsM2      = dM2 + 2 * luzObr;                     // 2,4 otwór osi w uchu powieki
 dOtw2      = 2 * dDrut + 2 * luzObr;               // 2,4 (dwa druty, orczyk S3)
 Rpg        = Rg + szczGalkaPow;                    // 31,5
 Rpd        = Rpg + tp + szczPowiek;                // 33,4
@@ -128,6 +130,18 @@ zOkno1     = -zPiasta - (lM5tyl - glOtwKardana) - luzObr;   // -21,95 strop okna
 zOkno      = [zOkno1 - (hLebM5 + luzLebH), zOkno1];         // [-25,85; -21,95]
 oknoSzer   = dLebM5 + 4 * luzLebR;                 // 10,5
 dPiasta    = dKardan;                              // podgląd
+pXucha     = pMargines;                            // 3 początek blaszki ucha od brzegu płytki
+pDlUcha    = (Rg - uchoZaSkorupa) - (xUcha - uchoOdOsi) + pSkorupa;   // 13,5 blaszka + kawałek skorupy
+pOtw2      = [pXucha + pDlUcha + pOdst, pSzer - pMargines];           // [20,5; 9] otwór na dwa druty
+pZebroB    = [pOtw2[0] + dOtw2 / 2 + pOdst, (pSzer - tUcho) / 2];      // [25,7; 5,25] żebro B (dźwignia powieki)
+pPlyta     = [pZebroB[0] + pDlB + pMargines, pSzer, pGrub];           // [36,7; 12; 2]
+
+// ---------- GRANICE (asercje): przekroczenie przerywa eksport ----------
+zakladkaRamieD = rRamieD - sqrt(Rpd * Rpd - xTrymD * xTrymD);   // 2,2: ramię ucha dolnej powieki zachodzi na czaszę (Rg ≤ ~30,6 przy Ø80)
+assert(zakladkaRamieD >= 2 * luzRuch, str("GRANICA: ramię ucha dolnej powieki nie sięga czaszy (zakładka ", zakladkaRamieD, " mm) – za duże Rg dla otworu"));
+assert(xPad + glPadM2 <= rTubaZ - e, str("GRANICA: otwór M2 przebija tubę (", xPad + glPadM2, " > ", rTubaZ, ")"));
+assert(zKolPrzod - tKol > zSerwoPrzod + uchoWyst, str("GRANICA: kołnierz zachodzi na ucha serw (scianka za duża: ", scianka, ")"));
+assert(zKolPrzod < -aPad - luzRuch, str("GRANICA: tuba nie obejmuje podkładek osi powiek (scianka za mała: ", scianka, ")"));
 
 // ===================== pomocnicze =====================
 module xOs() { multmatrix([[0,0,1,0],[1,0,0,0],[0,1,0,0]]) children(); }   // lokalne XY → świat (y, z), lokalne Z → świat x
@@ -259,7 +273,7 @@ module ProbkaDrutu() {   // płytka = stół gałki (z = zRant): blaszka ucha 1:
 }
 
 // ===================== PODGLĄD (tylko złożenie, nie do druku): serwa, orczyki w zerze, druty, piasty kardana =====================
-module drut(a, b) { color("red") hull() { translate(a) sphere(d = 1, $fn = 8); translate(b) sphere(d = 1, $fn = 8); } }
+module drut(a, b) { color("red") hull() { translate(a) sphere(d = dDrut, $fn = fnPodglad); translate(b) sphere(d = dDrut, $fn = fnPodglad); } }
 module podglad() {
   color("steelblue") {
     translate([xOrcz1 + odstOrcz + wiezaH, yWal1 - Wsv / 2, zSerwoTyl]) cube([Hsv, Wsv, Lsv]);
@@ -270,9 +284,9 @@ module podglad() {
   h1 = [xOrcz1, yWal1 + rOrcz1 * cos(aOrcz0), zWal + rOrcz1 * sin(aOrcz0)];
   h2 = [xOrcz2, yWal2 + rOrcz2 * cos(aOrcz0), zWal + rOrcz2 * sin(aOrcz0)];
   h3 = [xWal3 + rOrcz3, yOrcz3, zWal];
-  color("black") { hull() { translate([xOrcz1, yWal1, zWal]) sphere(2); translate(h1) sphere(2); }
-    hull() { translate([xOrcz2, yWal2, zWal]) sphere(2); translate(h2) sphere(2); }
-    hull() { translate([xWal3, yOrcz3, zWal]) sphere(2); translate(h3) sphere(2); } }
+  color("black") { hull() { translate([xOrcz1, yWal1, zWal]) sphere(d = grubOrcz); translate(h1) sphere(d = grubOrcz); }
+    hull() { translate([xOrcz2, yWal2, zWal]) sphere(d = grubOrcz); translate(h2) sphere(d = grubOrcz); }
+    hull() { translate([xWal3, yOrcz3, zWal]) sphere(d = grubOrcz); translate(h3) sphere(d = grubOrcz); } }
   drut([xUcha, 0, zUcho], h1); drut([0, xUcha, zUcho], h2);
   drut([-(xUchoG + tUcho / 2), rDzw * sin(katDzwZam), rDzw * cos(katDzwZam)], h3); drut([-(xUchoD + tUcho / 2), -rDzw * sin(katDzwZam), rDzw * cos(katDzwZam)], h3);
 }
@@ -312,9 +326,9 @@ if (czesc == "parametry") echo(str("PARAMETRY{\"lug1\":[", xUcha, ",0,", zUcho, 
   "\"lev\":{\"r\":", rDzw, ",\"xu\":", -(xUchoG + tUcho / 2), ",\"xl\":", -(xUchoD + tUcho / 2), ",\"skok\":", skok, "},",
   "\"korp\":{\"xu\":", -(xUchoG + tUcho + dDrut / 2), ",\"xl\":", -(xUchoD - dDrut / 2), "},",
   "\"sv\":{\"odstOrcz\":", odstOrcz, ",\"wiezaH\":", wiezaH, ",\"Hsv\":", Hsv, ",\"Wsv\":", Wsv, ",\"zP\":", zSerwoPrzod, ",\"zT\":", zSerwoTyl,
-  ",\"uchoOd\":", uchoOd, ",\"uchoT\":", uchoT, ",\"uchoWyst\":", uchoWyst, ",\"grubOrcz\":", grubOrcz, "},",
+  ",\"uchoOd\":", uchoOd, ",\"uchoT\":", uchoT, ",\"uchoWyst\":", uchoWyst, ",\"grubOrcz\":", grubOrcz, ",\"rWiezy\":", rWiezy, ",\"szerOrcz\":", szerOrcz, ",\"rPiastyOrcz\":", rPiastyOrcz, "},",
   "\"Rg\":", Rg, ",\"xLeb\":", xLeb, ",\"hLebM2\":", hLebM2, ",\"dLebM2\":", dLebM2, ",\"zPiasta\":", zPiasta, ",\"dKardan\":", dKardan,
-  ",\"zRant\":", zRant, ",\"dDrut\":", dDrut, "}"));
+  ",\"zRant\":", zRant, ",\"dDrut\":", dDrut, ",\"dlWidelek\":", dlWidelek, "}"));
 else if (czesc == "zlozenie") { color("white") Galka(); color("orange") { PowiekaGorna(); PowiekaDolna(); Pierscien(); UchwytSerw(); } color("darkorange") Maskownica(); podglad(); }
 else if (czesc == "zbiorczy") zbiorczy();
 else if (tryb == "druk") druk(czesc);

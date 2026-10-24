@@ -1,5 +1,5 @@
-kontrola kolizji: krok 10°, θ 8 × φ 6 pozycji gałki, ψ 7 pozycji powiek, 1172 s
-S1 α -42.2…37.8°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
+kontrola kolizji: krok 10°, θ 9 × φ 7 pozycji gałki, ψ 7 pozycji powiek, 1423 s
+S1 α -42…37.8°, S2 α -45.5…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
 S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
@@ -23,7 +23,7 @@ gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
 gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
 powieka dolna – lebM2 | 1.90 | ψ 51.5
 druty powiek – pierscien | 1.90 | ψ 0.0
-orczyk S1 – S2 | 2.43 | θ 5, φ -25
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
 powieka górna – uchwyt | > 3 | ψ 0.0
 powieka dolna – uchwyt | > 3 | ψ 0.0
 powieka górna – piastaTyl | > 3 | ψ 0.0

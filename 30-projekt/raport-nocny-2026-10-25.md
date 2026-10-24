@@ -57,27 +57,45 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 
 ## Parametryczność i test zginania (wymaganie użytkownika przez PM)
 
-Sekcja zmiennych w `duze-oko-v2.scad` ma 2 grupy:
-- **bazowe:** części kupne, luzy z AGENTS.md, Rg, otwór Ø80, ścianka dyni oraz decyzje jako odstępy, kąty i rozmiary;
-- **pochodne:** wszystkie położenia, liczone z bazowych, z dzisiejszą wartością w komentarzu.
+Sekcja zmiennych w `duze-oko-v2.scad` ma 3 części:
+- **BAZOWE:** części kupne, luzy z AGENTS.md, Rg, otwór Ø80, ścianka dyni oraz decyzje jako odstępy, kąty i rozmiary;
+- **POCHODNE:** wszystkie położenia, liczone z bazowych, z dzisiejszą wartością w komentarzu;
+- **GRANICE:** asercje, które przerywają model poza zakresem konstrukcji.
 
-Skrypty kinematyki i kolizji biorą geometrię z modelu (`parametry.json` z echa SCAD), a nie z własnych liczb. Pełny wynik: `40-cad/openscad/zginanie-v2.txt` (skrypt `zginanie.sh`).
+Skrypty kinematyki i kolizji biorą całą geometrię z modelu (`parametry.json` z echa SCAD), łącznie z bryłami zastępczymi i średnicą drutu. Bez tego pliku nie startują.
 
-| Wariant | Siatki (6 części) | Kinematyka | Kolizje (5 × 4 poz. gałki, 7 powiek) |
+**Test zginania:** `40-cad/openscad/zginanie.sh` + `zginanie-werdykt.sh`, pełne wyniki w `40-cad/openscad/zginanie-v2.txt`. Każdy wariant przechodzi:
+- eksport 6 części;
+- kontrolę siatek (szczelność, 1 bryła na część);
+- solver;
+- kontrolę kolizji (5 × 5 pozycji gałki z zerem i krańcami, 7 pozycji powiek).
+
+| Wariant | Werdykt | Co się zmieniło (dowód przeliczenia) | Odstępy < 0,5 (bez styków stałych) |
 |---|---|---|---|
-| bazowy (Rg 30, ścianka 40, luzObr 0,2) | OK, po 1 bryle | S1 −42…+38°, S2 −46…+40°, całość osiągalna | 0 przenikań; drut S1 0,42; luzy osi 0,18–0,20 |
-| Rg 29 | OK | S1 L 40,9, S2 L 41,9, całość osiągalna | 0 przenikań; drut S1 0,40, drut S2 0,44 |
-| **Rg 31** | **Powieka dolna: 3 bryły** | całość osiągalna | 0 przenikań; powieka górna–pierścień 0,39 |
-| ścianka 28 | OK | bez zmian | 0 przenikań (kołnierz z = −6) |
-| ścianka 50 | OK | bez zmian | 0 przenikań (kołnierz z = −28, ucha serw 2 mm) |
-| luzObr 0,3 | OK | bez zmian | 0 przenikań; luzy osi 0,28–0,30 (przeniosły się) |
+| bazowy (Rg 30, ścianka 40, luzObr 0,2, drut 1,0) – krok 10° (9 × 7) | ZALICZONY | S1 −42…+38°, S2 −46…+40°, całość osiągalna | luzy osi powiek 0,18–0,20 (projektowe); drut S1–gałka 0,42 |
+| Rg 29 | ZALICZONY | druty S1/S2/powieki 40,9 / 41,9 / 43,6 (było 41,9 / 42,9 / 44,6) | jak bazowy + drut S1 0,40, drut S2 0,44 |
+| Rg 30,5 | **POZA ZAKRESEM** | asercja: zakładka ramię dolnej powieki–czasza 0,71 < 1,0 | – |
+| Rg 31 | **POZA ZAKRESEM** | asercja: zakładka −1,0 (ramię odrywa się od czaszy) | – |
+| ścianka 28 | ZALICZONY | kołnierz przesunięty o +12 (z = −6), ramiona krótsze | jak bazowy |
+| ścianka 50 | ZALICZONY | kołnierz o −10 (z = −28), ucha serw 2 mm od kołnierza | jak bazowy |
+| luzObr 0,3 | ZALICZONY | luzy osi powiek 0,28–0,30, otwory osi Ø2,6, otwory drutu Ø1,6 | jak bazowy, luzy +0,1 |
+| drut Ø1,2 | ZALICZONY | obwiednia drutów +0,1 | drut S1–gałka 0,35; druty powiek między sobą 0,38 |
 
-**Wniosek:** model przelicza się we wszystkich wariantach. **Rg 31 pokazał prawdziwą granicę konstrukcji**, a nie błąd modelu. Przy otworze Ø80 promień ramienia ucha dolnej powieki (ograniczony przez tubę) spada poniżej promienia czaszy przy przycięciu. Zakładka ramię–czasza:
-- Rg 30: 2,2 mm;
-- Rg 30,5: 0,7 mm;
-- Rg 30,75: −0,1 mm.
+**Wnioski:**
+- Model przelicza się w całym zakresie ścianki 28–50, przy luzach 0,2–0,3 i drucie 1,0–1,2.
+- **Granica Rg:** przy otworze Ø80 i zakładce ramienia ≥ 1,0 mm gałka może mieć najwyżej Rg ≈ 30,4. PRD wymaga Ø60, więc zapas wynosi 0,4 mm na promieniu.
+- **Drut Ø1,2** (użytkownik ma taki) zmniejsza zapas przy uchu S1 do 0,35, więc zostajemy przy Ø1,0.
 
-**Gałka może mieć najwyżej Rg ≈ 30,6 przy otworze Ø80** (PRD: Ø60, więc OK).
+**Review Astry parametryczności** (`20-analizy/review/2026-10-25-astra-parametry-v2.md`):
+- **K1** (rozpad części przy Rg 31 przechodził jako „gotowe”): asercje GRANICE i werdykt POZA ZAKRESEM.
+- **W1** (liczby w skryptach): bryły zastępcze, promień drutu i skok pochodzą z parametrów; kinematyka bez `parametry.json` się nie uruchamia.
+- **W2** (skok, dolna powieka): z parametrów i solvera.
+- **W3** (siatka bez zera, obcięte wyniki): siatka symetryczna z zerem, pełne wyniki, werdykty.
+- **W4** (`dOsM2`): liczony z `dM2 + 2·luzObr`.
+- **W5** (plan Onshape): poprawiona formuła rowka. Layout, więzy i testy wymiarowe są wpisane jako lista do uzupełnienia przy przenoszeniu.
+- **D1:** położenia próbki liczone z marginesu i odstępów.
+- **D2:** podgląd bez liczb.
+- **Bez zmian:** kontrola kolizji nadal nie modeluje kolanek Z, pełnego kardana i kabli; strefę ucha rozstrzyga próbka.
 
 ## Założenia przyjęte bez użytkownika
 

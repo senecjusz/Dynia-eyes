@@ -2,15 +2,11 @@
 // Układ: x w prawo, y w górę, z do przodu, środek gałki = 0. Gałka: świat = Rx(φ góra–dół, oś stała) · Ry(θ lewo–prawo, oś w krzyżaku).
 // Orczyk serwa z wałkiem ∥ x: otwór H(α) = (xh, ys + r cos α, zs + r sin α); α = 0 → ramię w +y.
 // Orczyk S3 z wałkiem ∥ y: H(α) = (xs + r cos α, yh, zs + r sin α); α = 0 → ramię w +x.
-// Użycie: node duze-oko-kinematyka.js [json z nadpisaniem parametrów]
-const P = Object.assign({
-  lug1: [20, 0, -4], lug2: [0, 20, -4],                       // ucha w gałce (układ gałki)
-  s1: { xh: 21, ys: -18.5, zs: -44, r: 17.5, a0: -6 },          // lewo–prawo
-  s2: { xh: 11, ys: 8.5, zs: -44, r: 13.5, a0: -6 },            // góra–dół
-  s3: { xs: -42, yh: 0, zs: -44, r: 7.5, a0: 0 },              // powieki (wałek pionowy)
-  lev: { r: 7, xu: -33.05, xl: -34.75, skok: 51.5 },           // dźwignie powiek: r, płaszczyzny x, skok (zamknięte → otwarte)
-  zakres: { th: 35, ph: 25 },
-}, process.argv[2] ? (process.argv[2].endsWith('.json') ? JSON.parse(require('fs').readFileSync(process.argv[2], 'utf8')) : JSON.parse(process.argv[2])) : {});
+// Użycie: node duze-oko-kinematyka.js <parametry.json z eksport.sh (echo SCAD)> [siatka]
+// Geometria (ucha, orczyki, dźwignie, skok) wyłącznie z modelu SCAD; bez pliku parametrów skrypt się nie uruchamia.
+if (!process.argv[2] || !process.argv[2].endsWith('.json')) { console.error('podaj parametry.json (bash 40-cad/openscad/eksport.sh <katalog>)'); process.exit(2); }
+const P = Object.assign({ zakres: { th: 35, ph: 25 } }, JSON.parse(require('fs').readFileSync(process.argv[2], 'utf8')));
+for (const k of ['lug1', 'lug2', 's1', 's2', 's3', 'lev']) if (!P[k]) { console.error('brak w parametrach: ' + k); process.exit(2); }
 const rad = (d) => d * Math.PI / 180, deg = (r) => r * 180 / Math.PI;
 const Rx = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0], p[1] * c + p[2] * s, -p[1] * s + p[2] * c]; };
 const Ry = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0] * c + p[2] * s, p[1], -p[0] * s + p[2] * c]; };
