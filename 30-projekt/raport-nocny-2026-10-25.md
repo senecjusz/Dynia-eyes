@@ -5,7 +5,7 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 ## Najważniejsze na rano
 
 1. **Onshape: nie powstał dokument „Duże oko v2”.** Uprawnienia mojej sesji zablokowały utworzenie nowego publicznego dokumentu (`POST /documents`, `isPublic: true`, plan Free; klasyfikator: „Create Public Surface”). Nie obchodziłem tej blokady. **Model zbudowałem parametrycznie w OpenSCAD** (zainstalowany na Windows): `40-cad/openscad/duze-oko-v2.scad`, zmienne na górze pliku, eksport 3MF skryptem `40-cad/openscad/eksport.sh`. Onshape da się odtworzyć później z tego pliku i planu (decyzja niżej).
-2. **Próbka drutu do druku:** `40-cad/3mf/Duze oko v2/Probka drutu.3mf` (34 × 10 × 8, ok. 10 min). Opis testu w punkcie „Co wydrukować najpierw”.
+2. **Próbka drutu do druku:** `40-cad/3mf/Duze oko v2/Probka drutu.3mf` (34 × 12 × 8, blaszka ucha 1:1 jak w gałce, ok. 10 min). Opis testu w punkcie „Co wydrukować najpierw”.
 
 ## Kamienie
 
@@ -13,19 +13,19 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 |---|---|---|---|
 | 1 | Próbka końcówki drutu | gotowa (3MF, siatka OK) | 98e5fdb |
 | 2 | Plan szczegółów + Astra | plan `40-cad/onshape/duze-oko-v2-plan.md`, review Astry `20-analizy/review/2026-10-25-astra-plan-v2.md` (3 krytyczne, 7 ważnych); poprawki w modelu (niżej) | 98e5fdb |
-| 3 | CAD | OpenSCAD zamiast Onshape (pkt 1 wyżej): osobny moduł na część, wszystkie liczby jako zmienne na górze pliku | a4017f6, fe62019, (ten commit) |
-| 4 | Eksport 3MF + kontrola siatek | 7 części + zbiorczy w `40-cad/3mf/Duze oko v2/`: wszystkie szczelne, 0 błędów po naprawie (CGAL zostawia pojedyncze zdegenerowane trójkąty, `eksport.sh` naprawia je automatycznie), każda część = 1 bryła, zbiorczy = 7 | (ten commit) |
-| 5 | Kontrola kolizji + Astra na siatkach | kolizje `40-cad/openscad/kolizje-v2.txt`: gałka 8 × 6 pozycji ±35°/±25° z narożnikami (+ zagęszczenie co 1° wokół minimum drutów), powieki 7 pozycji (dolna z solvera), kąty serw z solvera. **0 przenikań.** Najmniejsze odstępy: styki montażowe 0,00; luzy osi powiek 0,18–0,20 (projektowe); drut S1–gałka 0,45; reszta ≥ 0,5. Astra `20-analizy/review/2026-10-25-astra-siatki-v2.md`: 2 krytyczne, 5 ważnych, 2 drobne; wszystkie poprawione (tabela niżej) | (ten commit) |
-| 6 | Druty: rysunek 1:1 | `40-cad/druty/duze-oko-v2-druty-1do1.svg` (L: **S1 41,9, S2 42,9 (Z pod 75°), powieki 2 × 44,6**) | (ten commit) |
-| 7 | Instrukcja montażu i README druku | `40-cad/openscad/duze-oko-v2-montaz.md` | (ten commit) |
+| 3 | CAD | OpenSCAD zamiast Onshape (pkt 1 wyżej): osobny moduł na część, wszystkie liczby jako zmienne na górze pliku | a4017f6, fe62019, 566001b, b8a48b7 |
+| 4 | Eksport 3MF + kontrola siatek | 7 części + zbiorczy w `40-cad/3mf/Duze oko v2/`: wszystkie szczelne, 0 błędów po naprawie (CGAL zostawia pojedyncze zdegenerowane trójkąty, `eksport.sh` naprawia je automatycznie), każda część = 1 bryła, zbiorczy = 7 | 566001b, b8a48b7 |
+| 5 | Kontrola kolizji + Astra na siatkach | kolizje `40-cad/openscad/kolizje-v2.txt`: gałka 8 × 6 pozycji ±35°/±25° z narożnikami (+ zagęszczenie co 1° wokół minimum drutów), powieki 7 pozycji (dolna z solvera), kąty serw z solvera. **0 przenikań.** Najmniejsze odstępy: styki montażowe 0,00; luzy osi powiek 0,18–0,20 (projektowe); drut S1–gałka 0,42 (zagęszczenie, opis w W2 niżej); reszta ≥ 0,5. Astra `20-analizy/review/2026-10-25-astra-siatki-v2.md`: 2 krytyczne, 5 ważnych, 2 drobne; wszystkie poprawione (tabela niżej) | 566001b, b8a48b7 |
+| 6 | Druty: rysunek 1:1 | `40-cad/druty/duze-oko-v2-druty-1do1.svg` (L: **S1 41,9, S2 42,9 (Z pod 75°), powieki 2 × 44,6**) | 566001b, b8a48b7 |
+| 7 | Instrukcja montażu i README druku | `40-cad/openscad/duze-oko-v2-montaz.md` | 566001b, b8a48b7 |
 
 ## Rozstrzygnięcia z Astrą (plan)
 
 | Uwaga Astry | Rozstrzygnięcie |
 |---|---|
-| K1 klepsydra Ø1,2 × 0,4 → tylko 19° przechyłu | talia **Ø1,7 × 0,3**, stożki 45° (wylot Ø3,4 przy blaszce 2 mm): warunek 1/cos φ + 0,3 tan φ ≤ 1,7 daje ok. 44°. **Ucho to blaszka zawieszona na skorupie** (nie żebro od stołu): otwór 20 mm od osi na z = −4 (dalej i wyżej drut zahaczał o tylny rant gałki: −0,84 mm przy θ 35°, φ −25°; teraz +0,77), dolna krawędź 1,5 mm pod otworem na odcinku 5,5 mm, dalej pod 45° do stołu, więc druk bez podpór. Kontrola kolizji pokazała, że przy żebrze stojącym na stole korpus drutu przy pochyleniu 25° musi przejść przez żebro (−0,96 mm). Przechył w otworze: S1 do 40°, S2 do 52° bez wstępnego kąta, ok. 37° z Z przygiętym na 75° (rysunek drutów). **Próbka ma to samo ucho i to ona rozstrzyga**: jeśli drut się klinuje przy ±35°, rozwiercić talię na Ø1,9 |
+| K1 klepsydra Ø1,2 × 0,4 → tylko 19° przechyłu | talia **Ø1,7 × 0,3**, stożki 45° (wylot Ø3,4 przy blaszce 2 mm): warunek 1/cos φ + 0,3 tan φ ≤ 1,7 daje ok. 44°. **Ucho to blaszka zawieszona na skorupie** (nie żebro od stołu): otwór 20 mm od osi na z = −4 (dalej i wyżej drut zahaczał o tylny rant gałki: −0,84 mm przy θ 35°, φ −25°; teraz +0,77), dolna krawędź 1,2 mm pod otworem na odcinku 5,5 mm, dalej pod 45° do stołu, więc druk bez podpór. Kontrola kolizji pokazała, że przy żebrze stojącym na stole korpus drutu przy pochyleniu 25° musi przejść przez żebro (−0,96 mm). Przechył w otworze: S1 do 40°, S2 do 52° bez wstępnego kąta, ok. 37° z Z przygiętym na 75° (rysunek drutów). **Próbka ma to samo ucho i to ona rozstrzyga**: jeśli drut się klinuje przy ±35°, rozwiercić talię na Ø1,9 |
 | K2 stożek piasty zaczyna się w powietrzu | zgoda. **Jedna podpora drzewiasta pod wierzchołkiem stożka** (wewnątrz gałki, zdejmowana przez tylny otwór Ø57). Najniższy punkt w osi budowany od krawędzi pod 45° to z = 18,8, a piasta ma czoło na 12,75, więc bez podpory się nie da |
-| K3 ramiona powiek mogą się przeciąć | ramię dolnej to sektor −61…−11° (górnej 11…61°), r 4,5…11,5 (ograniczone, żeby nie dotykać tuby). Wynik w kontroli kolizji |
+| K3 ramiona powiek mogą się przeciąć | ramię dolnej to sektor −50…−11° (górnej 11…50°; skrócone, bo przy 61° dotykało drutu przy dźwigni), r 4,5…11,5 (ograniczone, żeby nie dotykać tuby). Kontrola: powieka–powieka 0,20 (luz osiowy uszu), druty–druga powieka ≥ 0,82 |
 | W1 kąty serw ze stałej długości drutu | solver `40-cad/narzedzia/duze-oko-kinematyka.js`. S1: orczyk r 17,5, zero −6°, serwo **−42…+38°**. S2: r 13,5, −6°, **−46…+40°**. Cała siatka ±35° × ±25° (narożniki też) osiągalna |
 | W2 narożniki | jak wyżej, osiągalne (sprzężenie osi do ok. 10° na S1, do skompensowania w programie) |
 | W3 asymetria powiek na wspólnym otworze | S3 z **wałkiem pionowym**: otwór orczyka porusza się w płaszczyźnie y = 0, więc dla obu dźwigni układ jest symetryczny. Solver: przy otwarciu górnej o 51,5° dolna otwiera się o 51,26°, zamknięcie −0,23° |
