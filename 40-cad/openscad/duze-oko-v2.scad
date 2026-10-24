@@ -35,7 +35,7 @@ xUcha    = 20;  zUcho = -4;         // ucha drutów: odległość od osi, wysoko
 // blaszka ucha (płytka grub. tZebra, zawieszona na skorupie): dolna krawędź uchoDol pod otworem na odcinku [−uchoPlL, +uchoPlP] od otworu,
 // od strony osi wznosi się pod 45° do końca blaszki (xUcha − uchoOdOsi), od strony skorupy opada pod 45° do stołu (druk bez podpór);
 // pod otworem wolne miejsce na korpus drutu Z przy przechyle (od strony gałki i od strony skorupy)
-uchoDol = 1.2; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 3; uchoOdOsi = 3; uchoZaSkorupa = 1.5;
+uchoDol = 1.2; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 4; uchoOdOsi = 3; uchoZaSkorupa = 1.5;
 tZebra = 2;
 dTalia = 1.7; lTalia = 0.3; katKlep = 45; lKlep = 1.2;   // klepsydra: talia Ø1,7 × 0,3, stożki 45° do 1,2 od talii
 // --- powieki ---
@@ -77,8 +77,8 @@ zRamkaGora = -32;  polRamki12 = 8.5;  polRamki3 = 8;
 plytaX = [-50, 47.5]; plytaY = [-27, 17]; jezykPol = 6; jezykY = -49;   // obrys płyty + język pod ramię dolne
 zOkno = [-26.0, -21.95]; oknoSzer = 10.5; oknoDl = 20; dTrzpTyl = 5.3;  // okno łba tylnego M5 × 16 w słupku
 // --- próbka drutu ---
-pPlyta = [34, 10, 2]; pZebroA = [4, 4]; pDlA = 10; pZebroB = [24, 4.25]; pDlB = 8; pWysZebra = 6;
-pUchoA = 4; pUchoB = 3; pOtw2 = [19, 7]; dOtw2 = 2.4; pOkno = 6; pOknoY = 4;   // dOtw2: dwa druty Ø1 + 2 × 0,2 (orczyk S3); okno pod otworem żebra A: szerokość wzdłuż żebra, długość w poprzek (płytka zostaje w całości)
+pPlyta = [34, 12, 2]; pXucha = 3; pZebroB = [24, 5.25]; pDlB = 8; pWysZebra = 6;   // pXucha: początek blaszki ucha (jak w gałce) od brzegu płytki
+pUchoB = 3; pOtw2 = [21, 9.5]; dOtw2 = 2.4; pOknoY = 4; pSkorupa = 2;   // dOtw2: dwa druty Ø1 + 2 × 0,2 (orczyk S3); pOknoY: szerokość szczeliny pod blaszką; pSkorupa: kawałek „skorupy” na końcu blaszki
 // --- zbiorczy: rozstaw części ---
 odstep = 10;
 stopka = 0.6;       // płaskie ścięcie uszu powiek przy stole (druk)
@@ -206,14 +206,16 @@ module UchwytSerw() {
     for (p = ramiona) translate([p[0], p[1], zPlyta - nad]) cylinder(d = dM3ciasny, h = zRamTop - zPlyta + 2 * nad, $fn = fnMale);   // M3 × 16 w plastik
   }
 }
-module ProbkaDrutu() {   // płytka: żebro A (klepsydra jak w gałce), żebro B (dźwignia powieki), otwór na dwa druty
+module ProbkaDrutu() {   // płytka = stół gałki (z = zRant): blaszka ucha 1:1 z klepsydrą i szczeliną pod nią, żebro B (dźwignia powieki), otwór na dwa druty
+  dx = pXucha - (xUcha - uchoOdOsi); yA = pPlyta[1] / 2; zS = pPlyta[2] - zRant;
+  xDol = xUcha + uchoPlP + (zUcho - uchoDol - zRant);   // miejsce, w którym dolna krawędź blaszki schodzi do stołu
   difference() {
-    union() { cube(pPlyta); translate([pZebroA[0], pZebroA[1], 0]) cube([pDlA, tZebra, pPlyta[2] + pWysZebra]);
+    union() { cube(pPlyta);
+      translate([dx, yA, zS]) blaszkaUcha();
+      translate([dx + Rg - uchoZaSkorupa, yA - pOknoY / 2, 0]) cube([pSkorupa, pOknoY, zS + zUcho + uchoGora]);
       translate([pZebroB[0], pZebroB[1], 0]) cube([pDlB, tUcho, pPlyta[2] + pWysZebra]); }
-    translate([pZebroA[0] + pDlA / 2, pZebroA[1] + tZebra / 2, pPlyta[2] + pUchoA]) rotate([90, 0, 0]) klepsydra(lKlep);
-    // okno pod otworem (górna krawędź uchoDol pod osią otworu, boki 45° – mostek samonośny) przez żebro i płytkę
-    translate([pZebroA[0] + pDlA / 2, pPlyta[1] / 2, 0]) rotate([90, 0, 0]) linear_extrude(pOknoY, center = true)
-      polygon([[-pOkno / 2, -nad], [pOkno / 2, -nad], [pOkno / 2, pPlyta[2] + pUchoA - uchoDol - pOkno / 2], [0, pPlyta[2] + pUchoA - uchoDol], [-pOkno / 2, pPlyta[2] + pUchoA - uchoDol - pOkno / 2]]);
+    translate([dx + xUcha, yA, zS + zUcho]) rotate([90, 0, 0]) klepsydra(lKlep);
+    translate([dx + xUcha - uchoOdOsi - nad, yA - pOknoY / 2, -nad]) cube([xDol - xUcha + uchoOdOsi + nad, pOknoY, pPlyta[2] + 2 * nad]);
     translate([pZebroB[0] + pDlB / 2, pZebroB[1] + tUcho / 2, pPlyta[2] + pUchoB]) rotate([90, 0, 0]) cylinder(d = dDzwOtw, h = tUcho + 2 * nad, center = true, $fn = fnMale);
     translate([pOtw2[0], pOtw2[1], -nad]) cylinder(d = dOtw2, h = pPlyta[2] + 2 * nad, $fn = fnMale);
   }

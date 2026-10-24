@@ -177,7 +177,7 @@ for (const th of TH) for (const ph of PH) {
 }
 // 2b) zagęszczenie: druty S1/S2 wobec gałki co 1° w otoczeniu ±5° najgorszej pozycji siatki
 for (const [nm, lug, s_, L, off] of [['drut S1 – gałka', K.lug1, K.s1, L1, KORP.s1], ['drut S2 – gałka', K.lug2, K.s2, L2, KORP.s2]]) {
-  const w = wyniki.get(nm); if (!w) continue; const m = w.poz.match(/θ (-?[d.]+), φ (-?[d.]+)/); if (!m) continue;
+  const w = wyniki.get(nm); if (!w) continue; const m = w.poz.match(/θ (-?[\d.]+), φ (-?[\d.]+)/); if (!m) continue;
   for (let th = Math.max(-35, +m[1] - 5); th <= Math.min(35, +m[1] + 5); th += 1) for (let ph = Math.max(-25, +m[2] - 5); ph <= Math.min(25, +m[2] + 5); ph += 1) {
     const g = (p) => gal(p, th, ph), lw = g(lug), a = alfa(s_, L, lw); if (a === null) { zapisz('NIEOSIĄGALNE', -99, th + ',' + ph); continue; }
     const st = lw.map((v, i) => v + g(off)[i]); const [p0] = skroc(st, Hx(s_, a), 3), q0 = skroc(st, Hx(s_, a), 1)[1];

@@ -6,7 +6,7 @@ Model: [`duze-oko-v2.scad`](duze-oko-v2.scad) (OpenSCAD, zmienne na górze pliku
 
 | Kolejność | Plik 3MF | Kolor | Orientacja | Podpory | Uwagi |
 |---|---|---|---|---|---|
-| 1 | Probka drutu | dowolny | jak w pliku | brak | test ucha z klepsydrą (otwór 1,5 nad wolną przestrzenią, jak w gałce) i dźwigni powieki, ok. 10 min |
+| 1 | Probka drutu | dowolny | jak w pliku | brak | blaszka ucha 1:1 jak w gałce (klepsydra, szczelina pod spodem), dźwignia powieki, otwór orczyka S3, ok. 10 min |
 | 2 | Pierscien | pomarańcz | kołnierzem na stole | brak | długość tuby = `scianka` + 2. **Drukować po zmierzeniu dyni** (zmienna `scianka`, domyślnie 40) |
 | 3 | Uchwyt serw | pomarańcz | płytą na stole | brak | ramiona = 84 − `scianka`, więc też po pomiarze dyni |
 | 4 | Galka | **biały** | kołnierzem (tył, z = −8) na stole | **jedna podpora drzewiasta** pod wierzchołkiem stożka w środku (malowanie podpór tylko tam) | podporę wyjąć przez tylny otwór. Ucha drutów (2 blaszki przy krawędzi) bez podpór: dolna krawędź schodzi pod 45° do stołu, pod otworem 4,5 mm płaskiego nawisu (2 mm szerokości) |
@@ -17,7 +17,7 @@ Po druku rozwiercić (luz drutu Ø1 = 0,2 na stronę): talie klepsydr w uchach g
 
 **Mosty bez podpór** (Bambu mostkuje je bez problemu, sprawdzić po wydruku):
 - Uchwyt: nad oknami serw 13,1 mm i strop okna łba M5 w słupku 10,5 mm. Zwis > 0,3 mm zebrać nożykiem, bo przeszkadza we wsuwaniu korpusu i łba.
-- Gałka: płaski nawis pod uszami 4,5 mm.
+- Gałka: płaski nawis pod uszami 5,5 mm.
 - Powieki: płaskie stopki 0,6 mm pod uszami na stole, czasze na podporach drzewiastych.
 
 ## Części kupne (z warsztatu)

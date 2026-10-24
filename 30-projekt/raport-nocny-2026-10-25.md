@@ -23,7 +23,7 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 
 | Uwaga Astry | Rozstrzygnięcie |
 |---|---|
-| K1 klepsydra Ø1,2 × 0,4 → tylko 19° przechyłu | talia **Ø1,7 × 0,3**, stożki 45° (wylot Ø3,4 przy blaszce 2 mm): warunek 1/cos φ + 0,3 tan φ ≤ 1,7 daje ok. 44°. **Ucho to blaszka zawieszona na skorupie** (nie żebro od stołu): otwór 20 mm od osi na z = −4 (dalej i wyżej drut zahaczał o tylny rant gałki: −0,84 mm przy θ 35°, φ −25°; teraz +0,77), dolna krawędź 1,5 mm pod otworem na odcinku 4,5 mm, dalej pod 45° do stołu, więc druk bez podpór. Kontrola kolizji pokazała, że przy żebrze stojącym na stole korpus drutu przy pochyleniu 25° musi przejść przez żebro (−0,96 mm). Przechył w otworze: S1 do 40°, S2 do 52° bez wstępnego kąta, ok. 37° z Z przygiętym na 75° (rysunek drutów). **Próbka ma to samo ucho i to ona rozstrzyga**: jeśli drut się klinuje przy ±35°, rozwiercić talię na Ø1,9 |
+| K1 klepsydra Ø1,2 × 0,4 → tylko 19° przechyłu | talia **Ø1,7 × 0,3**, stożki 45° (wylot Ø3,4 przy blaszce 2 mm): warunek 1/cos φ + 0,3 tan φ ≤ 1,7 daje ok. 44°. **Ucho to blaszka zawieszona na skorupie** (nie żebro od stołu): otwór 20 mm od osi na z = −4 (dalej i wyżej drut zahaczał o tylny rant gałki: −0,84 mm przy θ 35°, φ −25°; teraz +0,77), dolna krawędź 1,5 mm pod otworem na odcinku 5,5 mm, dalej pod 45° do stołu, więc druk bez podpór. Kontrola kolizji pokazała, że przy żebrze stojącym na stole korpus drutu przy pochyleniu 25° musi przejść przez żebro (−0,96 mm). Przechył w otworze: S1 do 40°, S2 do 52° bez wstępnego kąta, ok. 37° z Z przygiętym na 75° (rysunek drutów). **Próbka ma to samo ucho i to ona rozstrzyga**: jeśli drut się klinuje przy ±35°, rozwiercić talię na Ø1,9 |
 | K2 stożek piasty zaczyna się w powietrzu | zgoda. **Jedna podpora drzewiasta pod wierzchołkiem stożka** (wewnątrz gałki, zdejmowana przez tylny otwór Ø57). Najniższy punkt w osi budowany od krawędzi pod 45° to z = 18,8, a piasta ma czoło na 12,75, więc bez podpory się nie da |
 | K3 ramiona powiek mogą się przeciąć | ramię dolnej to sektor −61…−11° (górnej 11…61°), r 4,5…11,5 (ograniczone, żeby nie dotykać tuby). Wynik w kontroli kolizji |
 | W1 kąty serw ze stałej długości drutu | solver `40-cad/narzedzia/duze-oko-kinematyka.js`. S1: orczyk r 17,5, zero −6°, serwo **−42…+38°**. S2: r 13,5, −6°, **−46…+40°**. Cała siatka ±35° × ±25° (narożniki też) osiągalna |
@@ -43,12 +43,17 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 | K1 wycięcie tuby usuwało podkładki osi M2 | podkładki dodawane po wycięciu wnętrza tuby; na siatce: lico x ±35,7, dno otworu x ±38,1 |
 | K2 brak docisku gałki do piasty (0,2 mm luzu) | podłoga rowka T 5,5 mm; M5 × 12 wchodzi w piastę na 6,5 z 7 mm. Montaż: piastę docisnąć do stożka, łeb do podłogi i **trzymając docisk** dokręcić M4. Obrót gałki na czopie blokuje tarcie zaciśniętej podłogi; do sprawdzenia ręką na stole |
 | W1 kontrola kolizji niepełna | poprawione położenie wieżyczki i orczyka S3 (zamienione x/z), dolna powieka z solvera, pary stałe dwustronnie, zagęszczenie co 1° wokół minimum drutów S1/S2. Bez zmian: końcówki Z, ogony i kardan nie są w modelu kontroli; strefę ucha sprawdza próbka |
-| W2 drut S1–blaszka ucha 0,14 | dolna krawędź blaszki 1,2 pod otworem (było 1,5), płaski odcinek 4,5 mm: 0,45 w kontroli |
+| W2 drut S1–blaszka ucha 0,14 | dolna krawędź blaszki 1,2 pod otworem (było 1,5), płaski odcinek 5,5 mm (po weryfikacji Astry: 0,43 → patrz kontrola kolizji) |
 | W3 instrukcja: zero S3 i kierunek −6° | zero S3 przy powiekach otwartych do połowy (zamknięcie ok. +23°, otwarcie ok. −25°); orczyki S1/S2 obrócone o 6° do tyłu |
 | W4 luzy drutu w otworach | dźwignie i orczyki S1/S2 Ø1,4, orczyk S3 Ø2,4 (0,2 na stronę) |
 | W5 mosty w Uchwycie | opisane w README druku (13,1 i 10,5 mm, zwis zebrać nożykiem) |
 | D1 powieki bez płaskiej podstawy | stopki 0,6 mm pod uszami |
 | D2 stare długości drutów w raporcie | poprawione (wyżej) |
+
+**Weryfikacja Astry po poprawkach** (`20-analizy/review/2026-10-25-astra-weryfikacja-v2.md`): K1, K2, W3, W4, W5, D1 i D2 zamknięte. Otwarte zostały:
+- **W1:** kontrola kolizji nie modeluje kolanek Z, kardana ani kabli. Zagęszczenie miało błąd we wzorcu; poprawione i przeliczone ręcznie wokół minimum S1.
+- **W2:** 0,42 mm (wyżej).
+- **Próbka nie odwzorowywała ucha:** poprawione, teraz ma blaszkę 1:1 ze szczeliną.
 
 ## Założenia przyjęte bez użytkownika
 
