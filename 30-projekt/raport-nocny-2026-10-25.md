@@ -55,6 +55,30 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 - **W2:** 0,42 mm (wyżej).
 - **Próbka nie odwzorowywała ucha:** poprawione, teraz ma blaszkę 1:1 ze szczeliną.
 
+## Parametryczność i test zginania (wymaganie użytkownika przez PM)
+
+Sekcja zmiennych w `duze-oko-v2.scad` ma 2 grupy:
+- **bazowe:** części kupne, luzy z AGENTS.md, Rg, otwór Ø80, ścianka dyni oraz decyzje jako odstępy, kąty i rozmiary;
+- **pochodne:** wszystkie położenia, liczone z bazowych, z dzisiejszą wartością w komentarzu.
+
+Skrypty kinematyki i kolizji biorą geometrię z modelu (`parametry.json` z echa SCAD), a nie z własnych liczb. Pełny wynik: `40-cad/openscad/zginanie-v2.txt` (skrypt `zginanie.sh`).
+
+| Wariant | Siatki (6 części) | Kinematyka | Kolizje (5 × 4 poz. gałki, 7 powiek) |
+|---|---|---|---|
+| bazowy (Rg 30, ścianka 40, luzObr 0,2) | OK, po 1 bryle | S1 −42…+38°, S2 −46…+40°, całość osiągalna | 0 przenikań; drut S1 0,42; luzy osi 0,18–0,20 |
+| Rg 29 | OK | S1 L 40,9, S2 L 41,9, całość osiągalna | 0 przenikań; drut S1 0,40, drut S2 0,44 |
+| **Rg 31** | **Powieka dolna: 3 bryły** | całość osiągalna | 0 przenikań; powieka górna–pierścień 0,39 |
+| ścianka 28 | OK | bez zmian | 0 przenikań (kołnierz z = −6) |
+| ścianka 50 | OK | bez zmian | 0 przenikań (kołnierz z = −28, ucha serw 2 mm) |
+| luzObr 0,3 | OK | bez zmian | 0 przenikań; luzy osi 0,28–0,30 (przeniosły się) |
+
+**Wniosek:** model przelicza się we wszystkich wariantach. **Rg 31 pokazał prawdziwą granicę konstrukcji**, a nie błąd modelu. Przy otworze Ø80 promień ramienia ucha dolnej powieki (ograniczony przez tubę) spada poniżej promienia czaszy przy przycięciu. Zakładka ramię–czasza:
+- Rg 30: 2,2 mm;
+- Rg 30,5: 0,7 mm;
+- Rg 30,75: −0,1 mm.
+
+**Gałka może mieć najwyżej Rg ≈ 30,6 przy otworze Ø80** (PRD: Ø60, więc OK).
+
 ## Założenia przyjęte bez użytkownika
 
 - **Osie powiek: M2 × 6, wkręcane w ciasny otwór Ø1,7 w podkładce, bez nakrętki** (na nakrętkę nie ma miejsca). Najkrótsza M3 (× 8) z łbem 2,45 nie mieści się w 9,5 mm między gałką a OD tuby. **Do sprawdzenia rano:** użytkownik napisał 24.10 tylko „zakładam, że mam śruby… pewno M2 × 6, które doskonale te serwa mocują”, a to nie jest potwierdzenie. **Zapas:** wkręt fabryczny MG90S (samogwintujący ok. M2) w ten sam otwór, bo łeb ok. Ø4 × 1,5 mieści się w pogłębieniu Ø4,2 × 1,6. Długość wkrętu do dna otworu musi wynosić 7,6 ± 0,3 (od łba do dna). Jeśli jest inna, zmienić `glPadM2` i przedrukować tylko Pierścień.
