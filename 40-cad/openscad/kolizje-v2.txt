@@ -1,28 +1,28 @@
-kontrola kolizji: krok 10°, θ 8 × φ 6 pozycji gałki, ψ 7 pozycji powiek, 974 s
+kontrola kolizji: krok 10°, θ 8 × φ 6 pozycji gałki, ψ 7 pozycji powiek, 1172 s
 S1 α -42.2…37.8°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
-pierscien – uchwyt (stałe) | 0.00 | – @ -44.2,9.4,-22.0
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
 S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
 S2 – uchwyt (stałe) | 0.00 | – @ 29.5,3.4,-62.9
-S3 – uchwyt (stałe) | 0.00 | – @ -37.3,-18.5,-65.8
+S3 – uchwyt (stałe) | 0.00 | – @ -47.6,-18.5,-65.8
 powieka górna – lebM2 | 0.18 | ψ 8.6 @ -31.4,2.1,-0.0
 powieka dolna – pierscien | 0.20 | ψ 0.0 @ -35.5,1.2,-0.0
 powieka górna – powieka dolna | 0.20 | ψ 0.0 @ -33.8,0.3,-1.2
-drut S1 – gałka | 0.45 | θ 35, φ -15
+drut S1 – gałka | 0.42 | θ 35, φ -13 (zagęszczenie)
 gałka – lebM2 | 0.50 | θ 35, φ 25
 drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.57 | ψ 0.0
-drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.67 | ψ 0.0
-drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.76 | ψ 0.0
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.69 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.73 | ψ 0.0
 drut powieki górnej – powieka dolna | 0.82 | ψ 0.0
-drut S2 – gałka | 0.91 | θ 25, φ 25
-druty powiek – S3 | 0.94 | ψ 51.5
+druty powiek – S3 | 0.90 | ψ 51.5
+drut S2 – gałka | 0.90 | θ 21, φ 25 (zagęszczenie)
 drut powieki dolnej – powieka górna | 1.30 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
 powieka górna – pierscien | 1.32 | ψ 51.5
 gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
 gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
-orczyk S3 – uchwyt | 1.50 | ψ 34.3
-druty powiek – pierscien | 1.88 | ψ 0.0
 powieka dolna – lebM2 | 1.90 | ψ 51.5
+druty powiek – pierscien | 1.90 | ψ 0.0
 orczyk S1 – S2 | 2.43 | θ 5, φ -25
 powieka górna – uchwyt | > 3 | ψ 0.0
 powieka dolna – uchwyt | > 3 | ψ 0.0

@@ -67,7 +67,7 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 
 ## Do decyzji rano
 
-1. **Onshape czy SCAD?** Albo zakładasz dokument „Duże oko v2” w Onshape i przenoszę do niego model, albo zostajemy przy OpenSCAD (`40-cad/openscad/duze-oko-v2.scad`). Moja propozycja: SCAD do Halloween.
+1. **Rano: przeniesienie do Onshape.** Użytkownik zakłada dokument „Duże oko v2”, a projektant przenosi model według planu i zmiennych (`40-cad/onshape/duze-oko-v2-plan.md`, sekcja 7: operacje Onshape i zmienne każdej części). Do tego czasu drukujemy z eksportu SCAD (decyzja użytkownika 25.10, przez PM).
 
 ## Co wydrukować najpierw
 

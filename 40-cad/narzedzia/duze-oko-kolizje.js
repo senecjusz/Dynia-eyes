@@ -75,10 +75,11 @@ function odstep(PA, IB, IA, PB) { let m = ZASIEG; OSTATNI = null;
   return m; }
 
 // ---------- kinematyka (te same parametry co duze-oko-kinematyka.js, wartości końcowe) ----------
-const K = { lug1: [20, 0, -4], lug2: [0, 20, -4], s1: { xh: 21, ys: -18.5, zs: -44, r: 17.5, a0: -6 }, s2: { xh: 11, ys: 8.5, zs: -44, r: 13.5, a0: -6 },
-  s3: { xs: -42, yh: 0, zs: -44, r: 7.5, a0: 0 }, lev: { r: 7, xu: -33.05, xl: -34.75, skok: 51.5 } };
+// parametry z SCAD: <DIR>/parametry.json (eksport.sh: openscad -D 'czesc="parametry"', echo PARAMETRY{...})
+const PAR = JSON.parse(fs.readFileSync(path.join(DIR, 'parametry.json'), 'utf8'));
+const K = { lug1: PAR.lug1, lug2: PAR.lug2, s1: PAR.s1, s2: PAR.s2, s3: PAR.s3, lev: PAR.lev };
 // korpus drutu biegnie przy ściance (zagięcie Z): górny na zewnątrz dźwigni (x −34,3), dolny od strony gałki (x −33,5); S1 przy ściance żebra od strony −y, S2 od strony +x
-const KORP = { xu: -34.3, xl: -33.5, s1: [0, 0, 0], s2: [0, 0, 0] };   // S1/S2: drut od środka otworu; pierwsze 3 mm (przejście przez blaszkę ucha z klepsydrą) sprawdza próbka
+const KORP = { xu: PAR.korp.xu, xl: PAR.korp.xl, s1: [0, 0, 0], s2: [0, 0, 0] };   // S1/S2: drut od środka otworu; pierwsze 3 mm (przejście przez blaszkę ucha z klepsydrą) sprawdza próbka
 const Rx = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0], p[1] * c + p[2] * s, -p[1] * s + p[2] * c]; };
 const Ry = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0] * c + p[2] * s, p[1], -p[0] * s + p[2] * c]; };
 const gal = (p, th, ph) => Rx(Ry(p, th), ph);
@@ -102,26 +103,29 @@ function psiDolna(a3, przybl) { const f = (q) => dist(Hy(K.s3, a3), D(q)) - Ld; 
 // ---------- bryły ----------
 const st = (n) => czytajSTL(path.join(DIR, n + '.stl'));
 const M = { galka: st('Galka'), pg: st('PowiekaGorna'), pd: st('PowiekaDolna'), pier: st('Pierscien'), uch: st('UchwytSerw') };
-const zSP = -38.5, zST = -61.3;
-const serwa = {   // korpus + ucha + wieżyczka
-  S1: [...pudlo(34.7, 57.5, -24.75, -12.25, zST, zSP), ...pudlo(37.5, 39.5, -24.75, -12.25, zST - 4.5, zSP + 4.5), ...walec(0, [-18.5, -44], 22.5, 34.7, 6)],
-  S2: [...pudlo(24.7, 47.5, 2.25, 14.75, zST, zSP), ...pudlo(27.5, 29.5, 2.25, 14.75, zST - 4.5, zSP + 4.5), ...walec(0, [8.5, -44], 12.5, 24.7, 6)],
-  S3: [...pudlo(-48.25, -35.75, -36.5, -13.7, zST, zSP), ...pudlo(-48.25, -35.75, -18.5, -16.5, zST - 4.5, zSP + 4.5), ...walec(1, [-42, -44], -13.7, -1.5, 6)],
-};
+const SV = PAR.sv, zSP = SV.zP, zST = SV.zT, hw = SV.Wsv / 2, rW = 6;
+// serwo z wałkiem ∥ x w stronę −x: czubek na xh + odstOrcz, korpus dalej w +x; ucha na uchoOd…uchoOd + uchoT od czubka
+const serwoX = (s) => { const t = s.xh + SV.odstOrcz; return [...pudlo(t + SV.wiezaH, t + SV.wiezaH + SV.Hsv, s.ys - hw, s.ys + hw, zST, zSP),
+  ...pudlo(t + SV.uchoOd, t + SV.uchoOd + SV.uchoT, s.ys - hw, s.ys + hw, zST - SV.uchoWyst, zSP + SV.uchoWyst), ...walec(0, [s.ys, s.zs], t, t + SV.wiezaH, rW)]; };
+// serwo S3 z wałkiem ∥ y w górę: czubek na yh − odstOrcz, korpus w −y
+const serwoY = (s) => { const t = s.yh - SV.odstOrcz; return [...pudlo(s.xs - hw, s.xs + hw, t - SV.wiezaH - SV.Hsv, t - SV.wiezaH, zST, zSP),
+  ...pudlo(s.xs - hw, s.xs + hw, t - SV.uchoOd - SV.uchoT, t - SV.uchoOd, zST - SV.uchoWyst, zSP + SV.uchoWyst), ...walec(1, [s.xs, s.zs], t - SV.wiezaH, t, rW)]; };
+const serwa = { S1: serwoX(K.s1), S2: serwoX(K.s2), S3: serwoY(K.s3) };
 const stale = { pierscien: M.pier, uchwyt: M.uch, ...serwa,
-  lebM2: [...walec(0, [0, 0], 30.5, 32.1, 1.9), ...walec(0, [0, 0], -32.1, -30.5, 1.9)], piastaTyl: walec(2, [0, 0], -12.75, -2, 5.5) };
+  lebM2: [...walec(0, [0, 0], PAR.xLeb, PAR.xLeb + PAR.hLebM2, PAR.dLebM2 / 2), ...walec(0, [0, 0], -PAR.xLeb - PAR.hLebM2, -PAR.xLeb, PAR.dLebM2 / 2)],
+  piastaTyl: walec(2, [0, 0], -PAR.zPiasta, -2, PAR.dKardan / 2) };
 // orczyk: ramię szer. 5, grub. 2 od osi do otworu + 2,5, piasta Ø7
 function orczykX(s, a, x0, x1) { const h = Hx(s, a), c = [s.xh, s.ys, s.zs]; const e = [h[0], c[1] + (h[1] - c[1]) * (s.r + 2.5) / s.r, c[2] + (h[2] - c[2]) * (s.r + 2.5) / s.r];
   return [...pret([x0 + 1, c[1], c[2]], [x0 + 1, e[1], e[2]], 2.5, 8), ...walec(0, [c[1], c[2]], x0, x1, 3.5)]; }
 function orczykY(s, a) { const h = Hy(s, a), c = [s.xs, s.yh, s.zs]; const e = [c[0] + (h[0] - c[0]) * (s.r + 2.5) / s.r, h[1], c[2] + (h[2] - c[2]) * (s.r + 2.5) / s.r];
-  return [...pret([c[0], 0, c[2]], [e[0], 0, e[2]], 2.5, 8), ...walec(1, [c[0], c[2]], -1.5, 1.5, 3.5)]; }
+  return [...pret([c[0], s.yh, c[2]], [e[0], s.yh, e[2]], 2.5, 8), ...walec(1, [c[0], c[2]], s.yh - 1.5, s.yh + 1.5, 3.5)]; }
 const skroc = (a, b, m) => { const L = dist(a, b), u = [0, 1, 2].map((i) => (b[i] - a[i]) / L); return [a.map((v, i) => v + u[i] * m), b.map((v, i) => v - u[i] * m)]; };
 
 // ---------- przebieg ----------
 const I = {}; for (const [k, T] of Object.entries(stale)) I[k] = indeks(T);
 const wyniki = new Map(); const zapisz = (para, d, poz) => { const w = wyniki.get(para); if (!w || d < w.d) wyniki.set(para, { d: Math.round(d * 100) / 100, poz: poz + (d < 0.3 && OSTATNI ? ' @ ' + OSTATNI.map((v) => v.toFixed(1)).join(',') : '') }); };
 // próbki gałki: tylko tył (z < 2) i strefa osi powiek (|x| > 22) – przód skorupy (R 30) jest poza zasięgiem części stałych (R ≥ 30,5)
-const P0 = { galka: probki(M.galka).filter((p) => p[2] < 2 || Math.abs(p[0]) > 22), pg: probki(M.pg), pd: probki(M.pd) };
+const P0 = { galka: probki(M.galka).filter((p) => p[2] < 2 || Math.abs(p[0]) > PAR.Rg - 8), pg: probki(M.pg), pd: probki(M.pd) };
 const Ig0 = indeks(M.galka); const galOdwr = (p, th, ph) => Ry(Rx(p, -ph), -th);   // świat → układ gałki
 const Ipg0 = indeks(M.pg), Ipd0 = indeks(M.pd);
 const kroki = (a, b, k) => { const r = []; for (let v = a; v <= b + 1e-9; v += k) r.push(+v.toFixed(3)); if (r[r.length - 1] !== b) r.push(b); return r; };
@@ -169,7 +173,7 @@ for (const th of TH) for (const ph of PH) {
   const doG = (P) => P.map((p) => galOdwr(p, th, ph));
   zapisz('drut S1 – gałka', odstep(doG(probki(pret(p1b, q1, 0.5))), Ig0), poz); zapisz('drut S2 – gałka', odstep(doG(probki(pret(p2b, q2, 0.5))), Ig0), poz);
   zapisz('drut S1 – drut S2', odstep(P1, indeks(d2)), poz);
-  const o1 = orczykX(K.s1, a1, 20, 24), o2 = orczykX(K.s2, a2, 10, 14), Po1 = probki(o1), Po2 = probki(o2);
+  const go = SV.grubOrcz, o1 = orczykX(K.s1, a1, K.s1.xh - go / 2, K.s1.xh + go / 2 + 2), o2 = orczykX(K.s2, a2, K.s2.xh - go / 2, K.s2.xh + go / 2 + 2), Po1 = probki(o1), Po2 = probki(o2);
   for (const k of ['pierscien', 'uchwyt', 'S2', 'S3']) zapisz('orczyk S1 – ' + k, odstep(Po1, I[k]), poz);
   for (const k of ['pierscien', 'uchwyt', 'S1', 'S3']) zapisz('orczyk S2 – ' + k, odstep(Po2, I[k]), poz);
   zapisz('orczyk S1 – orczyk S2', odstep(Po1, indeks(o2)), poz); zapisz('orczyk S1 – drut S2', odstep(Po1, indeks(d2)), poz); zapisz('orczyk S2 – drut S1', odstep(Po2, indeks(d1)), poz);

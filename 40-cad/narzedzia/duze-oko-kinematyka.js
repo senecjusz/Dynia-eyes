@@ -10,7 +10,7 @@ const P = Object.assign({
   s3: { xs: -42, yh: 0, zs: -44, r: 7.5, a0: 0 },              // powieki (wałek pionowy)
   lev: { r: 7, xu: -33.05, xl: -34.75, skok: 51.5 },           // dźwignie powiek: r, płaszczyzny x, skok (zamknięte → otwarte)
   zakres: { th: 35, ph: 25 },
-}, process.argv[2] ? JSON.parse(process.argv[2]) : {});
+}, process.argv[2] ? (process.argv[2].endsWith('.json') ? JSON.parse(require('fs').readFileSync(process.argv[2], 'utf8')) : JSON.parse(process.argv[2])) : {});
 const rad = (d) => d * Math.PI / 180, deg = (r) => r * 180 / Math.PI;
 const Rx = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0], p[1] * c + p[2] * s, -p[1] * s + p[2] * c]; };
 const Ry = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0] * c + p[2] * s, p[1], -p[0] * s + p[2] * c]; };

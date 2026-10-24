@@ -11,86 +11,123 @@ czesc = "zlozenie";
 tryb = "zlozenie";
 
 // ===================== zmienne =====================
-// --- ogólne ---
-scianka  = 40;      // grubość ścianki dyni przy otworze; tuba = scianka + wystTuby, ramiona Uchwytu z niej liczone; zakres 28–50
-luzObr   = 0.2;     // luz obrotowy i osiowy (AGENTS: 0,2)
-luzSlizg = 0.3;     // luz ślizgowy / okna korpusów serw (AGENTS: 0,25–0,3)
-nad      = 1;       // naddatek cięć (żeby cięcia przechodziły przez ściankę)
-e        = 0.01;    // zakładka brył (unika ścianek zerowej grubości)
-fnDuze   = 192;  fnSr = 64;  fnMale = 24;  krokKata = 1;  nSektor = 48;
-// --- gałka ---
-Rg = 30; tg = 2; zRant = -8;
-zPiasta  = 12.75;   // czoło przedniej piasty kardana (25,5 / 2)
-dPiasta  = 11;      // tylko podgląd
-stozekK  = 7;       // tworząca stożka: r = z − stozekK (45°), wierzchołek r 5,75 na z = zPiasta
-uStozek  = (-stozekK + sqrt(2 * (Rg - tg) * (Rg - tg) - stozekK * stozekK)) / 2;   // styk stożka ze skorupą (r 15,99; z 22,99)
-aStozek  = atan2(uStozek + stozekK, uStozek);
-aRantZ   = asin(zRant / Rg);  aRantW = asin(zRant / (Rg - tg));
-dTrzpM5  = 5.5;     // szczelina trzpienia M5 (M5 × 12: 7 w piaście, 5 w podłodze)
-podloga  = 5.5;     // podłoga między piastą a łbem: M5 × 12 wchodzi w piastę na 6,5 z 7 mm; piasta dociśnięta do stożka, łeb do podłogi, potem M4 (docisk)
-dLebM5   = 9.5;  hLebM5 = 3.5;      // łeb krzyżakowy M5 (założenie)
-luzLebR  = 0.25; luzLebH = 0.4;     // luz łba w rowku: promieniowo, wysokość
-yRowek   = -16;     // wylot rowka T do wnętrza gałki
-xUcha    = 20;  zUcho = -4;         // ucha drutów: odległość od osi, wysokość
-// blaszka ucha (płytka grub. tZebra, zawieszona na skorupie): dolna krawędź uchoDol pod otworem na odcinku [−uchoPlL, +uchoPlP] od otworu,
-// od strony osi wznosi się pod 45° do końca blaszki (xUcha − uchoOdOsi), od strony skorupy opada pod 45° do stołu (druk bez podpór);
-// pod otworem wolne miejsce na korpus drutu Z przy przechyle (od strony gałki i od strony skorupy)
-uchoDol = 1.2; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 4; uchoOdOsi = 3; uchoZaSkorupa = 1.5;
-tZebra = 2;
-dTalia = 1.7; lTalia = 0.3; katKlep = 45; lKlep = 1.2;   // klepsydra: talia Ø1,7 × 0,3, stożki 45° do 1,2 od talii
-// --- powieki ---
-Rpg = 31.5; Rpd = 33.4; tp = 1.2;           // górna 31,5–32,7, dolna 33,4–34,6 (szczelina 0,7)
-katZam = 1.5; szerPow = 75; skok = 51.5;    // krawędź zamknięta ±1,5° (zakładka 3°), otwarcie do 50°
-xLeb = 30.5; hLebM2 = 1.6; dLebM2 = 3.8;    // łeb M2 od strony gałki
-luzLebM2 = 0.4;                             // luz pogłębienia na łeb M2 (średnica)
-tUcho = 1.5;
-xUchoG = xLeb + hLebM2 + luzObr;            // 32,3
-xUchoD = xUchoG + tUcho + luzObr;           // 34,0
-xPad   = xUchoD + tUcho + luzObr;           // 35,7
-dOsM2  = 2.4;  dPadM2 = 1.7; glPadM2 = 2.4; // otwór luźny w uchu, ciasny w podkładce (wkręcić do dna)
-lOtwOsi = 8;                                // długość cięcia otworu osi
-rUchoG = 4;  sektorG = [11, 50]; rRamieG = 14; xPlytkiG = 26;   // ucho górnej: koło + ramię-sektor; płytka od x = 26 (resztę zjada kula)
-rUchoD = 4.5; sektorD = [-50, -11]; rRamieD = 11.5; xRamieD = 31.5; xTrymD = 32;   // dolna: |x| ≤ 32
-rDzw = 7; dDzwOtw = 1.4; rDzwPiasta = 3; rDzwKoniec = 2;   // otwór: drut Ø1 + 2 × 0,2
-katDzwZam = 90 - skok / 2;                  // dźwignia ⟂ drut w połowie skoku (kąt od +z do +y)
-// --- pierścień, maskownica ---
-rTubaZ = 39.5; tTuba = 1.6; zTubaPrzod = 24; wystTuby = 2;   // tuba wystaje 2 mm ponad skórkę (pod maskownicę)
-zSkorka = zTubaPrzod - wystTuby;                             // płaszczyzna skórki (22)
-Dkol = 104; tKol = 4;
-aPad = 4; luzPadTuba = 0.5;                 // podkładka osi: kwadrat 2·aPad z dołem V 45°, do rTubaZ − luzPadTuba
-dM3luz = 3.3; dM3ciasny = 2.6; dPoglM3 = 6.5; hPoglM3 = 2.6;
-dWkret = 4.5;
-dMask = 84; dMaskW = 79.0; tMask = wystTuby;
-ramiona = [[43, -2], [-45, 8], [0, -45]];   // osie ramion Uchwytu (x, y)
-wkrety  = [90, 215, 325]; rWkr = 47;        // łapy: otwory pod wkręty do drewna 4 × 30–40
-// --- serwa MG90S (rysunek Miuzei MS60-4-D-V1) ---
-zWal = -44; Lsv = 22.8; Wsv = 12.5; Hsv = 22.8; wiezaH = 12.2; uchoOd = 15; uchoT = 2; rozstUch = 27.7; osOdCzola = 5.5;
-odstOrcz = 1.5;                             // płaszczyzna otworu orczyka → czubek wałka
-dWkrSerwa = 1.7;                            // wkręt fabryczny w ramkę
-xOrcz1 = 21; yWal1 = -18.5; rOrcz1 = 17.5;  // S1 lewo–prawo, wałek ∥ x w stronę −x
-xOrcz2 = 11; yWal2 = 8.5;   rOrcz2 = 13.5;  // S2 góra–dół, wałek ∥ x w stronę −x
-xWal3 = -42; yOrcz3 = 0;    rOrcz3 = 7.5;   // S3 powieki, wałek ∥ y w górę
-aOrcz0 = -6;                                // położenie orczyków S1, S2 w zerze (solver)
-// --- uchwyt ---
-zPlyta = -69; tPlyta = 3; dSlupek = 16; tRamki = 4; aRamie = 8;
-zRamkaGora = -32;  polRamki12 = 8.5;  polRamki3 = 8;
-plytaX = [-50, 47.5]; plytaY = [-27, 17]; jezykPol = 6; jezykY = -49;   // obrys płyty + język pod ramię dolne
-zOkno = [-26.0, -21.95]; oknoSzer = 10.5; oknoDl = 20; dTrzpTyl = 5.3;  // okno łba tylnego M5 × 16 w słupku
-// --- próbka drutu ---
-pPlyta = [34, 12, 2]; pXucha = 3; pZebroB = [24, 5.25]; pDlB = 8; pWysZebra = 6;   // pXucha: początek blaszki ucha (jak w gałce) od brzegu płytki
-pUchoB = 3; pOtw2 = [21, 9.5]; dOtw2 = 2.4; pOknoY = 4; pSkorupa = 2;   // dOtw2: dwa druty Ø1 + 2 × 0,2 (orczyk S3); pOknoY: szerokość szczeliny pod blaszką; pSkorupa: kawałek „skorupy” na końcu blaszki
-// --- zbiorczy: rozstaw części ---
-odstep = 10;
-stopka = 0.6;       // płaskie ścięcie uszu powiek przy stole (druk)
+// Dwie grupy. BAZOWE: wymiary części kupnych, luzy z tabeli AGENTS.md, Rg, otwór, ścianka dyni i decyzje projektowe wyrażone jako
+// odstępy, kąty albo rozmiary (nie współrzędne). POCHODNE: wszystkie położenia, liczone z bazowych; w komentarzu wartość dla bazowych z tego pliku.
+// Test zginania (raport nocny): Rg 29 / 31, scianka 28 / 50, luzObr 0,3.
 
-// pochodne
-zKolPrzod = zSkorka - scianka;              // przód kołnierza (styk z wnętrzem dyni)
-zSerwoPrzod = zWal + osOdCzola;             // -38,5
-zSerwoTyl = zSerwoPrzod - Lsv;              // -61,3
-zUchSerwa = [ (zSerwoPrzod + zSerwoTyl) / 2 + rozstUch / 2, (zSerwoPrzod + zSerwoTyl) / 2 - rozstUch / 2 ];
-xRamka1 = xOrcz1 + odstOrcz + uchoOd + uchoT;   // 39,5
-xRamka2 = xOrcz2 + odstOrcz + uchoOd + uchoT;   // 29,5
-yRamka3 = yOrcz3 - odstOrcz - uchoOd - uchoT;   // -18,5
+// ---------- BAZOWE: dynia i otwór ----------
+scianka  = 40;      // grubość ścianki dyni przy otworze (zakres 28–50)
+otwor    = 80;      // średnica otworu w dyni (PRD: ≤ Ø80)
+// ---------- BAZOWE: luzy (tabela AGENTS.md) ----------
+luzObr   = 0.2;     // obrotowy i osiowy
+luzSlizg = 0.3;     // ślizgowy, okna korpusów serw
+luzRuch  = 0.5;     // ruchome części obok siebie
+luzOtwor = 0.5;     // tuba w otworze dyni (na promieniu)
+// ---------- BAZOWE: części kupne ----------
+Lkardan = 25.5; dKardan = 11; glOtwKardana = 7;      // kardan 5/5: długość, Ø piasty, głębokość otworu Ø5
+lM5tyl = 16; dLebM5 = 9.5; hLebM5 = 3.5; dTrzpM5 = 5.5; dTrzpTyl = 5.3;   // M5 × 12 (przód) i × 16 (tył), łeb krzyżakowy (założenie)
+lM2 = 6; hLebM2 = 1.6; dLebM2 = 3.8; dOsM2 = 2.4; dPadM2 = 1.7;           // M2 × 6: łeb, otwór luźny w uchu, ciasny w podkładce
+dM3luz = 3.3; dM3ciasny = 2.6; dPoglM3 = 6.5; hPoglM3 = 2.6; dWkret = 4.5;  // M3, wkręty do drewna
+Lsv = 22.8; Wsv = 12.5; Hsv = 22.8; wiezaH = 12.2; uchoOd = 15; uchoT = 2; rozstUch = 27.7; osOdCzola = 5.5; dlUszu = 31.8; dWkrSerwa = 1.7;   // MG90S (Miuzei)
+rOrcz1 = 17.5; rOrcz2 = 13.5; rOrcz3 = 7.5;          // otwory orczyka (5,5…17,5 co 2) wybrane dla S1, S2, S3
+grubOrcz = 2; odstOrcz = 1.5;                        // grubość ramienia orczyka; płaszczyzna otworu → czubek wałka
+dDrut = 1.0;                                         // drut sprężynowy
+// ---------- BAZOWE: gałka (decyzje) ----------
+Rg = 30; tg = 2;
+wystGalki = 6;      // gałka wystaje przed lico tuby / maskownicy
+tylRant = 8;        // skorupa sięga tylRant za środek (rant = stół do druku)
+podloga = 5.5;      // podłoga rowka T = część M5 × 12 poza piastą (wsunięcie 6,5 z 7)
+luzLebR = 0.25; luzLebH = 0.4;                       // łeb M5 w rowku
+rUcha = 20; wysUcha = 4;                             // ucha drutów: promień od osi, wysokość otworu nad rantem
+uchoDol = 1.2; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 4; uchoOdOsi = 3; uchoZaSkorupa = 1.5; tZebra = 2;   // blaszka ucha
+dTalia = 1.7; lTalia = 0.3; katKlep = 45; lKlep = 1.2;                    // klepsydra
+// ---------- BAZOWE: powieki (decyzje) ----------
+szczGalkaPow = 1.5; szczPowiek = 0.7; tp = 1.2;     // szczeliny gałka–górna i górna–dolna, grubość czaszy
+katZam = 1.5; szerPow = 75; skok = 51.5;            // krawędź zamknięta ±1,5° (zakładka 3°), szerokość czaszy, skok (do 50°)
+tUcho = 1.5; rUchoG = 4; sektorG = [11, 50]; rRamieG = 14; rUchoD = 4.5; sektorD = [-50, -11];   // ucha i ramiona
+rDzw = 7; rDzwPiasta = 3; rDzwKoniec = 2;           // dźwignie
+// ---------- BAZOWE: pierścień, maskownica (decyzje) ----------
+tTuba = 1.6; wystTuby = 2; rantMask = 2; tKol = 4; szerKol = 12.5; odstWkretu = 7.5;   // rant maskownicy ≤ 2 poza otwór (PRD)
+aPad = 4; luzPadTuba = 0.5;
+katyRamion = [-3, 170, 270]; katyWkretow = [90, 215, 325];   // położenia kątowe ramion Uchwytu i łap
+// ---------- BAZOWE: serwa i uchwyt (decyzje) ----------
+odstSerwa = 8.5;    // czoło korpusów serw za gałką (od R gałki)
+przesS1 = 1; przesS2 = 2;   // otwór orczyka S1 1 mm pod osią gałki; S2 2 mm nad uchem
+odstOrczSlupek = 2;         // orczyk S2 od słupka
+aOrcz0 = -6;                // orczyki S1, S2 w zerze obrócone 6° do tyłu (solver)
+tPlyta = 3; tRamki = 4; aRamie = 8; polRamki = 8.5; ramkaNadUchem = 2; zapasPlyty = 4; luzUchaPlyta = 0.2;
+wkladSlupka = 2.5;          // ścianka słupka wokół piasty
+oknoDl = 20;
+// ---------- BAZOWE: próbka, druk, siatka ----------
+pPlyta = [34, 12, 2]; pXucha = 3; pZebroB = [24, 5.25]; pDlB = 8; pWysZebra = 6; pUchoB = 3; pOtw2 = [21, 9.5]; pOknoY = 4; pSkorupa = 2;
+odstep = 10; stopka = 0.6;
+nad = 1; e = 0.01; fnDuze = 192; fnSr = 64; fnMale = 24; krokKata = 1; nSektor = 48; lOtwOsi = 8;
+
+// ---------- POCHODNE (wartość dla bazowych powyżej) ----------
+zPiasta    = Lkardan / 2;                          // 12,75 czoło przedniej piasty
+zRant      = -tylRant;                             // -8
+zUcho      = zRant + wysUcha;                      // -4
+xUcha      = rUcha;                                // 20
+stozekK    = zPiasta - (dKardan / 2 + luzLebR);    // 7: tworząca r = z − stozekK, wierzchołek r 5,75
+uStozek    = (-stozekK + sqrt(2 * (Rg - tg) * (Rg - tg) - stozekK * stozekK)) / 2;   // 15,99 styk stożka ze skorupą
+aStozek    = atan2(uStozek + stozekK, uStozek);    // 55,2°
+aRantZ     = asin(zRant / Rg);  aRantW = asin(zRant / (Rg - tg));   // -15,5° / -16,6°
+yRowek     = -uStozek;                             // -15,99 wylot rowka T do wnętrza gałki
+dDzwOtw    = dDrut + 2 * luzObr;                   // 1,4
+dOtw2      = 2 * dDrut + 2 * luzObr;               // 2,4 (dwa druty, orczyk S3)
+Rpg        = Rg + szczGalkaPow;                    // 31,5
+Rpd        = Rpg + tp + szczPowiek;                // 33,4
+xLeb       = Rg + luzRuch;                         // 30,5 łeb M2 od strony gałki
+xUchoG     = xLeb + hLebM2 + luzObr;               // 32,3
+xUchoD     = xUchoG + tUcho + luzObr;              // 34,0
+xPad       = xUchoD + tUcho + luzObr;              // 35,7
+glPadM2    = xLeb + hLebM2 + lM2 - xPad;           // 2,4 ślepy otwór: M2 wkręcona do dna
+luzLebM2   = 2 * luzObr;                           // 0,4
+xPlytkiG   = Rpg - rRamieG / 2;                    // 24,5 początek płytki ucha (wnętrze zjada kula)
+xRamieD    = Rpg;                                  // 31,5
+xTrymD     = xUchoG - luzSlizg;                    // 32,0: czasza dolna |x| ≤
+rTubaZ     = otwor / 2 - luzOtwor;                 // 39,5
+rTubaW     = rTubaZ - tTuba;                       // 37,9
+rRamieD    = sqrt(rTubaW * rTubaW - (xUchoD + tUcho) * (xUchoD + tUcho)) - 3 * luzRuch;   // 11,8 ramię dolnej (od tuby)
+katDzwZam  = 90 - skok / 2;                        // 64,25° dźwignia ⟂ drut w połowie skoku
+zTubaPrzod = Rg - wystGalki;                       // 24
+zSkorka    = zTubaPrzod - wystTuby;                // 22
+zKolPrzod  = zSkorka - scianka;                    // -18
+Dkol       = 2 * (rTubaZ + szerKol);               // 104
+rWkr       = rTubaZ + odstWkretu;                  // 47
+dMask      = otwor + 2 * rantMask;                 // 84
+dMaskW     = 2 * rTubaZ;                           // 79 (wcisk 0)
+tMask      = wystTuby;                             // 2
+rRamion    = rTubaZ + aRamie / 2 + 3 * luzRuch;    // 45
+ramiona    = [for (a = katyRamion) [rRamion * cos(a), rRamion * sin(a)]];   // (44,9; -2,4), (-44,3; 7,8), (0; -45)
+wkrety     = katyWkretow;
+zSerwoPrzod = -(Rg + odstSerwa);                   // -38,5
+zWal       = zSerwoPrzod - osOdCzola;              // -44
+zSerwoTyl  = zSerwoPrzod - Lsv;                    // -61,3
+uchoWyst   = (dlUszu - Lsv) / 2;                   // 4,5
+zUchSerwa  = [ (zSerwoPrzod + zSerwoTyl) / 2 + rozstUch / 2, (zSerwoPrzod + zSerwoTyl) / 2 - rozstUch / 2 ];   // -36,05 / -63,75
+xOrcz1     = xUcha + przesS1;                      // 21: S1, wałek ∥ x w stronę −x
+yWal1      = -(rOrcz1 + przesS1);                  // -18,5
+dSlupek    = dKardan + 2 * wkladSlupka;            // 16
+xOrcz2     = dSlupek / 2 + odstOrczSlupek + grubOrcz / 2;   // 11: S2, wałek ∥ x w stronę −x
+yWal2      = xUcha + przesS2 - rOrcz2;             // 8,5
+xOtwOrcz3  = -(xUchoG + xUchoD + tUcho) / 2;       // -33,9 otwór orczyka S3 między dźwigniami
+xWal3      = xOtwOrcz3 - rOrcz3;                   // -41,4: S3, wałek ∥ y w górę
+yOrcz3     = 0;                                    // płaszczyzna orczyka S3 = oś powiek
+zPlyta     = zSerwoTyl - uchoWyst - luzUchaPlyta - tPlyta;   // -69
+zRamkaGora = zSerwoPrzod + uchoWyst + ramkaNadUchem;         // -32
+xRamka1    = xOrcz1 + odstOrcz + uchoOd + uchoT;   // 39,5
+xRamka2    = xOrcz2 + odstOrcz + uchoOd + uchoT;   // 29,5
+yRamka3    = yOrcz3 - odstOrcz - uchoOd - uchoT;   // -18,5
+polRamki12 = polRamki; polRamki3 = polRamki;       // 8,5
+plytaX     = [xWal3 - polRamki3, xRamka1 + tRamki + zapasPlyty];   // [-49,9; 47,5]
+plytaY     = [yWal1 - polRamki12, yWal2 + polRamki12];             // [-27; 17]
+jezykPol   = aRamie / 2 + 2 * luzRuch + 1;         // 6
+jezykY     = -rRamion - aRamie / 2;                // -49
+zOkno1     = -zPiasta - (lM5tyl - glOtwKardana) - luzObr;   // -21,95 strop okna = łeb M5 × 16
+zOkno      = [zOkno1 - (hLebM5 + luzLebH), zOkno1];         // [-25,85; -21,95]
+oknoSzer   = dLebM5 + 4 * luzLebR;                 // 10,5
+dPiasta    = dKardan;                              // podgląd
 
 // ===================== pomocnicze =====================
 module xOs() { multmatrix([[0,0,1,0],[1,0,0,0],[0,1,0,0]]) children(); }   // lokalne XY → świat (y, z), lokalne Z → świat x
@@ -267,7 +304,18 @@ module zbiorczy() {
   translate([-Dkol / 2 - s - pPlyta[0], -Dkol / 2 - s, 0]) druk("ProbkaDrutu");
 }
 
-if (czesc == "zlozenie") { color("white") Galka(); color("orange") { PowiekaGorna(); PowiekaDolna(); Pierscien(); UchwytSerw(); } color("darkorange") Maskownica(); podglad(); }
+// parametry dla skryptów (duze-oko-kinematyka.js, duze-oko-kolizje.js): openscad -o x.echo -D 'czesc="parametry"' duze-oko-v2.scad
+if (czesc == "parametry") echo(str("PARAMETRY{\"lug1\":[", xUcha, ",0,", zUcho, "],\"lug2\":[0,", xUcha, ",", zUcho, "],",
+  "\"s1\":{\"xh\":", xOrcz1, ",\"ys\":", yWal1, ",\"zs\":", zWal, ",\"r\":", rOrcz1, ",\"a0\":", aOrcz0, "},",
+  "\"s2\":{\"xh\":", xOrcz2, ",\"ys\":", yWal2, ",\"zs\":", zWal, ",\"r\":", rOrcz2, ",\"a0\":", aOrcz0, "},",
+  "\"s3\":{\"xs\":", xWal3, ",\"yh\":", yOrcz3, ",\"zs\":", zWal, ",\"r\":", rOrcz3, ",\"a0\":0},",
+  "\"lev\":{\"r\":", rDzw, ",\"xu\":", -(xUchoG + tUcho / 2), ",\"xl\":", -(xUchoD + tUcho / 2), ",\"skok\":", skok, "},",
+  "\"korp\":{\"xu\":", -(xUchoG + tUcho + dDrut / 2), ",\"xl\":", -(xUchoD - dDrut / 2), "},",
+  "\"sv\":{\"odstOrcz\":", odstOrcz, ",\"wiezaH\":", wiezaH, ",\"Hsv\":", Hsv, ",\"Wsv\":", Wsv, ",\"zP\":", zSerwoPrzod, ",\"zT\":", zSerwoTyl,
+  ",\"uchoOd\":", uchoOd, ",\"uchoT\":", uchoT, ",\"uchoWyst\":", uchoWyst, ",\"grubOrcz\":", grubOrcz, "},",
+  "\"Rg\":", Rg, ",\"xLeb\":", xLeb, ",\"hLebM2\":", hLebM2, ",\"dLebM2\":", dLebM2, ",\"zPiasta\":", zPiasta, ",\"dKardan\":", dKardan,
+  ",\"zRant\":", zRant, ",\"dDrut\":", dDrut, "}"));
+else if (czesc == "zlozenie") { color("white") Galka(); color("orange") { PowiekaGorna(); PowiekaDolna(); Pierscien(); UchwytSerw(); } color("darkorange") Maskownica(); podglad(); }
 else if (czesc == "zbiorczy") zbiorczy();
 else if (tryb == "druk") druk(czesc);
 else wPolozeniu(czesc);
