@@ -46,7 +46,7 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 
 - ESP32-C3 + PCA9685: do 8 małych oczu + 3–4 serwa dużego oka (≤ 12 kanałów).
 - **Tylko powerbank** (w szkole nie ma gniazdka): Baseus 20 000 mAh przez USB-C, zapas Manta. Wymiana albo podładowanie powerbanku bez wyjmowania elektroniki.
-- **Pudełko z elektroniką w środku dyni.**
+- **Podstawka pod dynią** (zmiana użytkownika 24.10, zastępuje pudełko w środku dyni): w niej powerbank i elektronika, kable do dyni przez otwór w dnie dyni, dynia (ok. 10 kg) przymocowana do podstawki od środka. **Powerbank wymieniany szufladką z tyłu, bez podnoszenia dyni.** Podstawa może być ze sklejki 18 lub 12 mm (użytkownik ma piłę stołową), druk tam, gdzie upraszcza. Powerbank Baseus 160 × 70 × 32 mm, na środku krótszej ścianki USB-C, obok 2 × USB-A.
 - Czujnik obecności: **PIR** (użytkownik sprawdzi, czy jest w warsztacie).
 
 ## 6. Software
