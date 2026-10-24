@@ -48,7 +48,7 @@ Po druku rozwiercić (luz drutu Ø1 = 0,2 na stronę): talie klepsydr w uchach g
    - S1: −42…+38°;
    - S2: −46…+40°;
    - S3: zamknięte +23°, otwarte −25°.
-8. **Kalibracja na stronie w telefonie.** Najpierw zero każdej osi (gałka na wprost, powieki zamknięte = krawędzie na środku), potem krańce: ±35° / ±25°, powieki do 50°. Sprzężenie osi (S1 zmienia się do ok. 10° przy pełnym góra–dół) – tabela w `node ../narzedzia/duze-oko-kinematyka.js '{...}' siatka`.
+8. **Kalibracja na stronie w telefonie.** Najpierw zero każdej osi (gałka na wprost, powieki zamknięte = krawędzie na środku), potem krańce: ±35° / ±25°, powieki do 50°. Sprzężenie osi (S1 zmienia się do ok. 10° przy pełnym góra–dół): tabela kątów `node ../narzedzia/duze-oko-kinematyka.js <katalog_stl>/parametry.json siatka` (plik `parametry.json` tworzy `bash eksport.sh <katalog_stl>`).
 
 ## W dyni
 

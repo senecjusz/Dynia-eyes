@@ -61,7 +61,7 @@ oknoDl = 20;
 // ---------- BAZOWE: próbka, druk, siatka ----------
 pMargines = 3; pOdst = 4; pSzer = 12; pGrub = 2; pDlB = 8; pWysZebra = 6; pUchoB = 3; pOknoY = 4; pSkorupa = 2;   // próbka: margines od brzegu, odstęp między elementami
 odstep = 10; stopka = 0.6;
-rWiezy = 6; szerOrcz = 5; rPiastyOrcz = 3.5; dlWidelek = 2; fnPodglad = 8;   // bryły zastępcze (podgląd i kontrola kolizji): wieżyczka serwa, ramię i piasta orczyka, widełki kardana
+rWiezy = 6; szerOrcz = 5; rPiastyOrcz = 3.5; dlOrcz = 20; dlWidelek = 2; fnPodglad = 8;   // dlOrcz: koniec ramienia orczyka jednoramiennego od osi (nieskracany; otwory do 17,5)   // bryły zastępcze (podgląd i kontrola kolizji): wieżyczka serwa, ramię i piasta orczyka, widełki kardana
 nad = 1; e = 0.01; fnDuze = 192; fnSr = 64; fnMale = 24; krokKata = 1; nSektor = 48; lOtwOsi = 8;
 
 // ---------- POCHODNE (wartość dla bazowych powyżej) ----------
@@ -326,9 +326,9 @@ if (czesc == "parametry") echo(str("PARAMETRY{\"lug1\":[", xUcha, ",0,", zUcho, 
   "\"lev\":{\"r\":", rDzw, ",\"xu\":", -(xUchoG + tUcho / 2), ",\"xl\":", -(xUchoD + tUcho / 2), ",\"skok\":", skok, "},",
   "\"korp\":{\"xu\":", -(xUchoG + tUcho + dDrut / 2), ",\"xl\":", -(xUchoD - dDrut / 2), "},",
   "\"sv\":{\"odstOrcz\":", odstOrcz, ",\"wiezaH\":", wiezaH, ",\"Hsv\":", Hsv, ",\"Wsv\":", Wsv, ",\"zP\":", zSerwoPrzod, ",\"zT\":", zSerwoTyl,
-  ",\"uchoOd\":", uchoOd, ",\"uchoT\":", uchoT, ",\"uchoWyst\":", uchoWyst, ",\"grubOrcz\":", grubOrcz, ",\"rWiezy\":", rWiezy, ",\"szerOrcz\":", szerOrcz, ",\"rPiastyOrcz\":", rPiastyOrcz, "},",
+  ",\"uchoOd\":", uchoOd, ",\"uchoT\":", uchoT, ",\"uchoWyst\":", uchoWyst, ",\"grubOrcz\":", grubOrcz, ",\"rWiezy\":", rWiezy, ",\"szerOrcz\":", szerOrcz, ",\"rPiastyOrcz\":", rPiastyOrcz, ",\"dlOrcz\":", dlOrcz, "},",
   "\"Rg\":", Rg, ",\"xLeb\":", xLeb, ",\"hLebM2\":", hLebM2, ",\"dLebM2\":", dLebM2, ",\"zPiasta\":", zPiasta, ",\"dKardan\":", dKardan,
-  ",\"zRant\":", zRant, ",\"dDrut\":", dDrut, ",\"dlWidelek\":", dlWidelek, "}"));
+  ",\"zRant\":", zRant, ",\"dDrut\":", dDrut, ",\"dlWidelek\":", dlWidelek, ",\"luzObr\":", luzObr, ",\"oczekiwane\":{\"Galka\":", Rg + tylRant, ",\"Pierscien\":", zTubaPrzod - (zKolPrzod - tKol), ",\"UchwytSerw\":", max(-zPiasta, zKolPrzod - tKol) - zPlyta, ",\"Maskownica\":", tMask, "}}"));
 else if (czesc == "zlozenie") { color("white") Galka(); color("orange") { PowiekaGorna(); PowiekaDolna(); Pierscien(); UchwytSerw(); } color("darkorange") Maskownica(); podglad(); }
 else if (czesc == "zbiorczy") zbiorczy();
 else if (tryb == "druk") druk(czesc);

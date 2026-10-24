@@ -1,4 +1,4 @@
-# Test zginania dużego oka v2 (zginanie.sh + zginanie-werdykt.sh, 25.10): eksport 6 części, kontrola siatek, kinematyka, kolizje krok 17,5° (5 × 5 pozycji gałki z zerem, 7 pozycji powiek)
+# Test zginania dużego oka v2 (zginanie.sh + zginanie-werdykt.sh, 25.10): eksport 6 części, kontrola siatek i wymiarów, kinematyka, kolizje krok 17,5° (5 × 5 pozycji gałki z zerem, 7 pozycji powiek)
 
 === wariant: Rg=29
 OK   Galka.3mf  trojkatow 71132, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
@@ -16,7 +16,7 @@ Maskownica.3mf: brył 1
 OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
 Uchwyt serw.3mf: brył 1
 kinematyka: S1 L 40.86 α [ -41.9, 37.9 ] nieosiągalne 0 | S2 L 41.93 α [ -45.6, 40.3 ] nieosiągalne 0 | S3 {"Lu":43.57,"Ld":43.57,"alfaZamk":23.1,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.22,"dolnaPrzyOtw":51.26}
-kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 676 s
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 661 s
 S1 α -41.7…37.6°, S2 α -45.6…40.3°, S3 α [23.2,15.6,7.9,0,-8.1,-16.3,-24.7]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-23.0
@@ -96,7 +96,12 @@ S3 – pierscien (stałe) | > 3 | –
 S1 – S2 (stałe) | > 3 | –
 S2 – S3 (stałe) | > 3 | –
 lebM2 – pierscien (stałe) | > 3 | –
-WERDYKT: ZALICZONY; odstępy < 0,5 (bez styków stałych): powieka górna – lebM2 | 0.18;powieka dolna – pierscien | 0.20;powieka górna – powieka dolna | 0.20;drut S1 – gałka | 0.40;drut S2 – gałka | 0.44;
+Galka.3mf: 58.00 × 58.00 × 37.00 mm; wysokość OK (oczekiwana 37, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 46.00 mm; wysokość OK (oczekiwana 46, z od 0.00)
+Uchwyt serw.3mf: 97.84 × 66.00 × 55.25 mm; wysokość OK (oczekiwana 55.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.40 < 0.50; drut S2 – gałka 0.44 < 0.50; )
 
 === wariant: Rg=30.5
 ERROR: Assertion '(zakladkaRamieD >= (2 * luzRuch))' failed: "GRANICA: ramię ucha dolnej powieki nie sięga czaszy (zakładka 0.707896 mm) – za duże Rg dla otworu" in file duze-oko-v2.scad, line 141
@@ -112,7 +117,7 @@ BLAD UchwytSerw druk
 BLAD Pierscien zlozenie
 BLAD Maskownica zlozenie
 BLAD UchwytSerw zlozenie
-WERDYKT: POZA ZAKRESEM; odstępy < 0,5 (bez styków stałych): 
+WERDYKT: PRZELICZENIE POZA ZAKRESEM; LUZY – (nie dotyczy)
 
 === wariant: Rg=31
 ERROR: Assertion '(zakladkaRamieD >= (2 * luzRuch))' failed: "GRANICA: ramię ucha dolnej powieki nie sięga czaszy (zakładka -1.00803 mm) – za duże Rg dla otworu" in file duze-oko-v2.scad, line 141
@@ -125,10 +130,10 @@ BLAD PowiekaDolna zlozenie
 BLAD Pierscien druk
 BLAD Maskownica druk
 BLAD UchwytSerw druk
-BLAD Maskownica zlozenie
 BLAD Pierscien zlozenie
+BLAD Maskownica zlozenie
 BLAD UchwytSerw zlozenie
-WERDYKT: POZA ZAKRESEM; odstępy < 0,5 (bez styków stałych): 
+WERDYKT: PRZELICZENIE POZA ZAKRESEM; LUZY – (nie dotyczy)
 
 === wariant: scianka=28
 OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
@@ -146,7 +151,7 @@ Maskownica.3mf: brył 1
 OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
 Uchwyt serw.3mf: brył 1
 kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.25,"dolnaPrzyOtw":51.28}
-kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 627 s
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 636 s
 S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-10.0
@@ -226,7 +231,12 @@ S3 – pierscien (stałe) | > 3 | –
 S1 – S2 (stałe) | > 3 | –
 S2 – S3 (stałe) | > 3 | –
 lebM2 – pierscien (stałe) | > 3 | –
-WERDYKT: ZALICZONY; odstępy < 0,5 (bez styków stałych): powieka górna – lebM2 | 0.18;powieka dolna – pierscien | 0.20;powieka górna – powieka dolna | 0.20;drut S1 – gałka | 0.42;
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 34.00 mm; wysokość OK (oczekiwana 34, z od 0.00)
+Uchwyt serw.3mf: 98.84 × 66.00 × 59.00 mm; wysokość OK (oczekiwana 59, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.42 < 0.50; )
 
 === wariant: scianka=50
 OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
@@ -244,7 +254,7 @@ Maskownica.3mf: brył 1
 OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
 Uchwyt serw.3mf: brył 1
 kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.25,"dolnaPrzyOtw":51.28}
-kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 650 s
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 658 s
 S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-32.0
@@ -324,7 +334,12 @@ S2 – pierscien (stałe) | > 3 | –
 S1 – S2 (stałe) | > 3 | –
 S2 – S3 (stałe) | > 3 | –
 lebM2 – pierscien (stałe) | > 3 | –
-WERDYKT: ZALICZONY; odstępy < 0,5 (bez styków stałych): powieka górna – lebM2 | 0.18;powieka dolna – pierscien | 0.20;powieka górna – powieka dolna | 0.20;drut S1 – gałka | 0.42;
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 56.00 mm; wysokość OK (oczekiwana 56, z od 0.00)
+Uchwyt serw.3mf: 98.84 × 66.00 × 56.25 mm; wysokość OK (oczekiwana 56.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.42 < 0.50; )
 
 === wariant: luzObr=0.3
 OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
@@ -342,7 +357,7 @@ Maskownica.3mf: brył 1
 OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
 Uchwyt serw.3mf: brył 1
 kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.26,"dolnaPrzyOtw":51.27}
-kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 664 s
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 657 s
 S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
@@ -422,7 +437,12 @@ S3 – pierscien (stałe) | > 3 | –
 S1 – S2 (stałe) | > 3 | –
 S2 – S3 (stałe) | > 3 | –
 lebM2 – pierscien (stałe) | > 3 | –
-WERDYKT: ZALICZONY; odstępy < 0,5 (bez styków stałych): powieka górna – lebM2 | 0.28;powieka dolna – pierscien | 0.30;powieka górna – powieka dolna | 0.30;drut S1 – gałka | 0.42;
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 46.00 mm; wysokość OK (oczekiwana 46, z od 0.00)
+Uchwyt serw.3mf: 98.99 × 66.00 × 56.25 mm; wysokość OK (oczekiwana 56.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.42 < 0.50; )
 
 === wariant: dDrut=1.2
 OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
@@ -440,7 +460,7 @@ Maskownica.3mf: brył 1
 OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
 Uchwyt serw.3mf: brył 1
 kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.25,"dolnaPrzyOtw":51.28}
-kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 592 s
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 593 s
 S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
@@ -520,4 +540,9 @@ S3 – pierscien (stałe) | > 3 | –
 S1 – S2 (stałe) | > 3 | –
 S2 – S3 (stałe) | > 3 | –
 lebM2 – pierscien (stałe) | > 3 | –
-WERDYKT: ZALICZONY; odstępy < 0,5 (bez styków stałych): powieka górna – lebM2 | 0.18;powieka dolna – pierscien | 0.20;powieka górna – powieka dolna | 0.20;drut S1 – gałka | 0.35;drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.38;
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 46.00 mm; wysokość OK (oczekiwana 46, z od 0.00)
+Uchwyt serw.3mf: 98.84 × 66.00 × 56.25 mm; wysokość OK (oczekiwana 56.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.35 < 0.50; drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) 0.38 < 0.50; )

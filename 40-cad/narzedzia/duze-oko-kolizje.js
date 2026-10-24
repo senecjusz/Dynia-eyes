@@ -115,9 +115,9 @@ const stale = { pierscien: M.pier, uchwyt: M.uch, ...serwa,
   lebM2: [...walec(0, [0, 0], PAR.xLeb, PAR.xLeb + PAR.hLebM2, PAR.dLebM2 / 2), ...walec(0, [0, 0], -PAR.xLeb - PAR.hLebM2, -PAR.xLeb, PAR.dLebM2 / 2)],
   piastaTyl: walec(2, [0, 0], -PAR.zPiasta, -PAR.dlWidelek, PAR.dKardan / 2) };
 // orczyk: ramię szer. 5, grub. 2 od osi do otworu + 2,5, piasta Ø7
-function orczykX(s, a, x0, x1) { const h = Hx(s, a), c = [s.xh, s.ys, s.zs]; const e = [h[0], c[1] + (h[1] - c[1]) * (s.r + 2.5) / s.r, c[2] + (h[2] - c[2]) * (s.r + 2.5) / s.r];
+function orczykX(s, a, x0, x1) { const h = Hx(s, a), c = [s.xh, s.ys, s.zs]; const e = [h[0], c[1] + (h[1] - c[1]) * SV.dlOrcz / s.r, c[2] + (h[2] - c[2]) * SV.dlOrcz / s.r];
   return [...pret([x0 + SV.grubOrcz / 2, c[1], c[2]], [x0 + SV.grubOrcz / 2, e[1], e[2]], SV.szerOrcz / 2, 8), ...walec(0, [c[1], c[2]], x0, x1, SV.rPiastyOrcz)]; }
-function orczykY(s, a) { const h = Hy(s, a), c = [s.xs, s.yh, s.zs]; const e = [c[0] + (h[0] - c[0]) * (s.r + 2.5) / s.r, h[1], c[2] + (h[2] - c[2]) * (s.r + 2.5) / s.r];
+function orczykY(s, a) { const h = Hy(s, a), c = [s.xs, s.yh, s.zs]; const e = [c[0] + (h[0] - c[0]) * SV.dlOrcz / s.r, h[1], c[2] + (h[2] - c[2]) * SV.dlOrcz / s.r];
   return [...pret([c[0], s.yh, c[2]], [e[0], s.yh, e[2]], SV.szerOrcz / 2, 8), ...walec(1, [c[0], c[2]], s.yh - SV.grubOrcz, s.yh + SV.grubOrcz, SV.rPiastyOrcz)]; }
 const skroc = (a, b, m) => { const L = dist(a, b), u = [0, 1, 2].map((i) => (b[i] - a[i]) / L); return [a.map((v, i) => v + u[i] * m), b.map((v, i) => v - u[i] * m)]; };
 

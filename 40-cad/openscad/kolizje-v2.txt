@@ -1,4 +1,4 @@
-kontrola kolizji: krok 10°, θ 9 × φ 7 pozycji gałki, ψ 7 pozycji powiek, 1423 s
+kontrola kolizji: krok 10°, θ 9 × φ 7 pozycji gałki, ψ 7 pozycji powiek, 1436 s
 S1 α -42…37.8°, S2 α -45.5…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
 para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
 pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
