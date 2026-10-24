@@ -26,8 +26,8 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 | Góra–dół | cel ±25°, minimum ±20° |
 | Narożniki | pełny zakres każdej osi przy drugiej w środku; w narożnikach (obie osie naraz) zakres elastyczny, mniejszy dopuszczalny |
 | Powieki | od pełnego zamknięcia do pełnego otwarcia; **całkowicie otwarte** nie zasłaniają źrenicy w zakresie ruchu (nie dotyczy mrugania i przymykania); wielkość źrenicy projektant przyjmuje jako założenie do akceptacji użytkownika |
-| Napęd powiek | **A: obie powieki na jednym serwie.** Jeśli A się nie mieści – **B (dolna nieruchoma, rusza się tylko górna)**, zatwierdzone przez użytkownika z góry 24.10. C (osobne serwo na powiekę) tylko za zgodą użytkownika |
-| Serwa | MG90S: 3 (A, B) albo 4 (C) |
+| Napęd powiek | **Każda powieka na własnym serwie (wariant C, decyzja użytkownika 25.10)** – obie ruchome i niezależne; drut zaczepiony w uszku na tylnej krawędzi czaszy, ok. 34 mm od osi; drukowane przedłużenie orczyka 25 mm, pełne otwarcie ok. 51,5° |
+| Serwa | **4 × MG90S**: lewo–prawo, góra–dół, powieka górna, powieka dolna |
 | Otwór w dyni | ≤ Ø80; z zewnątrz prosty rant ≤ 2 mm poza otwór |
 | Montaż | skręcane i kalibrowane na stole; **moduł wkładany od środka dyni** (tuba w otworze, kołnierz z łapami od środka, wkręty do drewna 4 × 30–40 w miąższ), z zewnątrz **maskownica** krawędzi otworu ≤ 2 mm poza otwór (zmiana użytkownika 24.10, zastępuje wcisk od zewnątrz); nic ponad to bez uzasadnienia |
 | Wyjmowanie | mile widziane, nie wymagane – odpada, jeśli komplikuje (zastosowanie praktycznie jednorazowe) |
@@ -56,7 +56,7 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 - **Ktoś podchodzi (PIR):** rusza się więcej oczu, najwyżej 2 małe naraz; duże oko się otwiera i rozgląda.
 - **Ruch „plastyczny”:** płynne przyspieszanie i hamowanie, sakady przeplatane spokojnym rozglądaniem, mruganie, przymykanie powiek zależnie od nastroju, powieka górna podąża za spojrzeniem.
 - Strona w telefonie: efekty i kalibracja (jest).
-- **Do zmiany:** duże oko z 4 niezależnych serw na wariant A (powieki na jednym serwie).
+- Duże oko na 4 serwach: powieki niezależne (decyzja 25.10, wraca do stanu ze starego firmware'u).
 - Pilot później, jeśli starczy czasu (sam software).
 
 ## 7. Części i zasady
