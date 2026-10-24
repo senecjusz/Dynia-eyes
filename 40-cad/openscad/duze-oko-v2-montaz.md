@@ -32,14 +32,18 @@ Tor ma 3 elementy:
   - S2: taki sam Z w rowkach, w przeciwną stronę;
   - S1 (ucho gałki) i PG/PD (dźwignia): **otwór pionowy**. Jego dno leży 4,5 mm (S1) albo 4,0 mm (powieki) pod osią drutu w rowku, czyli odcinek „przez” + ogon 2 mm.
 
-Narzędzia: płaskie kombinerki z cienkimi szczękami i obcinaczki. Płytkę można złapać brzegiem w imadle.
+**Kołki:** przy każdym zagięciu w płaszczyźnie są 2 otwory na śruby M3 (wkręcasz od spodu w Ø2,6, łeb w pogłębieniu, trzpień wystaje nad płytkę):
+- **wewnętrzna** w narożu: drut owija się wokół trzpienia;
+- **oporowa** dalej: zatrzymuje odcinek „przez” pod kątem z toru + 5° przegięcia na sprężynowanie.
+
+Potrzeba 8 śrub M3 × 12–16: S1 2, S2 4, powieki 2 (tory PG i PD są jednakowe, wystarczy obsadzić jeden). Narzędzia: płaskie kombinerki i obcinaczki. Płytkę można złapać brzegiem w imadle.
 
 1. **Ucięcie.** Utnij drut Ø1,0 na długość L + 12 mm: S1 54, S2 55, PG i PD po 57.
 2. **Koniec A.**
    - **S1, PG, PD:** włóż koniec drutu do dna otworu A. Kombinerkami połóż resztę w rowku korpusu: przy krawędzi otworu powstaje zagięcie w dół.
    - **S2:** włóż koniec w rowek ogona A, zagnij go w rowek odcinka „przez”, a potem do rowka korpusu.
 3. **Korpus.** Dociśnij drut w rowku na całej długości.
-4. **Koniec B.** Zagnij drut w rowek „przez”, a potem w rowek ogona. Nadmiar za końcem rowka ogona utnij.
+4. **Koniec B.** Trzymając korpus w rowku, pchnij wolny koniec drutu wokół śruby wewnętrznej aż do oporu o śrubę oporową. Odcinek „przez” odmierz rowkiem (2,5 mm od naroża), tam kombinerkami zagnij ogon w rowek ogona. Nadmiar utnij.
 5. **Sprężynowanie.** Drut sprężynowy odgina się po zwolnieniu. Każde zagięcie przegnij szczękami o ok. 5–10° ponad kształt rowka. **Kontrola:** po wyjęciu drut ma się wkładać z powrotem w cały tor **bez dociskania**. Jeśli nie wchodzi, popraw zagięcie kombinerkami.
 6. **Ogon na końcu A (S1, PG, PD).** Wyjmij drut. Odcinek, który był w otworze, ma 4,5 mm (S1) albo 4,0 mm (powieki). Chwyć go kombinerkami 2 mm od końca i zagnij ogon o 90°, **równolegle do korpusu, na zewnątrz** (kształt Z). Tu kąt jest prosty, bo odcinek A jest prostopadły do korpusu.
 7. **Gnij jak najciaśniej**, krawędzią szczęk przy samym zagięciu. Długości liczą się do osi zagięć i nie uwzględniają promienia, a ±0,5 mm ustawia kalibracja. Kolanka o promieniu wewnętrznym powyżej ok. 0,5 mm skracają odcinek „przez”. Sprawdź wtedy na próbce, czy Z mieści się w otworze, i najwyżej utnij ogon do 1,5 mm.

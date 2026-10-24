@@ -66,6 +66,7 @@ odstep = 10; stopka = 0.6;
 zapasPrzez = 0.5; ogonDrut = 2;         // odcinek przez otwór = grubość ścianki + zapasPrzez; ogon Z
 gPrzyrz = 6; glRowka = 0.7; luzRowka = 0.1;   // płytka: grubość; rowek: głębokość, luz na stronę
 odstTorow = 11; margPrzyrz = 6; hNapisu = 0.6; rozmNapisu = 3.2;
+dM3 = 3; przegiecie = 5; lOporu = 6.5;   // kołki: trzpień śruby M3 (wkręcanej od spodu); opór kąta z przegięciem na sprężynowanie, w odległości lOporu od naroża
 rWiezy = 6; szerOrcz = 5; rPiastyOrcz = 3.5; dlOrcz = 20; dlWidelek = 2; fnPodglad = 8;   // dlOrcz: koniec ramienia orczyka jednoramiennego od osi (nieskracany; otwory do 17,5)   // bryły zastępcze (podgląd i kontrola kolizji): wieżyczka serwa, ramię i piasta orczyka, widełki kardana
 nad = 1; e = 0.01; fnDuze = 192; fnSr = 64; fnMale = 24; krokKata = 1; nSektor = 48; lOtwOsi = 8;
 
@@ -154,6 +155,7 @@ przezUcha = tZebra + zapasPrzez;                      // 2,5 przez blaszkę ucha
 przezDzw  = tUcho + zapasPrzez;                       // 2,0 przez dźwignię powieki (PG/PD: koniec A)
 przezOrcz = grubOrcz + zapasPrzez;                    // 2,5 przez orczyk (koniec B)
 zOsiPrzyrz = gPrzyrz - glRowka + dDrut / 2;           // 5,8 oś drutu leżącego w rowku
+Rgiecia   = dM3 / 2 + dDrut / 2;                      // 2,0 promień osi drutu owiniętego na trzpieniu M3
 wRowka = dDrut + 2 * luzRowka;                         // 1,2
 dOtwPrzyrz = dDrut + 2 * luzObr + luzRowka;            // 1,5
 LPrzyrz = max(LdS1, LdS2, LdP) + 2 * (przezUcha + ogonDrut) + 2 * margPrzyrz;   // 65,6 długość płytki
@@ -299,6 +301,17 @@ module ProbkaDrutu() {   // płytka = stół gałki (z = zRant): blaszka ucha 1:
 // Koniec w płaszczyźnie: rowek odcinka „przez” pod kątem kat do korpusu + rowek ogona równoległy do korpusu (na zewnątrz – kształt Z).
 // Koniec poza płaszczyznę (kat = 0): otwór pionowy; dno = oś drutu − (przez + ogon); ogon dogina się kombinerkami po wyjęciu.
 // PG i PD są jednakowe: dolny drut to górny obrócony o 180° wokół osi gałki (oba końce zmieniają kierunek), nie lustro.
+// otwór na śrubę M3 wkręcaną od spodu (trzpień = kołek), z pogłębieniem na łeb od spodu
+module kolekM3() { translate([0, 0, -nad]) cylinder(d = dM3ciasny, h = gPrzyrz + 2 * nad, $fn = fnMale); translate([0, 0, -nad]) cylinder(d = dPoglM3, h = hPoglM3 + nad, $fn = fnSr); }
+// kołki zagięcia w płaszczyźnie (naroże w 0, drut nadchodzi wzdłuż +x, odcinek „przez” pod kątem kat):
+// wewnętrzny – na dwusiecznej, tak że oś drutu owiniętego (Rgiecia) ma naroże wirtualne w 0; oporowy – po stronie przegięcia, kąt kat + przegiecie
+module kolkiZagiecia(kat) {
+  {
+    let(b = [cos(kat) - 1, sin(kat)], nb = norm(b), al = 180 - kat)
+      translate([b[0] / nb * Rgiecia / sin(al / 2), b[1] / nb * Rgiecia / sin(al / 2), 0]) kolekM3();
+    let(k2 = kat + przegiecie) translate([lOporu * cos(k2) - Rgiecia * sin(k2), lOporu * sin(k2) + Rgiecia * cos(k2), 0]) kolekM3();
+  }
+}
 module koniecPrzyrz(kat, przez, kier) {   // kier = 1: koniec B (przez w stronę +kat, ogon w +x), −1: koniec A (lustro środkowe)
   rotate(kier > 0 ? 0 : 180) {
     rotate(kat) translate([0, -wRowka / 2]) square([przez, wRowka]);
@@ -312,6 +325,8 @@ module torPrzyrz(L, katA, przezA, katB, przezB, nazwa) {
     if (katA > 0) koniecPrzyrz(katA, przezA, -1);
   }
   if (katA == 0) translate([0, 0, zOsiPrzyrz - (przezA + ogonDrut)]) cylinder(d = dOtwPrzyrz, h = gPrzyrz, $fn = fnMale);
+  translate([L, 0, 0]) kolkiZagiecia(katB);
+  if (katA > 0) rotate(180) kolkiZagiecia(katA);
   translate([przezUcha + ogonDrut, wRowka + 10 * luzRowka, gPrzyrz - hNapisu]) linear_extrude(hNapisu + nad) text(nazwa, size = rozmNapisu, font = "Liberation Sans:style=Bold");
 }
 module PrzyrzadDrutow() {
