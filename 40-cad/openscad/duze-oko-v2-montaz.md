@@ -1,11 +1,12 @@
 # Duże oko v2 – druk, montaż i kalibracja
 
-Model: [`duze-oko-v2.scad`](duze-oko-v2.scad) (OpenSCAD, zmienne na górze pliku). Eksport: `bash eksport.sh` → `40-cad/3mf/Duze oko v2/`: jeden 3MF na część (nazwa = moduł w .scad) i zbiorczy „Duze oko v2 - wszystkie czesci.3mf” (do przeglądu, nie mieści się na jednym stole A1 mini). Druty: [`../druty/duze-oko-v2-druty-1do1.svg`](../druty/duze-oko-v2-druty-1do1.svg). Kinematyka: `node ../narzedzia/duze-oko-kinematyka.js`.
+Model: [`duze-oko-v2.scad`](duze-oko-v2.scad) (OpenSCAD, zmienne na górze pliku). Eksport: `bash eksport.sh` → `40-cad/3mf/Duze oko v2/`: jeden 3MF na część (nazwa = moduł w .scad) i zbiorczy „Duze oko v2 - wszystkie czesci.3mf” z **8 osobnymi obiektami nazwanymi jak części** (składa go `40-cad/narzedzia/zbiorczy_3mf.js`). Zbiorczy służy do przeglądu i rozdzielenia na stoły w Bambu Studio; całość nie mieści się na jednym stole A1 mini. Druty: [`../druty/duze-oko-v2-druty-1do1.svg`](../druty/duze-oko-v2-druty-1do1.svg). Kinematyka: `node ../narzedzia/duze-oko-kinematyka.js`.
 
 ## Druk (A1 mini, PLA, warstwa 0,2, 3 obrysy)
 
 | Kolejność | Plik 3MF | Kolor | Orientacja | Podpory | Uwagi |
 |---|---|---|---|---|---|
+| 1 | Przyrzad do giecia drutow | dowolny | płytą na stole | brak | płytka 65,6 × 56 × 6, drukować razem z próbką; gięcie: sekcja niżej |
 | 1 | Probka drutu | dowolny | jak w pliku | brak | blaszka ucha 1:1 jak w gałce (klepsydra, szczelina pod spodem), dźwignia powieki, otwór orczyka S3, ok. 10 min |
 | 2 | Pierscien | pomarańcz | kołnierzem na stole | brak | długość tuby = `scianka` + 2. **Drukować po zmierzeniu dyni** (zmienna `scianka`, domyślnie 40) |
 | 3 | Uchwyt serw | pomarańcz | płytą na stole | brak | ramiona = 84 − `scianka`, więc też po pomiarze dyni |
@@ -19,6 +20,33 @@ Po druku rozwiercić (luz drutu Ø1 = 0,2 na stronę): talie klepsydr w uchach g
 - Uchwyt: nad oknami serw 13,1 mm i strop okna łba M5 w słupku 10,5 mm. Zwis > 0,3 mm zebrać nożykiem, bo przeszkadza we wsuwaniu korpusu i łba.
 - Gałka: płaski nawis pod uszami 5,5 mm.
 - Powieki: płaskie stopki 0,6 mm pod uszami na stole, czasze na podporach drzewiastych.
+
+## Gięcie drutów na przyrządzie
+
+Przyrząd `Przyrzad do giecia drutow.3mf` to płytka 65,6 × 56 × 6 z 4 torami: **S1**, **S2**, **PG** i **PD**. **PG i PD są jednakowe** (2 sztuki tego samego drutu). Przy każdym torze są wyryte długość korpusu i kąt. Model liczy je z tych samych zmiennych co ruch (`LdS1`, `LdS2`, `LdP`, `katS2`, `katP`, `przezUcha`, `przezDzw`, `przezOrcz`, `ogonDrut`).
+
+Tor ma 3 elementy:
+- **rowek korpusu:** od osi zagięcia A do osi zagięcia B;
+- **koniec B (orczyk), we wszystkich torach:** rowek odcinka „przez” (2,5 mm) pod kątem z toru i rowek ogona (2 mm) równoległy do korpusu, na zewnątrz. Cały Z leży w płaszczyźnie płytki;
+- **koniec A:**
+  - S2: taki sam Z w rowkach, w przeciwną stronę;
+  - S1 (ucho gałki) i PG/PD (dźwignia): **otwór pionowy**. Jego dno leży 4,5 mm (S1) albo 4,0 mm (powieki) pod osią drutu w rowku, czyli odcinek „przez” + ogon 2 mm.
+
+Narzędzia: płaskie kombinerki z cienkimi szczękami i obcinaczki. Płytkę można złapać brzegiem w imadle.
+
+1. **Ucięcie.** Utnij drut Ø1,0 na długość L + 12 mm: S1 54, S2 55, PG i PD po 57.
+2. **Koniec A.**
+   - **S1, PG, PD:** włóż koniec drutu do dna otworu A. Kombinerkami połóż resztę w rowku korpusu: przy krawędzi otworu powstaje zagięcie w dół.
+   - **S2:** włóż koniec w rowek ogona A, zagnij go w rowek odcinka „przez”, a potem do rowka korpusu.
+3. **Korpus.** Dociśnij drut w rowku na całej długości.
+4. **Koniec B.** Zagnij drut w rowek „przez”, a potem w rowek ogona. Nadmiar za końcem rowka ogona utnij.
+5. **Sprężynowanie.** Drut sprężynowy odgina się po zwolnieniu. Każde zagięcie przegnij szczękami o ok. 5–10° ponad kształt rowka. **Kontrola:** po wyjęciu drut ma się wkładać z powrotem w cały tor **bez dociskania**. Jeśli nie wchodzi, popraw zagięcie kombinerkami.
+6. **Ogon na końcu A (S1, PG, PD).** Wyjmij drut. Odcinek, który był w otworze, ma 4,5 mm (S1) albo 4,0 mm (powieki). Chwyć go kombinerkami 2 mm od końca i zagnij ogon o 90°, **równolegle do korpusu, na zewnątrz** (kształt Z). Tu kąt jest prosty, bo odcinek A jest prostopadły do korpusu.
+7. **Gnij jak najciaśniej**, krawędzią szczęk przy samym zagięciu. Długości liczą się do osi zagięć i nie uwzględniają promienia, a ±0,5 mm ustawia kalibracja. Kolanka o promieniu wewnętrznym powyżej ok. 0,5 mm skracają odcinek „przez”. Sprawdź wtedy na próbce, czy Z mieści się w otworze, i najwyżej utnij ogon do 1,5 mm.
+
+**Zużycie przyrządu:** po każdym drucie obejrzyj krawędzie rowka (0,7 mm) i dno otworu (1,3 mm pod S1). Jeśli krawędź jest wyrobiona albo dno przebite, wydrukuj przyrząd ponownie (10 min) albo gnij przy wyrobionym miejscu szczękami, a rowek traktuj tylko jako szablon do kontroli.
+
+**S1** ma końce w prostopadłych płaszczyznach: A w dół (z otworu), B w bok (w płaszczyźnie). Tak ma być. Przy montażu wybierasz stronę blaszki ucha, z której wchodzi koniec A.
 
 ## Części kupne (z warsztatu)
 

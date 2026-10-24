@@ -2,9 +2,10 @@
 // Plan: 40-cad/onshape/duze-oko-v2-plan.md; poprawki po review Astry i stan: 30-projekt/raport-nocny-2026-10-25.md.
 // Układ: x w prawo (patrząc na dynię), y w górę, z do przodu; środek gałki = (0,0,0). Wymiary w mm, kąty w stopniach.
 // Zasada: każda liczba geometrii jest zmienną w sekcji „zmienne”; w modułach tylko zmienne, 0, ±1 (znak), 1/2 i kąty 90/180/360.
-// Eksport: bash eksport.sh (3MF na część + zbiorczy) albo
+// Eksport: bash eksport.sh (3MF na część + zbiorczy z osobnymi obiektami) albo
 //   openscad -o <plik>.3mf -D 'czesc="Galka"' -D 'tryb="druk"' duze-oko-v2.scad
-//   czesc: Galka | PowiekaGorna | PowiekaDolna | Pierscien | Maskownica | UchwytSerw | ProbkaDrutu | zbiorczy | zlozenie
+//   czesc: Galka | PowiekaGorna | PowiekaDolna | Pierscien | Maskownica | UchwytSerw | ProbkaDrutu | PrzyrzadDrutow | parametry | zlozenie
+//   (plik zbiorczy z osobnymi obiektami składa 40-cad/narzedzia/zbiorczy_3mf.js – OpenSCAD zlałby części w jedną siatkę)
 //   tryb:  druk (płaska strona na stole, z ≥ 0) | zlozenie (położenie w module)
 
 czesc = "zlozenie";
@@ -61,6 +62,10 @@ oknoDl = 20;
 // ---------- BAZOWE: próbka, druk, siatka ----------
 pMargines = 3; pOdst = 4; pSzer = 12; pGrub = 2; pDlB = 8; pWysZebra = 6; pUchoB = 3; pOknoY = 4; pSkorupa = 2;   // próbka: margines od brzegu, odstęp między elementami
 odstep = 10; stopka = 0.6;
+// ---------- BAZOWE: przyrząd do gięcia drutów ----------
+zapasPrzez = 0.5; ogonDrut = 2;         // odcinek przez otwór = grubość ścianki + zapasPrzez; ogon Z
+gPrzyrz = 6; glRowka = 0.7; luzRowka = 0.1;   // płytka: grubość; rowek: głębokość, luz na stronę
+odstTorow = 11; margPrzyrz = 6; hNapisu = 0.6; rozmNapisu = 3.2;
 rWiezy = 6; szerOrcz = 5; rPiastyOrcz = 3.5; dlOrcz = 20; dlWidelek = 2; fnPodglad = 8;   // dlOrcz: koniec ramienia orczyka jednoramiennego od osi (nieskracany; otwory do 17,5)   // bryły zastępcze (podgląd i kontrola kolizji): wieżyczka serwa, ramię i piasta orczyka, widełki kardana
 nad = 1; e = 0.01; fnDuze = 192; fnSr = 64; fnMale = 24; krokKata = 1; nSektor = 48; lOtwOsi = 8;
 
@@ -135,6 +140,24 @@ pDlUcha    = (Rg - uchoZaSkorupa) - (xUcha - uchoOdOsi) + pSkorupa;   // 13,5 bl
 pOtw2      = [pXucha + pDlUcha + pOdst, pSzer - pMargines];           // [20,5; 9] otwór na dwa druty
 pZebroB    = [pOtw2[0] + dOtw2 / 2 + pOdst, (pSzer - tUcho) / 2];      // [25,7; 5,25] żebro B (dźwignia powieki)
 pPlyta     = [pZebroB[0] + pDlB + pMargines, pSzer, pGrub];           // [36,7; 12; 2]
+// przyrząd do gięcia: długości i kąty drutów z tej samej geometrii co kinematyka (położenie zerowe orczyków)
+H1  = [xOrcz1, yWal1 + rOrcz1 * cos(aOrcz0), zWal + rOrcz1 * sin(aOrcz0)];   // otwór orczyka S1
+H2  = [xOrcz2, yWal2 + rOrcz2 * cos(aOrcz0), zWal + rOrcz2 * sin(aOrcz0)];   // otwór orczyka S2
+H3  = [xOtwOrcz3, yOrcz3, zWal];                                              // otwór orczyka S3
+DG  = [-(xUchoG + tUcho / 2), rDzw, 0];                                       // koniec dźwigni górnej w połowie skoku
+LdS1 = norm(H1 - [xUcha, 0, zUcho]);                   // 41,86 długość korpusu S1
+LdS2 = norm(H2 - [0, xUcha, zUcho]);                   // 42,89 S2
+LdP  = norm(H3 - DG);                                  // 44,56 powieki (górna = dolna)
+katS2 = acos(abs(H2[0]) / LdS2);                       // 75,1° korpus S2 – odcinek przez otwór (oba końce ∥ x)
+katP  = acos(abs(H3[1] - DG[1]) / LdP);                // 81,0° korpus powieki – odcinek przez orczyk S3 (∥ y)
+przezUcha = tZebra + zapasPrzez;                      // 2,5 przez blaszkę ucha gałki (S1, S2: koniec A)
+przezDzw  = tUcho + zapasPrzez;                       // 2,0 przez dźwignię powieki (PG/PD: koniec A)
+przezOrcz = grubOrcz + zapasPrzez;                    // 2,5 przez orczyk (koniec B)
+zOsiPrzyrz = gPrzyrz - glRowka + dDrut / 2;           // 5,8 oś drutu leżącego w rowku
+wRowka = dDrut + 2 * luzRowka;                         // 1,2
+dOtwPrzyrz = dDrut + 2 * luzObr + luzRowka;            // 1,5
+LPrzyrz = max(LdS1, LdS2, LdP) + 2 * (przezUcha + ogonDrut) + 2 * margPrzyrz;   // 65,6 długość płytki
+BPrzyrz = 4 * odstTorow + 2 * margPrzyrz;              // 56 szerokość płytki
 
 // ---------- GRANICE (asercje): przekroczenie przerywa eksport ----------
 zakladkaRamieD = rRamieD - sqrt(Rpd * Rpd - xTrymD * xTrymD);   // 2,2: ramię ucha dolnej powieki zachodzi na czaszę (Rg ≤ ~30,6 przy Ø80)
@@ -272,6 +295,36 @@ module ProbkaDrutu() {   // płytka = stół gałki (z = zRant): blaszka ucha 1:
   }
 }
 
+// przyrząd do gięcia drutów: 4 tory (S1, S2, PG, PD). Rowek korpusu długości L między osiami zagięć A i B.
+// Koniec w płaszczyźnie: rowek odcinka „przez” pod kątem kat do korpusu + rowek ogona równoległy do korpusu (na zewnątrz – kształt Z).
+// Koniec poza płaszczyznę (kat = 0): otwór pionowy; dno = oś drutu − (przez + ogon); ogon dogina się kombinerkami po wyjęciu.
+// PG i PD są jednakowe: dolny drut to górny obrócony o 180° wokół osi gałki (oba końce zmieniają kierunek), nie lustro.
+module koniecPrzyrz(kat, przez, kier) {   // kier = 1: koniec B (przez w stronę +kat, ogon w +x), −1: koniec A (lustro środkowe)
+  rotate(kier > 0 ? 0 : 180) {
+    rotate(kat) translate([0, -wRowka / 2]) square([przez, wRowka]);
+    translate([przez * cos(kat), przez * sin(kat)]) translate([0, -wRowka / 2]) square([ogonDrut, wRowka]);
+  }
+}
+module torPrzyrz(L, katA, przezA, katB, przezB, nazwa) {
+  translate([0, 0, gPrzyrz - glRowka]) linear_extrude(glRowka + nad) {
+    translate([0, -wRowka / 2]) square([L, wRowka]);
+    translate([L, 0]) koniecPrzyrz(katB, przezB, 1);
+    if (katA > 0) koniecPrzyrz(katA, przezA, -1);
+  }
+  if (katA == 0) translate([0, 0, zOsiPrzyrz - (przezA + ogonDrut)]) cylinder(d = dOtwPrzyrz, h = gPrzyrz, $fn = fnMale);
+  translate([przezUcha + ogonDrut, wRowka + 10 * luzRowka, gPrzyrz - hNapisu]) linear_extrude(hNapisu + nad) text(nazwa, size = rozmNapisu, font = "Liberation Sans:style=Bold");
+}
+module PrzyrzadDrutow() {
+  difference() {
+    cube([LPrzyrz, BPrzyrz, gPrzyrz]);
+    for (t = [[0, LdS1, 0, przezUcha, 90, przezOrcz, str("S1 ", round(LdS1 * 10) / 10)],
+              [1, LdS2, katS2, przezUcha, katS2, przezOrcz, str("S2 ", round(LdS2 * 10) / 10, "  ", round(katS2), "°")],
+              [2, LdP, 0, przezDzw, katP, przezOrcz, str("PG ", round(LdP * 10) / 10, "  ", round(katP), "°")],
+              [3, LdP, 0, przezDzw, katP, przezOrcz, str("PD ", round(LdP * 10) / 10, "  ", round(katP), "°")]])
+      translate([margPrzyrz + przezUcha + ogonDrut, margPrzyrz + t[0] * odstTorow + odstTorow / 2 - rozmNapisu, 0]) torPrzyrz(t[1], t[2], t[3], t[4], t[5], t[6]);
+  }
+}
+
 // ===================== PODGLĄD (tylko złożenie, nie do druku): serwa, orczyki w zerze, druty, piasty kardana =====================
 module drut(a, b) { color("red") hull() { translate(a) sphere(d = dDrut, $fn = fnPodglad); translate(b) sphere(d = dDrut, $fn = fnPodglad); } }
 module podglad() {
@@ -301,21 +354,11 @@ module druk(c) {
   else if (c == "Maskownica") translate([0, 0, -zSkorka]) Maskownica();
   else if (c == "UchwytSerw") translate([0, 0, -zPlyta]) UchwytSerw();
   else if (c == "ProbkaDrutu") ProbkaDrutu();
+  else if (c == "PrzyrzadDrutow") PrzyrzadDrutow();
 }
 module wPolozeniu(c) {
   if (c == "Galka") Galka(); else if (c == "PowiekaGorna") PowiekaGorna(); else if (c == "PowiekaDolna") PowiekaDolna();
   else if (c == "Pierscien") Pierscien(); else if (c == "Maskownica") Maskownica(); else if (c == "UchwytSerw") UchwytSerw(); else if (c == "ProbkaDrutu") ProbkaDrutu();
-}
-// zbiorczy: wszystkie części do druku obok siebie (rzędy po szerokości części)
-module zbiorczy() {
-  s = odstep;
-  translate([-Dkol / 2 - s - Rg, 0, 0]) druk("Galka");
-  translate([0, 0, 0]) druk("Pierscien");
-  translate([Dkol / 2 + s + Rpd, 0, 0]) druk("PowiekaGorna");
-  translate([Dkol / 2 + s + Rpd, 2 * (Rpd + tp) + s, 0]) druk("PowiekaDolna");
-  translate([0, Dkol / 2 + s + dMask / 2, 0]) druk("Maskownica");
-  translate([0, -Dkol / 2 - s - plytaY[1], 0]) druk("UchwytSerw");
-  translate([-Dkol / 2 - s - pPlyta[0], -Dkol / 2 - s, 0]) druk("ProbkaDrutu");
 }
 
 // parametry dla skryptów (duze-oko-kinematyka.js, duze-oko-kolizje.js): openscad -o x.echo -D 'czesc="parametry"' duze-oko-v2.scad
@@ -330,6 +373,5 @@ if (czesc == "parametry") echo(str("PARAMETRY{\"lug1\":[", xUcha, ",0,", zUcho, 
   "\"Rg\":", Rg, ",\"xLeb\":", xLeb, ",\"hLebM2\":", hLebM2, ",\"dLebM2\":", dLebM2, ",\"zPiasta\":", zPiasta, ",\"dKardan\":", dKardan,
   ",\"zRant\":", zRant, ",\"dDrut\":", dDrut, ",\"dlWidelek\":", dlWidelek, ",\"luzObr\":", luzObr, ",\"oczekiwane\":{\"Galka\":", Rg + tylRant, ",\"Pierscien\":", zTubaPrzod - (zKolPrzod - tKol), ",\"UchwytSerw\":", max(-zPiasta, zKolPrzod - tKol) - zPlyta, ",\"Maskownica\":", tMask, "}}"));
 else if (czesc == "zlozenie") { color("white") Galka(); color("orange") { PowiekaGorna(); PowiekaDolna(); Pierscien(); UchwytSerw(); } color("darkorange") Maskownica(); podglad(); }
-else if (czesc == "zbiorczy") zbiorczy();
 else if (tryb == "druk") druk(czesc);
 else wPolozeniu(czesc);

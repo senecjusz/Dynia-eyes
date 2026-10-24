@@ -114,6 +114,17 @@ Plik: `20-analizy/review/2026-10-25-astra-pelne-v2.md`. Astra niezależnie potwi
 | D1 niedziałające wywołanie w instrukcji | poprawione (`parametry.json` z `eksport.sh`) |
 | D2 długość wkrętu M2 | rozdzielone: 6,0 pod łbem, 7,6 całkowita |
 
+## Przyrząd do gięcia drutów i plik zbiorczy (zgłoszenie użytkownika 25.10, przez PM)
+
+- **Zbiorczy 3MF:** OpenSCAD zlewał wszystkie części w jedną siatkę. Teraz plik składa `40-cad/narzedzia/zbiorczy_3mf.js` z pojedynczych 3MF: **8 osobnych obiektów** nazwanych jak części, rozstawionych co 10 mm, siatki 0 błędów. Potwierdziła to też Astra.
+- **Przyrząd do gięcia** (`Przyrzad do giecia drutow.3mf`, 65,6 × 56 × 6, druk razem z próbką): 4 tory S1, S2, PG, PD (PG = PD). Długości i kąty są liczone w SCAD z tych samych zmiennych co ruch. Koniec B i oba końce S2 mają cały Z w rowkach (odcinek „przez” + ogon równoległy do korpusu). Końce prostopadłe (S1 i powieki od strony gałki) mają otwór z dnem 4,5 / 4,0 mm pod osią drutu. Instrukcja: `duze-oko-v2-montaz.md`, „Gięcie drutów na przyrządzie”. Rysunek SVG jest przerysowany w układzie przyrządu.
+- **Review Astry** (`2026-10-25-astra-przyrzad-v2.md` i `-weryf.md`):
+  - K1 (PD lustrzany zamiast obróconego) zamknięte;
+  - W3, W4 i D1 poprawione w modelu i na rysunku;
+  - W1 (rzeczywisty promień zagięcia kombinerkami) i W2 (sprężynowanie, zużycie rowka) rozstrzyga próbne gięcie: instrukcja każe przeginać 5–10°, kontrolować drut w torze bez dociskania i oglądać zużycie przyrządu.
+  
+  Werdykt Astry: **przyrząd można drukować razem z próbką**.
+
 ## Założenia przyjęte bez użytkownika
 
 - **Osie powiek: M2 × 6, wkręcane w ciasny otwór Ø1,7 w podkładce, bez nakrętki** (na nakrętkę nie ma miejsca). Najkrótsza M3 (× 8) z łbem 2,45 nie mieści się w 9,5 mm między gałką a OD tuby. **Do sprawdzenia rano:** użytkownik napisał 24.10 tylko „zakładam, że mam śruby… pewno M2 × 6, które doskonale te serwa mocują”, a to nie jest potwierdzenie. **Zapas:** wkręt fabryczny MG90S (samogwintujący ok. M2) w ten sam otwór, bo łeb ok. Ø4 × 1,5 mieści się w pogłębieniu Ø4,2 × 1,6. Długość wkrętu **pod łbem** 6,0 ± 0,3 (od spodu łba na x 32,1 do dna otworu na x 38,1; całkowita z łbem 7,6). Jeśli jest inna, zmienić `glPadM2` i przedrukować tylko Pierścień.
@@ -140,7 +151,7 @@ Pliki w `40-cad/3mf/Duze oko v2/`. Szczegóły orientacji i podpór są w `40-ca
 
 | # | Część | Kolor | Podpory | Uwagi |
 |---|---|---|---|---|
-| 1 | **Próbka drutu** | dowolny | brak | ok. 10 min; dalej tylko po teście niżej |
+| 1 | **Próbka drutu + Przyrząd do gięcia drutów** | dowolny | brak | razem na jednym stole, ok. 30 min; gięcie: `40-cad/openscad/duze-oko-v2-montaz.md`, sekcja „Gięcie drutów na przyrządzie” |
 | 2 | Gałka | biały | 1 drzewiasta pod stożkiem w środku (malowana) | rowek T i ucha bez podpór |
 | 3 | Powieka górna, Powieka dolna | pomarańcz | drzewiaste pod wewnętrzną stroną czaszy (od stołu) | stopki uszu na stole |
 | 4 | Maskownica | pomarańcz | brak | płasko |
@@ -151,7 +162,7 @@ Pliki w `40-cad/3mf/Duze oko v2/`. Szczegóły orientacji i podpór są w `40-ca
 
 1. **Przygotowanie:**
    - rozwiercić talię klepsydry Ø1,7 (blaszka ucha), otwór żebra B Ø1,4 i otwór w płytce Ø2,4;
-   - wygiąć Z z drutu Ø1,0: odcinek przez otwór 2,5 mm, ogon ≤ 2 mm.
+   - wygiąć drut S1 i S2 na przyrządzie (odcinek przez otwór 2,5 mm, ogon 2 mm).
 2. **Ucho (blaszka z klepsydrą):** korpus drutu po jednej stronie blaszki, przechyl drut o **≥ 40°** w obu płaszczyznach i **po skosie** (narożnik: oba kierunki naraz). Sprawdzić oba typy Z: S1 (zagięcia 90°) i S2 (75°, rysunek drutów). Drut ma chodzić **bez klinowania i bez ocierania** o dolną krawędź blaszki (1,2 mm pod otworem); korpus przechodzi pod nią przez szczelinę w płytce.
    - Jeśli ociera: pilnikiem zebrać 0,3 mm z dolnej krawędzi za otworem i to samo zrobić w gałce.
    - Jeśli klinuje w otworze: rozwiercić talię na Ø1,9.
