@@ -6,10 +6,10 @@ Model: [`duze-oko-v2.scad`](duze-oko-v2.scad) (OpenSCAD, zmienne na górze pliku
 
 | Kolejność | Plik 3MF | Kolor | Orientacja | Podpory | Uwagi |
 |---|---|---|---|---|---|
-| 1 | Probka drutu | dowolny | jak w pliku | brak | test klepsydry, ok. 10 min |
+| 1 | Probka drutu | dowolny | jak w pliku | brak | test ucha z klepsydrą (otwór 1,5 nad wolną przestrzenią, jak w gałce) i dźwigni powieki, ok. 10 min |
 | 2 | Pierscien | pomarańcz | kołnierzem na stole | brak | długość tuby = `scianka` + 2. **Drukować po zmierzeniu dyni** (zmienna `scianka`, domyślnie 40) |
 | 3 | Uchwyt serw | pomarańcz | płytą na stole | brak | ramiona = 84 − `scianka`, więc też po pomiarze dyni |
-| 4 | Galka | **biały** | kołnierzem (tył, z = −8) na stole | **jedna podpora drzewiasta** pod wierzchołkiem stożka w środku (malowanie podpór tylko tam) | podporę wyjąć przez tylny otwór |
+| 4 | Galka | **biały** | kołnierzem (tył, z = −8) na stole | **jedna podpora drzewiasta** pod wierzchołkiem stożka w środku (malowanie podpór tylko tam) | podporę wyjąć przez tylny otwór. Ucha drutów (2 blaszki przy krawędzi) bez podpór: dolna krawędź schodzi pod 45° do stołu, pod otworem 4,5 mm płaskiego nawisu (2 mm szerokości) |
 | 5 | Powieka gorna, Powieka dolna | pomarańcz | uszami na stole, czaszą do góry | **drzewiaste pod wewnętrzną stroną czaszy** (tylko od stołu) | ślady zostają po stronie gałki, niewidoczne |
 | 6 | Maskownica | pomarańcz | płasko | brak | wcisk na tubę Ø79; za luźna → klej, za ciasna → papier ścierny |
 
@@ -32,7 +32,7 @@ Po druku rozwiercić: klepsydry w żebrach gałki Ø1,7, dźwignie powiek Ø1,2,
 3. **Kardan.** Wyjąć wkręty M4 z obu piast i wkręcić je z powrotem po włożeniu czopów:
    - piasta przednia: M5 × 12 w otwór na pełne 7 mm;
    - piasta tylna: M5 × 16 wsunąć później (krok 5).
-4. **Gałka.** Łeb M5 × 12 (z piastą i kardanem) wsunąć bokiem w rowek T od dołu gałki, aż oprze się o koniec rowka. Czoło piasty dosunąć do wierzchołka stożka. Wkręt M4 piasty dokręcić kluczem L 2 mm: krótkie ramię w otworze M4 (od dołu, oś pionowa w gałce), długie wychodzi tylnym otworem. Druty S1 i S2 (Z, rysunki 1–2) włożyć w klepsydry żeber.
+4. **Gałka.** Łeb M5 × 12 (z piastą i kardanem) wsunąć bokiem w rowek T od dołu gałki, aż oprze się o koniec rowka. Czoło piasty dosunąć do wierzchołka stożka. Wkręt M4 piasty dokręcić kluczem L 2 mm: krótkie ramię w otworze M4 (od dołu, oś pionowa w gałce), długie wychodzi tylnym otworem. Druty S1 i S2 (Z, rysunki 1–2) włożyć w klepsydry uszu (blaszki w gałce).
 5. **Gałka na uchwyt.** Tylną piastę postawić na słupku (oś sworznia poziomo). M5 × 16 wsunąć łbem w okno słupka i trzpieniem w górę do piasty. Piastę docisnąć do słupka i dokręcić jej M4 z boku (od −x, pod krawędzią gałki; gałkę odchylić w bok).
 6. **Pierścień na uchwyt.** Nasunąć pierścień od przodu na gałkę (powieki zamknięte – otwarte zahaczą o gałkę), ramiona trafiają w otwory kołnierza. 3 × M3 × 16 od przodu kołnierza.
 7. **Serwa w ramkach.** S1 (prawa, wałek w −x), S2 (prawa wyżej, wałek w −x), S3 (lewa, wałek w górę). Wkręty fabryczne w ucha. Na orczykach przy 1500 µs założyć druty i nasadzić orczyk tak, żeby był:
@@ -40,8 +40,8 @@ Po druku rozwiercić: klepsydry w żebrach gałki Ø1,7, dźwignie powiek Ø1,2,
    - S2: jak S1;
    - S3: ramię w +x (do środka).
    Kąty wokół zera (solver, druty o stałej długości):
-   - S1: −46…+45°;
-   - S2: −50…+52°;
+   - S1: −42…+38°;
+   - S2: −46…+40°;
    - S3: zamknięte +23°, otwarte −25°.
 8. **Kalibracja na stronie w telefonie.** Najpierw zero każdej osi (gałka na wprost, powieki zamknięte = krawędzie na środku), potem krańce: ±35° / ±25°, powieki do 50°. Sprzężenie osi (S1 zmienia się do ok. 10° przy pełnym góra–dół) – tabela w `node ../narzedzia/duze-oko-kinematyka.js '{...}' siatka`.
 

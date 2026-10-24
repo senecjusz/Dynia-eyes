@@ -68,16 +68,17 @@ function probki(T) { const P = []; for (const t of T) { const a = t.slice(0, 3),
     for (const [u, v] of [[a, b], [b, c], [c, a]]) { const L = Math.hypot(u[0] - v[0], u[1] - v[1], u[2] - v[2]), n = Math.floor(L / 1.5); for (let k = 1; k < n; k++) P.push([0, 1, 2].map((i) => u[i] + (v[i] - u[i]) * k / n)); } }
   const u = new Map(); for (const p of P) u.set(p.map((c) => Math.round(c * 20)).join(), p); return [...u.values()]; }
 // odstęp siatki A (punkty) od siatki B (indeks): min odległości; punkt A wewnątrz B → ujemny (−odległość do powierzchni)
-function odstep(PA, IB, IA, PB) { let m = ZASIEG;
-  for (const p of PA) { let d = odl(IB, p); if (d < 0.05 || (d >= ZASIEG && false)) {} if (wewnatrz(IB, p)) d = -d; if (d < m) m = d; }
+let OSTATNI = null;
+function odstep(PA, IB, IA, PB) { let m = ZASIEG; OSTATNI = null;
+  for (const p of PA) { let d = odl(IB, p); if (wewnatrz(IB, p)) d = -d; if (d < m) { m = d; OSTATNI = p; } }
   if (PB) for (const p of PB) { let d = odl(IA, p); if (wewnatrz(IA, p)) d = -d; if (d < m) m = d; }
   return m; }
 
 // ---------- kinematyka (te same parametry co duze-oko-kinematyka.js, wartości końcowe) ----------
-const K = { lug1: [22, 0, -5.5], lug2: [0, 22, -5.5], s1: { xh: 21, ys: -18.5, zs: -44, r: 17.5, a0: -6 }, s2: { xh: 11, ys: 8.5, zs: -44, r: 13.5, a0: -6 },
+const K = { lug1: [20, 0, -4], lug2: [0, 20, -4], s1: { xh: 21, ys: -18.5, zs: -44, r: 17.5, a0: -6 }, s2: { xh: 11, ys: 8.5, zs: -44, r: 13.5, a0: -6 },
   s3: { xs: -42, yh: 0, zs: -44, r: 7.5, a0: 0 }, lev: { r: 7, xu: -33.05, xl: -34.75, skok: 51.5 } };
 // korpus drutu biegnie przy ściance (zagięcie Z): górny na zewnątrz dźwigni (x −34,3), dolny od strony gałki (x −33,5); S1 przy ściance żebra od strony −y, S2 od strony +x
-const KORP = { xu: -34.3, xl: -33.5, s1: [0, -1.5, 0], s2: [1.5, 0, 0] };
+const KORP = { xu: -34.3, xl: -33.5, s1: [0, 0, 0], s2: [0, 0, 0] };   // S1/S2: drut od środka otworu; pierwsze 3 mm (przejście przez blaszkę ucha z klepsydrą) sprawdza próbka
 const Rx = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0], p[1] * c + p[2] * s, -p[1] * s + p[2] * c]; };
 const Ry = (p, a) => { const c = Math.cos(rad(a)), s = Math.sin(rad(a)); return [p[0] * c + p[2] * s, p[1], -p[0] * s + p[2] * c]; };
 const gal = (p, th, ph) => Rx(Ry(p, th), ph);
@@ -115,7 +116,7 @@ const skroc = (a, b, m) => { const L = dist(a, b), u = [0, 1, 2].map((i) => (b[i
 
 // ---------- przebieg ----------
 const I = {}; for (const [k, T] of Object.entries(stale)) I[k] = indeks(T);
-const wyniki = new Map(); const zapisz = (para, d, poz) => { const w = wyniki.get(para); if (!w || d < w.d) wyniki.set(para, { d: Math.round(d * 100) / 100, poz }); };
+const wyniki = new Map(); const zapisz = (para, d, poz) => { const w = wyniki.get(para); if (!w || d < w.d) wyniki.set(para, { d: Math.round(d * 100) / 100, poz: poz + (d < 0.3 && OSTATNI ? ' @ ' + OSTATNI.map((v) => v.toFixed(1)).join(',') : '') }); };
 // próbki gałki: tylko tył (z < 2) i strefa osi powiek (|x| > 22) – przód skorupy (R 30) jest poza zasięgiem części stałych (R ≥ 30,5)
 const P0 = { galka: probki(M.galka).filter((p) => p[2] < 2 || Math.abs(p[0]) > 22), pg: probki(M.pg), pd: probki(M.pd) };
 const Ig0 = indeks(M.galka); const galOdwr = (p, th, ph) => Ry(Rx(p, -ph), -th);   // świat → układ gałki
@@ -131,8 +132,12 @@ for (const ps of PS) {
   const Ipd = indeks(pd); zapisz('powieka górna – powieka dolna', odstep(Pg, Ipd), 'ψ ' + ps.toFixed(1));
   const a3 = alfa3(ps), H3 = Hy(K.s3, a3); const [du1, du2] = skroc(Uk(ps), H3, 1), [dd1, dd2] = skroc(Dk(ps), H3, 1);
   const druty = [...pret(du1, du2, 0.5), ...pret(dd1, dd2, 0.5)], Pdr = probki(druty), orc = orczykY(K.s3, a3), Por = probki(orc);
+  const Pu = probki(pret(du1, du2, 0.5)), Pd4 = probki(pret(...skroc(Dk(ps), H3, 4), 0.5)), Pu4 = probki(pret(...skroc(Uk(ps), H3, 4), 0.5)), Pdd = probki(pret(dd1, dd2, 0.5));
   for (const k of ['pierscien', 'uchwyt', 'S1', 'S2', 'S3']) zapisz('druty powiek – ' + k, odstep(Pdr, I[k]), 'ψ ' + ps.toFixed(1));
-  zapisz('druty powiek – powieka górna', odstep(Pdr, indeks(pg)), 'ψ ' + ps.toFixed(1)); zapisz('druty powiek – powieka dolna', odstep(Pdr, Ipd), 'ψ ' + ps.toFixed(1));
+  const Ipg = indeks(pg);
+  zapisz('drut powieki górnej – powieka dolna', odstep(Pu, Ipd), 'ψ ' + ps.toFixed(1)); zapisz('drut powieki dolnej – powieka górna', odstep(Pdd, Ipg), 'ψ ' + ps.toFixed(1));
+  zapisz('drut powieki górnej – własna powieka (bez 4 mm przy dźwigni)', odstep(Pu4, Ipg), 'ψ ' + ps.toFixed(1)); zapisz('drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni)', odstep(Pd4, Ipd), 'ψ ' + ps.toFixed(1));
+  zapisz('drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku)', odstep(probki(pret(Uk(ps), skroc(Uk(ps), H3, 4)[1], 0.5)), indeks(pret(Dk(ps), skroc(Dk(ps), H3, 4)[1], 0.5))), 'ψ ' + ps.toFixed(1));
   for (const k of ['pierscien', 'uchwyt', 'S1', 'S2']) zapisz('orczyk S3 – ' + k, odstep(Por, I[k]), 'ψ ' + ps.toFixed(1));
   wyniki.set('_S3', { alfa: [...(wyniki.get('_S3') || { alfa: [] }).alfa, Math.round(a3 * 10) / 10] });
 }
@@ -156,7 +161,7 @@ for (const th of TH) for (const ph of PH) {
     zapisz(nm + ' – powieka dolna (otw.)', odstep(Pd, Ido), poz);
   }
   // drut z gałką: bez 4 mm przy uchu (tam przechodzi przez żebro)
-  const [p1b] = skroc(l1k, Hx(K.s1, a1), 1.5), [p2b] = skroc(l2k, Hx(K.s2, a2), 1.5);
+  const [p1b] = skroc(l1k, Hx(K.s1, a1), 3), [p2b] = skroc(l2k, Hx(K.s2, a2), 3);
   const doG = (P) => P.map((p) => galOdwr(p, th, ph));
   zapisz('drut S1 – gałka', odstep(doG(probki(pret(p1b, q1, 0.5))), Ig0), poz); zapisz('drut S2 – gałka', odstep(doG(probki(pret(p2b, q2, 0.5))), Ig0), poz);
   zapisz('drut S1 – drut S2', odstep(P1, indeks(d2)), poz);

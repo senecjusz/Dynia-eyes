@@ -31,9 +31,12 @@ podloga  = 5;       // podłoga między piastą a łbem (= wystająca część M
 dLebM5   = 9.5;  hLebM5 = 3.5;      // łeb krzyżakowy M5 (założenie)
 luzLebR  = 0.25; luzLebH = 0.4;     // luz łba w rowku: promieniowo, wysokość
 yRowek   = -16;     // wylot rowka T do wnętrza gałki
-xUcha    = 22;  zUcho = -5.5;       // ucha drutów: odległość od osi, wysokość (2,5 nad stołem)
-zebroOd  = 4;  zebroDo = 6;         // żebro od xUcha − zebroOd do xUcha + zebroDo
-tZebra = 2; zZebraTop = -2;
+xUcha    = 20;  zUcho = -4;         // ucha drutów: odległość od osi, wysokość
+// blaszka ucha (płytka grub. tZebra, zawieszona na skorupie): dolna krawędź uchoDol pod otworem na odcinku [−uchoPlL, +uchoPlP] od otworu,
+// od strony osi wznosi się pod 45° do końca blaszki (xUcha − uchoOdOsi), od strony skorupy opada pod 45° do stołu (druk bez podpór);
+// pod otworem wolne miejsce na korpus drutu Z przy przechyle (od strony gałki i od strony skorupy)
+uchoDol = 1.5; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 3; uchoOdOsi = 3; uchoZaSkorupa = 1.5;
+tZebra = 2;
 dTalia = 1.7; lTalia = 0.3; katKlep = 45; lKlep = 1.2;   // klepsydra: talia Ø1,7 × 0,3, stożki 45° do 1,2 od talii
 // --- powieki ---
 Rpg = 31.5; Rpd = 33.4; tp = 1.2;           // górna 31,5–32,7, dolna 33,4–34,6 (szczelina 0,7)
@@ -46,8 +49,8 @@ xUchoD = xUchoG + tUcho + luzObr;           // 34,0
 xPad   = xUchoD + tUcho + luzObr;           // 35,7
 dOsM2  = 2.4;  dPadM2 = 1.7; glPadM2 = 2.4; // otwór luźny w uchu, ciasny w podkładce (wkręcić do dna)
 lOtwOsi = 8;                                // długość cięcia otworu osi
-rUchoG = 4;  sektorG = [11, 61]; rRamieG = 14; xPlytkiG = 26;   // ucho górnej: koło + ramię-sektor; płytka od x = 26 (resztę zjada kula)
-rUchoD = 4.5; sektorD = [-61, -11]; rRamieD = 11.5; xRamieD = 31.5; xTrymD = 32;   // dolna: |x| ≤ 32
+rUchoG = 4;  sektorG = [11, 50]; rRamieG = 14; xPlytkiG = 26;   // ucho górnej: koło + ramię-sektor; płytka od x = 26 (resztę zjada kula)
+rUchoD = 4.5; sektorD = [-50, -11]; rRamieD = 11.5; xRamieD = 31.5; xTrymD = 32;   // dolna: |x| ≤ 32
 rDzw = 7; dDzwOtw = 1.2; rDzwPiasta = 3; rDzwKoniec = 2;
 katDzwZam = 90 - skok / 2;                  // dźwignia ⟂ drut w połowie skoku (kąt od +z do +y)
 // --- pierścień, maskownica ---
@@ -75,7 +78,7 @@ plytaX = [-50, 47.5]; plytaY = [-27, 17]; jezykPol = 6; jezykY = -49;   // obrys
 zOkno = [-26.0, -21.95]; oknoSzer = 10.5; oknoDl = 20; dTrzpTyl = 5.3;  // okno łba tylnego M5 × 16 w słupku
 // --- próbka drutu ---
 pPlyta = [34, 10, 2]; pZebroA = [4, 4]; pDlA = 10; pZebroB = [24, 4.25]; pDlB = 8; pWysZebra = 6;
-pUchoA = 2.5; pUchoB = 3; pOtw2 = [19, 7]; dOtw2 = 2.1;
+pUchoA = 4; pUchoB = 3; pOtw2 = [19, 7]; dOtw2 = 2.1; pOkno = 6; pOknoY = 4;   // okno pod otworem żebra A: szerokość wzdłuż żebra, długość w poprzek (płytka zostaje w całości)
 // --- zbiorczy: rozstaw części ---
 odstep = 10;
 
@@ -109,6 +112,11 @@ module dzwignia(znakY) {   // 2D w (y, z): od osi do końca dźwigni, z otworem 
   difference() { hull() { circle(r = rDzwPiasta, $fn = fnMale); translate(k) circle(r = rDzwKoniec, $fn = fnMale); } translate(k) circle(d = dDzwOtw, $fn = fnMale); }
 }
 
+module blaszkaUcha() {   // w płaszczyźnie (x, z), grubość wzdłuż y
+  zF = zUcho - uchoDol; xP = xUcha + uchoPlP; xL = xUcha - uchoPlL; xK = xUcha - uchoOdOsi; xS = Rg - uchoZaSkorupa;
+  rotate([90, 0, 0]) linear_extrude(tZebra, center = true) polygon([[xK, zF + (xL - xK)], [xL, zF], [xP, zF], [xP + (zF - zRant), zRant], [xS, zRant], [xS, zUcho + uchoGora], [xK, zUcho + uchoGora]]);
+}
+
 // ===================== części =====================
 module Galka() {
   difference() {
@@ -117,15 +125,13 @@ module Galka() {
         [[0, Rg]], [for (a = [90:-krokKata:aRantZ]) [Rg * cos(a), Rg * sin(a)]], [[Rg * cos(aRantZ), zRant], [(Rg - tg) * cos(aRantW), zRant]],
         [for (a = [aRantW:krokKata:aStozek]) [(Rg - tg) * cos(a), (Rg - tg) * sin(a)]], [[uStozek, uStozek + stozekK]],
         [[zPiasta - stozekK, zPiasta], [0, zPiasta]]));
-      // żebra uszu drutów: lewo–prawo (otwór ∥ y), góra–dół (otwór ∥ x)
-      translate([xUcha - zebroOd, -tZebra / 2, zRant]) cube([zebroOd + zebroDo, tZebra, zZebraTop - zRant]);
-      translate([-tZebra / 2, xUcha - zebroOd, zRant]) cube([tZebra, zebroOd + zebroDo, zZebraTop - zRant]);
+      // ucha drutów: lewo–prawo (płytka ⟂ y, otwór ∥ y), góra–dół (obrót o 90°: płytka ⟂ x, otwór ∥ x)
+      for (k = [0, 1]) rotate([0, 0, k * 90]) blaszkaUcha();
     }
     // rowek T: trzpień (podłoga), łeb nad podłogą; zamknięty od +y, wylot do wnętrza na y = yRowek
     for (s = [[dTrzpM5, zPiasta - nad, podloga + nad - luzObr], [dLebM5 + 2 * luzLebR, zPiasta + podloga - luzObr, hLebM5 + luzLebH]])
       hull() for (y = [0, yRowek]) translate([0, y, s[1]]) cylinder(d = s[0], h = s[2], $fn = fnSr);
-    translate([xUcha, 0, zUcho]) rotate([90, 0, 0]) klepsydra(lKlep);
-    translate([0, xUcha, zUcho]) rotate([0, 90, 0]) klepsydra(lKlep);
+    for (k = [0, 1]) rotate([0, 0, k * 90]) translate([xUcha, 0, zUcho]) rotate([90, 0, 0]) klepsydra(lKlep);
   }
 }
 module PowiekaGorna() {
@@ -202,6 +208,9 @@ module ProbkaDrutu() {   // płytka: żebro A (klepsydra jak w gałce), żebro B
     union() { cube(pPlyta); translate([pZebroA[0], pZebroA[1], 0]) cube([pDlA, tZebra, pPlyta[2] + pWysZebra]);
       translate([pZebroB[0], pZebroB[1], 0]) cube([pDlB, tUcho, pPlyta[2] + pWysZebra]); }
     translate([pZebroA[0] + pDlA / 2, pZebroA[1] + tZebra / 2, pPlyta[2] + pUchoA]) rotate([90, 0, 0]) klepsydra(lKlep);
+    // okno pod otworem (górna krawędź uchoDol pod osią otworu, boki 45° – mostek samonośny) przez żebro i płytkę
+    translate([pZebroA[0] + pDlA / 2, pPlyta[1] / 2, 0]) rotate([90, 0, 0]) linear_extrude(pOknoY, center = true)
+      polygon([[-pOkno / 2, -nad], [pOkno / 2, -nad], [pOkno / 2, pPlyta[2] + pUchoA - uchoDol - pOkno / 2], [0, pPlyta[2] + pUchoA - uchoDol], [-pOkno / 2, pPlyta[2] + pUchoA - uchoDol - pOkno / 2]]);
     translate([pZebroB[0] + pDlB / 2, pZebroB[1] + tUcho / 2, pPlyta[2] + pUchoB]) rotate([90, 0, 0]) cylinder(d = dDzwOtw, h = tUcho + 2 * nad, center = true, $fn = fnMale);
     translate([pOtw2[0], pOtw2[1], -nad]) cylinder(d = dOtw2, h = pPlyta[2] + 2 * nad, $fn = fnMale);
   }

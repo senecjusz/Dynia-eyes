@@ -4,9 +4,9 @@
 // Orczyk S3 z wałkiem ∥ y: H(α) = (xs + r cos α, yh, zs + r sin α); α = 0 → ramię w +x.
 // Użycie: node duze-oko-kinematyka.js [json z nadpisaniem parametrów]
 const P = Object.assign({
-  lug1: [22, 0, -5], lug2: [0, 22, -5],                       // ucha w gałce (układ gałki)
-  s1: { xh: 21, ys: -17.5, zs: -44, r: 17.5, a0: 0 },          // lewo–prawo
-  s2: { xh: 11, ys: 8.5, zs: -44, r: 13.5, a0: 0 },            // góra–dół
+  lug1: [20, 0, -4], lug2: [0, 20, -4],                       // ucha w gałce (układ gałki)
+  s1: { xh: 21, ys: -18.5, zs: -44, r: 17.5, a0: -6 },          // lewo–prawo
+  s2: { xh: 11, ys: 8.5, zs: -44, r: 13.5, a0: -6 },            // góra–dół
   s3: { xs: -42, yh: 0, zs: -44, r: 7.5, a0: 0 },              // powieki (wałek pionowy)
   lev: { r: 7, xu: -33.05, xl: -34.75, skok: 51.5 },           // dźwignie powiek: r, płaszczyzny x, skok (zamknięte → otwarte)
   zakres: { th: 35, ph: 25 },
