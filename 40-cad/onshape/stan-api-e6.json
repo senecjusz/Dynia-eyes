@@ -2603,6 +2603,20 @@
    "K7": "0",
    "K8": "0",
    "K11": "foldery nowych części niezałożone (UI przy ukrytym panelu)"
-  }
+  },
+  "sesjaKontrole": [
+   {
+    "czas": "2026-10-24T16:54:40Z",
+    "pathname": "/documents/b8cc184e37d6a8dbfb63c30b/w/abf573bb580a27e085f1d73e/e/045583ad9368d7b383c9477f",
+    "keepalive": {
+     "n": 192,
+     "last": "2026-10-24T16:50:17Z",
+     "status": "błąd: Failed to fetch"
+    },
+    "ponownyHEAD": "Failed to fetch",
+    "navigatorOnLine": true,
+    "banerTimeout": false
+   }
+  ]
  }
 }
