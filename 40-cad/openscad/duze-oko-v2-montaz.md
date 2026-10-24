@@ -13,7 +13,12 @@ Model: [`duze-oko-v2.scad`](duze-oko-v2.scad) (OpenSCAD, zmienne na górze pliku
 | 5 | Powieka gorna, Powieka dolna | pomarańcz | uszami na stole, czaszą do góry | **drzewiaste pod wewnętrzną stroną czaszy** (tylko od stołu) | ślady zostają po stronie gałki, niewidoczne |
 | 6 | Maskownica | pomarańcz | płasko | brak | wcisk na tubę Ø79; za luźna → klej, za ciasna → papier ścierny |
 
-Po druku rozwiercić: klepsydry w żebrach gałki Ø1,7, dźwignie powiek Ø1,2, otwory orczyków S1 (17,5) i S2 (13,5) Ø1,3, otwór orczyka S3 (7,5) Ø2,1.
+Po druku rozwiercić (luz drutu Ø1 = 0,2 na stronę): talie klepsydr w uchach gałki Ø1,7, dźwignie powiek Ø1,4, otwory orczyków S1 (17,5) i S2 (13,5) Ø1,4, otwór orczyka S3 (7,5) Ø2,4 (dwa druty).
+
+**Mosty bez podpór** (Bambu mostkuje je bez problemu, sprawdzić po wydruku):
+- Uchwyt: nad oknami serw 13,1 mm i strop okna łba M5 w słupku 10,5 mm. Zwis > 0,3 mm zebrać nożykiem, bo przeszkadza we wsuwaniu korpusu i łba.
+- Gałka: płaski nawis pod uszami 4,5 mm.
+- Powieki: płaskie stopki 0,6 mm pod uszami na stole, czasze na podporach drzewiastych.
 
 ## Części kupne (z warsztatu)
 
@@ -28,17 +33,17 @@ Po druku rozwiercić: klepsydry w żebrach gałki Ø1,7, dźwignie powiek Ø1,2,
 ## Montaż (na stole)
 
 1. **Serwa na zero.** Podłącz do sterownika i ustaw 1500 µs. Orczyki zakładaj dopiero w kroku 7.
-2. **Powieki w pierścieniu.** Powieka górna wewnątrz, dolna na zewnątrz, ucha na osi x. M2 × 6 od środka tuby (łeb od strony gałki) przez oba ucha w podkładkę. **Wkręcić do dna otworu** (ślepy, 2,4 mm): luz osiowy ustawia się sam, nie dociągać dalej. Do dźwigni (lewa strona) założyć druty powiek (Z, rysunek 3): górny Z od zewnątrz dźwigni, dolny od strony gałki. Powieki zostawić **zamknięte**.
+2. **Powieki w pierścieniu.** Powieka górna wewnątrz, dolna na zewnątrz, ucha na osi x. M2 × 6 od środka tuby (łeb od strony gałki) przez oba ucha w podkładkę. **Wkręcić do dna otworu** (ślepy, 2,4 mm): luz osiowy ustawia się sam, nie dociągać dalej. Do dźwigni (lewa strona) założyć druty powiek (Z, rysunek 3): korpus górnego po zewnętrznej stronie dźwigni, dolnego od strony gałki. Powieki zostawić **zamknięte** do kroku 6, bo otwarte zahaczają o gałkę przy nasuwaniu.
 3. **Kardan.** Wyjąć wkręty M4 z obu piast i wkręcić je z powrotem po włożeniu czopów:
    - piasta przednia: M5 × 12 w otwór na pełne 7 mm;
    - piasta tylna: M5 × 16 wsunąć później (krok 5).
-4. **Gałka.** Łeb M5 × 12 (z piastą i kardanem) wsunąć bokiem w rowek T od dołu gałki, aż oprze się o koniec rowka. Czoło piasty dosunąć do wierzchołka stożka. Wkręt M4 piasty dokręcić kluczem L 2 mm: krótkie ramię w otworze M4 (od dołu, oś pionowa w gałce), długie wychodzi tylnym otworem. Druty S1 i S2 (Z, rysunki 1–2) włożyć w klepsydry uszu (blaszki w gałce).
+4. **Gałka.** M5 × 12 wsunąć w przednią piastę na ok. 6 mm (nie do dna), łeb bokiem w rowek T od dołu gałki, aż oprze się o koniec rowka. Docisnąć piastę do wierzchołka stożka, tak żeby łeb oparł się o podłogę 5,5 mm (trzpień wejdzie w piastę na 6,5 mm). **Trzymając docisk**, dokręcić wkręt M4 piasty kluczem L 2 mm. Podłoga jest wtedy ściśnięta między piastą a łbem, a tarcie blokuje obrót gałki na czopie: krótkie ramię w otworze M4 (od dołu, oś pionowa w gałce), długie wychodzi tylnym otworem. Druty S1 i S2 (Z, rysunki 1–2) włożyć w klepsydry uszu (blaszki w gałce).
 5. **Gałka na uchwyt.** Tylną piastę postawić na słupku (oś sworznia poziomo). M5 × 16 wsunąć łbem w okno słupka i trzpieniem w górę do piasty. Piastę docisnąć do słupka i dokręcić jej M4 z boku (od −x, pod krawędzią gałki; gałkę odchylić w bok).
 6. **Pierścień na uchwyt.** Nasunąć pierścień od przodu na gałkę (powieki zamknięte – otwarte zahaczą o gałkę), ramiona trafiają w otwory kołnierza. 3 × M3 × 16 od przodu kołnierza.
 7. **Serwa w ramkach.** S1 (prawa, wałek w −x), S2 (prawa wyżej, wałek w −x), S3 (lewa, wałek w górę). Wkręty fabryczne w ucha. Na orczykach przy 1500 µs założyć druty i nasadzić orczyk tak, żeby był:
-   - S1: ramię w górę, obrócone o 6° w stronę gałki;
+   - S1: ramię w górę, obrócone o 6° **do tyłu** (od gałki);
    - S2: jak S1;
-   - S3: ramię w +x (do środka).
+   - S3: ramię w +x (do środka) przy powiekach **otwartych do połowy** (25,75°). Zamknięcie wypada przy ok. +23°, pełne otwarcie przy ok. −25°.
    Kąty wokół zera (solver, druty o stałej długości):
    - S1: −42…+38°;
    - S2: −46…+40°;

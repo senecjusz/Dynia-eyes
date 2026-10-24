@@ -19,7 +19,7 @@
 <text x="5" y="24" class="h">1. Lewo–prawo (S1): L = 41,9</text>
 <path class="d" d="M 8 31.5 L 10 31.5 L 10 34 L 51.9 34 L 51.9 36.5 L 53.9 36.5"/>
 <text x="5" y="40.5" class="s">ucho gałki (2 mm, klepsydra): Z w płaszczyźnie rysunku</text>
-<text x="46" y="40.5" class="s">orczyk S1, otwór 17,5 (Ø1,3)</text>
+<text x="46" y="40.5" class="s">orczyk S1, otwór 17,5 (Ø1,4)</text>
 <text x="5" y="44" class="s">Koniec przy orczyku zagiąć w płaszczyźnie prostopadłej do rysunku (obrót o 90° wokół korpusu). Zagięcia 90°.</text>
 
 <!-- 2. gora-dol: plaski, zagiecia 74,6 st -->
@@ -28,13 +28,13 @@
 <path class="d" d="M 8 63 L 10 63 L 10 65.5 L 51.41 76.5 L 51.41 79 L 53.41 79"/>
 <line class="o" x1="10" y1="62" x2="10" y2="80"/><line class="o" x1="51.41" y1="62" x2="51.41" y2="80"/>
 <text x="12" y="84" class="s">Korpus pod kątem 14,9° do osi gałki: oba odcinki przez otwór równoległe (∥ osi x), kąt korpus–odcinek 75°.</text>
-<text x="12" y="87.5" class="s">Lewy koniec: żebro gałki (klepsydra). Prawy: orczyk S2, otwór 13,5 (Ø1,3).</text>
+<text x="12" y="87.5" class="s">Lewy koniec: żebro gałki (klepsydra). Prawy: orczyk S2, otwór 13,5 (Ø1,4).</text>
 
 <!-- 3. powieki -->
 <text x="5" y="98" class="h">3. Powieki (S3): 2 sztuki, L = 44,6 (górna i dolna jednakowe)</text>
 <path class="d" d="M 8 105.5 L 10 105.5 L 10 108 L 54.6 108 L 54.6 110.5 L 56.6 110.5"/>
-<text x="5" y="114.5" class="s">Lewy koniec: dźwignia powieki (1,5 mm, Ø1,2), zagięcie 90° w płaszczyźnie prostopadłej do rysunku.</text>
-<text x="5" y="118" class="s">Prawy koniec: orczyk S3 (wałek pionowy), oba druty w jednym otworze 7,5 rozwierconym na Ø2,1, wchodzą z przeciwnych stron.</text>
+<text x="5" y="114.5" class="s">Lewy koniec: dźwignia powieki (1,5 mm, Ø1,4), zagięcie 90° w płaszczyźnie prostopadłej do rysunku.</text>
+<text x="5" y="118" class="s">Prawy koniec: orczyk S3 (wałek pionowy), oba druty w jednym otworze 7,5 rozwierconym na Ø2,4, wchodzą z przeciwnych stron.</text>
 
 <text x="5" y="132" class="h">Cięcie</text>
 <text x="5" y="137" class="s">Odciąć L + 12 mm (S1: 54, S2: 55, powieki: 2 × 57), najpierw zagiąć koniec przy gałce/dźwigni, odmierzyć L od osi otworu, zagiąć drugi koniec.</text>

@@ -95,6 +95,9 @@ const D = (psi) => { const d = psi - mid; return [K.lev.xl, -K.lev.r * Math.cos(
 const Lu = dist(Hy(K.s3, 0), U(mid));
 const Uk = (psi) => { const q = U(psi); q[0] = KORP.xu; return q; }, Dk = (psi) => { const q = D(psi); q[0] = KORP.xl; return q; };
 function alfa3(psi) { const f = (a) => dist(Hy(K.s3, a), U(psi)) - Lu; return zero(f, -60, 60); }
+const Ld = dist(Hy(K.s3, 0), D(mid));
+// kąt dolnej powieki dla kąta S3 (solver; różni się od górnej o ≤ 0,25°)
+function psiDolna(a3, przybl) { const f = (q) => dist(Hy(K.s3, a3), D(q)) - Ld; return zero(f, przybl - 5, przybl + 5); }
 
 // ---------- bryły ----------
 const st = (n) => czytajSTL(path.join(DIR, n + '.stl'));
@@ -103,7 +106,7 @@ const zSP = -38.5, zST = -61.3;
 const serwa = {   // korpus + ucha + wieżyczka
   S1: [...pudlo(34.7, 57.5, -24.75, -12.25, zST, zSP), ...pudlo(37.5, 39.5, -24.75, -12.25, zST - 4.5, zSP + 4.5), ...walec(0, [-18.5, -44], 22.5, 34.7, 6)],
   S2: [...pudlo(24.7, 47.5, 2.25, 14.75, zST, zSP), ...pudlo(27.5, 29.5, 2.25, 14.75, zST - 4.5, zSP + 4.5), ...walec(0, [8.5, -44], 12.5, 24.7, 6)],
-  S3: [...pudlo(-48.25, -35.75, -36.5, -13.7, zST, zSP), ...pudlo(-48.25, -35.75, -18.5, -16.5, zST - 4.5, zSP + 4.5), ...walec(1, [-44, -42], -13.7, -1.5, 6)],
+  S3: [...pudlo(-48.25, -35.75, -36.5, -13.7, zST, zSP), ...pudlo(-48.25, -35.75, -18.5, -16.5, zST - 4.5, zSP + 4.5), ...walec(1, [-42, -44], -13.7, -1.5, 6)],
 };
 const stale = { pierscien: M.pier, uchwyt: M.uch, ...serwa,
   lebM2: [...walec(0, [0, 0], 30.5, 32.1, 1.9), ...walec(0, [0, 0], -32.1, -30.5, 1.9)], piastaTyl: walec(2, [0, 0], -12.75, -2, 5.5) };
@@ -111,7 +114,7 @@ const stale = { pierscien: M.pier, uchwyt: M.uch, ...serwa,
 function orczykX(s, a, x0, x1) { const h = Hx(s, a), c = [s.xh, s.ys, s.zs]; const e = [h[0], c[1] + (h[1] - c[1]) * (s.r + 2.5) / s.r, c[2] + (h[2] - c[2]) * (s.r + 2.5) / s.r];
   return [...pret([x0 + 1, c[1], c[2]], [x0 + 1, e[1], e[2]], 2.5, 8), ...walec(0, [c[1], c[2]], x0, x1, 3.5)]; }
 function orczykY(s, a) { const h = Hy(s, a), c = [s.xs, s.yh, s.zs]; const e = [c[0] + (h[0] - c[0]) * (s.r + 2.5) / s.r, h[1], c[2] + (h[2] - c[2]) * (s.r + 2.5) / s.r];
-  return [...pret([c[0], 0, c[2]], [e[0], 0, e[2]], 2.5, 8), ...walec(1, [c[2], c[0]], -1.5, 1.5, 3.5)]; }
+  return [...pret([c[0], 0, c[2]], [e[0], 0, e[2]], 2.5, 8), ...walec(1, [c[0], c[2]], -1.5, 1.5, 3.5)]; }
 const skroc = (a, b, m) => { const L = dist(a, b), u = [0, 1, 2].map((i) => (b[i] - a[i]) / L); return [a.map((v, i) => v + u[i] * m), b.map((v, i) => v - u[i] * m)]; };
 
 // ---------- przebieg ----------
@@ -126,18 +129,19 @@ const TH = kroki(-35, 35, KROK), PH = kroki(-25, 25, KROK), PS = kroki(0, 51.5, 
 const t0 = Date.now();
 // 1) powieki (ψ) wobec części stałych i siebie nawzajem; drut i orczyk S3
 for (const ps of PS) {
-  const pg = przeksztalc(M.pg, (p) => Rx(p, ps)), pd = przeksztalc(M.pd, (p) => Rx(p, -ps));
-  const Pg = P0.pg.map((p) => Rx(p, ps)), Pd = P0.pd.map((p) => Rx(p, -ps));
+  const a3 = alfa3(ps), pd_ = psiDolna(a3, ps);
+  const pg = przeksztalc(M.pg, (p) => Rx(p, ps)), pd = przeksztalc(M.pd, (p) => Rx(p, -pd_));
+  const Pg = P0.pg.map((p) => Rx(p, ps)), Pd = P0.pd.map((p) => Rx(p, -pd_));
   for (const k of ['pierscien', 'uchwyt', 'lebM2', 'piastaTyl', 'S3']) { zapisz('powieka górna – ' + k, odstep(Pg, I[k]), 'ψ ' + ps.toFixed(1)); zapisz('powieka dolna – ' + k, odstep(Pd, I[k]), 'ψ ' + ps.toFixed(1)); }
   const Ipd = indeks(pd); zapisz('powieka górna – powieka dolna', odstep(Pg, Ipd), 'ψ ' + ps.toFixed(1));
-  const a3 = alfa3(ps), H3 = Hy(K.s3, a3); const [du1, du2] = skroc(Uk(ps), H3, 1), [dd1, dd2] = skroc(Dk(ps), H3, 1);
+  const H3 = Hy(K.s3, a3); const [du1, du2] = skroc(Uk(ps), H3, 1), [dd1, dd2] = skroc(Dk(pd_), H3, 1);
   const druty = [...pret(du1, du2, 0.5), ...pret(dd1, dd2, 0.5)], Pdr = probki(druty), orc = orczykY(K.s3, a3), Por = probki(orc);
-  const Pu = probki(pret(du1, du2, 0.5)), Pd4 = probki(pret(...skroc(Dk(ps), H3, 4), 0.5)), Pu4 = probki(pret(...skroc(Uk(ps), H3, 4), 0.5)), Pdd = probki(pret(dd1, dd2, 0.5));
+  const Pu = probki(pret(du1, du2, 0.5)), Pd4 = probki(pret(...skroc(Dk(pd_), H3, 4), 0.5)), Pu4 = probki(pret(...skroc(Uk(ps), H3, 4), 0.5)), Pdd = probki(pret(dd1, dd2, 0.5));
   for (const k of ['pierscien', 'uchwyt', 'S1', 'S2', 'S3']) zapisz('druty powiek – ' + k, odstep(Pdr, I[k]), 'ψ ' + ps.toFixed(1));
   const Ipg = indeks(pg);
   zapisz('drut powieki górnej – powieka dolna', odstep(Pu, Ipd), 'ψ ' + ps.toFixed(1)); zapisz('drut powieki dolnej – powieka górna', odstep(Pdd, Ipg), 'ψ ' + ps.toFixed(1));
   zapisz('drut powieki górnej – własna powieka (bez 4 mm przy dźwigni)', odstep(Pu4, Ipg), 'ψ ' + ps.toFixed(1)); zapisz('drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni)', odstep(Pd4, Ipd), 'ψ ' + ps.toFixed(1));
-  zapisz('drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku)', odstep(probki(pret(Uk(ps), skroc(Uk(ps), H3, 4)[1], 0.5)), indeks(pret(Dk(ps), skroc(Dk(ps), H3, 4)[1], 0.5))), 'ψ ' + ps.toFixed(1));
+  zapisz('drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku)', odstep(probki(pret(Uk(ps), skroc(Uk(ps), H3, 4)[1], 0.5)), indeks(pret(Dk(pd_), skroc(Dk(pd_), H3, 4)[1], 0.5))), 'ψ ' + ps.toFixed(1));
   for (const k of ['pierscien', 'uchwyt', 'S1', 'S2']) zapisz('orczyk S3 – ' + k, odstep(Por, I[k]), 'ψ ' + ps.toFixed(1));
   wyniki.set('_S3', { alfa: [...(wyniki.get('_S3') || { alfa: [] }).alfa, Math.round(a3 * 10) / 10] });
 }
@@ -171,9 +175,16 @@ for (const th of TH) for (const ph of PH) {
   zapisz('orczyk S1 – orczyk S2', odstep(Po1, indeks(o2)), poz); zapisz('orczyk S1 – drut S2', odstep(Po1, indeks(d2)), poz); zapisz('orczyk S2 – drut S1', odstep(Po2, indeks(d1)), poz);
   zapisz('orczyk S1 – gałka', odstep(doG(Po1), Ig0), poz); zapisz('orczyk S2 – gałka', odstep(doG(Po2), Ig0), poz);
 }
+// 2b) zagęszczenie: druty S1/S2 wobec gałki co 1° w otoczeniu ±5° najgorszej pozycji siatki
+for (const [nm, lug, s_, L, off] of [['drut S1 – gałka', K.lug1, K.s1, L1, KORP.s1], ['drut S2 – gałka', K.lug2, K.s2, L2, KORP.s2]]) {
+  const w = wyniki.get(nm); if (!w) continue; const m = w.poz.match(/θ (-?[d.]+), φ (-?[d.]+)/); if (!m) continue;
+  for (let th = Math.max(-35, +m[1] - 5); th <= Math.min(35, +m[1] + 5); th += 1) for (let ph = Math.max(-25, +m[2] - 5); ph <= Math.min(25, +m[2] + 5); ph += 1) {
+    const g = (p) => gal(p, th, ph), lw = g(lug), a = alfa(s_, L, lw); if (a === null) { zapisz('NIEOSIĄGALNE', -99, th + ',' + ph); continue; }
+    const st = lw.map((v, i) => v + g(off)[i]); const [p0] = skroc(st, Hx(s_, a), 3), q0 = skroc(st, Hx(s_, a), 1)[1];
+    zapisz(nm, odstep(probki(pret(p0, q0, 0.5)).map((p) => galOdwr(p, th, ph)), Ig0), 'θ ' + th + ', φ ' + ph + ' (zagęszczenie)'); } }
 // 3) pary stałe
 for (const [a, b] of [['pierscien', 'uchwyt'], ['S1', 'uchwyt'], ['S2', 'uchwyt'], ['S3', 'uchwyt'], ['S1', 'pierscien'], ['S2', 'pierscien'], ['S3', 'pierscien'], ['S1', 'S2'], ['S2', 'S3'], ['lebM2', 'pierscien']])
-  zapisz(a + ' – ' + b + ' (stałe)', odstep(probki(stale[a]), I[b]), '–');
+  zapisz(a + ' – ' + b + ' (stałe)', odstep(probki(stale[a]), I[b], I[a], probki(stale[b])), '–');
 const lista = [...wyniki.entries()].filter(([k]) => !k.startsWith('_')).sort((x, y) => x[1].d - y[1].d);
 console.log(`kontrola kolizji: krok ${KROK}°, θ ${TH.length} × φ ${PH.length} pozycji gałki, ψ ${PS.length} pozycji powiek, ${((Date.now() - t0) / 1000).toFixed(0)} s`);
 console.log(`S1 α ${Math.min(...alfy.map((a) => a[2]))}…${Math.max(...alfy.map((a) => a[2]))}°, S2 α ${Math.min(...alfy.map((a) => a[3]))}…${Math.max(...alfy.map((a) => a[3]))}°, S3 α ${JSON.stringify(wyniki.get('_S3').alfa)}`);

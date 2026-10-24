@@ -27,7 +27,7 @@ uStozek  = (-stozekK + sqrt(2 * (Rg - tg) * (Rg - tg) - stozekK * stozekK)) / 2;
 aStozek  = atan2(uStozek + stozekK, uStozek);
 aRantZ   = asin(zRant / Rg);  aRantW = asin(zRant / (Rg - tg));
 dTrzpM5  = 5.5;     // szczelina trzpienia M5 (M5 × 12: 7 w piaście, 5 w podłodze)
-podloga  = 5;       // podłoga między piastą a łbem (= wystająca część M5 × 12)
+podloga  = 5.5;     // podłoga między piastą a łbem: M5 × 12 wchodzi w piastę na 6,5 z 7 mm; piasta dociśnięta do stożka, łeb do podłogi, potem M4 (docisk)
 dLebM5   = 9.5;  hLebM5 = 3.5;      // łeb krzyżakowy M5 (założenie)
 luzLebR  = 0.25; luzLebH = 0.4;     // luz łba w rowku: promieniowo, wysokość
 yRowek   = -16;     // wylot rowka T do wnętrza gałki
@@ -35,7 +35,7 @@ xUcha    = 20;  zUcho = -4;         // ucha drutów: odległość od osi, wysoko
 // blaszka ucha (płytka grub. tZebra, zawieszona na skorupie): dolna krawędź uchoDol pod otworem na odcinku [−uchoPlL, +uchoPlP] od otworu,
 // od strony osi wznosi się pod 45° do końca blaszki (xUcha − uchoOdOsi), od strony skorupy opada pod 45° do stołu (druk bez podpór);
 // pod otworem wolne miejsce na korpus drutu Z przy przechyle (od strony gałki i od strony skorupy)
-uchoDol = 1.5; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 3; uchoOdOsi = 3; uchoZaSkorupa = 1.5;
+uchoDol = 1.2; uchoGora = 2.5; uchoPlL = 1.5; uchoPlP = 3; uchoOdOsi = 3; uchoZaSkorupa = 1.5;
 tZebra = 2;
 dTalia = 1.7; lTalia = 0.3; katKlep = 45; lKlep = 1.2;   // klepsydra: talia Ø1,7 × 0,3, stożki 45° do 1,2 od talii
 // --- powieki ---
@@ -51,7 +51,7 @@ dOsM2  = 2.4;  dPadM2 = 1.7; glPadM2 = 2.4; // otwór luźny w uchu, ciasny w po
 lOtwOsi = 8;                                // długość cięcia otworu osi
 rUchoG = 4;  sektorG = [11, 50]; rRamieG = 14; xPlytkiG = 26;   // ucho górnej: koło + ramię-sektor; płytka od x = 26 (resztę zjada kula)
 rUchoD = 4.5; sektorD = [-50, -11]; rRamieD = 11.5; xRamieD = 31.5; xTrymD = 32;   // dolna: |x| ≤ 32
-rDzw = 7; dDzwOtw = 1.2; rDzwPiasta = 3; rDzwKoniec = 2;
+rDzw = 7; dDzwOtw = 1.4; rDzwPiasta = 3; rDzwKoniec = 2;   // otwór: drut Ø1 + 2 × 0,2
 katDzwZam = 90 - skok / 2;                  // dźwignia ⟂ drut w połowie skoku (kąt od +z do +y)
 // --- pierścień, maskownica ---
 rTubaZ = 39.5; tTuba = 1.6; zTubaPrzod = 24; wystTuby = 2;   // tuba wystaje 2 mm ponad skórkę (pod maskownicę)
@@ -78,9 +78,10 @@ plytaX = [-50, 47.5]; plytaY = [-27, 17]; jezykPol = 6; jezykY = -49;   // obrys
 zOkno = [-26.0, -21.95]; oknoSzer = 10.5; oknoDl = 20; dTrzpTyl = 5.3;  // okno łba tylnego M5 × 16 w słupku
 // --- próbka drutu ---
 pPlyta = [34, 10, 2]; pZebroA = [4, 4]; pDlA = 10; pZebroB = [24, 4.25]; pDlB = 8; pWysZebra = 6;
-pUchoA = 4; pUchoB = 3; pOtw2 = [19, 7]; dOtw2 = 2.1; pOkno = 6; pOknoY = 4;   // okno pod otworem żebra A: szerokość wzdłuż żebra, długość w poprzek (płytka zostaje w całości)
+pUchoA = 4; pUchoB = 3; pOtw2 = [19, 7]; dOtw2 = 2.4; pOkno = 6; pOknoY = 4;   // dOtw2: dwa druty Ø1 + 2 × 0,2 (orczyk S3); okno pod otworem żebra A: szerokość wzdłuż żebra, długość w poprzek (płytka zostaje w całości)
 // --- zbiorczy: rozstaw części ---
 odstep = 10;
+stopka = 0.6;       // płaskie ścięcie uszu powiek przy stole (druk)
 
 // pochodne
 zKolPrzod = zSkorka - scianka;              // przód kołnierza (styk z wnętrzem dyni)
@@ -129,7 +130,7 @@ module Galka() {
       for (k = [0, 1]) rotate([0, 0, k * 90]) blaszkaUcha();
     }
     // rowek T: trzpień (podłoga), łeb nad podłogą; zamknięty od +y, wylot do wnętrza na y = yRowek
-    for (s = [[dTrzpM5, zPiasta - nad, podloga + nad - luzObr], [dLebM5 + 2 * luzLebR, zPiasta + podloga - luzObr, hLebM5 + luzLebH]])
+    for (s = [[dTrzpM5, zPiasta - nad, podloga + nad], [dLebM5 + 2 * luzLebR, zPiasta + podloga, hLebM5 + luzLebH]])
       hull() for (y = [0, yRowek]) translate([0, y, s[1]]) cylinder(d = s[0], h = s[2], $fn = fnSr);
     for (k = [0, 1]) rotate([0, 0, k * 90]) translate([xUcha, 0, zUcho]) rotate([90, 0, 0]) klepsydra(lKlep);
   }
@@ -166,13 +167,15 @@ module PowiekaDolna() {
 module Pierscien() {
   difference() {
     union() {
-      translate([0, 0, zKolPrzod]) cylinder(r = rTubaZ, h = zTubaPrzod - zKolPrzod, $fn = fnDuze);
-      translate([0, 0, zKolPrzod - tKol]) cylinder(d = Dkol, h = tKol, $fn = fnDuze);
-      // podkładki osi powiek: kwadrat z dołem V 45° (samonośne przy druku kołnierzem na stole)
+      difference() {   // tuba i kołnierz z wyciętym wnętrzem – podkładki osi dodawane PO wycięciu (review Astry K1)
+        union() { translate([0, 0, zKolPrzod]) cylinder(r = rTubaZ, h = zTubaPrzod - zKolPrzod, $fn = fnDuze);
+          translate([0, 0, zKolPrzod - tKol]) cylinder(d = Dkol, h = tKol, $fn = fnDuze); }
+        translate([0, 0, zKolPrzod - tKol - nad]) cylinder(r = rTubaZ - tTuba, h = zTubaPrzod - zKolPrzod + tKol + 2 * nad, $fn = fnDuze);
+      }
+      // podkładki osi powiek: kwadrat z dołem V 45° (samonośne przy druku kołnierzem na stole), od xPad do wnętrza ścianki tuby
       for (s = [-1, 1]) translate([s > 0 ? xPad : -(rTubaZ - luzPadTuba), 0, 0]) xOs() linear_extrude(rTubaZ - luzPadTuba - xPad)
         polygon([[-aPad, 0], [-aPad, aPad], [aPad, aPad], [aPad, 0], [0, -aPad]]);
     }
-    translate([0, 0, zKolPrzod - tKol - nad]) cylinder(r = rTubaZ - tTuba, h = zTubaPrzod - zKolPrzod + tKol + 2 * nad, $fn = fnDuze);
     for (s = [-1, 1]) translate([s * xPad, 0, 0]) rotate([0, s * 90, 0]) translate([0, 0, -e]) cylinder(d = dPadM2, h = glPadM2 + e, $fn = fnMale);   // ślepy, M2 do dna
     for (p = ramiona) translate([p[0], p[1], 0]) { translate([0, 0, zKolPrzod - tKol - nad]) cylinder(d = dM3luz, h = tKol + 2 * nad, $fn = fnMale);
       translate([0, 0, zKolPrzod - hPoglM3]) cylinder(d = dPoglM3, h = hPoglM3 + nad, $fn = fnSr); }
@@ -236,10 +239,11 @@ module podglad() {
 }
 
 // ===================== części w orientacji do druku =====================
+module naStol() { difference() { children(); translate([-Dkol, -Dkol, -Dkol]) cube([2 * Dkol, 2 * Dkol, Dkol]); } }   // ścięcie poniżej stołu (stopki)
 module druk(c) {
   if (c == "Galka") translate([0, 0, -zRant]) Galka();
-  else if (c == "PowiekaGorna") translate([0, 0, rUchoG]) rotate([szerPow / 2 - katZam, 0, 0]) PowiekaGorna();
-  else if (c == "PowiekaDolna") translate([0, 0, rUchoD]) rotate([-(szerPow / 2 - katZam), 0, 0]) PowiekaDolna();
+  else if (c == "PowiekaGorna") naStol() translate([0, 0, rUchoG - stopka]) rotate([szerPow / 2 - katZam, 0, 0]) PowiekaGorna();
+  else if (c == "PowiekaDolna") naStol() translate([0, 0, rUchoD - stopka]) rotate([-(szerPow / 2 - katZam), 0, 0]) PowiekaDolna();
   else if (c == "Pierscien") translate([0, 0, -(zKolPrzod - tKol)]) Pierscien();
   else if (c == "Maskownica") translate([0, 0, -zSkorka]) Maskownica();
   else if (c == "UchwytSerw") translate([0, 0, -zPlyta]) UchwytSerw();

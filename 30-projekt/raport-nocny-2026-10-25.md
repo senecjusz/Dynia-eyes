@@ -13,11 +13,11 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 |---|---|---|---|
 | 1 | Próbka końcówki drutu | gotowa (3MF, siatka OK) | 98e5fdb |
 | 2 | Plan szczegółów + Astra | plan `40-cad/onshape/duze-oko-v2-plan.md`, review Astry `20-analizy/review/2026-10-25-astra-plan-v2.md` (3 krytyczne, 7 ważnych); poprawki w modelu (niżej) | 98e5fdb |
-| 3 | CAD | OpenSCAD zamiast Onshape (pkt 1 wyżej): osobny moduł na część, wszystkie liczby jako zmienne na górze pliku | (ten commit) |
-| 4 | Eksport 3MF + kontrola siatek | 7 części + zbiorczy w `40-cad/3mf/Duze oko v2/`: wszystkie szczelne, 0 błędów po naprawie (CGAL zostawił 10–52 zdegenerowane trójkąty w powiekach i zbiorczym), każda część = 1 bryła, zbiorczy = 7 | (ten commit) |
-| 5 | Kontrola kolizji + Astra na siatkach | kolizje: `40-cad/openscad/kolizje-v2.txt` (gałka 8 × 6 pozycji ±35°/±25° z narożnikami, powieki 7 pozycji, kąty serw z solvera): **0 przenikań**; najmniejsze: styki montażowe 0,00, luzy osi powiek 0,18–0,20, drut S1 przy uchu 0,19, dalej ≥ 0,5. Astra: w toku | (ten commit) |
-| 6 | Druty: rysunek 1:1 | `40-cad/druty/duze-oko-v2-druty-1do1.svg` (L: S1 40,4, S2 41,4, powieki 2 × 44,6) | ebb1030 |
-| 7 | Instrukcja montażu i README druku | `40-cad/openscad/duze-oko-v2-montaz.md` | ebb1030 |
+| 3 | CAD | OpenSCAD zamiast Onshape (pkt 1 wyżej): osobny moduł na część, wszystkie liczby jako zmienne na górze pliku | a4017f6, fe62019, (ten commit) |
+| 4 | Eksport 3MF + kontrola siatek | 7 części + zbiorczy w `40-cad/3mf/Duze oko v2/`: wszystkie szczelne, 0 błędów po naprawie (CGAL zostawia pojedyncze zdegenerowane trójkąty, `eksport.sh` naprawia je automatycznie), każda część = 1 bryła, zbiorczy = 7 | (ten commit) |
+| 5 | Kontrola kolizji + Astra na siatkach | kolizje `40-cad/openscad/kolizje-v2.txt`: gałka 8 × 6 pozycji ±35°/±25° z narożnikami (+ zagęszczenie co 1° wokół minimum drutów), powieki 7 pozycji (dolna z solvera), kąty serw z solvera. **0 przenikań.** Najmniejsze odstępy: styki montażowe 0,00; luzy osi powiek 0,18–0,20 (projektowe); drut S1–gałka 0,45; reszta ≥ 0,5. Astra `20-analizy/review/2026-10-25-astra-siatki-v2.md`: 2 krytyczne, 5 ważnych, 2 drobne; wszystkie poprawione (tabela niżej) | (ten commit) |
+| 6 | Druty: rysunek 1:1 | `40-cad/druty/duze-oko-v2-druty-1do1.svg` (L: **S1 41,9, S2 42,9 (Z pod 75°), powieki 2 × 44,6**) | (ten commit) |
+| 7 | Instrukcja montażu i README druku | `40-cad/openscad/duze-oko-v2-montaz.md` | (ten commit) |
 
 ## Rozstrzygnięcia z Astrą (plan)
 
@@ -36,11 +36,26 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 | D1 maskownica | Ø79,0 na tubę Ø79 (wcisk 0; druk zwęża otwór). Dopasować po wydruku |
 | D2 wylot klepsydry | liczony z kąta (Ø3,4) |
 
+## Rozstrzygnięcia z Astrą (siatki)
+
+| Uwaga Astry | Rozstrzygnięcie |
+|---|---|
+| K1 wycięcie tuby usuwało podkładki osi M2 | podkładki dodawane po wycięciu wnętrza tuby; na siatce: lico x ±35,7, dno otworu x ±38,1 |
+| K2 brak docisku gałki do piasty (0,2 mm luzu) | podłoga rowka T 5,5 mm; M5 × 12 wchodzi w piastę na 6,5 z 7 mm. Montaż: piastę docisnąć do stożka, łeb do podłogi i **trzymając docisk** dokręcić M4. Obrót gałki na czopie blokuje tarcie zaciśniętej podłogi; do sprawdzenia ręką na stole |
+| W1 kontrola kolizji niepełna | poprawione położenie wieżyczki i orczyka S3 (zamienione x/z), dolna powieka z solvera, pary stałe dwustronnie, zagęszczenie co 1° wokół minimum drutów S1/S2. Bez zmian: końcówki Z, ogony i kardan nie są w modelu kontroli; strefę ucha sprawdza próbka |
+| W2 drut S1–blaszka ucha 0,14 | dolna krawędź blaszki 1,2 pod otworem (było 1,5), płaski odcinek 4,5 mm: 0,45 w kontroli |
+| W3 instrukcja: zero S3 i kierunek −6° | zero S3 przy powiekach otwartych do połowy (zamknięcie ok. +23°, otwarcie ok. −25°); orczyki S1/S2 obrócone o 6° do tyłu |
+| W4 luzy drutu w otworach | dźwignie i orczyki S1/S2 Ø1,4, orczyk S3 Ø2,4 (0,2 na stronę) |
+| W5 mosty w Uchwycie | opisane w README druku (13,1 i 10,5 mm, zwis zebrać nożykiem) |
+| D1 powieki bez płaskiej podstawy | stopki 0,6 mm pod uszami |
+| D2 stare długości drutów w raporcie | poprawione (wyżej) |
+
 ## Założenia przyjęte bez użytkownika
 
 - **Osie powiek: M2 × 6, wkręcane w ciasny otwór Ø1,7 w podkładce, bez nakrętki** (na nakrętkę nie ma miejsca). Najkrótsza M3 (× 8) z łbem 2,45 nie mieści się w 9,5 mm między gałką a OD tuby. **Do sprawdzenia rano:** użytkownik napisał 24.10 tylko „zakładam, że mam śruby… pewno M2 × 6, które doskonale te serwa mocują”, a to nie jest potwierdzenie. **Zapas:** wkręt fabryczny MG90S (samogwintujący ok. M2) w ten sam otwór, bo łeb ok. Ø4 × 1,5 mieści się w pogłębieniu Ø4,2 × 1,6. Długość wkrętu do dna otworu musi wynosić 7,6 ± 0,3 (od łba do dna). Jeśli jest inna, zmienić `glPadM2` i przedrukować tylko Pierścień.
 - **Łby M5 krzyżakowe Ø9,5 × 3,5**, jak M3 użytkownika. Rowek T w gałce mieści łeb do 3,9 mm wysokości. Imbusowa DIN 912 (5 mm) się nie zmieści.
 - M5 × 12 (czop przedni), M5 × 16 (tylny), M4 z oryginalnych wkrętów kardana.
+- Obrót gałki na przednim czopie blokuje tylko tarcie (podłoga zaciśnięta między piastą a łbem M5). Jeśli gałka się obraca, to zmiana na rano: kropla kleju na łbie albo wpust w podłodze.
 - Ścianka dyni 40 mm (zmienna `scianka`, zakres 28–50).
 - Źrenica Ø10, tęczówka Ø24.
 - MG90S według rysunku Miuzei (ucha 18–20 nad spodem, wałek na 35, oś 5,5 od czoła, wycięcia co 27,7). Mocowanie fabrycznymi wkrętami (brief).
@@ -51,4 +66,9 @@ Projektant dużego oka. Zlecenie: `30-projekt/brief-duze-oko-krok2-cad.md`. Rapo
 
 ## Co wydrukować najpierw
 
-1. **Próbka drutu** (`Probka drutu.3mf`, PLA, 0,2 mm, bez podpór). Rozwiercić talię żebra A wiertłem Ø1,7, a otwór żebra B wiertłem Ø1,2. Wygiąć Z z drutu Ø1,0 (ogon ≤ 2 mm) i sprawdzić ręką, czy drut w żebrze A przechyla się swobodnie o ±35° w obu płaszczyznach. Na żebrze B wystarczy luźny obrót. Otwór Ø2,1: dwa druty Z wchodzą z dwóch stron.
+1. **Próbka drutu** (`Probka drutu.3mf`, PLA, 0,2 mm, bez podpór, ok. 10 min).
+   - Rozwiercić talię żebra A wiertłem Ø1,7, otwór żebra B Ø1,4, otwór w płytce Ø2,4.
+   - Wygiąć Z z drutu Ø1,0 (ogon ≤ 2 mm) i sprawdzić ręką, czy drut w żebrze A przechyla się swobodnie o ±35° w obu płaszczyznach. Korpus drutu przechodzi przy tym pod krawędzią 1,2 mm pod otworem, jak w gałce.
+   - Żebro B: luźny obrót.
+   - Otwór Ø2,4: dwa druty Z wchodzą z dwóch stron.
+2. **Pierścień i Uchwyt** dopiero po zmierzeniu ścianki dyni (`scianka`). **Gałka i powieki** niezależnie od dyni.
