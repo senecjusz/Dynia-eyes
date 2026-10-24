@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200mm" height="150mm" viewBox="0 0 200 150" font-family="Arial, sans-serif">
+<!-- Duże oko v2 – druty Ø1,0 (sprężynowy), rysunek 1:1 w układzie przyrządu do gięcia (tor wzdłuż korpusu). Drukować w skali 100 % (sprawdzić odcinek 50 mm).
+     Liczby z modelu duze-oko-v2.scad (LdS1, LdS2, LdP, katS2, katP, przezUcha 2,5, przezDzw 2,0, przezOrcz 2,5, ogonDrut 2). -->
+<style>
+  .d{fill:none;stroke:#c0102a;stroke-width:1.0;stroke-linecap:round;stroke-linejoin:round}
+  .t{font-size:3.2px;fill:#222}
+  .h{font-size:4.2px;font-weight:bold;fill:#222}
+  .s{font-size:2.6px;fill:#444}
+</style>
+<rect width="200" height="150" fill="#fff"/>
+<text x="5" y="7" class="h">Duże oko v2 – druty Ø1,0 sprężynowe, skala 1:1 (układ jak w przyrządzie do gięcia)</text>
+<text x="5" y="11.5" class="s">Gnij na drukowanym przyrządzie „Przyrzad do giecia drutow” (instrukcja: 40-cad/openscad/duze-oko-v2-montaz.md). L między osiami zagięć. Zagięcia jak najciaśniej (promień wewn. ≤ 0,5).</text>
+<text x="5" y="14.5" class="s">● = koniec A zagięty prostopadle do rysunku (w dół): odcinek „przez” + ogon 2 mm równoległy do korpusu, na zewnątrz.</text>
+<line x1="140" y1="20" x2="190" y2="20" stroke="#000" stroke-width="0.4"/>
+<line x1="140" y1="18.5" x2="140" y2="21.5" stroke="#000" stroke-width="0.4"/><line x1="190" y1="18.5" x2="190" y2="21.5" stroke="#000" stroke-width="0.4"/>
+<text x="152" y="17.5" class="t">50 mm – sprawdź</text>
+
+<text x="5" y="27" class="h">1. Lewo–prawo (S1): L = 41,9</text>
+<circle cx="12" cy="34" r="0.9" fill="#c0102a"/>
+<path class="d" d="M 12 34 L 53.86 34.00 L 53.86 31.50 L 55.86 31.50"/>
+<text x="5" y="40" class="s">A ● ucho gałki: przez 2,5 + ogon 2 (w dół)          B: orczyk S1 (otwór 17,5 → Ø1,4), 90°, przez 2,5 + ogon 2</text>
+
+<text x="5" y="60" class="h">2. Góra–dół (S2): L = 42,9, kąt 75° na obu końcach, cały Z w płaszczyźnie</text>
+<path class="d" d="M 9.36 72.42 L 11.36 72.42 L 12 70 L 54.89 70.00 L 55.53 67.58 L 57.53 67.58"/>
+<text x="5" y="78" class="s">A: ucho gałki (klepsydra), przez 2,5 pod 75°, ogon 2 równoległy do korpusu          B: orczyk S2 (otwór 13,5 → Ø1,4), jak A w drugą stronę</text>
+
+<text x="5" y="98" class="h">3. Powieki (PG, PD): 2 jednakowe sztuki, L = 44,6, kąt 81° na końcu B</text>
+<circle cx="12" cy="108" r="0.9" fill="#c0102a"/>
+<path class="d" d="M 12 108 L 56.56 108.00 L 56.95 105.53 L 58.95 105.53"/>
+<text x="5" y="114" class="s">A ● dźwignia powieki (1,5 mm, Ø1,4): przez 2,0 + ogon 2 (w dół)          B: orczyk S3 (otwór 7,5 → Ø2,4, oba druty z przeciwnych stron), 81°</text>
+
+<text x="5" y="132" class="h">Cięcie i kontrola</text>
+<text x="5" y="137" class="s">Odciąć L + 12 mm (S1 54, S2 55, powieki 2 × 57). Przeginać 5–10° na sprężynowanie; drut ma wchodzić w tor przyrządu bez dociskania.</text>
+<text x="5" y="141" class="s">Dokładność ±0,5 mm wystarcza: zero i krańce serw ustawia kalibracja (strona w telefonie).</text>
+</svg>

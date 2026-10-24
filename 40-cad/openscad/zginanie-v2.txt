@@ -1,0 +1,548 @@
+# Test zginania dużego oka v2 (zginanie.sh + zginanie-werdykt.sh, 25.10): eksport 6 części, kontrola siatek i wymiarów, kinematyka, kolizje krok 17,5° (5 × 5 pozycji gałki z zerem, 7 pozycji powiek)
+
+=== wariant: Rg=29
+OK   Galka.3mf  trojkatow 71132, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Galka.3mf: brył 1
+BLAD Powieka gorna.3mf  trojkatow 76772, otwarte 0, >2 4, zdegenerowane 20, jednostka millimeter
+OK   naprawa.3mf  trojkatow 76748, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka gorna.3mf: brył 1
+BLAD Powieka dolna.3mf  trojkatow 75188, otwarte 0, >2 8, zdegenerowane 4, jednostka millimeter
+OK   naprawa.3mf  trojkatow 75176, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka dolna.3mf: brył 1
+OK   Pierscien.3mf  trojkatow 3956, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Pierscien.3mf: brył 1
+OK   Maskownica.3mf  trojkatow 1536, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Maskownica.3mf: brył 1
+OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Uchwyt serw.3mf: brył 1
+kinematyka: S1 L 40.86 α [ -41.9, 37.9 ] nieosiągalne 0 | S2 L 41.93 α [ -45.6, 40.3 ] nieosiągalne 0 | S3 {"Lu":43.57,"Ld":43.57,"alfaZamk":23.1,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.22,"dolnaPrzyOtw":51.26}
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 661 s
+S1 α -41.7…37.6°, S2 α -45.6…40.3°, S3 α [23.2,15.6,7.9,0,-8.1,-16.3,-24.7]
+para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-23.0
+S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-15.4,-64.8
+S2 – uchwyt (stałe) | 0.00 | – @ 29.5,5.4,-64.8
+S3 – uchwyt (stałe) | 0.00 | – @ -46.6,-18.5,-64.8
+powieka górna – lebM2 | 0.18 | ψ 8.6 @ -31.0,-1.5,-1.5
+powieka dolna – pierscien | 0.20 | ψ 0.0 @ -34.5,1.2,-0.0
+powieka górna – powieka dolna | 0.20 | ψ 0.0 @ -32.8,0.3,-1.2
+drut S1 – gałka | 0.40 | θ 35, φ -25
+drut S2 – gałka | 0.44 | θ 35, φ 25
+gałka – lebM2 | 0.50 | θ -35, φ -25
+drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.61 | ψ 0.0
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.68 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.73 | ψ 0.0
+drut powieki górnej – powieka dolna | 0.80 | ψ 0.0
+druty powiek – S3 | 0.89 | ψ 51.5
+drut powieki dolnej – powieka górna | 1.29 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
+gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
+gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
+druty powiek – pierscien | 1.89 | ψ 0.0
+powieka górna – pierscien | 1.90 | ψ 0.0
+powieka dolna – lebM2 | 1.90 | ψ 51.5
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
+powieka górna – uchwyt | > 3 | ψ 0.0
+powieka dolna – uchwyt | > 3 | ψ 0.0
+powieka górna – piastaTyl | > 3 | ψ 0.0
+powieka dolna – piastaTyl | > 3 | ψ 0.0
+powieka górna – S3 | > 3 | ψ 0.0
+powieka dolna – S3 | > 3 | ψ 0.0
+druty powiek – uchwyt | > 3 | ψ 0.0
+druty powiek – S1 | > 3 | ψ 0.0
+druty powiek – S2 | > 3 | ψ 0.0
+orczyk S3 – pierscien | > 3 | ψ 0.0
+orczyk S3 – S1 | > 3 | ψ 0.0
+orczyk S3 – S2 | > 3 | ψ 0.0
+gałka – pierscien | > 3 | θ -35, φ -25
+gałka – uchwyt | > 3 | θ -35, φ -25
+gałka – piastaTyl | > 3 | θ -35, φ -25
+gałka – powieka dolna (zamkn.) | > 3 | θ -35, φ -25
+gałka – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – pierscien | > 3 | θ -35, φ -25
+drut S1 – uchwyt | > 3 | θ -35, φ -25
+drut S1 – S1 | > 3 | θ -35, φ -25
+drut S1 – S2 | > 3 | θ -35, φ -25
+drut S1 – S3 | > 3 | θ -35, φ -25
+drut S1 – piastaTyl | > 3 | θ -35, φ -25
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S2 – pierscien | > 3 | θ -35, φ -25
+drut S2 – uchwyt | > 3 | θ -35, φ -25
+drut S2 – S1 | > 3 | θ -35, φ -25
+drut S2 – S2 | > 3 | θ -35, φ -25
+drut S2 – S3 | > 3 | θ -35, φ -25
+drut S2 – piastaTyl | > 3 | θ -35, φ -25
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – S3 | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – S1 | > 3 | θ -35, φ -25
+orczyk S2 – S3 | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S2 – drut S1 | > 3 | θ -35, φ -25
+orczyk S1 – gałka | > 3 | θ -35, φ -25
+orczyk S2 – gałka | > 3 | θ -35, φ -25
+S1 – pierscien (stałe) | > 3 | –
+S2 – pierscien (stałe) | > 3 | –
+S3 – pierscien (stałe) | > 3 | –
+S1 – S2 (stałe) | > 3 | –
+S2 – S3 (stałe) | > 3 | –
+lebM2 – pierscien (stałe) | > 3 | –
+Galka.3mf: 58.00 × 58.00 × 37.00 mm; wysokość OK (oczekiwana 37, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 46.00 mm; wysokość OK (oczekiwana 46, z od 0.00)
+Uchwyt serw.3mf: 97.84 × 66.00 × 55.25 mm; wysokość OK (oczekiwana 55.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.40 < 0.50; drut S2 – gałka 0.44 < 0.50; )
+
+=== wariant: Rg=30.5
+ERROR: Assertion '(zakladkaRamieD >= (2 * luzRuch))' failed: "GRANICA: ramię ucha dolnej powieki nie sięga czaszy (zakładka 0.707896 mm) – za duże Rg dla otworu" in file duze-oko-v2.scad, line 141
+BLAD Galka druk
+BLAD PowiekaGorna druk
+BLAD PowiekaDolna druk
+BLAD Galka zlozenie
+BLAD PowiekaGorna zlozenie
+BLAD PowiekaDolna zlozenie
+BLAD Pierscien druk
+BLAD Maskownica druk
+BLAD UchwytSerw druk
+BLAD Pierscien zlozenie
+BLAD Maskownica zlozenie
+BLAD UchwytSerw zlozenie
+WERDYKT: PRZELICZENIE POZA ZAKRESEM; LUZY – (nie dotyczy)
+
+=== wariant: Rg=31
+ERROR: Assertion '(zakladkaRamieD >= (2 * luzRuch))' failed: "GRANICA: ramię ucha dolnej powieki nie sięga czaszy (zakładka -1.00803 mm) – za duże Rg dla otworu" in file duze-oko-v2.scad, line 141
+BLAD Galka druk
+BLAD PowiekaGorna druk
+BLAD PowiekaDolna druk
+BLAD Galka zlozenie
+BLAD PowiekaGorna zlozenie
+BLAD PowiekaDolna zlozenie
+BLAD Pierscien druk
+BLAD Maskownica druk
+BLAD UchwytSerw druk
+BLAD Pierscien zlozenie
+BLAD Maskownica zlozenie
+BLAD UchwytSerw zlozenie
+WERDYKT: PRZELICZENIE POZA ZAKRESEM; LUZY – (nie dotyczy)
+
+=== wariant: scianka=28
+OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Galka.3mf: brył 1
+BLAD Powieka gorna.3mf  trojkatow 77172, otwarte 0, >2 0, zdegenerowane 22, jednostka millimeter
+OK   naprawa.3mf  trojkatow 77150, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka gorna.3mf: brył 1
+BLAD Powieka dolna.3mf  trojkatow 75554, otwarte 0, >2 0, zdegenerowane 12, jednostka millimeter
+OK   naprawa.3mf  trojkatow 75542, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka dolna.3mf: brył 1
+OK   Pierscien.3mf  trojkatow 3956, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Pierscien.3mf: brył 1
+OK   Maskownica.3mf  trojkatow 1536, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Maskownica.3mf: brył 1
+OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Uchwyt serw.3mf: brył 1
+kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.25,"dolnaPrzyOtw":51.28}
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 636 s
+S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
+para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-10.0
+S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
+S2 – uchwyt (stałe) | 0.00 | – @ 29.5,3.4,-62.9
+S3 – uchwyt (stałe) | 0.00 | – @ -47.6,-18.5,-65.8
+powieka górna – lebM2 | 0.18 | ψ 8.6 @ -31.4,2.1,-0.0
+powieka dolna – pierscien | 0.20 | ψ 0.0 @ -35.5,1.2,-0.0
+powieka górna – powieka dolna | 0.20 | ψ 0.0 @ -33.8,0.3,-1.2
+drut S1 – gałka | 0.42 | θ 35, φ 22 (zagęszczenie)
+gałka – lebM2 | 0.50 | θ 35, φ 25
+drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.57 | ψ 0.0
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.69 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.73 | ψ 0.0
+drut powieki górnej – powieka dolna | 0.82 | ψ 0.0
+druty powiek – S3 | 0.90 | ψ 51.5
+drut S2 – gałka | 0.90 | θ 20.5, φ 25 (zagęszczenie)
+drut powieki dolnej – powieka górna | 1.30 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
+powieka górna – pierscien | 1.32 | ψ 51.5
+gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
+gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
+powieka dolna – lebM2 | 1.90 | ψ 51.5
+druty powiek – pierscien | 1.90 | ψ 0.0
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
+powieka górna – uchwyt | > 3 | ψ 0.0
+powieka dolna – uchwyt | > 3 | ψ 0.0
+powieka górna – piastaTyl | > 3 | ψ 0.0
+powieka dolna – piastaTyl | > 3 | ψ 0.0
+powieka górna – S3 | > 3 | ψ 0.0
+powieka dolna – S3 | > 3 | ψ 0.0
+druty powiek – uchwyt | > 3 | ψ 0.0
+druty powiek – S1 | > 3 | ψ 0.0
+druty powiek – S2 | > 3 | ψ 0.0
+orczyk S3 – pierscien | > 3 | ψ 0.0
+orczyk S3 – S1 | > 3 | ψ 0.0
+orczyk S3 – S2 | > 3 | ψ 0.0
+gałka – pierscien | > 3 | θ -35, φ -25
+gałka – uchwyt | > 3 | θ -35, φ -25
+gałka – piastaTyl | > 3 | θ -35, φ -25
+gałka – powieka dolna (zamkn.) | > 3 | θ -35, φ -25
+gałka – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – pierscien | > 3 | θ -35, φ -25
+drut S1 – uchwyt | > 3 | θ -35, φ -25
+drut S1 – S1 | > 3 | θ -35, φ -25
+drut S1 – S2 | > 3 | θ -35, φ -25
+drut S1 – S3 | > 3 | θ -35, φ -25
+drut S1 – piastaTyl | > 3 | θ -35, φ -25
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S2 – pierscien | > 3 | θ -35, φ -25
+drut S2 – uchwyt | > 3 | θ -35, φ -25
+drut S2 – S1 | > 3 | θ -35, φ -25
+drut S2 – S2 | > 3 | θ -35, φ -25
+drut S2 – S3 | > 3 | θ -35, φ -25
+drut S2 – piastaTyl | > 3 | θ -35, φ -25
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – S3 | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – S1 | > 3 | θ -35, φ -25
+orczyk S2 – S3 | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S2 – drut S1 | > 3 | θ -35, φ -25
+orczyk S1 – gałka | > 3 | θ -35, φ -25
+orczyk S2 – gałka | > 3 | θ -35, φ -25
+S1 – pierscien (stałe) | > 3 | –
+S2 – pierscien (stałe) | > 3 | –
+S3 – pierscien (stałe) | > 3 | –
+S1 – S2 (stałe) | > 3 | –
+S2 – S3 (stałe) | > 3 | –
+lebM2 – pierscien (stałe) | > 3 | –
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 34.00 mm; wysokość OK (oczekiwana 34, z od 0.00)
+Uchwyt serw.3mf: 98.84 × 66.00 × 59.00 mm; wysokość OK (oczekiwana 59, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.42 < 0.50; )
+
+=== wariant: scianka=50
+OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Galka.3mf: brył 1
+BLAD Powieka gorna.3mf  trojkatow 77172, otwarte 0, >2 0, zdegenerowane 22, jednostka millimeter
+OK   naprawa.3mf  trojkatow 77150, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka gorna.3mf: brył 1
+BLAD Powieka dolna.3mf  trojkatow 75554, otwarte 0, >2 0, zdegenerowane 12, jednostka millimeter
+OK   naprawa.3mf  trojkatow 75542, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka dolna.3mf: brył 1
+OK   Pierscien.3mf  trojkatow 3956, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Pierscien.3mf: brył 1
+OK   Maskownica.3mf  trojkatow 1536, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Maskownica.3mf: brył 1
+OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Uchwyt serw.3mf: brył 1
+kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.25,"dolnaPrzyOtw":51.28}
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 658 s
+S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
+para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-32.0
+S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
+S2 – uchwyt (stałe) | 0.00 | – @ 29.5,3.4,-62.9
+S3 – uchwyt (stałe) | 0.00 | – @ -47.6,-18.5,-65.8
+powieka górna – lebM2 | 0.18 | ψ 8.6 @ -31.4,2.1,-0.0
+powieka dolna – pierscien | 0.20 | ψ 0.0 @ -35.5,1.2,-0.0
+powieka górna – powieka dolna | 0.20 | ψ 0.0 @ -33.8,0.3,-1.2
+drut S1 – gałka | 0.42 | θ 35, φ 22 (zagęszczenie)
+gałka – lebM2 | 0.50 | θ 35, φ 25
+drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.57 | ψ 0.0
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.69 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.73 | ψ 0.0
+drut powieki górnej – powieka dolna | 0.82 | ψ 0.0
+druty powiek – S3 | 0.90 | ψ 51.5
+drut S2 – gałka | 0.90 | θ 20.5, φ 25 (zagęszczenie)
+drut powieki dolnej – powieka górna | 1.30 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
+powieka górna – pierscien | 1.32 | ψ 51.5
+gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
+gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
+powieka dolna – lebM2 | 1.90 | ψ 51.5
+druty powiek – pierscien | 1.90 | ψ 0.0
+S1 – pierscien (stałe) | 2.00 | –
+S3 – pierscien (stałe) | 2.00 | –
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
+powieka górna – uchwyt | > 3 | ψ 0.0
+powieka dolna – uchwyt | > 3 | ψ 0.0
+powieka górna – piastaTyl | > 3 | ψ 0.0
+powieka dolna – piastaTyl | > 3 | ψ 0.0
+powieka górna – S3 | > 3 | ψ 0.0
+powieka dolna – S3 | > 3 | ψ 0.0
+druty powiek – uchwyt | > 3 | ψ 0.0
+druty powiek – S1 | > 3 | ψ 0.0
+druty powiek – S2 | > 3 | ψ 0.0
+orczyk S3 – pierscien | > 3 | ψ 0.0
+orczyk S3 – S1 | > 3 | ψ 0.0
+orczyk S3 – S2 | > 3 | ψ 0.0
+gałka – pierscien | > 3 | θ -35, φ -25
+gałka – uchwyt | > 3 | θ -35, φ -25
+gałka – piastaTyl | > 3 | θ -35, φ -25
+gałka – powieka dolna (zamkn.) | > 3 | θ -35, φ -25
+gałka – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – pierscien | > 3 | θ -35, φ -25
+drut S1 – uchwyt | > 3 | θ -35, φ -25
+drut S1 – S1 | > 3 | θ -35, φ -25
+drut S1 – S2 | > 3 | θ -35, φ -25
+drut S1 – S3 | > 3 | θ -35, φ -25
+drut S1 – piastaTyl | > 3 | θ -35, φ -25
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S2 – pierscien | > 3 | θ -35, φ -25
+drut S2 – uchwyt | > 3 | θ -35, φ -25
+drut S2 – S1 | > 3 | θ -35, φ -25
+drut S2 – S2 | > 3 | θ -35, φ -25
+drut S2 – S3 | > 3 | θ -35, φ -25
+drut S2 – piastaTyl | > 3 | θ -35, φ -25
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – S3 | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – S1 | > 3 | θ -35, φ -25
+orczyk S2 – S3 | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S2 – drut S1 | > 3 | θ -35, φ -25
+orczyk S1 – gałka | > 3 | θ -35, φ -25
+orczyk S2 – gałka | > 3 | θ -35, φ -25
+S2 – pierscien (stałe) | > 3 | –
+S1 – S2 (stałe) | > 3 | –
+S2 – S3 (stałe) | > 3 | –
+lebM2 – pierscien (stałe) | > 3 | –
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 56.00 mm; wysokość OK (oczekiwana 56, z od 0.00)
+Uchwyt serw.3mf: 98.84 × 66.00 × 56.25 mm; wysokość OK (oczekiwana 56.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.42 < 0.50; )
+
+=== wariant: luzObr=0.3
+OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Galka.3mf: brył 1
+BLAD Powieka gorna.3mf  trojkatow 77172, otwarte 0, >2 0, zdegenerowane 22, jednostka millimeter
+OK   naprawa.3mf  trojkatow 77150, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka gorna.3mf: brył 1
+BLAD Powieka dolna.3mf  trojkatow 75746, otwarte 0, >2 0, zdegenerowane 12, jednostka millimeter
+OK   naprawa.3mf  trojkatow 75734, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka dolna.3mf: brył 1
+OK   Pierscien.3mf  trojkatow 3956, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Pierscien.3mf: brył 1
+OK   Maskownica.3mf  trojkatow 1536, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Maskownica.3mf: brył 1
+OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Uchwyt serw.3mf: brył 1
+kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.26,"dolnaPrzyOtw":51.27}
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 657 s
+S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
+para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
+S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
+S2 – uchwyt (stałe) | 0.00 | – @ 29.5,3.4,-62.9
+S3 – uchwyt (stałe) | 0.00 | – @ -47.8,-18.5,-65.8
+powieka górna – lebM2 | 0.28 | ψ 8.6 @ -32.1,-1.9,1.1
+powieka dolna – pierscien | 0.30 | ψ 51.5 @ -35.7,-4.0,2.1
+powieka górna – powieka dolna | 0.30 | ψ 0.0
+drut S1 – gałka | 0.42 | θ 35, φ 22 (zagęszczenie)
+gałka – lebM2 | 0.50 | θ 35, φ 25
+drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.57 | ψ 0.0
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.69 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.74 | ψ 0.0
+drut powieki górnej – powieka dolna | 0.82 | ψ 0.0
+druty powiek – S3 | 0.89 | ψ 51.5
+drut S2 – gałka | 0.90 | θ 20.5, φ 25 (zagęszczenie)
+powieka górna – pierscien | 1.22 | ψ 42.9
+drut powieki dolnej – powieka górna | 1.30 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
+gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
+gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
+druty powiek – pierscien | 2.02 | ψ 0.0
+powieka dolna – lebM2 | 2.10 | ψ 0.0
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
+powieka górna – uchwyt | > 3 | ψ 0.0
+powieka dolna – uchwyt | > 3 | ψ 0.0
+powieka górna – piastaTyl | > 3 | ψ 0.0
+powieka dolna – piastaTyl | > 3 | ψ 0.0
+powieka górna – S3 | > 3 | ψ 0.0
+powieka dolna – S3 | > 3 | ψ 0.0
+druty powiek – uchwyt | > 3 | ψ 0.0
+druty powiek – S1 | > 3 | ψ 0.0
+druty powiek – S2 | > 3 | ψ 0.0
+orczyk S3 – pierscien | > 3 | ψ 0.0
+orczyk S3 – S1 | > 3 | ψ 0.0
+orczyk S3 – S2 | > 3 | ψ 0.0
+gałka – pierscien | > 3 | θ -35, φ -25
+gałka – uchwyt | > 3 | θ -35, φ -25
+gałka – piastaTyl | > 3 | θ -35, φ -25
+gałka – powieka dolna (zamkn.) | > 3 | θ -35, φ -25
+gałka – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – pierscien | > 3 | θ -35, φ -25
+drut S1 – uchwyt | > 3 | θ -35, φ -25
+drut S1 – S1 | > 3 | θ -35, φ -25
+drut S1 – S2 | > 3 | θ -35, φ -25
+drut S1 – S3 | > 3 | θ -35, φ -25
+drut S1 – piastaTyl | > 3 | θ -35, φ -25
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S2 – pierscien | > 3 | θ -35, φ -25
+drut S2 – uchwyt | > 3 | θ -35, φ -25
+drut S2 – S1 | > 3 | θ -35, φ -25
+drut S2 – S2 | > 3 | θ -35, φ -25
+drut S2 – S3 | > 3 | θ -35, φ -25
+drut S2 – piastaTyl | > 3 | θ -35, φ -25
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – S3 | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – S1 | > 3 | θ -35, φ -25
+orczyk S2 – S3 | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S2 – drut S1 | > 3 | θ -35, φ -25
+orczyk S1 – gałka | > 3 | θ -35, φ -25
+orczyk S2 – gałka | > 3 | θ -35, φ -25
+S1 – pierscien (stałe) | > 3 | –
+S2 – pierscien (stałe) | > 3 | –
+S3 – pierscien (stałe) | > 3 | –
+S1 – S2 (stałe) | > 3 | –
+S2 – S3 (stałe) | > 3 | –
+lebM2 – pierscien (stałe) | > 3 | –
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 46.00 mm; wysokość OK (oczekiwana 46, z od 0.00)
+Uchwyt serw.3mf: 98.99 × 66.00 × 56.25 mm; wysokość OK (oczekiwana 56.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.42 < 0.50; )
+
+=== wariant: dDrut=1.2
+OK   Galka.3mf  trojkatow 70424, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Galka.3mf: brył 1
+BLAD Powieka gorna.3mf  trojkatow 77172, otwarte 0, >2 0, zdegenerowane 22, jednostka millimeter
+OK   naprawa.3mf  trojkatow 77150, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka gorna.3mf: brył 1
+BLAD Powieka dolna.3mf  trojkatow 75554, otwarte 0, >2 0, zdegenerowane 12, jednostka millimeter
+OK   naprawa.3mf  trojkatow 75542, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Powieka dolna.3mf: brył 1
+OK   Pierscien.3mf  trojkatow 3956, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Pierscien.3mf: brył 1
+OK   Maskownica.3mf  trojkatow 1536, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Maskownica.3mf: brył 1
+OK   Uchwyt serw.3mf  trojkatow 1588, otwarte 0, >2 0, zdegenerowane 0, jednostka millimeter
+Uchwyt serw.3mf: brył 1
+kinematyka: S1 L 41.86 α [ -42, 37.8 ] nieosiągalne 0 | S2 L 42.89 α [ -45.5, 40.2 ] nieosiągalne 0 | S3 {"Lu":44.56,"Ld":44.56,"alfaZamk":23.2,"alfaOtw":-24.7,"gornaZamk":0,"dolnaPrzyZamk":-0.25,"dolnaPrzyOtw":51.28}
+kontrola kolizji: krok 17.5°, θ 5 × φ 5 pozycji gałki, ψ 7 pozycji powiek, 593 s
+S1 α -41.8…37.5°, S2 α -45.6…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
+para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
+S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
+S2 – uchwyt (stałe) | 0.00 | – @ 29.5,3.4,-62.9
+S3 – uchwyt (stałe) | 0.00 | – @ -47.6,-18.5,-65.8
+powieka górna – lebM2 | 0.18 | ψ 8.6 @ -31.4,2.1,-0.0
+powieka dolna – pierscien | 0.20 | ψ 0.0 @ -35.5,-4.0,3.7
+powieka górna – powieka dolna | 0.20 | ψ 0.0 @ -33.8,3.9,-1.0
+drut S1 – gałka | 0.35 | θ 35, φ 22 (zagęszczenie)
+drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.38 | ψ 0.0
+gałka – lebM2 | 0.50 | θ 35, φ 25
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.64 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.70 | ψ 0.0
+drut powieki górnej – powieka dolna | 0.72 | ψ 0.0
+druty powiek – S3 | 0.81 | ψ 51.5
+drut S2 – gałka | 0.85 | θ 18.5, φ 25 (zagęszczenie)
+drut powieki dolnej – powieka górna | 1.20 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
+powieka górna – pierscien | 1.32 | ψ 51.5
+gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
+gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
+druty powiek – pierscien | 1.74 | ψ 0.0
+powieka dolna – lebM2 | 1.90 | ψ 51.5
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
+drut S1 – S2 | 2.91 | θ 0, φ -25
+powieka górna – uchwyt | > 3 | ψ 0.0
+powieka dolna – uchwyt | > 3 | ψ 0.0
+powieka górna – piastaTyl | > 3 | ψ 0.0
+powieka dolna – piastaTyl | > 3 | ψ 0.0
+powieka górna – S3 | > 3 | ψ 0.0
+powieka dolna – S3 | > 3 | ψ 0.0
+druty powiek – uchwyt | > 3 | ψ 0.0
+druty powiek – S1 | > 3 | ψ 0.0
+druty powiek – S2 | > 3 | ψ 0.0
+orczyk S3 – pierscien | > 3 | ψ 0.0
+orczyk S3 – S1 | > 3 | ψ 0.0
+orczyk S3 – S2 | > 3 | ψ 0.0
+gałka – pierscien | > 3 | θ -35, φ -25
+gałka – uchwyt | > 3 | θ -35, φ -25
+gałka – piastaTyl | > 3 | θ -35, φ -25
+gałka – powieka dolna (zamkn.) | > 3 | θ -35, φ -25
+gałka – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – pierscien | > 3 | θ -35, φ -25
+drut S1 – uchwyt | > 3 | θ -35, φ -25
+drut S1 – S1 | > 3 | θ -35, φ -25
+drut S1 – S3 | > 3 | θ -35, φ -25
+drut S1 – piastaTyl | > 3 | θ -35, φ -25
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S2 – pierscien | > 3 | θ -35, φ -25
+drut S2 – uchwyt | > 3 | θ -35, φ -25
+drut S2 – S1 | > 3 | θ -35, φ -25
+drut S2 – S2 | > 3 | θ -35, φ -25
+drut S2 – S3 | > 3 | θ -35, φ -25
+drut S2 – piastaTyl | > 3 | θ -35, φ -25
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – S3 | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – S1 | > 3 | θ -35, φ -25
+orczyk S2 – S3 | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S2 – drut S1 | > 3 | θ -35, φ -25
+orczyk S1 – gałka | > 3 | θ -35, φ -25
+orczyk S2 – gałka | > 3 | θ -35, φ -25
+S1 – pierscien (stałe) | > 3 | –
+S2 – pierscien (stałe) | > 3 | –
+S3 – pierscien (stałe) | > 3 | –
+S1 – S2 (stałe) | > 3 | –
+S2 – S3 (stałe) | > 3 | –
+lebM2 – pierscien (stałe) | > 3 | –
+Galka.3mf: 60.00 × 60.00 × 38.00 mm; wysokość OK (oczekiwana 38, z od 0.00)
+Maskownica.3mf: 84.00 × 84.00 × 2.00 mm; wysokość OK (oczekiwana 2, z od 0.00)
+Pierscien.3mf: 104.00 × 104.00 × 46.00 mm; wysokość OK (oczekiwana 46, z od 0.00)
+Uchwyt serw.3mf: 98.84 × 66.00 × 56.25 mm; wysokość OK (oczekiwana 56.25, z od 0.00)
+WYMIARY: OK
+WERDYKT: PRZELICZENIE ZALICZONY; LUZY NIESPEŁNIONE (drut S1 – gałka 0.35 < 0.50; drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) 0.38 < 0.50; )

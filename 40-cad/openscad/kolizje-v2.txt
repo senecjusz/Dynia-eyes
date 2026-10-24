@@ -1,0 +1,80 @@
+kontrola kolizji: krok 10°, θ 9 × φ 7 pozycji gałki, ψ 7 pozycji powiek, 1436 s
+S1 α -42…37.8°, S2 α -45.5…40.2°, S3 α [23.2,15.7,7.9,0,-8.1,-16.3,-24.6]
+para | najmniejszy odstęp [mm] (≥ 3 = „> 3”) | położenie
+pierscien – uchwyt (stałe) | 0.00 | – @ -41.7,9.7,-22.0
+S1 – uchwyt (stałe) | 0.00 | – @ 39.5,-21.6,-65.8
+S2 – uchwyt (stałe) | 0.00 | – @ 29.5,3.4,-62.9
+S3 – uchwyt (stałe) | 0.00 | – @ -47.6,-18.5,-65.8
+powieka górna – lebM2 | 0.18 | ψ 8.6 @ -31.4,2.1,-0.0
+powieka dolna – pierscien | 0.20 | ψ 0.0 @ -35.5,1.2,-0.0
+powieka górna – powieka dolna | 0.20 | ψ 0.0 @ -33.8,0.3,-1.2
+drut S1 – gałka | 0.42 | θ 35, φ -13 (zagęszczenie)
+gałka – lebM2 | 0.50 | θ 35, φ 25
+drut powieki górnej – drut powieki dolnej (bez 4 mm przy orczyku) | 0.57 | ψ 0.0
+drut powieki dolnej – własna powieka (bez 4 mm przy dźwigni) | 0.69 | ψ 0.0
+drut powieki górnej – własna powieka (bez 4 mm przy dźwigni) | 0.73 | ψ 0.0
+drut powieki górnej – powieka dolna | 0.82 | ψ 0.0
+druty powiek – S3 | 0.90 | ψ 51.5
+drut S2 – gałka | 0.90 | θ 21, φ 25 (zagęszczenie)
+drut powieki dolnej – powieka górna | 1.30 | ψ 0.0
+orczyk S3 – uchwyt | 1.31 | ψ 0.0
+powieka górna – pierscien | 1.32 | ψ 51.5
+gałka – powieka górna (zamkn.) | 1.49 | θ -35, φ -25
+gałka – powieka górna (otw.) | 1.49 | θ -35, φ -25
+powieka dolna – lebM2 | 1.90 | ψ 51.5
+druty powiek – pierscien | 1.90 | ψ 0.0
+orczyk S1 – S2 | 2.43 | θ 0, φ 0
+powieka górna – uchwyt | > 3 | ψ 0.0
+powieka dolna – uchwyt | > 3 | ψ 0.0
+powieka górna – piastaTyl | > 3 | ψ 0.0
+powieka dolna – piastaTyl | > 3 | ψ 0.0
+powieka górna – S3 | > 3 | ψ 0.0
+powieka dolna – S3 | > 3 | ψ 0.0
+druty powiek – uchwyt | > 3 | ψ 0.0
+druty powiek – S1 | > 3 | ψ 0.0
+druty powiek – S2 | > 3 | ψ 0.0
+orczyk S3 – pierscien | > 3 | ψ 0.0
+orczyk S3 – S1 | > 3 | ψ 0.0
+orczyk S3 – S2 | > 3 | ψ 0.0
+gałka – pierscien | > 3 | θ -35, φ -25
+gałka – uchwyt | > 3 | θ -35, φ -25
+gałka – piastaTyl | > 3 | θ -35, φ -25
+gałka – powieka dolna (zamkn.) | > 3 | θ -35, φ -25
+gałka – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – pierscien | > 3 | θ -35, φ -25
+drut S1 – uchwyt | > 3 | θ -35, φ -25
+drut S1 – S1 | > 3 | θ -35, φ -25
+drut S1 – S2 | > 3 | θ -35, φ -25
+drut S1 – S3 | > 3 | θ -35, φ -25
+drut S1 – piastaTyl | > 3 | θ -35, φ -25
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S2 – pierscien | > 3 | θ -35, φ -25
+drut S2 – uchwyt | > 3 | θ -35, φ -25
+drut S2 – S1 | > 3 | θ -35, φ -25
+drut S2 – S2 | > 3 | θ -35, φ -25
+drut S2 – S3 | > 3 | θ -35, φ -25
+drut S2 – piastaTyl | > 3 | θ -35, φ -25
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25
+drut S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – S3 | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – S1 | > 3 | θ -35, φ -25
+orczyk S2 – S3 | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – drut S2 | > 3 | θ -35, φ -25
+orczyk S2 – drut S1 | > 3 | θ -35, φ -25
+orczyk S1 – gałka | > 3 | θ -35, φ -25
+orczyk S2 – gałka | > 3 | θ -35, φ -25
+S1 – pierscien (stałe) | > 3 | –
+S2 – pierscien (stałe) | > 3 | –
+S3 – pierscien (stałe) | > 3 | –
+S1 – S2 (stałe) | > 3 | –
+S2 – S3 (stałe) | > 3 | –
+lebM2 – pierscien (stałe) | > 3 | –
