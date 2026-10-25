@@ -116,7 +116,7 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 
 ## Parking
 
-- Duże oko v9 (25.10, uwagi użytkownika), usztywnienie Uchwytu serw do następnej iteracji: (1) ramki serw powiek SG/SD z pionowymi elementami z każdej strony, jak S1/S2; (2) 3 pionowe ramiona do kołnierza Pierścienia z łukiem/żebrami u podstawy płyty.
+- Duże oko v9 (25.10, uwagi użytkownika), usztywnienie Uchwytu serw do następnej iteracji: (1) ramki serw powiek SG/SD z pionowymi elementami z każdej strony, jak S1/S2; (2) 3 pionowe ramiona do kołnierza Pierścienia z łukiem/żebrami u podstawy płyty; (3) wszystkie wieże i ramki serw połączone ściankami w jedną sztywną konstrukcję, z oknami na orczyki, pręty, druty i kardany (każda ścianka przez kontrolę kolizji).
 
 - E6: obszary szkiców w całym drzewie „Duże oko v1” wybierane przez `qClosestTo(qSketchRegion…)` zamiast `qContainsPoint` z punktów startowych – przy zmianie zmiennych (K9 `pktRY`, `pretY`) 5 operacji dało ERROR; poprawione tylko te 5.
 - E6: foldery (K11) Uchwyt, Łapa, Ramię X/Y, Komplet Y, Płyta–stopy – założyć w UI przy widocznym panelu.
