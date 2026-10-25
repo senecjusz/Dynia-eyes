@@ -50,6 +50,15 @@ Raporty: `20-analizy/review/2026-10-25-szuflada-v2-{fable,astra}.md`, jedna rund
 
 **Wynik:** do druku są korpus, rączka i próbka gniazda PIR. Front drukować dopiero po przymiarce PIR w próbce.
 
+### Review runda 2 (26.10, na prośbę użytkownika)
+
+Wersja końcowa (PIR po prawej, mała rączka). Astra: 0 uwag. Fable: 0 krytycznych, 1 ważna, 3 drobne. Wprowadzone poprawki:
+- okno PIR w korpusie 38 × 30;
+- skrypt kolizji wykrywa nieudane asserty;
+- lico rączki płaskie.
+
+Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Review runda 2”. Werdykt bez zmian: korpus, rączka i próbka do druku, front po przymiarce PIR.
+
 ### Założenia do sprawdzenia przez użytkownika
 
 - Ścianka tylna podstawki 18 mm.

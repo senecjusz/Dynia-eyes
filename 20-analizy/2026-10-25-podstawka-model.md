@@ -200,7 +200,7 @@ Wynik: podstawka 252 × 226 × 67 (użytkownik podał 69 wysokości – różnic
 
 | Część | Wymiar (druk) | Drukarka | Na stół | Uwagi |
 |---|---|---|---|---|
-| Korpus | 215,0 × 102 × 32 | X1C | dnem | ścianki 2,0; luz w podstawce **0,5 na stronę**; kieszeń PIR 26 z przodu, przegroda z wycięciem 12 × 8 nad listwą PIR, komora powerbanku, słupki, wycięcie kablowe na osi gniazda zasilania kasety; okno PIR 36 szer. otwarte do górnej krawędzi, otwory M4/M3 w przedniej ścianie; fazki 2 × 45° na tylnych narożach |
+| Korpus | 215,0 × 102 × 32 | X1C | dnem | ścianki 2,0; luz w podstawce **0,5 na stronę**; kieszeń PIR 26 z przodu, przegroda z wycięciem 12 × 8 nad listwą PIR, komora powerbanku, słupki, wycięcie kablowe na osi gniazda zasilania kasety; okno PIR 38 szer. (płytka + 3 na stronę) otwarte do górnej krawędzi, otwory M4/M3 w przedniej ścianie; fazki 2 × 45° na tylnych narożach |
 | Front | 244 × 65 × 4 (+ słupki M2 2,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; PIR po prawej (oś 40 od prawego boku korpusu, 58,5 od prawej krawędzi podstawki); otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 słupki M2; otwory: 2 × M4 rączki, 2 × M3, blokada Ø5 |
 | Rączka | 46 × 16 × 10 | A1 mini albo X1C | licem (większą podstawą) | ścięty ostrosłup z krawędziami R2 (kształt i wielkość: decyzje użytkownika – niska, nienachalna, mała, używana raz–dwa razy): przy froncie 40 × 10, lico 46 × 16, wysięg 10; gniazda łbów M4 Ø8 × 4,5 od lica (epoksyd), rozstaw 26; na środku frontu |
 | Próbka gniazda PIR | 60 × 40 × 6,5 | A1 mini albo X1C | licem | wycinek frontu: otwór kopułki, gniazdo kołnierza, 2 słupki M2 – **drukować i przymierzyć PIR przed frontem** |
@@ -268,3 +268,19 @@ Raporty: `review/2026-10-25-szuflada-v2-fable.md`, `review/2026-10-25-szuflada-v
 | Rączka 76 × 22 „zbyt duża i masywna, będzie wykorzystana może raz, może dwa” | użytkownik | **zmniejszona**: 40 × 10 → 46 × 16, wysięg 10, R2, M4 × 20 w rozstawie 26; eksport, siatki, wymiary (45,98 × 15,98 × 9,99) i 5 kontroli kolizji powtórzone – OK |
 
 Po zmianach powtórzone: eksport 9 części, siatki, wymiary, 5 kontroli kolizji (pusto), test zginania (wyżej). Druga runda review – nie (brief PM).
+
+### Review runda 2 (wersja końcowa, 26.10) i rozstrzygnięcia
+
+Na prośbę użytkownika („całość może zostać już zrewidowana, czy jest OK”) review całej wersji po poprawkach i decyzjach użytkownika (commit `4cfe031`). Brief: `review/2026-10-25-szuflada-v2-brief-r2.md`; raporty: `review/2026-10-25-szuflada-v2-{fable,astra}-r2.md`.
+
+- Astra: 0 krytycznych, 0 ważnych, 0 drobnych; poprawki rundy 1 działają; werdykt: drukować, front po przymiarce PIR.
+- Fable: 0 krytycznych, 1 ważna, 3 drobne.
+
+| Uwaga | Rozstrzygnięcie |
+|---|---|
+| W1: okno PIR ma 0,5 zapasu na kondensatory narożne, których wysięg 1,5 jest tylko ze zdjęć (±1) | **`oknoPIRzap` 3**: okno 38 × 30 (od wierzchu dna do górnej krawędzi) |
+| D2: `podstawka-kolizje.sh` zgłasza „pusto” także po nieudanym assercie | skrypt sprawdza `ERROR` / `Assertion` w logu – test: `WIN` 214 daje „BŁĄD modelu” |
+| D3: kule R2 na licu rączki – nawis przy stole, z min 0,0096 | **lico płaskie** (naroża R2 jako walce), rączka leży na stole: 46,00 × 16,00 × 10,00 |
+| D4: kołnierz PIR opiera się na 4 polach narożnych (Ø24 w gnieździe 23,5) | bez zmian – wynika z PRD 0.2 |
+
+Po zmianach powtórzone: eksport korpusu, frontu, rączki i próbki PIR, siatki (0 błędów, 1 bryła), wymiary, 5 kontroli kolizji (pusto), test czułości (`oknoPIRzap` 0 → kolizja wykryta).

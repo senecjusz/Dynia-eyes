@@ -12,6 +12,7 @@ K=("$@"); [ ${#K[@]} -eq 0 ] && K=(KolizjaZamknieta KolizjaWsuwanie KolizjaPIR K
 TMP=$(mktemp -d); blad=0
 for k in "${K[@]}"; do
   timeout 3600 "$OS" -o "$TMP/$k.stl" "${ZM[@]}" -D "czesc=\"$k\"" podstawka.scad > "$TMP/$k.log" 2>&1
+  if grep -q -E "ERROR|Assertion" "$TMP/$k.log"; then blad=1; echo "$k: BŁĄD modelu (assert albo błąd OpenSCAD)"; grep -E "ERROR|Assertion" "$TMP/$k.log" | head -3; continue; fi
   if grep -q "Current top level object is empty" "$TMP/$k.log" || { [ -f "$TMP/$k.stl" ] && ! grep -q "vertex" "$TMP/$k.stl"; }; then echo "$k: pusto – OK"
   else blad=1; echo "$k: KOLIZJA albo błąd"; grep -E "ERROR|WARNING" "$TMP/$k.log" | head -3
     [ -f "$TMP/$k.stl" ] && awk '/vertex/ { for (i = 2; i <= 4; i++) { if (!n || $i < lo[i]) lo[i] = $i; if (!n || $i > hi[i]) hi[i] = $i } n++ }

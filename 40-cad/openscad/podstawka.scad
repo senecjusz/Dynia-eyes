@@ -22,7 +22,7 @@
 // - front–korpus: 2 śruby rączki M4 (przez rączkę, front i przednią ścianę korpusu, nakrętki od środka w kieszeni PIR, z dala od powerbanku)
 //   + 2 × M3 × 10 przy dolnych rogach korpusu (front nie odstaje na brzegach przy szarpnięciu za rączkę); łby M3 na licu frontu.
 // - rączka (kształt i wielkość: decyzje użytkownika 25.10 – niska, nienachalna, mała, bo używana raz–dwa razy): ścięty ostrosłup
-//   z zaokrąglonymi krawędziami R2, mniejsza podstawa 40 × 10 na froncie, większa 46 × 16 na zewnątrz, wysięg 10; podcięcie 3 mm daje
+//   z zaokrąglonymi narożami R2 (lico płaskie – na stół), mniejsza podstawa 40 × 10 na froncie, większa 46 × 16 na zewnątrz, wysięg 10; podcięcie 3 mm daje
 //   chwyt dwoma palcami. Na środku frontu (pod blokadą), daleko od kopułki PIR. Druk większą podstawą na stole (ścianki zbiegają się
 //   ku górze, bez podpór). Łby M4 (Ø7 × 4) wklejone epoksydem w gniazda Ø8 od lica (szczelina na klej 0,5 – tabela AGENTS.md),
 //   dostęp imbusem od lica; rozstaw 26; śruby M4 × 20 (ok. 4 mm za nakrętką).
@@ -87,7 +87,7 @@ slupekW = 4; slupekH = 12; slupekL = 8;          // słupki zatrzymujące powerb
 wcCiecie = 12; wcDno = 10;                       // wycięcie na kable w tylnej ściance: szerokość, wysokość dna nad dnem szufladki
 przWyc = 12; przWycH = 8;                        // wycięcie w górnej krawędzi przegrody nad listwą PIR: szerokość, głębokość
 fazaKorp = 2;                                    // fazka wejściowa tylnych pionowych naroży korpusu
-oknoPIRzap = 2;     // okno PIR w przedniej ścianie korpusu: zapas wokół płytki (≥ pirRogi)
+oknoPIRzap = 3;     // okno PIR w przedniej ścianie korpusu: zapas wokół płytki (≥ pirRogi; 3 – review Fable r2: wysięg kondensatorów tylko ze zdjęć)
 m3fkOd = 10; m3fkZ = 8;                          // M3 front–korpus: od boku korpusu, wysokość nad spodem korpusu
 // ---------- BAZOWE: druk – front ----------
 tF = 4;             // grubość frontu
@@ -336,7 +336,7 @@ module raczka() {   // druk licem (większą podstawą) na stół (tryb druk: ob
     hull() {
       for (sx = [-1, 1], sz = [-1, 1]) {
         translate([rcX + sx * (rL1 / 2 - rR), -tF - zak, rcZ + sz * (rH1 / 2 - rR)]) rotate([-90, 0, 0]) cylinder(r = rR, h = zak, $fn = 32);   // mniejsza podstawa
-        translate([rcX + sx * (rL2 / 2 - rR), yL + rR, rcZ + sz * (rH2 / 2 - rR)]) sphere(r = rR, $fn = 32);                                      // lico, krawędzie R
+        translate([rcX + sx * (rL2 / 2 - rR), yL, rcZ + sz * (rH2 / 2 - rR)]) rotate([-90, 0, 0]) cylinder(r = rR, h = rR, $fn = 32);           // lico płaskie (na stół), naroża R
       }
     }
     for (x = rX) translate([x, yL - 1, rcZ]) rotate([-90, 0, 0]) {
