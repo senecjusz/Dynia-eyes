@@ -83,6 +83,7 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 ## Zasady projektowe
 
 - **Preferujemy części drukowane w 3D** zamiast rzemiosła (drut, kołki, gwoździe, klej). Rozwiązania „craftowe” tylko w ostateczności.
+- **Klej jest dozwolony** (użytkownik 25.10): gdy prościej wydrukować w częściach i skleić albo coś przykleić, kleimy. Śruby tam, gdzie coś się obraca albo trzeba to rozkręcać.
 - **Łączenia i osie: zwykłe śruby M3 / M4 / M5 z nakrętkami** (komplet 8–50 mm, dowolna potrzebna długość; przy częstym montażu wkładka gwintowana albo nakrętka w kieszeni zamiast gwintu w plastiku), a nie drukowane czopy ani klej. Otwór ciasny w części nieruchomej, luźny w ruchomej. Szczegóły: `20-analizy/2026-10-17-mocowanie-pileczki-sruby.md`.
 - **Projektuj pod druk 3D od początku (DFAM):** każda część ma co najmniej jedną płaską stronę na stół i nic nie wystaje poza tę płaszczyznę. Bez wiszących płyt, nawisy ≤ 45° albo fazki. Podpory tylko w ostateczności i zawsze opisane w README.
 - Zanim zaczniesz projektować mechanizm, sprawdź, czy są analizy połączeń i mocowań. Jeśli ich brakuje, najpierw ustal je z użytkownikiem.
