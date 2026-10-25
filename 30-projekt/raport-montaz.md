@@ -59,6 +59,10 @@ Wersja końcowa (PIR po prawej, mała rączka). Astra: 0 uwag. Fable: 0 krytyczn
 
 Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Review runda 2”. Werdykt bez zmian: korpus, rączka i próbka do druku, front po przymiarce PIR.
 
+### Próbka gniazda PIR – wynik (26.10)
+
+Wydrukowana i przymierzona przez użytkownika (zdjęcia `70-budowa/zdjecia/2026-10-26-probka-pir/`, opis w `MANIFEST.md`). Kopułka przechodzi przez otwór, płytka przykręcona 2 × M2 bez gięcia, rozstaw 28,5 potwierdzony. **Front można drukować.** Do wyjaśnienia z użytkownikiem: linia i plamka przy krawędzi otworu (rysa czy ślad druku).
+
 ### Założenia do sprawdzenia przez użytkownika
 
 - Ścianka tylna podstawki 18 mm.
