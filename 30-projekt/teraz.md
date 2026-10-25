@@ -116,7 +116,7 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 
 ## Parking
 
-- Duże oko v9, usztywnienie Uchwytu serw: (1) ramki SG/SD – nieaktualne, to był błąd wydruku; (2) łuki/żebra u podstawy 3 ramion – następna iteracja; (3) ścianki łączące wieże („gwiazda”) – **robione teraz** przez projektanta (żebra trójkątne + żebro 6 mm do S2), czeka na kontrolę kolizji i review.
+- Duże oko v9, usztywnienie Uchwytu serw: (1) ramki SG/SD – nieaktualne, to był błąd wydruku; (2) łuki/żebra u podstawy 3 ramion – następna iteracja; (3) ścianki łączące wieże („gwiazda”) – zrobione w v13, po 2 rundach review; cały układ uchwytu do analizy i decyzji: `20-analizy/2026-10-25-uchwyt-serw-do-decyzji.md`.
 - Podstawka: mocowanie PIR HC-SR501 w przedniej ściance nie do końca pasuje – do analizy (projektant podstawki).
 - Podstawka: model w repo opisuje wariant 48 mm/bez dna; zaktualizować do wykonanego (dno 6, ścianki 40, Ø60, bez listew) – zrobione 25.10.
 - Gniazdo/breakout USB-C do zasilania z powerbanku: czy jest w warsztacie.
