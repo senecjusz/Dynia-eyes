@@ -36,7 +36,7 @@ Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źr
 
 **Mechanizm referencyjny:** [The Face maker101 (PCBWay)](https://www.pcbway.com/project/shareproject/The_Face_maker101_c4124445.html) – gałka na kardanie, nieruchome MG90S za okiem, pręty pchające gałkę. Projektant bierze z niego zasadę i przenosi ją na gałkę Ø60 i otwór Ø80, **bez dodatków**. Każdy element spoza referencji wymaga uzasadnienia.
 
-**Stan (v9, 25.10):** gałka na kardanie 5/5; pręty do gałki przez **kardany 2/2 przy gałce** (posiadane, nie drukowane mini-kardany); powieki na drucie z uszkiem 34 mm od osi; drukowane przedłużenia orczyka 25 mm. Pliki: `40-cad/openscad/duze-oko-v2.scad`, `40-cad/3mf/Duze oko v2/`.
+**Wzór (26.10):** adaptacja referencji, synteza `20-analizy/2026-10-25-referencja-face-maker101-synteza.md`: jedna płyta serw, **jeden przegub gałki – kardan 5/5 w środku kuli**, pręty z drutu bez przegubów, zawias powiek na słupkach płyty. Gałka od tyłu głębsza niż w referencji, do ok. 120° od przodu (otwór tylny ok. Ø52, kardan przy ±35° potrzebuje ok. Ø48), żeby przy wychyleniu w otworze nie było widać krawędzi czaszy; jeśli zaczepy prętów się nie zmieszczą – kształt jak w referencji (użytkownik 26.10). Model v9 (kardany 2/2 przy gałce, ramki serw) jest nieaktualny. **Tuba z kołnierzem drukowana z góry w 3 długościach** pokrywających ścianę dyni 28–50 mm (np. 30 / 40 / 50), żeby przy składaniu wybrać pasującą bez czekania na wydruk (użytkownik 26.10).
 
 **Pręty:** drut Ø2 albo drukowane, najprostsze, co działa; bez przyrządów do gięcia, bez własnych drukowanych mini-kardanów na śrubach M2.
 
@@ -48,11 +48,11 @@ Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źr
 - **Okablowanie skrętką Ethernet** (użytkownik ma kabel i zaciskarkę RJ45): jedna skrętka na grupę 3–4 małych oczu po jednej stronie, druga na drugą stronę, trzecia na duże oko. Rozłączne na łącznikach RJ45 gniazdo–gniazdo w dyni.
 - **Podstawka – wymiary wykonane (pomiary użytkownika 25.10, mają pierwszeństwo przed modelem):** szerokość wnętrza **216 mm** (zmierzona przy froncie i z tyłu), wysokość wnętrza 40 mm, dno 9 mm, głębokość całkowita 226 mm, wysokość całkowita 69 mm (z sumy dno + wnętrze + płyta wychodzi 67; bez wpływu na szufladkę), wkręty płyty górnej 20 mm od frontu i od tyłu, otwór w płycie Ø60–61.
 - **Szufladka v2 (użytkownik 25.10, zastępuje szufladkę jednoczęściową):**
-  - korpus i front osobno, skręcane; korpus ≤ 215 mm szerokości;
-  - rączka na froncie na wklejonych śrubach M4 (łeb okrągły, epoksyd, imbus), nakrętki od środka, z dala od powerbanku; kształt niski i nienachalny: ścięty ostrosłup z zaokrąglonymi krawędziami, na środku frontu (użytkownik 25.10);
+  - korpus i front osobno, skręcane (2 × M4 rączki + 2 × M4 × 12 stożkowe przy dolnych rogach, łby równo z licem – użytkownik 26.10); korpus ≤ 215 mm szerokości;
+  - rączka na froncie na wklejonych śrubach M4 (łeb okrągły, epoksyd, imbus), nakrętki od środka, z dala od powerbanku; kształt niski i nienachalny: ścięty ostrosłup z zaokrąglonymi krawędziami, na środku frontu; mała, bo używana raz–dwa razy (użytkownik 25.10);
   - blokada: śruba M4 na środku górnej krawędzi frontu, wkręcana w przednią krawędź płyty górnej (zastępuje M4 w prawym kołnierzu i prawej ściance);
   - PIR we froncie (niżej).
-- Czujnik obecności: **PIR HC-SR501** (kupiony), we froncie szufladki: otwór Ø24 na kopułkę, od tyłu gniazdo 23,5 × 23,5 mm na kołnierz soczewki; płytka oparta kołnierzem (3 mm) o front, dociśnięta mostkiem albo 2 × M2; za płytką ≥ 10 mm miejsca (z przewodem wlutowanym; z wtykami Dupont ok. 20 mm). Potencjometry i zworkę ustawić przed montażem. Wymiary płytki (pomiar ze zdjęć 25.10): 32 × 24 × 1,5, kołnierz 23 × 23 × 3, kopułka 14 mm od płytki, otwory Ø2 w rozstawie ok. 28–29 mm.
+- Czujnik obecności: **PIR HC-SR501** (kupiony), we froncie szufladki po prawej stronie, nad pasem kabla USB-C (użytkownik 25.10): otwór Ø24 na kopułkę, od tyłu gniazdo 23,5 × 23,5 mm na kołnierz soczewki; płytka na 2 podkładkach 4 × 8 wys. 3,5 (szersze i wyższe po przymiarce, użytkownik 26.10), przykręcona 2 × M2 w rozstawie 28,5 (potwierdzone próbką); za płytką ≥ 10 mm miejsca (z przewodem wlutowanym; z wtykami Dupont ok. 20 mm). Potencjometry i zworkę ustawić przed montażem. Wymiary płytki (pomiar ze zdjęć 25.10): 32 × 24 × 1,5, kołnierz 22,97 (suwmiarka) × 3, kopułka 14 mm od płytki, otwory Ø2 w rozstawie ok. 28–29 mm.
 
 ## 6. Software
 
