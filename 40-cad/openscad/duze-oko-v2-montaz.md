@@ -6,51 +6,47 @@ Model: [`duze-oko-v2.scad`](duze-oko-v2.scad) (OpenSCAD, zmienne na górze pliku
 
 | Kolejność | Plik 3MF | Kolor | Orientacja | Podpory | Uwagi |
 |---|---|---|---|---|---|
-| 1 | Przyrzad do giecia drutow | dowolny | płytą na stole | brak | płytka 65,6 × 56 × 6, drukować razem z próbką; gięcie: sekcja niżej |
-| 1 | Probka drutu | dowolny | jak w pliku | brak | blaszka ucha 1:1 jak w gałce (klepsydra, szczelina pod spodem), dźwignia powieki, otwór orczyka S3, ok. 10 min |
+| 1 | Probka drutu | dowolny | płytką na stole | brak | 2 kostki z otworami Ø2,2 i Ø2,3 (jak w gałce): sprawdzasz, w który kołek Ø2 wchodzi z luzem pod klej i czy piasta kardana 2/2 nasuwa się na kołek; ok. 10 min |
 | 2 | Pierscien | pomarańcz | kołnierzem na stole | brak | długość tuby = `scianka` + 2. **Drukować po zmierzeniu dyni** (zmienna `scianka`, domyślnie 40) |
 | 3 | Uchwyt serw | pomarańcz | płytą na stole | brak | ramiona = 84 − `scianka`, więc też po pomiarze dyni |
-| 4 | Galka | **biały** | kołnierzem (tył, z = −8) na stole | **jedna podpora drzewiasta** pod wierzchołkiem stożka w środku (malowanie podpór tylko tam) | podporę wyjąć przez tylny otwór. Ucha drutów (2 blaszki przy krawędzi) bez podpór: dolna krawędź schodzi pod 45° do stołu, pod otworem 4,5 mm płaskiego nawisu (2 mm szerokości) |
-| 5 | Powieka gorna, Powieka dolna | pomarańcz | uszami na stole, czaszą do góry | **drzewiaste pod wewnętrzną stroną czaszy** (tylko od stołu) | ślady zostają po stronie gałki, niewidoczne |
+| 4 | Galka | **biały** | krawędzią (tył, z = −4) na stole | **drzewiaste malowane** pod wierzchołkiem stożka w środku i pod obiema kostkami kardanów | podpory wyjąć przez tylny otwór; otwór kołka w kostce przetrzeć wiertłem Ø2,2 |
+| 5 | Powieka gorna, Powieka dolna | pomarańcz | uszami na stole, czaszą do góry | **drzewiaste pod wewnętrzną stroną czaszy i pod uszkiem drutu** na tylnej krawędzi (tylko od stołu) | ślady zostają po stronie gałki, niewidoczne; otwór uszka przepchnąć drutem Ø1 |
+| 5 | Przedluzenie orczyka x2 | dowolny | pogłębieniem na stole, rowkiem do góry | brak | nakłada się wgłębieniem na fabryczny orczyk serwa powieki; 2 kołki z drutu Ø1 przez otwory orczyka 13,5 i 17,5 mm (końce zagiąć), wkręt orczyka przez środek |
 | 6 | Maskownica | pomarańcz | płasko | brak | wcisk na tubę Ø79; za luźna → klej, za ciasna → papier ścierny |
 
-Po druku rozwiercić (luz drutu Ø1 = 0,2 na stronę): talie klepsydr w uchach gałki Ø1,7, dźwignie powiek Ø1,4, otwory orczyków S1 (17,5) i S2 (13,5) Ø1,4, otwór orczyka S3 (7,5) Ø2,4 (dwa druty).
+Po druku rozwiercić (wiertło albo przekręcany drut):
+- otwory orczyków S1 (17,5) i S2 (13,5) Ø2,5 na pręt Ø2;
+- uszka powiek Ø1,4;
+- otwory na końcu przedłużeń orczyków (25) i kołki (13,5 / 17,5) Ø1,4;
+- serwa powiek: fabryczne otwory orczyka 13,5 i 17,5 na kołki Ø1 (bez rozwiercania, jeśli drut wchodzi).
 
 **Mosty bez podpór** (Bambu mostkuje je bez problemu, sprawdzić po wydruku):
 - Uchwyt: nad oknami serw 13,1 mm i strop okna łba M5 w słupku 10,5 mm. Zwis > 0,3 mm zebrać nożykiem, bo przeszkadza we wsuwaniu korpusu i łba.
-- Gałka: płaski nawis pod uszami 5,5 mm.
 - Powieki: płaskie stopki 0,6 mm pod uszami na stole, czasze na podporach drzewiastych.
 
-## Gięcie drutów na przyrządzie
+## Druty: gięcie ręczne (dokładność ±2 mm, ±10°, poprawiasz doginaniem)
 
-Przyrząd `Przyrzad do giecia drutow.3mf` to płytka 65,6 × 56 × 6 z 4 torami: **S1**, **S2**, **PG** i **PD**. **PG i PD są jednakowe** (2 sztuki tego samego drutu). Przy każdym torze są wyryte długość korpusu i kąt. Model liczy je z tych samych zmiennych co ruch (`LdS1`, `LdS2`, `LdP`, `katS2`, `katP`, `przezUcha`, `przezDzw`, `przezOrcz`, `ogonDrut`).
+Narzędzia: płaskie kombinerki, obcinaczki, marker, klucz imbusowy do wkrętów M3 kardanów 2/2, klej (CA albo epoksyd).
+Materiał:
+- drut sprężynowy Ø1,0, ok. 35 cm;
+- kilka kawałków izolacji po 1,5–2 mm (**koszulki**), zsuniętej z przewodu o żyle ok. 1 mm (AWG 18–20). Koszulka wchodzi na drut z oporem.
 
-Tor ma 3 elementy:
-- **rowek korpusu:** od osi zagięcia A do osi zagięcia B;
-- **koniec B (orczyk), we wszystkich torach:** rowek odcinka „przez” (2,5 mm) pod kątem z toru i rowek ogona (2 mm) równoległy do korpusu, na zewnątrz. Cały Z leży w płaszczyźnie płytki;
-- **koniec A:**
-  - S2: taki sam Z w rowkach, w przeciwną stronę;
-  - S1 (ucho gałki) i PG/PD (dźwignia): **otwór pionowy**. Jego dno leży 4,5 mm (S1) albo 4,0 mm (powieki) pod osią drutu w rowku, czyli odcinek „przez” + ogon 2 mm.
+Długość i zero ustawia kalibracja w ESP32, więc długość cięcia nie musi być dokładna: cięcie = rozstaw + 25 mm.
 
-**Kołki:** przy każdym zagięciu w płaszczyźnie są 2 otwory na śruby M3 (wkręcasz od spodu w Ø2,6, łeb w pogłębieniu, trzpień wystaje nad płytkę):
-- **wewnętrzna** w narożu: drut owija się wokół trzpienia;
-- **oporowa** dalej: zatrzymuje odcinek „przez” pod kątem z toru + 5° przegięcia na sprężynowanie.
+**S1 i S2 (gałka) – kardany 2/2 i pręty Ø2:**
+1. **Kołek.** Utnij 2 kawałki drutu ocynkowanego Ø2 po ok. 16 mm. Każdy wklej na 8 mm w kostkę w gałce (otwór Ø2,2, klej). Druga połowa wystaje w stronę tylnego otworu.
+2. **Kardan na kołek.** Nasuń piastę kardana 2/2 na kołek i dokręć jej wkręt M3. **Ustawienie krzyżaka:** sworzeń krzyżaka bliższy pręta ustaw równolegle do osi serwa (S1 i S2: wzdłuż x). Wtedy pręt w orczyku przechyla się najmniej.
+3. **Pręt.** Drut ocynkowany Ø2 ok. 50 mm. Na jednym końcu zagięcie: noga ok. 6 mm przez otwór orczyka, a koniec nogi za orczykiem zagięty o 90° jako ogon, żeby nie wypadła.
+   - S1: zagięcie ok. 90°, otwór Ø2,5. Sprawdź próbą: noga wchodzi w otwór bez napinania pręta.
+   - S2: zagięcie ok. 105° (pręt S2 schodzi do orczyka pod kątem), otwór Ø2,5. Sprawdź próbą: noga wchodzi w otwór bez napinania pręta.
+4. **Długość.** Serwo na 1500 µs, orczyk w zerze, gałka na wprost. Prosty koniec pręta wsuń w drugą piastę kardana, ustaw gałkę na wprost i dokręć wkręt M3. Resztę wyrówna kalibracja.
+5. **Test ręką.** Przeprowadź gałkę po czterech narożnikach (±35° / ±25°). Nic nie może się zacinać.
 
-Potrzeba 8 śrub M3 × 12–16: S1 2, S2 4, powieki 2 (tory PG i PD są jednakowe, wystarczy obsadzić jeden). Narzędzia: płaskie kombinerki i obcinaczki. Płytkę można złapać brzegiem w imadle.
-
-1. **Ucięcie.** Utnij drut Ø1,0 na długość L + 12 mm: S1 54, S2 55, PG i PD po 57.
-2. **Koniec A.**
-   - **S1, PG, PD:** włóż koniec drutu do dna otworu A. Kombinerkami połóż resztę w rowku korpusu: przy krawędzi otworu powstaje zagięcie w dół.
-   - **S2:** włóż koniec w rowek ogona A, zagnij go w rowek odcinka „przez”, a potem do rowka korpusu.
-3. **Korpus.** Dociśnij drut w rowku na całej długości.
-4. **Koniec B.** Trzymając korpus w rowku, pchnij wolny koniec drutu wokół śruby wewnętrznej aż do oporu o śrubę oporową. Odcinek „przez” odmierz rowkiem (2,5 mm od naroża), tam kombinerkami zagnij ogon w rowek ogona. Nadmiar utnij.
-5. **Sprężynowanie.** Drut sprężynowy odgina się po zwolnieniu. Każde zagięcie przegnij szczękami o ok. 5–10° ponad kształt rowka. **Kontrola:** po wyjęciu drut ma się wkładać z powrotem w cały tor **bez dociskania**. Jeśli nie wchodzi, popraw zagięcie kombinerkami.
-6. **Ogon na końcu A (S1, PG, PD).** Wyjmij drut. Odcinek, który był w otworze, ma 4,5 mm (S1) albo 4,0 mm (powieki). Chwyć go kombinerkami 2 mm od końca i zagnij ogon o 90°, **równolegle do korpusu, na zewnątrz** (kształt Z). Tu kąt jest prosty, bo odcinek A jest prostopadły do korpusu.
-7. **Gnij jak najciaśniej**, krawędzią szczęk przy samym zagięciu. Długości liczą się do osi zagięć i nie uwzględniają promienia, a ±0,5 mm ustawia kalibracja. Kolanka o promieniu wewnętrznym powyżej ok. 0,5 mm skracają odcinek „przez”. Sprawdź wtedy na próbce, czy Z mieści się w otworze, i najwyżej utnij ogon do 1,5 mm.
-
-**Zużycie przyrządu:** po każdym drucie obejrzyj krawędzie rowka (0,7 mm) i dno otworu (1,3 mm pod S1). Jeśli krawędź jest wyrobiona albo dno przebite, wydrukuj przyrząd ponownie (10 min) albo gnij przy wyrobionym miejscu szczękami, a rowek traktuj tylko jako szablon do kontroli.
-
-**S1** ma końce w prostopadłych płaszczyznach: A w dół (z otworu), B w bok (w płaszczyźnie). Tak ma być. Przy montażu wybierasz stronę blaszki ucha, z której wchodzi koniec A.
+**Druty powiek (górna → serwo SG, dolna → serwo SD), każdy osobno:**
+1. Drut Ø1,0, ok. 45 mm. Na jednym końcu L (noga ok. 6 mm), na oko.
+2. Noga L w otwór **uszka na tylnej krawędzi powieki**; na koniec nogi nasuń koszulkę (albo zagnij koniec), żeby L nie wysunęło się z otworu.
+3. Serwo powieki na 1500 µs, przedłużenie na orczyku ramieniem na zewnątrz (górne serwo w górę, dolne w dół), powieka w połowie otwarcia. Zaznacz markerem drut przy otworze przedłużenia (25 mm), zegnij tam L, włóż i zabezpiecz koszulką jak w p. 2.
+4. Kalibracja każdego serwa osobno: zero = powieka zamknięta, kraniec = otwarta. Błąd długości ±2 mm kasuje ustawienie serwa – nic nie doginasz.
 
 ## Części kupne (z warsztatu)
 
@@ -59,27 +55,30 @@ Potrzeba 8 śrub M3 × 12–16: S1 2, S2 4, powieki 2 (tory PG i PD są jednakow
 - M2 × 6 × 2 (osie powiek; do potwierdzenia, zapas: wkręt fabryczny MG90S – raport nocny);
 - M3 × 16 × 3 (kołnierz–ramiona, w plastik Ø2,6);
 - MG90S × 3 z orczykami jednoramiennymi i wkrętami fabrycznymi;
-- drut sprężynowy Ø1,0, ok. 25 cm;
+- drut sprężynowy Ø1,0, ok. 15 cm (druty powiek) i drut ocynkowany Ø2,0, ok. 15 cm (kołki i pręty S1/S2);
+- 2 × kardan 2/2 (z warsztatu);
+- izolacja z przewodu o żyle ok. 1 mm (koszulki: 4 końce L drutów powiek);
+- klej CA albo epoksyd (kołki kardanów);
 - wkręty do drewna 4 × 30–40 × 3.
 
 ## Montaż (na stole)
 
 1. **Serwa na zero.** Podłącz do sterownika i ustaw 1500 µs. Orczyki zakładaj dopiero w kroku 7.
-2. **Powieki w pierścieniu.** Powieka górna wewnątrz, dolna na zewnątrz, ucha na osi x. M2 × 6 od środka tuby (łeb od strony gałki) przez oba ucha w podkładkę. **Wkręcić do dna otworu** (ślepy, 2,4 mm): luz osiowy ustawia się sam, nie dociągać dalej. Do dźwigni (lewa strona) założyć druty powiek (Z, rysunek 3): korpus górnego po zewnętrznej stronie dźwigni, dolnego od strony gałki. Powieki zostawić **zamknięte** do kroku 6, bo otwarte zahaczają o gałkę przy nasuwaniu.
+2. **Powieki w pierścieniu.** Powieka górna wewnątrz, dolna na zewnątrz, ucha na osi x. M2 × 6 od środka tuby (łeb od strony gałki) przez oba ucha w podkładkę. **Wkręcić do dna otworu** (ślepy, 2,4 mm): luz osiowy ustawia się sam, nie dociągać dalej. Druty powiek zakładasz w kroku 7 (uszka na tylnej krawędzi powiek, sekcja „Druty”). Powieki zostawić **zamknięte** do kroku 6, bo otwarte zahaczają o gałkę przy nasuwaniu.
 3. **Kardan.** Wyjąć wkręty M4 z obu piast i wkręcić je z powrotem po włożeniu czopów:
    - piasta przednia: M5 × 12 w otwór na pełne 7 mm;
    - piasta tylna: M5 × 16 wsunąć później (krok 5).
-4. **Gałka.** M5 × 12 wsunąć w przednią piastę na ok. 6 mm (nie do dna), łeb bokiem w rowek T od dołu gałki, aż oprze się o koniec rowka. Docisnąć piastę do wierzchołka stożka, tak żeby łeb oparł się o podłogę 5,5 mm (trzpień wejdzie w piastę na 6,5 mm). **Trzymając docisk**, dokręcić wkręt M4 piasty kluczem L 2 mm. Podłoga jest wtedy ściśnięta między piastą a łbem, a tarcie blokuje obrót gałki na czopie: krótkie ramię w otworze M4 (od dołu, oś pionowa w gałce), długie wychodzi tylnym otworem. Druty S1 i S2 (Z, rysunki 1–2) włożyć w klepsydry uszu (blaszki w gałce).
+4. **Gałka.** M5 × 12 wsunąć w przednią piastę na ok. 6 mm (nie do dna), łeb bokiem w rowek T od dołu gałki, aż oprze się o koniec rowka. Docisnąć piastę do wierzchołka stożka, tak żeby łeb oparł się o podłogę 5,5 mm (trzpień wejdzie w piastę na 6,5 mm). **Trzymając docisk**, dokręcić wkręt M4 piasty kluczem L 2 mm. Podłoga jest wtedy ściśnięta między piastą a łbem, a tarcie blokuje obrót gałki na czopie: krótkie ramię w otworze M4 (od dołu, oś pionowa w gałce), długie wychodzi tylnym otworem. Kołki i kardany 2/2 w gałce (sekcja „Druty”, kroki 1–2), zanim gałka trafi na uchwyt.
 5. **Gałka na uchwyt.** Tylną piastę postawić na słupku (oś sworznia poziomo). M5 × 16 wsunąć łbem w okno słupka i trzpieniem w górę do piasty. Piastę docisnąć do słupka i dokręcić jej M4 z boku (od −x, pod krawędzią gałki; gałkę odchylić w bok).
 6. **Pierścień na uchwyt.** Nasunąć pierścień od przodu na gałkę (powieki zamknięte – otwarte zahaczą o gałkę), ramiona trafiają w otwory kołnierza. 3 × M3 × 16 od przodu kołnierza.
-7. **Serwa w ramkach.** S1 (prawa, wałek w −x), S2 (prawa wyżej, wałek w −x), S3 (lewa, wałek w górę). Wkręty fabryczne w ucha. Na orczykach przy 1500 µs założyć druty i nasadzić orczyk tak, żeby był:
+7. **Serwa w ramkach.** S1 (prawa, wałek w −x), S2 (prawa wyżej, wałek w −x), SG i SD (lewa, wałki w +x, górne i dolne). Wkręty fabryczne w ucha. Na orczykach przy 1500 µs założyć druty i nasadzić orczyk tak, żeby był:
    - S1: ramię w górę, obrócone o 6° **do tyłu** (od gałki);
    - S2: jak S1;
-   - S3: ramię w +x (do środka) przy powiekach **otwartych do połowy** (25,75°). Zamknięcie wypada przy ok. +23°, pełne otwarcie przy ok. −25°.
+   - SG / SD: przedłużenie ramieniem na zewnątrz (SG w górę, SD w dół) przy powiece otwartej do połowy (25,75°). Zamknięcie przy ok. +36°, pełne otwarcie przy ok. −31°.
    Kąty wokół zera (solver, druty o stałej długości):
    - S1: −42…+38°;
    - S2: −46…+40°;
-   - S3: zamknięte +23°, otwarte −25°.
+   - SG / SD: zamknięte +36°, otwarte −31° (przy drucie ±2 mm: do +42° / −38°).
 8. **Kalibracja na stronie w telefonie.** Najpierw zero każdej osi (gałka na wprost, powieki zamknięte = krawędzie na środku), potem krańce: ±35° / ±25°, powieki do 50°. Sprzężenie osi (S1 zmienia się do ok. 10° przy pełnym góra–dół): tabela kątów `node ../narzedzia/duze-oko-kinematyka.js <katalog_stl>/parametry.json siatka` (plik `parametry.json` tworzy `bash eksport.sh <katalog_stl>`).
 
 ## W dyni

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 960" font-family="Arial, sans-serif">
+<!-- Duże oko v2: połączenia cięgien do złożenia kombinerkami (koncepcja do review, 24.10). Skala orientacyjna ~6 px/mm. -->
+<style>
+  .pl{fill:#f3a24a;stroke:#b5651d;stroke-width:1.5}
+  .pd{fill:#9ecbf0;stroke:#2b6ca3;stroke-width:1.5}
+  .sv{fill:#444;stroke:#222}
+  .d{fill:none;stroke:#111;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+  .k{fill:none;stroke:#c0102a;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+  .w{fill:none;stroke:#2a8a2a;stroke-width:2;stroke-dasharray:6 4}
+  .m{stroke:#c0102a;stroke-width:1.5}
+  .h{font-size:22px;font-weight:bold;fill:#222}
+  .t{font-size:15px;fill:#222}
+  .s{font-size:13px;fill:#555}
+  .r{font-size:15px;fill:#c0102a}
+</style>
+<rect width="1200" height="960" fill="#fff"/>
+
+<!-- ============ A: ucho gałki ============ -->
+<g transform="translate(30,40)">
+  <text class="h">A. Ucho w gałce (S1, S2) – widok z boku</text>
+  <!-- skorupa gałki (fragment) -->
+  <path d="M0 330 L250 330" stroke="#b5651d" stroke-width="2"/>
+  <text x="0" y="350" class="s">rant gałki (stół wydruku)</text>
+  <!-- blaszka ucha 2 mm grubości (widziana od boku: pionowy pasek) -->
+  <rect x="150" y="150" width="12" height="180" class="pl"/>
+  <text x="168" y="320" class="s">blaszka ucha 2 mm</text>
+  <!-- klepsydra -->
+  <path d="M150 196 L156 202 L150 208 Z M162 196 L156 202 L162 208 Z" fill="#fff" stroke="#b5651d"/>
+  <!-- drut: od serwa z dołu, zagięcie L, noga przez otwór, koniec zagięty -->
+  <path class="d" d="M100 420 L100 202 L230 202"/>
+  <path class="k" d="M230 202 L230 250"/>
+  <text x="20" y="440" class="t">↓ do orczyka serwa (~42 mm)</text>
+  <text x="105" y="185" class="t">1. zagięcie L</text>
+  <text x="105" y="168" class="s">(miejsce ±2 mm)</text>
+  <line x1="162" y1="225" x2="230" y2="225" class="m"/>
+  <text x="168" y="242" class="r">≥ 5 mm</text>
+  <text x="236" y="235" class="r">2. koniec zagięty</text>
+  <text x="236" y="253" class="r">gdziekolwiek</text>
+  <text x="236" y="271" class="r">(nie wypadnie)</text>
+  <text x="0" y="480" class="t">Klepsydra w otworze pozwala nodze przechylić się ±45°,</text>
+  <text x="0" y="500" class="t">noga obraca się w otworze → gałka może iść w obie osie.</text>
+  <text x="0" y="520" class="t">Ucho bez zmian; dłuższa tylko noga L (było 2,5 mm).</text>
+</g>
+
+<!-- ============ B: orczyk serwa ============ -->
+<g transform="translate(620,40)">
+  <text class="h">B. Orczyk serwa – widok z góry i z boku</text>
+  <!-- z góry -->
+  <circle cx="60" cy="140" r="22" class="sv"/>
+  <rect x="60" y="130" width="160" height="20" rx="10" fill="#eee" stroke="#555"/>
+  <circle cx="200" cy="140" r="4" fill="#fff" stroke="#555"/>
+  <text x="20" y="190" class="s">MG90S, fabryczny orczyk; otwór ~Ø1,3–1,5 (do zmierzenia)</text>
+  <!-- z boku -->
+  <rect x="60" y="270" width="160" height="10" fill="#eee" stroke="#555"/>
+  <text x="20" y="300" class="s">orczyk z boku (~2 mm)</text>
+  <path class="d" d="M200 120 L200 230 L200 275" />
+  <path class="d" d="M200 120 L200 60"/>
+  <path class="k" d="M200 290 L200 300 L250 300"/>
+  <path class="d" d="M200 230 L200 290"/>
+  <text x="210" y="80" class="t">↑ do ucha gałki</text>
+  <text x="258" y="305" class="r">koniec zagięty pod orczykiem,</text>
+  <text x="258" y="323" class="r">≥ 5 mm, w dowolnym miejscu</text>
+  <text x="0" y="380" class="t">Jak w RC: „L-bend + keeper”. Drut odchyla się od</text>
+  <text x="0" y="400" class="t">płaszczyzny orczyka tylko o 6–9°, luz otworu to przyjmuje.</text>
+  <text x="0" y="420" class="t">Długość ±2 mm → zero serwa przesunięte o 6–9°,</text>
+  <text x="0" y="440" class="t">wyrównuje to kalibracja na stronie ESP32.</text>
+</g>
+
+<!-- ============ C: łącznik powieki ============ -->
+<g transform="translate(30,610)">
+  <text class="h">C. Powieki – drukowany łącznik o stałej długości (P-A)</text>
+  <!-- z góry, skala 6 px/mm: 44,6 mm = 268 px -->
+  <rect x="40" y="70" width="268" height="24" rx="12" class="pd"/>
+  <circle cx="52" cy="82" r="4.2" fill="#fff" stroke="#2b6ca3"/>
+  <circle cx="296" cy="82" r="4.2" fill="#fff" stroke="#2b6ca3"/>
+  <line x1="52" y1="55" x2="296" y2="55" class="m"/><text x="130" y="48" class="r">44,6 mm – daje wydruk (±0,2)</text>
+  <text x="40" y="118" class="s">łącznik 4 × 3 mm, oczka Ø5 (w modelu ~Ø6), otwór Ø1,4; drukowany na płasko</text>
+  <!-- z boku: dźwignia | łącznik | sworzeń -->
+  <rect x="20" y="170" width="70" height="14" class="pl"/><text x="20" y="165" class="s">dźwignia powieki (r 7)</text>
+  <rect x="40" y="184" width="268" height="12" class="pd"/>
+  <rect x="270" y="196" width="80" height="10" fill="#eee" stroke="#555"/><text x="290" y="222" class="s">orczyk S3</text>
+  <path class="k" d="M52 150 L52 158 L80 158"/><path class="d" d="M52 158 L52 210"/><path class="k" d="M52 210 L52 218 L24 218"/>
+  <path class="k" d="M296 165 L296 172 L324 172"/><path class="d" d="M296 172 L296 214"/><path class="k" d="M296 214 L296 222 L268 222"/>
+  <text x="360" y="170" class="t">Sworzeń = kawałek drutu Ø1,0:</text>
+  <text x="360" y="190" class="t">przełożyć, oba końce zagiąć na oko.</text>
+  <text x="360" y="210" class="t">Nic nie mierzysz – długość jest z drukarki.</text>
+  <text x="360" y="240" class="s">Dlaczego nie drut: obie powieki na jednym serwie,</text>
+  <text x="360" y="258" class="s">1 mm różnicy = 8,4° rozjazdu powiek; kalibracja tego nie wyrówna.</text>
+</g>
+
+<!-- ============ D: gięcie na oko ============ -->
+<g transform="translate(620,610)">
+  <text class="h">D. Drut S1/S2 – jak giąć</text>
+  <path class="d" d="M20 120 L470 120"/>
+  <rect x="380" y="100" width="40" height="40" fill="#2a8a2a" opacity="0.2"/>
+  <line x1="400" y1="95" x2="400" y2="145" stroke="#2a8a2a" stroke-width="3"/>
+  <text x="340" y="88" class="t" fill="#2a8a2a">kreska markerem z rysunku 1:1</text>
+  <text x="372" y="165" class="r">±2 mm wystarczy</text>
+  <path class="d" d="M20 220 L400 220 L400 280"/>
+  <path class="k" d="M400 280 L400 285"/>
+  <text x="20" y="250" class="t">1. L kombinerkami na kresce (90° ±10°).</text>
+  <text x="20" y="275" class="t">2. Noga przez ucho / orczyk.</text>
+  <text x="20" y="300" class="t">3. Koniec zagiąć za otworem.</text>
+  <text x="20" y="325" class="t">4. ESP32: ustawić zero, aż gałka patrzy prosto.</text>
+</g>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" font-family="Arial, sans-serif">
+<!-- Duże oko v2: druty gięte ręcznie, koncepcja v2 (24.10). Schemat, nie skala 1:1. -->
+<style>
+  .pl{fill:#f3a24a;stroke:#b5651d;stroke-width:1.5}
+  .sv{fill:#eee;stroke:#555;stroke-width:1.5}
+  .d{fill:none;stroke:#111;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+  .g{fill:none;stroke:#999;stroke-width:4;stroke-dasharray:6 5;stroke-linecap:round;stroke-linejoin:round}
+  .m{stroke:#c0102a;stroke-width:1.5;fill:none}
+  .h{font-size:22px;font-weight:bold;fill:#222}
+  .t{font-size:16px;fill:#222}
+  .s{font-size:14px;fill:#555}
+  .r{font-size:16px;fill:#c0102a}
+</style>
+<rect width="1200" height="1000" fill="#fff"/>
+
+<!-- ===== 1. Cały drut ===== -->
+<g transform="translate(30,40)">
+  <text class="h">1. Drut S1 / S2 / powieki – trzy miejsca gięcia</text>
+  <rect x="20" y="70" width="14" height="70" class="sv"/><text x="0" y="165" class="s">orczyk serwa</text>
+  <rect x="1046" y="70" width="14" height="70" class="pl"/><text x="1000" y="165" class="s">ucho gałki / dźwignia</text>
+  <!-- Z przy orczyku, V w środku, Z przy uchu -->
+  <path class="d" d="M5 80 L40 80 L40 105 L470 105 L510 70 L550 105 L1030 105 L1030 125 L1075 125"/>
+  <text x="5" y="62" class="r">Z</text><text x="1060" y="112" class="r">Z</text><text x="500" y="58" class="r">V</text>
+  <text x="200" y="200" class="t">Z = koniec, który trzyma drut w otworze (środek 5 mm, ogon ≥ 5 mm).</text>
+  <text x="200" y="224" class="t">V = przegięcie do poprawiania długości (ramiona po 5 mm).</text>
+  <text x="200" y="248" class="s">S1 i powieki: końcówki Z przy obu końcach są do siebie prostopadłe (drut „skręcony” o 90°); S2: równoległe.</text>
+</g>
+
+<!-- ===== 2. Z w otworze ===== -->
+<g transform="translate(30,330)">
+  <text class="h">2. Koniec Z w uchu (widok z boku)</text>
+  <rect x="160" y="60" width="12" height="190" class="pl"/>
+  <text x="178" y="245" class="s">ucho 2 mm</text>
+  <path class="d" d="M60 300 L130 150 L130 150 L215 150 L215 80"/>
+  <line x1="130" y1="135" x2="215" y2="135" class="m"/><text x="140" y="128" class="r">5 mm ± 2</text>
+  <line x1="230" y1="150" x2="230" y2="80" class="m"/><text x="238" y="120" class="r">≥ 5 mm</text>
+  <text x="0" y="330" class="t">Środek Z dłuższy niż ucho → drut ma ~3 mm luzu,</text>
+  <text x="0" y="352" class="t">wkładasz go, obracając przez otwór. Gniesz na stole.</text>
+  <text x="0" y="374" class="s">Kąt zagięcia przy korpusie: S1 ~90°, S2 ~105° – sprawdzasz próbą (p. 4).</text>
+</g>
+
+<!-- ===== 3. V do poprawiania długości ===== -->
+<g transform="translate(620,330)">
+  <text class="h">3. V – poprawianie długości</text>
+  <g transform="translate(0,60)">
+    <path class="d" d="M0 80 L120 80 L155 45 L190 80 L310 80"/>
+    <text x="330" y="80" class="t">45° – tak gniesz</text>
+  </g>
+  <g transform="translate(0,150)">
+    <path class="d" d="M0 80 L130 80 L155 37 L180 80 L310 80"/>
+    <text x="330" y="80" class="t">ściśnij → krótszy do 2 mm</text>
+  </g>
+  <g transform="translate(0,240)">
+    <path class="d" d="M0 80 L113 80 L155 56 L197 80 L310 80"/>
+    <text x="330" y="80" class="t">rozegnij → dłuższy do 1,5 mm</text>
+  </g>
+  <text x="0" y="370" class="s">V wychodzi ok. 4 mm w bok – miejsce na nie będzie w modelu.</text>
+</g>
+
+<!-- ===== 4. Kolejność ===== -->
+<g transform="translate(30,760)">
+  <text class="h">4. Jak to złożyć</text>
+  <text x="0" y="35" class="t">1. Zegnij Z na jednym końcu. Włóż w orczyk (orczyk zdjęty z serwa).</text>
+  <text x="0" y="60" class="t">2. Przyłóż drut do ucha, zaznacz markerem drugie Z, zegnij, włóż. Zrób V w środku.</text>
+  <text x="0" y="85" class="t">3. Gałka na wprost: drut nie może ciągnąć w bok – jeśli ciągnie, dogiąć kąt przy Z.</text>
+  <text x="0" y="110" class="t">4. Długość nie pasuje → ściśnij albo rozegnij V. Resztę ustawia zero serwa w ESP32.</text>
+  <text x="0" y="135" class="t">5. Powieki: zero S3 tak, żeby zamknęła się jedna; V drugiego drutu, aż zamkną się obie.</text>
+  <text x="0" y="170" class="s">Dokładność gięcia: ±2 mm, ±10°. Wszystko poprawiasz doginaniem – jak w modelarstwie RC.</text>
+</g>
+</svg>

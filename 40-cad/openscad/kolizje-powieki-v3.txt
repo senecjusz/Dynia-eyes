@@ -1,0 +1,66 @@
+kolizje powiek v3: krok 10°, θ 9 × φ 7, ψ 9 (każda powieka osobno); orczyk powieki α -31.2…35.9°; drut powieki 36.70 mm; 389 s
+para | najmniejszy odstęp powierzchni [mm] (≥ 3 = „> 3”) | położenie
+drut SG – powieka górna (bez 1,5 mm przy uszku) | -0.89 | ψg 0 @ -0.0,33.7,5.9
+drut SD – powieka dolna (bez 1,5 mm przy uszku) | -0.89 | ψd 12.875 @ 0.0,-34.7,-1.7
+powieka górna – lebM2 | 0.18 | ψg 6.438 @ -31.4,2.0,-0.5
+powieka górna – powieka dolna | 0.20 | ψg 0, ψd 0 @ -33.8,0.3,-1.2
+powieka dolna – pierscien | 0.20 | ψd 0 @ -35.5,-3.4,2.9
+drut SG – pierscien | 1.07 | ψg 12.875
+drut SD – pierscien | 1.07 | ψd 12.875
+powieka górna – pierscien | 1.24 | ψg 12.875
+powieka dolna – lebM2 | 1.90 | ψd 51.5
+orczyk SG – uchwyt | 2.62 | ψg 51.5
+orczyk SD – uchwyt | 2.62 | ψd 51.5
+orczyk SG – pierscien | > 3 | ψg 0
+powieka górna – uchwyt | > 3 | ψg 0
+drut SG – uchwyt | > 3 | ψg 0
+powieka górna – S1 | > 3 | ψg 0
+drut SG – S1 | > 3 | ψg 0
+orczyk SG – S1 | > 3 | ψg 0
+powieka górna – S2 | > 3 | ψg 0
+drut SG – S2 | > 3 | ψg 0
+orczyk SG – S2 | > 3 | ψg 0
+powieka górna – SG | > 3 | ψg 0
+drut SG – SG | > 3 | ψg 0
+powieka górna – SD | > 3 | ψg 0
+drut SG – SD | > 3 | ψg 0
+orczyk SG – SD | > 3 | ψg 0
+drut SG – lebM2 | > 3 | ψg 0
+orczyk SG – lebM2 | > 3 | ψg 0
+powieka górna – piastaTyl | > 3 | ψg 0
+drut SG – piastaTyl | > 3 | ψg 0
+orczyk SG – piastaTyl | > 3 | ψg 0
+drut SG – powieka dolna | > 3 | ψg 0, ψd 0
+drut SD – powieka górna | > 3 | ψg 0, ψd 0
+drut SG – drut SD | > 3 | ψg 0, ψd 0
+orczyk SD – pierscien | > 3 | ψd 0
+powieka dolna – uchwyt | > 3 | ψd 0
+drut SD – uchwyt | > 3 | ψd 0
+powieka dolna – S1 | > 3 | ψd 0
+drut SD – S1 | > 3 | ψd 0
+orczyk SD – S1 | > 3 | ψd 0
+powieka dolna – S2 | > 3 | ψd 0
+drut SD – S2 | > 3 | ψd 0
+orczyk SD – S2 | > 3 | ψd 0
+powieka dolna – SG | > 3 | ψd 0
+drut SD – SG | > 3 | ψd 0
+orczyk SD – SG | > 3 | ψd 0
+powieka dolna – SD | > 3 | ψd 0
+drut SD – SD | > 3 | ψd 0
+drut SD – lebM2 | > 3 | ψd 0
+orczyk SD – lebM2 | > 3 | ψd 0
+powieka dolna – piastaTyl | > 3 | ψd 0
+drut SD – piastaTyl | > 3 | ψd 0
+orczyk SD – piastaTyl | > 3 | ψd 0
+
+## część gałki (pierwszy przebieg, przed przesunięciem ramienia uchwytu 270° → 285°)
+gałka – powieka górna | 1.40 | θ -20, φ 20, ψ 51.5
+druty S1/S2 – powieka górna | 2.82 | θ 35, φ 0, ψ 51.5
+gałka – drut SG | 2.91 | θ 35, φ 25, ψ 0
+gałka – drut SD | 2.91 | θ 35, φ -20, ψ 0
+gałka – powieka dolna | > 3 | θ -35, φ -25, ψ 0
+druty S1/S2 – powieka dolna | > 3 | θ -35, φ -25, ψ 0
+druty S1/S2 – drut SG | > 3 | θ -35, φ -25, ψ 0
+druty S1/S2 – drut SD | > 3 | θ -35, φ -25, ψ 0
+druty S1/S2 – orczyki SG/SD | > 3 | θ -35, φ -25, ψ 0
+orczyki S1/S2 – druty SG/SD | > 3 | θ -35, φ -25, ψ 0

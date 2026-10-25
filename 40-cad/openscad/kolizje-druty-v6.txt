@@ -1,0 +1,99 @@
+kolizje drutów v2: krok 10°, θ 9 × φ 7, ψ 7; środek Z 3.5 / 6.5, ogon 5, V ramiona 5 (30°/60°), koszulka Ø1.6 × 1.5; 440 s
+para | najmniejszy odstęp powierzchni [mm] (≥ 3 = „> 3”, ujemny = wnikanie) | wariant
+drut PG – drut PD (bez otworu orczyka) [V y, ogon PG w górę] | -1.05 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0.3, V y 30°, ogon PG w górę @ -35.4,-1.6,-40.1
+drut PG – drut PD (bez otworu orczyka) [V mx, ogon PG w górę] | -1.05 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0.3, V mx 30°, ogon PG w górę @ -35.4,-1.6,-40.1
+drut PG – orczyk S3 (bez otworu) [V y] ogon w górę | -0.33 | ψ 34.3, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w górę @ -34.4,-0.7,-42.8
+drut PG – orczyk S3 (bez otworu) [V mx] ogon w górę | -0.33 | ψ 34.3, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w górę @ -34.4,-0.7,-42.8
+drut S1 – własny orczyk (bez otworu) | -0.03 | θ -10, φ 25, Z 6.5, luz orcz 0 @ 20.0,-1.1,-40.8
+drut PD – własna powieka (bez otworu dźwigni i 5 mm korpusu przy niej) [V y] | 0.00 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0.3, V y 30°, ogon PG w dół @ -34.0,-6.3,3.9
+drut PD – własna powieka (bez otworu dźwigni i 5 mm korpusu przy niej) [V mx] | 0.00 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0.3, V mx 30°, ogon PG w dół @ -34.0,-6.3,3.9
+drut PG – własna powieka (bez otworu dźwigni i 5 mm korpusu przy niej) [V y] | 0.01 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0.3 PD 0, V y 30°, ogon PG w dół @ -32.3,6.3,3.8
+drut PG – własna powieka (bez otworu dźwigni i 5 mm korpusu przy niej) [V mx] | 0.01 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0.3 PD 0, V mx 30°, ogon PG w dół @ -32.3,6.3,3.8
+drut PG – orczyk S3 (bez otworu) [V y] ogon w dół | 0.15 | ψ 51.5, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w dół @ -35.1,-1.1,-48.2
+drut PD – orczyk S3 (bez otworu) [V y] | 0.15 | ψ 51.5, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w górę @ -33.8,1.1,-48.2
+drut PG – orczyk S3 (bez otworu) [V mx] ogon w dół | 0.15 | ψ 51.5, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w dół @ -35.1,-1.1,-48.2
+drut PD – orczyk S3 (bez otworu) [V mx] | 0.15 | ψ 51.5, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w górę @ -33.8,1.1,-48.2
+drut S2 – własny orczyk (bez otworu) | 0.21 | θ -35, φ -25, Z 3.5, luz orcz 1 @ 12.2,19.7,-37.6
+drut S1 – gałka (korpus od brzegu oczka) | 0.23 | θ 35, φ -25, Z 6.5, luz orcz 0 @ 22.3,-2.8,-5.8
+drut PD – pierscien [V y] | 0.44 | ψ 25.8, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w górę
+drut PD – pierscien [V mx] | 0.44 | ψ 25.8, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w górę
+drut PG – uchwyt [V mx] ogon w dół | 0.83 | ψ 0.0, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0, V mx 60°, ogon PG w dół
+drut PG – uchwyt [V mx] ogon w górę | 0.83 | ψ 0.0, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0, V mx 60°, ogon PG w górę
+oczko S1 w szczelinie widełek [mm zapasu na stronę] | 0.86 | θ 35, φ -25, Z 3.5, luz orcz 0
+drut PG – druga powieka [V y] | 0.98 | ψ 0.0, Z 6.5, luz orcz 0, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w górę
+drut PG – druga powieka [V mx] | 0.98 | ψ 0.0, Z 6.5, luz orcz 0, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w górę
+drut S2 – gałka (korpus od brzegu oczka) | 1.26 | θ 35, φ 25, Z 6.5, luz orcz 1
+oczko S2 w szczelinie widełek [mm zapasu na stronę] | 1.28 | θ 35, φ 25, Z 6.5, luz orcz 1
+drut PG – pierscien [V y] ogon w dół | 1.75 | ψ 0.0, Z 6.5, luz orcz 0, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w dół
+drut PG – pierscien [V y] ogon w górę | 1.75 | ψ 0.0, Z 6.5, luz orcz 0, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w górę
+drut PG – pierscien [V mx] ogon w dół | 1.75 | ψ 0.0, Z 6.5, luz orcz 0, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w dół
+drut PG – pierscien [V mx] ogon w górę | 1.75 | ψ 0.0, Z 6.5, luz orcz 0, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w górę
+drut PG – S3 [V y] ogon w dół | 1.86 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – S3 [V mx] ogon w dół | 1.86 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PG – sfera gałki R30 [V y] | 1.91 | ψ 8.6, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – sfera gałki R30 [V mx] | 1.91 | ψ 8.6, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PG – drut PD (bez otworu orczyka) [V y, ogon PG w dół] | 1.92 | ψ 25.8, Z 3.5, luz orcz 1, luz koszulki PG 0 PD 0.3, V y 30°, ogon PG w dół
+drut PG – drut PD (bez otworu orczyka) [V mx, ogon PG w dół] | 1.92 | ψ 25.8, Z 3.5, luz orcz 1, luz koszulki PG 0 PD 0.3, V mx 30°, ogon PG w dół
+drut PG – S3 [V y] ogon w górę | 1.98 | ψ 51.5, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w górę
+drut PG – S3 [V mx] ogon w górę | 1.98 | ψ 51.5, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w górę
+drut PD – druga powieka [V y] | 2.21 | ψ 25.8, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – druga powieka [V mx] | 2.21 | ψ 25.8, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut S1 – S2 | 2.76 | θ 0, φ 25, Z 6.5, luz orcz 0
+drut PD – S3 [V y] | 2.89 | ψ 51.5, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V y 60°, ogon PG w górę
+drut PD – S3 [V mx] | 2.89 | ψ 51.5, Z 6.5, luz orcz 1, luz koszulki PG 0.3 PD 0.3, V mx 60°, ogon PG w górę
+drut PG – uchwyt [V y] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – S1 [V y] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – S2 [V y] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – lebM2 [V y] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – piastaTyl [V y] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – uchwyt [V y] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – S1 [V y] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – S2 [V y] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – lebM2 [V y] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – piastaTyl [V y] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PG – uchwyt [V y] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w górę
+drut PG – S1 [V y] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w górę
+drut PG – S2 [V y] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w górę
+drut PG – lebM2 [V y] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w górę
+drut PG – piastaTyl [V y] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w górę
+drut PG – S1 [V mx] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PG – S2 [V mx] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PG – lebM2 [V mx] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PG – piastaTyl [V mx] ogon w dół | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PD – uchwyt [V mx] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PD – S1 [V mx] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PD – S2 [V mx] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PD – lebM2 [V mx] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PD – piastaTyl [V mx] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+drut PG – S1 [V mx] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w górę
+drut PG – S2 [V mx] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w górę
+drut PG – lebM2 [V mx] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w górę
+drut PG – piastaTyl [V mx] ogon w górę | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w górę
+drut S1 – pierscien | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – uchwyt | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – S1 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – S3 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – piastaTyl | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – lebM2 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – powieka górna (zamkn.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – powieka górna (otw.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – powieka dolna (zamkn.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – powieka dolna (otw.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – orczyk S2 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – pierscien | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – uchwyt | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – S1 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – S2 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – S3 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – piastaTyl | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – lebM2 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – powieka górna (zamkn.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – powieka górna (otw.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – powieka dolna (zamkn.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – powieka dolna (otw.) | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S2 – orczyk S1 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut S1 – drut S2 | > 3 | θ -35, φ -25, Z 3.5, luz orcz 0
+drut PD – sfera gałki R30 [V y] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V y 30°, ogon PG w dół
+drut PD – sfera gałki R30 [V mx] | > 3 | ψ 0.0, Z 3.5, luz orcz 0, luz koszulki PG 0 PD 0, V mx 30°, ogon PG w dół
+przechył oczka S1 [° zapasu do 53.2°] | > 3 | θ 35, φ -25, Z 6.5, luz orcz 1
+przechył oczka S2 [° zapasu do 53.2°] | > 3 | θ 35, φ 25, Z 3.5, luz orcz 0
