@@ -201,7 +201,7 @@ Wynik: podstawka 252 × 226 × 67 (użytkownik podał 69 wysokości – różnic
 | Część | Wymiar (druk) | Drukarka | Na stół | Uwagi |
 |---|---|---|---|---|
 | Korpus | 215,0 × 102 × 32 | X1C | dnem | ścianki 2,0; luz w podstawce **0,5 na stronę**; kieszeń PIR 26 z przodu, przegroda z wycięciem 12 × 8 nad listwą PIR, komora powerbanku, słupki, wycięcie kablowe na osi gniazda zasilania kasety; okno PIR 36 szer. otwarte do górnej krawędzi, otwory M4/M3 w przedniej ścianie; fazki 2 × 45° na tylnych narożach |
-| Front | 244 × 65 × 4 (+ słupki M2 2,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 słupki M2; otwory: 2 × M4 rączki, 2 × M3, blokada Ø5 |
+| Front | 244 × 65 × 4 (+ słupki M2 2,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; PIR po prawej (oś 40 od prawego boku korpusu, 58,5 od prawej krawędzi podstawki); otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 słupki M2; otwory: 2 × M4 rączki, 2 × M3, blokada Ø5 |
 | Rączka | 46 × 16 × 10 | A1 mini albo X1C | licem (większą podstawą) | ścięty ostrosłup z krawędziami R2 (kształt i wielkość: decyzje użytkownika – niska, nienachalna, mała, używana raz–dwa razy): przy froncie 40 × 10, lico 46 × 16, wysięg 10; gniazda łbów M4 Ø8 × 4,5 od lica (epoksyd), rozstaw 26; na środku frontu |
 | Próbka gniazda PIR | 60 × 40 × 6,5 | A1 mini albo X1C | licem | wycinek frontu: otwór kopułki, gniazdo kołnierza, 2 słupki M2 – **drukować i przymierzyć PIR przed frontem** |
 
@@ -226,7 +226,7 @@ Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X
 1. PIR we front: potencjometry i zworkę ustawić wcześniej; kołnierz w gniazdo od tyłu, 2 × M2 × 6 przez otwory płytki w słupki, bez siły.
 2. Rączka: łby M4 wkleić epoksydem w gniazda od lica, gwintem w stronę frontu; po związaniu kleju.
 3. Front na korpus: śruby rączki przez front i przednią ścianę korpusu, podkładki i nakrętki M4 od środka (kieszeń PIR, klucz 7); przy dolnych rogach 2 × M3 × 10 z nakrętkami. Przy dokręcaniu przytrzymać łeb M4 imbusem od lica rączki.
-4. Przewód PIR (wlutowany albo na Dupontach) przez wycięcie w przegrodzie, nad powerbankiem (6 mm pod płytą) do wycięcia w tylnej ściance, dalej do ESP32 w kasecie: ok. 350 mm z zapasem na wysunięcie (Fable W3, Astra W3). Kabel USB-C od powerbanku do gniazda kasety: ≥ 100 mm wolnego kabla przy zamkniętej szufladce. Zapas układać po lewej od kasety (x 18–63). **Próba:** kilka wysunięć 0…105 przy założonej płycie, bez napinania wtyków.
+4. Przewód PIR (wlutowany albo na Dupontach) przez wycięcie w przegrodzie i prosto do tyłu pasem wtyku USB-C (prawa strona korpusu, obok powerbanku) do wycięcia w tylnej ściance, dalej do ESP32 w kasecie: ok. 350 mm z zapasem na wysunięcie (Fable W3, Astra W3). Kabel USB-C od powerbanku do gniazda kasety: ≥ 100 mm wolnego kabla przy zamkniętej szufladce. Zapas układać po lewej od kasety (x 18–63). **Próba:** kilka wysunięć 0…105 przy założonej płycie, bez napinania wtyków.
 5. Szufladkę wsunąć do oporu frontu i wycentrować, przez otwór blokady we froncie nawiercić krawędź płyty Ø3,3 na 22 mm (głębokość od drewna), wkręcić M4 × 25.
 
 ### Kontrole (dowody)
@@ -236,7 +236,7 @@ Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X
 | Siatki (`sprawdz_siatki.js`), 1 bryła (`skladowe_siatki.js`) | korpus, front, rączka, próbka PIR, kaseta: 0 błędów, 1 bryła; tuleja, nakrętka, próbki gwintu: zdegenerowane trójkąty na gwincie naprawione `napraw_siatki.js` (jak v1), potem 0 błędów, 1 bryła |
 | Wymiary wobec parametrów (`podstawka-wymiary.js`) | korpus 215 × 102 × 32, front 244 × 65 × 6,5, rączka 76 × 22 × 15 (siatka 75,97 × 21,97 × 14,99 – kule R3 z 32 segmentami), próbka PIR 60 × 40 × 6,5, kaseta, tuleja, nakrętka – OK |
 | Kolizje (`podstawka-kolizje.sh`, CGAL, część wspólna ma być pusta) | szufladka zamknięta (korpus, front, rączka, PIR, powerbank) wobec sklejki i kasety: pusto; wsuwanie przy wysunięciu 0 / 30 / 60 / 90: pusto; PIR wobec frontu i korpusu: pusto; wkładanie frontu z PIR w korpus (przemiatanie 30 mm): pusto; łby, nakrętki i trzpienie wobec części, PIR i powerbanku: pusto |
-| Test czułości kontroli | okno PIR bez zapasu (`oknoPIRzap` 0): wkładanie PIR wykrywa kolizję kondensatorów z przednią ścianą (x 22,5…57,5, y 0…2) |
+| Test czułości kontroli | okno PIR bez zapasu (`oknoPIRzap` 0): wkładanie PIR wykrywa kolizję kondensatorów z przednią ścianą (PIR po lewej: x 22,5…57,5; po przeniesieniu na prawo: x 157,5…192,5; y 0…2) |
 | Test zginania (`podstawka-zginanie.sh`) | przed review: `WIN` 218 → front 246; `wtyk` 45 → korpus 210; `kieszenPIR` 28 → korpus 104 głęb.; `tF` 5 → front 7,5 (wszystko OK). Po zmianie rączki: `rD` 12 → rączka 12 wysięgu; `rL2` 80 → 80; `rH2` 26 → 26; `WIN` 218 → front 246; `kieszenPIR` 28 → korpus 104. Wszystkie: wymiary zgodne z oczekiwanymi, siatki 0 błędów, 1 bryła; kolizje dla `WIN` 218, `kieszenPIR` 28, `rD` 12: pusto |
 
 ### Założenia do sprawdzenia przez użytkownika
@@ -264,6 +264,7 @@ Raporty: `review/2026-10-25-szuflada-v2-fable.md`, `review/2026-10-25-szuflada-v
 | Wysokość skrzynki 67 nominalna, front do 66 | Fable D9 | do pomiaru; zmienna `frontPodGora` |
 | Słupki M2 – wkręcać bez siły; luty; fazka rączki; brim frontu | Fable D10–D12 | w kolejności montażu i tabeli druku; rączka i tak zmieniona |
 | Rączka 86 × 28 nachalna | użytkownik (po review) | **nowa rączka**: ścięty ostrosłup 66 × 14 → 76 × 22, wysięg 15, R3 |
+| PIR po lewej, przewód w poprzek nad powerbankiem (użytkownik: „dlaczego PIR zrobiłeś po lewej stronie, jeśli przejście kabli z powerbanku idzie po prawej”) | użytkownik | **PIR po prawej**: oś 40 od prawego boku korpusu (`pirOdPrawej`), wycięcie w przegrodzie nad pasem wtyku USB-C, przewód prosto do tylnego wycięcia; eksport, siatki, wymiary, 5 kontroli kolizji i test czułości powtórzone – OK |
 | Rączka 76 × 22 „zbyt duża i masywna, będzie wykorzystana może raz, może dwa” | użytkownik | **zmniejszona**: 40 × 10 → 46 × 16, wysięg 10, R2, M4 × 20 w rozstawie 26; eksport, siatki, wymiary (45,98 × 15,98 × 9,99) i 5 kontroli kolizji powtórzone – OK |
 
 Po zmianach powtórzone: eksport 9 części, siatki, wymiary, 5 kontroli kolizji (pusto), test zginania (wyżej). Druga runda review – nie (brief PM).

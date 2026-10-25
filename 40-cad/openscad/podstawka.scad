@@ -94,7 +94,7 @@ tF = 4;             // grubość frontu
 frontZak = 14;      // zakładka frontu na przednie krawędzie ścianek bocznych
 frontNadStolem = 1; // dół frontu nad stołem
 frontPodGora = 1;   // góra frontu poniżej wierzchu płyty górnej
-pirX = 40;          // oś PIR od lewego boku korpusu
+pirOdPrawej = 40;   // oś PIR od prawego boku korpusu (decyzja użytkownika 25.10: PIR po prawej – przewód prosto do tyłu pasem wtyku USB-C)
 pirGn = 23.5; pirGnG = 0.5;                      // gniazdo kołnierza od tyłu frontu: bok (kołnierz 23 + 2 × 0,25), głębokość
 dKopOtw = 24;       // otwór na kopułkę (PRD 0.2)
 slupM2D = 4.5;      // słupki M2 pod płytkę PIR
@@ -164,6 +164,7 @@ kX0    = SZ - tPl - luzKasBok - kW;              // kaseta przy prawej ściance 
 kY0    = DL - tTyl - luzKasTyl - kD;             // przód kasety (107)
 xPort  = sc + luzPb + pbL;                       // czoło portu powerbanku (x w korpusie)
 wcX    = kX0 + bkX - szX0 - wcCiecie / 2;        // wycięcie kablowe w korpusie: na osi gniazda zasilania kasety
+pirX   = szW - pirOdPrawej;                      // oś PIR w korpusie (175)
 pirZ   = dnoSz + scH / 2;                        // oś PIR nad spodem korpusu (17)
 pirYp  = pirKolH - pirGnG;                       // przód płytki PIR za tyłem frontu (2,5)
 oknoW  = pirW + 2 * oknoPIRzap; oknoH = pirH + 2 * oknoPIRzap;   // okno PIR w przedniej ścianie korpusu (36 × 28)
@@ -187,11 +188,12 @@ assert(luzSzBok >= 0.25, "luz korpusu w podstawce < 0,25 na stronę");
 assert(szD + odstSzKas <= kY0, "korpus wchodzi na kasetę");
 assert(luzPodPl >= 2, "powerbank za blisko płyty");
 assert(pirZ - oknoH / 2 >= dnoSz && pirZ + oknoH / 2 <= dnoSz + scH, "okno PIR poza przednią ścianą korpusu");
-assert(pirX - oknoW / 2 >= sc && pirX + oknoW / 2 <= m3X[1], "okno PIR poza korpusem");
-assert(pirX + oknoW / 2 < rcX - rL2 / 2, "rączka nachodzi na PIR");
+assert(pirX - oknoW / 2 >= sc && pirX + oknoW / 2 <= szW - sc, "okno PIR poza korpusem");
+assert(pirX - przWyc / 2 >= xPort + luzPb + slupekW, "wycięcie przegrody nad powerbankiem (PIR ma być w pasie wtyku)");
+assert(abs(pirX - rcX) > oknoW / 2 + rL2 / 2, "rączka nachodzi na PIR");
 assert(rRozst / 2 + dLebM4 / 2 + luzKlej + rR <= rL1 / 2, "łby M4 poza mniejszą podstawą rączki");
 assert(rL1 <= rL2 && rH1 <= rH2, "rączka: mniejsza podstawa większa niż lico");
-assert(m3X[0] + dLebM3 / 2 < pirX - oknoW / 2, "M3 front–korpus nachodzi na okno PIR");
+for (x = m3X) assert(abs(x - pirX) > oknoW / 2 + sM3 / cos(30) / 2, "M3 front–korpus nachodzi na okno PIR");
 assert(pirYp + pirT + pirDupont + 2 <= kieszenPIR, "za płytką PIR brak miejsca na wtyki Dupont");
 assert(pirYp >= pirLut + odsun, "luty PIR dotykają frontu");
 assert(lM4min <= lM4r, "śruba rączki za krótka");
