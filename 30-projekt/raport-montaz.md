@@ -18,7 +18,7 @@ Model: `40-cad/openscad/podstawka.scad`. Opis, kolejność montażu, śruby i do
 
 - **Zmienne bazowe według pomiarów:** wnętrze 216, dno 9, głębokość 226, wkręty płyty 20 od frontu i tyłu, otwór Ø60.
 - **Korpus 215,0** (ścianki 2,0, wtyk USB-C 50 zostaje): **luz 0,5 na stronę** w podstawce.
-- **Front** osobno, 244 × 65 × 4, druk licem. Do korpusu przykręcony 2 × M4 rączki (nakrętki w przedniej kieszeni korpusu, 23 mm przed powerbankiem) i 2 × M3 przy dolnych rogach.
+- **Front** osobno, 244 × 65 × 4, druk licem. Do korpusu przykręcony 2 × M4 rączki (nakrętki w przedniej kieszeni korpusu, 23 mm przed powerbankiem) i 2 × M4 × 12 z łbem stożkowym przy dolnych rogach (łby w pogłębieniu, równo z licem – decyzja użytkownika 26.10).
 - **Rączka:** kształt i wielkość według decyzji użytkownika (25.10, po review) – mały, niski, zaokrąglony, ścięty ostrosłup. Przy froncie 40 × 10, na zewnątrz 46 × 16, wysięg 10 mm, krawędzie R2, na środku frontu. Łby 2 × M4 × 20 wklejone epoksydem, rozstaw 26.
 - **Blokada:** M4 × 25 na środku górnej części frontu (otwór we froncie Ø5), w krawędź płyty górnej, 58 mm nad stołem. Otwór pilotowy Ø3,3 × 22 wierci się przez front; jest też na rysunku płyty.
 - **PIR we froncie, po prawej** (decyzja użytkownika 25.10): otwór Ø24, gniazdo 23,5 × 23,5 × 0,5, 2 × M2 w słupki; za płytką 22 mm. Przewód idzie prosto do tyłu pasem wtyku USB-C, nie w poprzek nad powerbankiem.

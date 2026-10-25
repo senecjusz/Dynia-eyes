@@ -20,7 +20,8 @@
 //   od dołu kończy się frontNadStolem 1 nad stołem (zakrywa krawędź dna 9), od góry frontPodGora 1 poniżej wierzchu płyty (dynia stoi na płycie,
 //   front jej nie dotyka) – zakładka na przednią krawędź płyty górnej 17 mm, w niej blokada.
 // - front–korpus: 2 śruby rączki M4 (przez rączkę, front i przednią ścianę korpusu, nakrętki od środka w kieszeni PIR, z dala od powerbanku)
-//   + 2 × M3 × 10 przy dolnych rogach korpusu (front nie odstaje na brzegach przy szarpnięciu za rączkę); łby M3 na licu frontu.
+//   + 2 × M4 × 12 z łbem stożkowym (DIN 7991, użytkownik 26.10: „śruby z boku” stożkowe) przy dolnych rogach korpusu, łby w pogłębieniu
+//   90° równo z licem frontu (front nie odstaje na brzegach przy szarpnięciu za rączkę); nakrętki M4 od środka w kieszeni PIR.
 // - rączka (kształt i wielkość: decyzje użytkownika 25.10 – niska, nienachalna, mała, bo używana raz–dwa razy): ścięty ostrosłup
 //   z zaokrąglonymi narożami R2 (lico płaskie – na stół), mniejsza podstawa 40 × 10 na froncie, większa 46 × 16 na zewnątrz, wysięg 10; podcięcie 3 mm daje
 //   chwyt dwoma palcami. Na środku frontu (pod blokadą), daleko od kopułki PIR. Druk większą podstawą na stole (ścianki zbiegają się
@@ -79,7 +80,8 @@ pirLstW = 8; pirLstH = 3;                        // listwa 3-pin na górnej kraw
 dM4 = 4.5; dLebM4 = 7; hLebM4 = 4; sM4 = 7; hNakM4 = 3.2; tPodkM4 = 0.8;   // M4 imbus z łbem okrągłym: luźny otwór, łeb, nakrętka (klucz 7), podkładka
 dM3 = 3.3; dM3ciasny = 2.6; sM3 = 5.5; hNakM3 = 2.4; dLebM3 = 5.5; hLebM3 = 3;
 dM2c = 1.7; dLebM2 = 3.8; hLebM2 = 1.6;           // M2 × 6 w plastik (otwór ciasny jak oś powiek dużego oka), łeb
-lM2 = 6; lM3fk = 10; lM4r = 20; blokL = 25;      // długości śrub: M2 PIR, M3 front–korpus, M4 rączki, M4 blokady
+lM2 = 6; lFk = 12; lM4r = 20; blokL = 25;        // długości śrub: M2 PIR, M4 stożkowa front–korpus (z łbem), M4 rączki, M4 blokady
+dLebStoz = 8; luzStoz = 0.2;                     // łeb stożkowy M4 (DIN 7991: Ø8, 90°), luz pogłębienia na promieniu
 // ---------- BAZOWE: druk – korpus szufladki ----------
 szMax = 215;        // PRD 0.2: korpus ≤ 215
 sc = 2.0; dnoSz = 2; scH = 30;                   // ścianka (brief PM: 2,0), dno, wysokość ścianek
@@ -89,7 +91,7 @@ wcCiecie = 12; wcDno = 10;                       // wycięcie na kable w tylnej 
 przWyc = 12; przWycH = 8;                        // wycięcie w górnej krawędzi przegrody nad listwą PIR: szerokość, głębokość
 fazaKorp = 2;                                    // fazka wejściowa tylnych pionowych naroży korpusu
 oknoPIRzap = 3;     // okno PIR w przedniej ścianie korpusu: zapas wokół płytki (≥ pirRogi; 3 – review Fable r2: wysięg kondensatorów tylko ze zdjęć)
-m3fkOd = 10; m3fkZ = 8;                          // M3 front–korpus: od boku korpusu, wysokość nad spodem korpusu
+fkOd = 10; fkZ = 8;                              // śruby boczne front–korpus: od boku korpusu, wysokość nad spodem korpusu
 // ---------- BAZOWE: druk – front ----------
 tF = 4;             // grubość frontu
 frontZak = 14;      // zakładka frontu na przednie krawędzie ścianek bocznych
@@ -179,7 +181,8 @@ blokOtwG = blokL - tF + blokZapas;               // otwór pilotowy w krawędzi 
 rcX    = szW / 2 + raczkaDx;                     // środek rączki (x korpusu)
 rcZ    = dnoSz + scH / 2;                        // oś śrub rączki (z korpusu)
 rX     = [rcX - rRozst / 2, rcX + rRozst / 2];   // osie śrub rączki
-m3X    = [m3fkOd, szW - m3fkOd];                 // osie M3 front–korpus
+fkX    = [fkOd, szW - fkOd];                     // osie śrub bocznych front–korpus
+hStoz  = (dLebStoz + 2 * luzStoz - dM4) / 2;     // głębokość pogłębienia 90° (1,95)
 lM4min = rD - hLebM4 + tF + sc + tPodkM4 + hNakM4;   // śruba rączki pod łbem do końca nakrętki (21)
 cx = SZ / 2; cy = DL / 2;                        // środek dyni = środek podstawki
 rc     = gwD / 2 - zarys;                        // promień rdzenia gwintu
@@ -195,7 +198,10 @@ assert(pirX - przWyc / 2 >= xPort + luzPb + slupekW, "wycięcie przegrody nad po
 assert(abs(pirX - rcX) > oknoW / 2 + rL2 / 2, "rączka nachodzi na PIR");
 assert(rRozst / 2 + dLebM4 / 2 + luzKlej + rR <= rL1 / 2, "łby M4 poza mniejszą podstawą rączki");
 assert(rL1 <= rL2 && rH1 <= rH2, "rączka: mniejsza podstawa większa niż lico");
-for (x = m3X) assert(abs(x - pirX) > oknoW / 2 + sM3 / cos(30) / 2, "M3 front–korpus nachodzi na okno PIR");
+for (x = fkX) assert(abs(x - pirX) > oknoW / 2 + sM4 / cos(30) / 2, "śruba boczna front–korpus nachodzi na okno PIR");
+assert(fkZ - sM4 / cos(30) / 2 >= dnoSz, "nakrętka śruby bocznej wchodzi w dno korpusu");
+assert(hStoz < tF, "pogłębienie łba stożkowego głębsze niż front");
+assert(lFk >= tF + sc + tPodkM4 + hNakM4, "śruba boczna za krótka");
 assert(pirYp + pirT + pirDupont + 2 <= kieszenPIR, "za płytką PIR brak miejsca na wtyki Dupont");
 assert(pirYp >= pirLut + odsun, "luty PIR dotykają frontu");
 assert(pirYp >= pirKolH - pirGnG, "kołnierz soczewki dociska front zamiast podkładek");
@@ -313,7 +319,7 @@ module korpus() {   // druk dnem na stół, bez podpór
     translate([pirX - przWyc / 2, kieszenPIR - 1, dnoSz + scH - przWycH]) cube([przWyc, sc + 2, przWycH + 1]);          // wycięcie w przegrodzie nad listwą PIR
     for (s = [0, 1]) translate([s * szW, szD, (dnoSz + scH) / 2]) rotate([0, 0, 45]) cube([fazaKorp * sqrt(2), fazaKorp * sqrt(2), dnoSz + scH + 2], center = true);   // fazki tylnych naroży 45°
     for (x = rX) translate([x, -1, rcZ]) rotate([-90, 0, 0]) cylinder(d = dM4, h = sc + 2, $fn = 32);    // śruby rączki
-    for (x = m3X) translate([x, -1, m3fkZ]) rotate([-90, 0, 0]) cylinder(d = dM3, h = sc + 2, $fn = 24); // M3 front–korpus
+    for (x = fkX) translate([x, -1, fkZ]) rotate([-90, 0, 0]) cylinder(d = dM4, h = sc + 2, $fn = 32);   // śruby boczne front–korpus
     translate([wcX, szD - sc - 1, dnoSz + wcDno]) cube([wcCiecie, sc + 2, scH]);                         // wycięcie na kable
   }
 }
@@ -330,7 +336,11 @@ module front() {   // druk licem na stół (tryb druk: obrót y → z), słupki 
     for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2, pirYp - glM2, pirZ]) rotate([-90, 0, 0])   // M2 w słupkach
       cylinder(d = dM2c, h = glM2 + 1, $fn = 16);
     for (x = rX) translate([x, -tF - 1, rcZ]) rotate([-90, 0, 0]) cylinder(d = dM4, h = tF + 2, $fn = 32);
-    for (x = m3X) translate([x, -tF - 1, m3fkZ]) rotate([-90, 0, 0]) cylinder(d = dM3, h = tF + 2, $fn = 24);
+    for (x = fkX) translate([x, -tF - 1, fkZ]) rotate([-90, 0, 0]) {   // śruby boczne: otwór i pogłębienie 90° od lica
+      cylinder(d = dM4, h = tF + 2, $fn = 32);
+      translate([0, 0, 1 - zak]) cylinder(d1 = dLebStoz + 2 * luzStoz, d2 = dM4, h = hStoz, $fn = 48);
+      cylinder(d = dLebStoz + 2 * luzStoz, h = 1, $fn = 48);
+    }
     translate([szW / 2, -tF - 1, blokZ]) rotate([-90, 0, 0]) cylinder(d = dBlokF, h = tF + 2, $fn = 32);   // blokada
   }
 }
@@ -378,10 +388,10 @@ module sruby() {
     translate([0, 0, sc + odsun]) cylinder(d = 2 * sM4, h = tPodkM4 - odsun, $fn = 32);                  // podkładka
     translate([0, 0, sc + tPodkM4]) cylinder(d = sM4 / cos(30), h = hNakM4, $fn = 6);                     // nakrętka
   }
-  for (x = m3X) translate([x, 0, m3fkZ]) rotate([-90, 0, 0]) {
-    translate([0, 0, -tF - hLebM3]) cylinder(d = dLebM3, h = hLebM3 - odsun, $fn = 24);
-    translate([0, 0, -tF]) cylinder(d = dM3 - 0.5, h = lM3fk, $fn = 24);
-    translate([0, 0, sc + odsun]) cylinder(d = sM3 / cos(30), h = hNakM3, $fn = 6);
+  for (x = fkX) translate([x, 0, fkZ]) rotate([-90, 0, 0]) {   // M4 stożkowe w pogłębieniu, nakrętki od środka
+    translate([0, 0, -tF + odsun]) cylinder(d1 = dLebStoz - 2 * odsun, d2 = dM4 - 0.5, h = (dLebStoz - dM4 + 0.5) / 2, $fn = 32);
+    translate([0, 0, -tF]) cylinder(d = dM4 - 0.5, h = lFk, $fn = 32);
+    translate([0, 0, sc + odsun]) cylinder(d = sM4 / cos(30), h = hNakM4, $fn = 6);
   }
   for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2, pirYp + pirT + odsun, pirZ]) rotate([-90, 0, 0])   // łby M2 za płytką PIR (trzpień w słupku)
     cylinder(d = dLebM2, h = hLebM2, $fn = 16);

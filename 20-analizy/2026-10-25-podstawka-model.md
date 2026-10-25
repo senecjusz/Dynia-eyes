@@ -201,7 +201,7 @@ Wynik: podstawka 252 × 226 × 67 (użytkownik podał 69 wysokości – różnic
 | Część | Wymiar (druk) | Drukarka | Na stół | Uwagi |
 |---|---|---|---|---|
 | Korpus | 215,0 × 103 × 32 | X1C | dnem | ścianki 2,0; luz w podstawce **0,5 na stronę**; kieszeń PIR 27 z przodu, przegroda z wycięciem 12 × 8 nad listwą PIR, komora powerbanku, słupki, wycięcie kablowe na osi gniazda zasilania kasety; okno PIR 38 szer. (płytka + 3 na stronę) otwarte do górnej krawędzi, otwory M4/M3 w przedniej ścianie; fazki 2 × 45° na tylnych narożach |
-| Front | 244 × 65 × 4 (+ podkładki M2 3,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; PIR po prawej (oś 40 od prawego boku korpusu, 58,5 od prawej krawędzi podstawki); otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 podkładki M2 4 × 8; otwory: 2 × M4 rączki, 2 × M3, blokada Ø5 |
+| Front | 244 × 65 × 4 (+ podkładki M2 3,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; PIR po prawej (oś 40 od prawego boku korpusu, 58,5 od prawej krawędzi podstawki); otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 podkładki M2 4 × 8; otwory: 2 × M4 rączki, 2 × M4 stożkowe z pogłębieniem 90°, blokada Ø5 |
 | Rączka | 46 × 16 × 10 | A1 mini albo X1C | licem (większą podstawą) | ścięty ostrosłup z krawędziami R2 (kształt i wielkość: decyzje użytkownika – niska, nienachalna, mała, używana raz–dwa razy): przy froncie 40 × 10, lico 46 × 16, wysięg 10; gniazda łbów M4 Ø8 × 4,5 od lica (epoksyd), rozstaw 26; na środku frontu |
 | Próbka gniazda PIR | 60 × 40 × 7,5 | A1 mini albo X1C | licem | wycinek frontu: otwór kopułki, gniazdo kołnierza, 2 podkładki M2 – przymiarka 26.10 zaliczona (wersja ze słupkami Ø4,5 × 2,5) |
 
@@ -209,7 +209,7 @@ Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X
 
 **Śruby z magazynu (PRD §7):**
 - rączka: 2 × M4 × 20 imbus (pod łbem potrzeba ≥ 16, koniec 4 mm za nakrętką; łeb mieści się w gnieździe Ø8 × 4,5 – założenie Ø7 × 4), 2 nakrętki M4, 2 podkładki, epoksyd;
-- front–korpus: 2 × M3 × 10, 2 nakrętki M3;
+- front–korpus (boki, dolne rogi): 2 × M4 × 12 z łbem stożkowym (DIN 7991, łeb w pogłębieniu 90° równo z licem), 2 nakrętki M4, 2 podkładki;
 - PIR: 2 × M2 × 6 w podkładki frontu (Ø1,7);
 - blokada: M4 × 25 imbus;
 - kaseta do dna: 4 wkręty 3 × 12 (przy dnie 9 wchodzą w dno na 5 mm, zostaje 4); tuleja do płyty: 3 wkręty 3 × 16.
@@ -225,7 +225,7 @@ Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X
 0. Próbka gniazda PIR: przymierzyć PIR (kołnierz w gnieździe, kopułka w otworze, oba M2 wchodzą bez gięcia płytki). Jeśli nie pasuje – zmierzyć suwmiarką rozstaw otworów, kołnierz i kopułkę i poprawić `pirOtwRozst`, `pirGn`, `dKopOtw` przed drukiem frontu.
 1. PIR we front: potencjometry i zworkę ustawić wcześniej; kołnierz w gniazdo od tyłu, 2 × M2 × 6 przez otwory płytki w podkładki, bez siły. Rysunki: `40-cad/openscad/podglad/podstawka-v2-pir-montaz.png` (rozstrzelony), `podstawka-v2-pir-przekroj.png` (przekrój).
 2. Rączka: łby M4 wkleić epoksydem w gniazda od lica, gwintem w stronę frontu; po związaniu kleju.
-3. Front na korpus: śruby rączki przez front i przednią ścianę korpusu, podkładki i nakrętki M4 od środka (kieszeń PIR, klucz 7); przy dolnych rogach 2 × M3 × 10 z nakrętkami. Przy dokręcaniu przytrzymać łeb M4 imbusem od lica rączki.
+3. Front na korpus: śruby rączki przez front i przednią ścianę korpusu, podkładki i nakrętki M4 od środka (kieszeń PIR, klucz 7); przy dolnych rogach 2 × M4 × 12 stożkowe od lica z nakrętkami M4 od środka. Przy dokręcaniu przytrzymać łeb M4 imbusem od lica rączki.
 4. Przewód PIR (wlutowany albo na Dupontach) przez wycięcie w przegrodzie i prosto do tyłu pasem wtyku USB-C (prawa strona korpusu, obok powerbanku) do wycięcia w tylnej ściance, dalej do ESP32 w kasecie: ok. 350 mm z zapasem na wysunięcie (Fable W3, Astra W3). Kabel USB-C od powerbanku do gniazda kasety: ≥ 100 mm wolnego kabla przy zamkniętej szufladce. Zapas układać po lewej od kasety (x 18–63). **Próba:** kilka wysunięć 0…105 przy założonej płycie, bez napinania wtyków.
 5. Szufladkę wsunąć do oporu frontu i wycentrować, przez otwór blokady we froncie nawiercić krawędź płyty Ø3,3 na 22 mm (głębokość od drewna), wkręcić M4 × 25.
 
@@ -293,3 +293,9 @@ Użytkownik po przymiarce próbki (zaznaczył słupki na zdjęciu): „ja bym zr
 - Skutek: płytka 3,5 za frontem, kołnierz soczewki 0,5 za tyłem frontu (nie dotyka gniazda – płytkę ustawiają wkręty M2), luty z przodu płytki mają 1,5–2,5 luzu, kopułka wystaje ok. 6,5 przed lico. Kieszeń PIR 26 → 27 (miejsce za płytką na wtyki Dupont zostaje 22), korpus 102 → 103 głęb. (do kasety 4).
 - Kontrole: eksport korpusu, frontu, rączki i próbki, siatki (0 błędów, 1 bryła), wymiary (front 244 × 65 × 7,5, korpus 215 × 103 × 32), 5 kontroli kolizji (pusto), test czułości – OK.
 - Rysunki montażu PIR: `podglad/podstawka-v2-pir-montaz.png` (front, PIR i wkręty rozstrzelone, widok od tyłu), `podglad/podstawka-v2-pir-przekroj.png` / `.svg` (przekrój przez osie wkrętów z wymiarami).
+
+### Śruby boczne front–korpus stożkowe (26.10)
+
+Użytkownik: „nie podobają mi się te śruby z boku za bardzo, może na takie stożkowe bym je wymienił” i zdjęcie śruby stożkowej M4 z suwmiarką (`/tmp/kamera-warsztatowa/20261026-004711-adnotacje.jpg`, poza repo). Wykonano: 2 × M3 × 10 z łbem walcowym → **2 × M4 × 12 z łbem stożkowym** (założenie DIN 7991: łeb Ø8, 90°), we froncie pogłębienie 90° Ø8,4 na 1,95 – łeb 0,2 pod licem; otwory Ø4,5 we froncie i w korpusie, nakrętki M4 z podkładką od środka (kieszeń PIR), koniec śruby 2 mm za nakrętką. Front drukowany licem na stole: pogłębienie zwęża się ku górze pod 45° – bez podpór. Kontrole: eksport, siatki, wymiary, 5 kontroli kolizji – OK.
+
+Uwaga dla PM (agent): na zdjęciach z kamery jest też kątowy adapter USB-C (10 × 15 mm) wpięty w powerbank. Jeśli to docelowe połączenie, wtyk zajmuje dużo mniej niż przyjęte 50 mm – decyzja użytkownika (PRD).
