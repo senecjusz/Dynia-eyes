@@ -83,7 +83,7 @@ flowchart LR
   subgraph DO["Duże oko"]
     D9["D9 Model v9: kardany 2/2, 4 × MG90S"]:::done
     O1["O1 Druk: Gałka, Powieki, Maskownica, Przedłużenia"]:::now
-    O2["O2 Uchwyt serw: ścianki 'gwiazda'"]:::now
+    O2["O2 Uchwyt serw: analiza mocowań serw"]:::block
     O3["O3 Ścianka dyni → Pierścień"]:::now
     O4["O4 Druk: Uchwyt, Pierścień"]:::todo
     O5["O5 Orczyki Ø2,5, pręty Ø2, kardany"]:::todo
@@ -182,9 +182,9 @@ flowchart LR
         <div class="note">commit 28250cb, <code>40-cad/3mf/Duze oko v2/</code>; „Probka drutu” nieaktualna</div></div>
       <div class="task"><span class="id">O1</span><span class="name">Druk: Gałka (biała), Powieki, Maskownica, 2 × Przedłużenie orczyka</span>
         <div class="meta"><span class="chip now">gotowe do druku</span><span>Ty</span></div></div>
-      <div class="task"><span class="id">O2</span><span class="name">Uchwyt serw: ścianki usztywniające „gwiazda”</span>
-        <div class="meta"><span class="chip now">w toku</span><span>projektant → kolizje, Opus + Astra</span></div>
-        <div class="note">pierwszy wydruk Uchwytu v9 z błędem; żebra trójkątne + żebro 6 mm do S2 (zapas ok. 2 mm)</div></div>
+      <div class="task"><span class="id">O2</span><span class="name">Uchwyt serw: analiza układu mocowań serw, potem decyzja</span>
+        <div class="meta"><span class="chip block">wstrzymane – do analizy</span><span>Ty + projektant</span></div>
+        <div class="note">S2 nie da się wsunąć (już w v9, potwierdzone 2 rundami review); 4 kierunki: <code>20-analizy/2026-10-25-uchwyt-serw-do-decyzji.md</code>. Uchwytu v9 nie drukować.</div></div>
       <div class="task"><span class="id">O3</span><span class="name">Zmierzyć ściankę dyni, eksport Pierścienia</span>
         <div class="meta"><span class="chip now">dynia kupiona</span><span>Ty → projektant</span><span>zmienna <code>scianka</code></span></div></div>
       <div class="task"><span class="id">O4</span><span class="name">Druk: Uchwyt serw, Pierścień</span>
