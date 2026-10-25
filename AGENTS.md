@@ -27,6 +27,10 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 - **„Informacyjnie” = jedna linijka potwierdzenia**, bez analizy.
 - **Zamknięte decyzje są zamknięte.** Co jest w `decyzje.md` albo co użytkownik powiedział w sesji, przyjmuj jako fakt. Przy sprzeczności albo nowym dowodzie zadaj jedno pytanie: „To przeczy X – zmieniasz decyzję?”.
 - **Użytkownik decyduje o funkcji, agenci o technice.** Do użytkownika idą tylko decyzje funkcjonalne (co część robi, liczba serw, otwór, wygląd) i fakty, które zna tylko on (co jest w warsztacie). Szczegóły geometrii rozstrzyga orkiestrator z wykonawcą i recenzentami.
+- **Dochodzenie do specyfikacji: skill `grilling` (grill-me, Matt Pocock),** plik `.claude/skills/grilling/SKILL.md`. Dotyczy każdego agenta, który ustala z użytkownikiem wymagania albo koncepcję. Codex czyta ten plik wprost.
+  - Pytasz rundami. Każde pytanie ma numer i Twoją rekomendowaną odpowiedź, sformułowaną tak, żeby „tak” ją przyjmowało.
+  - Pytasz zwykłym tekstem w odpowiedzi, **bez formularzy z opcjami do kliknięcia** (AskUserQuestion).
+  - Fakty z repo i narzędzi ustalasz sam. Użytkownika pytasz tylko o decyzje.
 - **Nie czekamy na dane.** Brak pomiaru = najlepszy szacunek ze źródłem (karta producenta, zdjęcie, typowa wartość) wpisany jako zmienna; wątpliwość w planie, praca idzie dalej. Istnienie części w warsztacie (czy w ogóle jest) sprawdzić linkiem albo zdjęciem od razu, zanim powstanie koncepcja.
 - **Bez prognoz czasu** w odpowiedziach, briefach i raportach.
 - **Fakt przed rekomendacją.** Cenę, limit, wydajność sprawdź przed poleceniem albo nazwij założeniem. Oddzielaj pomiar, interpretację i założenie.
