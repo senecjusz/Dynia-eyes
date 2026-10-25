@@ -51,8 +51,8 @@ Montaż skrzynki:
 
 | Część | Plik 3MF | Wymiar na stole | Drukarka | Uwagi |
 |---|---|---|---|---|
-| Szufladka | `Szuflada (X1C)` | 234,8 × 112,8 × 39 | X1C | dnem na stół; uchwyt klinem 45° bez podpór; otwór kopułki Ø24 w pionowym czole |
-| albo 2 połówki | `Szuflada lewa (A1 mini)` + `Szuflada prawa (A1 mini)` | 178,9 / 55,9 × 112,8 × 39 | A1 mini | żebra z 2 otworami M3: skręcić M3 × 10 z nakrętką, opcjonalnie CA na styku |
+| **Szufladka – DRUKOWAĆ TĘ WERSJĘ** | `Szuflada (X1C)` | 244,8 × 112,8 × 39 | **X1C, w całości** (decyzja użytkownika 25.10) | dnem na stół; uchwyt klinem 45° bez podpór; otwór kopułki Ø24 w pionowym czole; w prawym kołnierzu czoła otwór Ø4,5 na M4 blokady |
+| zapas: 2 połówki | `Szuflada lewa (A1 mini)` + `Szuflada prawa (A1 mini)` | 178,9 / 65,9 × 112,8 × 39 | A1 mini | **tylko jako zapas**, gdyby X1C nie był dostępny; żebra z 2 otworami M3: skręcić M3 × 10 z nakrętką |
 | Listwy nośne × 2 | `Listwy nosne x2` | 101,8 × 26 × 7,5 (dwie na stole) | A1 mini | stroną przy ściance na stole, otwory pilotowe Ø2,5 pionowo; przykręcane od zewnątrz przez ściankę 3 wkrętami 3 × 25 każda |
 | Kaseta elektroniki | `Kaseta elektroniki` | 170 × 100 × 25 | A1 mini | słupki PCA9685 z otworem Ø2,6 (wkręt M3 w plastik – montaż jednorazowy), ramka ESP32-C3 z wyjściem USB-C do przodu (programowanie po wyjęciu szufladki), ramka gniazda zasilania USB-C (breakout ok. 20 × 15, szacunek) dokładnie za wycięciem kablowym szufladki, wejściem do przodu, 50 mm za szufladką (kaseta dosunięta do prawej ścianki), pierścień kondensatora, 2 otwory pod wkręty 3 × 16 do ścianki tylnej |
 | Tuleja z gwintem | `Tuleja z gwintem` | Ø120 × 58 | A1 mini | kołnierzem na stół; **drukować po zmierzeniu `hDoc`** (tuleja = `hDoc` + 13) |
@@ -132,3 +132,48 @@ Prośba użytkownika: szufladka ma być prowadzona w skrzynce, nie leżeć na st
 Kontrola: siatki listew i osłonki OK, wymiary OK; część wspólna szufladki ze ściankami, płytą, kasetą i listwami w złożeniu: pusta; listwy ze ściankami: pusta.
 
 Weryfikacja (Opus, Astra): `review/2026-10-25-podstawka-listwy-opus.md`, `-astra.md` – brak uwag psujących działanie lub druk; szufladkę z nocnego druku można używać. Uwagi montażowe: pogłębiać otwory w sklejce pogłębiaczem 90° pod rzeczywisty łeb i nie przeciągać wkrętów (pod otworem 2,25 mm sklejki); przy wysunięciu ok. 100 mm szufladka schodzi z listew i staje na stole – przy wsuwaniu unieść ją 8 mm na listwy.
+
+## Stan wykonania u użytkownika (25.10) i otwarte punkty
+
+- **Sklejka:** wycięta wersja ze ściankami 40 mm, bez otworów. Pod spodem dno ze sklejki 6 mm (decyzja użytkownika). Szufladka jeździ po dnie, ścianki ją prowadzą, listwy nośne niepotrzebne. Podstawka ma 64 mm. Model i rysunki w repo opisują jeszcze wariant 48 mm z listwami: do przestawienia, gdy użytkownik zechce.
+- **Otwór w płycie górnej:** wykonany Ø60 (pomiar użytkownika).
+- **Otwarte:** mocowanie PIR w czole szufladki sprawi problem. Użytkownik sprawdzi je w kolejny wieczór w Warszawie.
+
+## Model zaktualizowany do stanu wykonanego (P7) i blokada szufladki (P5) – aktualne
+
+Ta sekcja **zastępuje** wcześniejsze opisy: listew nośnych, ścianek 48 i rowków (historia wyżej).
+
+**Drewno – jak wykonane:**
+- dno 6 mm 254,8 × 222,8, sklejone ze ściankami;
+- ścianki 40 mm (boczne 222,8 × 40 × 2, tylna 218,8 × 40);
+- płyta górna 18 mm z otworem Ø60 (pomiar użytkownika), przykręcana na końcu 4 wkrętami 3,5 × 40 w ścianki boczne (9 od boku, 30 od przodu i tyłu);
+- wysokość 64.
+
+Model: `tDno`, `H_IN` = 40 (zmienne bazowe), `dOtwPl` = 60, moduł `dno()`. Rysunek cięcia i `podstawka-drewno.png` pokazują ten stan.
+
+**Szufladka:**
+- jeździ po dnie ze sklejki, z boków prowadzą ją ścianki (luz 1,5);
+- powerbank 6 mm pod płytą;
+- lewa połówka bez zmian: geometria identyczna z commitem de713fe, nocny druk dobry.
+
+**Szufladka do druku: `Szuflada (X1C).3mf` w całości na X1C** (decyzja użytkownika 25.10); połówki A1 mini tylko jako zapas.
+
+**Blokada (P5, decyzja użytkownika: M4 imbus):**
+- prawy kołnierz czoła sięga do zewnętrznej krawędzi prawej ścianki, w nim luźny otwór Ø4,5;
+- śruba M4 × 25 imbusowa od przodu, łeb (Ø7) opiera się płasko o kołnierz;
+- w przedniej krawędzi prawej ścianki otwór Ø3,3 na 22 mm (25 − kołnierz 3), w połowie grubości (9 mm od boku) i 19,5 mm nad dnem: gwint wycina sama śruba, bez nakrętki wbijanej i wkładki;
+- wkręcona blokuje szufladkę, do wymiany powerbanku wykręcić imbusem.
+
+**Kaseta:**
+- przykręcona do dna 4 wkrętami 3 × 12;
+- piasty 4,6 mm pod łbami, żeby wkręt nie wyszedł spodem dna: zostaje 1 mm;
+- tylny pas bez otworów, tylko ogranicznik.
+
+**Kontrola:**
+- siatki szufladek, kasety i osłonki OK, 1 bryła, wymiary zgodne z parametrami;
+- część wspólna szufladki z dnem, ściankami, płytą i kasetą: pusta;
+- część wspólna kasety ze ściankami i płytą: pusta.
+
+**Otwarte:**
+- P6 – mocowanie PIR: czekam na opis od użytkownika, co nie pasuje;
+- review Opusa i Astry tej wersji.
