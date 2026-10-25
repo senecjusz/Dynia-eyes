@@ -46,6 +46,25 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 - **Odstępstwa od planu oceniasz od razu.** Uproszczenie albo pominięty element bez zgody = zwrot do wykonawcy.
 - **Użytkownikowi podajesz tylko sprawdzone fakty.** Niesprawdzone nazywasz wprost niesprawdzonymi.
 
+## Zgłoszenia do PM (sesje obszarów)
+
+Użytkownik rozmawia bezpośrednio z sesją każdego obszaru (montaż, elektronika, kalibracja, CAD). PM (sesja „PM”, `local_3acbd61c-c07d-49e3-a22b-38186a3e084d`) prowadzi PRD, `plan.html`, `teraz.md` i `decyzje.md`. Sesja obszaru tych plików nie zmienia, tylko zgłasza.
+
+**Kiedy zgłaszasz:**
+
+1. **Zmiana PRD:** użytkownik podał nowy wymiar, pomiar albo decyzję funkcjonalną albo zmienił wcześniejszą.
+2. **Doprecyzowanie PRD:** ustaliliście szczegół, którego PRD nie opisuje.
+3. **Nowe zadanie:** wyszło coś do zrobienia, także w innym obszarze.
+4. **Zadanie zrobione:** jest commit i raport z dowodami.
+5. **Blokada:** czekasz na użytkownika, część z warsztatu albo inną sesję.
+6. **Wyjście poza zakres:** pomysł albo potrzeba spoza PRD. Nie robisz tego, tylko zgłaszasz.
+7. **Konflikt:** ustalenie przeczy PRD, `decyzje.md` albo pracy innej sesji.
+8. **Gotowe do druku albo testu:** co, z którego pliku, czego pilnować.
+
+**Jak:** `SendMessage` do PM, pierwsza linia `[PM][typ] temat`, na przykład `[PM][zmiana PRD] głębokość podstawki 226`. Dalej: co ustalono, czyje to słowa (użytkownika dosłownie albo agenta), plik i commit. Nie czekasz na odpowiedź i pracujesz dalej.
+
+**PM:** przy każdym zgłoszeniu sprawdza plik albo commit, nanosi zmianę do PRD, planu albo `teraz.md`, a diff pokazuje użytkownikowi przed commitem. Przy konflikcie zadaje użytkownikowi jedno pytanie.
+
 ## Role
 
 - **Orkiestrator (jeden):** rozmawia z użytkownikiem, pisze briefy i przed zleceniem commituje wszystko, czego wykonawca potrzebuje, oraz sprawdza logowanie do Onshape. Scala gałąź wykonawcy z `main` po odbiorze. Ponadto zatwierdza plany drzewa, przyjmuje części po własnym sprawdzeniu dowodów, zleca review i łączy wyniki. Prowadzi `teraz.md`, `decyzje.md` i `70-budowa/dziennik.md`. Sam nie projektuje w CAD.
