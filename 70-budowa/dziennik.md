@@ -70,3 +70,8 @@
 ## 2026-10-21 – v2.8
 - v2.8 (E5.1, E5.2): uszy SG90 na M3×10 w otworach Ø2,6 × 8 bez kanału, ucha Pokrywy Ø2,6 × 5,6 pod M3×8 w plastik (bez wkładek), luz korpusu 0,4. Model `a56bf7b`, eksport `40-cad/3mf/Oko F v2.8/` (10 brył sprawdzone, `c128aa6`). Do druku: Kaseta, Klamra H. [wynik wydruku – do uzupełnienia]
 - Instrukcja `70-budowa/montaz-v2.8.md` (E5.3). Krok 4 poprawiony po audycie dokumentacji 21.10 (także w v2.7): dźwigienkę nasadza się przy serwie trzymającym 1500 µs z programu `kalibracja`, zasilanie przez cały czas nasadzania; `test-serwa` się do tego nie nadaje (po 5 s rusza).
+
+## 2026-10-26 – próbka gniazda PIR (szufladka v2)
+- Wydrukowana próbka gniazda PIR (wycinek frontu 60 × 40). PIR HC-SR501 pasuje: kopułka wychodzi przez otwór Ø24 na środku, kołnierz soczewki (22,97 suwmiarką) w gnieździe 23,5, płytka przykręcona 2 × M2 w słupki bez gięcia – rozstaw 28,5 potwierdzony. Zdjęcia: `zdjecia/2026-10-26-probka-pir/`.
+- Do wyjaśnienia: cienka linia i biała plamka przy krawędzi otworu od lica (rysa czy ślad druku). Listwa 3-pin płytki ma być u góry (nad nią wycięcie w przegrodzie korpusu).
+- Wniosek: front szufladki v2 można drukować (X1C, licem, brim).
