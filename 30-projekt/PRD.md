@@ -79,6 +79,11 @@ Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źr
 ## 9. Sposób pracy
 
 - PM (Claude w rozmowie) prowadzi PRD i pilnuje zakresu. Bez orkiestratora i rund review wieloma agentami, chyba że użytkownik poprosi.
+- **Prostota przed zakresem (użytkownik 25.10, po trzech iteracjach rozbudowy dużego oka):**
+  - **Każdy dodatkowy przegub projektant omawia z użytkownikiem, zanim trafi do koncepcji.**
+  - Referencja to górna granica złożoności. Każdy element ponad nią (przegub, dodatkowa część, śruba, ramka) projektant pokazuje użytkownikowi w koncepcji, ze szkicem, że się mieści. Bez akceptacji nie trafia do CAD.
+  - Montaż rękami: każde miejsce, w którym coś się wkłada albo przykręca, ma dostęp dla palców i narzędzia (wkrętak, imbus po prostej). W koncepcji projektant opisuje kolejność montażu i drogę narzędzia.
+  - Części montowane nie przechodzą obok siebie „na milimetr”. Konstrukcja, która działa tylko przy luzach rzędu 1 mm w ciasnym wnętrzu, jest za skomplikowana i wraca do uproszczenia.
 - **Projektant pracuje w dwóch krokach:**
   1. **Wstępna koncepcja** (szkic albo prosta makieta, bez dopracowanych szczegółów): układ gałki, kardana, serw i powiek, co czym się rusza, lista części (drukowane i posiadane), główne wymiary i przyjęte założenia (np. wielkość źrenicy). Użytkownik akceptuje albo zawraca.
   2. **Dopiero po akceptacji** szczegóły i CAD.
