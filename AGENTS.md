@@ -60,6 +60,7 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 - GitHub wyłącznie przez deploy key tego repo (`core.sshCommand` w lokalnym configu, osobny klucz na każdy komputer). Nie używać innych poświadczeń.
 - **Źródło prawdy o geometrii:** Onshape, dokument SimpleEye. `40-cad/solidcraft/` to archiwum v2.3/v2.4, tylko do odczytu. W repo są eksporty (`40-cad/3mf`, `40-cad/stl`, `40-cad/step`), skrypty (`40-cad/onshape/`) i opisy (`40-cad/README.md`).
 - Każda decyzja projektowa: wiersz w `30-projekt/decyzje.md`. Postęp prac z synem: wpis w `70-budowa/dziennik.md`.
+- **Zdjęcia z warsztatu** (pomiary, części, wydruki) zapisujesz w `70-budowa/zdjecia/RRRR-MM-DD-temat/`, nie w katalogu tymczasowym sesji, i od razu dopisujesz wiersz do `70-budowa/zdjecia/MANIFEST.md`: co widać, odczytane wymiary z dokładnością i źródłem skali, gdzie użyte. Zanim otworzysz zdjęcie, przeczytaj manifest; zdjęcie oglądaj tylko wtedy, gdy opis nie wystarcza.
 
 ## Proces wersji
 
