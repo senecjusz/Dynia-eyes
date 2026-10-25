@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie:** E6 – duże oko 2c (4 × MG90S, otwór ≤ 80, lekkie mocowanie): koncepcja v2 po review (E6.1), brief CAD i budowa w „Duże oko v1” (E6.2–E6.4). E5 (testy powerbanku i 24 h, drugi moduł) czeka.
+**Bieżące zadanie (25.10):** Epik Dynia na środę 28.10 – plan i stany zadań w `30-projekt/plan.html` (tory: Podstawka, Duże oko v9, Małe oczy, Software). Dynia kupiona, podstawka z drewna wykonana. Sekcja niżej (E1–E6) jest historyczna.
 
 ```mermaid
 flowchart TD
@@ -116,7 +116,10 @@ Seria ~10 modułów i rozmieszczenie w dyni; firmware ESP32 z kalibracją przez 
 
 ## Parking
 
-- Duże oko v9 (25.10, uwagi użytkownika), usztywnienie Uchwytu serw do następnej iteracji: (1) ramki serw powiek SG/SD z pionowymi elementami z każdej strony, jak S1/S2; (2) 3 pionowe ramiona do kołnierza Pierścienia z łukiem/żebrami u podstawy płyty; (3) wszystkie wieże i ramki serw połączone ściankami w jedną sztywną konstrukcję, z oknami na orczyki, pręty, druty i kardany (każda ścianka przez kontrolę kolizji).
+- Duże oko v9, usztywnienie Uchwytu serw: (1) ramki SG/SD – nieaktualne, to był błąd wydruku; (2) łuki/żebra u podstawy 3 ramion – następna iteracja; (3) ścianki łączące wieże („gwiazda”) – **robione teraz** przez projektanta (żebra trójkątne + żebro 6 mm do S2), czeka na kontrolę kolizji i review.
+- Podstawka: mocowanie PIR HC-SR501 w przedniej ściance nie do końca pasuje – do analizy (projektant podstawki).
+- Podstawka: model w repo opisuje wariant 48 mm/bez dna; zaktualizować do wykonanego (dno 6, ścianki 40, Ø45, bez listew).
+- Gniazdo/breakout USB-C do zasilania z powerbanku: czy jest w warsztacie.
 
 - E6: obszary szkiców w całym drzewie „Duże oko v1” wybierane przez `qClosestTo(qSketchRegion…)` zamiast `qContainsPoint` z punktów startowych – przy zmianie zmiennych (K9 `pktRY`, `pretY`) 5 operacji dało ERROR; poprawione tylko te 5.
 - E6: foldery (K11) Uchwyt, Łapa, Ramię X/Y, Komplet Y, Płyta–stopy – założyć w UI przy widocznym panelu.

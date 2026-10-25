@@ -34,21 +34,19 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 | Kolor | mechanizm pomarańczowy, gałka biała |
 | Druk | do niedzieli wieczorem tylko A1 mini – każda część ≤ 180 mm |
 
-**Mechanizm referencyjny:** [The Face maker101 (PCBWay)](https://www.pcbway.com/project/shareproject/The_Face_maker101_c4124445.html) – gałka na kardanie, nieruchome MG90S za okiem (lewo–prawo, góra–dół), pręty pchające gałkę, **jedno serwo na powieki**; części: gałka, powieka, uchwyt oka i serw, kardan, listwy. Projektant bierze z niego zasadę (kardan, nieruchome serwa, pręty) i przenosi ją na gałkę Ø60, kardan użytkownika i otwór Ø80, **bez dodatków**; z opisu referencji nie widać, jak jedno serwo rusza górną i dolną powiekę – projektant pokazuje to na koncepcji. Każdy element spoza referencji wymaga uzasadnienia.
+**Mechanizm referencyjny:** [The Face maker101 (PCBWay)](https://www.pcbway.com/project/shareproject/The_Face_maker101_c4124445.html) – gałka na kardanie, nieruchome MG90S za okiem, pręty pchające gałkę. Projektant bierze z niego zasadę i przenosi ją na gałkę Ø60 i otwór Ø80, **bez dodatków**. Każdy element spoza referencji wymaga uzasadnienia.
 
-**Pręty:**
-- domyślnie **drukowane** (dokładna długość z modelu);
-- końcówki muszą pozwolić na lekkie przechylenie (punkt na gałce nie porusza się w jednej płaszczyźnie): luźny otwór z kołkiem lub śrubą z luzem, drukowany przegub kulowy albo krótki odcinek drutu na końcówce – najprostsze, co działa;
-- **drut dopuszczony, jeśli wyraźnie upraszcza model** (projektant mówi, co oszczędza). Wtedy dokładna specyfikacja: średnica, długości, kąty gięcia i rysunek 1:1 albo przyrząd do gięcia. Użytkownik gnie w warsztacie (imadło, kowadło);
-- **bez własnych drukowanych mini-kardanów na śrubach M2.**
+**Stan (v9, 25.10):** gałka na kardanie 5/5; pręty do gałki przez **kardany 2/2 przy gałce** (posiadane, nie drukowane mini-kardany); powieki na drucie z uszkiem 34 mm od osi; drukowane przedłużenia orczyka 25 mm. Pliki: `40-cad/openscad/duze-oko-v2.scad`, `40-cad/3mf/Duze oko v2/`.
+
+**Pręty:** drut Ø2 albo drukowane, najprostsze, co działa; bez przyrządów do gięcia, bez własnych drukowanych mini-kardanów na śrubach M2.
 
 ## 5. Elektronika i zasilanie
 
-- ESP32-C3 + PCA9685: do 8 małych oczu + 3–4 serwa dużego oka (≤ 12 kanałów).
+- ESP32-C3 + PCA9685: do 8 małych oczu + 4 serwa dużego oka (≤ 12 kanałów).
 - **Tylko powerbank** (w szkole nie ma gniazdka): Baseus 20 000 mAh przez USB-C, zapas Manta. Wymiana albo podładowanie powerbanku bez wyjmowania elektroniki.
-- **Podstawka pod dynią** (zmiana użytkownika 24.10, zastępuje pudełko w środku dyni): w niej powerbank i elektronika, kable do dyni przez otwór w dnie dyni, dynia (ok. 10 kg) przymocowana do podstawki od środka. **Powerbank wymieniany szufladką otwieraną do przodu (z tyłu stoją inne dynie), bez podnoszenia dyni; w szufladce tylko powerbank, USB-C wpinany ręcznie.** Elektronika (ESP32-C3, PCA9685, łączniki RJ45) na stałe w podstawce, nie w szufladzie; żadne kable nie wychodzą na zewnątrz. Podstawka bez dna (ścianki na stole), płyta górna 18 mm, wysokość ok. 58 mm; dynia mocowana tuleją przez otwór Ø80 w środku dna (przykręcona do płyty, nakrętka od środka dyni), przez tuleję idą skrętki (zmiany użytkownika 25.10). Podstawa może być ze sklejki 18 lub 12 mm (użytkownik ma piłę stołową), druk tam, gdzie upraszcza. Powerbank Baseus 160 × 70 × 32 mm, na środku krótszej ścianki USB-C, obok 2 × USB-A. Szufladka i uchwyty elektroniki drukowane 3D; korpus podstawki może być ze sklejki.
-- **Okablowanie skrętką Ethernet z keystone'ami** (użytkownik je ma): jedna skrętka na grupę 3–4 małych oczu po jednej stronie, druga na grupę po drugiej stronie, trzecia na duże oko. Rozłączne na keystone'ach.
-- Czujnik obecności: **PIR** (użytkownik sprawdzi, czy jest w warsztacie).
+- **Podstawka pod dynią** (zmiana użytkownika 24.10, zastępuje pudełko w środku dyni): w niej powerbank i elektronika, kable do dyni przez otwór w dnie dyni, dynia (ok. 10 kg) przymocowana do podstawki od środka. **Powerbank wymieniany szufladką otwieraną do przodu (z tyłu stoją inne dynie), bez podnoszenia dyni; w szufladce tylko powerbank, USB-C wpinany ręcznie. Szufladka zabezpieczona śrubą przed otwarciem przez dzieci (użytkownik 25.10).** Elektronika (ESP32-C3, PCA9685) na stałe w podstawce, nie w szufladzie; **w dyni nie ma żadnego pudełka** – całe „pudełko” to podstawka; żadne kable nie wychodzą na zewnątrz. **Stan 25.10: dynia kupiona, podstawka z drewna wykonana** – dno 6 mm sklejone ze ściankami 40 mm, elektronika mocowana do dna, na końcu płyta górna 18 mm przykręcona 4 śrubami do dołu; otwór w płycie Ø45; dynia mocowana tuleją przez otwór Ø80 w środku dna (przykręcona do płyty, nakrętka od środka dyni), przez tuleję idą skrętki (zmiany użytkownika 25.10). Podstawa może być ze sklejki 18 lub 12 mm (użytkownik ma piłę stołową), druk tam, gdzie upraszcza. Powerbank Baseus 160 × 70 × 32 mm, na środku krótszej ścianki USB-C, obok 2 × USB-A. Szufladka i uchwyty elektroniki drukowane 3D; korpus podstawki może być ze sklejki.
+- **Okablowanie skrętką Ethernet** (użytkownik ma kabel i zaciskarkę RJ45): jedna skrętka na grupę 3–4 małych oczu po jednej stronie, druga na drugą stronę, trzecia na duże oko. Rozłączne na łącznikach RJ45 gniazdo–gniazdo w dyni.
+- Czujnik obecności: **PIR HC-SR501** (kupiony), w przedniej ściance podstawki; mocowanie do dopracowania.
 
 ## 6. Software
 
@@ -62,7 +60,7 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 ## 7. Części i zasady
 
 - **Tylko posiadane części:** MG90S × 4; kardany 5/5 × 2 (wkręty M4) i 2/2 × 2 (wkręty M3) – środek gałki 5/5, a jeśli za duży, 2/2 (wybiera projektant, z uzasadnieniem); śruby M3/M4/M5 8–50 mm z nakrętkami; druty sprężynowe Ø1,0 i Ø1,2, ocynkowany Ø2,0; łożyska 608-2RS i 6802-2RS. Bez zakupów modelarskich.
-- Zasady z `AGENTS.md`: śruby z nakrętkami, DFAM, luzy z tabeli. **To, co PRD mówi wprost (3 serwa, drut, praca bez orkiestratora), ma pierwszeństwo przed ogólnymi zasadami `AGENTS.md`.**
+- Zasady z `AGENTS.md`: śruby z nakrętkami, DFAM, luzy z tabeli. **To, co PRD mówi wprost (4 serwa, drut, klej dozwolony, praca bez orkiestratora), ma pierwszeństwo przed ogólnymi zasadami `AGENTS.md`.**
 
 ## 8. Poza zakresem
 
@@ -78,4 +76,4 @@ Wersja 0.1, 23.10.2026. Źródło: rozmowa użytkownika z PM (Claude). **Funkcj�
 - **Projektant pracuje w dwóch krokach:**
   1. **Wstępna koncepcja** (szkic albo prosta makieta, bez dopracowanych szczegółów): układ gałki, kardana, serw i powiek, co czym się rusza, lista części (drukowane i posiadane), główne wymiary i przyjęte założenia (np. wielkość źrenicy). Użytkownik akceptuje albo zawraca.
   2. **Dopiero po akceptacji** szczegóły i CAD.
-- Otwarte (nie blokuje koncepcji dużego oka): jak długo powerbank ma działać między wymianami; czy PIR jest w warsztacie.
+- Otwarte: jak długo powerbank ma działać między wymianami.

@@ -1,0 +1,266 @@
+<title>Plan dyni z oczami</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Układ: nagłówek z terminem, graf zależności, potem tory zadań w siatce kart; stan jako chip. */
+:root {
+  --bg: #f6f7f5; --surface: #ffffff; --fg: #1d2420; --muted: #5d6a63; --line: #dfe4e0;
+  --accent: #e2701b; --accent-soft: #fde9d8;
+  --done: #2f7d4f; --done-soft: #dcf0e3; --now: #b06a00; --now-soft: #fff0cc;
+  --todo: #6b7570; --todo-soft: #eceeed; --block: #b3261e; --block-soft: #fbe1df;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141917; --surface: #1c2320; --fg: #e8ece9; --muted: #9aa8a0; --line: #2c3631;
+  --accent: #f08a3a; --accent-soft: #3a2614;
+  --done: #6fcf97; --done-soft: #183526; --now: #f2b84b; --now-soft: #3a2d10;
+  --todo: #a3ada8; --todo-soft: #262e2a; --block: #ff8a80; --block-soft: #3d1c1a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141917; --surface: #1c2320; --fg: #e8ece9; --muted: #9aa8a0; --line: #2c3631;
+  --accent: #f08a3a; --accent-soft: #3a2614;
+  --done: #6fcf97; --done-soft: #183526; --now: #f2b84b; --now-soft: #3a2d10;
+  --todo: #a3ada8; --todo-soft: #262e2a; --block: #ff8a80; --block-soft: #3d1c1a; color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px; }
+header { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: end; justify-content: space-between; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(28px, 5vw, 42px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 62ch; }
+.deadline { font-family: var(--f-mono); font-variant-numeric: tabular-nums; background: var(--accent-soft); color: var(--fg);
+  border-radius: 10px; padding: 10px 14px; display: grid; gap: 2px; }
+.deadline b { font-size: 22px; color: var(--accent); }
+.deadline small { color: var(--muted); font-family: var(--f-body); }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 20px; margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--muted); font-size: 13px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: .02em;
+  border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.done { color: var(--done); background: var(--done-soft); }
+.now { color: var(--now); background: var(--now-soft); }
+.todo { color: var(--todo); background: var(--todo-soft); }
+.block { color: var(--block); background: var(--block-soft); }
+.graph { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; overflow-x: auto; }
+.graph pre { margin: 0; min-width: 980px; }
+.tracks { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.track { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.track h3 { margin: 0 0 4px; font-family: var(--f-display); font-weight: 600; font-size: 17px; }
+.task { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.task:first-of-type { border-top: 0; padding-top: 0; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+.name { font-weight: 600; }
+.meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); }
+.meta code { font-family: var(--f-mono); font-size: 12px; }
+.note { grid-column: 2; font-size: 13px; color: var(--muted); }
+.flags { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--block); border-radius: 14px; padding: 16px; display: grid; gap: 8px; }
+.flags ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+footer { color: var(--muted); font-size: 13px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Dynia z oczami <span>— plan</span></h1>
+      <p class="sub">Wszystkie zadania do wystawy w szkole, z zależnościami. Źródło wymagań: <code>30-projekt/PRD.md</code>. Stan na 25.10, prowadzi PM.</p>
+    </div>
+    <div class="deadline"><small>Dynia w szkole</small><b>śr 28.10</b><small>stoi kilka dni, także 31.10</small></div>
+  </header>
+
+  <div class="legend">
+    <span class="chip done">zrobione</span><span class="chip now">w toku / gotowe do startu</span>
+    <span class="chip todo">czeka na poprzednie</span><span class="chip block">luka – nikt tego nie robi</span>
+  </div>
+
+  <h2>Komponenty</h2>
+  <section class="graph" aria-label="Zależności w komponentach">
+<pre class="mermaid">
+flowchart LR
+  subgraph DO["Duże oko"]
+    D9["D9 Model v9: kardany 2/2, 4 × MG90S"]:::done
+    O1["O1 Druk: Gałka, Powieki, Maskownica, Przedłużenia"]:::now
+    O2["O2 Uchwyt serw: ścianki 'gwiazda'"]:::now
+    O3["O3 Ścianka dyni → Pierścień"]:::now
+    O4["O4 Druk: Uchwyt, Pierścień"]:::todo
+    O5["O5 Orczyki Ø2,5, pręty Ø2, kardany"]:::todo
+    O6["O6 Montaż na stole + kalibracja"]:::todo
+    O7["O7 Akceptacja wyglądu"]:::todo
+    O8["O8 Onshape"]:::todo
+  end
+  subgraph MO["Małe oczy"]
+    M1["M1 Złożenie modułów"]:::now
+    M2["M2 Kalibracja (1–3 OK, '8' buczy)"]:::now
+  end
+  subgraph PD["Podstawka pod dynię"]
+    P1["P1 Koncepcja i model"]:::done
+    P2["P2 Drewno: dno 6 + ścianki 40, płyta 18, Ø45"]:::done
+    P3["P3 Szufladka – lewa połówka"]:::done
+    P4["P4 Szufladka – prawa połówka"]:::now
+    P5["P5 Blokada szufladki śrubą"]:::block
+    P6["P6 Mocowanie PIR – nie pasuje"]:::block
+    P7["P7 Model = stan wykonany"]:::todo
+    P8["P8 Tuleja + nakrętka przez dno dyni"]:::todo
+    P9["P9 Kaseta elektroniki na dnie"]:::todo
+    P10["P10 3 skrętki RJ45 + łączniki"]:::todo
+    P11["P11 Montaż elektroniki, test"]:::todo
+    P12["P12 Płyta górna na 4 śruby"]:::todo
+  end
+  subgraph SW["Software"]
+    S0["S0 Program kalibracji (wgrany)"]:::done
+    S1["S1 Plan etapów – czeka na Ciebie"]:::now
+    S2["S2 Program docelowy, duże oko 4 serwa"]:::todo
+    S3["S3 Test powerbanku (AP Wi-Fi)"]:::todo
+  end
+  D9 --> O1 --> O6
+  D9 --> O2 --> O4
+  O3 --> O4 --> O6
+  O5 --> O6 --> O7 --> O8
+  M1 --> M2
+  S0 -.-> M2
+  P1 --> P2
+  P3 --> P4 --> P5
+  P2 --> P6
+  P2 --> P9 --> P11
+  P8 --> P10 --> P11 --> P12
+  P6 --> P11
+  S1 --> S2 --> S3
+  P11 --> S3
+  classDef done fill:#dcf0e3,stroke:#2f7d4f,color:#123d24
+  classDef now fill:#fff0cc,stroke:#b06a00,color:#4a2d00,stroke-width:2px
+  classDef todo fill:#eceeed,stroke:#8a948f,color:#2b322e
+  classDef block fill:#fbe1df,stroke:#b3261e,color:#5c120e,stroke-width:2px,stroke-dasharray:4 3
+</pre>
+  </section>
+
+  <h2>Epik Dynia</h2>
+  <section class="graph" aria-label="Zależności epiku Dynia">
+<pre class="mermaid">
+flowchart LR
+  C1(["Duże oko gotowe"]):::comp
+  C2(["Małe oczy gotowe"]):::comp
+  C3(["Podstawka z elektroniką gotowa"]):::comp
+  C4(["Software gotowy"]):::comp
+  K1["K1 Kupno dyni"]:::done
+  K2["K2 Rozmieszczenie oczu"]:::now
+  K3["K3 Otwory: oczy, Ø80 w dnie, wieczko"]:::todo
+  K4["K4 Montaż oczu w dyni, dynia na podstawce"]:::todo
+  K5["K5 Test całości"]:::todo
+  K6(["K6 Szkoła – śr 28.10"]):::goal
+  K1 --> K2 --> K3 --> K4 --> K5 --> K6
+  C1 --> K4
+  C2 --> K4
+  C3 --> K4
+  C4 --> K5
+  classDef done fill:#dcf0e3,stroke:#2f7d4f,color:#123d24
+  classDef now fill:#fff0cc,stroke:#b06a00,color:#4a2d00,stroke-width:2px
+  classDef todo fill:#eceeed,stroke:#8a948f,color:#2b322e
+  classDef comp fill:#ffffff,stroke:#5d6a63,color:#2b322e,stroke-width:2px
+  classDef goal fill:#fde9d8,stroke:#e2701b,color:#4a2200,stroke-width:2px
+</pre>
+  </section>
+
+  <section class="flags">
+    <h2>Otwarte / do Twojej decyzji</h2>
+    <ul>
+      <li><b>P6 mocowanie PIR:</b> nie do końca pasuje w przedniej ściance – projektant podstawki do analizy.</li>
+      <li><b>P5 blokada szufladki:</b> śruba przed dziećmi – do zaprojektowania (projektant podstawki).</li>
+      <li><b>S1:</b> plan etapów programu czeka na Twoje zatwierdzenie; kanały dużego oka 12–15 do potwierdzenia.</li>
+      <li><b>Zasilanie:</b> czy masz gniazdo/breakout USB-C (z 5,1 kΩ na CC) do podstawki.</li>
+      <li><b>Instrukcja małych oczu:</b> jarzma montujesz obrócone o 180° względem kroków 5–8 – instrukcja do poprawy.</li>
+    </ul>
+  </section>
+
+  <section class="tracks" aria-label="Zadania">
+    <div class="track">
+      <h3>Duże oko</h3>
+      <div class="task"><span class="id">D9</span><span class="name">Model v9: kardany 2/2 przy gałce, 4 × MG90S, powieki z zaczepem 34 mm</span>
+        <div class="meta"><span class="chip done">zrobione</span><span>projektant, review Opusa i Astry</span></div>
+        <div class="note">commit 28250cb, <code>40-cad/3mf/Duze oko v2/</code>; „Probka drutu” nieaktualna</div></div>
+      <div class="task"><span class="id">O1</span><span class="name">Druk: Gałka (biała), Powieki, Maskownica, 2 × Przedłużenie orczyka</span>
+        <div class="meta"><span class="chip now">gotowe do druku</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">O2</span><span class="name">Uchwyt serw: ścianki usztywniające „gwiazda”</span>
+        <div class="meta"><span class="chip now">w toku</span><span>projektant → kolizje, Opus + Astra</span></div>
+        <div class="note">pierwszy wydruk Uchwytu v9 z błędem; żebra trójkątne + żebro 6 mm do S2 (zapas ok. 2 mm)</div></div>
+      <div class="task"><span class="id">O3</span><span class="name">Zmierzyć ściankę dyni, eksport Pierścienia</span>
+        <div class="meta"><span class="chip now">dynia kupiona</span><span>Ty → projektant</span><span>zmienna <code>scianka</code></span></div></div>
+      <div class="task"><span class="id">O4</span><span class="name">Druk: Uchwyt serw, Pierścień</span>
+        <div class="meta"><span class="chip todo">po O2 O3</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">O5</span><span class="name">Orczyki rozwiercić Ø2,5, pręty Ø2 (S2 zagięcie 105°), kardany 2/2</span>
+        <div class="meta"><span class="chip todo">do zrobienia</span><span>Ty</span><span>wg <code>duze-oko-v2-montaz.md</code></span></div></div>
+      <div class="task"><span class="id">O6</span><span class="name">Montaż na stole, orczyki przy 1500 µs, kalibracja</span>
+        <div class="meta"><span class="chip todo">po O1 O4 O5</span><span>Ty + syn</span></div></div>
+      <div class="task"><span class="id">O7</span><span class="name">Akceptacja wyglądu: krawędź gałki przy 35°, uszka przy zamkniętych, źrenica</span>
+        <div class="meta"><span class="chip todo">po O6</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">O8</span><span class="name">Przerysowanie modelu w Onshape</span>
+        <div class="meta"><span class="chip todo">po O7</span><span>Ty zakładasz dokument</span></div></div>
+    </div>
+
+    <div class="track">
+      <h3>Podstawka pod dynię</h3>
+      <div class="task"><span class="id">P1</span><span class="name">Koncepcja i model podstawki</span>
+        <div class="meta"><span class="chip done">zrobione</span><span>projektant</span></div>
+        <div class="note">commity de713fe, 1c8ba93; <code>40-cad/3mf/Podstawka v1/</code></div></div>
+      <div class="task"><span class="id">P2</span><span class="name">Drewno: dno 6 mm sklejone ze ściankami 40 mm, płyta górna 18 mm z otworem Ø45</span>
+        <div class="meta"><span class="chip done">zrobione</span><span>Ty</span><span>bez listew nośnych</span></div></div>
+      <div class="task"><span class="id">P3</span><span class="name">Szufladka powerbanku – lewa połówka</span>
+        <div class="meta"><span class="chip done">wydrukowana</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">P4</span><span class="name">Szufladka – prawa połówka</span>
+        <div class="meta"><span class="chip now">do druku</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">P5</span><span class="name">Blokada szufladki śrubą (dzieci)</span>
+        <div class="meta"><span class="chip block">do zlecenia</span><span>projektant podstawki + review</span></div></div>
+      <div class="task"><span class="id">P6</span><span class="name">Mocowanie PIR HC-SR501 w przedniej ściance</span>
+        <div class="meta"><span class="chip block">nie pasuje – analiza</span><span>projektant podstawki</span></div></div>
+      <div class="task"><span class="id">P7</span><span class="name">Model w repo = stan wykonany</span>
+        <div class="meta"><span class="chip todo">czeka na Twoją zgodę</span><span>projektant</span></div></div>
+      <div class="task"><span class="id">P8</span><span class="name">Tuleja przez otwór Ø80 w dnie dyni + nakrętka (próbka gwintu)</span>
+        <div class="meta"><span class="chip todo">po pomiarze dna dyni</span><span>projektant → Ty</span></div></div>
+      <div class="task"><span class="id">P9</span><span class="name">Kaseta elektroniki na dnie (ESP32-C3, PCA9685, USB-C)</span>
+        <div class="meta"><span class="chip todo">po przymiarce płytek</span><span>projektant → Ty</span></div></div>
+      <div class="task"><span class="id">P10</span><span class="name">3 skrętki z wtykami RJ45, łączniki gniazdo–gniazdo w dyni</span>
+        <div class="meta"><span class="chip todo">po K2</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">P11</span><span class="name">Montaż elektroniki na dnie, test</span>
+        <div class="meta"><span class="chip todo">po P6 P9 P10</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">P12</span><span class="name">Płyta górna na 4 śruby do dołu</span>
+        <div class="meta"><span class="chip todo">po P11</span><span>Ty</span></div></div>
+    </div>
+
+    <div class="track">
+      <h3>Małe oczy i software</h3>
+      <div class="task"><span class="id">M1</span><span class="name">Złożyć pozostałe moduły (jarzma obrócone o 180°)</span>
+        <div class="meta"><span class="chip now">w toku</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">M2</span><span class="name">Kalibracja: wspólne 1500/1100/1800 µs</span>
+        <div class="meta"><span class="chip now">w toku</span><span>Ty + programista</span></div>
+        <div class="note">moduły 1–3 OK, „8” buczy, ostatni chodzi ciężko</div></div>
+      <div class="task"><span class="id">S0</span><span class="name">Program kalibracji</span>
+        <div class="meta"><span class="chip done">wgrany</span><span>commit c7c3dd7</span></div></div>
+      <div class="task"><span class="id">S1</span><span class="name">Plan etapów programu docelowego</span>
+        <div class="meta"><span class="chip now">czeka na Ciebie</span><span>programista</span></div></div>
+      <div class="task"><span class="id">S2</span><span class="name">Program docelowy: ruch, duże oko na 4 serwach → PIR → ruch plastyczny → strona</span>
+        <div class="meta"><span class="chip todo">po S1</span><span>programista + Opus + Astra</span></div></div>
+      <div class="task"><span class="id">S3</span><span class="name">Test powerbanku z programem (Wi-Fi AP podtrzymuje)</span>
+        <div class="meta"><span class="chip todo">po S2 P11</span><span>Ty</span></div></div>
+    </div>
+
+    <div class="track">
+      <h3>Dynia</h3>
+      <div class="task"><span class="id">K1</span><span class="name">Kupno dyni</span>
+        <div class="meta"><span class="chip done">kupiona</span></div></div>
+      <div class="task"><span class="id">K2</span><span class="name">Rozmieszczenie: duże na środku, ile małych</span>
+        <div class="meta"><span class="chip now">do zrobienia</span><span>Ty + syn</span></div></div>
+      <div class="task"><span class="id">K3</span><span class="name">Otwory: duże ≤ Ø80, małe, Ø80 w dnie, wieczko</span>
+        <div class="meta"><span class="chip todo">po K2</span><span>Ty + syn</span></div></div>
+      <div class="task"><span class="id">K4</span><span class="name">Montaż oczu w dyni, dynia na podstawce</span>
+        <div class="meta"><span class="chip todo">po K3 i komponentach</span><span>Ty + syn</span></div></div>
+      <div class="task"><span class="id">K5</span><span class="name">Test całości</span>
+        <div class="meta"><span class="chip todo">po K4 i software</span><span>Ty</span></div></div>
+      <div class="task"><span class="id">K6</span><span class="name">Dynia w szkole</span>
+        <div class="meta"><span class="chip todo">po K5</span><span>środa 28.10</span></div></div>
+    </div>
+  </section>
+
+  <footer>Plik źródłowy: <code>30-projekt/plan.html</code>. Aktualizuje PM po każdej zmianie stanu.</footer>
+</div>
