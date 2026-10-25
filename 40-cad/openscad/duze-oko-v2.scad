@@ -73,8 +73,9 @@ odstSerwa = 8.5;    // czoło korpusów serw za gałką (od R gałki)
 przesS1 = 1; przesS2 = 5.5; // otwór orczyka S1 1 mm pod osią gałki; S2 5,5 mm nad uchem (wieża S2 ≥ 1,5 mm od orczyka S1 przy rUcha 17 – review Astry v8)
 odstOrczSlupek = 2;         // orczyk S2 od słupka
 aOrcz0 = -6;                // orczyki S1, S2 w zerze obrócone 6° do tyłu (solver)
-tPlyta = 3; tRamki = 4; aRamie = 8; polRamki = 8.5; ramkaNadUchem = 2; zapasPlyty = 4; luzUchaPlyta = 0.2;
+tPlyta = 3; tRamki = 4; aRamie = 8; polRamki = 10.5; ramkaNadUchem = 2; zapasPlyty = 4; luzUchaPlyta = 0.2;
 wkladSlupka = 2.5;          // ścianka słupka wokół piasty
+tSciany = 2.5; fazaWiezy = 5; zebroP = 14; hZebraS2 = 6; yZebraS2 = 0;   // żebra końcowe ściany SG/SD (zasięg w −x); niskie żebro do ramki S2: wysokość, położenie y   // ścianki usztywniające uchwyt (słupek–wieże, wieża–ramki, ramki powiek razem); skośna podstawa wież 45°
 oknoDl = 20;
 // ---------- BAZOWE: próbka, druk, siatka ----------
 pMargines = 3; pOdst = 4; pSzer = 12; pGrub = 2; pDlB = 8; pWysZebra = 6; pUchoB = 3; pOknoY = 4; pSkorupa = 2;   // próbka: margines od brzegu, odstęp między elementami
@@ -146,6 +147,10 @@ zRamkaGora = zSerwoPrzod + uchoWyst + ramkaNadUchem;         // -32
 xRamka1    = xOrcz1 + odstOrcz + uchoOd + uchoT;   // 39,5
 xRamka2    = xOrcz2 + odstOrcz + uchoOd + uchoT;   // 29,5
 polRamki12 = polRamki;                             // 8,5
+ramkaS2Zewn = false;   // WARIANT (czeka na decyzję): ramka S2 przed uszami, serwo wsuwane wieżą od +x (review Opus r2: przy słupku S2 nie wchodzi)
+luzWiezyS2 = 0.6;      // w wariancie: luz okna ramki S2 od strony wieży (wieża MG90S przechodzi przez okno)
+xRamka2Ust = ramkaS2Zewn ? xRamka2 - uchoT - tRamki : xRamka2;   // 23,5 w wariancie
+yFazyW1Max = yWal2 - Wsv / 2 - luzSlizg - 0.5;     // w wariancie: skos podstawy wieży 1 kończy się przed pasem S2 (dolne ucho)
 plytaX     = [min(ramiona[1][0] - aRamie / 2, xRamkaP - tRamki - zapasPlyty), xRamka1 + tRamki + zapasPlyty];   // [-48,3; 47,5]
 plytaY     = [min(yWal1 - polRamki12, -yWalP - polRamki), max(yWal2 + polRamki12, yWalP + polRamki)];   // [-28,1; 28,1]
 jezykPol   = aRamie / 2 + 2 * luzRuch + 1;         // 6
@@ -327,22 +332,41 @@ module Pierscien() {
 }
 module Maskownica() { translate([0, 0, zSkorka]) difference() { cylinder(d = dMask, h = tMask, $fn = fnDuze); translate([0, 0, -nad]) cylinder(d = dMaskW, h = tMask + 2 * nad, $fn = fnDuze); } }
 // ramka serwa w płaszczyźnie ⟂ osi wałka: okno korpusu (W × L + luz) i 2 otwory na wkręty fabryczne
-module ramka(u0, u1, uOs) {   // w lokalnym (u, z): u = współrzędna poprzeczna, z = świat z
+module ramka(u0, u1, uOs, luzG = 0) {   // w lokalnym (u, z): u = współrzędna poprzeczna, z = świat z
   difference() { translate([u0, zPlyta + tPlyta]) square([u1 - u0, zRamkaGora - (zPlyta + tPlyta)]);
-    translate([uOs - Wsv / 2 - luzSlizg, zSerwoTyl - luzSlizg]) square([Wsv + 2 * luzSlizg, Lsv + 2 * luzSlizg]);
+    translate([uOs - Wsv / 2 - luzSlizg, zSerwoTyl - luzSlizg]) square([Wsv + 2 * luzSlizg, Lsv + 2 * luzSlizg + luzG]);
     for (z = zUchSerwa) translate([uOs, z]) circle(d = dWkrSerwa, $fn = fnMale); }
 }
+module obrysPlyty() { polygon([[plytaX[0], plytaY[0]], [xJezyk - jezykPol, plytaY[0]], [xJezyk - jezykPol, jezykY], [xJezyk + jezykPol, jezykY], [xJezyk + jezykPol, plytaY[0]],
+  [plytaX[1], plytaY[0]], [plytaX[1], plytaY[1]], [plytaX[0], plytaY[1]]]); }
+module sciankaAB(a, b, z0, z1) { hull() for (q = [a, b]) translate([q[0], q[1], z0]) cylinder(d = tSciany, h = z1 - z0, $fn = fnMale); }   // pionowa ścianka między punktami a, b (rzut xy)
 module UchwytSerw() {
   zRamTop = zKolPrzod - tKol;
   difference() {
     union() {
-      translate([0, 0, zPlyta]) linear_extrude(tPlyta) polygon([[plytaX[0], plytaY[0]], [xJezyk - jezykPol, plytaY[0]], [xJezyk - jezykPol, jezykY], [xJezyk + jezykPol, jezykY], [xJezyk + jezykPol, plytaY[0]],
-        [plytaX[1], plytaY[0]], [plytaX[1], plytaY[1]], [plytaX[0], plytaY[1]]]);
+      translate([0, 0, zPlyta]) linear_extrude(tPlyta) obrysPlyty();
       translate([0, 0, zPlyta]) cylinder(d = dSlupek, h = -zPiasta - zPlyta, $fn = fnSr);
       for (p = ramiona) translate([p[0] - aRamie / 2, p[1] - aRamie / 2, zPlyta]) cube([aRamie, aRamie, zRamTop - zPlyta]);
       translate([xRamka1, 0, 0]) xOs() linear_extrude(tRamki) ramka(yWal1 - polRamki12, yWal1 + polRamki12, yWal1);
-      translate([xRamka2, 0, 0]) xOs() linear_extrude(tRamki) ramka(yWal2 - polRamki12, yWal2 + polRamki12, yWal2);
+      translate([xRamka2Ust, 0, 0]) xOs() linear_extrude(tRamki) ramka(yWal2 - polRamki12, yWal2 + polRamki12, yWal2, ramkaS2Zewn ? luzWiezyS2 : 0);
       for (s = [1, -1]) translate([xRamkaP - tRamki, 0, 0]) xOs() linear_extrude(tRamki) ramka(s * yWalP - polRamki, s * yWalP + polRamki, s * yWalP);   // serwa powiek SG, SD
+      // usztywnienie (użytkownik 25.10): ścianka od słupka do wieży 2 (do wieży 3 nie: blokowała wsuwanie S1 i SD, review 25.10); wieża 1 do ramek S1 i S2 (między słupkiem a wieżą 1 przechodzi pręt S1); ramki SG i SD połączone w jedną ścianę
+      zDol = zPlyta + tPlyta - e;
+      sciankaAB([0, 0], ramiona[1] - [0, aRamie / 2 - tSciany / 2], zDol, zRamTop);   // ścianka do dolnej krawędzi wieży 2: dalej od serwa SG
+      sciankaAB(ramiona[0], [xRamka1 + tRamki / 2, yWal1 + polRamki12 - tSciany / 2], zDol, zRamTop);
+      sciankaAB(ramiona[0], [xRamka2Ust + tRamki / 2, yWal2 - polRamki12 + tSciany / 2], zDol, zRamTop);
+      translate([xRamkaP - tRamki, -(yWalP - polRamki) - e, zDol]) cube([tRamki, 2 * (yWalP - polRamki + e), zRamkaGora - zDol]);
+      // trójkątne żebra na końcach ściany ramek SG/SD (po stronie −x, poza korpusami serw): sztywność ściany w poprzek (użytkownik 25.10)
+      for (s = [1, -1]) let(yz = s * (yWalP + polRamki - tSciany / 2)) hull() { translate([xRamkaP - tRamki, yz - tSciany / 2, zDol]) cube([tRamki, tSciany, zRamkaGora - zDol]);
+        translate([xRamkaP - tRamki - zebroP, yz - tSciany / 2, zDol]) cube([e, tSciany, e]); }
+      // niskie żebro słupek – ramka S2 (pod zasięgiem orczyka S1): łączy prawą i lewą stronę przez słupek
+      sciankaAB([0, yZebraS2], [xRamka2Ust + tRamki / 2, yZebraS2], zDol, zDol + hZebraS2);
+      // skośne podstawy wież (45°), przycięte do obrysu płyty
+      intersection() { translate([0, 0, zDol]) linear_extrude(fazaWiezy + e) obrysPlyty();
+        if (ramkaS2Zewn) translate([0, 0, zDol]) union() { translate([plytaX[0], plytaY[0]]) cube([xRamka2Ust - plytaX[0], plytaY[1] - plytaY[0], fazaWiezy + e]);   // poza wieżą 1 bez zmian
+          translate([xRamka2Ust, plytaY[0]]) cube([plytaX[1] - xRamka2Ust, yFazyW1Max - plytaY[0], fazaWiezy + e]); }   // wieża 1: skos tylko poza pasem S2
+        for (q = ramiona) hull() { translate([q[0] - aRamie / 2 - fazaWiezy, q[1] - aRamie / 2 - fazaWiezy, zDol]) cube([aRamie + 2 * fazaWiezy, aRamie + 2 * fazaWiezy, e]);
+          translate([q[0] - aRamie / 2, q[1] - aRamie / 2, zDol + fazaWiezy]) cube([aRamie, aRamie, e]); } }
     }
     translate([0, 0, zOkno[0]]) cylinder(d = dTrzpTyl, h = -zPiasta - zOkno[0] + nad, $fn = fnMale);                 // trzpień M5 tylnej piasty
     translate([-oknoSzer / 2, -oknoDl / 2, zOkno[0]]) cube([oknoSzer, oknoDl, zOkno[1] - zOkno[0]]);                // okno łba M5 (przelotowe wzdłuż y)

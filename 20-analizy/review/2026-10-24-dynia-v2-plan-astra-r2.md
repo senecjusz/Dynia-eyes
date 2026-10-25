@@ -1,0 +1,12 @@
+Runda 2: **uwagi zamknięto częściowo**. AP od etapu 1, PIR, Hermite, FreeRTOS, rozwarcie powiek 0–100% i kierunki kalibracji poprawiono. Taka kolejność ogranicza późniejsze przepisywanie; nie dodaje funkcji ponad PRD. Strona w etapie 3 zgodnie z podaną decyzją PM.
+
+- **WAŻNE — [zakres etapu 1](C:/Users/Karol/Documents/_AI-projects/Dynia-eyes/50-elektronika/dynia-v2-plan.md:36):** nadal odkłada mruganie, spokojne rozglądanie i zachowania powiek wymagane przez §6. Scenariusz: „minimum szkolne” zostaje uznane za komplet PRD. **Poprawka:** jawnie objąć odroczenie ruchu plastycznego decyzją użytkownika, podobnie jak stronę.
+- **WAŻNE — [start](C:/Users/Karol/Documents/_AI-projects/Dynia-eyes/50-elektronika/dynia-v2-plan.md:40):** „powieka od razu do zamknięte” przeczy kolejności „gałka na środek, zanim powieki się zamkną”. **Poprawka:** jedna sekwencja także podczas rozruchu: odtworzenie pozycji → wycentrowanie gałki → zamknięcie.
+- **WAŻNE — NVS, tamże:** tabela nadal mówi „ostatni impuls”, choć [kod zapisuje również cel](C:/Users/Karol/Documents/_AI-projects/Dynia-eyes/50-elektronika/dynia/ruch.cpp:174). Limity zapisu nie gwarantują aktualności ani błędu najwyżej jednej sakady. **Poprawka:** poprawić opis, określić reakcję na brak/błąd odczytu i otwarcia NVS oraz oddzielić dane starego mapowania kanałów.
+- **WAŻNE — [test zasilania](C:/Users/Karol/Documents/_AI-projects/Dynia-eyes/50-elektronika/dynia-v2-plan.md:45):** samo 30 minut na Baseusie nie sprawdza szczytu obciążenia. **Poprawka:** jawnie testować komplet 11 serw, rozruch i równoczesny ruch 2 SG90 + 3 MG90S; kryterium: brak odcięć i restartów. Sprawdzić również zapasową Mantę.
+- **WAŻNE — [import kalibracji](C:/Users/Karol/Documents/_AI-projects/Dynia-eyes/50-elektronika/dynia-v2-plan.md:38):** nadal nierozstrzygnięte ograniczenia starego silnika 900–2100 µs wobec kalibratora 600–2400 µs. Skopiowanie ogranicznika może obciąć skalibrowany ruch. **Poprawka:** jawnie zapewnić wykorzystanie pełnych zapisanych zakresów.
+- **DROBNE — tabela:** poza NVS zasadniczo zgodna z kodem; koszty liniowe nakładają się, a „~20 linii” nie opisuje trudności integracji śledzenia powieki.
+
+Bez zmian w plikach; nie uruchamiałem procesów w tle.
+
+**Werdykt: planu etapu 1 nie dawać jeszcze do zatwierdzenia — najpierw doprecyzować powyższe punkty.**

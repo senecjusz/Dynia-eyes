@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie (25.10):** Epik Dynia na środę 28.10 – plan i stany zadań w `30-projekt/plan.html` (tory: Podstawka, Duże oko v9, Małe oczy, Software). Dynia kupiona, podstawka z drewna wykonana. Sekcja niżej (E1–E6) jest historyczna.
+**Bieżące zadanie (25.10):** Epik Dynia na środę 28.10. **Otwarte sprawy z kontekstem: `30-projekt/otwarte-2026-10-25.md`.** – plan i stany zadań w `30-projekt/plan.html` (tory: Podstawka, Duże oko v9, Małe oczy, Software). Dynia kupiona, podstawka z drewna wykonana. Sekcja niżej (E1–E6) jest historyczna.
 
 ```mermaid
 flowchart TD

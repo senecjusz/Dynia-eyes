@@ -116,6 +116,7 @@ const TH = sym(35, KROK), PH = sym(25, KROK);
 const t0 = Date.now(), Ig0 = indeks(M.galka);
 const LidT = {}; for (const ps of [0, SK / 2, SK]) LidT[ps] = { g: indeks(przeksztalc(M.pg, (p) => Rx(p, ps))), d: indeks(przeksztalc(M.pd, (p) => Rx(p, -ps))) };
 const katy = { S1: [1e9, -1e9], S2: [1e9, -1e9] };
+for (const k of ['S1', 'S2', 'SG', 'SD']) zapisz('serwo ' + k + ' – uchwyt (stałe; 0,3 = luz okna ramki)', odstep(probki(stale[k]), I.uchwyt), '–');
 const prev = { S1: PAR.s1.a0, S2: PAR.s2.a0 };
 for (const th of TH) for (const ph of PH) {
   const poz = `θ ${th}, φ ${ph}`, g = (p) => gal(p, th, ph); const ciala = {};

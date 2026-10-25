@@ -1,0 +1,76 @@
+kolizje kardanów 2/2 przy gałce: krok 5°, θ 15 × φ 11; S1 α -39.8…28.0°, S2 α -40.4…25.5°; 80 s
+para | najmniejszy odstęp powierzchni [mm] (≥ 3 = „> 3”) | położenie
+serwo S1 – uchwyt (stałe; 0,3 = luz okna ramki) | 0.30 | – @ 37.8,-24.8,-38.5
+serwo S2 – uchwyt (stałe; 0,3 = luz okna ramki) | 0.30 | – @ 30.8,2.8,-38.5
+serwo SG – uchwyt (stałe; 0,3 = luz okna ramki) | 0.30 | – @ -21.3,20.3,-61.3
+serwo SD – uchwyt (stałe; 0,3 = luz okna ramki) | 0.30 | – @ -19.8,-20.3,-61.3
+piasta 1 kardana S1 – gałka (bez kostki: wewnątrz) | 0.49 | θ -35, φ -25
+piasta 1 kardana S2 – gałka (bez kostki: wewnątrz) | 0.49 | θ 35, φ 25
+piasta 2 kardana S1 – gałka | 0.99 | θ 35, φ 20
+orczyk S1 – serwo S2 (wieża, korpus) | 1.39 | θ 0, φ 25
+piasta 2 kardana S2 – gałka | 1.39 | θ 35, φ 25
+piasta 2 kardana S1 – uchwyt | 1.75 | θ 35, φ 0
+orczyk S2 – serwo S1 (wieża, korpus) | > 3 | θ -35, φ -25
+orczyk S1 – orczyk S2 | > 3 | θ -35, φ -25
+orczyk S1 – uchwyt | > 3 | θ -35, φ -25
+orczyk S2 – uchwyt | > 3 | θ -35, φ -25
+orczyk S1 – pierscien | > 3 | θ -35, φ -25
+orczyk S2 – pierscien | > 3 | θ -35, φ -25
+orczyk S1 – SG | > 3 | θ -35, φ -25
+orczyk S2 – SG | > 3 | θ -35, φ -25
+orczyk S1 – SD | > 3 | θ -35, φ -25
+orczyk S2 – SD | > 3 | θ -35, φ -25
+piasta 2 kardana S1 – pierscien | > 3 | θ -35, φ -25
+pręt S1 – pierscien | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – pierscien | > 3 | θ -35, φ -25
+pręt S1 – uchwyt | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – uchwyt | > 3 | θ -35, φ -25
+piasta 2 kardana S1 – S1 | > 3 | θ -35, φ -25
+pręt S1 – S1 | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – S1 | > 3 | θ -35, φ -25
+piasta 2 kardana S1 – S2 | > 3 | θ -35, φ -25
+pręt S1 – S2 | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – S2 | > 3 | θ -35, φ -25
+piasta 2 kardana S1 – SG | > 3 | θ -35, φ -25
+pręt S1 – SG | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – SG | > 3 | θ -35, φ -25
+piasta 2 kardana S1 – SD | > 3 | θ -35, φ -25
+pręt S1 – SD | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – SD | > 3 | θ -35, φ -25
+piasta 2 kardana S1 – piastaTyl | > 3 | θ -35, φ -25
+pręt S1 – piastaTyl | > 3 | θ -35, φ -25
+piasta 1 kardana S1 – piastaTyl | > 3 | θ -35, φ -25
+pręt S1 – gałka | > 3 | θ -35, φ -25
+kardan + pręt S1 – powieka górna | > 3 | θ -35, φ -25, ψ 0
+kardan + pręt S1 – powieka dolna | > 3 | θ -35, φ -25, ψ 0
+kardan + pręt S1 – kardan + pręt S2 | > 3 | θ -35, φ -25
+kardan + pręt S1 – drut powieki SG | > 3 | θ -35, φ -25, ψ 0
+kardan + pręt S1 – drut powieki SD | > 3 | θ -35, φ -25, ψ 0
+pręt S1 – orczyk S2 | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – pierscien | > 3 | θ -35, φ -25
+pręt S2 – pierscien | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – pierscien | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – uchwyt | > 3 | θ -35, φ -25
+pręt S2 – uchwyt | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – uchwyt | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – S1 | > 3 | θ -35, φ -25
+pręt S2 – S1 | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – S1 | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – S2 | > 3 | θ -35, φ -25
+pręt S2 – S2 | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – S2 | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – SG | > 3 | θ -35, φ -25
+pręt S2 – SG | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – SG | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – SD | > 3 | θ -35, φ -25
+pręt S2 – SD | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – SD | > 3 | θ -35, φ -25
+piasta 2 kardana S2 – piastaTyl | > 3 | θ -35, φ -25
+pręt S2 – piastaTyl | > 3 | θ -35, φ -25
+piasta 1 kardana S2 – piastaTyl | > 3 | θ -35, φ -25
+pręt S2 – gałka | > 3 | θ -35, φ -25
+kardan + pręt S2 – powieka górna | > 3 | θ -35, φ -25, ψ 0
+kardan + pręt S2 – powieka dolna | > 3 | θ -35, φ -25, ψ 0
+kardan + pręt S2 – drut powieki SG | > 3 | θ -35, φ -25, ψ 0
+kardan + pręt S2 – drut powieki SD | > 3 | θ -35, φ -25, ψ 0
+pręt S2 – orczyk S1 | > 3 | θ -35, φ -25

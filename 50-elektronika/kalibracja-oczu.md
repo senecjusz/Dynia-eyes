@@ -14,14 +14,15 @@ Wynik programu `kalibracja/` (komenda `t`), wklejony tutaj. Program docelowy bie
 
 | Kanał | Moduł | Środek µs | Min µs | Max µs | Min to | Uwagi |
 |---|---|---|---|---|---|---|
-| 0 | małe oko 0 | | | | | |
-| 1 | małe oko 1 | | | | | |
-| 2 | małe oko 2 | | | | | |
-| 3 | małe oko 3 | | | | | |
-| 4 | małe oko 4 | | | | | |
-| 5 | małe oko 5 | | | | | |
-| 6 | małe oko 6 | | | | | |
-| 7 | małe oko 7 | | | | | |
-| 12 | duże oko: lewo–prawo | | | | | kanały 12–14 jak w `dynia/`, do potwierdzenia |
+| 0 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 1 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 2 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 3 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 4 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 5 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 6 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 7 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 12 | duże oko: lewo–prawo | | | | | kanały 12–15 jak w `dynia/`, do potwierdzenia |
 | 13 | duże oko: góra–dół | | | | | |
-| 14 | duże oko: powieki | | | | | |
+| 14 | duże oko: powieka górna | | | | | |
+| 15 | duże oko: powieka dolna | | | | | |
