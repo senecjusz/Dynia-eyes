@@ -9,8 +9,8 @@ OUT="${OUT3MF:-../3mf/Podstawka v1}"
 read -r -a ZM <<< "${ZMIENNE:-}"
 mkdir -p "$OUT"
 declare -A PLIK=([Szuflada]="Szuflada (X1C)" [SzufladaL]="Szuflada lewa (A1 mini)" [SzufladaP]="Szuflada prawa (A1 mini)" [Kaseta]="Kaseta elektroniki"
-  [Tuleja]="Tuleja z gwintem" [Nakretka]="Nakretka" [OslonkaPIR]="Oslonka PIR (opcja)" [ProbkaTuleja]="Probka gwintu - tuleja" [ProbkaNakretka]="Probka gwintu - nakretka")
-CZ=("$@"); [ ${#CZ[@]} -eq 0 ] && CZ=(Szuflada SzufladaL SzufladaP Kaseta Tuleja Nakretka OslonkaPIR ProbkaTuleja ProbkaNakretka)
+  [Tuleja]="Tuleja z gwintem" [Nakretka]="Nakretka" [OslonkaPIR]="Oslonka PIR (opcja)" [ListwyNosne]="Listwy nosne x2" [ProbkaTuleja]="Probka gwintu - tuleja" [ProbkaNakretka]="Probka gwintu - nakretka")
+CZ=("$@"); [ ${#CZ[@]} -eq 0 ] && CZ=(Szuflada SzufladaL SzufladaP ListwyNosne Kaseta Tuleja Nakretka OslonkaPIR ProbkaTuleja ProbkaNakretka)
 timeout 120 "$OS" -o "$OUT/parametry.echo" "${ZM[@]}" -D 'czesc="parametry"' podstawka.scad > /dev/null 2>&1
 sed -n 's/^ECHO: "PARAMETRY\(.*\)"$/\1/p' "$OUT/parametry.echo" > "$OUT/parametry.json"
 jedna() { local c=$1 t0=$(date +%s)

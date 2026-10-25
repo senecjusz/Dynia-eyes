@@ -20,7 +20,7 @@
 
 ## Wymiary wynikowe (wartości bazowe)
 
-Podstawka **254,8 × 222,8 × 58** (bez dna); wnętrze 40.
+Podstawka **254,8 × 222,8 × 66** (bez dna); wnętrze 48 (szufladka leży dnem na 2 listwach nośnych 8 mm nad stołem).
 
 **Szufladka** 215,8 × 101,8 korpus + czoło 234,8 × 39 × 3, uchwyt klin 45°.
 
@@ -38,8 +38,8 @@ Podstawka **254,8 × 222,8 × 58** (bez dna); wnętrze 40.
 | Element | Wymiar | Szt. |
 |---|---|---|
 | Płyta górna | 254,8 × 222,8, otwór Ø64 w środku (nastawna otwornica 64) | 1 |
-| Ścianka boczna | 222,8 × 40 | 2 |
-| Ścianka tylna | 218,8 × 40 (między bocznymi) | 1 |
+| Ścianka boczna | 222,8 × 48, **3 otwory Ø3,5** 4 mm nad dolną krawędzią, 15 / 50,9 / 86,8 od przodu, pogłębione od zewnątrz (wkręty listew nośnych) | 2 (lewa i prawa – lustrzane) |
+| Ścianka tylna | 218,8 × 48 (między bocznymi) | 1 |
 
 Montaż skrzynki:
 
@@ -53,19 +53,21 @@ Montaż skrzynki:
 |---|---|---|---|---|
 | Szufladka | `Szuflada (X1C)` | 234,8 × 112,8 × 39 | X1C | dnem na stół; uchwyt klinem 45° bez podpór; otwór kopułki Ø24 w pionowym czole |
 | albo 2 połówki | `Szuflada lewa (A1 mini)` + `Szuflada prawa (A1 mini)` | 178,9 / 55,9 × 112,8 × 39 | A1 mini | żebra z 2 otworami M3: skręcić M3 × 10 z nakrętką, opcjonalnie CA na styku |
+| Listwy nośne × 2 | `Listwy nosne x2` | 101,8 × 26 × 7,5 (dwie na stole) | A1 mini | stroną przy ściance na stole, otwory pilotowe Ø2,5 pionowo; przykręcane od zewnątrz przez ściankę 3 wkrętami 3 × 25 każda |
 | Kaseta elektroniki | `Kaseta elektroniki` | 170 × 100 × 25 | A1 mini | słupki PCA9685 z otworem Ø2,6 (wkręt M3 w plastik – montaż jednorazowy), ramka ESP32-C3 z wyjściem USB-C do przodu (programowanie po wyjęciu szufladki), ramka gniazda zasilania USB-C (breakout ok. 20 × 15, szacunek) dokładnie za wycięciem kablowym szufladki, wejściem do przodu, 50 mm za szufladką (kaseta dosunięta do prawej ścianki), pierścień kondensatora, 2 otwory pod wkręty 3 × 16 do ścianki tylnej |
 | Tuleja z gwintem | `Tuleja z gwintem` | Ø120 × 58 | A1 mini | kołnierzem na stół; **drukować po zmierzeniu `hDoc`** (tuleja = `hDoc` + 13) |
 | Nakrętka | `Nakretka` | 130 × 112,6 × 8 | A1 mini | płasko; fazki wejścia z obu stron |
 | Próbka gwintu | `Probka gwintu - tuleja` + `- nakretka` | Ø90 × 15 / Ø90 × 8 | A1 mini | najpierw próbka (AGENTS.md: nowe pasowanie); ten sam profil co E2.0, większa średnica |
-| Osłonka PIR (opcja) | `Oslonka PIR (opcja)` | Ø30 × 20 (ścięta płasko) | A1 mini | na stojąco; płaskim bokiem w dół (na poziomie stołu), przykleić CA do czoła wokół kopułki |
+| Osłonka PIR (opcja) | `Oslonka PIR (opcja)` | Ø30 × 20 | A1 mini | na stojąco; przykleić CA do czoła wokół kopułki (dół rurki 7 mm nad stołem) |
 
 ## Montaż elektroniki i dyni
 
 1. **Kaseta:** PCA9685 na słupkach (4 × M3), ESP32-C3 w ramce, kondensator w pierścieniu. 3 skrętki żyłami (Dupont) na listwach PCA9685, wtykami RJ45 do góry.
-2. **Wsunięcie kasety:** kasetę wsunąć przez otwór szufladki do ścianki tylnej i przykręcić 2 wkrętami 3 × 16 do ścianki tylnej (wkrętak przez otwór szufladki). Kasetę wyjmuje się tak samo, gdy szufladka jest wysunięta.
+2. **Wsunięcie kasety (przed przykręceniem listew nośnych):** kasetę wsunąć przez otwór szufladki do ścianki tylnej i przykręcić 2 wkrętami 3 × 16 do ścianki tylnej (wkrętak przez otwór szufladki). Kasetę wyjmuje się tak samo, gdy szufladka jest wysunięta – najpierw przesunąć ją ok. 7 mm w lewo, bo prawy brzeg zachodzi nad prawą listwę nośną.
 3. **PIR:** płytkę wsunąć od góry w prowadnice za czołem szufladki (kopułka z kwadratową podstawą zjeżdża wycięciem w czole, otwartym od dna do góry; płytka stoi na dnie), przewód wlutowany, ok. 15 cm zapasu do ESP32-C3 przez wycięcie w tylnej ściance szufladki.
-4. **Powerbank i USB-C:** powerbank włożyć do szufladki portem w prawo, wpiąć USB-C, kabel przez to samo wycięcie do wejścia zasilania w kasecie.
-5. **Dynia:**
+4. **Listwy nośne i szufladka:** każdą listwę przyłożyć od środka do dolnej krawędzi ścianki bocznej (równo z przodem) i przykręcić od zewnątrz 3 wkrętami 3 × 25 przez otwory w sklejce. Szufladkę wsunąć od przodu: leży dnem na listwach (po 6 mm z każdej strony), z boków prowadzą ją ścianki (luz 1,5), czoło opiera się o ścianki. Bez kleju; w środku nie ma łbów. Wariant A1 mini: połówki skręcić najpierw 2 × M3 × 10.
+5. **Powerbank i USB-C:** powerbank włożyć do szufladki portem w prawo, wpiąć USB-C, kabel przez to samo wycięcie do wejścia zasilania w kasecie.
+6. **Dynia:**
    - wyciąć otwór Ø80 w środku dna dyni;
    - postawić dynię na płycie, zmierzyć `hDoc`;
    - wydrukować tuleję i przykręcić ją do płyty 3 wkrętami 3 × 16 przez kołnierz;
@@ -122,3 +124,11 @@ Raporty: `review/2026-10-25-podstawka-poprawki-opus.md`, `-astra.md`.
 - otwory na gniazda USB-C w ramkach 9,5, bo gniazdo ma 8,94 (Opus P2).
 
 Siatki po ponownym eksporcie: OK, 1 bryła, wymiary OK.
+
+## Zmiana 25.10 (rano): szufladka na listwach nośnych
+
+Prośba użytkownika: szufladka ma być prowadzona w skrzynce, nie leżeć na stole. Zasady: bez kleju (AGENTS.md), bez przedruku szufladki (PM). Dwie drukowane listwy nośne 101,8 × 8 × 7,5 przykręcone od zewnątrz przez ściankę ze sklejki (wkręty 3 × 25, łeb na zewnątrz podstawki, pogłębiony); szufladka leży na nich dnem 8 mm nad stołem (zachodzi 6 mm na każdą listwę), z boków prowadzą ją ścianki. Szufladka bez zmian – plik z nocnego druku jest dobry (geometria identyczna z commitem de713fe). Skutek: wnętrze 40 → 48, podstawka 58 → 66. Odrzucone: listwy klejone CA (klej), kołnierze dna w rowkach (przedruk szufladki), śruby M3 przez bok szufladki (łeb w środku koliduje z powerbankiem: luz 1 mm, łeb 1,65–3 mm).
+
+Kontrola: siatki listew i osłonki OK, wymiary OK; część wspólna szufladki ze ściankami, płytą, kasetą i listwami w złożeniu: pusta; listwy ze ściankami: pusta.
+
+Weryfikacja (Opus, Astra): `review/2026-10-25-podstawka-listwy-opus.md`, `-astra.md` – brak uwag psujących działanie lub druk; szufladkę z nocnego druku można używać. Uwagi montażowe: pogłębiać otwory w sklejce pogłębiaczem 90° pod rzeczywisty łeb i nie przeciągać wkrętów (pod otworem 2,25 mm sklejki); przy wysunięciu ok. 100 mm szufladka schodzi z listew i staje na stole – przy wsuwaniu unieść ją 8 mm na listwy.

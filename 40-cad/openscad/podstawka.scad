@@ -41,6 +41,12 @@ slupekW = 4; slupekH = 12; slupekL = 8;          // słupki zatrzymujące powerb
 zebroT = 3; zebroH = 8; zebroOdKrawedzi = 10;    // żebra łączenia połówek (wariant A1 mini)
 wcCiecie = 12; wcDno = 10;                       // wycięcie na kable w tylnej ściance: szerokość, wysokość dna nad dnem szufladki
 wcOdBoku = 4;                                    // wycięcie od prawego boku
+// ---------- BAZOWE: listwy nośne szufladki (druk, przykręcone od zewnątrz przez ściankę ze sklejki; szufladka leży na nich dnem) ----------
+lnH = 8; lnPod = 6;                              // listwa nośna: wysokość (= uniesienie szufladki), zachodzenie pod dno szufladki
+lnWkretOd = 15; dWkretPilot = 2.5; lnDnoOtw = 0.6;   // wkręty 3 × 25: od końców listwy, otwór pilotowy w listwie, dno otworu
+dWkretSkl = 3.5; dLebSkl = 6.5;                  // otwór przelotowy w sklejce i pogłębienie łba (od zewnątrz)
+szNad = lnH;                                     // dno szufladki nad stołem
+listwyOdst = 10;                                 // odstęp dwóch listew na stole drukarki
 // ---------- BAZOWE: druk – kaseta elektroniki ----------
 kW = 170; kD = 100; kDno = 2.4; kScH = 10;       // szerokość, głębokość, dno, niskie boki
 kTylH = 25; kTylT = 3; wkretKX = 50;             // tylny pas pod wkręty do ścianki tylnej; rozstaw wkrętów od osi
@@ -76,7 +82,7 @@ zak = 0.01;         // zakładka brył (elementy na dnie wchodzą w dno, żeby s
 szczSeam = 1;       // podział połówek 1 mm za słupkami powerbanku
 
 // ===================== POCHODNE =====================
-H_IN   = dnoSz + pbH + luzPodPl;                 // wnętrze (40)
+H_IN   = szNad + dnoSz + pbH + luzPodPl;         // wnętrze (46)
 Z_PL   = H_IN + tPl;                             // wierzch płyty (58)
 szInW  = luzPb + pbL + wtyk;                     // wnętrze szufladki w x (211)
 szW    = szInW + 2 * sc;                         // 215,8
@@ -86,8 +92,8 @@ szX0   = tPl + luzSz;                            // położenie szufladki w pods
 SZ     = 2 * tPl + 2 * luzSz + szW;              // szerokość podstawki (254,8)
 kY0    = szD + odstSzKas;                        // przód kasety
 DL     = kY0 + kD + luzKasTyl + tPl;             // głębokość podstawki (222,8)
-czH    = H_IN - 1;                               // wysokość czoła
-pirZ   = dnoSz + pirNadDnem + pirH / 2;          // oś PIR nad stołem
+czH    = H_IN - szNad - 1;                       // wysokość czoła (od dna szufladki)
+pirZ   = dnoSz + pirNadDnem + pirH / 2;          // oś PIR nad dnem szufladki (nad stołem: + szNad)
 pirSzcz = pirT + 2 * luzSlizg;                   // szczelina na płytkę PIR
 xPort  = sc + luzPb + pbL;                       // czoło portu powerbanku (x w szufladce)
 zPort  = dnoSz + pbH / 2;                        // oś portu
@@ -96,6 +102,8 @@ rc     = gwD / 2 - zarys;                        // promień rdzenia gwintu
 tulH   = hDoc + kolT + nadDnem;                  // wysokość tulei nad płytą: dynia leży na kołnierzu (hDoc mierzone bez tulei)
 cx = SZ / 2; cy = DL / 2;                        // środek dyni = środek podstawki
 kX0    = SZ - tPl - luzKasBok - kW;              // kaseta przy prawej ściance
+lnW = luzSz + lnPod;                             // szerokość listwy nośnej (od ścianki pod dno szufladki, 7,5)
+lnY = [lnWkretOd, szD / 2, szD - lnWkretOd];     // położenia wkrętów wzdłuż listwy (od przodu)
 bkX    = szX0 + szW - sc - wcOdBoku - wcCiecie / 2 - kX0;   // oś gniazda zasilania w kasecie = oś wycięcia kablowego szufladki
 bkY    = szD + wtyk - kY0;                        // przód gniazda: wtyk z kablem mieści się za szufladką
 
@@ -232,13 +240,24 @@ module oslonka() {   // druk na stojąco (oś z); w użyciu oś poziomo, „dó�
       cylinder(r = oslRw + oslT, h = oslL, $fn = 64);
       translate([0, 0, -1]) cylinder(r = oslRw, h = oslL + 2, $fn = 64);
     }
-    translate([-(oslRw + oslT), -pirZ, 0]) cube([2 * (oslRw + oslT), oslRw + oslT + pirZ, oslL]);
+    translate([-(oslRw + oslT), -(pirZ + szNad), 0]) cube([2 * (oslRw + oslT), oslRw + oslT + pirZ + szNad, oslL]);
   }
 }
 
 // ===================== sklejka =====================
 module plyta() difference() { cube([SZ, DL, tPl]); translate([cx, cy, -1]) cylinder(r = tulRw, h = tPl + 2, $fn = 120); }
-module scianaBoczna() cube([tPl, DL, H_IN]);
+module scianaBoczna() difference() {             // strona wewnętrzna = +x; prawa ścianka = odbicie
+  cube([tPl, DL, H_IN]);
+  for (y = lnY) translate([-1, y, lnH / 2]) rotate([0, 90, 0]) {   // otwory na wkręty listwy nośnej, łeb od zewnątrz
+    cylinder(d = dWkretSkl, h = tPl + 2, $fn = 24);
+    cylinder(d1 = dLebSkl, d2 = dWkretSkl, h = 1 + (dLebSkl - dWkretSkl) / 2, $fn = 24);
+  }
+}
+module listwaNosna() difference() {              // druk: strona przy ściance na stole (z = 0), otwory pilotowe pionowo
+  cube([szD, lnH, lnW]);
+  for (y = lnY) translate([y, lnH / 2, -1]) cylinder(d = dWkretPilot, h = lnW - lnDnoOtw + 1, $fn = 16);
+}
+module listwyNosne() for (i = [0, 1]) translate([0, i * (lnH + listwyOdst), 0]) listwaNosna();
 module scianaTylna() cube([SZ - 2 * tPl, tPl, H_IN]);
 
 // ===================== rysunek cięcia (2D, widok z góry, wymiary w tekście) =====================
@@ -258,7 +277,10 @@ module rysunekCiecia() {
   translate([0, DL + rysTekst * 2]) wymiar(SZ, str(SZ));
   translate([SZ + rysTekst * 2, 0]) wymiar(DL, str(DL), 90);
   // ścianki boczne (2 szt.) i tylna
-  translate([0, -rysOdst - H_IN]) { obrys(DL, H_IN); translate([DL / 2, H_IN / 2 - rysTekst / 2]) text(str("ŚCIANKA BOCZNA ", tPl, " mm × 2"), size = rysTekst, halign = "center");
+  translate([0, -rysOdst - H_IN]) { obrys(DL, H_IN);
+    for (y = lnY) translate([y, lnH / 2]) difference() { circle(d = dWkretSkl, $fn = 24); circle(d = dWkretSkl - 2 * rysLinia, $fn = 24); }   // otwory
+    translate([DL / 2, H_IN / 2 + rysTekst / 2]) text(str("ŚCIANKA BOCZNA ", tPl, " mm × 2 (lewa i prawa)"), size = rysTekst * 0.8, halign = "center");
+    translate([DL / 2, H_IN / 2 - rysTekst]) text(str("3 otwory Ø", dWkretSkl, " na ", lnH / 2, " od dołu, ", lnY[0], " / ", lnY[1], " / ", lnY[2], " od przodu; pogłębić od zewnątrz"), size = rysTekst * 0.6, halign = "center");
     translate([0, -rysTekst * 2]) wymiar(DL, str(DL)); translate([DL + rysTekst * 2, 0]) wymiar(H_IN, str(H_IN), 90); }
   translate([0, -2 * rysOdst - 2 * H_IN - rysTekst * 2]) { obrys(SZ - 2 * tPl, H_IN); translate([(SZ - 2 * tPl) / 2, H_IN / 2 - rysTekst / 2]) text(str("ŚCIANKA TYLNA ", tPl, " mm × 1"), size = rysTekst, halign = "center");
     translate([0, -rysTekst * 2]) wymiar(SZ - 2 * tPl, str(SZ - 2 * tPl)); translate([SZ - 2 * tPl + rysTekst * 2, 0]) wymiar(H_IN, str(H_IN), 90); }
@@ -268,11 +290,13 @@ module rysunekCiecia() {
 module zlozenie() {
   color("BurlyWood") {
     translate([0, 0, H_IN]) plyta();
-    for (x = [0, SZ - tPl]) translate([x, 0, 0]) scianaBoczna();
+    scianaBoczna(); translate([SZ, 0, 0]) mirror([1, 0, 0]) scianaBoczna();   // rowki do środka
     translate([tPl, DL - tPl, 0]) scianaTylna();
   }
-  color("LightGreen") translate([szX0, 0, 0]) szuflada();
-  color("DimGray") translate([szX0 + sc + luzPb, pbY0, dnoSz]) cube([pbL, pbW, pbH]);
+  color("LightGreen") translate([szX0, 0, szNad]) szuflada();   // szufladka leży dnem na listwach nośnych
+  color("Orange") for (s = [-1, 1])   // listwy nośne: druk (x długość, y wysokość, z szerokość od ścianki) → podstawka
+    multmatrix([[0, 0, -s, s < 0 ? tPl : SZ - tPl], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1]]) listwaNosna();
+  color("DimGray") translate([szX0 + sc + luzPb, pbY0, dnoSz + szNad]) cube([pbL, pbW, pbH]);
   color("Orange") translate([kX0, kY0, 0]) kaseta();
   color("Orange") translate([cx, cy, Z_PL]) tuleja();
   color("Orange") translate([cx, cy, Z_PL + hDoc]) nakretka();
@@ -284,7 +308,7 @@ if (czesc == "parametry")
            ",\"xSeam\":", xSeam, ",\"tulH\":", tulH, ",\"oczekiwane\":{\"Szuflada\":[", szW + 2 * (zakladka + luzSz), ",", szD + czoloT + uchwytWys, ",", czH,
            "],\"SzufladaL\":[", xSeam + zakladka + luzSz, ",", szD + czoloT + uchwytWys, ",", czH,
            "],\"SzufladaP\":[", szW - xSeam + zakladka + luzSz, ",", szD + czoloT, ",", czH,
-           "],\"Tuleja\":[", 2 * kolR, ",", 2 * kolR, ",", tulH, "],\"Kaseta\":[", kW, ",", kD, ",", kTylH, "],\"Nakretka\":[", 2 * nakR, ",", nakR * sqrt(3), ",", nakH, "]}}"));
+           "],\"ListwyNosne\":[", szD, ",", 2 * lnH + listwyOdst, ",", lnW, "],\"Tuleja\":[", 2 * kolR, ",", 2 * kolR, ",", tulH, "],\"Kaseta\":[", kW, ",", kD, ",", kTylH, "],\"Nakretka\":[", 2 * nakR, ",", nakR * sqrt(3), ",", nakH, "]}}"));
 else if (czesc == "zlozenie") zlozenie();
 else if (czesc == "Szuflada") szuflada();
 else if (czesc == "SzufladaL") polowka(-1);
@@ -293,6 +317,7 @@ else if (czesc == "Kaseta") kaseta();
 else if (czesc == "Tuleja") tuleja();
 else if (czesc == "Nakretka") nakretka();
 else if (czesc == "OslonkaPIR") oslonka();
+else if (czesc == "ListwyNosne") listwyNosne();
 else if (czesc == "ProbkaTuleja") tuleja(probkaH, probkaKolR, false);
 else if (czesc == "ProbkaNakretka") nakretka(probkaNakR);
 else if (czesc == "Plyta") plyta();

@@ -2,7 +2,7 @@
 // Użycie: node podstawka-wymiary.js <katalog 3MF> <parametry.json>. Plik → część: wg słownika PLIK (jak w podstawka-eksport.sh).
 const fs = require('fs'), path = require('path'), zlib = require('zlib');
 const PLIK = { 'Szuflada (X1C)': 'Szuflada', 'Szuflada lewa (A1 mini)': 'SzufladaL', 'Szuflada prawa (A1 mini)': 'SzufladaP',
-  'Kaseta elektroniki': 'Kaseta', 'Tuleja z gwintem': 'Tuleja', 'Nakretka': 'Nakretka' };
+  'Kaseta elektroniki': 'Kaseta', 'Listwy nosne x2': 'ListwyNosne', 'Tuleja z gwintem': 'Tuleja', 'Nakretka': 'Nakretka' };
 function modele(buf) {   // pliki .model z archiwum ZIP 3MF (deflate albo bez kompresji)
   const out = []; let i = 0;
   while ((i = buf.indexOf(Buffer.from([0x50, 0x4b, 0x03, 0x04]), i)) >= 0) {

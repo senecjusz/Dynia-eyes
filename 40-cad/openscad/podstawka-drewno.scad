@@ -13,7 +13,7 @@ module wkret(dl = wkretL) color("DimGray") { cylinder(d = wkretD, h = dl, $fn = 
 module drewno() {
   color("BurlyWood") {
     translate([0, 0, H_IN + rozsun]) plyta();
-    for (x = [0, SZ - tPl]) translate([x, 0, 0]) scianaBoczna();
+    scianaBoczna(); translate([SZ, 0, 0]) mirror([1, 0, 0]) scianaBoczna();   // rowki do środka
     translate([tPl, DL - tPl, 0]) scianaTylna();
   }
   // płyta górna → ścianki boczne (3 na stronę) i tylna (2), od góry
@@ -23,7 +23,9 @@ module drewno() {
   // ścianki boczne → ścianka tylna (2 na stronę), od boku
   for (s = [0, 1], z = wkrZ) translate([s ? SZ : 0, DL - tPl / 2, z]) rotate([0, s ? -90 : 90, 0]) translate([0, 0, -wkretD]) wkret();
   // szufladka (zarys) i kaseta – żeby było widać, co wchodzi z przodu
-  color("LightGreen", 0.5) translate([szX0, 0, 0]) szuflada();
+  color("LightGreen", 0.5) translate([szX0, 0, szNad]) szuflada();
+  color("Orange") for (s = [-1, 1]) multmatrix([[0, 0, -s, s < 0 ? tPl : SZ - tPl], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1]]) listwaNosna();
+  for (s = [-1, 1], y = lnY) translate([s < 0 ? -wkretD : SZ + wkretD, y, lnH / 2]) rotate([0, s < 0 ? 90 : -90, 0]) wkret(25);   // wkręty listew od zewnątrz
   color("Orange", 0.6) translate([kX0, kY0, 0]) kaseta();
 }
 drewno();
