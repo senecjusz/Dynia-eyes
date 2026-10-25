@@ -21,11 +21,11 @@
 //   front jej nie dotyka) – zakładka na przednią krawędź płyty górnej 17 mm, w niej blokada.
 // - front–korpus: 2 śruby rączki M4 (przez rączkę, front i przednią ścianę korpusu, nakrętki od środka w kieszeni PIR, z dala od powerbanku)
 //   + 2 × M3 × 10 przy dolnych rogach korpusu (front nie odstaje na brzegach przy szarpnięciu za rączkę); łby M3 na licu frontu.
-// - rączka (kształt: decyzja użytkownika 25.10 – niska, nienachalna): ścięty ostrosłup z zaokrąglonymi krawędziami R3, mniejsza podstawa
-//   66 × 14 na froncie, większa 76 × 22 na zewnątrz, wysięg 15; podcięcie 5 / 4 mm daje chwyt palcami. Na środku frontu (pod blokadą);
-//   kopułka PIR jest 17 mm w bok od rączki, rączka zasłania stożek PIR dopiero poza ok. 65°. Druk większą podstawą na stole (ścianki
-//   zbiegają się ku górze, bez podpór). Łby M4 (Ø7 × 4) wklejone epoksydem w gniazda Ø8 od lica (szczelina na klej 0,5 – tabela AGENTS.md),
-//   dostęp imbusem od lica; rozstaw 50; śruby M4 × 25 (ok. 4 mm za nakrętką).
+// - rączka (kształt i wielkość: decyzje użytkownika 25.10 – niska, nienachalna, mała, bo używana raz–dwa razy): ścięty ostrosłup
+//   z zaokrąglonymi krawędziami R2, mniejsza podstawa 40 × 10 na froncie, większa 46 × 16 na zewnątrz, wysięg 10; podcięcie 3 mm daje
+//   chwyt dwoma palcami. Na środku frontu (pod blokadą), daleko od kopułki PIR. Druk większą podstawą na stole (ścianki zbiegają się
+//   ku górze, bez podpór). Łby M4 (Ø7 × 4) wklejone epoksydem w gniazda Ø8 od lica (szczelina na klej 0,5 – tabela AGENTS.md),
+//   dostęp imbusem od lica; rozstaw 26; śruby M4 × 20 (ok. 4 mm za nakrętką).
 // - blokada: M4 × 25 imbus przez front (Ø5: otwór pilotowy wiercony przez front przy wsuniętej szufladce – review Fable W2) w przednią krawędź
 //   płyty górnej, na środku szerokości, w połowie grubości płyty; otwór pilotowy w sklejce Ø3,3 × 22 (25 − front 4 + 1 zapasu); gwint wycina
 //   śruba (jak blokada v1).
@@ -78,7 +78,7 @@ pirLstW = 8; pirLstH = 3;                        // listwa 3-pin na górnej kraw
 dM4 = 4.5; dLebM4 = 7; hLebM4 = 4; sM4 = 7; hNakM4 = 3.2; tPodkM4 = 0.8;   // M4 imbus z łbem okrągłym: luźny otwór, łeb, nakrętka (klucz 7), podkładka
 dM3 = 3.3; dM3ciasny = 2.6; sM3 = 5.5; hNakM3 = 2.4; dLebM3 = 5.5; hLebM3 = 3;
 dM2c = 1.7; dLebM2 = 3.8; hLebM2 = 1.6;           // M2 × 6 w plastik (otwór ciasny jak oś powiek dużego oka), łeb
-lM2 = 6; lM3fk = 10; lM4r = 25; blokL = 25;      // długości śrub: M2 PIR, M3 front–korpus, M4 rączki, M4 blokady
+lM2 = 6; lM3fk = 10; lM4r = 20; blokL = 25;      // długości śrub: M2 PIR, M3 front–korpus, M4 rączki, M4 blokady
 // ---------- BAZOWE: druk – korpus szufladki ----------
 szMax = 215;        // PRD 0.2: korpus ≤ 215
 sc = 2.0; dnoSz = 2; scH = 30;                   // ścianka (brief PM: 2,0), dno, wysokość ścianek
@@ -100,11 +100,11 @@ dKopOtw = 24;       // otwór na kopułkę (PRD 0.2)
 slupM2D = 4.5;      // słupki M2 pod płytkę PIR
 glM2 = 5;           // otwór M2 w słupku (od czoła słupka); M2 × 6 wchodzi 4,5
 // ---------- BAZOWE: druk – rączka ----------
-rRozst = 50;        // rozstaw śrub rączki
-rL1 = 66; rH1 = 14;                              // mniejsza podstawa (na froncie): długość, wysokość
-rL2 = 76; rH2 = 22;                              // większa podstawa (lico): długość, wysokość
-rD = 15;            // wysięg rączki od frontu
-rR = 3;             // zaokrąglenie krawędzi
+rRozst = 26;        // rozstaw śrub rączki
+rL1 = 40; rH1 = 10;                              // mniejsza podstawa (na froncie): długość, wysokość
+rL2 = 46; rH2 = 16;                              // większa podstawa (lico): długość, wysokość
+rD = 10;            // wysięg rączki od frontu
+rR = 2;             // zaokrąglenie krawędzi
 raczkaDx = 0;       // przesunięcie rączki w prawo od środka frontu
 luzKlej = 0.5;      // szczelina na klej wypełniający (AGENTS.md) – łeb M4 w rączce
 // ---------- BAZOWE: blokada (PRD 0.2: M4 na środku górnej krawędzi frontu, w przednią krawędź płyty górnej) ----------

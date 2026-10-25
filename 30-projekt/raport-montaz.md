@@ -19,7 +19,7 @@ Model: `40-cad/openscad/podstawka.scad`. Opis, kolejność montażu, śruby i do
 - **Zmienne bazowe według pomiarów:** wnętrze 216, dno 9, głębokość 226, wkręty płyty 20 od frontu i tyłu, otwór Ø60.
 - **Korpus 215,0** (ścianki 2,0, wtyk USB-C 50 zostaje): **luz 0,5 na stronę** w podstawce.
 - **Front** osobno, 244 × 65 × 4, druk licem. Do korpusu przykręcony 2 × M4 rączki (nakrętki w przedniej kieszeni korpusu, 23 mm przed powerbankiem) i 2 × M3 przy dolnych rogach.
-- **Rączka:** kształt według decyzji użytkownika (25.10, po review) – niski, zaokrąglony, ścięty ostrosłup. Przy froncie 66 × 14, na zewnątrz 76 × 22, wysięg 15 mm, krawędzie R3, na środku frontu. Łby 2 × M4 × 25 wklejone epoksydem.
+- **Rączka:** kształt i wielkość według decyzji użytkownika (25.10, po review) – mały, niski, zaokrąglony, ścięty ostrosłup. Przy froncie 40 × 10, na zewnątrz 46 × 16, wysięg 10 mm, krawędzie R2, na środku frontu. Łby 2 × M4 × 20 wklejone epoksydem, rozstaw 26.
 - **Blokada:** M4 × 25 na środku górnej części frontu (otwór we froncie Ø5), w krawędź płyty górnej, 58 mm nad stołem. Otwór pilotowy Ø3,3 × 22 wierci się przez front; jest też na rysunku płyty.
 - **PIR we froncie:** otwór Ø24, gniazdo 23,5 × 23,5 × 0,5, 2 × M2 w słupki; za płytką 22 mm.
 - **Kaseta elektroniki v1 bez zmian:** te same wierzchołki z dokładnością 0,001 mm. Tuleja i nakrętka bez zmian.
@@ -55,7 +55,8 @@ Raporty: `20-analizy/review/2026-10-25-szuflada-v2-{fable,astra}.md`, jedna rund
 - Ścianka tylna podstawki 18 mm.
 - Przednie krawędzie dna, ścianek i płyty są w jednej płaszczyźnie.
 - PIR: przymiarka w wydrukowanej próbce gniazda. Jeśli nie pasuje, zmierzyć suwmiarką rozstaw otworów (model 28,5 mm), kołnierz (23 mm) i kopułkę (Ø23 mm).
-- W warsztacie: 2 × M2 × 6 i 2 × M4 × 25 imbus (pod łbem potrzeba ≥ 21 mm; M4 × 25 wystaje 4 mm za nakrętką). Łeb musi się zmieścić w gnieździe rączki Ø8 × 4,5 – model zakłada Ø7 × 4.
+- W warsztacie: 2 × M2 × 6 i 2 × M4 × 20 imbus (pod łbem potrzeba ≥ 16 mm; M4 × 20 wystaje 4 mm za nakrętką). Łeb musi się zmieścić w gnieździe rączki Ø8 × 4,5 – model zakłada Ø7 × 4.
+- Kołnierz soczewki PIR zmierzony suwmiarką: 22,97 (zgodny z gniazdem 23,5). Rozstaw otworów 28,5 według użytkownika; sprawdzi próbka.
 - Przewody: ok. 350 mm przewodu do PIR. Kabel USB-C ma mieć ≥ 100 mm luzu przy zamkniętej szufladce. Sprawdzić próbą kilku wysunięć przy założonej płycie.
 - Blokada: czy po postawieniu dyni imbus dosięga łba blokady.
 - Wysokość podstawki: z wymiarów wychodzi 67 mm, a użytkownik podał 69. Na szufladkę nie wpływa.

@@ -202,13 +202,13 @@ Wynik: podstawka 252 × 226 × 67 (użytkownik podał 69 wysokości – różnic
 |---|---|---|---|---|
 | Korpus | 215,0 × 102 × 32 | X1C | dnem | ścianki 2,0; luz w podstawce **0,5 na stronę**; kieszeń PIR 26 z przodu, przegroda z wycięciem 12 × 8 nad listwą PIR, komora powerbanku, słupki, wycięcie kablowe na osi gniazda zasilania kasety; okno PIR 36 szer. otwarte do górnej krawędzi, otwory M4/M3 w przedniej ścianie; fazki 2 × 45° na tylnych narożach |
 | Front | 244 × 65 × 4 (+ słupki M2 2,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 słupki M2; otwory: 2 × M4 rączki, 2 × M3, blokada Ø5 |
-| Rączka | 76 × 22 × 15 | A1 mini albo X1C | licem (większą podstawą) | ścięty ostrosłup z krawędziami R3 (kształt: decyzja użytkownika – niska, nienachalna): przy froncie 66 × 14, lico 76 × 22, wysięg 15; gniazda łbów M4 Ø8 × 4,5 od lica (epoksyd), rozstaw 50; na środku frontu |
+| Rączka | 46 × 16 × 10 | A1 mini albo X1C | licem (większą podstawą) | ścięty ostrosłup z krawędziami R2 (kształt i wielkość: decyzje użytkownika – niska, nienachalna, mała, używana raz–dwa razy): przy froncie 40 × 10, lico 46 × 16, wysięg 10; gniazda łbów M4 Ø8 × 4,5 od lica (epoksyd), rozstaw 26; na środku frontu |
 | Próbka gniazda PIR | 60 × 40 × 6,5 | A1 mini albo X1C | licem | wycinek frontu: otwór kopułki, gniazdo kołnierza, 2 słupki M2 – **drukować i przymierzyć PIR przed frontem** |
 
 Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X1C).3mf`, `… - raczka.3mf`; w tym samym katalogu kaseta, tuleja, nakrętka i próbki gwintu (bez zmian). Podglądy: `40-cad/openscad/podglad/podstawka-v2-*.png`; rysunek płyty z otworem blokady: `podglad/podstawka-ciecie.png` / `.svg`.
 
 **Śruby z magazynu (PRD §7):**
-- rączka: 2 × M4 × 25 imbus (pod łbem potrzeba ≥ 21, koniec 4 mm za nakrętką; łeb mieści się w gnieździe Ø8 × 4,5 – założenie Ø7 × 4), 2 nakrętki M4, 2 podkładki, epoksyd;
+- rączka: 2 × M4 × 20 imbus (pod łbem potrzeba ≥ 16, koniec 4 mm za nakrętką; łeb mieści się w gnieździe Ø8 × 4,5 – założenie Ø7 × 4), 2 nakrętki M4, 2 podkładki, epoksyd;
 - front–korpus: 2 × M3 × 10, 2 nakrętki M3;
 - PIR: 2 × M2 × 6 w słupki frontu (Ø1,7);
 - blokada: M4 × 25 imbus;
@@ -243,7 +243,7 @@ Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X
 
 - ścianka tylna 18 (głębokość wnętrza za kasetą);
 - przednie krawędzie dna, ścianek i płyty w jednej płaszczyźnie (front się o nie opiera);
-- rozstaw otworów montażowych PIR 28,5 (zmienna `pirOtwRozst`) – zmierzyć suwmiarką; luty od strony soczewki ≤ 2;
+- rozstaw otworów montażowych PIR 28,5 (zmienna `pirOtwRozst`; użytkownik: „myślę, że rozstaw jest 28,5”) – sprawdzi próbka; luty od strony soczewki ≤ 2; **kołnierz soczewki zmierzony suwmiarką: 22,97** (użytkownik 25.10, zdjęcie z suwmiarką) – w gnieździe 23,5 luz 0,27 na stronę;
 - M2 × 6 w warsztacie (PRD §7 wymienia M3–M5; M2 × 6 są przy małych oczach); M4 imbus z łbem okrągłym Ø7 × 4 w długości 35–40.
 
 ### Review (Fable, Astra) i rozstrzygnięcia
@@ -263,6 +263,7 @@ Raporty: `review/2026-10-25-szuflada-v2-fable.md`, `review/2026-10-25-szuflada-v
 | Blokada pod dynią – imbus z długim ramieniem | Fable D8 | do sprawdzenia po postawieniu dyni (instrukcja) |
 | Wysokość skrzynki 67 nominalna, front do 66 | Fable D9 | do pomiaru; zmienna `frontPodGora` |
 | Słupki M2 – wkręcać bez siły; luty; fazka rączki; brim frontu | Fable D10–D12 | w kolejności montażu i tabeli druku; rączka i tak zmieniona |
-| Rączka 86 × 28 nachalna | użytkownik (po review) | **nowa rączka**: ścięty ostrosłup 66 × 14 → 76 × 22, wysięg 15, R3, M4 × 25 w rozstawie 50, na środku frontu |
+| Rączka 86 × 28 nachalna | użytkownik (po review) | **nowa rączka**: ścięty ostrosłup 66 × 14 → 76 × 22, wysięg 15, R3 |
+| Rączka 76 × 22 „zbyt duża i masywna, będzie wykorzystana może raz, może dwa” | użytkownik | **zmniejszona**: 40 × 10 → 46 × 16, wysięg 10, R2, M4 × 20 w rozstawie 26; eksport, siatki, wymiary (45,98 × 15,98 × 9,99) i 5 kontroli kolizji powtórzone – OK |
 
 Po zmianach powtórzone: eksport 9 części, siatki, wymiary, 5 kontroli kolizji (pusto), test zginania (wyżej). Druga runda review – nie (brief PM).
