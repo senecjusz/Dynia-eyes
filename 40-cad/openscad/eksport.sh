@@ -11,7 +11,7 @@ STL="${1:-./stl-zlozenie}"; shift || true
 OUT="${OUT3MF:-../3mf/Duze oko v2}"
 read -r -a ZM <<< "${ZMIENNE:-}"
 mkdir -p "$OUT" "$STL"
-declare -A PLIK=([Galka]="Galka" [PowiekaGorna]="Powieka gorna" [PowiekaDolna]="Powieka dolna" [Pierscien]="Pierscien" [Maskownica]="Maskownica" [UchwytSerw]="Uchwyt serw" [ProbkaDrutu]="Probka drutu" [PrzedluzenieOrczyka]="Przedluzenie orczyka x2" [PrzyrzadDrutow]="Przyrzad do giecia drutow")
+declare -A PLIK=([Galka]="Galka" [PowiekaGorna]="Powieka gorna" [PowiekaDolna]="Powieka dolna" [Pierscien]="Pierscien" [Maskownica]="Maskownica" [UchwytSerw]="Uchwyt serw" [ProbkaDrutu]="Probka drutu" [PrzedluzenieOrczyka]="Przedluzenie orczyka x2")
 CZ=("$@"); [ ${#CZ[@]} -eq 0 ] && CZ=(Galka PowiekaGorna PowiekaDolna Pierscien Maskownica UchwytSerw ProbkaDrutu PrzedluzenieOrczyka)
 timeout 120 "$OS" -o "$STL/parametry.echo" "${ZM[@]}" -D 'czesc="parametry"' duze-oko-v2.scad > /dev/null 2>&1
 sed -n 's/^ECHO: "PARAMETRY\(.*\)"$/\1/p' "$STL/parametry.echo" > "$STL/parametry.json"
