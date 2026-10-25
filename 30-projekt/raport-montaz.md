@@ -63,6 +63,8 @@ Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Review runda 
 
 Wydrukowana i przymierzona przez użytkownika (zdjęcia `70-budowa/zdjecia/2026-10-26-probka-pir/`, opis w `MANIFEST.md`). Kopułka przechodzi przez otwór, płytka przykręcona 2 × M2 bez gięcia, rozstaw 28,5 potwierdzony. **Front można drukować.** Do wyjaśnienia z użytkownikiem: linia i plamka przy krawędzi otworu (rysa czy ślad druku).
 
+Po próbce użytkownik zmienił słupki M2: prostokątne podkładki 4 × 8 mm, wyższe o 1 mm (3,5). Płytka stoi 1 mm dalej od frontu, kieszeń PIR ma 27 mm, a korpus 103 mm głębokości. Kontrole OK. Front z tą zmianą jest do druku. Rysunki montażu: `40-cad/openscad/podglad/podstawka-v2-pir-*.png`.
+
 ### Założenia do sprawdzenia przez użytkownika
 
 - Ścianka tylna podstawki 18 mm.

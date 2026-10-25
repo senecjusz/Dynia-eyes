@@ -33,7 +33,8 @@
 //   krawędzi przegrody nad listwą PIR (przewody z wtyków Dupont skręcają w górę); fazki wejściowe 2 × 45° na tylnych pionowych narożach
 //   korpusu; próbka gniazda PIR (60 × 40 wycinek frontu) do wydruku przed frontem – wymiary PIR są ze zdjęć (±1).
 // - PIR HC-SR501 (pomiary ze zdjęć 25.10, PRD 0.2): kołnierz soczewki 23 × 23 × 3 w gnieździe 23,5 × 23,5 × 0,5 od tyłu frontu (luz 0,25 na stronę),
-//   kopułka przez otwór Ø24; płytka 2,5 za frontem (luty 1–2 mm z przodu płytki mają 0,5–1,5 luzu), dociśnięta 2 × M2 × 6 w słupki frontu
+//   kopułka przez otwór Ø24; płytka 3,5 za frontem na 2 podkładkach 4 × 8 (użytkownik 26.10 po próbce: szersze, wyższe o 1; luty 1–2 mm
+//   z przodu płytki mają 1,5–2,5 luzu, kołnierz 0,5 za tyłem frontu – płytkę ustawiają wkręty), dociśnięta 2 × M2 × 6 w podkładki frontu
 //   (otwory Ø1,7 – jak oś powiek dużego oka; rozstaw pirOtwRozst 28,5 jako zmienna). Za płytką do przegrody 22 mm: elementy 8 + wtyki Dupont 20.
 //   Przez przednią ścianę korpusu PIR przechodzi oknem 36 × 28 (płytka + 2 na stronę: kondensatory na rogach wystają poza obrys płytki).
 // - kaseta elektroniki v1 bez zmian (może już być wydrukowana): położenie gniazda zasilania (bkX, bkY) i piasty (kPiastaH) zamrożone na v1;
@@ -70,7 +71,7 @@ pirKol = 23; pirKolH = 3;                        // kwadratowy kołnierz soczewk
 pirKopD = 23; pirKopH = 14;                      // kopułka: średnica, wysięg od płytki (z kołnierzem)
 pirTyl = 8;                                      // elementy za płytką (kondensatory, listwa, zworka)
 pirDupont = 20;                                  // wtyki Dupont na listwie: wysięg za płytką (PRD: ok. 20)
-pirLut = 2;                                      // luty od strony soczewki (1–2)
+pirLut = 2; pirLutStrefa = 4;                    // luty od strony soczewki: wysokość (1–2), pas przy górnej i dolnej krawędzi płytki (zdjęcia pir-03, pir-08)
 pirRogi = 1.5;                                   // kondensatory na rogach wystają poza obrys płytki (szacunek ze zdjęć)
 pirOtwRozst = 28.5; dPirOtw = 2;                 // otwory montażowe płytki: rozstaw (28–29, do pomiaru), Ø
 pirLstW = 8; pirLstH = 3;                        // listwa 3-pin na górnej krawędzi płytki (pod wtyki Dupont): szerokość, wysokość
@@ -82,7 +83,7 @@ lM2 = 6; lM3fk = 10; lM4r = 20; blokL = 25;      // długości śrub: M2 PIR, M3
 // ---------- BAZOWE: druk – korpus szufladki ----------
 szMax = 215;        // PRD 0.2: korpus ≤ 215
 sc = 2.0; dnoSz = 2; scH = 30;                   // ścianka (brief PM: 2,0), dno, wysokość ścianek
-kieszenPIR = 26;    // przednia kieszeń korpusu (PIR, nakrętki rączki): od tyłu frontu do przegrody
+kieszenPIR = 27;    // przednia kieszeń korpusu (PIR, nakrętki rączki): od tyłu frontu do przegrody
 slupekW = 4; slupekH = 12; slupekL = 8;          // słupki zatrzymujące powerbank z prawej
 wcCiecie = 12; wcDno = 10;                       // wycięcie na kable w tylnej ściance: szerokość, wysokość dna nad dnem szufladki
 przWyc = 12; przWycH = 8;                        // wycięcie w górnej krawędzi przegrody nad listwą PIR: szerokość, głębokość
@@ -97,7 +98,8 @@ frontPodGora = 1;   // góra frontu poniżej wierzchu płyty górnej
 pirOdPrawej = 40;   // oś PIR od prawego boku korpusu (decyzja użytkownika 25.10: PIR po prawej – przewód prosto do tyłu pasem wtyku USB-C)
 pirGn = 23.5; pirGnG = 0.5;                      // gniazdo kołnierza od tyłu frontu: bok (kołnierz 23 + 2 × 0,25), głębokość
 dKopOtw = 24;       // otwór na kopułkę (PRD 0.2)
-slupM2D = 4.5;      // słupki M2 pod płytkę PIR
+slupM2D = 4.5;      // szerokość strefy wokół otworu M2 (wyłączona z brył elementów PIR)
+pirPadW = 4; pirPadH = 8; pirPadT = 3.5;         // podkładki M2 pod płytkę PIR (użytkownik 26.10 po próbce: szersze niż okrągłe, wyższe o ok. 1): szerokość (w poprzek paska), wysokość (wzdłuż paska), wysokość od frontu
 glM2 = 5;           // otwór M2 w słupku (od czoła słupka); M2 × 6 wchodzi 4,5
 // ---------- BAZOWE: druk – rączka ----------
 rRozst = 26;        // rozstaw śrub rączki
@@ -166,7 +168,7 @@ xPort  = sc + luzPb + pbL;                       // czoło portu powerbanku (x w
 wcX    = kX0 + bkX - szX0 - wcCiecie / 2;        // wycięcie kablowe w korpusie: na osi gniazda zasilania kasety
 pirX   = szW - pirOdPrawej;                      // oś PIR w korpusie (175)
 pirZ   = dnoSz + scH / 2;                        // oś PIR nad spodem korpusu (17)
-pirYp  = pirKolH - pirGnG;                       // przód płytki PIR za tyłem frontu (2,5)
+pirYp  = pirPadT;                                // przód płytki PIR za tyłem frontu = wysokość podkładek (3,5); kołnierz 0,5 za tyłem frontu, płytkę ustawiają wkręty M2
 oknoW  = pirW + 2 * oknoPIRzap; oknoH = pirH + 2 * oknoPIRzap;   // okno PIR w przedniej ścianie korpusu (36 × 28)
 frontW = WIN + 2 * frontZak;                     // szerokość frontu (244)
 frontX0 = szW / 2 - frontW / 2;                  // lewa krawędź frontu w układzie korpusu
@@ -196,6 +198,9 @@ assert(rL1 <= rL2 && rH1 <= rH2, "rączka: mniejsza podstawa większa niż lico"
 for (x = m3X) assert(abs(x - pirX) > oknoW / 2 + sM3 / cos(30) / 2, "M3 front–korpus nachodzi na okno PIR");
 assert(pirYp + pirT + pirDupont + 2 <= kieszenPIR, "za płytką PIR brak miejsca na wtyki Dupont");
 assert(pirYp >= pirLut + odsun, "luty PIR dotykają frontu");
+assert(pirYp >= pirKolH - pirGnG, "kołnierz soczewki dociska front zamiast podkładek");
+assert(pirPadH / 2 + 1 <= pirH / 2 - pirLutStrefa, "podkładka M2 wchodzi na pas lutów");
+assert(pirOtwRozst / 2 - pirPadW / 2 >= pirGn / 2 + 0.5, "podkładka M2 nachodzi na gniazdo kołnierza");
 assert(lM4min <= lM4r, "śruba rączki za krótka");
 assert(hLebM4 + luzKlej < rD, "gniazdo łba M4 głębsze niż rączka");
 assert(frontZ1 - blokZ >= dLebM4 / 2 + 1, "łeb blokady wystaje nad front");
@@ -317,8 +322,8 @@ module front() {   // druk licem na stół (tryb druk: obrót y → z), słupki 
   difference() {
     union() {
       translate([frontX0, -tF, frontZ0]) cube([frontW, tF, frontZ1 - frontZ0]);
-      for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2, -zak, pirZ]) rotate([-90, 0, 0])   // słupki M2 pod płytkę PIR
-        cylinder(d = slupM2D, h = pirYp + zak, $fn = 32);
+      for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2 - pirPadW / 2, -zak, pirZ - pirPadH / 2])   // podkładki M2 pod płytkę PIR
+        cube([pirPadW, pirPadT + zak, pirPadH]);
     }
     translate([pirX, -tF - 1, pirZ]) rotate([-90, 0, 0]) cylinder(d = dKopOtw, h = tF + 2, $fn = 96);   // kopułka
     translate([pirX - pirGn / 2, -pirGnG, pirZ - pirGn / 2]) cube([pirGn, pirGnG + 1, pirGn]);          // gniazdo kołnierza
@@ -359,8 +364,8 @@ module pirPrym(i) {
       cube([slupM2D + pirRogi, pirTyl, slupM2D + pirRogi]);
   if (i == 8) translate([pirX - pirLstW / 2, pirYp + pirT, pirZ + pirH / 2 - pirLstH]) cube([pirLstW, pirDupont, pirLstH]);   // listwa z wtykami Dupont
   if (i >= 9 && i <= 12) let(sx = xs[(i - 9) % 2], sz = xs[floor((i - 9) / 2)])                                      // luty od strony soczewki (paski boczne, poza otworami)
-    translate([pirX + (sx > 0 ? pirKol / 2 : -pirW / 2), pirYp - pirLut, pirZ + (sz > 0 ? slupM2D / 2 + 1 : -pirH / 2)])
-      cube([(pirW - pirKol) / 2, pirLut, pirH / 2 - slupM2D / 2 - 1]);
+    translate([pirX + (sx > 0 ? pirKol / 2 : -pirW / 2), pirYp - pirLut, pirZ + (sz > 0 ? pirH / 2 - pirLutStrefa : -pirH / 2)])
+      cube([(pirW - pirKol) / 2, pirLut, pirLutStrefa]);
 }
 module pir() for (i = [0 : nPir - 1]) pirPrym(i);
 
@@ -457,11 +462,27 @@ module kolizjaWkladaniePIR() intersection() {
   korpus();
   union() {
     for (i = [0 : nPir - 1]) hull() { translate([0, -drogaPIR, 0]) pirPrym(i); translate([0, -odsun, 0]) pirPrym(i); }
-    for (s = [-1, 1]) hull() for (d = [drogaPIR, odsun]) translate([pirX + s * pirOtwRozst / 2, -d, pirZ]) rotate([-90, 0, 0]) cylinder(d = slupM2D, h = pirYp, $fn = 32);
+    for (s = [-1, 1]) hull() for (d = [drogaPIR, odsun]) translate([pirX + s * pirOtwRozst / 2 - pirPadW / 2, -d, pirZ - pirPadH / 2]) cube([pirPadW, pirPadT, pirPadH]);
   }
 }
 // śruby, nakrętki i łby wobec drukowanych części, PIR i powerbanku (trzpienie M2 i M4 blokady w otworach ciasnych – poza kontrolą)
 module kolizjaSruby() intersection() { sruby(); union() { korpus(); front(); raczka(); pir(); powerbank(); } }
+
+// ===================== rysunki montażu PIR (podglądy do instrukcji) =====================
+pokazOdst = 18;     // odstęp części w widoku rozstrzelonym
+module wkretM2() rotate([-90, 0, 0]) { translate([0, 0, -hLebM2]) cylinder(d = dLebM2, h = hLebM2, $fn = 24); cylinder(d = dM2c + 0.3, h = lM2, $fn = 16); }
+module pokazPIR() {   // rozstrzelony: wycinek frontu, PIR, wkręty M2 (patrzymy od tyłu frontu)
+  color("Orange") probkaPIR();
+  color("SteelBlue") translate([0, pokazOdst, 0]) pir();
+  color("Silver") for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2, pirYp + pirT + 2 * pokazOdst, pirZ]) mirror([0, 1, 0]) wkretM2();
+}
+module przekrojPIR() {   // przekrój poziomy przez otwory M2 (widok z góry): front, podkładki, płytka, kołnierz, kopułka, przednia ściana korpusu
+  module ciecie() translate([pirX - probkaPirW / 2, -pirKopH - tF, pirZ - probkaPirH]) cube([probkaPirW, pirKopH + tF + kieszenPIR, probkaPirH]);
+  color("Orange") intersection() { front(); ciecie(); }
+  color("LightGreen") intersection() { korpus(); ciecie(); }
+  color("SteelBlue") intersection() { pir(); ciecie(); }
+  color("Silver") intersection() { for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2, pirYp + pirT, pirZ]) mirror([0, 1, 0]) wkretM2(); ciecie(); }
+}
 
 // ===================== wybór części =====================
 module probkaPIR() intersection() {   // wycinek frontu z gniazdem PIR – próbka pasowania przed drukiem frontu
@@ -500,3 +521,5 @@ else if (czesc == "KolizjaWsuwanie") kolizjaWsuwanie();
 else if (czesc == "KolizjaPIR") kolizjaPIR();
 else if (czesc == "KolizjaWkladaniePIR") kolizjaWkladaniePIR();
 else if (czesc == "KolizjaSruby") kolizjaSruby();
+else if (czesc == "PokazPIR") pokazPIR();
+else if (czesc == "PrzekrojPIR") przekrojPIR();
