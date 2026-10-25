@@ -1,0 +1,25 @@
+# Manifest zdjęć
+
+Opis każdego zdjęcia w `70-budowa/zdjecia/`. **Najpierw czytaj manifest, zdjęcie otwieraj tylko wtedy, gdy opis nie wystarcza** (oglądanie zdjęć zużywa dużo kontekstu).
+
+## Zasady
+
+- Jeden podfolder na temat: `RRRR-MM-DD-temat/` (np. `2026-10-25-pir/`); pliki `temat-NN.jpg|png`, zmniejszone (dłuższy bok ≤ 1600 px).
+- Surowe zdjęcia i filmy: `70-budowa/raw/` (poza Gitem).
+- Kto dodaje zdjęcie, dopisuje od razu wiersz poniżej. Zdjęcie bez wiersza = niedokończone.
+- **Wymiary:** liczba, jednostka, dokładność i skąd skala (linijka obok, suwmiarka, proporcja do znanego wymiaru). Pomiar ze zdjęcia oddzielaj od pomiaru suwmiarką.
+- **Użyte w:** plik, w który wymiar trafił (PRD, model, analiza), żeby było widać, co z tego wynika.
+
+## Zdjęcia
+
+| Plik | Data | Co pokazuje | Odczytane wymiary (dokładność, źródło skali) | Użyte w |
+|---|---|---|---|---|
+| `2026-10-25-pir/pir-01.png` | 2026-10-25 | PIR HC-SR501 z boku, soczewka z lewej, na płycie roboczej (zrzut okna kamery C920) | bez skali: z tyłu płytki kondensator leżący, żółta zworka, piny listwy – „ok. 10–12 mm” na oko (±3 mm, brak skali; zastąpione przez pir-05 i pir-09) | rozpoznanie przyczyny P6 (`30-projekt/PRD.md` 0.2 §5) |
+| `2026-10-25-pir/pir-02.png` | 2026-10-25 | tył płytki HW-416A: BISS0001, stabilizator, 2 potencjometry, 4 kondensatory (3 na rogach wystają poza obrys), listwa 3-pin u góry na środku, zworka w lewym dolnym rogu | kondensatory poza obrysem płytki ok. 1,5 mm (±1, proporcja do płytki 32 mm) | `40-cad/openscad/podstawka.scad`: `pirRogi`, okno PIR (`oknoPIRzap`), bryły PIR do kontroli kolizji |
+| `2026-10-25-pir/pir-03.png` | 2026-10-25 | przód płytki: kwadratowa podstawa soczewki na środku, po bokach paski z lutami (rząd u góry i u dołu), otwory montażowe w połowie wysokości | paski boczne ok. 4,5 mm (±1, proporcja do płytki 32 mm) | `podstawka.scad`: luty PIR (`pirLut`, bryły lutów), słupki M2 w połowie wysokości |
+| `2026-10-25-pir/pir-04.png` | 2026-10-25 | bok płytki: kopułka z przodu, kondensatory prostopadle do płytki z tyłu | kopułka ok. 11 mm, elementy za płytką 9–10 mm (±2, skala z szerokości płytki 32 mm, perspektywa; zastąpione przez pir-05 i pir-09) | – |
+| `2026-10-25-pir/pir-05.png` | 2026-10-25 | bok płytki z linijką stalową przy krawędzi | kopułka 12–13 mm przed płytką, kondensator górny ze zworką 9,5 mm, dolny 47 µF 8 mm, piny listwy 4,5 mm, płytka ok. 1,2 mm (±1, linijka ok. 28 px/mm, perspektywa) | PRD 0.2 §5 (za płytką ≥ 10 mm) |
+| `2026-10-25-pir/pir-06.png` | 2026-10-25 | bok od strony potencjometrów (pokrętła w bok), dolny kondensator 47 µF, zworka | potencjometry ok. 10 mm, kondensator górny ok. 11 mm za płytką, kopułka ok. 13 mm (±1,5, linijka dalej od płytki niż płytka) | PRD 0.2 §5: potencjometry i zworkę ustawić przed montażem |
+| `2026-10-25-pir/pir-07.png` | 2026-10-25 | ukos od tyłu: piny listwy 3-pin prostopadle do tyłu | piny z plastikiem 6–7 mm (±1,5, proporcja do płytki); wtyki Dupont dodają ok. 14 mm (typowa długość obudowy, nie pomiar) | PRD 0.2 §5: z wtykami Dupont ok. 20 mm; `podstawka.scad`: `pirDupont` 20 |
+| `2026-10-25-pir/pir-08.png` | 2026-10-25 | przód płytki z linijką obok (linijka dalej niż płytka – skala linijki zawyża) | kołnierz soczewki ok. 23 mm (71 % szerokości płytki 32 mm), paski z lutami ok. 4,5 mm, otwory ok. Ø2 ok. 1,5–2 mm od krawędzi, rozstaw osi 28–29 mm (±1, proporcja do płytki 32 mm, nie do linijki) | PRD 0.2 §5 (kołnierz 23 × 23, otwory 28–29); `podstawka.scad`: `pirKol`, `pirGn` 23,5, `pirOtwRozst` 28,5 (do pomiaru suwmiarką) |
+| `2026-10-25-pir/pir-09.png` | 2026-10-25 | płytka leżąca soczewką do góry, linijka pionowo tuż obok | kołnierz soczewki 3 mm wys., kopułka 11 mm nad kołnierzem (razem 14 od płytki), płytka 1,5 mm, elementy pod płytką 8 mm (±0,5, linijka ok. 27 px/mm przy płytce) | PRD 0.2 §5 (kołnierz 3, kopułka 14, 32 × 24 × 1,5); `podstawka.scad`: `pirKolH`, `pirKopH`, `pirT`, `pirTyl` |

@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
-# Eksport podstawki: 3MF każdej części drukowanej (40-cad/3mf/Podstawka v1/), kontrola siatek, liczba brył, wymiary wobec parametrów.
+# Eksport podstawki: 3MF każdej części drukowanej (40-cad/3mf/Podstawka v2/), kontrola siatek, liczba brył, wymiary wobec parametrów.
 # Użycie: bash podstawka-eksport.sh [Czesc ...]
-# Zmienne środowiska: ZMIENNE="-D wtyk=30 -D hDoc=60" (test zginania), OUT3MF=<katalog> (zamiast 40-cad/3mf/Podstawka v1).
+# Zmienne środowiska: ZMIENNE="-D wtyk=30 -D hDoc=60" (test zginania), OUT3MF=<katalog> (zamiast 40-cad/3mf/Podstawka v2),
+#   OPENSCAD=<program> (domyślnie openscad z PATH, a bez niego Windows).
 set -u
-OS="${OPENSCAD:-/c/Program Files/OpenSCAD/openscad.com}"
+OS="${OPENSCAD:-$(command -v openscad || echo "/c/Program Files/OpenSCAD/openscad.com")}"
 cd "$(dirname "$0")"
-OUT="${OUT3MF:-../3mf/Podstawka v1}"
+OUT="${OUT3MF:-../3mf/Podstawka v2}"
 read -r -a ZM <<< "${ZMIENNE:-}"
 mkdir -p "$OUT"
-declare -A PLIK=([Szuflada]="Szuflada (X1C)" [SzufladaL]="Szuflada lewa (A1 mini)" [SzufladaP]="Szuflada prawa (A1 mini)" [Kaseta]="Kaseta elektroniki"
-  [Tuleja]="Tuleja z gwintem" [Nakretka]="Nakretka" [OslonkaPIR]="Oslonka PIR (opcja)" [ProbkaTuleja]="Probka gwintu - tuleja" [ProbkaNakretka]="Probka gwintu - nakretka")
-CZ=("$@"); [ ${#CZ[@]} -eq 0 ] && CZ=(Szuflada SzufladaL SzufladaP Kaseta Tuleja Nakretka OslonkaPIR ProbkaTuleja ProbkaNakretka)
+declare -A PLIK=([Korpus]="Szuflada v2 - korpus (X1C)" [Front]="Szuflada v2 - front (X1C)" [Raczka]="Szuflada v2 - raczka" [ProbkaPIR]="Szuflada v2 - probka gniazda PIR" [Kaseta]="Kaseta elektroniki"
+  [Tuleja]="Tuleja z gwintem" [Nakretka]="Nakretka" [ProbkaTuleja]="Probka gwintu - tuleja" [ProbkaNakretka]="Probka gwintu - nakretka")
+CZ=("$@"); [ ${#CZ[@]} -eq 0 ] && CZ=(Korpus Front Raczka ProbkaPIR Kaseta Tuleja Nakretka ProbkaTuleja ProbkaNakretka)
 timeout 120 "$OS" -o "$OUT/parametry.echo" "${ZM[@]}" -D 'czesc="parametry"' podstawka.scad > /dev/null 2>&1
 sed -n 's/^ECHO: "PARAMETRY\(.*\)"$/\1/p' "$OUT/parametry.echo" > "$OUT/parametry.json"
 jedna() { local c=$1 t0=$(date +%s)

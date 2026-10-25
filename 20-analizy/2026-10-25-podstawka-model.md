@@ -177,3 +177,92 @@ Model: `tDno`, `H_IN` = 40 (zmienne bazowe), `dOtwPl` = 60, moduł `dno()`. Rysu
 **Otwarte:**
 - P6 – mocowanie PIR: czekam na opis od użytkownika, co nie pasuje;
 - review Opusa i Astry tej wersji.
+
+## v2: wymiary wykonane i szufladka v2 (25.10 wieczorem) – aktualne
+
+Ta sekcja **zastępuje** opisy szufladki i blokady wyżej (historia). Wymagania: `30-projekt/PRD.md` 0.2 §5 (pomiary użytkownika i szufladka v2). Model: `40-cad/openscad/podstawka.scad`; rozstrzygnięcia techniczne z uzasadnieniem są w nagłówku pliku.
+
+### Zmienne bazowe według pomiarów
+
+| Zmienna | v1 | v2 | Źródło |
+|---|---|---|---|
+| `WIN` (szerokość wnętrza) | 218,8 (pochodna) | **216** | pomiar przy froncie i z tyłu |
+| `tDno` | 6 | **9** | pomiar |
+| `H_IN` | 40 | 40 | pomiar |
+| `DL` (głębokość) | 222,8 (pochodna) | **226** | pomiar |
+| `wkrPlOd` | 30 | **20** | pomiar (9 od boku bez zmian) |
+| `dOtwPl` | 60 | 60 | pomiar Ø60–61 |
+| `tTyl` (ścianka tylna) | 18 | 18 | **założenie** |
+
+Wynik: podstawka 252 × 226 × 67 (użytkownik podał 69 wysokości – różnica w dnie albo płycie, na szufladkę nie wpływa, bo liczy się wnętrze 40).
+
+### Szufladka v2 (PRD 0.2)
+
+| Część | Wymiar (druk) | Drukarka | Na stół | Uwagi |
+|---|---|---|---|---|
+| Korpus | 215,0 × 102 × 32 | X1C | dnem | ścianki 2,0; luz w podstawce **0,5 na stronę**; kieszeń PIR 26 z przodu, przegroda z wycięciem 12 × 8 nad listwą PIR, komora powerbanku, słupki, wycięcie kablowe na osi gniazda zasilania kasety; okno PIR 36 szer. otwarte do górnej krawędzi, otwory M4/M3 w przedniej ścianie; fazki 2 × 45° na tylnych narożach |
+| Front | 244 × 65 × 4 (+ słupki M2 2,5) | X1C | licem, brim | zakładka 14 na ścianki, 1 nad stołem, 1 poniżej wierzchu płyty; otwór kopułki Ø24, gniazdo kołnierza 23,5 × 23,5 × 0,5, 2 słupki M2; otwory: 2 × M4 rączki, 2 × M3, blokada Ø5 |
+| Rączka | 76 × 22 × 15 | A1 mini albo X1C | licem (większą podstawą) | ścięty ostrosłup z krawędziami R3 (kształt: decyzja użytkownika – niska, nienachalna): przy froncie 66 × 14, lico 76 × 22, wysięg 15; gniazda łbów M4 Ø8 × 4,5 od lica (epoksyd), rozstaw 50; na środku frontu |
+| Próbka gniazda PIR | 60 × 40 × 6,5 | A1 mini albo X1C | licem | wycinek frontu: otwór kopułki, gniazdo kołnierza, 2 słupki M2 – **drukować i przymierzyć PIR przed frontem** |
+
+Pliki: `40-cad/3mf/Podstawka v2/Szuflada v2 - korpus (X1C).3mf`, `… - front (X1C).3mf`, `… - raczka.3mf`; w tym samym katalogu kaseta, tuleja, nakrętka i próbki gwintu (bez zmian). Podglądy: `40-cad/openscad/podglad/podstawka-v2-*.png`; rysunek płyty z otworem blokady: `podglad/podstawka-ciecie.png` / `.svg`.
+
+**Śruby z magazynu (PRD §7):**
+- rączka: 2 × M4 × 25 imbus (pod łbem potrzeba ≥ 21, koniec 4 mm za nakrętką; łeb mieści się w gnieździe Ø8 × 4,5 – założenie Ø7 × 4), 2 nakrętki M4, 2 podkładki, epoksyd;
+- front–korpus: 2 × M3 × 10, 2 nakrętki M3;
+- PIR: 2 × M2 × 6 w słupki frontu (Ø1,7);
+- blokada: M4 × 25 imbus;
+- kaseta do dna: 4 wkręty 3 × 12 (przy dnie 9 wchodzą w dno na 5 mm, zostaje 4); tuleja do płyty: 3 wkręty 3 × 16.
+
+**Kaseta elektroniki:** bez zmian wobec v1 (położenie gniazda zasilania i piasty zamrożone w zmiennych). Siatka v2 ma te same wierzchołki co v1 z dokładnością 0,001 mm. Leży 107 od frontu (63 od lewego boku), korpus kończy się na 102.
+
+**Blokada:** M4 × 25 przez front (Ø5) w przednią krawędź płyty górnej, na środku szerokości (126 od boku), 9 mm pod wierzchem płyty (58 nad stołem). W płycie otwór pilotowy **Ø3,3 × 22**, poziomo, wiercony przez otwór frontu przy wsuniętej szufladce. Najbliższe: wkręty płyty 9 od boku i 20 od frontu, kołnierz tulei od y 53 – daleko.
+
+**PIR (wymiary ze zdjęć `70-budowa/zdjecia/2026-10-25-pir/`, odczyty w `70-budowa/zdjecia/MANIFEST.md`):** kołnierz soczewki 23 × 23 × 3 w gnieździe 23,5 × 23,5 × 0,5 (luz 0,25 na stronę), kopułka Ø23 w otworze Ø24, wystaje ok. 7,5 mm przed lico frontu (14 − 2,5 − 4). Przód płytki 2,5 za frontem: luty (≤ 2) mają ≥ 0,5 luzu. Płytka na 2 słupkach Ø4,5 z otworami Ø1,7 × 5, M2 × 6 wchodzi 4,5. Za płytką do przegrody 22: elementy 8, wtyki Dupont 20. Potencjometry i zworkę ustawić przed montażem (PRD).
+
+### Kolejność montażu szufladki
+
+0. Próbka gniazda PIR: przymierzyć PIR (kołnierz w gnieździe, kopułka w otworze, oba M2 wchodzą bez gięcia płytki). Jeśli nie pasuje – zmierzyć suwmiarką rozstaw otworów, kołnierz i kopułkę i poprawić `pirOtwRozst`, `pirGn`, `dKopOtw` przed drukiem frontu.
+1. PIR we front: potencjometry i zworkę ustawić wcześniej; kołnierz w gniazdo od tyłu, 2 × M2 × 6 przez otwory płytki w słupki, bez siły.
+2. Rączka: łby M4 wkleić epoksydem w gniazda od lica, gwintem w stronę frontu; po związaniu kleju.
+3. Front na korpus: śruby rączki przez front i przednią ścianę korpusu, podkładki i nakrętki M4 od środka (kieszeń PIR, klucz 7); przy dolnych rogach 2 × M3 × 10 z nakrętkami. Przy dokręcaniu przytrzymać łeb M4 imbusem od lica rączki.
+4. Przewód PIR (wlutowany albo na Dupontach) przez wycięcie w przegrodzie, nad powerbankiem (6 mm pod płytą) do wycięcia w tylnej ściance, dalej do ESP32 w kasecie: ok. 350 mm z zapasem na wysunięcie (Fable W3, Astra W3). Kabel USB-C od powerbanku do gniazda kasety: ≥ 100 mm wolnego kabla przy zamkniętej szufladce. Zapas układać po lewej od kasety (x 18–63). **Próba:** kilka wysunięć 0…105 przy założonej płycie, bez napinania wtyków.
+5. Szufladkę wsunąć do oporu frontu i wycentrować, przez otwór blokady we froncie nawiercić krawędź płyty Ø3,3 na 22 mm (głębokość od drewna), wkręcić M4 × 25.
+
+### Kontrole (dowody)
+
+| Kontrola | Wynik |
+|---|---|
+| Siatki (`sprawdz_siatki.js`), 1 bryła (`skladowe_siatki.js`) | korpus, front, rączka, próbka PIR, kaseta: 0 błędów, 1 bryła; tuleja, nakrętka, próbki gwintu: zdegenerowane trójkąty na gwincie naprawione `napraw_siatki.js` (jak v1), potem 0 błędów, 1 bryła |
+| Wymiary wobec parametrów (`podstawka-wymiary.js`) | korpus 215 × 102 × 32, front 244 × 65 × 6,5, rączka 76 × 22 × 15 (siatka 75,97 × 21,97 × 14,99 – kule R3 z 32 segmentami), próbka PIR 60 × 40 × 6,5, kaseta, tuleja, nakrętka – OK |
+| Kolizje (`podstawka-kolizje.sh`, CGAL, część wspólna ma być pusta) | szufladka zamknięta (korpus, front, rączka, PIR, powerbank) wobec sklejki i kasety: pusto; wsuwanie przy wysunięciu 0 / 30 / 60 / 90: pusto; PIR wobec frontu i korpusu: pusto; wkładanie frontu z PIR w korpus (przemiatanie 30 mm): pusto; łby, nakrętki i trzpienie wobec części, PIR i powerbanku: pusto |
+| Test czułości kontroli | okno PIR bez zapasu (`oknoPIRzap` 0): wkładanie PIR wykrywa kolizję kondensatorów z przednią ścianą (x 22,5…57,5, y 0…2) |
+| Test zginania (`podstawka-zginanie.sh`) | przed review: `WIN` 218 → front 246; `wtyk` 45 → korpus 210; `kieszenPIR` 28 → korpus 104 głęb.; `tF` 5 → front 7,5 (wszystko OK). Po zmianie rączki: `rD` 12 → rączka 12 wysięgu; `rL2` 80 → 80; `rH2` 26 → 26; `WIN` 218 → front 246; `kieszenPIR` 28 → korpus 104. Wszystkie: wymiary zgodne z oczekiwanymi, siatki 0 błędów, 1 bryła; kolizje dla `WIN` 218, `kieszenPIR` 28, `rD` 12: pusto |
+
+### Założenia do sprawdzenia przez użytkownika
+
+- ścianka tylna 18 (głębokość wnętrza za kasetą);
+- przednie krawędzie dna, ścianek i płyty w jednej płaszczyźnie (front się o nie opiera);
+- rozstaw otworów montażowych PIR 28,5 (zmienna `pirOtwRozst`) – zmierzyć suwmiarką; luty od strony soczewki ≤ 2;
+- M2 × 6 w warsztacie (PRD §7 wymienia M3–M5; M2 × 6 są przy małych oczach); M4 imbus z łbem okrągłym Ø7 × 4 w długości 35–40.
+
+### Review (Fable, Astra) i rozstrzygnięcia
+
+Raporty: `review/2026-10-25-szuflada-v2-fable.md`, `review/2026-10-25-szuflada-v2-astra.md` (brief `review/2026-10-25-szuflada-v2-brief.md`). Jedna runda. Fable: 0 krytycznych, 4 ważne, 8 drobnych; Astra: 0 krytycznych, 3 ważne, 1 drobna. Werdykty: drukować (Fable: korpus i rączkę od razu, front po pomiarze PIR; Astra: do próby montażowej po próbkach PIR i mostu).
+
+| Uwaga | Kto | Rozstrzygnięcie |
+|---|---|---|
+| Wymiary PIR ze zdjęć ±1 wobec luzów 0,25–0,5 (rozstaw M2, kołnierz, kopułka) | Fable W1, Astra W1 | **próbka gniazda PIR** (60 × 40, wycinek frontu) do przymiarki przed frontem; pomiar suwmiarką na liście założeń |
+| Blokada: trafienie w otwór pilotowy przy luzie korpusu ±0,5 | Fable W2 | otwór we froncie **Ø5**; pilot wiercony przez front przy wsuniętej, wycentrowanej szufladce |
+| Przewody PIR i USB-C przy ruchomej szufladce nie są w modelu | Fable W3, Astra W3 | długości i trasa w kolejności montażu (krok 4); próba wysunięć u użytkownika – **do sprawdzenia** |
+| Wtyki Dupont 2 mm przed przegrodą – przewody nie skręcą w górę | Fable W4 | **wycięcie 12 × 8** w górnej krawędzi przegrody nad listwą |
+| Most 36 × 2 × 1 nad oknem PIR | Astra W2, Fable D5 | **okno otwarte do górnej krawędzi** |
+| Brak faz wejściowych korpusu | Astra D1 | **fazki 2 × 45°** na tylnych pionowych narożach |
+| Łeb M4 – walcowy Ø7 × 4 czy kulisty Ø7,6 × 2,2 | Fable D6, Astra | założenie Ø7 × 4; dla kulistego gniazdo Ø8 też pasuje (0,2), długość śruby wg łba – na liście założeń |
+| Nakrętki tylko z góry kluczem | Fable D7 | bez zmian (dostęp z góry wystarcza; ścianka 2 bez miejsca na gniazda sześciokątne) |
+| Blokada pod dynią – imbus z długim ramieniem | Fable D8 | do sprawdzenia po postawieniu dyni (instrukcja) |
+| Wysokość skrzynki 67 nominalna, front do 66 | Fable D9 | do pomiaru; zmienna `frontPodGora` |
+| Słupki M2 – wkręcać bez siły; luty; fazka rączki; brim frontu | Fable D10–D12 | w kolejności montażu i tabeli druku; rączka i tak zmieniona |
+| Rączka 86 × 28 nachalna | użytkownik (po review) | **nowa rączka**: ścięty ostrosłup 66 × 14 → 76 × 22, wysięg 15, R3, M4 × 25 w rozstawie 50, na środku frontu |
+
+Po zmianach powtórzone: eksport 9 części, siatki, wymiary, 5 kontroli kolizji (pusto), test zginania (wyżej). Druga runda review – nie (brief PM).

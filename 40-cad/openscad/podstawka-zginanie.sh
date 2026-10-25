@@ -4,7 +4,7 @@
 set -u -o pipefail
 cd "$(dirname "$0")"
 ROB="$1"; shift
-CZ="${CZESCI:-Szuflada SzufladaL SzufladaP Kaseta}"
+CZ="${CZESCI:-Korpus Front Raczka}"
 for w in "$@"; do
   d="$ROB/$(echo "$w" | tr '=. ' '__-')"; rm -rf "$d"; mkdir -p "$d"
   ZM=""; for z in $w; do ZM="$ZM -D $z"; done
