@@ -130,7 +130,9 @@ slupPcaD = 6; slupPcaH = 5;                      // słupki PCA9685
 espRama = 1.5; espRamaH = 4;                     // ramka ESP32-C3
 pcaX0 = 75; pcaY0 = 45;                          // PCA9685: lewy przedni narożnik płytki na tacce (listwy kanałów do przodu – w stronę tulei, zacisk do tyłu; elektronika 26.10)
 pcaPrzod = 25;                                   // wolne miejsce przed listwą kanałów (kondensator i przewody 5 V na kanałach 8–11)
-espOdBoku = 15;                                  // ESP32-C3 z przodu po lewej, USB-C do przodu
+espOdBoku = 15;                                  // ESP32-C3 z przodu po lewej, USB-C do przodu (lewy przedni narożnik płytki)
+espPodH = 16; espPodW = 10; espPodD = 4; espPodDp = 7; espLip = 1.5;   // podstawka ESP (elektronika 26.10: piny w dół z wtykami Dupont): wysokość podpórek, szerokość (środek płytki, między rzędami pinów), głębokość tylnej / przedniej (z tunelem opaski) pod płytką, wysokość ramki
+espRzedy = 15.2;                                 // rozstaw rzędów pinów ESP32-C3 SuperMini (wzdłuż długich boków)
 bkGn = 9.5;                                      // wyjście gniazda USB-C ESP32-C3 w ramce (8,94 + luz)
 bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilania w kasecie (jak v1: wycięcie kablowe szufladki na tej osi, przed gniazdem miejsce na wtyk)
 // ---------- BAZOWE: tacka v2 – gniazdo panelowe USB-C (ZAŁOŻENIA do pomiaru użytkownika), rezystor, opaski ----------
@@ -251,6 +253,8 @@ assert(pcaY0 + pcaW <= kD - kTylT - 2, "PCA9685 nachodzi na tylny pas");
 assert(pcaY0 - pcaPrzod >= uchSkretkiY + uchD / 2, "uchwyty skrętek w wolnej strefie przed PCA9685");
 rezOsZ = kDno + rezNad + rezD / 2;               // oś rezystora nad spodem tacki
 assert(rezX + rezD / 2 + rezOdst <= pcaX0 && rezY0 - rezSlupW / 2 >= espOdBoku + espL + 2 * espRama + 3, "rezystor nachodzi na PCA9685 albo ESP32-C3");
+assert(espPodW <= espRzedy - 2.54 - 1, "podpórki ESP wchodzą pod rzędy pinów");
+assert(kDno + espPodH + 1.6 + 4 <= H_IN - 5, "ESP za wysoko pod płytą");
 assert(rezX - rezD / 2 - rezOdst >= kSc, "rezystor za blisko lewej ścianki");
 assert(rezY0 + rezRozst + rezSlupW / 2 <= kD - kTylT, "słupek rezystora wchodzi w tylny pas");
 assert((rezRozst - rezSlupW - rezL) / 2 >= 1, "rezystor nie mieści się między słupkami");
@@ -316,12 +320,7 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
       translate([pcaX0, pcaY0, kDno - zak])                                         // słupki PCA9685
         for (dx = [0, pcaOtwX], dy = [0, pcaOtwY]) translate([(pcaL - pcaOtwX) / 2 + dx, (pcaW - pcaOtwY) / 2 + dy, 0])
           cylinder(d = slupPcaD, h = slupPcaH + zak, $fn = 24);
-      translate([espOdBoku - espRama, espOdBoku - espRama, kDno - zak])              // ramka ESP32-C3, gniazdo USB-C do przodu
-        difference() {
-          cube([espW + 2 * (espRama + luzSlizg), espL + 2 * (espRama + luzSlizg), espRamaH]);
-          translate([espRama, espRama, -1]) cube([espW + 2 * luzSlizg, espL + 2 * luzSlizg, espRamaH + 2]);
-          translate([espRama + luzSlizg + espW / 2 - bkGn / 2, -1, -1]) cube([bkGn, espRama + 2, espRamaH + 2]);   // wyjście gniazda USB-C
-        }
+      espPodstawka();                                                                 // ESP32-C3 na 2 podpórkach, piny z Dupontami w dół
       translate([bkX - gnScW / 2, bkY, kDno - zak]) cube([gnScW, gnT, gnScH - kDno + zak]);   // ścianka gniazda panelowego USB-C, wejście do przodu
       for (s = [-1, 1]) translate([bkX + s * (gnScW / 2 - kSc / 2) - kSc / 2, bkY + gnT - zak, kDno - zak])   // żebra za ścianką
         rotate([90, 0, 90]) linear_extrude(kSc) polygon([[0, 0], [gnZebroL, 0], [0, gnScH - kDno]]);
@@ -351,6 +350,15 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
       rotate([0, 0, 225]) cube([(gnGwintD / 2 + luzSlizg), (gnGwintD / 2 + luzSlizg), gnT + 2]);   // lokalne −y = góra
     }
   }
+}
+module espPodstawka() {   // 2 podpórki pod krótkimi krawędziami (środek, między rzędami pinów); z tyłu ramka; z przodu tunel na opaskę w poprzek płytki za USB
+  cxE = espOdBoku + espW / 2;
+  translate([cxE - espPodW / 2, espOdBoku + espL - espPodD, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);   // podpórka tylna (koniec z anteną)
+  translate([cxE - espPodW / 2, espOdBoku, kDno - zak]) difference() {                                         // podpórka przednia (pod USB) z tunelem opaski
+    cube([espPodW, espPodDp, espPodH + zak]);
+    translate([-1, (espPodDp - (opW + 2 * opLuz)) / 2, espPodH / 3]) cube([espPodW + 2, opW + 2 * opLuz, opT + 2 * opLuz]);   // opaska płasko w poprzek (wzdłuż x)
+  }
+  translate([cxE - espPodW / 2, espOdBoku + espL + luzSlizg, kDno - zak]) cube([espPodW, espRama, espPodH + espLip + zak]);   // ramka z tyłu (płytka nie zjedzie do tyłu)
 }
 module uchwytOpaski(x, y, obrot, h) translate([x, y, kDno - zak]) rotate([0, 0, obrot]) difference() {   // blok z tunelem na opaskę (tunel wzdłuż x po obrocie)
   translate([-uchL / 2, -uchD / 2, 0]) cube([uchL, uchD, h + zak]);
@@ -557,7 +565,8 @@ module pokazTacki() {   // układ tacki: x od lewego boku, y od przodu tacki; wi
   color("DimGray") translate([pcaX0 + 3, pcaY0, kDno + slupPcaH + 1.6]) cube([pcaL - 6, 6, 8]);                  // listwy kanałów (przód)
   color("RoyalBlue") translate([pcaX0 + pcaL / 2 - 5, pcaY0 + pcaW - 6, kDno + slupPcaH + 1.6]) cube([10, 6, 8]); // zacisk (tył)
   color("Orange", 0.35) translate([pcaX0, pcaY0 - pcaPrzod, kDno]) cube([pcaL, pcaPrzod, 1]);                    // wolne przed listwą
-  color("SteelBlue") translate([espOdBoku + luzSlizg, espOdBoku + luzSlizg, kDno + 1]) cube([espW, espL, 3]);    // ESP32-C3
+  color("SteelBlue") translate([espOdBoku, espOdBoku, kDno + espPodH]) cube([espW, espL, 1.6]);                 // ESP32-C3 na podstawce
+  color("Black") for (s = [-1, 1]) translate([espOdBoku + espW / 2 + s * espRzedy / 2 - 1.3, espOdBoku + 1, kDno + espPodH - 14]) cube([2.6, espL - 2, 14]);   // wtyki Dupont pod płytką
   color("Silver") translate([bkX, bkY - 3, gnOsZ]) rotate([-90, 0, 0]) cylinder(d = gnGwintD, h = gnT + gnKorpL + 3, $fn = 32);   // gniazdo USB-C
   color("Silver", 0.5) translate([bkX - wtykSzer / 2, 0, kDno]) cube([wtykSzer, bkY - 3, 1]);                    // wtyk C–C
   color("SaddleBrown") translate([rezX, rezY0 + (rezRozst - rezL) / 2, rezOsZ]) rotate([-90, 0, 0]) cylinder(d = rezD, h = rezL, $fn = 24);   // rezystor 47 Ω / 3 W
