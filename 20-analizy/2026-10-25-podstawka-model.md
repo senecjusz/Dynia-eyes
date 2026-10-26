@@ -342,3 +342,10 @@ Kontrole: siatka OK, kolizje szufladki z tacką: pusto. Wymiary płytek i gniazd
   - ścianka 3 (elektronika: ≤ 7, zostaje gwint na nakrętkę 2–3), oś 11,5 nad spodem tacki.
 
   Nakrętka gniazda niezmierzona: założony klucz 14, wyznacza wysokość osi. Siatka i kolizje: OK. **Tacka gotowa do druku** (A1 mini albo X1C, dnem na stół, bez podpór).
+- **Nakrętka gniazda (pomiar 27.10, przez elektronikę):** na rogach 15,5, grubość 3; za ścianką potrzeba wolnego okręgu ≥ Ø18 na nakrętkę i obrót klucza albo palców. Wykonano:
+  - oś gniazda 12,4 nad spodem tacki (`gnObrys` = max(18; 15,5; 14));
+  - ścianka 24 × 24,4;
+  - żebra za ścianką 9,6 od osi, poza wolnym okręgiem;
+  - ścianka 3 – na gwincie zostaje miejsce na nakrętkę 3 i zapas.
+
+  Siatka i kolizje: OK.
