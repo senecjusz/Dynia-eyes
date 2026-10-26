@@ -3,14 +3,16 @@
 #
 # Model drutu (dla każdego pręta osobno):
 #  - drut sztywny: noga przy gałce (długość zacz_ods od zagięcia do środka otworu), odcinek główny o STAŁEJ długości Lm,
-#    noga przy orczyku (1,75 od zagięcia do środka otworu); obie nogi prostopadłe do odcinka głównego (zagięcia 90°),
+#    noga przy orczyku (orcz_ods od zagięcia do środka otworu); obie nogi prostopadłe do odcinka głównego (zagięcia 90°),
 #    kąt skręcenia nóg wokół odcinka głównego STAŁY, z położenia spoczynkowego (L–P: nogi równoległe; G–D: prostopadłe);
 #  - położenie drutu w danym stanie gałki: kierunek odcinka głównego d, obrót drutu wokół d (φ) i kąt orczyka α spełniają
 #    warunki: noga przy gałce przechodzi przez środek otworu języczka, noga przy orczyku przez środek otworu orczyka,
 #    |odcinek główny| = Lm; φ dobierane tak, by najmniej przechylić nogi w otworach (minimum największego stosunku
 #    przechyłu do dopuszczalnego);
 #  - przechył nogi = kąt między nogą a osią otworu; dopuszczalny: języczek gałki (gardziel Ø2,0 × 1,0) 36,9°,
-#    orczyk MG90S rozwiercony do Ø1,6 (ramię ok. 1,6 mm [Z]); średnica drutu drut_d z parametrów (Ø1,2);
+#    orczyk MG90S fabryczny Ø1,3 (ramię ok. 1,6 mm [Z]); średnica drutu drut_d z parametrów (Ø1,0);
+#  - druga strona „Z” (noga drut_noga między zagięciami, otwór na środku, ogon drut_ogon równoległy do odcinka głównego,
+#    skierowany od niego): reszta nogi od 2,5 za środkiem otworu i ogon liczą się do luzu wobec gałki, płyty i piasty;
 #  - luz: cały drut (obie nogi i odcinek główny jako odcinki o promieniu drut_d/2) wobec siatki gałki, z wyłączeniem nogi w obrębie
 #    otworu własnego zaczepu (2,5 mm od środka otworu wzdłuż nogi = połowa grubości 1,0 + wylot fazki: przejście przez gardziel
 #    zapewnia przechył ≤ dopuszczalnego, a fazki 45° są szersze od przechyłu ≤ 30°, więc drut dotyka tylko gardzieli),
@@ -51,10 +53,11 @@ def odl_znak(t, p):
         n += 1; q = h[0] + KIER * 1e-4
     return -r[3] if n % 2 else r[3]
 
-ODS_A, ODS_B = P['zacz_ods'], 1.75
+ODS_A, ODS_B = P['zacz_ods'], P.get('orcz_ods', 1.75)
+NOGA, OGON = P.get('drut_noga', 0), P.get('drut_ogon', 0)
 def kap(D, l, d=1.0): return kin.przechyl_dopuszczalny(D, l, d)
 DR = P.get('drut_d', 1.0); RD = DR / 2
-KAP_A = kap(P['zacz_gardz_d'], P['zacz_gardz_l'], DR); KAP_B = kap(1.6, 1.6, DR)   # orczyk MG90S rozwiercony do Ø1,6
+KAP_A = kap(P['zacz_gardz_d'], P['zacz_gardz_l'], DR); KAP_B = kap(1.3, 1.6, DR)   # orczyk MG90S fabryczny Ø1,3
 
 def obrot(v, os_, kat):
     return Matrix.Rotation(kat, 3, os_) @ v
@@ -129,6 +132,10 @@ for psi in range(-35, 36, 5):
             ocena, a, phi, A, B, ua, ub, ta, tb, Ha, Hb, L = r
             w = wyn[nm]; w['ta'] = max(w['ta'], ta); w['tb'] = max(w['tb'], tb); w['dL'] = max(w['dL'], abs(L - pr.Lm))
             odcinki = [(A, A + ua * (ODS_A - 2.5)), (A, B), (B, Hb + ub * 1.6)]   # noga przy gałce do 2,5 przed środkiem otworu (dalej gardziel z fazkami)
+            if NOGA > 0:   # druga strona „Z” przy gałce i przy orczyku
+                d_ = (B - A).normalized(); C = Ha + ua * (NOGA - ODS_A); D = Hb + ub * (NOGA - ODS_B)
+                if NOGA - ODS_A > 2.5: odcinki.append((Ha + ua * 2.5, C))
+                odcinki += [(C, C - d_ * OGON), (Hb + ub * 1.6, D), (D, D + d_ * OGON)]
             mstan = 1e9
             for p0, p1 in odcinki:
                 n = max(2, int((p1 - p0).length / 0.25) + 1)
@@ -142,7 +149,7 @@ for psi in range(-35, 36, 5):
             if mstan < 0.5: w.setdefault('ponizej', []).append((psi, th, round(mstan, 2)))
     print('stan', psi, flush=True)
 lin = ['Duże oko v3 – pręty gałki jako jeden sztywny drut o stałych zagięciach (model w nagłówku duze-oko-v3-z-sztywne.py).',
-       f'Drut Ø{DR}. Dopuszczalny przechył nogi: języczek gałki {KAP_A:.1f}° (Ø{P["zacz_gardz_d"]} × {P["zacz_gardz_l"]}), orczyk {KAP_B:.1f}° (rozwiercony Ø1,6 × ramię 1,6 [Z]).', '']
+       f'Drut Ø{DR}, „Z”: noga {NOGA} (otwór na środku), ogon {OGON}. Dopuszczalny przechył nogi: języczek gałki {KAP_A:.1f}° (Ø{P["zacz_gardz_d"]} × {P["zacz_gardz_l"]}), orczyk {KAP_B:.1f}° (fabryczny Ø1,3 × ramię 1,6 [Z]).', '']
 for nm in ('LP', 'GD'):
     w = wyn[nm]
     lin.append(f'Pręt {nm}: długość odcinka głównego stała {prety[nm].Lm:.2f} (odchyłka rozwiązania {w["dL"]:.4f}); '

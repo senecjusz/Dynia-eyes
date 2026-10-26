@@ -2,134 +2,134 @@ Duże oko v3 – przemiatanie kolizji na siatkach (Blender BVHTree). Luz w mm; u
 Zakres: gałka psi −35…+35, theta −25…+25 co 5° (narożniki włącznie), powieki 0…51,5°. Wymóg: 0.5 (osiowo w zawiasie 0.2).
 Metoda, wyłączenia i to, czego przemiatanie nie obejmuje – nagłówek skryptu duze-oko-v3-przemiatanie.py.
 
+ZLE DrutG–PowiekaGorna (bez uszka i 2,5 mm przy zagięciu)            -1.02  (wymóg 0.5)  przy: powieki G 25.8, D 0  miejsce: [1.56, 31.6, -11.62]
+ZLE DrutD–PowiekaDolna (bez uszka i 2,5 mm przy zagięciu)            -1.00  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [-1.58, -31.49, 3.1]
+ZLE DrutD–Galka                                                      -0.65  (wymóg 0.5)  przy: psi -15, theta -25, powieki G 0, D 51.5  miejsce: [-1.6, -20.47, -21.66]
 OK  SerwoLP–Plyta (serwo −0,05: styk zamierzony)                      0.05  (wymóg 0.0)  przy: nieruchome  miejsce: [26.8, -15.0, -87.75]
 OK  SerwoGD–Plyta (serwo −0,05: styk zamierzony)                      0.05  (wymóg 0.0)  przy: nieruchome  miejsce: [-32.95, -15.0, -66.2]
 OK  SerwoPG–Plyta (serwo −0,05: styk zamierzony)                      0.05  (wymóg 0.0)  przy: nieruchome  miejsce: [37.95, -15.0, -101.2]
 OK  SerwoPD–Plyta (serwo −0,05: styk zamierzony)                      0.05  (wymóg 0.0)  przy: nieruchome  miejsce: [-37.95, -15.0, -82.2]
 OK  PowiekaGorna–PowiekaDolna (uszy na osi)                           0.20  (wymóg 0.2)  przy: powieki G 0, D 0  miejsce: [33.0, -3.0, -3.0]
 OK  PowiekaGorna–Plyta (uszy przy słupku)                             0.30  (wymóg 0.2)  przy: powieki G 0, D 0  miejsce: [34.7, -3.0, -3.0]
-OK  PretGD–Galka (bez zaczepu i 2,5 mm przy zagięciu)                 0.64  (wymóg 0.5)  przy: psi +20, theta +25  miejsce: [-2.96, 8.86, -12.39]
+ZLE PretGD–Galka (bez zaczepu i 2,5 mm przy zagięciu)                 0.43  (wymóg 0.5)  przy: psi +25, theta +25  miejsce: [-3.84, 9.26, -12.03]
+OK  PretLP–Galka (bez zaczepu i 2,5 mm przy zagięciu)                 0.60  (wymóg 0.5)  przy: psi +35, theta -25  miejsce: [11.6, 4.96, -15.51]
 OK  OrczykD–Plyta                                                     0.75  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [-1.75, -15.23, -71.98]
-OK  DrutD–PowiekaDolna (bez uszka i 2,5 mm przy zagięciu)             0.77  (wymóg 0.5)  przy: powieki G 0, D 34.3  miejsce: [-7.34, -27.18, -18.88]
-OK  PretLP–Galka (bez zaczepu i 2,5 mm przy zagięciu)                 0.77  (wymóg 0.5)  przy: psi +35, theta -25  miejsce: [11.73, 5.23, -15.58]
-OK  DrutG–PowiekaGorna (bez uszka i 2,5 mm przy zagięciu)             0.81  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [7.39, 21.99, -28.05]
 OK  Plyta–Tuba30 (moduł w środku tuby)                                0.95  (wymóg 0.5)  przy: nieruchome  miejsce: [-38.05, -2.66, -9.25]
 OK  Plyta–Tuba40 (moduł w środku tuby)                                0.95  (wymóg 0.5)  przy: nieruchome  miejsce: [-38.05, -2.66, -29.12]
 OK  Plyta–Tuba50 (moduł w środku tuby)                                0.95  (wymóg 0.5)  przy: nieruchome  miejsce: [-38.05, 2.66, -32.44]
 OK  SerwoLP–SerwoPG                                                   0.95  (wymóg 0.5)  przy: nieruchome  miejsce: [26.75, -15.0, -88.75]
 OK  Galka–PowiekaDolna                                                0.96  (wymóg 0.5)  przy: psi +5, theta -10, powieki G 0, D 17  miejsce: [-4.0, -29.36, -8.97]
 OK  Galka–KardanTyl                                                   1.02  (wymóg 0.5)  przy: psi +35, theta -5  miejsce: [6.45, -0.02, -13.1]
-OK  DrutD–Galka                                                       1.08  (wymóg 0.5)  przy: psi +35, theta -25, powieki G 0, D 34  miejsce: [-3.4, -26.98, -16.27]
 OK  Galka–Plyta                                                       1.18  (wymóg 0.5)  przy: psi +35, theta -5  miejsce: [6.66, -0.39, -13.28]
-OK  DrutG–OrczykGD                                                    1.68  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
 OK  PowiekaDolna–Plyta (uszy przy słupku)                             1.70  (wymóg 0.2)  przy: powieki G 0, D 0  miejsce: [34.7, -3.0, -3.0]
 OK  PowiekaGorna–Tuba30                                               1.94  (wymóg 0.5)  przy: powieki G 8.6, D 0  miejsce: [6.33, 37.62, -1.96]
 OK  PowiekaGorna–Tuba40                                               1.94  (wymóg 0.5)  przy: powieki G 8.6, D 0  miejsce: [6.33, 37.62, -1.96]
 OK  PowiekaGorna–Tuba50                                               1.94  (wymóg 0.5)  przy: powieki G 8.6, D 0  miejsce: [6.33, 37.62, -1.96]
-OK  PretGD–Plyta                                                      2.34  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [-0.16, 8.92, -13.93]
-OK  PretGD–KardanTyl                                                  2.42  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [0.0, 8.52, -8.94]
-OK  DrutG–Tuba40                                                      2.77  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [7.5, 33.96, 1.6]
-OK  DrutG–Tuba30                                                      2.77  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [7.5, 33.96, 1.6]
-OK  DrutG–Tuba50                                                      2.77  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [7.5, 33.96, 1.6]
-OK  DrutG–Galka                                                       2.79  (wymóg 0.5)  przy: psi +30, theta +20, powieki G 0, D 0  miejsce: [7.06, 31.67, -7.88]
+OK  DrutG–Galka                                                       2.31  (wymóg 0.5)  przy: psi -20, theta +25, powieki G 51.5, D 0  miejsce: [1.57, 22.72, -23.61]
+OK  DrutG–Tuba40                                                      2.64  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [8.5, 33.96, 1.6]
+OK  DrutG–Tuba50                                                      2.64  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [8.5, 33.96, 1.6]
+OK  DrutG–Tuba30                                                      2.64  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [8.5, 33.96, 1.6]
+OK  PretGD–Plyta                                                      2.83  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [-0.3, 9.31, -13.89]
+OK  PretGD–KardanTyl                                                  2.97  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [0.0, 8.97, -9.15]
 OK  OrczykG–Plyta                                                     3.00  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [1.75, -9.5, -95.0]
-OK  PretLP–Plyta                                                      3.00  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [9.42, 1.72, -13.86]
+OK  DrutG–PretGD                                                      3.13  (wymóg 0.5)  przy: psi +35, theta +25, powieki G 51.5, D 0  miejsce: None
 OK  Galka–PowiekaGorna                                                3.14  (wymóg 0.5)  przy: psi +30, theta -5, powieki G 0, D 0  miejsce: [4.0, 32.9, 0.01]
-OK  DrutD–Plyta                                                       3.24  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-6.49, -23.78, -39.36]
+OK  PretLP–Plyta                                                      3.17  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [9.54, 1.28, -13.69]
+OK  DrutG–OrczykGD                                                    3.26  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
+OK  DrutD–Plyta                                                       3.34  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-7.68, -23.78, -39.36]
+OK  PretLP–KardanTyl                                                  3.46  (wymóg 0.5)  przy: psi +35, theta -25  miejsce: [9.33, -1.22, -11.45]
 OK  SerwoGD–SerwoPD                                                   3.50  (wymóg 0.5)  przy: nieruchome  miejsce: [-33.0, -15.0, -69.75]
-OK  PretLP–KardanTyl                                                  3.57  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [9.39, 1.72, -13.62]
-OK  DrutG–PretGD                                                      3.79  (wymóg 0.5)  przy: psi -25, theta +20, powieki G 51.5, D 0  miejsce: None
-OK  OrczykGD–Plyta                                                    3.83  (wymóg 0.5)  przy: psi +0, theta -25  miejsce: [0.0, 8.98, -56.59]
+OK  OrczykGD–Plyta                                                    3.67  (wymóg 0.5)  przy: psi +0, theta -25  miejsce: [0.0, 9.13, -56.31]
+OK  DrutD–Tuba50                                                      4.33  (wymóg 0.5)  przy: powieki G 0, D 17.2  miejsce: [-6.47, -32.69, -47.23]
 OK  PowiekaDolna–Tuba30                                               4.37  (wymóg 0.5)  przy: powieki G 0, D 8.6  miejsce: [-6.74, -37.55, -1.59]
 OK  PowiekaDolna–Tuba40                                               4.37  (wymóg 0.5)  przy: powieki G 0, D 8.6  miejsce: [-6.74, -37.55, -1.59]
 OK  PowiekaDolna–Tuba50                                               4.37  (wymóg 0.5)  przy: powieki G 0, D 8.6  miejsce: [-6.74, -37.55, -1.59]
-OK  DrutD–Tuba50                                                      4.49  (wymóg 0.5)  przy: powieki G 0, D 17.2  miejsce: [-5.0, -32.69, -47.23]
-OK  PretGD–PowiekaGorna                                               4.82  (wymóg 0.5)  przy: psi +10, theta -10, powieki G 51.5, D 0  miejsce: [-1.03, 12.8, -27.91]
-OK  DrutD–Tuba40                                                      4.92  (wymóg 0.5)  przy: powieki G 0, D 17.2  miejsce: [-5.63, -32.14, -37.24]
-OK  DrutD–Tuba30                                                      5.18  (wymóg 0.5)  przy: powieki G 0, D 8.6  miejsce: [-5.98, -31.81, -27.13]
-OK  PretGD–SerwoGD                                                    5.58  (wymóg 0.5)  przy: psi +10, theta +25  miejsce: [-1.73, 12.66, -59.66]
-OK  OrczykLP–Plyta                                                    6.87  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [23.8, 0.0, -57.53]
+OK  PretGD–PowiekaGorna                                               4.63  (wymóg 0.5)  przy: psi +20, theta -10, powieki G 51.5, D 0  miejsce: [-2.04, 13.05, -27.71]
+OK  PretGD–SerwoGD                                                    4.64  (wymóg 0.5)  przy: psi +5, theta +25  miejsce: [-3.27, 12.55, -59.76]
+OK  DrutD–Tuba40                                                      4.76  (wymóg 0.5)  przy: powieki G 0, D 17.2  miejsce: [-6.98, -32.14, -37.24]
+OK  DrutD–Tuba30                                                      5.02  (wymóg 0.5)  przy: powieki G 0, D 8.6  miejsce: [-7.27, -31.81, -27.13]
 OK  SerwoGD–Tuba50                                                    7.08  (wymóg 0.5)  przy: nieruchome  miejsce: [-34.73, -15.77, -47.0]
+OK  OrczykLP–Plyta                                                    7.08  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [23.67, 0.0, -57.69]
 OK  OrczykD–SerwoGD                                                   7.50  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [-1.75, -17.69, -70.26]
 OK  Galka–Tuba30                                                      8.15  (wymóg 0.5)  przy: psi -10, theta -5  miejsce: [-37.88, -4.51, 0.0]
 OK  Galka–Tuba40                                                      8.15  (wymóg 0.5)  przy: psi -10, theta +5  miejsce: [-37.88, 4.51, 0.0]
 OK  Galka–Tuba50                                                      8.15  (wymóg 0.5)  przy: psi -10, theta -5  miejsce: [-37.88, -4.51, 0.0]
-OK  OrczykLP–SerwoGD                                                  8.30  (wymóg 0.5)  przy: psi +0, theta -25  miejsce: [12.67, 0.0, -63.39]
+OK  OrczykLP–SerwoGD                                                  8.30  (wymóg 0.5)  przy: psi -10, theta +10  miejsce: [12.66, 0.0, -63.44]
+OK  DrutD–SerwoGD                                                     8.62  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-7.01, -26.18, -52.14]
 OK  SerwoLP–Tuba50                                                    9.05  (wymóg 0.5)  przy: nieruchome  miejsce: [39.2, -14.95, -47.0]
-OK  DrutD–SerwoGD                                                     9.45  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-5.67, -26.18, -52.14]
-OK  PretLP–PowiekaGorna                                               9.96  (wymóg 0.5)  przy: psi -35, theta -25, powieki G 51.5, D 0  miejsce: [16.86, 3.78, -21.24]
-OK  OrczykLP–SerwoPG                                                 10.12  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [15.18, 0.0, -76.13]
+OK  DrutG–SerwoPG                                                     9.53  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [5.71, 9.98, -100.58]
+OK  PretLP–PowiekaGorna                                               9.57  (wymóg 0.5)  przy: psi -35, theta -25, powieki G 51.5, D 0  miejsce: [16.86, 4.34, -21.68]
+OK  PretLP–SerwoLP                                                    9.96  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [20.12, -3.55, -56.35]
+OK  OrczykLP–SerwoPG                                                 10.32  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [15.07, 0.0, -75.94]
 OK  KardanPrzod–Plyta                                                10.59  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [-3.75, -2.9, -14.25]
-OK  DrutG–SerwoPG                                                    11.00  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [4.31, 10.88, -95.15]
-OK  PretLP–SerwoLP                                                   11.81  (wymóg 0.5)  przy: psi -35, theta +20  miejsce: [17.84, -1.6, -57.25]
-OK  DrutG–SerwoGD                                                    11.81  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [5.79, 16.23, -62.83]
-OK  PretLP–PretGD                                                    11.90  (wymóg 0.5)  przy: psi -35, theta +25  miejsce: None
-OK  OrczykGD–PretLP                                                  12.32  (wymóg 0.5)  przy: psi +15, theta -25  miejsce: None
-OK  DrutG–Plyta                                                      12.47  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [6.23, 17.82, -53.21]
+OK  PretLP–SerwoPG                                                   11.79  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [17.96, -3.43, -76.46]
+OK  PretLP–PretGD                                                    12.20  (wymóg 0.5)  przy: psi -35, theta +25  miejsce: None
+OK  DrutG–SerwoGD                                                    12.38  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [7.11, 16.23, -62.83]
+OK  OrczykGD–PretLP                                                  12.40  (wymóg 0.5)  przy: psi +35, theta -25  miejsce: None
+OK  OrczykG–OrczykGD                                                 12.53  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
 OK  OrczykG–OrczykD                                                  12.57  (wymóg 0.5)  przy: psi -35, theta -25, powieki 0  miejsce: None
-OK  PretLP–SerwoGD                                                   12.68  (wymóg 0.5)  przy: psi +35, theta -25  miejsce: [15.24, 2.71, -56.53]
-OK  OrczykG–OrczykGD                                                 12.82  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
-OK  PretLP–PowiekaDolna                                              12.94  (wymóg 0.5)  przy: psi -35, theta +25, powieki G 0, D 51.5  miejsce: [16.57, 1.73, -15.61]
+OK  OrczykLP–PretGD                                                  12.76  (wymóg 0.5)  przy: psi -5, theta +25  miejsce: None
+OK  PretLP–SerwoGD                                                   12.81  (wymóg 0.5)  przy: psi +35, theta -25  miejsce: [15.25, 3.9, -56.7]
+OK  DrutG–Plyta                                                      13.01  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [7.47, 17.82, -53.21]
+OK  DrutG–OrczykLP                                                   13.01  (wymóg 0.5)  przy: psi +35, theta -25, powieki 51.5  miejsce: None
 OK  OrczykG–SerwoPD                                                  13.07  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [1.75, -2.25, -91.62]
+OK  PretLP–PowiekaDolna                                              13.08  (wymóg 0.5)  przy: psi -35, theta +25, powieki G 0, D 0  miejsce: [14.12, -5.15, 8.76]
 OK  OrczykD–SerwoPG                                                  13.32  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-1.75, -16.52, -79.0]
-OK  OrczykD–OrczykLP                                                 13.42  (wymóg 0.5)  przy: psi +35, theta -25, powieki 0  miejsce: None
-OK  PretLP–SerwoPG                                                   13.50  (wymóg 0.5)  przy: psi +35, theta +25  miejsce: [17.79, 1.75, -74.65]
-OK  DrutG–OrczykLP                                                   13.58  (wymóg 0.5)  przy: psi +35, theta -25, powieki 51.5  miejsce: None
-OK  OrczykG–OrczykLP                                                 13.75  (wymóg 0.5)  przy: psi +35, theta +25, powieki 0  miejsce: None
-OK  OrczykLP–PretGD                                                  13.93  (wymóg 0.5)  przy: psi -10, theta +25  miejsce: None
-OK  OrczykGD–SerwoPD                                                 14.50  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [0.0, 10.46, -63.3]
+OK  OrczykD–OrczykLP                                                 13.45  (wymóg 0.5)  przy: psi +35, theta -25, powieki 0  miejsce: None
+OK  PretGD–SerwoPD                                                   13.53  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [-3.5, 12.86, -64.54]
+OK  DrutG–PretLP                                                     13.61  (wymóg 0.5)  przy: psi +20, theta -25, powieki G 51.5, D 0  miejsce: None
+OK  OrczykG–OrczykLP                                                 13.80  (wymóg 0.5)  przy: psi +35, theta +25, powieki 0  miejsce: None
+OK  OrczykG–PretGD                                                   13.96  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
+OK  DrutG–SerwoPD                                                    14.42  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [-1.75, 13.16, -84.43]
+OK  OrczykGD–SerwoPD                                                 14.42  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [0.0, 10.57, -63.56]
+OK  DrutD–SerwoPD                                                    14.84  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-6.21, -29.04, -67.38]
 OK  OrczykD–OrczykGD                                                 14.96  (wymóg 0.5)  przy: psi -35, theta -25, powieki 0  miejsce: None
-OK  PretGD–SerwoPD                                                   15.06  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [-1.75, 12.96, -64.31]
 OK  SerwoPG–SerwoPD                                                  15.42  (wymóg 0.5)  przy: nieruchome  miejsce: [-3.0, -9.5, -78.4]
-OK  DrutG–PretLP                                                     15.63  (wymóg 0.5)  przy: psi +20, theta -25, powieki G 51.5, D 0  miejsce: None
-OK  OrczykLP–SerwoPD                                                 15.65  (wymóg 0.5)  przy: psi +15, theta +5  miejsce: [13.09, 0.0, -70.87]
-OK  DrutD–SerwoPD                                                    15.69  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-4.43, -29.77, -71.32]
-OK  OrczykG–PretGD                                                   15.98  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
-OK  DrutG–SerwoPD                                                    16.09  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [0.15, 13.16, -84.43]
+OK  OrczykLP–SerwoPD                                                 15.65  (wymóg 0.5)  przy: psi +15, theta +5  miejsce: [13.08, 0.0, -70.82]
+OK  OrczykD–PretLP                                                   16.57  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
 OK  SerwoGD–Tuba40                                                   16.91  (wymóg 0.5)  przy: nieruchome  miejsce: [-34.73, -15.77, -37.0]
-OK  OrczykD–PretLP                                                   17.24  (wymóg 0.5)  przy: psi +35, theta -25, powieki 0  miejsce: None
 OK  PowiekaDolna–KardanTyl                                           17.45  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [0.46, -16.85, -26.0]
-OK  PretLP–Tuba50                                                    17.93  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [19.58, 2.09, -48.66]
-OK  OrczykG–PretLP                                                   17.99  (wymóg 0.5)  przy: psi +35, theta +25, powieki 0  miejsce: None
-OK  PretLP–Tuba40                                                    18.83  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [18.59, 2.71, -38.69]
+OK  OrczykG–PretLP                                                   17.64  (wymóg 0.5)  przy: psi +35, theta +25, powieki 0  miejsce: None
+OK  PretLP–Tuba50                                                    17.99  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [19.39, 3.65, -48.62]
+OK  PretGD–Tuba30                                                    18.13  (wymóg 0.5)  przy: psi -35, theta -15  miejsce: [-0.33, 19.52, 0.47]
+OK  PretGD–Tuba40                                                    18.13  (wymóg 0.5)  przy: psi -35, theta -15  miejsce: [-0.33, 19.52, 0.47]
+OK  PretGD–Tuba50                                                    18.13  (wymóg 0.5)  przy: psi -35, theta -15  miejsce: [-0.33, 19.52, 0.47]
+OK  PretLP–Tuba40                                                    18.85  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [18.46, 3.9, -38.64]
 OK  SerwoLP–Tuba40                                                   19.05  (wymóg 0.5)  przy: nieruchome  miejsce: [39.2, -14.95, -37.0]
+OK  PretLP–SerwoPD                                                   19.07  (wymóg 0.5)  przy: psi +10, theta +5  miejsce: [15.79, -3.49, -70.91]
 OK  PowiekaGorna–KardanTyl                                           19.66  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [-0.51, 18.22, -27.73]
-OK  PretLP–Tuba30                                                    19.71  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [17.6, 3.32, -28.72]
+OK  PretLP–Tuba30                                                    19.71  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [17.52, 4.16, -28.66]
 OK  OrczykG–SerwoGD                                                  19.75  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [1.75, 14.06, -84.01]
-OK  PretLP–SerwoPD                                                   19.81  (wymóg 0.5)  przy: psi +25, theta -25  miejsce: [15.97, -1.6, -70.03]
-OK  PretGD–Tuba30                                                    19.87  (wymóg 0.5)  przy: psi +35, theta -15  miejsce: [0.05, 17.68, 0.06]
-OK  PretGD–Tuba50                                                    19.87  (wymóg 0.5)  przy: psi -35, theta -15  miejsce: [-0.05, 17.68, 0.06]
-OK  PretGD–Tuba40                                                    19.87  (wymóg 0.5)  przy: psi +35, theta -15  miejsce: [0.05, 17.68, 0.06]
-OK  DrutD–SerwoPG                                                    21.35  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-0.15, -32.49, -85.82]
-OK  OrczykD–PretGD                                                   22.22  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
+OK  DrutD–SerwoPG                                                    20.19  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [1.85, -32.86, -87.78]
+OK  DrutD–PretLP                                                     21.43  (wymóg 0.5)  przy: psi +35, theta +10, powieki G 0, D 51.5  miejsce: None
+OK  OrczykD–PretGD                                                   21.95  (wymóg 0.5)  przy: psi +0, theta +25, powieki 0  miejsce: None
 OK  SerwoPD–Tuba50                                                   22.80  (wymóg 0.5)  przy: nieruchome  miejsce: [-37.95, 7.75, -47.0]
 OK  OrczykG–SerwoLP                                                  23.75  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [1.75, -9.5, -95.0]
-OK  DrutD–PretLP                                                     24.27  (wymóg 0.5)  przy: psi +35, theta +25, powieki G 0, D 51.5  miejsce: None
-OK  PretGD–PowiekaDolna                                              25.84  (wymóg 0.5)  przy: psi +35, theta +25, powieki G 0, D 51.5  miejsce: [-4.26, 9.82, -21.53]
+OK  DrutD–SerwoLP                                                    24.40  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [1.85, -29.93, -63.66]
+OK  PretGD–SerwoPG                                                   25.34  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [3.37, 13.0, -66.53]
 OK  OrczykD–SerwoLP                                                  26.00  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [-1.75, -10.73, -75.14]
+OK  PretGD–PowiekaDolna                                              26.08  (wymóg 0.5)  przy: psi +35, theta +25, powieki G 0, D 51.5  miejsce: [-4.81, 10.12, -21.46]
 OK  SerwoLP–SerwoGD                                                  26.26  (wymóg 0.5)  przy: nieruchome  miejsce: [27.29, -6.0, -64.53]
-OK  DrutD–SerwoLP                                                    26.30  (wymóg 0.5)  przy: powieki G 0, D 0  miejsce: [-0.15, -29.98, -61.66]
+OK  OrczykGD–SerwoPG                                                 26.33  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [0.0, 15.62, -65.73]
 OK  OrczykGD–SerwoLP                                                 26.38  (wymóg 0.5)  przy: psi -35, theta -25  miejsce: [0.0, 2.3, -60.0]
-OK  OrczykGD–SerwoPG                                                 26.60  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [0.0, 15.74, -65.43]
-OK  DrutD–OrczykGD                                                   26.85  (wymóg 0.5)  przy: psi -35, theta -25, powieki 51.5  miejsce: None
+OK  DrutG–SerwoLP                                                    26.76  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [6.95, 15.49, -67.27]
 OK  SerwoGD–Tuba30                                                   26.87  (wymóg 0.5)  przy: nieruchome  miejsce: [-34.73, -15.77, -27.0]
 OK  PowiekaGorna–SerwoGD                                             26.97  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [-13.0, 12.3, -53.75]
-OK  DrutG–SerwoLP                                                    27.85  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [5.6, 15.54, -67.03]
-OK  PretGD–SerwoPG                                                   27.99  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [1.6, 12.96, -64.31]
+OK  DrutD–OrczykGD                                                   27.23  (wymóg 0.5)  przy: psi -35, theta -25, powieki 51.5  miejsce: None
 OK  PowiekaDolna–SerwoGD                                             28.10  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [-10.5, -15.0, -53.75]
+OK  PretGD–SerwoLP                                                   28.73  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [3.5, 12.86, -64.54]
+OK  DrutD–OrczykLP                                                   28.82  (wymóg 0.5)  przy: psi +0, theta -25, powieki 0  miejsce: None
 OK  SerwoLP–Tuba30                                                   29.05  (wymóg 0.5)  przy: nieruchome  miejsce: [39.2, -14.95, -27.0]
-OK  DrutD–PretGD                                                     29.32  (wymóg 0.5)  przy: psi +10, theta +25, powieki G 0, D 51.5  miejsce: None
-OK  DrutD–OrczykLP                                                   29.55  (wymóg 0.5)  przy: psi +0, theta -25, powieki 0  miejsce: None
+OK  DrutD–PretGD                                                     29.25  (wymóg 0.5)  przy: psi +5, theta +25, powieki G 0, D 51.5  miejsce: None
 OK  SerwoGD–SerwoPG                                                  29.61  (wymóg 0.5)  przy: nieruchome  miejsce: [15.5, 2.3, -88.75]
 OK  SerwoLP–SerwoPD                                                  29.75  (wymóg 0.5)  przy: nieruchome  miejsce: [26.75, -10.7, -73.92]
-OK  PretGD–SerwoLP                                                   30.45  (wymóg 0.5)  przy: psi +0, theta +25  miejsce: [1.6, 12.96, -64.31]
 OK  SerwoPD–Tuba40                                                   32.80  (wymóg 0.5)  przy: nieruchome  miejsce: [-37.95, 7.75, -37.0]
 OK  PowiekaDolna–SerwoLP                                             34.05  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [26.75, -15.0, -56.0]
-OK  DrutD–PowiekaGorna                                               36.12  (wymóg 0.5)  przy: powieki G 51.5, D 51.5  miejsce: [-7.5, -20.84, -23.62]
-OK  DrutG–PowiekaDolna                                               36.49  (wymóg 0.5)  przy: powieki G 51.5, D 51.5  miejsce: [7.5, 22.39, -25.58]
+OK  DrutD–PowiekaGorna                                               35.69  (wymóg 0.5)  przy: powieki G 51.5, D 51.5  miejsce: [-8.5, -20.84, -23.62]
+OK  DrutG–PowiekaDolna                                               36.14  (wymóg 0.5)  przy: powieki G 51.5, D 51.5  miejsce: [8.5, 22.39, -25.58]
 OK  SerwoGD–KardanTyl                                                41.36  (wymóg 0.5)  przy: nieruchome  miejsce: [-10.55, 0.0, -53.8]
 OK  SerwoPG–Tuba50                                                   41.80  (wymóg 0.5)  przy: nieruchome  miejsce: [37.95, 7.75, -47.0]
-OK  DrutG–DrutD                                                      42.61  (wymóg 0.5)  przy: powieki G 51.5, D 51.5  miejsce: None
+OK  DrutG–DrutD                                                      42.15  (wymóg 0.5)  przy: powieki G 51.5, D 51.5  miejsce: None
 OK  SerwoPD–Tuba30                                                   42.80  (wymóg 0.5)  przy: nieruchome  miejsce: [-37.95, 7.75, -27.0]
 OK  PowiekaGorna–SerwoLP                                             43.30  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [20.43, 14.77, -23.39]
 OK  PowiekaGorna–SerwoPD                                             43.37  (wymóg 0.5)  przy: powieki G 51.5, D 0  miejsce: [-9.33, 18.17, -27.66]
@@ -142,4 +142,4 @@ OK  PowiekaGorna–SerwoPG                                             62.03  (w
 OK  PowiekaDolna–SerwoPG                                             63.01  (wymóg 0.5)  przy: powieki G 0, D 51.5  miejsce: [15.5, -15.0, -88.75]
 OK  SerwoPG–KardanTyl                                                76.71  (wymóg 0.5)  przy: nieruchome  miejsce: [15.55, 0.0, -88.8]
 
-Par poniżej wymogu: 0 z 139
+Par poniżej wymogu: 4 z 139

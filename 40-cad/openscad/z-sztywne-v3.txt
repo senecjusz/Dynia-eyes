@@ -1,8 +1,8 @@
 Duże oko v3 – pręty gałki jako jeden sztywny drut o stałych zagięciach (model w nagłówku duze-oko-v3-z-sztywne.py).
-Drut Ø1.2. Dopuszczalny przechył nogi: języczek gałki 39.2° (Ø2.2 × 0.8), orczyk 13.0° (rozwiercony Ø1,6 × ramię 1,6 [Z]).
+Drut Ø1, „Z”: noga 7 (otwór na środku), ogon 2. Dopuszczalny przechył nogi: języczek gałki 36.9° (Ø2 × 1), orczyk 10.1° (fabryczny Ø1,3 × ramię 1,6 [Z]).
 
-Pręt LP: długość odcinka głównego stała 61.54 (odchyłka rozwiązania 0.0000); przechył nogi przy gałce do 28.9° (dopuszczalne 39.2°), przy orczyku do 7.2° (dopuszczalne 13.0°); luz drutu do gałki 0.54 przy (35, 25, [11.41, 2.01, -24.97]), do płyty 3.76, do piasty tylnej 4.02
-Pręt GD: długość odcinka głównego stała 55.58 (odchyłka rozwiązania 0.0000); przechył nogi przy gałce do 28.8° (dopuszczalne 39.2°), przy orczyku do 9.2° (dopuszczalne 13.0°); luz drutu do gałki 0.69 przy (0, 25, [-0.0, 9.65, -10.8]), do płyty 1.78, do piasty tylnej 2.05
+Pręt LP: długość odcinka głównego stała 61.50 (odchyłka rozwiązania 0.0000); przechył nogi przy gałce do 26.8° (dopuszczalne 36.9°), przy orczyku do 6.3° (dopuszczalne 10.1°); luz drutu do gałki 0.65 przy (35, 25, [11.42, 1.98, -25.08]), do płyty 3.84, do piasty tylnej 3.88
+Pręt GD: długość odcinka głównego stała 55.64 (odchyłka rozwiązania 0.0000); przechył nogi przy gałce do 28.4° (dopuszczalne 36.9°), przy orczyku do 9.9° (dopuszczalne 10.1°); luz drutu do gałki 0.64 przy (0, 25, [0.13, 15.53, -8.44]), do płyty 2.34, do piasty tylnej 2.65
   LP: stany z luzem do gałki < 0,5: []
   GD: stany z luzem do gałki < 0,5: []
 

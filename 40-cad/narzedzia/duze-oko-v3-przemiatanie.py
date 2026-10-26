@@ -5,8 +5,10 @@
 #  - przenikanie siatka–siatka: BVHTree.overlap (przecięcie trójkątów) – wynik „KOLIZJA”;
 #  - luz siatka–siatka: najmniejsza odległość wierzchołków A od powierzchni B i odwrotnie (find_nearest); krawędzie siatek
 #    dzielone przed pomiarem do ≤ 1–2 mm, więc minimum krawędź–krawędź jest przybliżone z dokładnością do ok. połowy tego kroku;
-#  - druty (Ø drut_d z parametrów, 1,2) jako łamane z zakończeniami „Z”: noga przez otwór (wzdłuż osi otworu) do zagięcia, odcinek główny, noga przez
-#    drugi otwór; odsadzenie nogi w języczkach gałki zacz_ods (4,0), w orczykach 1,75, w uszkach powiek pow_ods (2,5); przechył nogi w otworze
+#  - druty (Ø drut_d z parametrów, 1,0) jako łamane z zakończeniami „Z”: noga przez otwór (wzdłuż osi otworu) do zagięcia, odcinek główny, noga przez
+#    drugi otwór; odsadzenie zagięcia od środka otworu: języczki gałki zacz_ods, orczyki orcz_ods, uszka powiek pow_ods (3,0 = połowa nogi
+#    drut_noga 6); po drugiej stronie otworu reszta nogi do drugiego zagięcia i ogon drut_ogon (2) równoległy do odcinka głównego,
+#    skierowany od niego (kształt „Z”, zagięcia ostre); przechył nogi w otworze
 #    dwustożkowym liczy osobno duze_oko_v3_kinematyka.py (wymagany wobec dopuszczalnego), tu noga jest sztywna wzdłuż osi otworu; próbkowanie co 0,25 mm; luz = odległość osi od powierzchni − promień drutu;
 #  - orczyki i przedłużenia jako pas o promieniu 2,5 wokół osi ramienia (od osi wałka do otworu + 3 mm);
 #  - serwa MG90S w pełnej obwiedni z rysunku Miuzei: korpus 22,8 × 12,5 × 22,5, uszy 4,5 × 12,5 × 2 na wysokości 18–20,
@@ -158,17 +160,24 @@ def odc_odc(a, b, c, d):   # dokładna odległość dwóch odcinków (Eberly / S
     return (w + u * sc - v * tc).length
 def lam_lam(L1, L2): return min(odc_odc(a, b, c, d) for a, b in L1 for c, d in L2)
 
-ODS, WYST = 1.75, 1.6
+ODS, WYST = P.get('orcz_ods', 1.75), 1.6
+NOGA, OGON = P.get('drut_noga', 0), P.get('drut_ogon', 0)
+def ogon(otw, n, ods, zag, dalej):
+    """Druga strona „Z”: reszta nogi od 2,5 za środkiem otworu do drugiego zagięcia i ogon (kierunek od odcinka głównego)."""
+    if NOGA <= 0: return []
+    c = otw - n * (NOGA - ods); t = (zag - dalej).normalized()
+    out = [(otw - n * 2.5, c)] if NOGA - ods > 2.5 else []
+    return out + [(c, c + t * OGON)]
 def drut_Z(a, na, b, nb, ods_a=ODS):
-    """Łamana drutu z zakończeniami „Z”: zwraca (odcinki przez otwory [zaczep, orczyk], odcinki główne)."""
+    """Łamana drutu z zakończeniami „Z”: zwraca (odcinki przez otwory [zaczep, orczyk], odcinki główne, ogony)."""
     a, b, na, nb = Vector(a), Vector(b), Vector(na).normalized(), Vector(nb).normalized()
     a1, b1 = a + na * ods_a, b + nb * ODS
-    return [(a - na * WYST, a1), (b - nb * WYST, b1)], [(a1, b1)]
+    return [(a - na * WYST, a1), (b - nb * WYST, b1)], [(a1, b1)], ogon(a, na, ods_a, a1, b1) + ogon(b, nb, ODS, b1, a1)
 def pret_Z(otw, n, zag, b, nb):
     """Pręt gałki: noga „Z” przez otwór języczka (oś n) do zagięcia zag (odsadzenie zacz_ods), odcinek główny, „Z” w orczyku."""
     otw, n, zag, b, nb = Vector(otw), Vector(n).normalized(), Vector(zag), Vector(b), Vector(nb).normalized()
     b1 = b + nb * ODS
-    return [(otw - n * WYST, zag), (b - nb * WYST, b1)], [(zag, b1)]
+    return [(otw - n * WYST, zag), (b - nb * WYST, b1)], [(zag, b1)], ogon(otw, n, (zag - otw).length, zag, b1) + ogon(b, nb, ODS, b1, zag)
 def druty(st):
     return {'PretLP': pret_Z(st['otwLP'], st['nLP'], st['pretLP'][0], st['pretLP'][1], (0, 1, 0)),
             'PretGD': pret_Z(st['otwGD'], st['nGD'], st['pretGD'][0], st['pretGD'][1], (-1, 0, 0)),
@@ -176,7 +185,7 @@ def druty(st):
             'DrutD': drut_Z(st['drutD'][0], (-1, 0, 0), st['drutD'][1], (-1, 0, 0), P.get('pow_ods', ODS))}
 def bez_poczatku(odc, dl=2.5):   # odcinek główny bez 2,5 mm przy zagięciu na zaczepie (drut opiera się o płytkę zaczepu)
     return [(a + (b - a).normalized() * dl, b) for a, b in odc]
-def wszystko(dr): return dr[0] + dr[1]
+def wszystko(dr): return dr[0] + dr[1] + dr[2]
 WLASNE = {'PretLP': 'Galka', 'PretGD': 'Galka', 'DrutG': 'PowiekaGorna', 'DrutD': 'PowiekaDolna'}
 
 WYMOG = 0.5; WYMOG_OS = 0.2
@@ -222,10 +231,10 @@ for psi, th in itertools.product(PSI, THETA):
     t, V = T_stale['Plyta']; kol = bool(tKP.overlap(t)); d, g = luz(tKP, VKP, t, V); zapisz('KardanPrzod–Plyta', -1 if kol else d, s, g, kol=kol)
     DR = druty(st)
     for nm in ('PretLP', 'PretGD'):
-        otw, gl = DR[nm]
-        d, g = lamana_luz(tG, bez_poczatku(gl) + [otw[1]], r_dr); zapisz(f'{nm}–Galka (bez zaczepu i 2,5 mm przy zagięciu)', d, s, g)
+        otw, gl, og = DR[nm]
+        d, g = lamana_luz(tG, bez_poczatku(gl) + [otw[1]] + og, r_dr); zapisz(f'{nm}–Galka (bez zaczepu i 2,5 mm przy zagięciu)', d, s, g)
         for n in ['Plyta', 'KardanTyl'] + TUBY + SERWA:
-            d, g = lamana_luz(T_stale[n][0], gl + otw, r_dr); zapisz(f'{nm}–{n}', d, s, g)
+            d, g = lamana_luz(T_stale[n][0], gl + otw + og, r_dr); zapisz(f'{nm}–{n}', d, s, g)
     zapisz('PretLP–PretGD', lam_lam(wszystko(DR['PretLP']), wszystko(DR['PretGD'])) - 2 * r_dr, s, None)
     for nm, (a, b), wlasne in (('OrczykLP', st['orczLP'], 'SerwoLP'), ('OrczykGD', st['orczGD'], 'SerwoGD')):
         for n in ['Plyta'] + SERWA:
@@ -260,11 +269,11 @@ for g_, d_ in itertools.product((0, 8.6, 17.2, 25.8, 34.3, 42.9, 51.5), repeat=2
             zapisz(f'{nm}–{n}' + (' (uszy przy słupku)' if n == 'Plyta' else ''), -1 if kol else d, s, g, wymog=WYMOG_OS if n == 'Plyta' else WYMOG, kol=kol)
     DRp = druty(sp)
     for nm, inna, tw, ti in (('DrutG', 'PowiekaDolna', tPG, tPD), ('DrutD', 'PowiekaGorna', tPD, tPG)):
-        otw, gl = DRp[nm]
-        d, g = lamana_luz(ti, gl + otw, r_dr); zapisz(f'{nm}–{inna}', d, s, g)
-        d, g = lamana_luz(tw, bez_poczatku(gl) + [otw[1]], r_dr); zapisz(f'{nm}–{WLASNE[nm]} (bez uszka i 2,5 mm przy zagięciu)', d, s, g)
+        otw, gl, og = DRp[nm]
+        d, g = lamana_luz(ti, gl + otw + og, r_dr); zapisz(f'{nm}–{inna}', d, s, g)
+        d, g = lamana_luz(tw, bez_poczatku(gl) + [otw[1]] + og, r_dr); zapisz(f'{nm}–{WLASNE[nm]} (bez uszka i 2,5 mm przy zagięciu)', d, s, g)
         for n in ['Plyta'] + TUBY + SERWA:
-            d, g = lamana_luz(T_stale[n][0], gl + otw, r_dr); zapisz(f'{nm}–{n}', d, s, g)
+            d, g = lamana_luz(T_stale[n][0], gl + otw + og, r_dr); zapisz(f'{nm}–{n}', d, s, g)
     for nm, (a, b), wlasne in (('OrczykG', sp['orczG'], 'SerwoPG'), ('OrczykD', sp['orczD'], 'SerwoPD')):
         for n in ['Plyta'] + SERWA:
             if n == wlasne: continue
