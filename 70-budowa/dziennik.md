@@ -75,3 +75,4 @@
 - Wydrukowana próbka gniazda PIR (wycinek frontu 60 × 40). PIR HC-SR501 pasuje: kopułka wychodzi przez otwór Ø24 na środku, kołnierz soczewki (22,97 suwmiarką) w gnieździe 23,5, płytka przykręcona 2 × M2 w słupki bez gięcia – rozstaw 28,5 potwierdzony. Zdjęcia: `zdjecia/2026-10-26-probka-pir/`.
 - Do wyjaśnienia: cienka linia i biała plamka przy krawędzi otworu od lica (rysa czy ślad druku). Listwa 3-pin płytki ma być u góry (nad nią wycięcie w przegrodzie korpusu).
 - Wniosek: front szufladki v2 można drukować (X1C, licem, brim).
+- Wydrukowane: korpus, front i rączka szufladki v2 (commit `884f1fa`: PIR po prawej, podkładki M2 4 × 8, rączka 46 × 16, boczne M4 stożkowe). Według użytkownika „wygląda ok”. Następnie: przymiarka korpusu w podstawce, montaż PIR i rączki, front na korpus, otwór blokady, próba przewodów.

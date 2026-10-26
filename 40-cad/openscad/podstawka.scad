@@ -38,7 +38,10 @@
 //   z przodu płytki mają 1,5–2,5 luzu, kołnierz 0,5 za tyłem frontu – płytkę ustawiają wkręty), dociśnięta 2 × M2 × 6 w podkładki frontu
 //   (otwory Ø1,7 – jak oś powiek dużego oka; rozstaw pirOtwRozst 28,5 jako zmienna). Za płytką do przegrody 22 mm: elementy 8 + wtyki Dupont 20.
 //   Przez przednią ścianę korpusu PIR przechodzi oknem 36 × 28 (płytka + 2 na stronę: kondensatory na rogach wystają poza obrys płytki).
-// - kaseta elektroniki v1 bez zmian (może już być wydrukowana): położenie gniazda zasilania (bkX, bkY) i piasty (kPiastaH) zamrożone na v1;
+// - kaseta elektroniki (tacka) v2 (26.10, uzgodnione z sesją elektroniki i użytkownikiem): zamiast ramki płaskiego breakoutu USB-C pionowa
+//   ścianka z otworem pod panelowe gniazdo USB-C wkręcane (gwint z nakrętką; WYMIARY GNIAZDA DO POMIARU – do tego czasu tacki nie drukować),
+//   wejście do przodu; bez pierścienia kondensatora (1000 µF lutowany do PCA9685); miejsce na rezystor 3 W ≥ 5 nad dnem na 2 uchwytach
+//   z tunelem na opaskę; uchwyty opasek: 3 skrętki przed PCA9685, przewód PIR (pętla na wysuw szufladki). Położenie gniazda i piasty jak v1.
 //   wycięcie kablowe korpusu liczone od gniazda kasety. Przy dnie 9 wkręt 3 × 12 wchodzi w dno na 5 mm (zostaje 4).
 // - ścianka tylna skrzynki 18 (założenie: jak v1; pomiar użytkownika: głębokość całkowita 226).
 
@@ -120,15 +123,39 @@ wkrDnoL = 12; kPiastaD = 9; kPiastaOd = 8;       // wkręty 3 × 12 w dno, piast
 kPiastaH = 4.6;     // kaseta v1 bez zmian (12 − (6 − 1) − 2,4 przy dnie 6); przy dnie 9 wkręt wchodzi w dno na wkrDnoL − kDno − kPiastaH = 5
 // ---------- BAZOWE: druk – kaseta elektroniki (v1 bez zmian) ----------
 pcaL = 62; pcaW = 25; pcaOtwX = 55.9; pcaOtwY = 19.05; dPcaOtw = 3;   // PCA9685: płytka, rozstaw i Ø otworów
-espL = 22.5; espW = 18; espH = 4;                                     // ESP32-C3 SuperMini (z gniazdem USB-C)
-kondD = 10;                                                           // kondensator 470–1000 µF
+espL = 24; espW = 18.4; espH = 4; espUsbWyst = 1.5;                   // ESP32-C3 SuperMini: długość z gniazdem USB-C, szerokość (pomiar użytkownika 26.10); gniazdo USB wystaje przed płytkę (założenie: 24 − 22,5)
+pcaPom = true;                                                        // PCA9685 62 × 25, otwory 55,9 × 19: zgodne z pomiarem użytkownika 26.10
 kW = 170; kD = 100; kDno = 2.4; kScH = 10; kSc = 2.4;   // szerokość, głębokość, dno, niskie boki, ścianka (v1)
 kTylH = 25; kTylT = 3;                           // tylny pas (ogranicznik o ściankę tylną)
 slupPcaD = 6; slupPcaH = 5;                      // słupki PCA9685
 espRama = 1.5; espRamaH = 4;                     // ramka ESP32-C3
-pcaOdTylu = 12; espOdBoku = 15; kondOdPca = 15; // położenia na dnie kasety (kondensator: od prawego brzegu PCA9685)
-bkL = 20; bkW = 15; bkGn = 9.5;                  // gniazdo zasilania USB-C (breakout, szacunek): długość, szerokość, otwór na gniazdo (8,94 + luz)
-bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilania w kasecie – zamrożone na v1
+pcaX0 = 75; pcaY0 = 45;                          // PCA9685: lewy przedni narożnik płytki na tacce (listwy kanałów do przodu – w stronę tulei, zacisk do tyłu; elektronika 26.10)
+pcaPrzod = 25;                                   // wolne miejsce przed listwą kanałów (kondensator i przewody 5 V na kanałach 8–11)
+espOdBoku = 15;                                  // ESP32-C3 z przodu po lewej, USB-C do przodu (lewy przedni narożnik płytki)
+espPodH = 16; espPodW = 11; espPodD = 3; espLip = 1;   // podstawka ESP klejonego (elektronika 26.10: piny w dół z Dupontami, bez płytki stykowej): wysokość słupków, szerokość górnej powierzchni pod klej (mniej niż 18 – na 18 weszłyby wtyki narożnych pinów), głębokość pod krótką krawędzią, wysokość rantu z tyłu
+espRzedy = 15.2;                                 // rozstaw rzędów pinów ESP32-C3 SuperMini (wzdłuż długich boków)
+bkGn = 9.5;                                      // wyjście gniazda USB-C ESP32-C3 w ramce (8,94 + luz)
+bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilania w kasecie (jak v1: wycięcie kablowe szufladki na tej osi, przed gniazdem miejsce na wtyk)
+// ---------- BAZOWE: tacka v2 – gniazdo panelowe USB-C (ZAŁOŻENIA do pomiaru użytkownika), rezystor, opaski ----------
+gnGwintD = 11; gnGwintFlat = 10;                // gwint gniazda: średnica, wymiar w poprzek 2 ścięć „podwójne D” (pomiar użytkownika 26.10)
+luzGn = 0.15;       // luz otworu na gwint (na stronę; otwór 11,3 / 10,3 – propozycja elektroniki)
+gnT = 3;            // grubość ścianki pod nakrętkę (≤ 7 według elektroniki; 3 – zostaje gwint na nakrętkę 2–3)
+gnNakS = 14;        // nakrętka gniazda: rozmiar klucza (założenie – niezmierzona), wyznacza wysokość osi nad dnem
+gnKolD = 14;        // kołnierz gniazda z przodu ścianki (pomiar 26.10)
+gnKorpL = 13;       // korpus gniazda od kołnierza do końca (pomiar 26.10); przewody z tyłu
+gnMarg = 3;         // ścianka wokół kołnierza / nakrętki (w bok i nad); 3 – ścianka mieści się w tacce na osi wycięcia wydrukowanego korpusu
+gnZebroL = 8;       // żebra za ścianką (długość w y)
+wtykSzer = 14;      // wtyk USB-C kabla C–C z osłoną: szerokość (typowa, szacunek) – strefa przed gniazdem wolna od uchwytów
+rezL = 17; rezD = 6; rezRozst = 25; rezNad = 8;  // rezystor 47 Ω / 3 W (zapas, elektronika 26.10): korpus Ø6 × 17, nóżki osiowe; rozstaw słupków; korpus ≥ 8 nad dnem (grzeje się do 55–60 °C – nie dotyka PLA)
+rezSlupW = 5; dRezNoga = 1.4;                    // słupek: przekrój, otwór na nóżkę (Ø ok. 0,8–1 + luz; poziomy, drukowany jako łza)
+rezOdst = 5;                                     // korpus rezystora od ścianek i przewodów
+rezX = 32; rezY0 = 68;                           // położenie rezystora: oś x, oś pierwszego słupka (drugi o rezRozst dalej w y) – z tyłu po lewej
+opW = 4; opT = 1.5; opLuz = 0.3;                 // opaska kablowa: szerokość, grubość, luz tunelu
+uchL = 8; uchD = 8; uchH = 5;                    // uchwyt opaski: długość (wzdłuż tunelu), szerokość (wzdłuż kabla), wysokość
+uchSkretkiY = 12; uchSkretkiX = [55, 75, 95];    // uchwyty skrętek pod otworem w płycie, przed strefą wolną przed PCA9685 (kabel wzdłuż y)
+uchPirXY = [142, 10];                            // uchwyt przewodu PIR przy wejściu z szufladki (kabel wzdłuż x, do ESP32-C3)
+uchGnXY = [140, 88];                             // uchwyt przewodów gniazda USB-C w drodze do zacisku PCA9685 (kabel wzdłuż x)
+zapW = 20; zapL = 30; zapRozst = 25; zapX = 55; zapY0 = 64;   // miejsce zapasowe na małą płytkę (elektronika 26.10): 20 × 30, 2 słupki M3 Ø2,6 w rozstawie 25 wzdłuż y; oś x, przód płytki
 // ---------- BAZOWE: gwint (jak próbka E2.0: 45°, skok 5, zarys 2,0) ----------
 skok = 5; zarys = 2; zabRdzen = 4.8;             // ząb u rdzenia (szerokość osiowa)
 gwKrok = 3;                                      // rozdzielczość helisy zwoju [°]
@@ -217,7 +244,26 @@ assert(gwD / 2 < otwDyni / 2, "tuleja nie wchodzi w otwór dyni");
 assert(dOtwPl < 2 * tulRw, "otwór w płycie większy niż w tulei");
 assert(kW <= WIN, "kaseta szersza niż wnętrze");
 assert(rc - tulRw >= 2, "ścianka tulei < 2");
-assert(bkX + bkW / 2 + espRama + luzSlizg <= kW, "gniazdo zasilania poza kasetą");
+gnOsZ  = kDno + max(gnNakS / cos(30), gnKolD) / 2 + 1;   // oś gniazda nad spodem tacki
+gnScW  = max(gnNakS / cos(30), gnKolD) + 2 * gnMarg;    // szerokość ścianki gniazda
+gnScH  = gnOsZ + max(gnNakS / cos(30), gnKolD) / 2 + gnMarg;   // wysokość ścianki
+assert(bkX + gnScW / 2 <= kW, "ścianka gniazda poza tacką");
+assert(bkY + gnT + gnKorpL <= kD - kTylT, "korpus gniazda opiera się o tył tacki");
+assert(gnScH <= H_IN - 2, "ścianka gniazda za wysoka pod płytą");
+assert(pcaX0 + pcaL + 3 <= bkX - gnScW / 2 || pcaY0 >= bkY + gnT + gnZebroL + 2, "PCA9685 nachodzi na ściankę gniazda");
+assert(pcaY0 + pcaW <= kD - kTylT - 2, "PCA9685 nachodzi na tylny pas");
+assert(pcaY0 - pcaPrzod >= uchSkretkiY + uchD / 2, "uchwyty skrętek w wolnej strefie przed PCA9685");
+rezOsZ = kDno + rezNad + rezD / 2;               // oś rezystora nad spodem tacki
+assert(rezX + rezD / 2 + rezOdst <= pcaX0 && rezY0 - rezSlupW / 2 >= espOdBoku + espL + 2 * espRama + 3, "rezystor nachodzi na PCA9685 albo ESP32-C3");
+assert(espPodW <= espRzedy - 2.54 - 1, "słupki ESP wchodzą pod wtyki Dupont rzędów pinów");
+assert(kDno + espPodH + 1.6 + 4 <= H_IN - 5, "ESP za wysoko pod płytą");
+assert(rezX - rezD / 2 - rezOdst >= kSc, "rezystor za blisko lewej ścianki");
+assert(rezY0 + rezRozst + rezSlupW / 2 <= kD - kTylT, "słupek rezystora wchodzi w tylny pas");
+assert((rezRozst - rezSlupW - rezL) / 2 >= 1, "rezystor nie mieści się między słupkami");
+assert(kD - kTylT - (rezY0 + (rezRozst + rezL) / 2) >= rezOdst - 1, "rezystor za blisko tylnego pasa");
+assert(uchPirXY[0] + uchD / 2 + 1 <= bkX - wtykSzer / 2, "uchwyt PIR w strefie wtyku USB-C");
+assert(zapX - zapW / 2 >= rezX + rezD / 2 + rezOdst && zapX + zapW / 2 + 3 <= pcaX0 && zapY0 + zapL <= kD - kTylT, "miejsce zapasowe nachodzi na rezystor, PCA9685 albo tylny pas");
+assert(uchGnXY[1] - uchL / 2 >= pcaY0 + pcaW + 3 && uchGnXY[0] + uchD / 2 + 2 <= bkX - gnGwintD / 2, "uchwyt przewodów gniazda nachodzi na PCA9685 albo korpus gniazda");
 
 // ===================== gwint =====================
 // Zwój = profil zęba (r, z) przeciągnięty po helisie (prawej: z rośnie z kątem przeciwnie do wskazówek zegara, patrząc z góry).
@@ -273,34 +319,48 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
       cube([kW, kD, kDno]);
       for (x = [0, kW - kSc]) translate([x, 0, 0]) cube([kSc, kD, kScH]);
       translate([0, kD - kTylT, 0]) cube([kW, kTylT, kTylH]);                       // tylny pas
-      translate([kW / 2 - pcaL / 2, kD - kTylT - pcaOdTylu - pcaW, kDno - zak])    // słupki PCA9685
+      translate([pcaX0, pcaY0, kDno - zak])                                         // słupki PCA9685
         for (dx = [0, pcaOtwX], dy = [0, pcaOtwY]) translate([(pcaL - pcaOtwX) / 2 + dx, (pcaW - pcaOtwY) / 2 + dy, 0])
           cylinder(d = slupPcaD, h = slupPcaH + zak, $fn = 24);
-      translate([espOdBoku - espRama, espOdBoku - espRama, kDno - zak])              // ramka ESP32-C3, gniazdo USB-C do przodu
-        difference() {
-          cube([espW + 2 * (espRama + luzSlizg), espL + 2 * (espRama + luzSlizg), espRamaH]);
-          translate([espRama, espRama, -1]) cube([espW + 2 * luzSlizg, espL + 2 * luzSlizg, espRamaH + 2]);
-          translate([espRama + luzSlizg + espW / 2 - bkGn / 2, -1, -1]) cube([bkGn, espRama + 2, espRamaH + 2]);   // wyjście gniazda USB-C
-        }
-      translate([bkX - bkW / 2 - espRama - luzSlizg, bkY - espRama - luzSlizg, kDno - zak])   // ramka gniazda zasilania USB-C, wejście do przodu
-        difference() {
-          cube([bkW + 2 * (espRama + luzSlizg), bkL + 2 * (espRama + luzSlizg), espRamaH]);
-          translate([espRama, espRama, -1]) cube([bkW + 2 * luzSlizg, bkL + 2 * luzSlizg, espRamaH + 2]);
-          translate([espRama + luzSlizg + bkW / 2 - bkGn / 2, -1, -1]) cube([bkGn, espRama + 2, espRamaH + 2]);   // otwór na gniazdo USB-C
-        }
+      espPodstawka();                                                                 // ESP32-C3 na 2 podpórkach, piny z Dupontami w dół
+      translate([bkX - gnScW / 2, bkY, kDno - zak]) cube([gnScW, gnT, gnScH - kDno + zak]);   // ścianka gniazda panelowego USB-C, wejście do przodu
+      for (s = [-1, 1]) translate([bkX + s * (gnScW / 2 - kSc / 2) - kSc / 2, bkY + gnT - zak, kDno - zak])   // żebra za ścianką
+        rotate([90, 0, 90]) linear_extrude(kSc) polygon([[0, 0], [gnZebroL, 0], [0, gnScH - kDno]]);
+      for (dy = [0, rezRozst]) translate([rezX - rezSlupW / 2, rezY0 + dy - rezSlupW / 2, kDno - zak])   // słupki rezystora (nóżki przez otwory)
+        cube([rezSlupW, rezSlupW, rezOsZ - kDno + rezSlupW / 2 + zak]);
+      for (x = uchSkretkiX) uchwytOpaski(x, uchSkretkiY, 0, uchH);                                     // skrętki przed PCA9685
+      uchwytOpaski(uchPirXY[0], uchPirXY[1], 90, uchH);                                                // przewód PIR
+      uchwytOpaski(uchGnXY[0], uchGnXY[1], 90, uchH);                                                  // przewody gniazda USB-C do zacisku
+      for (dy = [(zapL - zapRozst) / 2, (zapL + zapRozst) / 2]) translate([zapX, zapY0 + dy, kDno - zak])   // miejsce zapasowe: słupki M3
+        cylinder(d = slupPcaD, h = slupPcaH + zak, $fn = 24);
       for (x = [kPiastaOd, kW - kPiastaOd], y = [kPiastaOd, kD - kTylT - kPiastaOd]) translate([x, y, kDno - zak])   // piasty pod wkręty w dno
         cylinder(d = kPiastaD, h = kPiastaH + zak, $fn = 32);
-      translate([kW / 2 + pcaL / 2 + kondOdPca, kD - kTylT - pcaOdTylu - pcaW / 2, kDno - zak]) difference() {   // pierścień kondensatora
-        cylinder(d = kondD + 2 * (espRama + luzSlizg), h = espRamaH, $fn = 48);
-        translate([0, 0, -1]) cylinder(d = kondD + 2 * luzSlizg, h = espRamaH + 2, $fn = 48);
-      }
     }
-    translate([kW / 2 - pcaL / 2, kD - kTylT - pcaOdTylu - pcaW, kDno])
+    translate([pcaX0, pcaY0, kDno])
       for (dx = [0, pcaOtwX], dy = [0, pcaOtwY]) translate([(pcaL - pcaOtwX) / 2 + dx, (pcaW - pcaOtwY) / 2 + dy, -kDno - 1])
         cylinder(d = dM3ciasny, h = slupPcaH + kDno + 2, $fn = 24);
     for (x = [kPiastaOd, kW - kPiastaOd], y = [kPiastaOd, kD - kTylT - kPiastaOd]) translate([x, y, -1])   // 4 wkręty 3 × 12 w dno ze sklejki
       cylinder(d = dWkretSkl, h = kDno + kPiastaH + 2, $fn = 24);
+    for (dy = [0, rezRozst]) translate([rezX, rezY0 + dy - rezSlupW / 2 - 1, rezOsZ]) rotate([-90, 0, 0]) {   // otwory nóżek rezystora (łza, wzdłuż y)
+      cylinder(d = dRezNoga, h = rezSlupW + 2, $fn = 16);
+      rotate([0, 0, 225]) cube([dRezNoga / 2, dRezNoga / 2, rezSlupW + 2]);
+    }
+    for (dy = [(zapL - zapRozst) / 2, (zapL + zapRozst) / 2]) translate([zapX, zapY0 + dy, -1])   // miejsce zapasowe: otwory M3 ciasne
+      cylinder(d = dM3ciasny, h = kDno + slupPcaH + 2, $fn = 24);
+    translate([bkX, bkY - 1, gnOsZ]) rotate([-90, 0, 0]) intersection() {   // otwór na gwint „podwójne D”: ścięcia u góry i u dołu (górne ścięcie = krótki most, bez podpór)
+      cylinder(d = gnGwintD + 2 * luzGn, h = gnT + 2, $fn = 64);
+      translate([-gnGwintD, -(gnGwintFlat + 2 * luzGn) / 2, 0]) cube([2 * gnGwintD, gnGwintFlat + 2 * luzGn, gnT + 2]);
+    }
   }
+}
+module espPodstawka() {   // 2 słupki pod krótkimi krawędziami (płaskie górne powierzchnie pod klej; środek płytki, między rzędami pinów z Dupontami); niski rant z tyłu jako ogranicznik
+  cxE = espOdBoku + espW / 2;
+  for (y = [espOdBoku + espUsbWyst, espOdBoku + espL - espPodD]) translate([cxE - espPodW / 2, y, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);   // przedni pod płytką, za wystającym gniazdem USB
+  translate([cxE - espPodW / 2, espOdBoku + espL + luzSlizg, kDno - zak]) cube([espPodW, espRama, espPodH + espLip + zak]);   // rant z tyłu (koniec z anteną)
+}
+module uchwytOpaski(x, y, obrot, h) translate([x, y, kDno - zak]) rotate([0, 0, obrot]) difference() {   // blok z tunelem na opaskę (tunel wzdłuż x po obrocie)
+  translate([-uchL / 2, -uchD / 2, 0]) cube([uchL, uchD, h + zak]);
+  translate([-uchL / 2 - 1, -(opW + 2 * opLuz) / 2, (h - (opT + 2 * opLuz)) / 2]) cube([uchL + 2, opW + 2 * opLuz, opT + 2 * opLuz]);
 }
 
 
@@ -494,6 +554,37 @@ module przekrojPIR() {   // przekrój poziomy przez otwory M2 (widok z góry): f
   color("Silver") intersection() { for (s = [-1, 1]) translate([pirX + s * pirOtwRozst / 2, pirYp + pirT, pirZ]) mirror([0, 1, 0]) wkretM2(); ciecie(); }
 }
 
+// ===================== rysunek tacki elektroniki z płytkami (podgląd do montażu) =====================
+module pokazTacki() {   // układ tacki: x od lewego boku, y od przodu tacki; widok z góry
+  txt = 4.5;
+  module napis(x, y, s) translate([x, y, 40]) color("Black") linear_extrude(0.5) text(s, size = txt, halign = "center", valign = "center");
+  color("Gold") kaseta();
+  color("ForestGreen") translate([pcaX0, pcaY0, kDno + slupPcaH]) cube([pcaL, pcaW, 1.6]);                      // PCA9685
+  color("DimGray") translate([pcaX0 + 3, pcaY0, kDno + slupPcaH + 1.6]) cube([pcaL - 6, 6, 8]);                  // listwy kanałów (przód)
+  color("RoyalBlue") translate([pcaX0 + pcaL / 2 - 5, pcaY0 + pcaW - 6, kDno + slupPcaH + 1.6]) cube([10, 6, 8]); // zacisk (tył)
+  color("Orange", 0.35) translate([pcaX0, pcaY0 - pcaPrzod, kDno]) cube([pcaL, pcaPrzod, 1]);                    // wolne przed listwą
+  color("SteelBlue") translate([espOdBoku, espOdBoku, kDno + espPodH]) cube([espW, espL, 1.6]);                 // ESP32-C3 na podstawce
+  color("Black") for (s = [-1, 1]) translate([espOdBoku + espW / 2 + s * espRzedy / 2 - 1.3, espOdBoku + 1, kDno + espPodH - 14]) cube([2.6, espL - 2, 14]);   // wtyki Dupont pod płytką
+  color("Silver") translate([bkX, bkY - 3, gnOsZ]) rotate([-90, 0, 0]) cylinder(d = gnGwintD, h = gnT + gnKorpL + 3, $fn = 32);   // gniazdo USB-C
+  color("Silver", 0.5) translate([bkX - wtykSzer / 2, 0, kDno]) cube([wtykSzer, bkY - 3, 1]);                    // wtyk C–C
+  color("SaddleBrown") translate([rezX, rezY0 + (rezRozst - rezL) / 2, rezOsZ]) rotate([-90, 0, 0]) cylinder(d = rezD, h = rezL, $fn = 24);   // rezystor 47 Ω / 3 W
+  color("Silver") translate([rezX, rezY0 - rezSlupW, rezOsZ]) rotate([-90, 0, 0]) cylinder(d = 0.9, h = rezRozst + 2 * rezSlupW, $fn = 8);       // nóżki
+  color("Red") translate([cx - kX0, cy - kY0, 38]) difference() { cylinder(d = dOtwPl, h = 0.5, $fn = 96); translate([0, 0, -1]) cylinder(d = dOtwPl - 1.5, h = 3, $fn = 96); }   // otwór w płycie (tuleja)
+  napis(pcaX0 + pcaL / 2, pcaY0 + pcaW / 2, "PCA9685");
+  napis(pcaX0 + pcaL / 2, pcaY0 - pcaPrzod / 2, "wolne 25 (kondensator, 5 V)");
+  napis(pcaX0 + pcaL / 2, pcaY0 + pcaW + 5, "zacisk V+/GND");
+  napis(espOdBoku + espW / 2, espOdBoku + espL + 6, "ESP32-C3");
+  napis(bkX, bkY + gnT + gnKorpL + 6, "gniazdo USB-C");
+  napis(bkX, 6, "wtyk C–C");
+  napis(rezX + 2, rezY0 - 7, "rezystor 47 Ω / 3 W");
+  napis(cx - kX0, cy - kY0 - 3, "otwór Ø60 (skrętki)");
+  napis(uchPirXY[0] - 10, uchPirXY[1] + 8, "opaska PIR");
+  color("Plum", 0.5) translate([zapX - zapW / 2, zapY0, kDno + slupPcaH]) cube([zapW, zapL, 1.6]);
+  napis(zapX, zapY0 + zapL / 2, "zapas 20×30");
+  napis(uchGnXY[0] - 2, uchGnXY[1] + 7, "opaska USB-C");
+  napis(kW / 2, -12, "PRZÓD TACKI (szufladka)");
+}
+
 // ===================== wybór części =====================
 module probkaPIR() intersection() {   // wycinek frontu z gniazdem PIR – próbka pasowania przed drukiem frontu
   front();
@@ -532,4 +623,5 @@ else if (czesc == "KolizjaPIR") kolizjaPIR();
 else if (czesc == "KolizjaWkladaniePIR") kolizjaWkladaniePIR();
 else if (czesc == "KolizjaSruby") kolizjaSruby();
 else if (czesc == "PokazPIR") pokazPIR();
+else if (czesc == "PokazTacki") pokazTacki();
 else if (czesc == "PrzekrojPIR") przekrojPIR();
