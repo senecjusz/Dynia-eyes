@@ -354,3 +354,16 @@ Kontrole: siatka OK, kolizje szufladki z tacką: pusto. Wymiary płytek i gniazd
   - za PCA9685: (80; 88) i (110; 88), rozstaw 30.
 
   Odstępy od elementów tacki pilnuje assert. Siatka i kolizje: OK.
+
+### Przycisk „uśpij / obudź / blokada” w prawym boku (27.10)
+
+Decyzja użytkownika (przez PM): jeden przycisk PBS-33B (Ø12) na zewnątrz podstawki, na prawym boku, blisko tyłu. Słowa użytkownika: „będę go musiał wkleić, bo nie ma tak długiego gwintu, aby dokręcić 18 mm płytę”. Przytrzymanie 5 s włącza blokadę, kolejne 5 s ją zdejmuje (program – elektronika).
+
+- **Otwór:** Ø12 na wylot w prawym boku (18 mm), **36 mm od tyłu podstawki**, oś **32 mm nad stołem** (23 nad dnem, 17 pod wierzchem ścianki). Wiercić **od zewnątrz**, prostopadle (zewnętrzna krawędź jest widoczna), od środka podłożyć klocek przeciw wyrwaniom. Przycisk wkleić (epoksyd), bez nakrętki. Gdy idzie za ciasno, rozwiercić Ø12,5.
+- **Od środka:** korpus przycisku (obwiednia Ø15 × 20) zostaje nad tacką. Odstępy:
+  - bok tacki i piasty (do 19 mm nad stołem) – 5,5 mm pod przyciskiem;
+  - ścianka gniazda USB-C z żebrami (y do 168) – przycisk od y 182,5;
+  - tylny pas tacki (od y 203) – przycisk do y 197,5;
+  - płyta górna – 9,5 mm nad przyciskiem.
+- **Przewody:** do pinów ESP od spodu (GPIO4/5, G) idą po tacce wzdłuż tylnego pasa.
+- **Kontrola:** `KolizjaPrzycisk` (korpus przycisku wobec tacki, płyty i dna): pusto. Test czułości: oś na 22 mm daje błąd assertu (przycisk nad bokiem tacki). Rysunek wiercenia: `podglad/podstawka-ciecie.png` / `.svg`, podgląd: `podglad/podstawka-v2-przycisk.png`.

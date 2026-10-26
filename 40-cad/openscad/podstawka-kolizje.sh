@@ -8,7 +8,7 @@ set -u
 OS="${OPENSCAD:-$(command -v openscad || echo "/c/Program Files/OpenSCAD/openscad.com")}"
 cd "$(dirname "$0")"
 read -r -a ZM <<< "${ZMIENNE:-}"
-K=("$@"); [ ${#K[@]} -eq 0 ] && K=(KolizjaZamknieta KolizjaWsuwanie KolizjaPIR KolizjaWkladaniePIR KolizjaSruby)
+K=("$@"); [ ${#K[@]} -eq 0 ] && K=(KolizjaZamknieta KolizjaWsuwanie KolizjaPIR KolizjaWkladaniePIR KolizjaSruby KolizjaPrzycisk)
 TMP=$(mktemp -d); blad=0
 for k in "${K[@]}"; do
   timeout 3600 "$OS" -o "$TMP/$k.stl" "${ZM[@]}" -D "czesc=\"$k\"" podstawka.scad > "$TMP/$k.log" 2>&1

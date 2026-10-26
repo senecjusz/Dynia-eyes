@@ -156,6 +156,8 @@ uchL = 8; uchD = 8; uchH = 5;                    // uchwyt opaski: długość (w
 uchSkretkiY = 12; uchSkretkiX = [55, 75, 95];    // uchwyty skrętek pod otworem w płycie, przed strefą wolną przed PCA9685 (kabel wzdłuż y)
 uchPirXY = [142, 10];                            // uchwyt przewodu PIR przy wejściu z szufladki (kabel wzdłuż x, do ESP32-C3)
 uchGnXY = [140, 88];                             // uchwyt przewodów gniazda USB-C w drodze do zacisku PCA9685 (kabel wzdłuż x)
+dPrz = 12; przOdTylu = 36; przZ = 32;           // przycisk PBS-33B „uśpij / obudź / blokada” (użytkownik 27.10): otwór Ø12 przelotowy w prawym boku (18), przycisk wklejony; oś od tyłu podstawki, wysokość osi nad stołem
+przKorpD = 15; przKorpL = 20;                    // przycisk za ścianką (od środka): obwiednia Ø (kołnierz/nakrętka – szacunek), długość korpusu z nóżkami
 dZapOtw = 5.5; zapOtw = [[12, 47], [12, 72], [80, 88], [110, 88]];   // zapasowe otwory przelotowe w dnie tacki (użytkownik 27.10 przez elektronikę: M5 albo wkręt w sklejkę 9): pola wolne – lewe przy ESP i rezystorze, za PCA9685
 zapW = 20; zapL = 30; zapRozst = 25; zapX = 55; zapY0 = 64;   // miejsce zapasowe na małą płytkę (elektronika 26.10): 20 × 30, 2 słupki M3 Ø2,6 w rozstawie 25 wzdłuż y; oś x, przód płytki
 // ---------- BAZOWE: gwint (jak próbka E2.0: 45°, skok 5, zarys 2,0) ----------
@@ -251,6 +253,9 @@ gnOsZ  = kDno + gnObrys / 2 + 1;                 // oś gniazda nad spodem tacki
 gnScW  = gnObrys + 2 * gnMarg;                   // szerokość ścianki gniazda
 gnScH  = gnOsZ + gnObrys / 2 + gnMarg;           // wysokość ścianki
 assert(bkX + gnScW / 2 <= kW, "ścianka gniazda poza tacką");
+assert(przZ - przKorpD / 2 >= tDno + kTylH + 1 || DL - przOdTylu + przKorpD / 2 <= kY0 + kD - kTylT - 1, "przycisk nad tylnym pasem tacki");
+assert(przZ + przKorpD / 2 <= tDno + H_IN - 1 && przZ - przKorpD / 2 >= tDno + kScH + 1, "przycisk poza wysokością wnętrza nad bokiem tacki");
+assert(DL - przOdTylu - przKorpD / 2 >= kY0 + bkY + gnT + gnZebroL + 2, "przycisk przy ściance gniazda USB-C");
 for (o = zapOtw) assert(o[0] - dZapOtw / 2 >= kSc + 2 && o[1] + dZapOtw / 2 <= kD - kTylT - 2
   && (o[1] - dZapOtw / 2 >= pcaY0 + pcaW + 3 || o[0] + dZapOtw / 2 <= pcaX0 - 3)
   && (abs(o[0] - rezX) >= rezSlupW / 2 + dZapOtw / 2 + 2 || o[1] + dZapOtw / 2 < rezY0 - rezSlupW / 2)
@@ -481,12 +486,16 @@ module plyta() difference() {                   // 4 wkręty w ścianki boczne (
   translate([SZ / 2, -1, tPl / 2]) rotate([-90, 0, 0]) cylinder(d = dBlokPilot, h = blokOtwG + 1, $fn = 24);
 }
 module dno() cube([SZ, DL, tDno]);
-module scianaBoczna() cube([tPl, DL, H_IN]);
+module scianaBoczna(prawa = false) difference() {   // prawa: otwór przycisku (wiercony od zewnątrz)
+  cube([tPl, DL, H_IN]);
+  if (prawa) translate([-1, DL - przOdTylu, przZ - tDno]) rotate([0, 90, 0]) cylinder(d = dPrz, h = tPl + 2, $fn = 48);
+}
+module przycisk() translate([SZ - tPl - przKorpL, DL - przOdTylu, przZ]) rotate([0, 90, 0]) cylinder(d = przKorpD, h = przKorpL, $fn = 32);   // korpus przycisku od środka (do kontroli)
 module scianaTylna() cube([WIN, tTyl, H_IN]);
 module sklejka() {
   dno();
   translate([0, 0, tDno + H_IN]) plyta();
-  translate([0, 0, tDno]) { scianaBoczna(); translate([SZ - tPl, 0, 0]) scianaBoczna(); translate([tPl, DL - tTyl, 0]) scianaTylna(); }
+  translate([0, 0, tDno]) { scianaBoczna(); translate([SZ - tPl, 0, 0]) scianaBoczna(true); translate([tPl, DL - tTyl, 0]) scianaTylna(); }
 }
 
 // ===================== rysunek cięcia i wiercenia (2D, widok z góry, wymiary w tekście) =====================
@@ -510,6 +519,8 @@ module rysunekCiecia() {   // rysunek w układzie podstawki: przód (y 0) na dol
   translate([0, DL + rysTekst * 2]) wymiar(SZ, str(SZ));
   translate([SZ + rysTekst * 2, 0]) wymiar(DL, str(DL), 90);
   translate([SZ / 2, -rysTekst * 2.5]) text(str("wnętrze ", WIN, " × ", H_IN, ", dno ", tDno, ", ścianki ", tPl, " – stan wykonany 25.10"), size = rysTekst * 0.7, halign = "center");
+  translate([SZ - tPl / 2, DL - przOdTylu]) difference() { circle(d = dPrz, $fn = 48); circle(d = dPrz - 2 * rysLinia, $fn = 48); }   // przycisk (w widoku z góry: oś w prawym boku)
+  translate([SZ / 2, -rysTekst * 4.2]) text(str("PRZYCISK: prawy bok, otwór Ø", dPrz, " na wylot, ", przOdTylu, " od tyłu, oś ", przZ, " nad stołem (", przZ - tDno, " nad dnem), wiercić od zewnątrz"), size = rysTekst * 0.6, halign = "center");
 }
 
 // ===================== złożenie (układ podstawki) =====================
@@ -531,6 +542,8 @@ module zlozenie() {
 
 // ===================== kontrole kolizji (wynik ma być pusty) =====================
 module stale() { sklejka(); translate([kX0, kY0, tDno]) kaseta(); }   // części nieruchome
+// przycisk w prawym boku wobec tacki i płyty górnej (korpus przycisku od środka nie może dotykać tacki, ścianki gniazda ani płyty)
+module kolizjaPrzycisk() intersection() { przycisk(); union() { translate([kX0, kY0, tDno]) kaseta(); translate([0, 0, tDno + H_IN]) plyta(); dno(); } }
 // szufladka zamknięta: wszystko, co jedzie z szufladką, wobec sklejki i kasety (odsunięte o „odsun” od krawędzi i od dna, z którymi się styka)
 module kolizjaZamknieta() intersection() { stale(); wPodstawce(odsun, odsun) szufladaRuch(false); }
 // wsuwanie: te same bryły w położeniach wysunięcia (ruch prostoliniowy w y, przekrój stały)
@@ -632,6 +645,7 @@ else if (czesc == "KolizjaWsuwanie") kolizjaWsuwanie();
 else if (czesc == "KolizjaPIR") kolizjaPIR();
 else if (czesc == "KolizjaWkladaniePIR") kolizjaWkladaniePIR();
 else if (czesc == "KolizjaSruby") kolizjaSruby();
+else if (czesc == "KolizjaPrzycisk") kolizjaPrzycisk();
 else if (czesc == "PokazPIR") pokazPIR();
 else if (czesc == "PokazTacki") pokazTacki();
 else if (czesc == "PrzekrojPIR") przekrojPIR();
