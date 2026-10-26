@@ -19,8 +19,11 @@ def R_galki(psi, theta): return mm(Ry(psi), Rx(-theta))
 class Kin:
     def __init__(self, P):
         self.P = P
-        zr, zz = P['zacz_r'], P['zacz_z']
-        self.lugLP, self.lugGD = (zr, 0.0, zz), (0.0, zr, zz)
+        zr, zz, od = P['zacz_r'], P['zacz_z'], P.get('zacz_ods', 0.0)
+        # otwory języczków gałki (oba wzdłuż y gałki) i punkty zagięcia „Z” po odsadzeniu nogi: L–P w +y, G–D w −y (ku osi)
+        self.otwLP, self.otwGD = (zr, 0.0, zz), (0.0, zr, zz)
+        self.nLP, self.nGD = (0.0, 1.0, 0.0), (0.0, -1.0, 0.0)
+        self.lugLP, self.lugGD = (zr, od, zz), (0.0, zr - od, zz)
         L, G = P['LP_wal'], P['GD_wal']
         self.sLP, self.rLP = (L[0], 0.0, L[2]), P['orcz_LP']          # orczyk L–P w płaszczyźnie y = 0, ramię w −x przy α = 0
         self.sGD, self.rGD = (0.0, G[1], G[2]), P['orcz_GD']          # orczyk G–D w płaszczyźnie x = 0, ramię w +y przy α = 0
@@ -60,6 +63,7 @@ class Kin:
         aG = self._ik(self.hG, jG, self.LG, self.a0G if aG is None else aG)
         aD = self._ik(self.hD, jD, self.LD, self.a0D if aD is None else aD)
         return dict(Rg=Rg, RG=RG, RD=RD, aLP=aLP, aGD=aGD, aG=aG, aD=aD,
+                    otwLP=mv(Rg, self.otwLP), otwGD=mv(Rg, self.otwGD), nLP=mv(Rg, self.nLP), nGD=mv(Rg, self.nGD),
                     pretLP=(jLP, self.hLP(aLP)), pretGD=(jGD, self.hGD(aGD)),
                     drutG=(jG, self.hG(aG)), drutD=(jD, self.hD(aD)),
                     orczLP=(self.sLP, self.hLP(aLP)), orczGD=(self.sGD, self.hGD(aGD)),
@@ -68,9 +72,29 @@ class Kin:
 def wczytaj(sciezka):
     return Kin(json.load(open(sciezka, encoding='utf-8')))
 
+def przechyl(st, nm):
+    """Kąt [°] między odcinkiem głównym pręta a płaszczyzną prostopadłą do osi otworu języczka (wymagany przechył nogi „Z”)."""
+    a, b = st['pret' + nm]; d = sub(b, a); L = norm(d); n = st['n' + nm]
+    return math.degrees(math.asin(min(1.0, abs(sum(x * y for x, y in zip(d, n))) / L)))
+def przechyl_dopuszczalny(D, l, d=1.0):
+    """Przechył drutu d w otworze o świetle D i długości gardzieli l (fazki 45° dalej nie ograniczają)."""
+    # drut walcowy pochylony o α w walcu o długości l: mieści się, gdy l·sinα + d ≤ D·cosα
+    lo, hi = 0.0, 89.9
+    for _ in range(60):
+        m = (lo + hi) / 2; a = math.radians(m)
+        if l * math.sin(a) + d <= D * math.cos(a): lo = m
+        else: hi = m
+    return lo
+
 if __name__ == '__main__':
     import sys
     k = wczytaj(sys.argv[1])
+    for zak, siatka in (('osie', [(p, 0) for p in range(-35, 36)] + [(0, t) for t in range(-25, 26)]),
+                        ('narożniki', [(p, t) for p in range(-35, 36) for t in range(-25, 26)])):
+        mLP = max(przechyl(k.stan(p, t), 'LP') for p, t in siatka); mGD = max(przechyl(k.stan(p, t), 'GD') for p, t in siatka)
+        print('wymagany przechył nogi „Z” w języczku (%s, co 1°): L–P %.1f°, G–D %.1f°' % (zak, mLP, mGD))
+    D, l = k.P.get('zacz_gardz_d', 1.3), k.P.get('zacz_gardz_l', 2.5)
+    print('dopuszczalny przechył w otworze Ø%.1f × %.1f: %.1f°' % (D, l, przechyl_dopuszczalny(D, l)))
     print('pręty L–P %.1f, G–D %.1f; druty powiek G %.1f, D %.1f' % (k.LLP, k.LGD, k.LG, k.LD))
     for psi, th in ((-35, 0), (35, 0), (0, -25), (0, 25), (35, 25), (-35, -25)):
         s = k.stan(psi, th)

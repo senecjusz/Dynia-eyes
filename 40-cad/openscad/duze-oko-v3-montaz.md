@@ -11,14 +11,15 @@ Odstępstwa bez zgody obu recenzentów są zrobione zgodnie z wymaganiami:
 - trzy rzeczywiste tuby 30/40/50;
 - jedna centralna piasta gałki.
 
-Układ: 0 = środek kuli, z do przodu, y w górę, x w prawo patrząc od przodu. **[Z]** = założenie na rano: P4 (źrenica Ø20), P5 (gałka 24 mm przed rantem) oraz czasza 114° zamiast ok. 120° (wygląd).
+Układ: 0 = środek kuli, z do przodu, y w górę, x w prawo patrząc od przodu. **[Z]** = założenie na rano: P4 (źrenica Ø20), P5 (gałka 24 mm przed rantem) oraz czasza 113° zamiast ok. 120° (wygląd).
 
 ## 1. Części do druku (każda ≤ 180 mm, 1 bryła, 0 błędów siatki)
 
 | Plik 3MF | Szt. | Wymiar | Orientacja i podpory |
 |---|---|---|---|
 | `Plyta` | 1 | 84 × 109 × 26 (z ramionami i słupkiem) | Spód płyty na stole. **Podpory pod ramionami zawiasu i słupkiem kardana** w części przed płytą, wiszą 14–26 mm nad stołem. Płyty poziomej nie da się wydrukować bez nich, bo ramiona w tubie muszą leżeć przy osi (y ±5). Podpory malujesz w slicerze tylko tam |
-| `Galka` | 1 | Ø60, krawędź tylna na z = −12 | Krawędzią na stole. **Podpory drzewiaste pod czołem piasty** (z = +14, nad pustką) i **pod wewnętrznymi końcami obu języczków** (7,2 mm wysięgu od podparcia 45°, 5 mm nad stołem). Podpory zdejmujesz przez otwór tylny |
+| `Galka` | 1 | Ø60, krawędź tylna na z = −11,5 | Krawędzią na stole. **Podpory drzewiaste pod czołem piasty** (z = +14, nad pustką) i **pod wewnętrznym końcem języczka L–P** (7,2 mm wysięgu od podparcia 45°, 4,5 mm nad stołem). Słupek zaczepu G–D wisi na przedniej czaszy i kończy się 1 mm pod otworem (niżej pracuje pręt): **mała podpora pod jego spodem** (6,5 × 2 mm, 4,5 mm nad stołem). Podpory zdejmujesz przez otwór tylny |
+| `Probka zaczepu galki` | 1 | 28 × 10 × 12 | **Drukujesz przed gałką** (zasada „najpierw próbka”), stopką na stole, płytka pionowo jak języczek w gałce. Otwór A: Ø2,0 × gardziel 1,0, jak w gałce. Otwór B: Ø2,3 × 0,6, do porównania, po stronie ściętego rogu. Sprawdzasz: drut Ø1,0 z nogą „Z” przechyla się w otworze o ≥ 33° w każdą stronę bez zacinania, a luz jest akceptowalny |
 | `Powieka gorna` | 1 | R33,2–34,4 | Krawędzią tylną (z = −3) na stole, z brimem (pasek 1,2 mm). Mostek 10 mm nad wycięciem przy uszku drutu. Ewentualnie podpora wewnątrz pod szczytem kopułki |
 | `Powieka dolna` | 1 | R31,0–32,2 | jak górna |
 | `Przedluzenie orczyka (druk x2)` | 2 | 33 × 10 × 2,5 | płasko |
@@ -35,7 +36,7 @@ Kolor: mechanizm pomarańczowy, gałka biała.
 | MG90S z orczykiem jednoramiennym i wkrętem | 4 | L–P, G–D, powieka górna, powieka dolna |
 | Kardan 5/5 z 2 wkrętami M4 | 1 | środek gałki |
 | Śruba M5 × 8, łeb walcowy imbusowy (ISO 4762, Ø8,5 × 5) | 2 | Trzpienie kardana, łby wklejone (gniazdo Ø9,5 × 5,2, 0,5 na klej). Wkręcenie w piastę: 6,3–6,55 przy otworze 7 |
-| Drut sprężynowy Ø1,0 | 4 odcinki, cięcie ok. 72 / 66 / 99 / 74 mm | pręty L–P i G–D, druty powiek górnej i dolnej; końce w „Z” (odsadzenie 1,75) |
+| Drut sprężynowy Ø1,0 | 4 odcinki, cięcie ok. 76 / 70 / 100 / 75 mm | pręty L–P i G–D, druty powiek górnej i dolnej; końce w „Z”: noga 4,0 przy gałce, 2,5 przy uszkach powiek, 1,75 przy orczykach |
 | Drut Ø2,0 | 2 × 5,6 mm | osie powiek, w luźnych otworach Ø2,4 słupka i uszu; w słupku kropla CA |
 | Wkręty do drewna 4 × 30–40 | 4 | łapy kołnierza (PRD) |
 | Klej: epoksyd albo CA; klej na gorąco | – | łby M5, przedłużenia orczyków, osie w słupkach, serwa w gniazdach, moduł w tubie |
@@ -52,30 +53,31 @@ Kolor: mechanizm pomarańczowy, gałka biała.
 | Co | Wartość |
 |---|---|
 | Rant tuby | z = +6 (gałka wystaje 24 [Z], zamknięte powieki 28,4) |
-| Krawędź czaszy | z = −12, czyli ok. 114° od przodu. Otwór zewnętrznie Ø55,0, w świetle samej czaszy Ø50,6; wspólne wolne światło z podparciami języczków Ø50,0. Przy −15 pręt L–P przechodził przez krawędź. Ustalenie 3 dopuszcza płytszą czaszę |
+| Krawędź czaszy | z = −11,5, czyli ok. 113° od przodu. Otwór zewnętrznie Ø55,4, w świetle samej czaszy Ø51,1. Przy −15 pręt L–P przechodził przez krawędź, przy −12 miał 0,36 w narożniku. Ustalenie 3 dopuszcza płytszą czaszę |
 | Piasta gałki | Ø14 od przedniego bieguna do z = +14 |
-| Zaczepy gałki | języczki z = −4,5, otwór Ø1,3 na r = 14: L–P x = +14 (płytka w płaszczyźnie XZ), G–D y = +14 (płytka w YZ) |
+| Zaczepy gałki | Oba otwory wzdłuż osi y gałki, na z = −4,5 i promieniu 15,3: L–P w języczku x = 15,3 (płytka w płaszczyźnie XZ, gr. 2), G–D w słupku y = 15,3 (płytka w płaszczyźnie XZ, 6,5 × 2, od krawędzi czaszy do przedniej czaszy). Otwory dwustożkowe: gardziel w świetle Ø2,0 × 1,0, fazki 45° do obu ścian, wylot Ø3,0; mostek do końca języczka 1,0. Noga „Z” odsadzona 4,0: L–P w +y, G–D w −y (ku osi). Spód słupka G–D 1 mm pod wylotem fazki, narożniki ścięte 45° |
 | Słupek kardana | Ø12, z −51 … −14,25 |
 | Płyta | wierzch y = −15, grubość 5, z −49 … −105, x ±42; przód 2 mm za kołnierzem tuby 50 |
 | Słupki zawiasu | x 34,7 … łuk R37,2 (0,95 do tuby na całej szerokości), y ±5, z do +4; oś na z = 0 |
 | Powieki | luz 1,0 do gałki i między powiekami; uszy górnej x ±(33,2…34,4), dolnej ±(31,8…33,0); luz osiowy 0,2 ucho–ucho i 0,3 ucho–słupek |
 | Otwory osi | uszy i słupki: światło Ø2,4 (wielokąt 32-boczny opisany na Ø2,4), drut Ø2 |
 | Zaczepy drutów powiek | górna x = +5, 34,0 od osi zawiasu; dolna x = −5, 31,5 od osi; otwór 1,6 nad płaszczyzną osi |
-| Wałki serw | L–P (31,5; 0; −66) pionowo · G–D (0; 2,3; −60) · powieka górna (·; −9,5; −95) · powieka dolna (·; −9,5; −76) |
+| Wałki serw | L–P (32,8; 0; −66) pionowo · G–D (0; 2,3; −60) · powieka górna (·; −9,5; −95) · powieka dolna (·; −9,5; −76) |
 | Odstęp serw L–P i powieki górnej | przód korpusu powieki górnej −88,75, tylne ucho L–P −87,8 (0,95) |
 | Orczyki | L–P otwór 17,5, G–D 11,5, powieki 25 (przedłużenie na zewnętrznej stronie ramienia, otwór na x = ±1,75) |
-| Długość prętów między osiami otworów | L–P 61,5; G–D 55,5; powieka górna 88,6; dolna 63,4 |
+| Długość prętów od zagięcia przy gałce do otworu orczyka | L–P 61,6; G–D 55,6; druty powiek 88,6 i 63,4 (między otworami) |
 | Przejścia w płycie | szczelina orczyka powieki dolnej x −9,5…+1,5 (orczyk, przedłużenie, „Z”); kabel G–D x −33,7…−25,5 pod końcem korpusu |
 
 ## 4. Zakres ruchu (kinematyka `narzedzia/duze_oko_v3_kinematyka.py`)
 
 | Oś | Zakres | Serwo | Uwagi |
 |---|---|---|---|
-| L–P | ±35° | +30,5° / −23,1° | przenoszenie ≥ 58° (rachunek 2D) |
-| G–D | ±25° | +33,8° / −28,4° | przenoszenie ≥ 54° |
+| L–P | ±35° | +33,5° / −25,6° | przenoszenie ≥ 54° (rachunek 2D) |
+| G–D | ±25° | +26,6° / −21,5° | przenoszenie ≥ 59° |
 | Powieka górna | 0 → 51,5° | 25° → −45,8° (71°) | przenoszenie ≥ 50°; wyboczenie drutu 88,6 mm przy 12,3 N wobec 8,6 N z serwa |
 | Powieka dolna | 0 → 51,5° | 35° → −23,1° (58°) | przenoszenie ≥ 54° |
 
+- **Przechył nogi „Z” w języczkach gałki:** wymagany 30,1° (L–P) i 29,8° (G–D), także w narożnikach, liczony co 1°. Dopuszczalny w otworze Ø2,0 × 1,0 wynosi 36,9° (warunek l·sinα + d ≤ D·cosα), czyli zapas 6,8°. Na orczykach wymagane do 5,9°. Fabryczny otwór orczyka MG90S ok. Ø1,3 przy ramieniu ok. 2 mm daje ok. 8°; jeśli „Z” się tam zacina, rozwiercasz otwór do Ø1,5.
 - **Sprzężenie osi, do firmware'u:**
   - przy L–P ±35° serwo G–D musi dodać +4,4°, inaczej gałka pochyli się o ok. 3,5°;
   - przy G–D ±25° serwo L–P musi dodać +1,5°;
@@ -84,7 +86,7 @@ Kolor: mechanizm pomarańczowy, gałka biała.
 
 ## 5. Kolejność montażu (na stole; tylko krok 10 w dyni)
 
-Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orczyków), kombinerki (drut), pęseta. Światło otworu tylnego gałki to Ø50,0.
+Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orczyków), kombinerki (drut), pęseta. Światło otworu tylnego gałki to Ø51,1.
 
 1. **Łby M5 × 8:** wklej epoksydem w gniazdo na czole słupka kardana (trzpień do przodu) i w gniazdo piasty gałki (trzpień do tyłu). Gałkę kładziesz otworem do góry, a śrubę wkładasz palcami albo pęsetą.
 2. **Przedłużenia orczyków:** przyklej CA na zewnętrzną stronę ramion dwóch orczyków. Otwór Ø7 obejmuje piastę, a otwór 25 przedłużenia ma leżeć na przedłużeniu osi ramienia. Odstaw do związania.
@@ -102,7 +104,7 @@ Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orcz
    - po tej stronie nie ma języczków, a ramię zawiasu jest na x = −35;
    - klucz przekładasz co ok. 60°.
 6. **Pręt G–D:**
-   - „Z” wkładasz kombinerkami w języczek G–D przez otwór tylny, zagięcie po stronie −x;
+   - „Z” wkładasz kombinerkami w otwór słupka G–D przez otwór tylny; noga 4,0 od strony osi (−y), pręt biegnie pod słupkiem;
    - drugi koniec do otworu 11,5 zdjętego orczyka;
    - serwo ustawiasz na 1500 µs, orczyk nasadzasz ramieniem do góry;
    - wkręt orczyka wkrętakiem z prawej, wzdłuż −x na y 2,3, z −60. Droga jest wolna do x +60, bo gniazdo L–P jest jeszcze puste.
@@ -111,13 +113,13 @@ Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orcz
    - drut Ø2 × 5,6 wsuwasz od zewnątrz przez luźny otwór słupka w oba uszy, palcami albo pęsetą, bez siły;
    - na zewnątrz słupka kropla CA; nie zalewać uszu.
 8. **Druty i orczyki powiek:**
-   - „Z” wkładasz w uszko powieki (zagięcie górnej na +x, dolnej na −x), drugi koniec w otwór 25 przedłużenia;
+   - „Z” wkładasz w uszko powieki (noga 2,5; zagięcie górnej na +x, dolnej na −x), drugi koniec w otwór 25 przedłużenia;
    - powiekę zamykasz, serwo ustawiasz na wartość „zamknięte”, orczyk nasadzasz: górny 25° od pionu ku przodowi, dolny 35° od pionu w dół ku przodowi (dolny przechodzi przez szczelinę w płycie);
    - wkręt orczyka powieki górnej wkrętakiem z lewej, wzdłuż +x na y −9,5, z −95;
    - wkręt orczyka powieki dolnej wkrętakiem z prawej, wzdłuż −x na y −9,5, z −76: przez puste jeszcze miejsce serwa L–P, z zapasem ponad 10 mm.
 9. **Serwo L–P:**
    - wkładasz z góry w gniazdo na wylot, ucha leżą na płycie, klej;
-   - pręt L–P montujesz jak pręt G–D: otwór orczyka 17,5, orczyk ramieniem w −x, wkręt z góry (wzdłuż −y na x 31,5, z −66; nad nim nic nie ma).
+   - pręt L–P montujesz jak pręt G–D: noga „Z” 4,0 w języczku L–P od strony +y, otwór orczyka 17,5, orczyk ramieniem w −x, wkręt z góry (wzdłuż −y na x 32,8, z −66; nad nim nic nie ma).
 10. **Test ruchu i kalibracja** na stole (ESP, strona w telefonie).
 11. **W dyni:**
     - tubę z kołnierzem mocujesz od środka czterema wkrętami do drewna, maskownicę przyklejasz z zewnątrz (PRD);
@@ -155,21 +157,20 @@ Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orcz
 ## 7. Do sprawdzenia na wydruku
 
 - Łby M5: pomiar rzeczywistego łba; gniazdo jest pod ISO 4762 Ø8,5 × 5 z 0,5 na klej.
-- Szczyt kopułki gałki i powiek przy druku krawędzią w dół; podpory pod piastą i końcami języczków.
+- **Najpierw próbka zaczepu** (`Probka zaczepu galki`): przechył i luz drutu w otworze A, porównanie z B.
+- Szczyt kopułki gałki i powiek przy druku krawędzią w dół; podpory pod piastą i końcem języczka L–P.
 - Otwory osi Ø2,4 z drutem Ø2: luz na wydruku.
 - Wyjście kabla posiadanego MG90S: przejście w płycie zakłada kabel z krótszej ściany przeciwnej do wałka, nisko przy spodzie (rysunek Miuzei, pewność niska).
 - Uszy MG90S na całą szerokość korpusu [Z, rysunek Miuzei]; szczeliny uszu mają 2,4 × 12,9.
 - Ustawienie modułu w tubie: równy pierścień wokół gałki przed związaniem kleju.
 
-## 8. Otwarte: zaczepy „Z” na języczkach gałki (blokada przed drukiem)
+## 8. Zaczepy „Z” na gałce (rozwiązane geometrią, decyzja PM 26.10)
 
-Zakończenie „Z” w otworze to przegub jednoosiowy (obrót wokół osi otworu). Na języczku gałki pręt wychodzi jednak z płaszczyzny zaczepu, bo języczek obraca się razem z gałką także wokół drugiej osi kardana. Rachunek `duze_oko_v3_kinematyka.py`:
+Recenzenci odrzucili oczko jako dodatek, więc zostaje „Z” zgodnie z ustaleniem 1. Wcześniej otwór G–D szedł wzdłuż x gałki, a otwór Ø1,3 w języczku gr. 2,5 pozwalał drutowi przechylić się tylko o ok. 7°. Wymagane było do 40,9°. Zmiany:
+- otwór G–D obrócony na oś y gałki, równolegle do L–P: wahanie L–P staje się obrotem wokół osi otworu, który „Z” przenosi swobodnie;
+- otwory dwustożkowe Ø2,0 × 1,0 z fazkami 45°;
+- noga „Z” odsadzona 4,0;
+- słupek G–D kończy się 1 mm pod otworem, z narożnikami ściętymi pod 45°;
+- zaczep na r 15,3, dzięki czemu mostek ma 1,0 mm.
 
-| Zaczep | Wychylenie drutu z płaszczyzny otworu |
-|---|---|
-| Języczek G–D (otwór wzdłuż x gałki) przy L–P ±35° | do 37,7° (40,9° w narożnikach) |
-| Języczek L–P (otwór wzdłuż y gałki) przy G–D ±25° | do 26,8° |
-| Orczyki serw (oba pręty) | do 5,9° |
-| Uszka powiek (druty powiek) | do 2,9° |
-
-Przemiatanie z rzeczywistym kształtem „Z”: odcinek główny pręta przechodzi przez własny języczek (−1,33 G–D przy ψ +35 / θ +25, −0,99 L–P przy ψ +25 / θ −25). Pręt się zakleszczy albo zegnie. Referencja działa przy ruchu ±10–20° i luźnych otworach. Przy celu PRD ±35° / ±25° „Z” na gałce nie wystarcza. Rozwiązanie wymaga decyzji, bo dotyka ustalenia 1 („końce w Z”) albo zakresu ruchu – zgłoszone do PM.
+Zostaje wymagane 30,1° wobec dopuszczalnych 36,9°. Przemiatanie z rzeczywistym kształtem „Z”: 0 par poniżej wymogu, najmniejszy luz pręta do gałki 0,79. Luz drutu w otworze daje martwy ruch gałki rzędu 4–5° (szacunek Opusa); zmierzysz go na próbce.

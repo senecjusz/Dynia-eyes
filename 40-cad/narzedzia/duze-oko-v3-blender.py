@@ -113,9 +113,11 @@ for s in (1, -1): cyl('oś powiek Ø2', (s * 31.6, 0, 0), (s * 37.2, 0, 0), 1.0,
 def drut(nazwa, r=0.5):
     cu = bpy.data.curves.new(nazwa, 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = r; cu.bevel_resolution = 3; cu.use_fill_caps = True
     sp = cu.splines.new('POLY'); sp.points.add(5); o = bpy.data.objects.new(nazwa, cu); o.data.materials.append(M['drut']); sc.collection.objects.link(o); wez(o); return sp
-def ustaw_drut(sp, a, na, b, nb, f, odst=1.75, wyst=1.6):
+def ustaw_drut(sp, a, na, b, nb, f, odst=1.75, wyst=1.6, odst_a=None):
     a, b, na, nb = Vector(a), Vector(b), Vector(na).normalized(), Vector(nb).normalized()
-    pts = [a - na * wyst, a + na * odst, a + na * odst + (b - a).normalized() * 1.2, b + nb * odst - (b - a).normalized() * 1.2, b + nb * odst, b - nb * wyst]
+    oa = odst if odst_a is None else odst_a
+    a1, b1 = a + na * oa, b + nb * odst
+    pts = [a - na * wyst, a1, a1 + (b1 - a1).normalized() * 1.2, b1 - (b1 - a1).normalized() * 1.2, b1, b - nb * wyst]
     for i, q in enumerate(pts): sp.points[i].co = (q.x, q.y, q.z, 1); sp.points[i].keyframe_insert('co', frame=f)
 dLP, dGD, dG, dD = drut('pręt L–P Ø1,0'), drut('pręt G–D Ø1,0'), drut('drut powieki górnej Ø1,0'), drut('drut powieki dolnej Ø1,0')
 
@@ -164,10 +166,10 @@ for f in range(1, N + 1):
     ustaw_orczyk(oG, Vector((1, 0, 0)), st['aG'], f)
     ustaw_orczyk(oD, Vector((1, 0, 0)), -st['aD'], f)
     Rg3 = Matrix(st['Rg'])
-    ustaw_drut(dLP, st['pretLP'][0], Rg3 @ Vector((0, 1, 0)), st['pretLP'][1], (0, 1, 0), f)
-    ustaw_drut(dGD, st['pretGD'][0], Rg3 @ Vector((-1, 0, 0)), st['pretGD'][1], (-1, 0, 0), f)
-    ustaw_drut(dG, st['drutG'][0], (1, 0, 0), st['drutG'][1], (1, 0, 0), f)
-    ustaw_drut(dD, st['drutD'][0], (-1, 0, 0), st['drutD'][1], (-1, 0, 0), f)
+    ustaw_drut(dLP, st['otwLP'], st['nLP'], st['pretLP'][1], (0, 1, 0), f, odst_a=P['zacz_ods'])
+    ustaw_drut(dGD, st['otwGD'], st['nGD'], st['pretGD'][1], (-1, 0, 0), f, odst_a=P['zacz_ods'])
+    ustaw_drut(dG, st['drutG'][0], (1, 0, 0), st['drutG'][1], (1, 0, 0), f, odst_a=P['pow_ods'])
+    ustaw_drut(dD, st['drutD'][0], (-1, 0, 0), st['drutD'][1], (-1, 0, 0), f, odst_a=P['pow_ods'])
 
 # ---- kamera (współrzędne Blendera: model (x, y, z) → (x, −z, y)) ----
 def B(p): return Vector((p[0], -p[2], p[1]))

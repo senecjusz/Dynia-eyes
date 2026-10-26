@@ -5,8 +5,9 @@
 #  - przenikanie siatka–siatka: BVHTree.overlap (przecięcie trójkątów) – wynik „KOLIZJA”;
 #  - luz siatka–siatka: najmniejsza odległość wierzchołków A od powierzchni B i odwrotnie (find_nearest); krawędzie siatek
 #    dzielone przed pomiarem do ≤ 1–2 mm, więc minimum krawędź–krawędź jest przybliżone z dokładnością do ok. połowy tego kroku;
-#  - druty Ø1,0 jako łamane z zakończeniami „Z”: odcinek przez otwór (wzdłuż osi otworu), odsadzenie 1,75, odcinek główny,
-#    odsadzenie, odcinek przez drugi otwór; próbkowanie co 0,25 mm; luz = odległość osi od powierzchni − 0,5;
+#  - druty Ø1,0 jako łamane z zakończeniami „Z”: noga przez otwór (wzdłuż osi otworu) do zagięcia, odcinek główny, noga przez
+#    drugi otwór; odsadzenie nogi w języczkach gałki zacz_ods (3,5), w orczykach 1,75, w uszkach powiek pow_ods (2,5); przechył nogi w otworze
+#    dwustożkowym liczy osobno duze_oko_v3_kinematyka.py (wymagany wobec dopuszczalnego), tu noga jest sztywna wzdłuż osi otworu; próbkowanie co 0,25 mm; luz = odległość osi od powierzchni − 0,5;
 #  - orczyki i przedłużenia jako pas o promieniu 2,5 wokół osi ramienia (od osi wałka do otworu + 3 mm);
 #  - serwa MG90S w pełnej obwiedni z rysunku Miuzei: korpus 22,8 × 12,5 × 22,5, uszy 4,5 × 12,5 × 2 na wysokości 18–20,
 #    wieżyczka r 5,9 do 27, wałek r 2,4 do 35; kardan: piasta tylna nieruchoma i przednia z gałką (walce Ø11).
@@ -158,17 +159,21 @@ def odc_odc(a, b, c, d):   # dokładna odległość dwóch odcinków (Eberly / S
 def lam_lam(L1, L2): return min(odc_odc(a, b, c, d) for a, b in L1 for c, d in L2)
 
 ODS, WYST = 1.75, 1.6
-def drut_Z(a, na, b, nb):
+def drut_Z(a, na, b, nb, ods_a=ODS):
     """Łamana drutu z zakończeniami „Z”: zwraca (odcinki przez otwory [zaczep, orczyk], odcinki główne)."""
     a, b, na, nb = Vector(a), Vector(b), Vector(na).normalized(), Vector(nb).normalized()
-    a1, b1 = a + na * ODS, b + nb * ODS
+    a1, b1 = a + na * ods_a, b + nb * ODS
     return [(a - na * WYST, a1), (b - nb * WYST, b1)], [(a1, b1)]
+def pret_Z(otw, n, zag, b, nb):
+    """Pręt gałki: noga „Z” przez otwór języczka (oś n) do zagięcia zag (odsadzenie zacz_ods), odcinek główny, „Z” w orczyku."""
+    otw, n, zag, b, nb = Vector(otw), Vector(n).normalized(), Vector(zag), Vector(b), Vector(nb).normalized()
+    b1 = b + nb * ODS
+    return [(otw - n * WYST, zag), (b - nb * WYST, b1)], [(zag, b1)]
 def druty(st):
-    Rg = Matrix(st['Rg'])
-    return {'PretLP': drut_Z(st['pretLP'][0], Rg @ Vector((0, 1, 0)), st['pretLP'][1], (0, 1, 0)),
-            'PretGD': drut_Z(st['pretGD'][0], Rg @ Vector((-1, 0, 0)), st['pretGD'][1], (-1, 0, 0)),
-            'DrutG': drut_Z(st['drutG'][0], (1, 0, 0), st['drutG'][1], (1, 0, 0)),
-            'DrutD': drut_Z(st['drutD'][0], (-1, 0, 0), st['drutD'][1], (-1, 0, 0))}
+    return {'PretLP': pret_Z(st['otwLP'], st['nLP'], st['pretLP'][0], st['pretLP'][1], (0, 1, 0)),
+            'PretGD': pret_Z(st['otwGD'], st['nGD'], st['pretGD'][0], st['pretGD'][1], (-1, 0, 0)),
+            'DrutG': drut_Z(st['drutG'][0], (1, 0, 0), st['drutG'][1], (1, 0, 0), P.get('pow_ods', ODS)),
+            'DrutD': drut_Z(st['drutD'][0], (-1, 0, 0), st['drutD'][1], (-1, 0, 0), P.get('pow_ods', ODS))}
 def bez_poczatku(odc, dl=2.5):   # odcinek główny bez 2,5 mm przy zagięciu na zaczepie (drut opiera się o płytkę zaczepu)
     return [(a + (b - a).normalized() * dl, b) for a, b in odc]
 def wszystko(dr): return dr[0] + dr[1]
