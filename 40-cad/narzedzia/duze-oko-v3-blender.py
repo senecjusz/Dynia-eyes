@@ -110,7 +110,7 @@ def ustaw_orczyk(e, os_, kat, f):
 for s in (1, -1): cyl('oś powiek Ø2', (s * 31.6, 0, 0), (s * 37.2, 0, 0), 1.0, M['os_'])
 
 # ---- druty z końcami w „Z”: łamana (przejście przez otwór wzdłuż osi otworu, odsadzenie 1,75, odcinek do drugiego otworu) ----
-def drut(nazwa, r=0.5):
+def drut(nazwa, r=P.get('drut_d', 1.0) / 2):
     cu = bpy.data.curves.new(nazwa, 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = r; cu.bevel_resolution = 3; cu.use_fill_caps = True
     sp = cu.splines.new('POLY'); sp.points.add(5); o = bpy.data.objects.new(nazwa, cu); o.data.materials.append(M['drut']); sc.collection.objects.link(o); wez(o); return sp
 def ustaw_drut(sp, a, na, b, nb, f, odst=1.75, wyst=1.6, odst_a=None):
@@ -119,7 +119,7 @@ def ustaw_drut(sp, a, na, b, nb, f, odst=1.75, wyst=1.6, odst_a=None):
     a1, b1 = a + na * oa, b + nb * odst
     pts = [a - na * wyst, a1, a1 + (b1 - a1).normalized() * 1.2, b1 - (b1 - a1).normalized() * 1.2, b1, b - nb * wyst]
     for i, q in enumerate(pts): sp.points[i].co = (q.x, q.y, q.z, 1); sp.points[i].keyframe_insert('co', frame=f)
-dLP, dGD, dG, dD = drut('pręt L–P Ø1,0'), drut('pręt G–D Ø1,0'), drut('drut powieki górnej Ø1,0'), drut('drut powieki dolnej Ø1,0')
+dLP, dGD, dG, dD = drut('pręt L–P'), drut('pręt G–D'), drut('drut powieki górnej'), drut('drut powieki dolnej')
 
 # ---- napisy ----
 def napis(tekst, gdzie, rozm=4.0):

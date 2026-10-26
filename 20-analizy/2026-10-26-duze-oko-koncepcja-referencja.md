@@ -128,6 +128,13 @@ Zadaję je w rozmowie (`grilling`). Odpowiedzi dopiszę tutaj.
 - **P4 – źrenica Ø20:** syn maluje tęczówkę dowolnie, ale czarny środek ≤ Ø20, żeby otwarta powieka go nie zasłaniała.
 - **P5 – gałka wystaje 24 mm przed rant**, zamknięte powieki 28.
 
+### Odpowiedzi (stan 26.10)
+
+- **P1 i P3:** rozstrzygnięte decyzją PM po ocenie Opus 5.5 i Astry: płyta pozioma za tubą, moduł wklejony w tubę na gorąco, bez M3.
+- **P2:** trzy rzeczywiste tuby 30 / 40 / 50.
+- **P4, P5 i czasza:** decyzje użytkownika 26.10 – źrenica najwyżej Ø20, gałka 24 mm przed rantem, czasza ok. 111°.
+- Model, który z tego wynika: `40-cad/openscad/duze-oko-v3.scad` i `duze-oko-v3-montaz.md`.
+
 ## 8. Do sprawdzenia w CAD (po akceptacji)
 
 - **Przemiatanie narożników** (L–P i G–D naraz) na siatkach: języczek L–P wobec piasty tylnej, pręty wobec krawędzi czaszy i powiek.

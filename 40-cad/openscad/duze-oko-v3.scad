@@ -7,7 +7,7 @@
 //   czesc: Plyta, Galka, PowiekaGorna, PowiekaDolna, PrzedluzenieOrczyka, Tuba30, Tuba40, Tuba50, Maskownica,
 //          parametry (echo JSON), zlozenie (podgląd całości)
 //   tryb:  "druk" (orientacja do druku, płaska strona na z = 0) albo "zlozenie" (położenie w układzie złożenia)
-// [Z] = założenie do potwierdzenia (P4 źrenica, P5 wystawanie gałki – pytania na rano).
+// Źrenica ≤ Ø20, gałka 24 mm przed rantem, czasza ok. 111°: decyzje użytkownika 26.10 (P4, P5).
 
 czesc = "zlozenie";
 tryb  = "zlozenie";
@@ -16,25 +16,26 @@ $fa = 3; $fs = 0.4;
 // ---------- Parametry: gałka ----------
 R_kula   = 30;     // Ø60
 sc_kula  = 2;      // ścianka
-z_kraw   = -11;    // płaska krawędź tylna czaszy (ok. 111° od przodu; przy −11,5 sztywny drut „Z” L–P miał 0,27 do krawędzi przy theta ±25)
+z_kraw   = -11;    // płaska krawędź tylna czaszy, ok. 111° od przodu – decyzja użytkownika 26.10 ( przy −11,5 sztywny drut „Z” L–P miał 0,27 do krawędzi przy theta ±25)
 piasta_d = 14;     // jedna centralna piasta od przedniego bieguna
 piasta_z = 14;     // czoło piasty (piasta przednia kardana kończy się na +12,75)
 leb_d    = 9.5;    // gniazdo łba M5×8 ISO 4762 (Ø8,5 × 5) + 0,5 na stronę na klej
 leb_h    = 5.2;
-zacz_r   = 15.3;   // otwór zaczepu pręta: promień od osi oka (mostek ≥ 1 mm od wylotu fazki do końca języczka r 12,8)
+zacz_r   = 15.5;   // otwór zaczepu pręta: promień od osi oka (mostek ≥ 1 mm od wylotu fazki do końca języczka r 12,8)
 zacz_z   = -4.5;   // i położenie wzdłuż osi
 zacz_r0  = 12.8;   // wewnętrzny koniec języczka
 zacz_gr  = 2.0;    // grubość języczka i słupka G–D (wzdłuż osi otworu)
 zacz_h   = 5;      // wysokość języczka wzdłuż osi oka
-zacz_otw = 1.3;    // otwór na drut Ø1,0 w uszkach powiek
-zacz_gardz_d = 2.0;  // otwór dwustożkowy w języczkach gałki: światło gardzieli
-zacz_gardz_l = 1.0;  // długość gardzieli; dalej fazki 45° do obu ścian (przechył do 36,8°)
+drut_d   = 1.2;    // drut napędu (posiadany sprężynowy Ø1,2; Ø1,0 brak – użytkownik 26.10)
+zacz_otw = 1.5;    // otwór na drut Ø1,2 w uszkach powiek i przedłużeniach orczyka (0,15 na stronę)
+zacz_gardz_d = 2.2;  // otwór dwustożkowy w języczkach gałki: światło gardzieli (drut Ø1,2 przechyla się do ok. 39°)
+zacz_gardz_l = 0.8;  // długość gardzieli; dalej fazki 45° do obu ścian
 zacz_ods = 4.0;      // odsadzenie nogi „Z” od środka otworu wzdłuż osi otworu (luz pręta do języczka; PM: 3,5–4,3)
 slup_GD_szer = 6.5;  // słupek zaczepu G–D w płaszczyźnie y = zacz_r: szerokość w x
 slup_GD_nasada = 4;  // początek pogrubienia słupka ku czaszy (skos 45° w ±y do grubości 14)
 zacz_pod = 20;     // od tego promienia języczek ma podparcie 45° do krawędzi (druk krawędzią w dół)
-zrenica_d = 20;    // [Z] P4 – tylko do rachunku odsłonięcia, w modelu nic nie rysuje
-wystawanie = 24;   // [Z] P5 – gałka przed rantem tuby: rant na z = R_kula − wystawanie
+zrenica_d = 20;    // decyzja użytkownika 26.10 (P4): czarny środek najwyżej Ø20; tylko do rachunku odsłonięcia, w modelu nic nie rysuje
+wystawanie = 24;   // decyzja użytkownika 26.10 (P5): gałka 24 mm przed rantem tuby; rant na z = R_kula − wystawanie
 
 // ---------- Parametry: powieki ----------
 pG_ri = 33.2; pG_ro = 34.4;      // górna (zewnętrzna)
@@ -73,7 +74,7 @@ kol_z0  = -51;     // tył słupka i klocka (2 mm w płycie; orczyk G–D pracuj
 sv_L = 22.8; sv_W = 12.5; sv_H = 22.5; sv_ucho_h = 18; sv_ucho_gr = 2; sv_ucho_wys = 4.5; sv_wal = 5.5; sv_czubek = 35;
 sv_luz = 0.2;      // gniazdo na klej: luz na stronę
 // położenia wałków [x, y, z]; kierunki opisane przy gniazdach
-LP_wal = [32.8, 0, -66];      // pion (do góry), orczyk 17,5 w płaszczyźnie y ≈ 0
+LP_wal = [33.0, 0, -66];      // pion (do góry), orczyk 17,5 w płaszczyźnie y ≈ 0
 GD_wal = [0, 2.3, -60];       // poziomo w +x, korpus po lewej, orczyk 11,5 w płaszczyźnie x ≈ 0
 PG_wal = [0, -9.5, -95];      // poziomo w −x, korpus po prawej, orczyk 25 (przedłużenie) w płaszczyźnie x ≈ 1,75; przód korpusu 1 mm za tylnym uchem L–P
 PD_wal = [0, -9.5, -76];      // poziomo w +x, korpus po lewej, orczyk 25 w płaszczyźnie x ≈ −1,75 (przez szczelinę w płycie)
@@ -147,7 +148,7 @@ module zaczep_GD() {   // słupek w płaszczyźnie y = zacz_r (gr. wzdłuż y) o
     translate([0, zacz_r, zacz_z]) rotate([90, 0, 0]) otwor_dwustozkowy(zacz_gr);
   }
 }
-// próbka zaczepu: płytka 2 mm stojąca na stopce, otwory jak w gałce (A: Ø2,0 × 1,2; B: Ø2,3 × 0,6 do porównania)
+// próbka zaczepu: płytka 2 mm stojąca na stopce, otwory pod drut Ø1,2 (A: jak w gałce Ø2,2 × 0,8; B: Ø2,3 × 0,6 do porównania)
 module probka_zaczepu() {
   difference() {
     union() { pudlo(-14, 14, -5, 5, 0, 1.6); pudlo(-14, 14, -zacz_gr / 2, zacz_gr / 2, 0, 12); }
@@ -320,7 +321,7 @@ if (czesc == "parametry") {
   echo(str("PARAMETRY{\"R_kula\":", R_kula, ",\"z_kraw\":", z_kraw, ",\"zacz_r\":", zacz_r, ",\"zacz_z\":", zacz_z,
            ",\"LP_wal\":", LP_wal, ",\"GD_wal\":", GD_wal, ",\"PG_wal\":", PG_wal, ",\"PD_wal\":", PD_wal,
            ",\"orcz_LP\":", orcz_LP, ",\"orcz_GD\":", orcz_GD, ",\"orcz_pow\":", orcz_pow,
-           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"pG_x_orcz\":", pG_x_orcz, ",\"pD_x_orcz\":", pD_x_orcz, ",\"zacz_ods\":", zacz_ods, ",\"pow_ods\":", pow_ods, ",\"zacz_gardz_d\":", zacz_gardz_d, ",\"zacz_gardz_l\":", zacz_gardz_l, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
+           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"pG_x_orcz\":", pG_x_orcz, ",\"pD_x_orcz\":", pD_x_orcz, ",\"drut_d\":", drut_d, ",\"zacz_ods\":", zacz_ods, ",\"pow_ods\":", pow_ods, ",\"zacz_gardz_d\":", zacz_gardz_d, ",\"zacz_gardz_l\":", zacz_gardz_l, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
            ",\"pl_y\":", pl_y, ",\"pl_zP\":", pl_zP, ",\"kol_zP\":", kol_zP, ",\"piasta_z\":", piasta_z, "}"));
   cube(1);
 } else if (czesc == "zlozenie") {
