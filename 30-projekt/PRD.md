@@ -5,7 +5,7 @@ Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źr
 ## 1. Cel i termin
 
 - Prawdziwa dynia z ruchomymi oczami na wystawę **w szkole**, robiona z synem.
-- **Dynia w szkole w środę 28.10**, stoi kilka dni (także 31.10). Większość gotowa do niedzieli 25.10.
+- **Dynia w szkole w czwartek 29.10 rano** (zmiana użytkownika 27.10, wcześniej środa 28.10), stoi kilka dni (także 31.10). Większość gotowa do niedzieli 25.10.
 
 ## 2. Skład
 
@@ -45,7 +45,8 @@ Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źr
 - ESP32-C3 + PCA9685: do 8 małych oczu + 4 serwa dużego oka (≤ 12 kanałów).
 - **Tylko powerbank** (w szkole nie ma gniazdka): Baseus 20 000 mAh przez USB-C, zapas Manta. Wymiana albo podładowanie powerbanku bez wyjmowania elektroniki.
 - **Podstawka pod dynią** (zmiana użytkownika 24.10, zastępuje pudełko w środku dyni): w niej powerbank i elektronika, kable do dyni przez otwór w dnie dyni, dynia (ok. 10 kg) przymocowana do podstawki od środka. **Powerbank wymieniany szufladką otwieraną do przodu (z tyłu stoją inne dynie), bez podnoszenia dyni; w szufladce tylko powerbank, USB-C wpinany ręcznie. Szufladka zabezpieczona śrubą przed otwarciem przez dzieci (użytkownik 25.10).** Elektronika (ESP32-C3, PCA9685) na stałe w podstawce, nie w szufladzie; **w dyni nie ma żadnego pudełka** – całe „pudełko” to podstawka; żadne kable nie wychodzą na zewnątrz. **Stan 25.10: dynia kupiona, podstawka z drewna wykonana** – dno sklejone ze ściankami, elektronika mocowana do dna, na końcu płyta górna 18 mm przykręcona 4 śrubami do dołu (wymiary wykonane niżej); dynia mocowana tuleją przez otwór Ø80 w środku dna (przykręcona do płyty, nakrętka od środka dyni), przez tuleję idą skrętki (zmiany użytkownika 25.10). Podstawa może być ze sklejki 18 lub 12 mm (użytkownik ma piłę stołową), druk tam, gdzie upraszcza. Powerbank Baseus 160 × 70 × 32 mm, na środku krótszej ścianki USB-C, obok 2 × USB-A. Szufladka i uchwyty elektroniki drukowane 3D; korpus podstawki może być ze sklejki.
-- **Okablowanie skrętką Ethernet** (użytkownik ma kabel i zaciskarkę RJ45): jedna skrętka na grupę 3–4 małych oczu po jednej stronie, druga na drugą stronę, trzecia na duże oko. Rozłączne na łącznikach RJ45 gniazdo–gniazdo w dyni.
+- **Jeden przycisk chwilowy na prawym boku podstawki, blisko tyłu, wklejony w otwór Ø12 w ściance 18 mm** (użytkownik 27.10; PBS-33B, Ø12, NO, posiadany; zastępuje wariant z dwoma przyciskami): przytrzymanie 5 s = blokada (duże oko na środek, powieki otwarte, wszystkie serwa stop – do rysowania tęczówek); ponowne przytrzymanie 5 s = powrót do pracy; krótkie naciśnięcie nic nie robi. Całkowite odcięcie prądu = wypięcie USB-C w szufladzie. Po włączeniu prądu dynia zawsze startuje w zwykłej pracy; blokada nie przetrwa wyłączenia – wypięcie prądu działa też jako reset (użytkownik 27.10).
+- **Okablowanie skrętką Ethernet** (użytkownik ma kabel i zaciskarkę RJ45): jedna skrętka na grupę 3–4 małych oczu po jednej stronie, druga na drugą stronę, trzecia na duże oko. Rozłączne na gniazdach keystone RJ45 użytkownika w dyni (zmiana 27.10, zamiast łączników gniazdo–gniazdo). Kanały PCA9685: lewa strona 0–3, prawa 4–7, duże oko 12–15 (lewo–prawo, góra–dół, powieka górna, dolna); pinout w `50-elektronika/polaczenia.md` (użytkownik 27.10).
 - **Podstawka – wymiary wykonane (pomiary użytkownika 25.10, mają pierwszeństwo przed modelem):** szerokość wnętrza **216 mm** (zmierzona przy froncie i z tyłu), wysokość wnętrza 40 mm, dno 9 mm, głębokość całkowita 226 mm, wysokość całkowita 69 mm (z sumy dno + wnętrze + płyta wychodzi 67; bez wpływu na szufladkę), wkręty płyty górnej 20 mm od frontu i od tyłu, otwór w płycie Ø60–61.
 - **Szufladka v2 (użytkownik 25.10, zastępuje szufladkę jednoczęściową):**
   - korpus i front osobno, skręcane (2 × M4 rączki + 2 × M4 × 12 stożkowe przy dolnych rogach, łby równo z licem – użytkownik 26.10); korpus ≤ 215 mm szerokości;
@@ -60,6 +61,7 @@ Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źr
 - **Ktoś podchodzi (PIR):** rusza się więcej oczu, najwyżej 2 małe naraz; duże oko się otwiera i rozgląda.
 - **Ruch „plastyczny”:** płynne przyspieszanie i hamowanie, sakady przeplatane spokojnym rozglądaniem, mruganie, przymykanie powiek zależnie od nastroju, powieka górna podąża za spojrzeniem.
 - Strona w telefonie: efekty i kalibracja (jest).
+- **Minimum na szkołę (użytkownik 27.10):** 8 małych oczu, ruch oczu, PIR i przycisk blokady; bez strony w telefonie. Strona i efekty po terminie.
 - Duże oko na 4 serwach: powieki niezależne (decyzja 25.10, wraca do stanu ze starego firmware'u).
 - Pilot później, jeśli starczy czasu (sam software).
 

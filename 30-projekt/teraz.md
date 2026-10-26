@@ -4,7 +4,7 @@ Jedyna agenda projektu. Cel i kolejność zmienia tylko użytkownik. Agent na st
 
 Podgląd z diagramem: `teraz.html`. Po każdej zmianie tego pliku agent uruchamia `python3 30-projekt/teraz_html.py`.
 
-**Bieżące zadanie (26.10):** Epik Dynia na środę 28.10. Plan i stany zadań: `30-projekt/plan.html`. Duże oko v3 gotowe w CAD (`40-cad/3mf/Duze oko v3/`, decyzje 26.10 w `decyzje.md`), czeka na próbkę zaczepu i druk. Szufladka v2 w druku. Otwarte: kalibracja małych oczu (sesja kalibrator), plan i program dynia-v2 (S1–S3), montaż elektroniki w podstawce (P8–P12), montaż w dyni (K2–K5). Otwarte sprawy z 25.10: `30-projekt/otwarte-2026-10-25.md` (pkt 1 i 3 zamknięte przez v3). Sekcja niżej (E1–E6) jest historyczna.
+**Bieżące zadanie (26.10):** Epik Dynia na czwartek 29.10 rano. Plan i stany zadań: `30-projekt/plan.html`. Duże oko v3 gotowe w CAD (`40-cad/3mf/Duze oko v3/`, decyzje 26.10 w `decyzje.md`), czeka na próbkę zaczepu i druk. Szufladka v2 w druku. Otwarte: kalibracja małych oczu (sesja kalibrator), plan i program dynia-v2 (S1–S3), montaż elektroniki w podstawce (P8–P12), montaż w dyni (K2–K5). Otwarte sprawy z 25.10: `30-projekt/otwarte-2026-10-25.md` (pkt 1 i 3 zamknięte przez v3). Sekcja niżej (E1–E6) jest historyczna.
 
 ```mermaid
 flowchart TD
