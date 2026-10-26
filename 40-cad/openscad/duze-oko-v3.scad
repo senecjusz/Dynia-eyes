@@ -16,7 +16,7 @@ $fa = 3; $fs = 0.4;
 // ---------- Parametry: gałka ----------
 R_kula   = 30;     // Ø60
 sc_kula  = 2;      // ścianka
-z_kraw   = -11.5;  // płaska krawędź tylna czaszy (ok. 113° od przodu; −15 dawało kolizję pręta L–P z krawędzią, −12 luz 0,36 w narożniku)
+z_kraw   = -11;    // płaska krawędź tylna czaszy (ok. 111° od przodu; przy −11,5 sztywny drut „Z” L–P miał 0,27 do krawędzi przy theta ±25)
 piasta_d = 14;     // jedna centralna piasta od przedniego bieguna
 piasta_z = 14;     // czoło piasty (piasta przednia kardana kończy się na +12,75)
 leb_d    = 9.5;    // gniazdo łba M5×8 ISO 4762 (Ø8,5 × 5) + 0,5 na stronę na klej
@@ -31,6 +31,7 @@ zacz_gardz_d = 2.0;  // otwór dwustożkowy w języczkach gałki: światło gard
 zacz_gardz_l = 1.0;  // długość gardzieli; dalej fazki 45° do obu ścian (przechył do 36,8°)
 zacz_ods = 4.0;      // odsadzenie nogi „Z” od środka otworu wzdłuż osi otworu (luz pręta do języczka; PM: 3,5–4,3)
 slup_GD_szer = 6.5;  // słupek zaczepu G–D w płaszczyźnie y = zacz_r: szerokość w x
+slup_GD_nasada = 4;  // początek pogrubienia słupka ku czaszy (skos 45° w ±y do grubości 14)
 zacz_pod = 20;     // od tego promienia języczek ma podparcie 45° do krawędzi (druk krawędzią w dół)
 zrenica_d = 20;    // [Z] P4 – tylko do rachunku odsłonięcia, w modelu nic nie rysuje
 wystawanie = 24;   // [Z] P5 – gałka przed rantem tuby: rant na z = R_kula − wystawanie
@@ -130,9 +131,16 @@ module zaczep_GD() {   // słupek w płaszczyźnie y = zacz_r (gr. wzdłuż y) o
     z0 = zacz_z - zacz_gardz_d / 2 - (zacz_gr - zacz_gardz_l) / 2 - 1;   // 1 mm pod wylotem fazki: niżej pracuje pręt G–D
     intersection() {
       // od przedniej czaszy w dół; spód 3 mm szerokości, narożniki ścięte pod 45° (luz pręta przy wychyleniu L–P)
-      hull() {
-        pudlo(-1.5, 1.5, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, z0, R_kula);
-        pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, z0 + slup_GD_szer / 2 - 1.5, R_kula);
+      union() {
+        hull() {
+          pudlo(-1.5, 1.5, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, z0, R_kula);
+          pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, z0 + slup_GD_szer / 2 - 1.5, R_kula);
+        }
+        // nasada: od z = slup_GD_nasada pogrubienie w y skosem 45° do czaszy (sztywność na zginanie siłą pręta)
+        hull() {
+          pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, slup_GD_nasada, R_kula);
+          pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2 - 6, zacz_r + zacz_gr / 2 + 6, slup_GD_nasada + 6, R_kula);
+        }
       }
       sphere(r = R_kula - sc_kula / 2, $fn = 120);
     }

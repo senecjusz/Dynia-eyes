@@ -1,0 +1,9 @@
+Duże oko v3 – pręty gałki jako jeden sztywny drut o stałych zagięciach (model w nagłówku duze-oko-v3-z-sztywne.py).
+Dopuszczalny przechył nogi: języczek gałki 36.9° (Ø2 × 1), orczyk 10.1° (Ø1,3 × 1,6 [Z]).
+
+Pręt LP: długość odcinka głównego stała 61.54 (odchyłka rozwiązania 0.0000); przechył nogi przy gałce do 28.9° (dopuszczalne 36.9°), przy orczyku do 7.2° (dopuszczalne 10.1°); luz drutu do gałki 0.73 przy (0, -25, [15.3, 4.4, -4.25]), do płyty 3.71, do piasty tylnej 3.95
+Pręt GD: długość odcinka głównego stała 55.58 (odchyłka rozwiązania 0.0000); przechył nogi przy gałce do 29.2° (dopuszczalne 36.9°), przy orczyku do 8.0° (dopuszczalne 10.1°); luz drutu do gałki 0.72 przy (-35, 25, [6.03, 9.48, -8.86]), do płyty 1.71, do piasty tylnej 1.97
+  LP: stany z luzem do gałki < 0,5: []
+  GD: stany z luzem do gałki < 0,5: []
+
+WYNIK: OK (przechył ≥ 4° poniżej dopuszczalnego w języczku, w orczyku w granicy, luzy ≥ 0,5)
