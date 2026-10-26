@@ -1,5 +1,87 @@
 # Połączenia
 
+## Dynia: połączenia docelowe (27.10)
+
+Ustalone z użytkownikiem 26–27.10. Program: `dynia-v2/`. Rozmieszczenie na tacce: `40-cad/openscad/podstawka.scad` (kaseta elektroniki v2). Wszystkie połączenia w podstawce na wtykach Dupont, z wyjątkiem zacisku śrubowego PCA9685.
+
+### Zasilanie
+
+| Skąd | Dokąd | Uwagi |
+|---|---|---|
+| Gniazdo USB-C wkręcane, czerwony | zacisk PCA9685 V+ | gniazdo z 2 przewodami (5,1 kΩ na CC – sprawdzić pomiarem 5 V z powerbanku); kabel C–C z powerbanku w szufladzie |
+| Gniazdo USB-C, czarny | zacisk PCA9685 GND | |
+| Kondensator 470 µF / 10 V, „+” | PCA kanał 8, pin V+ | „−” (pasek) na pin GND kanału 8; zestaw użytkownika |
+| ESP32-C3 5V | PCA kanał 9, pin V+ | nie zasilać jednocześnie z USB komputera |
+| ESP32-C3 G | PCA kanał 9, pin GND | |
+| Rezystor 47 Ω / 3 W (tylko gdy powerbank gaśnie) | zacisk V+ i GND | wisi na nóżkach na słupkach tacki; ok. 0,53 W |
+
+Kanały 8–11 PCA nie sterują serwami: ich piny V+ i GND (wspólne szyny z zaciskiem) służą jako rozdzielacz 5 V. Kanał 11 wolny.
+
+### ESP32-C3 SuperMini
+
+| Pin ESP | Dokąd |
+|---|---|
+| GPIO8 (SDA) | PCA listwa boczna SDA |
+| GPIO9 (SCL) | PCA listwa boczna SCL |
+| 3V3 | PCA listwa boczna VCC (logika 3,3 V) |
+| GPIO10 | PIR OUT |
+| GPIO4 | przycisk, nóżka 1 (nóżka 2 → PCA listwa boczna GND); podciąganie w ESP |
+
+ESP ma piny skierowane w dół i stoi na 2 słupkach tacki (klej); przewody Dupont od spodu. Piny startowe 2, 8, 9 nie są ciągnięte do masy.
+
+### PIR HW-416A (klon HC-SR501)
+
+| PIR | Dokąd |
+|---|---|
+| VCC | PCA kanał 10, pin V+ |
+| GND | PCA kanał 10, pin GND |
+| OUT | ESP GPIO10 (3,3 V przy ruchu) |
+
+Piny patrząc od strony kopułki, potencjometry na dole: VCC, OUT, GND (od strony elementów odwrotnie, VCC przy diodzie). Zworka na H, potencjometr czasu (najpewniej bliżej zworki) w lewo do oporu, czułość na środku. PIR jest we froncie szufladki: przewód z pętlą zapasu ok. 200 mm.
+
+### Przycisk
+
+PBS-33B, chwilowy NO, otwór Ø12. Przytrzymanie 5 s = blokada (duże oko na środku, powieki otwarte, ruch stop – do rysowania tęczówek), ponowne 5 s = praca. Po włączeniu prądu zawsze praca.
+
+### Kanały PCA9685
+
+| Kanały | Co |
+|---|---|
+| 0–3 | małe oczy, strona lewa (patrząc od przodu) |
+| 4–7 | małe oczy, strona prawa |
+| 8, 9, 10 | rozdzielacz 5 V: kondensator, ESP, PIR |
+| 11 | wolny |
+| 12 | duże oko lewo–prawo |
+| 13 | duże oko góra–dół |
+| 14 | powieka górna |
+| 15 | powieka dolna |
+
+Listwa kanałów HW-170: od krawędzi płytki GND (czarny), V+ (czerwony), sygnał PWM (żółty).
+
+### Skrętki do dyni (T568B na obu końcach)
+
+Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce każda żyła z wtykiem Dupont na pin PCA; w dyni keystone (gniazdo RJ45), do niego krótki odcinek skrętki z wtykiem RJ45 od strony oczu.
+
+| Żyła | Kolor | PCA | Serwo |
+|---|---|---|---|
+| 1 | biało-pomarańczowy | sygnał kanału n | A: pomarańczowy |
+| 2 | pomarańczowy | sygnał n+1 | B: pomarańczowy |
+| 3 | biało-zielony | sygnał n+2 | C: pomarańczowy |
+| 6 | zielony | sygnał n+3 | D: pomarańczowy |
+| 4 | niebieski | V+ kanału n | A i B: czerwony |
+| 5 | biało-niebieski | GND kanału n | A i B: brązowy |
+| 7 | biało-brązowy | V+ kanału n+2 | C i D: czerwony |
+| 8 | brązowy | GND kanału n+2 | C i D: brązowy |
+
+Duże oko: A lewo–prawo, B góra–dół, C powieka górna, D powieka dolna. Po stronie oczu żyły lutowane do listew goldpin 3-pin (GND, V+, sygnał), po jednej na serwo; para serw dzieli żyły V+ i GND.
+
+### Kolejność uruchomienia
+
+1. Powerbank, bez ESP i serw: ok. 5 V na pinach V+/GND kanału 9.
+2. ESP i PCA: `skan-i2c` pokazuje 0x40 i 0x70.
+3. Skrętki i oczy: `kalibracja` (`k <n>`), oko po oku.
+4. `dynia-v2`. Klej termiczny na wtyki dopiero po teście.
+
 ## Stanowisko testowe E3.4 (19.10): ESP32-C3 SuperMini + PCA9685 + 1 × SG90
 
 Płytka stykowa, widok z góry: ESP32-C3 USB w prawo, złącze sterujące PCA9685 po lewej (od góry GND, OE, SCL, SDA, VCC, V+).
