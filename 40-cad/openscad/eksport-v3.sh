@@ -22,7 +22,7 @@ N=../narzedzia
 for c in "${CZ[@]}"; do f="$OUT/${PLIK[$c]}.3mf"
   node $N/sprawdz_siatki.js "$f" || { node $N/napraw_siatki.js "$f" "$STL/naprawa.3mf" && node $N/sprawdz_siatki.js "$STL/naprawa.3mf" && cp "$STL/naprawa.3mf" "$f"; }
   node $N/skladowe_siatki.js "$f"; done
-args=(); for c in "${CZ[@]}"; do args+=("$OUT/${PLIK[$c]}.3mf"); done
+args=(); for c in "${CZ[@]}"; do [ "$c" = PodporaPlyty ] || args+=("$OUT/${PLIK[$c]}.3mf"); done   # podpora tylko w pliku z płytą pod 45°
 node $N/zbiorczy_3mf.js "$OUT/Duze oko v3 - wszystkie czesci.3mf" 10 "${args[@]}"
 node $N/sprawdz_siatki.js "$OUT/Duze oko v3 - wszystkie czesci.3mf"
 # płyta pod 45° z projektowaną podporą: dwa obiekty w położeniu na stole (podpora tylko łącznikami w płycie)
