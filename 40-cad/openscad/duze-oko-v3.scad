@@ -1,0 +1,332 @@
+// Duże oko v3 – adaptacja The Face maker101 (koncepcja 20-analizy/2026-10-26-duze-oko-koncepcja-referencja.md,
+// decyzja PM 20-analizy/review/2026-10-26-odstepstwa-koncepcji-decyzja-pm.md): płyta pozioma za tubą, kardan 5/5 w środku kuli,
+// pręty z drutu Ø1,0 z końcami w „Z”, dwie powieki na słupkach płyty, tuba 30/40/50 z kołnierzem, maskownica.
+//
+// Układ złożenia: 0 = środek kuli, z do przodu (na zewnątrz dyni), y w górę, x w prawo patrząc od przodu.
+// Użycie: openscad -D 'czesc="Galka"' -D 'tryb="druk"' -o Galka.3mf duze-oko-v3.scad
+//   czesc: Plyta, Galka, PowiekaGorna, PowiekaDolna, PrzedluzenieOrczyka, Tuba30, Tuba40, Tuba50, Maskownica,
+//          parametry (echo JSON), zlozenie (podgląd całości)
+//   tryb:  "druk" (orientacja do druku, płaska strona na z = 0) albo "zlozenie" (położenie w układzie złożenia)
+// [Z] = założenie do potwierdzenia (P4 źrenica, P5 wystawanie gałki – pytania na rano).
+
+czesc = "zlozenie";
+tryb  = "zlozenie";
+$fa = 3; $fs = 0.4;
+
+// ---------- Parametry: gałka ----------
+R_kula   = 30;     // Ø60
+sc_kula  = 2;      // ścianka
+z_kraw   = -11;    // płaska krawędź tylna czaszy (ok. 111° od przodu; przy −11,5 sztywny drut „Z” L–P miał 0,27 do krawędzi przy theta ±25)
+piasta_d = 14;     // jedna centralna piasta od przedniego bieguna
+piasta_z = 14;     // czoło piasty (piasta przednia kardana kończy się na +12,75)
+leb_d    = 9.5;    // gniazdo łba M5×8 ISO 4762 (Ø8,5 × 5) + 0,5 na stronę na klej
+leb_h    = 5.2;
+zacz_r   = 15.3;   // otwór zaczepu pręta: promień od osi oka (mostek ≥ 1 mm od wylotu fazki do końca języczka r 12,8)
+zacz_z   = -4.5;   // i położenie wzdłuż osi
+zacz_r0  = 12.8;   // wewnętrzny koniec języczka
+zacz_gr  = 2.0;    // grubość języczka i słupka G–D (wzdłuż osi otworu)
+zacz_h   = 5;      // wysokość języczka wzdłuż osi oka
+zacz_otw = 1.3;    // otwór na drut Ø1,0 w uszkach powiek
+zacz_gardz_d = 2.0;  // otwór dwustożkowy w języczkach gałki: światło gardzieli
+zacz_gardz_l = 1.0;  // długość gardzieli; dalej fazki 45° do obu ścian (przechył do 36,8°)
+zacz_ods = 4.0;      // odsadzenie nogi „Z” od środka otworu wzdłuż osi otworu (luz pręta do języczka; PM: 3,5–4,3)
+slup_GD_szer = 6.5;  // słupek zaczepu G–D w płaszczyźnie y = zacz_r: szerokość w x
+slup_GD_nasada = 4;  // początek pogrubienia słupka ku czaszy (skos 45° w ±y do grubości 14)
+zacz_pod = 20;     // od tego promienia języczek ma podparcie 45° do krawędzi (druk krawędzią w dół)
+zrenica_d = 20;    // [Z] P4 – tylko do rachunku odsłonięcia, w modelu nic nie rysuje
+wystawanie = 24;   // [Z] P5 – gałka przed rantem tuby: rant na z = R_kula − wystawanie
+
+// ---------- Parametry: powieki ----------
+pG_ri = 33.2; pG_ro = 34.4;      // górna (zewnętrzna)
+pD_ri = 31.0; pD_ro = 32.2;      // dolna (wewnętrzna); luz 1,0 do gałki i między powiekami
+pow_tyl  = 3;      // krawędź tylna powieki w płaszczyźnie z = −3 (płaska strona do druku; ucho r 3 nad stołem)
+ucho_r   = 3;      // ucho zawiasu: krążek r 3 z otworem Ø2,4
+os_otw   = 2.4;    // otwór osi w uszach (drut Ø2, luz 0,2 na stronę)
+uchoG    = [33.2, 34.4];   // |x| ucha górnej
+uchoD    = [31.8, 33.0];   // |x| ucha dolnej (0,2 osiowo do ucha górnej)
+zaczG    = [5, 34.0];      // zaczep drutu powieki górnej: [x, promień od osi zawiasu]
+zaczD    = [-5, 31.5];     // dolnej
+zacz_pow_gr = 2;           // grubość uszka drutu (wzdłuż x)
+zacz_pow_z  = 1.6;         // otwór uszka nad płaszczyzną osi (pod uszkiem wycięcie paska krawędzi tylnej)
+pow_ods     = 2.5;         // odsadzenie nogi „Z” drutu powieki od środka uszka (luz drutu do płytki uszka)
+otwarcie = 51.5;           // pełne otwarcie powiek
+
+// ---------- Parametry: płyta, słupki, słupek kardana ----------
+pl_y    = -15;     // wierzch płyty (ucha serwa L–P leżą na płycie, orczyk L–P na wysokości osi)
+pl_gr   = 5;
+pl_zP   = -49;     // przód płyty: za kołnierzem tuby 50 (z −44…−47), 2 mm zapasu
+pl_zT   = -105;
+pl_x    = 42;
+sl_x0   = 34.7;    // słupek zawiasu: od x 34,7 do łuku R37,2 (0,95 do ścianki tuby R38,15 na całej szerokości)
+sl_R    = 37.2;
+sl_h    = 10;      // wysokość słupka (y ±5)
+sl_zP   = 4;       // przód słupka
+sl_otw  = 2.4;     // otwór na drut Ø2 w słupku: luźny, drut na CA (decyzja PM o kleju; wcisk ugiąłby ramię)
+pod_x0  = 33.2;    // podpora słupka (pion) od płyty do słupka, z −49…−53
+pod_gr  = 4;
+kol_d   = 12;      // słupek kardana
+kol_zP  = -14.25;  // czoło słupka (piasta tylna kardana kończy się na −12,75; trzpień wchodzi 6,5)
+kol_klocek = [12, 4];   // klocek słupka kardana przed płytą: szerokość x, głębokość z (w świetle tuby)
+kol_z0  = -51;     // tył słupka i klocka (2 mm w płycie; orczyk G–D pracuje za nim)
+
+// ---------- Parametry: serwa MG90S (rysunek Miuzei, 30-projekt/e6-pomiary.md) ----------
+sv_L = 22.8; sv_W = 12.5; sv_H = 22.5; sv_ucho_h = 18; sv_ucho_gr = 2; sv_ucho_wys = 4.5; sv_wal = 5.5; sv_czubek = 35;
+sv_luz = 0.2;      // gniazdo na klej: luz na stronę
+// położenia wałków [x, y, z]; kierunki opisane przy gniazdach
+LP_wal = [32.8, 0, -66];      // pion (do góry), orczyk 17,5 w płaszczyźnie y ≈ 0
+GD_wal = [0, 2.3, -60];       // poziomo w +x, korpus po lewej, orczyk 11,5 w płaszczyźnie x ≈ 0
+PG_wal = [0, -9.5, -95];      // poziomo w −x, korpus po prawej, orczyk 25 (przedłużenie) w płaszczyźnie x ≈ 1,75; przód korpusu 1 mm za tylnym uchem L–P
+PD_wal = [0, -9.5, -76];      // poziomo w +x, korpus po lewej, orczyk 25 w płaszczyźnie x ≈ −1,75 (przez szczelinę w płycie)
+orcz_LP = 17.5; orcz_GD = 11.5; orcz_pow = 25;
+pG_x_orcz = 1.75;  // płaszczyzna otworu przedłużenia orczyka powieki górnej (przedłużenie na zewnętrznej stronie ramienia, czubek wałka x = 3)
+pD_x_orcz = -1.75; // dolnej (czubek wałka x = −3)
+pG_psi0 = 25;      // kąt orczyka powieki górnej przy zamkniętej powiece (od +y ku +z, w płaszczyźnie x = zaczG.x)
+pD_psi0 = 35;      // dolnej (od −y ku +z)
+
+// ---------- Parametry: przedłużenie orczyka ----------
+prz_L = 28; prz_szer = 6; prz_gr = 2.5; prz_piasta = 7;   // przedłużenie tylko na CA, bez kołków
+
+// ---------- Parametry: tuba, kołnierz, maskownica ----------
+tuba_D = 79.5; tuba_d = 76.3;          // otwór w dyni Ø80
+rant_z = R_kula - wystawanie;          // +6
+kol_D  = 92; kol_gr = 3;               // kołnierz od środka dyni
+lapa_r = 47; lapa_szer = 12; lapa_otw = 4.5; lapa_kat = [45, 135, 225, 315];   // 4 łapy na wkręty do drewna 4 × 30–40
+mask_D = 84; mask_d = 76.3; mask_gr = 2;
+
+// ---------- pomocnicze ----------
+E = 0.01;
+// otwór o zadanym najmniejszym świetle: wielokąt opisany na okręgu d (OpenSCAD wpisuje wielokąt w okrąg)
+function d_opis(d, n) = d / cos(180 / n);
+OTW_N = 32;
+module sfera_pow(ri, ro) { difference() { sphere(r = ro, $fn = 120); sphere(r = ri, $fn = 120); } }
+module walec_x(d, x0, x1, n = 0) { translate([x0, 0, 0]) rotate([0, 90, 0]) if (n > 0) cylinder(d = d, h = x1 - x0, $fn = n); else cylinder(d = d, h = x1 - x0); }
+module pudlo(x0, x1, y0, y1, z0, z1) { translate([x0, y0, z0]) cube([x1 - x0, y1 - y0, z1 - z0]); }
+
+// =================== GAŁKA ===================
+module otwor_dwustozkowy(gr) {   // wzdłuż osi z, środek w 0: gardziel o świetle zacz_gardz_d, fazki 45° do ścian ±gr/2
+  f = (gr - zacz_gardz_l) / 2;
+  cylinder(d = d_opis(zacz_gardz_d, OTW_N), h = gr + 2, center = true, $fn = OTW_N);
+  for (m = [0, 1]) mirror([0, 0, m]) translate([0, 0, zacz_gardz_l / 2])
+    cylinder(d1 = d_opis(zacz_gardz_d, OTW_N), d2 = d_opis(zacz_gardz_d + 2 * f + 2, OTW_N), h = f + 1, $fn = OTW_N);
+}
+module zaczep_LP() {   // języczek w płaszczyźnie XZ (gr. wzdłuż y), otwór wzdłuż y gałki
+  r_sc = sqrt(pow(R_kula - sc_kula / 2, 2) - zacz_z * zacz_z);
+  difference() {
+    intersection() {
+      union() {
+        pudlo(zacz_r0, r_sc, -zacz_gr / 2, zacz_gr / 2, zacz_z - zacz_h / 2, zacz_z + zacz_h / 2);
+        hull() {   // podparcie 45° pod zewnętrzną częścią języczka, do płaszczyzny krawędzi (stołu)
+          pudlo(zacz_pod, r_sc, -zacz_gr / 2, zacz_gr / 2, zacz_z - zacz_h / 2, zacz_z - zacz_h / 2 + E);
+          pudlo(zacz_pod + (zacz_z - zacz_h / 2 - z_kraw), R_kula, -zacz_gr / 2, zacz_gr / 2, z_kraw, z_kraw + E);
+        }
+      }
+      sphere(r = R_kula - sc_kula / 2, $fn = 120);
+      translate([-50, -50, z_kraw]) cube(100);
+    }
+    translate([zacz_r, 0, zacz_z]) rotate([90, 0, 0]) otwor_dwustozkowy(zacz_gr);
+  }
+}
+module zaczep_GD() {   // słupek w płaszczyźnie y = zacz_r (gr. wzdłuż y) od przedniej czaszy do 1 mm pod otworem; otwór wzdłuż y gałki
+  difference() {
+    z0 = zacz_z - zacz_gardz_d / 2 - (zacz_gr - zacz_gardz_l) / 2 - 1;   // 1 mm pod wylotem fazki: niżej pracuje pręt G–D
+    intersection() {
+      // od przedniej czaszy w dół; spód 3 mm szerokości, narożniki ścięte pod 45° (luz pręta przy wychyleniu L–P)
+      union() {
+        hull() {
+          pudlo(-1.5, 1.5, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, z0, R_kula);
+          pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, z0 + slup_GD_szer / 2 - 1.5, R_kula);
+        }
+        // nasada: od z = slup_GD_nasada pogrubienie w y skosem 45° do czaszy (sztywność na zginanie siłą pręta)
+        hull() {
+          pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2, zacz_r + zacz_gr / 2, slup_GD_nasada, R_kula);
+          pudlo(-slup_GD_szer / 2, slup_GD_szer / 2, zacz_r - zacz_gr / 2 - 6, zacz_r + zacz_gr / 2 + 6, slup_GD_nasada + 6, R_kula);
+        }
+      }
+      sphere(r = R_kula - sc_kula / 2, $fn = 120);
+    }
+    translate([0, zacz_r, zacz_z]) rotate([90, 0, 0]) otwor_dwustozkowy(zacz_gr);
+  }
+}
+// próbka zaczepu: płytka 2 mm stojąca na stopce, otwory jak w gałce (A: Ø2,0 × 1,2; B: Ø2,3 × 0,6 do porównania)
+module probka_zaczepu() {
+  difference() {
+    union() { pudlo(-14, 14, -5, 5, 0, 1.6); pudlo(-14, 14, -zacz_gr / 2, zacz_gr / 2, 0, 12); }
+    translate([-7, 0, 7]) rotate([90, 0, 0]) otwor_dwustozkowy(zacz_gr);
+    translate([7, 0, 7]) rotate([90, 0, 0]) {
+      cylinder(d = d_opis(2.3, OTW_N), h = zacz_gr + 2, center = true, $fn = OTW_N);
+      for (m = [0, 1]) mirror([0, 0, m]) translate([0, 0, 0.3]) cylinder(d1 = d_opis(2.3, OTW_N), d2 = d_opis(2.3 + 2 * 0.7 + 2, OTW_N), h = 0.7 + 1, $fn = OTW_N);
+    }
+    translate([12, -10, 10]) cube([4, 20, 4]);   // ścięty róg po stronie otworu B
+  }
+}
+module galka() {
+  difference() {
+    union() {
+      difference() { sfera_pow(R_kula - sc_kula, R_kula); translate([-50, -50, z_kraw - 100]) cube([100, 100, 100]); }
+      intersection() {   // piasta od przedniego bieguna
+        translate([0, 0, piasta_z]) cylinder(d = piasta_d, h = R_kula);
+        sphere(r = R_kula - sc_kula / 2, $fn = 120);
+      }
+      zaczep_LP();                                 // L–P: x = zacz_r, otwór wzdłuż y
+      zaczep_GD();                                 // G–D: słupek y = zacz_r, otwór wzdłuż y
+    }
+    translate([0, 0, piasta_z - E]) cylinder(d = leb_d, h = leb_h + E);   // gniazdo łba M5, wylot do tyłu
+  }
+}
+
+// =================== POWIEKI ===================
+module powieka(ri, ro, gora, ucho, zacz, ucho_inne) {
+  s = gora ? 1 : -1;
+  difference() {
+    union() {
+      difference() {
+        intersection() {
+          sfera_pow(ri, ro);
+          translate([-ro, gora ? 0 : -ro, -pow_tyl]) cube([2 * ro, ro, ro + pow_tyl]);
+          // boczne krawędzie powieki do wewnętrznej płaszczyzny ucha
+          translate([-ucho[1], -50, -50]) cube([2 * ucho[1], 100, 100]);
+        }
+        // wycięcie krawędzi tylnej przy uszku drutu: drut wychodzi z otworu (z = zacz_pow_z) do tyłu po stronie uszka
+        translate([zacz[0] - 5, -50, -pow_tyl - 1]) cube([10, 100, pow_tyl + 1 + zacz_pow_z + 1]);
+      }
+      for (m = [0, 1]) mirror([m, 0, 0]) hull() {         // ucho: krążek r 3 + podstawa do płaszczyzny z = −3
+        walec_x(2 * ucho_r, ucho[0], ucho[1]);
+        pudlo(ucho[0], ucho[1], -ucho_r, ucho_r, -pow_tyl, -pow_tyl + E);
+      }
+      // uszko drutu na tylnej krawędzi: płytka w płaszczyźnie YZ, otwór wzdłuż x na promieniu zacz[1]
+      intersection() {
+        translate([zacz[0] - zacz_pow_gr / 2, 0, 0]) rotate([0, 90, 0])
+          linear_extrude(zacz_pow_gr) polygon([[0, s * (ri - 0.3)], [0, s * (zacz[1] + 1.6)], [-2 * zacz_pow_z - 0.2, s * (zacz[1] + 1.6)], [-2 * zacz_pow_z - 0.2, s * (ri - 0.3)]]);
+        translate([-50, -50, -pow_tyl]) cube(100);
+      }
+    }
+    for (m = [0, 1]) mirror([m, 0, 0]) walec_x(d_opis(os_otw, OTW_N), ucho[0] - 1, ucho[1] + 1, OTW_N);
+    translate([zacz[0], s * sqrt(pow(zacz[1], 2) - pow(zacz_pow_z, 2)), zacz_pow_z]) rotate([0, 90, 0]) cylinder(d = zacz_otw, h = 10, center = true, $fn = 16);
+    // miejsce na ucho drugiej powieki (górna: wycięcie przy osi w pasie ucha dolnej)
+    if (len(ucho_inne) == 2) for (m = [0, 1]) mirror([m, 0, 0]) walec_x(2 * 4.6, ucho_inne[0] - 0.2, ucho_inne[1] + 0.2);
+  }
+}
+module powieka_gorna() { powieka(pG_ri, pG_ro, true,  uchoG, zaczG, uchoD); }
+module powieka_dolna() { powieka(pD_ri, pD_ro, false, uchoD, zaczD, []); }
+
+// =================== PŁYTA ===================
+// gniazda: zwraca wycięcia w płycie
+module gniazda() {
+  // L–P: korpus pionowo na wylot, ucha na płycie; wałek 5,5 od przedniego końca korpusu
+  pudlo(LP_wal[0] - sv_W / 2 - sv_luz, LP_wal[0] + sv_W / 2 + sv_luz, pl_y - pl_gr - 1, pl_y + 1,
+        LP_wal[2] + sv_wal - sv_L - sv_luz, LP_wal[2] + sv_wal + sv_luz);
+  // G–D: stoi na końcu korpusu, dolne ucho w szczelinie (płaszczyzna ucha x = −33 + 18)
+  szczelina_ucha(-33 + sv_ucho_h, GD_wal[2]);
+  // powieka górna: korpus x 15,5…38, ucho x 18…20; wnęka na wieżyczkę 1 mm
+  szczelina_ucha(38 - sv_ucho_h - sv_ucho_gr, PG_wal[2]);
+  pudlo(4, 16.5, pl_y - 1, pl_y + 1, PG_wal[2] - 6.5, PG_wal[2] + 6.5);
+  // powieka dolna: korpus x −38…−15,5, ucho x −20…−18; wnęka na wieżyczkę; szczelina orczyka przez płytę
+  szczelina_ucha(-38 + sv_ucho_h, PD_wal[2]);
+  pudlo(-16.5, -4, pl_y - 1, pl_y + 1, PD_wal[2] - 6.5, PD_wal[2] + 6.5);
+  pudlo(-9.5, 1.5, pl_y - pl_gr - 1, pl_y + 1, PD_wal[2] - 18.5, PD_wal[2] + 18.5);   // orczyk x −5…−3, przedłużenie −3…−0,5, „Z” drutu do −3,5
+  // kabel G–D: wychodzi z krótszej ściany przeciwnej do wałka (stoi na płycie), nisko przy spodzie korpusu (x −33…−27)
+  pudlo(-33.7, -25.5, pl_y - pl_gr - 1, pl_y + 1, GD_wal[2] - 4, GD_wal[2] + 4);
+}
+module szczelina_ucha(x0, zc) {
+  pudlo(x0 - sv_luz, x0 + sv_ucho_gr + sv_luz, pl_y - pl_gr - 1, pl_y + 1, zc - sv_W / 2 - sv_luz, zc + sv_W / 2 + sv_luz);
+}
+module slupek(m) {   // słupek zawiasu z podporą; m = 1 prawy, 0 lewy (lustro)
+  mirror([m == 1 ? 0 : 1, 0, 0]) difference() {
+    union() {
+      intersection() {   // ramię: x od 34,7 do łuku R37,2, y ±5, z od tyłu podpory do +4
+        pudlo(sl_x0, sl_R, -sl_h / 2, sl_h / 2, pl_zP - pod_gr, sl_zP);
+        translate([0, 0, pl_zP - pod_gr - 1]) cylinder(r = sl_R, h = 100, $fn = 360);
+      }
+      pudlo(pod_x0, sl_R, pl_y - pl_gr, sl_h / 2, pl_zP - pod_gr, pl_zP);   // podpora: od spodu płyty do słupka
+    }
+    walec_x(d_opis(sl_otw, OTW_N), sl_x0 - 1, sl_R + 1, OTW_N);   // otwór osi powiek na z = 0 (światło Ø2,4)
+  }
+}
+module slupek_kardana() {
+  difference() {
+    union() {
+      translate([0, 0, kol_z0]) cylinder(d = kol_d, h = kol_zP - kol_z0);
+      pudlo(-kol_klocek[0] / 2, kol_klocek[0] / 2, pl_y - pl_gr, 0, kol_z0, pl_zP + kol_klocek[1]);
+    }
+    translate([0, 0, kol_zP - leb_h]) cylinder(d = leb_d, h = leb_h + E);   // gniazdo łba M5, wylot do przodu
+  }
+}
+module plyta() {
+  difference() {
+    union() {
+      pudlo(-pl_x, pl_x, pl_y - pl_gr, pl_y, pl_zT, pl_zP);
+      slupek(1); slupek(0);
+      slupek_kardana();
+    }
+    gniazda();
+  }
+}
+
+// =================== PRZEDŁUŻENIE ORCZYKA ===================
+// Listwa klejona CA na zewnętrzną stronę ramienia orczyka jednoramiennego; położenie ustala otwór na piastę.
+module przedluzenie_orczyka() {
+  difference() {
+    hull() { cylinder(d = prz_piasta + 3, h = prz_gr); translate([prz_L - prz_szer / 2, 0, 0]) cylinder(d = prz_szer, h = prz_gr); }
+    translate([0, 0, -1]) cylinder(d = prz_piasta, h = prz_gr + 2);                         // na piastę i wkręt orczyka
+    translate([orcz_pow, 0, -1]) cylinder(d = zacz_otw, h = prz_gr + 2, $fn = 16);            // drut powieki
+  }
+}
+
+// =================== TUBA I MASKOWNICA ===================
+module tuba(L) {     // w układzie złożenia: rant na z = rant_z, kołnierz za tylnym końcem (od środka dyni)
+  translate([0, 0, rant_z - L - kol_gr]) difference() {
+    union() {
+      cylinder(d = tuba_D, h = L + kol_gr, $fn = 240);
+      cylinder(d = kol_D, h = kol_gr, $fn = 240);
+      for (a = lapa_kat) rotate([0, 0, a]) hull() {
+        translate([tuba_D / 2 - 2, -lapa_szer / 2, 0]) cube([1, lapa_szer, kol_gr]);
+        translate([lapa_r, 0, 0]) cylinder(d = lapa_szer, h = kol_gr);
+      }
+    }
+    translate([0, 0, -1]) cylinder(d = tuba_d, h = L + kol_gr + 2, $fn = 240);
+    for (a = lapa_kat) rotate([0, 0, a]) translate([lapa_r, 0, -1]) cylinder(d = lapa_otw, h = kol_gr + 2, $fn = 24);
+  }
+}
+module maskownica() { translate([0, 0, rant_z]) difference() { cylinder(d = mask_D, h = mask_gr, $fn = 240); translate([0, 0, -1]) cylinder(d = mask_d, h = mask_gr + 2, $fn = 240); } }
+
+// =================== WYBÓR CZĘŚCI ===================
+// orientacje do druku (płaska strona na z = 0)
+module druk(c) {
+  if (c == "Galka")               translate([0, 0, -z_kraw]) galka();                                       // krawędź na stole; podpora tylko pod piastą
+  else if (c == "PowiekaGorna")   translate([0, 0, pow_tyl]) powieka_gorna();                               // krawędź tylna na stole
+  else if (c == "PowiekaDolna")   translate([0, 0, pow_tyl]) powieka_dolna();
+  else if (c == "Plyta")          rotate([90, 0, 0]) translate([0, -(pl_y - pl_gr), 0]) plyta();            // spód płyty na stole (y → z)
+  else if (c == "PrzedluzenieOrczyka") przedluzenie_orczyka();                                        // drukować 2 sztuki
+  else if (c == "Tuba30")         translate([0, 0, -(rant_z - 30 - kol_gr)]) tuba(30);                     // kołnierz na stole
+  else if (c == "Tuba40")         translate([0, 0, -(rant_z - 40 - kol_gr)]) tuba(40);
+  else if (c == "Tuba50")         translate([0, 0, -(rant_z - 50 - kol_gr)]) tuba(50);
+  else if (c == "Maskownica")     translate([0, 0, -rant_z]) maskownica();
+  else if (c == "ProbkaZaczepu")  probka_zaczepu();                                                       // stopką na stole
+}
+module zlozenie_czesc(c) {
+  if (c == "Galka") galka();
+  else if (c == "PowiekaGorna") powieka_gorna();
+  else if (c == "PowiekaDolna") powieka_dolna();
+  else if (c == "Plyta") plyta();
+  else if (c == "PrzedluzenieOrczyka") przedluzenie_orczyka();
+  else if (c == "Tuba30") tuba(30);
+  else if (c == "Tuba40") tuba(40);
+  else if (c == "Tuba50") tuba(50);
+  else if (c == "Maskownica") maskownica();
+  else if (c == "ProbkaZaczepu") probka_zaczepu();
+}
+
+if (czesc == "parametry") {
+  echo(str("PARAMETRY{\"R_kula\":", R_kula, ",\"z_kraw\":", z_kraw, ",\"zacz_r\":", zacz_r, ",\"zacz_z\":", zacz_z,
+           ",\"LP_wal\":", LP_wal, ",\"GD_wal\":", GD_wal, ",\"PG_wal\":", PG_wal, ",\"PD_wal\":", PD_wal,
+           ",\"orcz_LP\":", orcz_LP, ",\"orcz_GD\":", orcz_GD, ",\"orcz_pow\":", orcz_pow,
+           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"pG_x_orcz\":", pG_x_orcz, ",\"pD_x_orcz\":", pD_x_orcz, ",\"zacz_ods\":", zacz_ods, ",\"pow_ods\":", pow_ods, ",\"zacz_gardz_d\":", zacz_gardz_d, ",\"zacz_gardz_l\":", zacz_gardz_l, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
+           ",\"pl_y\":", pl_y, ",\"pl_zP\":", pl_zP, ",\"kol_zP\":", kol_zP, ",\"piasta_z\":", piasta_z, "}"));
+  cube(1);
+} else if (czesc == "zlozenie") {
+  color("white") galka();
+  color("orange") { powieka_gorna(); powieka_dolna(); plyta(); }
+  color("tan", 0.3) tuba(40);
+  color("gray") maskownica();
+} else if (tryb == "druk") druk(czesc);
+else zlozenie_czesc(czesc);

@@ -31,9 +31,9 @@ wej.forEach((f, i) => { const m = siatka(f), w = m.hi[0] - m.lo[0], h = m.hi[1] 
   if (x > 0 && x + w > SZER) { x = 0; y += wiersz + odst; wiersz = 0; }
   const tx = x - m.lo[0], ty = y - m.lo[1], tz = -m.lo[2]; x += w + odst; wiersz = Math.max(wiersz, h);
   const nazwa = path.basename(f, '.3mf');
-  obiekty += `<object id="${i + 1}" name="${esc(nazwa)}" type="model"><mesh><vertices>` + m.V.map((v) => `<vertex x="${v[0].toFixed(5)}" y="${v[1].toFixed(5)}" z="${v[2].toFixed(5)}"/>`).join('') +
+  obiekty += `<object id="${i + 1}" name="${esc(nazwa)}" type="model"><mesh><vertices>` + m.V.map((v) => `<vertex x="${(v[0] + tx).toFixed(5)}" y="${(v[1] + ty).toFixed(5)}" z="${(v[2] + tz).toFixed(5)}"/>`).join('') +
     '</vertices><triangles>' + m.T.map((t) => `<triangle v1="${t[0]}" v2="${t[1]}" v3="${t[2]}"/>`).join('') + '</triangles></mesh></object>\n';
-  build += `<item objectid="${i + 1}" transform="1 0 0 0 1 0 0 0 1 ${tx.toFixed(4)} ${ty.toFixed(4)} ${tz.toFixed(4)}"/>\n`; });
+  build += `<item objectid="${i + 1}"/>\n`; });   // przesunięcie wpisane w wierzchołki: kontrola siatek widzi części rozłącznie
 const model = `<?xml version="1.0" encoding="UTF-8"?>\n<model unit="millimeter" xml:lang="pl-PL" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\n<resources>\n${obiekty}</resources>\n<build>\n${build}</build>\n</model>\n`;
 const ct = '<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/></Types>';
 const rels = '<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>';
