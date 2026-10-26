@@ -102,8 +102,8 @@ def orczyk(nazwa, os_kier, c, ramie, dl, gr, m):   # belka obracana wokół osi 
 # osie obrotu: L–P wokół +y (α rośnie: otwór idzie w +z), G–D i powieki wokół ±x
 oLP = orczyk('orczyk L–P', (0, 1, 0), (L[0], 0.5, L[2]), (-1, 0, 0), P['orcz_LP'], 1.6, M['orcz'])
 oGD = orczyk('orczyk G–D', (1, 0, 0), (0.5, G[1], G[2]), (0, 1, 0), P['orcz_GD'], 1.6, M['orcz'])
-oG = orczyk('przedłużenie powieki górnej', (1, 0, 0), (P['zaczG'][0], PG[1], PG[2]), (0, 1, 0), P['orcz_pow'], 2.5, M['prz'])
-oD = orczyk('przedłużenie powieki dolnej', (1, 0, 0), (P['zaczD'][0], PD[1], PD[2]), (0, -1, 0), P['orcz_pow'], 2.5, M['prz'])
+oG = orczyk('przedłużenie powieki górnej', (1, 0, 0), (P['pG_x_orcz'], PG[1], PG[2]), (0, 1, 0), P['orcz_pow'], 2.5, M['prz'])
+oD = orczyk('przedłużenie powieki dolnej', (1, 0, 0), (P['pD_x_orcz'], PD[1], PD[2]), (0, -1, 0), P['orcz_pow'], 2.5, M['prz'])
 def ustaw_orczyk(e, os_, kat, f):
     e.rotation_quaternion = Matrix.Rotation(rad(kat), 4, os_).to_quaternion(); e.keyframe_insert('rotation_quaternion', frame=f)
 # osie powiek: druty Ø2 w słupkach
@@ -171,7 +171,7 @@ for f in range(1, N + 1):
 
 # ---- kamera (współrzędne Blendera: model (x, y, z) → (x, −z, y)) ----
 def B(p): return Vector((p[0], -p[2], p[1]))
-UJECIA = {'ogolny': dict(cel=(0, 0, -30), r=300, h=90, kat0=215, obrot=70, lens=50),
+UJECIA = {'ogolny': dict(cel=(0, -6, -35), r=340, h=100, kat0=215, obrot=70, lens=50),
           'kardan': dict(cel=(0, 0, -4), r=130, h=45, kat0=15, obrot=40, lens=70),
           'prety': dict(cel=(14, 4, -30), r=150, h=60, kat0=320, obrot=30, lens=50),
           'zawiasy': dict(cel=(30, 0, -5), r=110, h=40, kat0=10, obrot=25, lens=55)}
@@ -191,6 +191,12 @@ for loc, e in (((-150, 150, 250), 1.2e6), ((200, -150, 150), 0.7e6), ((0, 250, -
 w = bpy.data.worlds.new('w'); w.use_nodes = True; w.node_tree.nodes['Background'].inputs['Color'].default_value = (0.35, 0.35, 0.38, 1); sc.world = w
 sc.render.engine = 'BLENDER_EEVEE' if 'BLENDER_EEVEE' in [e.identifier for e in bpy.types.RenderSettings.bl_rna.properties['engine'].enum_items] else 'BLENDER_EEVEE_NEXT'
 sc.render.resolution_x, sc.render.resolution_y = 1280, 720
+PROBKI = int(os.environ.get('PROBKI', '12'))   # EEVEE: próbki na klatkę (domyślnie 64 – za wolno w tle na CPU)
+if hasattr(sc, 'eevee'):
+    for atr, w in (('taa_render_samples', PROBKI), ('use_raytracing', False)):
+        if hasattr(sc.eevee, atr):
+            try: setattr(sc.eevee, atr, w)
+            except Exception: pass
 sc.frame_start, sc.frame_end = 1, N; sc.render.fps = 24
 sc.render.image_settings.file_format = 'PNG'
 os.makedirs(os.path.join(OUT, 'klatki-' + UJ), exist_ok=True)

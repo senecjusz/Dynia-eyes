@@ -49,13 +49,13 @@ otwarcie = 51.5;           // pełne otwarcie powiek
 pl_y    = -15;     // wierzch płyty (ucha serwa L–P leżą na płycie, orczyk L–P na wysokości osi)
 pl_gr   = 5;
 pl_zP   = -49;     // przód płyty: za kołnierzem tuby 50 (z −44…−47), 2 mm zapasu
-pl_zT   = -97;
+pl_zT   = -105;
 pl_x    = 42;
 sl_x0   = 34.7;    // słupek zawiasu: od x 34,7 do łuku R37,2 (0,95 do ścianki tuby R38,15 na całej szerokości)
 sl_R    = 37.2;
 sl_h    = 10;      // wysokość słupka (y ±5)
 sl_zP   = 4;       // przód słupka
-sl_otw  = 1.9;     // otwór na drut Ø2 w słupku: wcisk + klej
+sl_otw  = 2.4;     // otwór na drut Ø2 w słupku: luźny, drut na CA (decyzja PM o kleju; wcisk ugiąłby ramię)
 pod_x0  = 33.2;    // podpora słupka (pion) od płyty do słupka, z −49…−53
 pod_gr  = 4;
 kol_d   = 12;      // słupek kardana
@@ -69,14 +69,16 @@ sv_luz = 0.2;      // gniazdo na klej: luz na stronę
 // położenia wałków [x, y, z]; kierunki opisane przy gniazdach
 LP_wal = [31.5, 0, -66];      // pion (do góry), orczyk 17,5 w płaszczyźnie y ≈ 0
 GD_wal = [0, 2.3, -60];       // poziomo w +x, korpus po lewej, orczyk 11,5 w płaszczyźnie x ≈ 0
-PG_wal = [0, -9.5, -87];      // poziomo w −x, korpus po prawej, orczyk 25 (przedłużenie) w płaszczyźnie x ≈ 4,5
-PD_wal = [0, -9.5, -76];      // poziomo w +x, korpus po lewej, orczyk 25 w płaszczyźnie x ≈ −4,5 (przez szczelinę w płycie)
+PG_wal = [0, -9.5, -95];      // poziomo w −x, korpus po prawej, orczyk 25 (przedłużenie) w płaszczyźnie x ≈ 1,75; przód korpusu 1 mm za tylnym uchem L–P
+PD_wal = [0, -9.5, -76];      // poziomo w +x, korpus po lewej, orczyk 25 w płaszczyźnie x ≈ −1,75 (przez szczelinę w płycie)
 orcz_LP = 17.5; orcz_GD = 11.5; orcz_pow = 25;
-pG_psi0 = 20;      // kąt orczyka powieki górnej przy zamkniętej powiece (od +y ku +z, w płaszczyźnie x = zaczG.x)
+pG_x_orcz = 1.75;  // płaszczyzna otworu przedłużenia orczyka powieki górnej (przedłużenie na zewnętrznej stronie ramienia, czubek wałka x = 3)
+pD_x_orcz = -1.75; // dolnej (czubek wałka x = −3)
+pG_psi0 = 25;      // kąt orczyka powieki górnej przy zamkniętej powiece (od +y ku +z, w płaszczyźnie x = zaczG.x)
 pD_psi0 = 35;      // dolnej (od −y ku +z)
 
 // ---------- Parametry: przedłużenie orczyka ----------
-prz_L = 28; prz_szer = 6; prz_gr = 2.5; prz_piasta = 7;
+prz_L = 28; prz_szer = 6; prz_gr = 2.5; prz_piasta = 7;   // przedłużenie tylko na CA, bez kołków
 
 // ---------- Parametry: tuba, kołnierz, maskownica ----------
 tuba_D = 79.5; tuba_d = 76.3;          // otwór w dyni Ø80
@@ -87,8 +89,11 @@ mask_D = 84; mask_d = 76.3; mask_gr = 2;
 
 // ---------- pomocnicze ----------
 E = 0.01;
+// otwór o zadanym najmniejszym świetle: wielokąt opisany na okręgu d (OpenSCAD wpisuje wielokąt w okrąg)
+function d_opis(d, n) = d / cos(180 / n);
+OTW_N = 32;
 module sfera_pow(ri, ro) { difference() { sphere(r = ro, $fn = 120); sphere(r = ri, $fn = 120); } }
-module walec_x(d, x0, x1) { translate([x0, 0, 0]) rotate([0, 90, 0]) cylinder(d = d, h = x1 - x0); }
+module walec_x(d, x0, x1, n = 0) { translate([x0, 0, 0]) rotate([0, 90, 0]) if (n > 0) cylinder(d = d, h = x1 - x0, $fn = n); else cylinder(d = d, h = x1 - x0); }
 module pudlo(x0, x1, y0, y1, z0, z1) { translate([x0, y0, z0]) cube([x1 - x0, y1 - y0, z1 - z0]); }
 
 // =================== GAŁKA ===================
@@ -147,12 +152,12 @@ module powieka(ri, ro, gora, ucho, zacz, ucho_inne) {
         translate([-50, -50, -pow_tyl]) cube(100);
       }
     }
-    for (m = [0, 1]) mirror([m, 0, 0]) walec_x(os_otw, ucho[0] - 1, ucho[1] + 1);
+    for (m = [0, 1]) mirror([m, 0, 0]) walec_x(d_opis(os_otw, OTW_N), ucho[0] - 1, ucho[1] + 1, OTW_N);
     translate([zacz[0], s * sqrt(pow(zacz[1], 2) - pow(zacz_pow_z, 2)), zacz_pow_z]) rotate([0, 90, 0]) cylinder(d = zacz_otw, h = 10, center = true, $fn = 16);
     // miejsce na ucho drugiej powieki (górna: wycięcie przy osi w pasie ucha dolnej)
     if (len(ucho_inne) == 2) for (m = [0, 1]) mirror([m, 0, 0]) walec_x(2 * 4.6, ucho_inne[0] - 0.2, ucho_inne[1] + 0.2);
-    // wycięcie paska tylnej krawędzi przy uszku drutu: drut wychodzi do tyłu przez płaszczyznę z < 0 (mostek 8 mm nad stołem)
-    translate([zacz[0] - 4, -50, -pow_tyl - 1]) cube([8, 100, pow_tyl + 1 - 0.0]);
+    // wycięcie paska tylnej krawędzi przy uszku drutu: drut wychodzi do tyłu przez płaszczyznę z < 0 (mostek 10 mm nad stołem)
+    translate([zacz[0] - 5, -50, -pow_tyl - 1]) cube([10, 100, pow_tyl + 1]);
   }
 }
 module powieka_gorna() { powieka(pG_ri, pG_ro, true,  uchoG, zaczG, uchoD); }
@@ -172,7 +177,9 @@ module gniazda() {
   // powieka dolna: korpus x −38…−15,5, ucho x −20…−18; wnęka na wieżyczkę; szczelina orczyka przez płytę
   szczelina_ucha(-38 + sv_ucho_h, PD_wal[2]);
   pudlo(-16.5, -4, pl_y - 1, pl_y + 1, PD_wal[2] - 6.5, PD_wal[2] + 6.5);
-  pudlo(-9.5, -1.5, pl_y - pl_gr - 1, pl_y + 1, PD_wal[2] - 18.5, PD_wal[2] + 18.5);
+  pudlo(-9.5, 1.5, pl_y - pl_gr - 1, pl_y + 1, PD_wal[2] - 18.5, PD_wal[2] + 18.5);   // orczyk x −5…−3, przedłużenie −3…−0,5, „Z” drutu do −3,5
+  // kabel G–D: wychodzi z krótszej ściany przeciwnej do wałka (stoi na płycie), nisko przy spodzie korpusu (x −33…−27)
+  pudlo(-33.7, -25.5, pl_y - pl_gr - 1, pl_y + 1, GD_wal[2] - 4, GD_wal[2] + 4);
 }
 module szczelina_ucha(x0, zc) {
   pudlo(x0 - sv_luz, x0 + sv_ucho_gr + sv_luz, pl_y - pl_gr - 1, pl_y + 1, zc - sv_W / 2 - sv_luz, zc + sv_W / 2 + sv_luz);
@@ -186,7 +193,7 @@ module slupek(m) {   // słupek zawiasu z podporą; m = 1 prawy, 0 lewy (lustro)
       }
       pudlo(pod_x0, sl_R, pl_y - pl_gr, sl_h / 2, pl_zP - pod_gr, pl_zP);   // podpora: od spodu płyty do słupka
     }
-    walec_x(sl_otw, sl_x0 - 1, sl_R + 1);   // otwór osi powiek na z = 0
+    walec_x(d_opis(sl_otw, OTW_N), sl_x0 - 1, sl_R + 1, OTW_N);   // otwór osi powiek na z = 0 (światło Ø2,4)
   }
 }
 module slupek_kardana() {
@@ -210,12 +217,11 @@ module plyta() {
 }
 
 // =================== PRZEDŁUŻENIE ORCZYKA ===================
-// Listwa klejona CA na ramię orczyka jednoramiennego, ustawiona dwoma kołkami z drutu Ø1,0 w otworach 5,5 i 17,5 orczyka.
+// Listwa klejona CA na zewnętrzną stronę ramienia orczyka jednoramiennego; położenie ustala otwór na piastę.
 module przedluzenie_orczyka() {
   difference() {
     hull() { cylinder(d = prz_piasta + 3, h = prz_gr); translate([prz_L - prz_szer / 2, 0, 0]) cylinder(d = prz_szer, h = prz_gr); }
     translate([0, 0, -1]) cylinder(d = prz_piasta, h = prz_gr + 2);                         // na piastę i wkręt orczyka
-    for (r = [5.5, 17.5]) translate([r, 0, -1]) cylinder(d = 1.2, h = prz_gr + 2, $fn = 16);  // kołki ustalające
     translate([orcz_pow, 0, -1]) cylinder(d = zacz_otw, h = prz_gr + 2, $fn = 16);            // drut powieki
   }
 }
@@ -266,7 +272,7 @@ if (czesc == "parametry") {
   echo(str("PARAMETRY{\"R_kula\":", R_kula, ",\"z_kraw\":", z_kraw, ",\"zacz_r\":", zacz_r, ",\"zacz_z\":", zacz_z,
            ",\"LP_wal\":", LP_wal, ",\"GD_wal\":", GD_wal, ",\"PG_wal\":", PG_wal, ",\"PD_wal\":", PD_wal,
            ",\"orcz_LP\":", orcz_LP, ",\"orcz_GD\":", orcz_GD, ",\"orcz_pow\":", orcz_pow,
-           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
+           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"pG_x_orcz\":", pG_x_orcz, ",\"pD_x_orcz\":", pD_x_orcz, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
            ",\"pl_y\":", pl_y, ",\"pl_zP\":", pl_zP, ",\"kol_zP\":", kol_zP, ",\"piasta_z\":", piasta_z, "}"));
   cube(1);
 } else if (czesc == "zlozenie") {

@@ -28,7 +28,7 @@ class Kin:
         zg, zd = P['zaczG'], P['zaczD']
         zp = P.get('zacz_pow_z', 0.0)
         self.lugG = (zg[0], math.sqrt(zg[1] ** 2 - zp ** 2), zp); self.lugD = (zd[0], -math.sqrt(zd[1] ** 2 - zp ** 2), zp)
-        self.sG, self.sD = (zg[0], P['PG_wal'][1], P['PG_wal'][2]), (zd[0], P['PD_wal'][1], P['PD_wal'][2])
+        self.sG = (P.get('pG_x_orcz', zg[0]), P['PG_wal'][1], P['PG_wal'][2]); self.sD = (P.get('pD_x_orcz', zd[0]), P['PD_wal'][1], P['PD_wal'][2])
         self.rP = P['orcz_pow']; self.a0G, self.a0D = P['pG_psi0'], P['pD_psi0']
         self.LG = norm(sub(self.hG(self.a0G), self.lugG)); self.LD = norm(sub(self.hD(self.a0D), self.lugD))
     # położenia otworów orczyków w funkcji kąta α (stopnie)
