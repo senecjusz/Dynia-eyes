@@ -327,3 +327,4 @@ Kontrole: siatka tacki 0 błędów, 1 bryła, 170 × 100 × 25; kolizje szufladk
 - uchwyty opasek: 3 na skrętki pod otworem w płycie (y 12; x 55 / 75 / 95), 1 na przewód PIR przy wejściu z szufladki (x 142, y 10), poza strefą wtyku C–C (x 150–164);
 - nad PCA9685 do płyty ok. 31 mm (wtyki Dupont i gięcie ok. 25).
 Kontrole: siatka OK, kolizje szufladki z tacką: pusto. Wymiary płytek i gniazda nadal do pomiaru.
+- **Rezystor (doprecyzowanie elektroniki 26.10):** 47 Ω / 3 W, korpus Ø6 × 17, nóżki osiowe, nagrzewa się do 55–60 °C, więc nie może dotykać PLA. Uchwyty z opaskami zastąpiłem 2 słupkami 5 × 5 × 13,5 w rozstawie 25 (x 32, y 68 i 93). W każdym słupku jest poziomy otwór Ø1,4 (łza) na nóżkę, oś 11 nad dnem: korpus 8 nad dnem, 1,5 od słupków, 8 od tylnego pasa, 26 od PCA9685. Końce nóżek wychodzą na zewnątrz słupków pod przewody do zacisku V+/GND. Siatka i kolizje: OK.
