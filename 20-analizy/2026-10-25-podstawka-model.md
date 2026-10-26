@@ -299,3 +299,22 @@ Użytkownik po przymiarce próbki (zaznaczył słupki na zdjęciu): „ja bym zr
 Użytkownik: „nie podobają mi się te śruby z boku za bardzo, może na takie stożkowe bym je wymienił” i zdjęcie śruby stożkowej M4 z suwmiarką (`/tmp/kamera-warsztatowa/20261026-004711-adnotacje.jpg`, poza repo). Wykonano: 2 × M3 × 10 z łbem walcowym → **2 × M4 × 12 z łbem stożkowym** (założenie DIN 7991: łeb Ø8, 90°), we froncie pogłębienie 90° Ø8,4 na 1,95 – łeb 0,2 pod licem; otwory Ø4,5 we froncie i w korpusie, nakrętki M4 z podkładką od środka (kieszeń PIR), koniec śruby 2 mm za nakrętką. Front drukowany licem na stole: pogłębienie zwęża się ku górze pod 45° – bez podpór. Kontrole: eksport, siatki, wymiary, 5 kontroli kolizji – OK.
 
 Uwaga dla PM (agent): na zdjęciach z kamery jest też kątowy adapter USB-C (10 × 15 mm) wpięty w powerbank. Jeśli to docelowe połączenie, wtyk zajmuje dużo mniej niż przyjęte 50 mm – decyzja użytkownika (PRD).
+
+### Tacka elektroniki (kaseta) v2 (26.10) – NIE DRUKOWAĆ przed pomiarem gniazda USB-C
+
+Ustalenia sesji elektroniki z użytkownikiem (wiadomości do wykonawcy montażu 26.10; wcześniej tacka v1 nie była wydrukowana):
+- zasilanie z panelowego gniazda USB-C wkręcanego (okrągłe, gwint z nakrętką, gumowa zaślepka, 2 przewody z tyłu) zamiast płaskiego breakoutu;
+- kondensator 1000 µF lutowany do PCA9685 – pierścień na tacce zbędny;
+- miejsce na rezystor 3 W (zapas, ok. 25 × 8, ≥ 5 nad dnem, z dala od przewodów), uchwyty opasek na 3 skrętki przed PCA9685 i na przewód PIR (pętla ok. 200 mm na wysuw szufladki);
+- dostęp do USB-C ESP32-C3 jak w v1.
+
+Wykonano (agent):
+- **ścianka gniazda** 24,5 szer. × 24,9 wys. × 3 na osi gniazda v1 (`bkX` 157,1, przód 48 od przodu tacki – oś wycięcia w wydrukowanym korpusie i miejsce na wtyk bez zmian), 2 żebra za ścianką, otwór pod gwint w kształcie łzy (czubek w pionie, 45° – bez podpór; sprawdzone na siatce: czubek x 157,1, z 21,55);
+- **pierścień kondensatora i ramka breakoutu usunięte**;
+- **rezystor**: 2 uchwyty z tunelem na opaskę (blok 8 × 8 × 5, tunel 4,6 × 2,1), oś x 132, y 60–85 – między PCA9685 (do x 116) a ścianką gniazda (od x 144,9);
+- **uchwyty opasek**: 3 przed PCA9685 (y 50; x 60 / 85 / 110, kabel wzdłuż y), 1 na przewód PIR (x 135, y 25, kabel wzdłuż x do ESP32-C3);
+- położenie tacki, piasty i ramka ESP32-C3 bez zmian.
+
+**Założenia do pomiaru przez użytkownika (zmienne w `podstawka.scad`):** gwint gniazda `gnGwintD` 12, grubość ścianki pod nakrętkę `gnT` 3, nakrętka `gnNakS` 16, kołnierz `gnKolD` 18, korpus za ścianką `gnKorpL` 30; PCA9685 (płytka 62 × 25, otwory 55,9 × 19,05), ESP32-C3 (22,5 × 18).
+
+Kontrole: siatka tacki 0 błędów, 1 bryła, 170 × 100 × 25; kolizje szufladki zamkniętej i wsuwania z tacką: pusto.

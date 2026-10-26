@@ -76,6 +76,16 @@ Po próbce użytkownik zmienił słupki M2: prostokątne podkładki 4 × 8 mm, w
 - Blokada: czy po postawieniu dyni imbus dosięga łba blokady.
 - Wysokość podstawki: z wymiarów wychodzi 67 mm, a użytkownik podał 69. Na szufladkę nie wpływa.
 
+### Tacka elektroniki v2 (26.10)
+
+Zmiany uzgodnione z sesją elektroniki:
+- panelowe gniazdo USB-C w pionowej ściance z otworem w kształcie łzy;
+- bez pierścienia kondensatora;
+- uchwyt rezystora 3 W;
+- uchwyty opasek na skrętki i przewód PIR.
+
+Kontrole OK. **Nie drukować przed pomiarem gniazda USB-C** (gwint, grubość pod nakrętkę, nakrętka, kołnierz, korpus) oraz PCA9685 i ESP32-C3. Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
+
 ## Blokady
 
 Brak w zadaniu szufladki v2.
