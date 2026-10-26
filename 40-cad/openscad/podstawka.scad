@@ -156,6 +156,7 @@ uchL = 8; uchD = 8; uchH = 5;                    // uchwyt opaski: długość (w
 uchSkretkiY = 12; uchSkretkiX = [55, 75, 95];    // uchwyty skrętek pod otworem w płycie, przed strefą wolną przed PCA9685 (kabel wzdłuż y)
 uchPirXY = [142, 10];                            // uchwyt przewodu PIR przy wejściu z szufladki (kabel wzdłuż x, do ESP32-C3)
 uchGnXY = [140, 88];                             // uchwyt przewodów gniazda USB-C w drodze do zacisku PCA9685 (kabel wzdłuż x)
+dZapOtw = 5.5; zapOtw = [[12, 47], [12, 72], [80, 88], [110, 88]];   // zapasowe otwory przelotowe w dnie tacki (użytkownik 27.10 przez elektronikę: M5 albo wkręt w sklejkę 9): pola wolne – lewe przy ESP i rezystorze, za PCA9685
 zapW = 20; zapL = 30; zapRozst = 25; zapX = 55; zapY0 = 64;   // miejsce zapasowe na małą płytkę (elektronika 26.10): 20 × 30, 2 słupki M3 Ø2,6 w rozstawie 25 wzdłuż y; oś x, przód płytki
 // ---------- BAZOWE: gwint (jak próbka E2.0: 45°, skok 5, zarys 2,0) ----------
 skok = 5; zarys = 2; zabRdzen = 4.8;             // ząb u rdzenia (szerokość osiowa)
@@ -250,6 +251,10 @@ gnOsZ  = kDno + gnObrys / 2 + 1;                 // oś gniazda nad spodem tacki
 gnScW  = gnObrys + 2 * gnMarg;                   // szerokość ścianki gniazda
 gnScH  = gnOsZ + gnObrys / 2 + gnMarg;           // wysokość ścianki
 assert(bkX + gnScW / 2 <= kW, "ścianka gniazda poza tacką");
+for (o = zapOtw) assert(o[0] - dZapOtw / 2 >= kSc + 2 && o[1] + dZapOtw / 2 <= kD - kTylT - 2
+  && (o[1] - dZapOtw / 2 >= pcaY0 + pcaW + 3 || o[0] + dZapOtw / 2 <= pcaX0 - 3)
+  && (abs(o[0] - rezX) >= rezSlupW / 2 + dZapOtw / 2 + 2 || o[1] + dZapOtw / 2 < rezY0 - rezSlupW / 2)
+  && (o[1] - dZapOtw / 2 >= espOdBoku + espL + espRama + 2 || o[0] + dZapOtw / 2 <= espOdBoku + espW / 2 - espPodW / 2 - 2), "zapasowy otwór w dnie nachodzi na element tacki");
 assert(gnScW / 2 - kSc >= gnWolneD / 2, "żebra za ścianką wchodzą w wolny okrąg nakrętki");
 assert(gnT <= gnKorpL - 3 - 3, "ścianka za gruba na nakrętkę na gwincie");
 assert(bkY + gnT + gnKorpL <= kD - kTylT, "korpus gniazda opiera się o tył tacki");
@@ -351,6 +356,7 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
     }
     for (dy = [(zapL - zapRozst) / 2, (zapL + zapRozst) / 2]) translate([zapX, zapY0 + dy, -1])   // miejsce zapasowe: otwory M3 ciasne
       cylinder(d = dM3ciasny, h = kDno + slupPcaH + 2, $fn = 24);
+    for (o = zapOtw) translate([o[0], o[1], -1]) cylinder(d = dZapOtw, h = kDno + 2, $fn = 32);   // zapasowe otwory w dnie
     translate([bkX, bkY - 1, gnOsZ]) rotate([-90, 0, 0]) intersection() {   // otwór na gwint „podwójne D”: ścięcia u góry i u dołu (górne ścięcie = krótki most, bez podpór)
       cylinder(d = gnGwintD + 2 * luzGn, h = gnT + 2, $fn = 64);
       translate([-gnGwintD, -(gnGwintFlat + 2 * luzGn) / 2, 0]) cube([2 * gnGwintD, gnGwintFlat + 2 * luzGn, gnT + 2]);

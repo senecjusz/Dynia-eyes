@@ -349,3 +349,8 @@ Kontrole: siatka OK, kolizje szufladki z tacką: pusto. Wymiary płytek i gniazd
   - ścianka 3 – na gwincie zostaje miejsce na nakrętkę 3 i zapas.
 
   Siatka i kolizje: OK.
+- **Zapasowe otwory w dnie (prośba użytkownika 27.10 przez elektronikę):** 4 × Ø5,5 przelotowe, pod M5 z nakrętką w przyszłej płytce albo wkręt przez tackę w sklejkę 9. Położenie:
+  - lewe pole przy ESP i rezystorze: (12; 47) i (12; 72), rozstaw 25;
+  - za PCA9685: (80; 88) i (110; 88), rozstaw 30.
+
+  Odstępy od elementów tacki pilnuje assert. Siatka i kolizje: OK.
