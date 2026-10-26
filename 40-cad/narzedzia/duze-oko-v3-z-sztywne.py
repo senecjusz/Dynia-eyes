@@ -10,8 +10,8 @@
 #    |odcinek główny| = Lm; φ dobierane tak, by najmniej przechylić nogi w otworach (minimum największego stosunku
 #    przechyłu do dopuszczalnego);
 #  - przechył nogi = kąt między nogą a osią otworu; dopuszczalny: języczek gałki (gardziel Ø2,0 × 1,0) 36,9°,
-#    orczyk MG90S (otwór Ø1,3 w ramieniu ok. 1,6 mm [Z]) ok. 10,1°;
-#  - luz: cały drut (obie nogi i odcinek główny jako odcinki r 0,5) wobec siatki gałki, z wyłączeniem nogi w obrębie
+#    orczyk MG90S rozwiercony do Ø1,6 (ramię ok. 1,6 mm [Z]); średnica drutu drut_d z parametrów (Ø1,2);
+#  - luz: cały drut (obie nogi i odcinek główny jako odcinki o promieniu drut_d/2) wobec siatki gałki, z wyłączeniem nogi w obrębie
 #    otworu własnego zaczepu (2,5 mm od środka otworu wzdłuż nogi = połowa grubości 1,0 + wylot fazki: przejście przez gardziel
 #    zapewnia przechył ≤ dopuszczalnego, a fazki 45° są szersze od przechyłu ≤ 30°, więc drut dotyka tylko gardzieli),
 #    oraz wobec płyty ze słupkiem i piasty tylnej kardana.
@@ -53,7 +53,8 @@ def odl_znak(t, p):
 
 ODS_A, ODS_B = P['zacz_ods'], 1.75
 def kap(D, l, d=1.0): return kin.przechyl_dopuszczalny(D, l, d)
-KAP_A = kap(P['zacz_gardz_d'], P['zacz_gardz_l']); KAP_B = kap(1.3, 1.6)
+DR = P.get('drut_d', 1.0); RD = DR / 2
+KAP_A = kap(P['zacz_gardz_d'], P['zacz_gardz_l'], DR); KAP_B = kap(1.6, 1.6, DR)   # orczyk MG90S rozwiercony do Ø1,6
 
 def obrot(v, os_, kat):
     return Matrix.Rotation(kat, 3, os_) @ v
@@ -133,15 +134,15 @@ for psi in range(-35, 36, 5):
                 n = max(2, int((p1 - p0).length / 0.25) + 1)
                 for i in range(n):
                     p = p0 + (p1 - p0) * (i / (n - 1))
-                    dg = odl_znak(tG, p) - 0.5
+                    dg = odl_znak(tG, p) - RD
                     mstan = min(mstan, dg)
                     if dg < w['luzG']: w['luzG'], w['gdzie'] = dg, (psi, th, [round(x, 2) for x in p])
-                    w['luzP'] = min(w['luzP'], odl_znak(tP, p) - 0.5)
-                    w['luzK'] = min(w['luzK'], luz_piasta(p) - 0.5)
+                    w['luzP'] = min(w['luzP'], odl_znak(tP, p) - RD)
+                    w['luzK'] = min(w['luzK'], luz_piasta(p) - RD)
             if mstan < 0.5: w.setdefault('ponizej', []).append((psi, th, round(mstan, 2)))
     print('stan', psi, flush=True)
 lin = ['Duże oko v3 – pręty gałki jako jeden sztywny drut o stałych zagięciach (model w nagłówku duze-oko-v3-z-sztywne.py).',
-       f'Dopuszczalny przechył nogi: języczek gałki {KAP_A:.1f}° (Ø{P["zacz_gardz_d"]} × {P["zacz_gardz_l"]}), orczyk {KAP_B:.1f}° (Ø1,3 × 1,6 [Z]).', '']
+       f'Drut Ø{DR}. Dopuszczalny przechył nogi: języczek gałki {KAP_A:.1f}° (Ø{P["zacz_gardz_d"]} × {P["zacz_gardz_l"]}), orczyk {KAP_B:.1f}° (rozwiercony Ø1,6 × ramię 1,6 [Z]).', '']
 for nm in ('LP', 'GD'):
     w = wyn[nm]
     lin.append(f'Pręt {nm}: długość odcinka głównego stała {prety[nm].Lm:.2f} (odchyłka rozwiązania {w["dL"]:.4f}); '

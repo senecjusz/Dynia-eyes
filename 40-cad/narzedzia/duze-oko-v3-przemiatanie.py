@@ -5,9 +5,9 @@
 #  - przenikanie siatka–siatka: BVHTree.overlap (przecięcie trójkątów) – wynik „KOLIZJA”;
 #  - luz siatka–siatka: najmniejsza odległość wierzchołków A od powierzchni B i odwrotnie (find_nearest); krawędzie siatek
 #    dzielone przed pomiarem do ≤ 1–2 mm, więc minimum krawędź–krawędź jest przybliżone z dokładnością do ok. połowy tego kroku;
-#  - druty Ø1,0 jako łamane z zakończeniami „Z”: noga przez otwór (wzdłuż osi otworu) do zagięcia, odcinek główny, noga przez
+#  - druty (Ø drut_d z parametrów, 1,2) jako łamane z zakończeniami „Z”: noga przez otwór (wzdłuż osi otworu) do zagięcia, odcinek główny, noga przez
 #    drugi otwór; odsadzenie nogi w języczkach gałki zacz_ods (4,0), w orczykach 1,75, w uszkach powiek pow_ods (2,5); przechył nogi w otworze
-#    dwustożkowym liczy osobno duze_oko_v3_kinematyka.py (wymagany wobec dopuszczalnego), tu noga jest sztywna wzdłuż osi otworu; próbkowanie co 0,25 mm; luz = odległość osi od powierzchni − 0,5;
+#    dwustożkowym liczy osobno duze_oko_v3_kinematyka.py (wymagany wobec dopuszczalnego), tu noga jest sztywna wzdłuż osi otworu; próbkowanie co 0,25 mm; luz = odległość osi od powierzchni − promień drutu;
 #  - orczyki i przedłużenia jako pas o promieniu 2,5 wokół osi ramienia (od osi wałka do otworu + 3 mm);
 #  - serwa MG90S w pełnej obwiedni z rysunku Miuzei: korpus 22,8 × 12,5 × 22,5, uszy 4,5 × 12,5 × 2 na wysokości 18–20,
 #    wieżyczka r 5,9 do 27, wałek r 2,4 do 35; kardan: piasta tylna nieruchoma i przednia z gałką (walce Ø11).
@@ -207,7 +207,7 @@ PSI = range(-35, 36, 5); THETA = range(-25, 26, 5); POW = (0, 17, 34, 51.5)
 TPOW = {}
 for a in POW:
     TPOW[('G', a)] = drzewo('PowiekaGorna', mat4(kin.Rx(-a))); TPOW[('D', a)] = drzewo('PowiekaDolna', mat4(kin.Rx(a)))
-r_dr, r_orcz = 0.5, 2.5
+r_dr, r_orcz = P.get('drut_d', 1.0) / 2, 2.5
 def orcz_odc(s, h):   # ramię orczyka od osi wałka do otworu + 3 mm
     s, h = Vector(s), Vector(h); u = (h - s).normalized(); return [(s, h + u * 3.0)]
 zew = lambda v: v.length > 29.0     # gałka–powieka: liczą się tylko punkty gałki przy powierzchni zewnętrznej

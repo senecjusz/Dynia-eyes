@@ -93,8 +93,8 @@ if __name__ == '__main__':
                         ('narożniki', [(p, t) for p in range(-35, 36) for t in range(-25, 26)])):
         mLP = max(przechyl(k.stan(p, t), 'LP') for p, t in siatka); mGD = max(przechyl(k.stan(p, t), 'GD') for p, t in siatka)
         print('wymagany przechył nogi „Z” w języczku (%s, co 1°): L–P %.1f°, G–D %.1f°' % (zak, mLP, mGD))
-    D, l = k.P.get('zacz_gardz_d', 1.3), k.P.get('zacz_gardz_l', 2.5)
-    print('dopuszczalny przechył w otworze Ø%.1f × %.1f: %.1f°' % (D, l, przechyl_dopuszczalny(D, l)))
+    D, l, d = k.P.get('zacz_gardz_d', 1.3), k.P.get('zacz_gardz_l', 2.5), k.P.get('drut_d', 1.0)
+    print('dopuszczalny przechył drutu Ø%.1f w otworze Ø%.1f × %.1f: %.1f°' % (d, D, l, przechyl_dopuszczalny(D, l, d)))
     print('pręty L–P %.1f, G–D %.1f; druty powiek G %.1f, D %.1f' % (k.LLP, k.LGD, k.LG, k.LD))
     for psi, th in ((-35, 0), (35, 0), (0, -25), (0, 25), (35, 25), (-35, -25)):
         s = k.stan(psi, th)
