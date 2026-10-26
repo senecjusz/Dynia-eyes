@@ -84,7 +84,14 @@ Zmiany uzgodnione z sesją elektroniki:
 - uchwyt rezystora 3 W;
 - uchwyty opasek na skrętki i przewód PIR.
 
-Kontrole OK. **Nie drukować przed pomiarem gniazda USB-C** (gwint, grubość pod nakrętkę, nakrętka, kołnierz, korpus) oraz PCA9685 i ESP32-C3. Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
+Kontrole OK. Po pomiarach użytkownika 26.10 doszły:
+- ESP32-C3 24 × 18,4, klejony na 2 słupkach;
+- PCA9685 zgodna z modelem;
+- otwór „podwójne D” 11,3 / 10,3 pod gniazdo USB-C;
+- rezystor 47 Ω na słupkach;
+- miejsce zapasowe 20 × 30.
+
+**Tacka gotowa do druku.** Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
 
 ## Blokady
 

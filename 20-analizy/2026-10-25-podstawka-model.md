@@ -300,7 +300,7 @@ Użytkownik: „nie podobają mi się te śruby z boku za bardzo, może na takie
 
 Uwaga dla PM (agent): na zdjęciach z kamery jest też kątowy adapter USB-C (10 × 15 mm) wpięty w powerbank. Jeśli to docelowe połączenie, wtyk zajmuje dużo mniej niż przyjęte 50 mm – decyzja użytkownika (PRD).
 
-### Tacka elektroniki (kaseta) v2 (26.10) – NIE DRUKOWAĆ przed pomiarem gniazda USB-C
+### Tacka elektroniki (kaseta) v2 (26.10)
 
 Ustalenia sesji elektroniki z użytkownikiem (wiadomości do wykonawcy montażu 26.10; wcześniej tacka v1 nie była wydrukowana):
 - zasilanie z panelowego gniazda USB-C wkręcanego (okrągłe, gwint z nakrętką, gumowa zaślepka, 2 przewody z tyłu) zamiast płaskiego breakoutu;
@@ -332,3 +332,13 @@ Kontrole: siatka OK, kolizje szufladki z tacką: pusto. Wymiary płytek i gniazd
 - **ESP32-C3 z pinami w dół (elektronika 26.10, zdjęcie użytkownika: piny przylutowane w dół, wtyki Dupont od spodu):** płaską ramkę v1 zastąpiłem podstawką z 2 podpórek 10 × 16 wys. pod krótkimi krawędziami płytki. Podpórki stoją na środku, między rzędami pinów (rozstaw rzędów 15,2), więc Duponty 14 mm mieszczą się pod płytką, a przewody wychodzą w bok. Przednia podpórka (pod USB, głęb. 7) ma tunel 4,6 × 2,1 na opaskę w poprzek płytki za gniazdem USB, z dala od anteny. Tylna podpórka (głęb. 4) ma ramkę 1,5 nad płytką, więc płytka nie zjedzie do tyłu. USB-C zostaje do przodu i jest dostępne. Płytka 18,4 nad dnem tacki, do płyty zostaje ok. 20 mm. Siatka i kolizje: OK.
 - **ESP32-C3 klejony (poprawka elektroniki 26.10 na wniosek użytkownika: brak płytki stykowej, ESP przyklejony):** zamiast podpórek z opaską są 2 słupki 16 wys. z płaską górą 11 × 3 pod klej (termiczny albo CA), pod krótkimi krawędziami. Z tyłu (koniec z anteną) niski rant 1 jako ogranicznik przy klejeniu. Bez opaski i ramki. Elektronika podała górę słupka 18 × 3. Dałem 11 szer., bo przy 18 w słupek weszłyby wtyki Dupont narożnych pinów: pierwszy pin ok. 2,4 od krótkiej krawędzi, obudowa Duponta 2,54, rzędy w rozstawie 15,2. Siatka i kolizje: OK.
 - **Pomiary użytkownika 26.10 (przez elektronikę):** PCA9685 62 × 25, otwory 55,9 × 19 – zgodne z modelem. ESP32-C3: długość z gniazdem USB 24 (było 22,5), szerokość 18,4 (było 18), rozstaw rzędów 15,2 – zgodny. Model poprawiony: `espL` 24, `espW` 18,4. Przedni słupek przesunięty o 1,5 za wystające gniazdo USB (`espUsbWyst` – założenie: 24 − 22,5). Wtyki Dupont tylko na 6 pinach ESP (5V, G, 3V3 / GPIO8–10), słupki zostawiają miejsce na wszystkie. **Gniazdo USB-C wkręcane nadal niezmierzone** – jedyna blokada druku tacki.
+- **Gniazdo USB-C zmierzone (użytkownik 26.10, przez elektronikę):**
+  - gwint Ø11 z 2 ścięciami („podwójne D”), 10 w poprzek ścięć;
+  - kołnierz Ø14;
+  - od kołnierza do końca korpusu 13.
+
+  Wykonano:
+  - otwór podwójne D 11,3 / 10,3 (luz 0,15 na stronę), ścięcia u góry i u dołu: górne ścięcie to most 4,6 mm, bez podpór; na siatce otwór z 6,33…16,63 i x 151,45…162,75;
+  - ścianka 3 (elektronika: ≤ 7, zostaje gwint na nakrętkę 2–3), oś 11,5 nad spodem tacki.
+
+  Nakrętka gniazda niezmierzona: założony klucz 14, wyznacza wysokość osi. Siatka i kolizje: OK. **Tacka gotowa do druku** (A1 mini albo X1C, dnem na stół, bez podpór).

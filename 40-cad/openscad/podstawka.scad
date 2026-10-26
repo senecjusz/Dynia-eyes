@@ -137,11 +137,12 @@ espRzedy = 15.2;                                 // rozstaw rzędów pinów ESP3
 bkGn = 9.5;                                      // wyjście gniazda USB-C ESP32-C3 w ramce (8,94 + luz)
 bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilania w kasecie (jak v1: wycięcie kablowe szufladki na tej osi, przed gniazdem miejsce na wtyk)
 // ---------- BAZOWE: tacka v2 – gniazdo panelowe USB-C (ZAŁOŻENIA do pomiaru użytkownika), rezystor, opaski ----------
-gnGwintD = 12;      // średnica gwintu gniazda (założenie: typowe gniazdo panelowe USB-C M12 – DO POMIARU)
-gnT = 3;            // grubość ścianki pod nakrętkę (≤ długość gwintu – DO POMIARU)
-gnNakS = 16;        // nakrętka gniazda: rozmiar klucza (założenie – DO POMIARU), wyznacza wysokość osi nad dnem
-gnKolD = 18;        // kołnierz gniazda z przodu ścianki (założenie – DO POMIARU)
-gnKorpL = 30;       // korpus gniazda z przewodami za ścianką (założenie – DO POMIARU)
+gnGwintD = 11; gnGwintFlat = 10;                // gwint gniazda: średnica, wymiar w poprzek 2 ścięć „podwójne D” (pomiar użytkownika 26.10)
+luzGn = 0.15;       // luz otworu na gwint (na stronę; otwór 11,3 / 10,3 – propozycja elektroniki)
+gnT = 3;            // grubość ścianki pod nakrętkę (≤ 7 według elektroniki; 3 – zostaje gwint na nakrętkę 2–3)
+gnNakS = 14;        // nakrętka gniazda: rozmiar klucza (założenie – niezmierzona), wyznacza wysokość osi nad dnem
+gnKolD = 14;        // kołnierz gniazda z przodu ścianki (pomiar 26.10)
+gnKorpL = 13;       // korpus gniazda od kołnierza do końca (pomiar 26.10); przewody z tyłu
 gnMarg = 3;         // ścianka wokół kołnierza / nakrętki (w bok i nad); 3 – ścianka mieści się w tacce na osi wycięcia wydrukowanego korpusu
 gnZebroL = 8;       // żebra za ścianką (długość w y)
 wtykSzer = 14;      // wtyk USB-C kabla C–C z osłoną: szerokość (typowa, szacunek) – strefa przed gniazdem wolna od uchwytów
@@ -346,9 +347,9 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
     }
     for (dy = [(zapL - zapRozst) / 2, (zapL + zapRozst) / 2]) translate([zapX, zapY0 + dy, -1])   // miejsce zapasowe: otwory M3 ciasne
       cylinder(d = dM3ciasny, h = kDno + slupPcaH + 2, $fn = 24);
-    translate([bkX, bkY - 1, gnOsZ]) rotate([-90, 0, 0]) {   // otwór gwintu gniazda: łza (góra 45°, bez podpór w pionowej ściance)
-      cylinder(d = gnGwintD + 2 * luzSlizg, h = gnT + 2, $fn = 48);
-      rotate([0, 0, 225]) cube([(gnGwintD / 2 + luzSlizg), (gnGwintD / 2 + luzSlizg), gnT + 2]);   // lokalne −y = góra
+    translate([bkX, bkY - 1, gnOsZ]) rotate([-90, 0, 0]) intersection() {   // otwór na gwint „podwójne D”: ścięcia u góry i u dołu (górne ścięcie = krótki most, bez podpór)
+      cylinder(d = gnGwintD + 2 * luzGn, h = gnT + 2, $fn = 64);
+      translate([-gnGwintD, -(gnGwintFlat + 2 * luzGn) / 2, 0]) cube([2 * gnGwintD, gnGwintFlat + 2 * luzGn, gnT + 2]);
     }
   }
 }
