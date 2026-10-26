@@ -26,11 +26,18 @@ zacz_z   = -4.5;   // i położenie wzdłuż osi
 zacz_r0  = 12.8;   // wewnętrzny koniec języczka
 zacz_gr  = 2.0;    // grubość języczka i słupka G–D (wzdłuż osi otworu)
 zacz_h   = 5;      // wysokość języczka wzdłuż osi oka
-drut_d   = 1.2;    // drut napędu (posiadany sprężynowy Ø1,2; Ø1,0 brak – użytkownik 26.10)
-zacz_otw = 1.5;    // otwór na drut Ø1,2 w uszkach powiek i przedłużeniach orczyka (0,15 na stronę)
-zacz_gardz_d = 2.2;  // otwór dwustożkowy w języczkach gałki: światło gardzieli (drut Ø1,2 przechyla się do ok. 39°)
-zacz_gardz_l = 0.8;  // długość gardzieli; dalej fazki 45° do obu ścian
-zacz_ods = 4.0;      // odsadzenie nogi „Z” od środka otworu wzdłuż osi otworu (luz pręta do języczka; PM: 3,5–4,3)
+drut_d   = 1.0;    // drut napędu Ø1 (jest w warsztacie – użytkownik 26.10, powrót z Ø1,2)
+// „Z” gięte ręcznie kombinerkami (zdjęcia 70-budowa/zdjecia/2026-10-26-drut-z): noga między zagięciami ok. 6 (5–7),
+// promień gięcia ok. 1, ogon po zgięciu skrócony do ok. 2; otwór na środku nogi, noga przesuwa się w nim o ok. ±0,5;
+// noga 7 (górna granica gięcia): przy 6 ogon G–D przy theta +25 zbliża się do płytki słupka na 0,22, przy 7 luz 0,64
+drut_noga = 7;     // noga „Z” między zagięciami (osie)
+drut_r_gi = 1;     // promień gięcia (wewnętrzny)
+drut_ogon = 2;     // ogon za drugim zagięciem
+zacz_otw = 1.3;    // otwór na drut Ø1 w uszkach powiek i przedłużeniach orczyka (0,15 na stronę)
+zacz_gardz_d = 2.0;  // otwór dwustożkowy w języczkach gałki: światło gardzieli (drut Ø1 przechyla się do ok. 37°)
+zacz_gardz_l = 1.0;  // długość gardzieli; dalej fazki 45° do obu ścian
+zacz_ods = drut_noga / 2;   // odsadzenie zagięcia „Z” od środka otworu wzdłuż osi otworu (otwór na środku nogi)
+orcz_ods = drut_noga / 2;   // to samo w otworach orczyków
 slup_GD_szer = 6.5;  // słupek zaczepu G–D w płaszczyźnie y = zacz_r: szerokość w x
 slup_GD_nasada = 4;  // początek pogrubienia słupka ku czaszy (skos 45° w ±y do grubości 14)
 zacz_pod = 20;     // od tego promienia języczek ma podparcie 45° do krawędzi (druk krawędzią w dół)
@@ -49,7 +56,7 @@ zaczG    = [5, 34.0];      // zaczep drutu powieki górnej: [x, promień od osi 
 zaczD    = [-5, 31.5];     // dolnej
 zacz_pow_gr = 2;           // grubość uszka drutu (wzdłuż x)
 zacz_pow_z  = 1.6;         // otwór uszka nad płaszczyzną osi (pod uszkiem wycięcie paska krawędzi tylnej)
-pow_ods     = 2.5;         // odsadzenie nogi „Z” drutu powieki od środka uszka (luz drutu do płytki uszka)
+pow_ods     = drut_noga / 2;   // odsadzenie zagięcia „Z” drutu powieki od środka uszka (otwór na środku nogi)
 otwarcie = 51.5;           // pełne otwarcie powiek
 
 // ---------- Parametry: płyta, słupki, słupek kardana ----------
@@ -171,18 +178,6 @@ module zaczep_GD() {   // słupek w płaszczyźnie y = zacz_r (gr. wzdłuż y) o
       sphere(r = R_kula - sc_kula / 2, $fn = 120);
     }
     translate([0, zacz_r, zacz_z]) rotate([90, 0, 0]) otwor_dwustozkowy(zacz_gr);
-  }
-}
-// próbka zaczepu: płytka 2 mm stojąca na stopce, otwory pod drut Ø1,2 (A: jak w gałce Ø2,2 × 0,8; B: Ø2,3 × 0,6 do porównania)
-module probka_zaczepu() {
-  difference() {
-    union() { pudlo(-14, 14, -5, 5, 0, 1.6); pudlo(-14, 14, -zacz_gr / 2, zacz_gr / 2, 0, 12); }
-    translate([-7, 0, 7]) rotate([90, 0, 0]) otwor_dwustozkowy(zacz_gr);
-    translate([7, 0, 7]) rotate([90, 0, 0]) {
-      cylinder(d = d_opis(2.3, OTW_N), h = zacz_gr + 2, center = true, $fn = OTW_N);
-      for (m = [0, 1]) mirror([0, 0, m]) translate([0, 0, 0.3]) cylinder(d1 = d_opis(2.3, OTW_N), d2 = d_opis(2.3 + 2 * 0.7 + 2, OTW_N), h = 0.7 + 1, $fn = OTW_N);
-    }
-    translate([12, -10, 10]) cube([4, 20, 4]);   // ścięty róg po stronie otworu B
   }
 }
 module galka() {
@@ -397,7 +392,6 @@ module druk(c) {
   else if (c == "Tuba40")         translate([0, 0, -(rant_z - 40 - kol_gr)]) tuba(40);
   else if (c == "Tuba50")         translate([0, 0, -(rant_z - 50 - kol_gr)]) tuba(50);
   else if (c == "Maskownica")     translate([0, 0, -rant_z]) maskownica();
-  else if (c == "ProbkaZaczepu")  probka_zaczepu();                                                       // stopką na stole
   else if (c == "PlytaDruk45")    plyta_druk45();                                                         // płyta pod 45° (do pliku z podporą)
   else if (c == "PodporaPlyty")   podpora_plyty();                                                        // podpora w położeniu względem płyty pod 45°
 }
@@ -411,7 +405,6 @@ module zlozenie_czesc(c) {
   else if (c == "Tuba40") tuba(40);
   else if (c == "Tuba50") tuba(50);
   else if (c == "Maskownica") maskownica();
-  else if (c == "ProbkaZaczepu") probka_zaczepu();
   else if (c == "PodporaPlyty") podpora_plyty();    // (w układzie druku – podpora nie należy do złożenia)
 }
 
@@ -419,7 +412,7 @@ if (czesc == "parametry") {
   echo(str("PARAMETRY{\"R_kula\":", R_kula, ",\"z_kraw\":", z_kraw, ",\"zacz_r\":", zacz_r, ",\"zacz_z\":", zacz_z,
            ",\"LP_wal\":", LP_wal, ",\"GD_wal\":", GD_wal, ",\"PG_wal\":", PG_wal, ",\"PD_wal\":", PD_wal,
            ",\"orcz_LP\":", orcz_LP, ",\"orcz_GD\":", orcz_GD, ",\"orcz_pow\":", orcz_pow,
-           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"pG_x_orcz\":", pG_x_orcz, ",\"pD_x_orcz\":", pD_x_orcz, ",\"drut_d\":", drut_d, ",\"zacz_ods\":", zacz_ods, ",\"pow_ods\":", pow_ods, ",\"zacz_gardz_d\":", zacz_gardz_d, ",\"zacz_gardz_l\":", zacz_gardz_l, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
+           ",\"pG_psi0\":", pG_psi0, ",\"pD_psi0\":", pD_psi0, ",\"zacz_pow_z\":", zacz_pow_z, ",\"pG_x_orcz\":", pG_x_orcz, ",\"pD_x_orcz\":", pD_x_orcz, ",\"drut_d\":", drut_d, ",\"zacz_ods\":", zacz_ods, ",\"orcz_ods\":", orcz_ods, ",\"drut_noga\":", drut_noga, ",\"drut_ogon\":", drut_ogon, ",\"drut_r_gi\":", drut_r_gi, ",\"pow_ods\":", pow_ods, ",\"zacz_gardz_d\":", zacz_gardz_d, ",\"zacz_gardz_l\":", zacz_gardz_l, ",\"zaczG\":", zaczG, ",\"zaczD\":", zaczD, ",\"otwarcie\":", otwarcie, ",\"rant_z\":", rant_z,
            ",\"pl_y\":", pl_y, ",\"pl_zP\":", pl_zP, ",\"kol_zP\":", kol_zP, ",\"piasta_z\":", piasta_z, "}"));
   cube(1);
 } else if (czesc == "zlozenie") {

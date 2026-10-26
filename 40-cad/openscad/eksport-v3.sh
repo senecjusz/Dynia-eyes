@@ -10,8 +10,8 @@ STL="${1:-./stl-zlozenie-v3}"
 OUT="../3mf/Duze oko v3"
 mkdir -p "$OUT" "$STL"
 declare -A PLIK=([Plyta]="Plyta" [Galka]="Galka" [PowiekaGorna]="Powieka gorna" [PowiekaDolna]="Powieka dolna"
-  [PrzedluzenieOrczyka]="Przedluzenie orczyka (druk x2)" [Tuba30]="Tuba 30" [Tuba40]="Tuba 40" [Tuba50]="Tuba 50" [Maskownica]="Maskownica" [ProbkaZaczepu]="Probka zaczepu galki" [PodporaPlyty]="Podpora plyty (druk 45)")
-CZ=(Plyta Galka PowiekaGorna PowiekaDolna PrzedluzenieOrczyka Tuba30 Tuba40 Tuba50 Maskownica ProbkaZaczepu PodporaPlyty)
+  [PrzedluzenieOrczyka]="Przedluzenie orczyka (druk x2)" [Tuba30]="Tuba 30" [Tuba40]="Tuba 40" [Tuba50]="Tuba 50" [Maskownica]="Maskownica" [PodporaPlyty]="Podpora plyty (druk 45)")
+CZ=(Plyta Galka PowiekaGorna PowiekaDolna PrzedluzenieOrczyka Tuba30 Tuba40 Tuba50 Maskownica PodporaPlyty)
 timeout 120 "$OS" -o "$STL/parametry.echo" -D 'czesc="parametry"' duze-oko-v3.scad > /dev/null 2>&1
 sed -n 's/^ECHO: "PARAMETRY\(.*\)"$/\1/p' "$STL/parametry.echo" > "$STL/parametry.json"
 jedna() { local c=$1
