@@ -93,6 +93,10 @@ Kontrole OK. Po pomiarach użytkownika 26.10 doszły:
 
 **Tacka gotowa do druku.** Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
 
+### Przycisk zewnętrzny (27.10)
+
+Decyzja użytkownika: prawy bok, blisko tyłu, przycisk wklejony. Otwór Ø12 na wylot, 36 mm od tyłu podstawki, oś 32 mm nad stołem. Wiercić od zewnątrz. Od środka nie koliduje z tacką ani z kablami (kontrola `KolizjaPrzycisk`: pusto).
+
 ## Blokady
 
 Brak w zadaniu szufladki v2.
