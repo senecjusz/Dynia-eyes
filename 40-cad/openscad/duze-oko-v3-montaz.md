@@ -17,7 +17,7 @@ Układ: 0 = środek kuli, z do przodu, y w górę, x w prawo patrząc od przodu.
 
 | Plik 3MF | Szt. | Wymiar | Orientacja i podpory |
 |---|---|---|---|
-| `Plyta` | 1 | 84 × 109 × 26 (z ramionami i słupkiem) | Spód płyty na stole. **Podpory pod ramionami zawiasu i słupkiem kardana** w części przed płytą, wiszą 14–26 mm nad stołem. Płyty poziomej nie da się wydrukować bez nich, bo ramiona w tubie muszą leżeć przy osi (y ±5). Podpory malujesz w slicerze tylko tam |
+| `Plyta` | 1 | 84 × 109 × 26 (z ramionami i słupkiem) | Płyta leży płasko. **Do druku pod kątem 45° (decyzja użytkownika 26.10) służy `Plyta + podpora (druk 45)`**; szczegóły pod tabelą |
 | `Galka` | 1 | Ø60, krawędź tylna na z = −11 | Krawędzią na stole. **Podpory drzewiaste:** pod czołem piasty (z = +14, nad pustką), pod wewnętrznym końcem języczka L–P (7,2 mm wysięgu od podparcia 45°, 4 mm nad stołem) i pod spodem słupka zaczepu G–D (3 × 2 mm, 4 mm nad stołem). Słupek wisi na przedniej czaszy, ma nasadę ze skosem 45° od z = +4 i kończy się 1 mm pod otworem, bo niżej pracuje pręt. Podpory zdejmujesz przez otwór tylny |
 | `Probka zaczepu galki` | 1 | 28 × 10 × 12 | **Drukujesz przed gałką** (zasada „najpierw próbka”), stopką na stole, płytka pionowo jak języczek w gałce. Oba otwory są pod drut Ø1,2. Otwór A: Ø2,2 × gardziel 0,8, jak w gałce (rachunek 39°). Otwór B: Ø2,3 × 0,6, do porównania, po stronie ściętego rogu (45°). Sprawdzasz: drut Ø1,2 z nogą „Z” przechyla się w otworze A o ≥ 34° w każdą stronę bez zacinania, a luz jest akceptowalny. Jeśli A się zacina, a B nie, zgłoś to: gałkę trzeba przestawić na B |
 | `Powieka gorna` | 1 | R33,2–34,4 | Krawędzią tylną (z = −3) na stole, z brimem (pasek 1,2 mm). **Podpora pod uszkiem drutu:** uszko 2 × 2,7 mm zaczyna się 3,0 mm nad stołem i do 5,6 mm nie ma pod sobą nic. Nad wycięciem przy uszku jest mostek 10 mm. Ewentualnie podpora wewnątrz pod szczytem kopułki |
@@ -25,7 +25,28 @@ Układ: 0 = środek kuli, z do przodu, y w górę, x w prawo patrząc od przodu.
 | `Przedluzenie orczyka (druk x2)` | 2 | 33 × 10 × 2,5 | płasko |
 | `Tuba 30`, `Tuba 40`, `Tuba 50` | po 1 | Ø79,5 / Ø76,3, kołnierz Ø92 × 3, 4 łapy; wysokość 33 / 43 / 53 | Kołnierzem na stole. Drukujesz wszystkie trzy, przy składaniu wybierasz tę, która pasuje do ściany dyni |
 | `Maskownica` | 1 | Ø84 / Ø76,3 × 2 | płasko |
+| `Plyta + podpora (druk 45)` | 1 | płyta pod 45° z projektowaną podporą, 2 obiekty | **To jest plik do druku płyty** (opis pod tabelą); `Podpora plyty (druk 45)` osobno |
 | `Duze oko v3 - wszystkie czesci` | – | wszystkie powyższe jako osobne obiekty | Do rozłożenia na kilka stołów: obiekty zajmują ok. 233 × 399 mm |
+
+**Druk płyty pod kątem 45°:**
+- **Obrót:** wokół osi x o 45°, wierzchem (strona serw) i przodem (słupki) do góry. Tył płyty stoi na stopce: ścięcie tylnej dolnej krawędzi, płaski pas 4,2 × 84 mm. Osie zawiasu Ø2,4 zostają równoległe do stołu. Nie obracać wierzchem w dół, bo skosy nasad dałyby wtedy nawisy poziome.
+- **Drukarka:** X1C, bo wysokość wynosi ok. 93 mm, a stół A1 mini jeździ w Y. Z brimem.
+- **Podpora projektowana** (decyzja użytkownika 26.10, wzór z filmu): plik `Plyta + podpora (druk 45).3mf` zawiera płytę już pod 45° i osobny obiekt `Podpora plyty (druk 45)` w położeniu na stole, razem ok. 84 × 70 × 93 mm.
+  - **Budowa:** płetwa równoległa do spodu płyty, w odstępie 0,8 (grubość 1,2), pięć pionowych żeber 1,2 i podstawa 1 mm na stole, wysunięta ok. 21 mm przed żebra. Środek masy płyty (ok. 40 mm przed stopką) wypada nad podstawą, więc część się nie przewraca.
+  - **Pod wystającymi elementami** (użytkownik 26.10: „zawsze bezpieczniejszy wydruk”):
+    - pionowe ścianki pod spodami obu ramion zawiasu (x ±36,2, gr. 1,6, od z −32 do przodu) i pod spodem słupka kardana (x 0, gr. 3, od z −24 do −16);
+    - ścianki połączone trzema poziomymi belkami;
+    - bliżej płyty linia w dół trafiałaby w płytę albo w klocek nasady, więc te odcinki (45°) zostają bez podpory.
+  - **Łączniki:** stożkowe, Ø1,6 przy podporze, karb Ø0,7 przy części. 32 pod płytą, tylko tam, gdzie spód płyty jest pełny, oraz co 6 mm pod ramionami i słupkiem. Poza łącznikami podpora nie dotyka części: najmniejszy odstęp 0,69 (z boku ścianki przy żebrze nasady), pod spodami 0,8, bez przenikania (sprawdzone w Blenderze, BVH).
+  - **W slicerze:** wczytaj plik z oboma obiektami bez przesuwania (jeden pod drugim, jak w pliku), **wyłącz automatyczne podpory**, daj brim (płyta i podpora) i drukuj na X1C. Osobno jest też sama `Podpora plyty (druk 45).3mf`; ma ona sens tylko z płytą ustawioną identycznie.
+  - **Odłamywanie:** najpierw ścianki spod ramion i słupka: odchylasz je na boki, a łączniki pękają na karbie. Potem podporę płyty odchylasz od spodu ruchem wzdłuż żeber (od przodu do tyłu); łączniki pękają przy płycie. Ślady zbierasz nożykiem. Nie podważać od strony stopki, bo tam płetwa jest najbliżej stołu i najsztywniejsza.
+- **Nawisy** (sprawdzone na normalnych siatki):
+  - stromiej niż 45° tylko góry otworów osi zawiasu Ø2,4 (9,4 mm², mostki otworów);
+  - żebra i skosy nasad rosną pionowo albo w górę, bez nawisów;
+  - spód płyty, spody ramion i tylne ściany leżą dokładnie pod 45°;
+  - podpory pod ramionami i słupkiem kardana są przy tej orientacji zbędne.
+- **Do sprawdzenia na sucho po druku:** szczeliny uszu serw (2,4 × 12,9), gniazdo L–P (12,9 × 23,2) i wnęki wieżyczek mają ścianki pod 45° do warstw. Wsuń serwa przed klejeniem.
+- **Druk na płasko** (`Plyta.3mf`, jeśli jednak): podpory pod ramionami i słupkiem kardana przed płytą (14–26 mm nad stołem); nasady są wtedy słabszym kierunkiem, zapasy w raporcie wytrzymałości.
 
 Kolor: mechanizm pomarańczowy, gałka biała.
 
@@ -56,9 +77,9 @@ Kolor: mechanizm pomarańczowy, gałka biała.
 | Krawędź czaszy | z = −11, czyli ok. 111° od przodu. Otwór zewnętrznie Ø55,8, w świetle samej czaszy Ø51,5; wspólne wolne światło z podparciem języczka L–P ok. Ø48. Przy −15 pręt L–P przechodził przez krawędź; przy −11,5 sztywny drut „Z” L–P miał 0,27 do krawędzi przy θ ±25. Ustalenie 3 dopuszcza płytszą czaszę, do ok. 10 mm za środkiem |
 | Piasta gałki | Ø14 od przedniego bieguna do z = +14 |
 | Zaczepy gałki | Oba otwory wzdłuż osi y gałki, na z = −4,5 i promieniu 15,5: L–P w języczku x = 15,5 (płytka w płaszczyźnie XZ, gr. 2), G–D w słupku y = 15,5 (płytka w płaszczyźnie XZ, 6,5 × 2, od z −7, czyli 1 mm pod otworem, do przedniej czaszy; od z = +4 nasada pogrubiona skosem 45° w ±y do grubości 14). Otwory dwustożkowe pod drut Ø1,2: gardziel w świetle Ø2,2 × 0,8, fazki 45° do obu ścian, wylot Ø3,4; mostek do końca języczka 1,0. Noga „Z” odsadzona 4,0: L–P w +y, G–D w −y (ku osi). Spód słupka G–D 1 mm pod wylotem fazki, narożniki ścięte 45° |
-| Słupek kardana | Ø12, z −51 … −14,25 |
+| Słupek kardana | Ø12, z −51 … −14,25; nasada: klocek do z = −40, skosy 45° po płycie do x ±14, żebro 5 mm pod słupkiem do z = −31 |
 | Płyta | wierzch y = −15, grubość 5, z −49 … −105, x ±42; przód 2 mm za kołnierzem tuby 50 |
-| Słupki zawiasu | x 34,7 … łuk R37,2 (0,95 do tuby na całej szerokości), y ±5, z do +4; oś na z = 0 |
+| Słupki zawiasu | x 34,7 … łuk R37,2 (0,95 do tuby na całej szerokości), y ±5, z do +4; oś na z = 0. Nasada: żebro po wewnętrznej stronie x 30…34,7, nad płytą y −20…+5, przed płytą do spodu płyty w r ≤ 37,6 (0,55 do tuby i kołnierza tuby 50), pełne do z = −38, skosem do ramienia na z = −20 (wytrzymałość: `20-analizy/2026-10-26-duze-oko-v3-wytrzymalosc-slupkow.md`) |
 | Powieki | luz 1,0 do gałki i między powiekami; uszy górnej x ±(33,2…34,4), dolnej ±(31,8…33,0); luz osiowy 0,2 ucho–ucho i 0,3 ucho–słupek |
 | Otwory osi | uszy i słupki: światło Ø2,4 (wielokąt 32-boczny opisany na Ø2,4), drut Ø2 |
 | Zaczepy drutów powiek | górna x = +5, 34,0 od osi zawiasu; dolna x = −5, 31,5 od osi; otwór Ø1,5 (drut Ø1,2) 1,6 nad płaszczyzną osi; otwór drutu w przedłużeniach orczyka też Ø1,5 |
@@ -137,7 +158,7 @@ Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orcz
 
 - **Siatki:**
   - `sprawdz_siatki.js`: 0 błędów dla każdej części i pliku zbiorczego;
-  - `skladowe_siatki.js`: 1 bryła na część, 10 brył w zbiorczym (razem z próbką zaczepu);
+  - `skladowe_siatki.js`: 1 bryła na część, 11 brył w zbiorczym (z próbką zaczepu i podporą płyty), 2 w `Plyta + podpora (druk 45)`;
   - gałka ma po eksporcie 8 zdegenerowanych trójkątów z CGAL; usuwa je `napraw_siatki.js` w `eksport-v3.sh`.
 - **Przemiatanie:** wynik w `przemiatanie-v3.txt`; metoda, wyłączenia i zakres w nagłówku skryptu.
   - **Pary nieruchome:** serwo–serwo, serwo–płyta, serwo–tuby, płyta–tuby.
@@ -170,6 +191,7 @@ Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orcz
 - Wyjście kabla posiadanego MG90S: przejście w płycie zakłada kabel z krótszej ściany przeciwnej do wałka, nisko przy spodzie (rysunek Miuzei, pewność niska).
 - Uszy MG90S na całą szerokość korpusu [Z, rysunek Miuzei]; szczeliny uszu mają 2,4 × 12,9.
 - Ustawienie modułu w tubie: równy pierścień wokół gałki przed związaniem kleju.
+- Słupki zawiasu przed wklejeniem w tubę: siła ok. 4 N w bok ugina ramię o ok. 0,5 mm, więcej niż luz osiowy ucha (0,3). Nie dociskać ramion na boki przy montażu powiek.
 
 ## 8. Zaczepy „Z” na gałce (rozwiązane geometrią, decyzja PM 26.10)
 

@@ -10,8 +10,8 @@ STL="${1:-./stl-zlozenie-v3}"
 OUT="../3mf/Duze oko v3"
 mkdir -p "$OUT" "$STL"
 declare -A PLIK=([Plyta]="Plyta" [Galka]="Galka" [PowiekaGorna]="Powieka gorna" [PowiekaDolna]="Powieka dolna"
-  [PrzedluzenieOrczyka]="Przedluzenie orczyka (druk x2)" [Tuba30]="Tuba 30" [Tuba40]="Tuba 40" [Tuba50]="Tuba 50" [Maskownica]="Maskownica" [ProbkaZaczepu]="Probka zaczepu galki")
-CZ=(Plyta Galka PowiekaGorna PowiekaDolna PrzedluzenieOrczyka Tuba30 Tuba40 Tuba50 Maskownica ProbkaZaczepu)
+  [PrzedluzenieOrczyka]="Przedluzenie orczyka (druk x2)" [Tuba30]="Tuba 30" [Tuba40]="Tuba 40" [Tuba50]="Tuba 50" [Maskownica]="Maskownica" [ProbkaZaczepu]="Probka zaczepu galki" [PodporaPlyty]="Podpora plyty (druk 45)")
+CZ=(Plyta Galka PowiekaGorna PowiekaDolna PrzedluzenieOrczyka Tuba30 Tuba40 Tuba50 Maskownica ProbkaZaczepu PodporaPlyty)
 timeout 120 "$OS" -o "$STL/parametry.echo" -D 'czesc="parametry"' duze-oko-v3.scad > /dev/null 2>&1
 sed -n 's/^ECHO: "PARAMETRY\(.*\)"$/\1/p' "$STL/parametry.echo" > "$STL/parametry.json"
 jedna() { local c=$1
@@ -25,4 +25,9 @@ for c in "${CZ[@]}"; do f="$OUT/${PLIK[$c]}.3mf"
 args=(); for c in "${CZ[@]}"; do args+=("$OUT/${PLIK[$c]}.3mf"); done
 node $N/zbiorczy_3mf.js "$OUT/Duze oko v3 - wszystkie czesci.3mf" 10 "${args[@]}"
 node $N/sprawdz_siatki.js "$OUT/Duze oko v3 - wszystkie czesci.3mf"
+# płyta pod 45° z projektowaną podporą: dwa obiekty w położeniu na stole (podpora tylko łącznikami w płycie)
+timeout 1800 "$OS" -o "$STL/Plyta (druk 45).3mf" -D 'czesc="PlytaDruk45"' -D 'tryb="druk"' duze-oko-v3.scad > "$STL/PlytaDruk45.log" 2>&1
+node $N/sprawdz_siatki.js "$STL/Plyta (druk 45).3mf" || { node $N/napraw_siatki.js "$STL/Plyta (druk 45).3mf" "$STL/naprawa.3mf" && cp "$STL/naprawa.3mf" "$STL/Plyta (druk 45).3mf"; }
+node $N/zbiorczy_3mf.js "$OUT/Plyta + podpora (druk 45).3mf" bez "$STL/Plyta (druk 45).3mf" "$OUT/Podpora plyty (druk 45).3mf"
+node $N/sprawdz_siatki.js "$OUT/Plyta + podpora (druk 45).3mf"; node $N/skladowe_siatki.js "$OUT/Plyta + podpora (druk 45).3mf"
 echo KONIEC

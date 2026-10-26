@@ -1,6 +1,6 @@
 // Zbiorczy 3MF z osobnymi, nazwanymi obiektami (jeden obiekt na plik wejściowy), rozstawionymi obok siebie na płaszczyźnie z = 0.
 // OpenSCAD zlewa części w jedną siatkę, więc zbiorczy składamy z pojedynczych 3MF (Bambu Studio widzi osobne obiekty).
-// Użycie: node zbiorczy_3mf.js <wyjście.3mf> <odstęp_mm> <wejście1.3mf> [wejście2.3mf ...]   (nazwa obiektu = nazwa pliku bez .3mf)
+// Użycie: node zbiorczy_3mf.js <wyjście.3mf> <odstęp_mm | bez> <wejście1.3mf> [wejście2.3mf ...]   (nazwa obiektu = nazwa pliku bez .3mf; „bez” = bez rozstawiania)
 const fs = require('fs'), path = require('path'), zlib = require('zlib');
 function modele(buf) { const out = []; for (let i = 0; i < buf.length - 30;) { if (buf.readUInt32LE(i) !== 0x04034b50) { i++; continue; }
   const met = buf.readUInt16LE(i + 8), cs = buf.readUInt32LE(i + 18), nl = buf.readUInt16LE(i + 26), el = buf.readUInt16LE(i + 28);
@@ -24,12 +24,12 @@ function zip(pliki) { const lok = [], cen = []; let off = 0;
     lok.push(h, n, d); cen.push(ce, n); off += 30 + n.length + d.length; }
   const cd = Buffer.concat(cen), e = Buffer.alloc(22); e.writeUInt32LE(0x06054b50, 0); e.writeUInt16LE(pliki.length, 8); e.writeUInt16LE(pliki.length, 10);
   e.writeUInt32LE(cd.length, 12); e.writeUInt32LE(off, 16); return Buffer.concat([...lok, cd, e]); }
-const [wyj, odstS, ...wej] = process.argv.slice(2); const odst = +odstS;
+const [wyj, odstS, ...wej] = process.argv.slice(2); const odst = +odstS; const bez = odstS === 'bez';   // „bez”: obiekty zostają w swoim położeniu (np. część i jej podpora)
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 let obiekty = '', build = '', x = 0, y = 0, wiersz = 0; const SZER = 260;
 wej.forEach((f, i) => { const m = siatka(f), w = m.hi[0] - m.lo[0], h = m.hi[1] - m.lo[1];
   if (x > 0 && x + w > SZER) { x = 0; y += wiersz + odst; wiersz = 0; }
-  const tx = x - m.lo[0], ty = y - m.lo[1], tz = -m.lo[2]; x += w + odst; wiersz = Math.max(wiersz, h);
+  const tx = bez ? 0 : x - m.lo[0], ty = bez ? 0 : y - m.lo[1], tz = bez ? 0 : -m.lo[2]; if (!bez) { x += w + odst; wiersz = Math.max(wiersz, h); }
   const nazwa = path.basename(f, '.3mf');
   obiekty += `<object id="${i + 1}" name="${esc(nazwa)}" type="model"><mesh><vertices>` + m.V.map((v) => `<vertex x="${(v[0] + tx).toFixed(5)}" y="${(v[1] + ty).toFixed(5)}" z="${(v[2] + tz).toFixed(5)}"/>`).join('') +
     '</vertices><triangles>' + m.T.map((t) => `<triangle v1="${t[0]}" v2="${t[1]}" v3="${t[2]}"/>`).join('') + '</triangles></mesh></object>\n';

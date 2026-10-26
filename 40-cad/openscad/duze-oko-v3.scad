@@ -58,6 +58,7 @@ pl_gr   = 5;
 pl_zP   = -49;     // przód płyty: za kołnierzem tuby 50 (z −44…−47), 2 mm zapasu
 pl_zT   = -105;
 pl_x    = 42;
+pl_stopka = 3;     // ścięcie 45° tylnej dolnej krawędzi płyty (przyprostokątna 3, płaski pas 4,2) – stopka do druku pod kątem 45°
 sl_x0   = 34.7;    // słupek zawiasu: od x 34,7 do łuku R37,2 (0,95 do ścianki tuby R38,15 na całej szerokości)
 sl_R    = 37.2;
 sl_h    = 10;      // wysokość słupka (y ±5)
@@ -67,8 +68,14 @@ pod_x0  = 33.2;    // podpora słupka (pion) od płyty do słupka, z −49…−
 pod_gr  = 4;
 kol_d   = 12;      // słupek kardana
 kol_zP  = -14.25;  // czoło słupka (piasta tylna kardana kończy się na −12,75; trzpień wchodzi 6,5)
-kol_klocek = [12, 4];   // klocek słupka kardana przed płytą: szerokość x, głębokość z (w świetle tuby)
+kol_klocek = [12, 9];   // klocek słupka kardana przed płytą: szerokość x, głębokość z (w świetle tuby, do z = −40)
 kol_z0  = -51;     // tył słupka i klocka (2 mm w płycie; orczyk G–D pracuje za nim)
+kol_skos_x = 14;   // nasada słupka kardana: skosy 45° po płycie do x ±14
+kol_zebro = -31;   // żebro pod słupkiem kardana sięga do z = −31 (skos 45° od przodu klocka)
+kol_zebro_gr = 5;  // grubość żebra (x)
+sl_zebro = -20;    // żebro słupka zawiasu sięga do z = −20
+sl_zebro_x = 30;   // wewnętrzna krawędź żebra słupka zawiasu (|x|)
+sl_zebro_z0 = -38; // do tego z żebro słupka zawiasu ma pełną wysokość y −12…+5 (w świetle tuby: r ≤ 36,7)
 
 // ---------- Parametry: serwa MG90S (rysunek Miuzei, 30-projekt/e6-pomiary.md) ----------
 sv_L = 22.8; sv_W = 12.5; sv_H = 22.5; sv_ucho_h = 18; sv_ucho_gr = 2; sv_ucho_wys = 4.5; sv_wal = 5.5; sv_czubek = 35;
@@ -83,6 +90,23 @@ pG_x_orcz = 1.75;  // płaszczyzna otworu przedłużenia orczyka powieki górnej
 pD_x_orcz = -1.75; // dolnej (czubek wałka x = −3)
 pG_psi0 = 25;      // kąt orczyka powieki górnej przy zamkniętej powiece (od +y ku +z, w płaszczyźnie x = zaczG.x)
 pD_psi0 = 35;      // dolnej (od −y ku +z)
+
+// ---------- Parametry: podpora płyty do druku pod 45° (decyzja użytkownika 26.10, wzór: film Slant 3D) ----------
+pod45_g = 0.8;      // odstęp płetwy od spodu płyty (0,5–1)
+pod45_t = 1.2;      // grubość płetwy i żeber
+pod45_x = 40;       // płetwa i podstawa w x ±40
+pod45_zebra = [-36, -18, 0, 18, 36];   // żebra (x)
+pod45_podst = 1.0;  // grubość podstawy na stole
+pod45_przod = -8;   // podstawa sięga do Y' = −8 (pod końce ramion; przeciw przewracaniu)
+// podpory pod spodami ramion zawiasu i słupka kardana (użytkownik 26.10: „zawsze bezpieczniejszy wydruk”)
+pod45_ram_z = [-32, 2.5];    // zakres z spodu ramienia (y = −5) podpierany od stołu (dalej do tyłu linia w dół trafia w płytę)
+pod45_kol_z = [-24, -16];    // zakres z spodu słupka kardana (y = −6) podpierany od stołu (bliżej płyty trafia w klocek nasady)
+pod45_scianka = 1.6;         // grubość ścianki pod ramieniem (pod słupkiem kardana 3)
+pod45_belki = [22, 42, 62];  // wysokości (Z') poziomych belek łączących ścianki
+pod45_karb = 0.7;   // średnica łącznika przy płycie (karb do odłamania); przy płetwie 1,6
+pod45_lacza = true; // false: podpora bez łączników (do kontroli odstępu od płyty)
+// łączniki: punkty (x, z) na spodzie płyty, ≥ 2 mm od gniazd i szczelin
+pod45_lacz = [[-36, -98], [-36, -88], [-36, -78], [-36, -68], [-36, -58], [-36, -52], [-24, -98], [-24, -88], [-24, -78], [-24, -68], [-24, -52], [-12, -98], [-12, -88], [-12, -78], [-12, -68], [0, -98], [0, -52], [12, -98], [12, -88], [12, -78], [12, -68], [12, -58], [12, -52], [24, -98], [24, -88], [24, -78], [24, -68], [24, -58], [24, -52], [36, -98], [36, -88], [36, -52]];
 
 // ---------- Parametry: przedłużenie orczyka ----------
 prz_L = 28; prz_szer = 6; prz_gr = 2.5; prz_piasta = 7;   // przedłużenie tylko na CA, bez kołków
@@ -239,6 +263,18 @@ module slupek(m) {   // słupek zawiasu z podporą; m = 1 prawy, 0 lewy (lustro)
         translate([0, 0, pl_zP - pod_gr - 1]) cylinder(r = sl_R, h = 100, $fn = 360);
       }
       pudlo(pod_x0, sl_R, pl_y - pl_gr, sl_h / 2, pl_zP - pod_gr, pl_zP);   // podpora: od spodu płyty do słupka
+      // nasada (decyzja użytkownika 26.10): żebro po wewnętrznej stronie ramienia, oparte na płycie, zwężające się skosem
+      // do ramienia na z = sl_zebro; przed płytą (w tubie i przy kołnierzu tuby 50) spód y ≥ −12, czyli r ≤ 36,7
+      pudlo(sl_zebro_x, sl_x0 + E, pl_y - pl_gr, sl_h / 2, pl_zP - 1.5, pl_zP + E);   // nad płytą: pełna wysokość
+      pudlo(sl_zebro_x, sl_x0 + E, -12, sl_h / 2, pl_zP, sl_zebro_z0);              // przed płytą do z −38
+      intersection() {   // przed płytą w dół do spodu płyty, w promieniu r ≤ 37,6 (światło tuby i kołnierz tuby 50 od r 38,15)
+        pudlo(sl_zebro_x, sl_x0 + E, pl_y - pl_gr, sl_h / 2, pl_zP - E, sl_zebro_z0);
+        translate([0, 0, pl_zP - 1]) cylinder(r = 37.6, h = 20, $fn = 360);
+      }
+      hull() {
+        pudlo(sl_zebro_x, sl_x0 + E, -12, sl_h / 2, sl_zebro_z0 - E, sl_zebro_z0);
+        pudlo(sl_x0 - 1.7, sl_x0 + E, -sl_h / 2, sl_h / 2, sl_zebro - E, sl_zebro);
+      }
     }
     walec_x(d_opis(sl_otw, OTW_N), sl_x0 - 1, sl_R + 1, OTW_N);   // otwór osi powiek na z = 0 (światło Ø2,4)
   }
@@ -248,6 +284,13 @@ module slupek_kardana() {
     union() {
       translate([0, 0, kol_z0]) cylinder(d = kol_d, h = kol_zP - kol_z0);
       pudlo(-kol_klocek[0] / 2, kol_klocek[0] / 2, pl_y - pl_gr, 0, kol_z0, pl_zP + kol_klocek[1]);
+      // nasada (decyzja użytkownika 26.10): skosy 45° na boki po płycie do x ±kol_skos_x i żebro pod słupkiem do z = kol_zebro
+      hull() {
+        pudlo(-kol_skos_x, kol_skos_x, pl_y - pl_gr, pl_y, kol_z0, pl_zP + kol_klocek[1]);
+        pudlo(-kol_d / 2, kol_d / 2, pl_y - pl_gr, pl_y + kol_skos_x - kol_d / 2, kol_z0, pl_zP + kol_klocek[1]);
+      }
+      translate([-kol_zebro_gr / 2, 0, 0]) rotate([90, 0, 90]) linear_extrude(kol_zebro_gr)
+        polygon([[pl_y - pl_gr, kol_z0], [pl_y - pl_gr, pl_zP + kol_klocek[1]], [-kol_d / 2 + 0.5, kol_zebro], [-kol_d / 2 + 0.5, kol_z0]]);   // punkty (y, z)
     }
     translate([0, 0, kol_zP - leb_h]) cylinder(d = leb_d, h = leb_h + E);   // gniazdo łba M5, wylot do przodu
   }
@@ -260,6 +303,9 @@ module plyta() {
       slupek_kardana();
     }
     gniazda();
+    // stopka do druku pod 45° (obrót wokół x, wierzch i przód do góry, tył na stole): ścięcie tylnej dolnej krawędzi,
+    // płaski pas szerokości pl_stopka (decyzja użytkownika 26.10: płytę drukuje pod kątem; w pliku zostaje płasko)
+    translate([0, pl_y - pl_gr, pl_zT]) rotate([45, 0, 0]) cube([2 * pl_x + 2, pl_stopka, pl_stopka], center = true);
   }
 }
 
@@ -270,6 +316,51 @@ module przedluzenie_orczyka() {
     hull() { cylinder(d = prz_piasta + 3, h = prz_gr); translate([prz_L - prz_szer / 2, 0, 0]) cylinder(d = prz_szer, h = prz_gr); }
     translate([0, 0, -1]) cylinder(d = prz_piasta, h = prz_gr + 2);                         // na piastę i wkręt orczyka
     translate([orcz_pow, 0, -1]) cylinder(d = zacz_otw, h = prz_gr + 2, $fn = 16);            // drut powieki
+  }
+}
+
+// =================== PODPORA PŁYTY DO DRUKU POD 45° ===================
+// Układ druku: płyta obrócona o 45° wokół x (wierzch i przód do góry), stopka na stole z = 0.
+// Punkt złożenia (y, z) → druk (Y', Z') = ((y − z)/√2, (y + z − c45)/√2), c45 = y + z płaszczyzny stopki.
+c45 = (pl_y - pl_gr) + pl_zT + pl_stopka;
+function PY(y, z) = (y - z) / sqrt(2);
+function PZ(y, z) = (y + z - c45) / sqrt(2);
+module plyta_druk45() { translate([0, 0, -c45 / sqrt(2)]) rotate([45, 0, 0]) plyta(); }
+module podpora_plyty() {
+  ys = pl_y - pl_gr;                       // spód płyty
+  A = PY(ys, ys - c45 > 0 ? 0 : 0);        // (nieużywane)
+  F0 = PZ(ys, 0) + PY(ys, 0);              // linia spodu płyty w druku: Z' = F0 − Y'
+  Yf = PY(ys, pl_zP) + 0.5;                // przód: 0,5 za przednią krawędzią płyty
+  k = sqrt(2);
+  // płetwa równoległa do spodu, odstęp g, grubość t
+  rotate([90, 0, 90]) translate([0, 0, -pod45_x]) linear_extrude(2 * pod45_x)
+    polygon([[F0 - pod45_g * k, 0], [Yf, F0 - Yf - pod45_g * k], [Yf, F0 - Yf - (pod45_g + pod45_t) * k], [F0 - (pod45_g + pod45_t) * k, 0]]);
+  // żebra pionowe (w druku) od stołu do płetwy
+  for (x = pod45_zebra) translate([x - pod45_t / 2, 0, 0]) rotate([90, 0, 90]) linear_extrude(pod45_t)
+    polygon([[F0 - (pod45_g + pod45_t) * k, 0], [Yf, F0 - Yf - (pod45_g + pod45_t) * k], [Yf, 0]]);
+  // podstawa na stole (do przodu przeciw przewracaniu; z tyłu 1 mm luzu do płyty)
+  translate([-pod45_x, pod45_przod, 0]) cube([2 * pod45_x, F0 - (pod45_g + pod45_t) * k - pod45_podst * 1.5 - pod45_przod, pod45_podst]);
+  // ścianki pod spodami ramion (x = ±36) i słupka kardana (x = 0), od stołu do 0,8 pod spodem, łączniki co 6 mm
+  k2 = sqrt(2);
+  module scianka(x, gr, ysp, zr) {
+    Ya = PY(ysp, zr[0]) - pod45_g / k2; Za = PZ(ysp, zr[0]) - pod45_g / k2;
+    Yb = PY(ysp, zr[1]) - pod45_g / k2; Zb = PZ(ysp, zr[1]) - pod45_g / k2;
+    translate([x - gr / 2, 0, 0]) rotate([90, 0, 90]) linear_extrude(gr) polygon([[Ya, 0], [Ya, Za], [Yb, Zb], [Yb, 0]]);
+    if (pod45_lacza) for (z = [zr[0] + 1 : 6 : zr[1]])
+      translate([x, PY(ysp, z) - (pod45_g + 0.3) / k2, PZ(ysp, z) - (pod45_g + 0.3) / k2]) rotate([-45, 0, 0])
+        cylinder(h = pod45_g + 0.5, d1 = 1.6, d2 = pod45_karb, $fn = 16);
+  }
+  for (sx = [-1, 1]) scianka(sx * (sl_x0 + 0.7 + pod45_scianka / 2), pod45_scianka, -sl_h / 2, pod45_ram_z);   // 0,7 od żebra nasady, pod ramieniem
+  scianka(0, 3, -kol_d / 2, pod45_kol_z);
+  // belki poziome łączące ścianki (w Y' tam, gdzie wszystkie trzy ścianki się pokrywają)
+  Yb0 = PY(-kol_d / 2, pod45_kol_z[1]) - pod45_g / k2; Yb1 = PY(-kol_d / 2, pod45_kol_z[0]) - pod45_g / k2;
+  for (h = pod45_belki) if (h < PZ(-kol_d / 2, pod45_kol_z[0]) - 2)
+    translate([-(sl_x0 + 0.7 + pod45_scianka / 2), (Yb0 + Yb1) / 2 - 0.8, h]) cube([2 * (sl_x0 + 0.7 + pod45_scianka / 2), 1.6, 2]);
+  // łączniki z karbem: od płetwy do spodu płyty (0,2 w płycie), wzdłuż normalnej spodu
+  if (pod45_lacza) for (p = pod45_lacz) {
+    Fy = PY(ys, p[1]); Fz = PZ(ys, p[1]);
+    translate([p[0], Fy - (pod45_g + 0.3) / k, Fz - (pod45_g + 0.3) / k]) rotate([-45, 0, 0])
+      cylinder(h = pod45_g + 0.5, d1 = 1.6, d2 = pod45_karb, $fn = 16);
   }
 }
 
@@ -303,6 +394,8 @@ module druk(c) {
   else if (c == "Tuba50")         translate([0, 0, -(rant_z - 50 - kol_gr)]) tuba(50);
   else if (c == "Maskownica")     translate([0, 0, -rant_z]) maskownica();
   else if (c == "ProbkaZaczepu")  probka_zaczepu();                                                       // stopką na stole
+  else if (c == "PlytaDruk45")    plyta_druk45();                                                         // płyta pod 45° (do pliku z podporą)
+  else if (c == "PodporaPlyty")   podpora_plyty();                                                        // podpora w położeniu względem płyty pod 45°
 }
 module zlozenie_czesc(c) {
   if (c == "Galka") galka();
@@ -315,6 +408,7 @@ module zlozenie_czesc(c) {
   else if (c == "Tuba50") tuba(50);
   else if (c == "Maskownica") maskownica();
   else if (c == "ProbkaZaczepu") probka_zaczepu();
+  else if (c == "PodporaPlyty") podpora_plyty();    // (w układzie druku – podpora nie należy do złożenia)
 }
 
 if (czesc == "parametry") {
