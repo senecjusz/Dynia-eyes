@@ -140,7 +140,8 @@ bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilan
 gnGwintD = 11; gnGwintFlat = 10;                // gwint gniazda: średnica, wymiar w poprzek 2 ścięć „podwójne D” (pomiar użytkownika 26.10)
 luzGn = 0.15;       // luz otworu na gwint (na stronę; otwór 11,3 / 10,3 – propozycja elektroniki)
 gnT = 3;            // grubość ścianki pod nakrętkę (≤ 7 według elektroniki; 3 – zostaje gwint na nakrętkę 2–3)
-gnNakS = 14;        // nakrętka gniazda: rozmiar klucza (założenie – niezmierzona), wyznacza wysokość osi nad dnem
+gnNakE = 15.5;      // nakrętka gniazda: wymiar na rogach (pomiar użytkownika 27.10; grubość ok. 3)
+gnWolneD = 18;      // wolny okrąg za ścianką na nakrętkę i obrót klucza albo palców (elektronika 27.10)
 gnKolD = 14;        // kołnierz gniazda z przodu ścianki (pomiar 26.10)
 gnKorpL = 13;       // korpus gniazda od kołnierza do końca (pomiar 26.10); przewody z tyłu
 gnMarg = 3;         // ścianka wokół kołnierza / nakrętki (w bok i nad); 3 – ścianka mieści się w tacce na osi wycięcia wydrukowanego korpusu
@@ -244,10 +245,13 @@ assert(gwD / 2 < otwDyni / 2, "tuleja nie wchodzi w otwór dyni");
 assert(dOtwPl < 2 * tulRw, "otwór w płycie większy niż w tulei");
 assert(kW <= WIN, "kaseta szersza niż wnętrze");
 assert(rc - tulRw >= 2, "ścianka tulei < 2");
-gnOsZ  = kDno + max(gnNakS / cos(30), gnKolD) / 2 + 1;   // oś gniazda nad spodem tacki
-gnScW  = max(gnNakS / cos(30), gnKolD) + 2 * gnMarg;    // szerokość ścianki gniazda
-gnScH  = gnOsZ + max(gnNakS / cos(30), gnKolD) / 2 + gnMarg;   // wysokość ścianki
+gnObrys = max(gnWolneD, gnNakE, gnKolD);         // największy okrąg wokół osi gniazda (wolne miejsce na nakrętkę)
+gnOsZ  = kDno + gnObrys / 2 + 1;                 // oś gniazda nad spodem tacki
+gnScW  = gnObrys + 2 * gnMarg;                   // szerokość ścianki gniazda
+gnScH  = gnOsZ + gnObrys / 2 + gnMarg;           // wysokość ścianki
 assert(bkX + gnScW / 2 <= kW, "ścianka gniazda poza tacką");
+assert(gnScW / 2 - kSc >= gnWolneD / 2, "żebra za ścianką wchodzą w wolny okrąg nakrętki");
+assert(gnT <= gnKorpL - 3 - 3, "ścianka za gruba na nakrętkę na gwincie");
 assert(bkY + gnT + gnKorpL <= kD - kTylT, "korpus gniazda opiera się o tył tacki");
 assert(gnScH <= H_IN - 2, "ścianka gniazda za wysoka pod płytą");
 assert(pcaX0 + pcaL + 3 <= bkX - gnScW / 2 || pcaY0 >= bkY + gnT + gnZebroL + 2, "PCA9685 nachodzi na ściankę gniazda");
