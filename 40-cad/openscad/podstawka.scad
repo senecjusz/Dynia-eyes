@@ -123,7 +123,8 @@ wkrDnoL = 12; kPiastaD = 9; kPiastaOd = 8;       // wkręty 3 × 12 w dno, piast
 kPiastaH = 4.6;     // kaseta v1 bez zmian (12 − (6 − 1) − 2,4 przy dnie 6); przy dnie 9 wkręt wchodzi w dno na wkrDnoL − kDno − kPiastaH = 5
 // ---------- BAZOWE: druk – kaseta elektroniki (v1 bez zmian) ----------
 pcaL = 62; pcaW = 25; pcaOtwX = 55.9; pcaOtwY = 19.05; dPcaOtw = 3;   // PCA9685: płytka, rozstaw i Ø otworów
-espL = 22.5; espW = 18; espH = 4;                                     // ESP32-C3 SuperMini (z gniazdem USB-C)
+espL = 24; espW = 18.4; espH = 4; espUsbWyst = 1.5;                   // ESP32-C3 SuperMini: długość z gniazdem USB-C, szerokość (pomiar użytkownika 26.10); gniazdo USB wystaje przed płytkę (założenie: 24 − 22,5)
+pcaPom = true;                                                        // PCA9685 62 × 25, otwory 55,9 × 19: zgodne z pomiarem użytkownika 26.10
 kW = 170; kD = 100; kDno = 2.4; kScH = 10; kSc = 2.4;   // szerokość, głębokość, dno, niskie boki, ścianka (v1)
 kTylH = 25; kTylT = 3;                           // tylny pas (ogranicznik o ściankę tylną)
 slupPcaD = 6; slupPcaH = 5;                      // słupki PCA9685
@@ -353,7 +354,7 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
 }
 module espPodstawka() {   // 2 słupki pod krótkimi krawędziami (płaskie górne powierzchnie pod klej; środek płytki, między rzędami pinów z Dupontami); niski rant z tyłu jako ogranicznik
   cxE = espOdBoku + espW / 2;
-  for (y = [espOdBoku, espOdBoku + espL - espPodD]) translate([cxE - espPodW / 2, y, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);
+  for (y = [espOdBoku + espUsbWyst, espOdBoku + espL - espPodD]) translate([cxE - espPodW / 2, y, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);   // przedni pod płytką, za wystającym gniazdem USB
   translate([cxE - espPodW / 2, espOdBoku + espL + luzSlizg, kDno - zak]) cube([espPodW, espRama, espPodH + espLip + zak]);   // rant z tyłu (koniec z anteną)
 }
 module uchwytOpaski(x, y, obrot, h) translate([x, y, kDno - zak]) rotate([0, 0, obrot]) difference() {   // blok z tunelem na opaskę (tunel wzdłuż x po obrocie)
