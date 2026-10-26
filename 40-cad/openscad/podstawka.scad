@@ -147,9 +147,11 @@ rezSlupW = 5; dRezNoga = 1.4;                    // słupek: przekrój, otwór n
 rezOdst = 5;                                     // korpus rezystora od ścianek i przewodów
 rezX = 32; rezY0 = 68;                           // położenie rezystora: oś x, oś pierwszego słupka (drugi o rezRozst dalej w y) – z tyłu po lewej
 opW = 4; opT = 1.5; opLuz = 0.3;                 // opaska kablowa: szerokość, grubość, luz tunelu
-uchL = 8; uchD = 8;                              // uchwyt opaski: długość (wzdłuż tunelu), szerokość (wzdłuż kabla)
+uchL = 8; uchD = 8; uchH = 5;                    // uchwyt opaski: długość (wzdłuż tunelu), szerokość (wzdłuż kabla), wysokość
 uchSkretkiY = 12; uchSkretkiX = [55, 75, 95];    // uchwyty skrętek pod otworem w płycie, przed strefą wolną przed PCA9685 (kabel wzdłuż y)
 uchPirXY = [142, 10];                            // uchwyt przewodu PIR przy wejściu z szufladki (kabel wzdłuż x, do ESP32-C3)
+uchGnXY = [140, 88];                             // uchwyt przewodów gniazda USB-C w drodze do zacisku PCA9685 (kabel wzdłuż x)
+zapW = 20; zapL = 30; zapRozst = 25; zapX = 55; zapY0 = 64;   // miejsce zapasowe na małą płytkę (elektronika 26.10): 20 × 30, 2 słupki M3 Ø2,6 w rozstawie 25 wzdłuż y; oś x, przód płytki
 // ---------- BAZOWE: gwint (jak próbka E2.0: 45°, skok 5, zarys 2,0) ----------
 skok = 5; zarys = 2; zabRdzen = 4.8;             // ząb u rdzenia (szerokość osiowa)
 gwKrok = 3;                                      // rozdzielczość helisy zwoju [°]
@@ -254,6 +256,8 @@ assert(rezY0 + rezRozst + rezSlupW / 2 <= kD - kTylT, "słupek rezystora wchodzi
 assert((rezRozst - rezSlupW - rezL) / 2 >= 1, "rezystor nie mieści się między słupkami");
 assert(kD - kTylT - (rezY0 + (rezRozst + rezL) / 2) >= rezOdst - 1, "rezystor za blisko tylnego pasa");
 assert(uchPirXY[0] + uchD / 2 + 1 <= bkX - wtykSzer / 2, "uchwyt PIR w strefie wtyku USB-C");
+assert(zapX - zapW / 2 >= rezX + rezD / 2 + rezOdst && zapX + zapW / 2 + 3 <= pcaX0 && zapY0 + zapL <= kD - kTylT, "miejsce zapasowe nachodzi na rezystor, PCA9685 albo tylny pas");
+assert(uchGnXY[1] - uchL / 2 >= pcaY0 + pcaW + 3 && uchGnXY[0] + uchD / 2 + 2 <= bkX - gnGwintD / 2, "uchwyt przewodów gniazda nachodzi na PCA9685 albo korpus gniazda");
 
 // ===================== gwint =====================
 // Zwój = profil zęba (r, z) przeciągnięty po helisie (prawej: z rośnie z kątem przeciwnie do wskazówek zegara, patrząc z góry).
@@ -323,8 +327,11 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
         rotate([90, 0, 90]) linear_extrude(kSc) polygon([[0, 0], [gnZebroL, 0], [0, gnScH - kDno]]);
       for (dy = [0, rezRozst]) translate([rezX - rezSlupW / 2, rezY0 + dy - rezSlupW / 2, kDno - zak])   // słupki rezystora (nóżki przez otwory)
         cube([rezSlupW, rezSlupW, rezOsZ - kDno + rezSlupW / 2 + zak]);
-      for (x = uchSkretkiX) uchwytOpaski(x, uchSkretkiY, 0, rezNad);                                   // skrętki przed PCA9685
-      uchwytOpaski(uchPirXY[0], uchPirXY[1], 90, rezNad);                                              // przewód PIR
+      for (x = uchSkretkiX) uchwytOpaski(x, uchSkretkiY, 0, uchH);                                     // skrętki przed PCA9685
+      uchwytOpaski(uchPirXY[0], uchPirXY[1], 90, uchH);                                                // przewód PIR
+      uchwytOpaski(uchGnXY[0], uchGnXY[1], 90, uchH);                                                  // przewody gniazda USB-C do zacisku
+      for (dy = [(zapL - zapRozst) / 2, (zapL + zapRozst) / 2]) translate([zapX, zapY0 + dy, kDno - zak])   // miejsce zapasowe: słupki M3
+        cylinder(d = slupPcaD, h = slupPcaH + zak, $fn = 24);
       for (x = [kPiastaOd, kW - kPiastaOd], y = [kPiastaOd, kD - kTylT - kPiastaOd]) translate([x, y, kDno - zak])   // piasty pod wkręty w dno
         cylinder(d = kPiastaD, h = kPiastaH + zak, $fn = 32);
     }
@@ -337,6 +344,8 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
       cylinder(d = dRezNoga, h = rezSlupW + 2, $fn = 16);
       rotate([0, 0, 225]) cube([dRezNoga / 2, dRezNoga / 2, rezSlupW + 2]);
     }
+    for (dy = [(zapL - zapRozst) / 2, (zapL + zapRozst) / 2]) translate([zapX, zapY0 + dy, -1])   // miejsce zapasowe: otwory M3 ciasne
+      cylinder(d = dM3ciasny, h = kDno + slupPcaH + 2, $fn = 24);
     translate([bkX, bkY - 1, gnOsZ]) rotate([-90, 0, 0]) {   // otwór gwintu gniazda: łza (góra 45°, bez podpór w pionowej ściance)
       cylinder(d = gnGwintD + 2 * luzSlizg, h = gnT + 2, $fn = 48);
       rotate([0, 0, 225]) cube([(gnGwintD / 2 + luzSlizg), (gnGwintD / 2 + luzSlizg), gnT + 2]);   // lokalne −y = góra
@@ -563,6 +572,9 @@ module pokazTacki() {   // układ tacki: x od lewego boku, y od przodu tacki; wi
   napis(rezX + 2, rezY0 - 7, "rezystor 47 Ω / 3 W");
   napis(cx - kX0, cy - kY0 - 3, "otwór Ø60 (skrętki)");
   napis(uchPirXY[0] - 10, uchPirXY[1] + 8, "opaska PIR");
+  color("Plum", 0.5) translate([zapX - zapW / 2, zapY0, kDno + slupPcaH]) cube([zapW, zapL, 1.6]);
+  napis(zapX, zapY0 + zapL / 2, "zapas 20×30");
+  napis(uchGnXY[0] - 2, uchGnXY[1] + 7, "opaska USB-C");
   napis(kW / 2, -12, "PRZÓD TACKI (szufladka)");
 }
 
