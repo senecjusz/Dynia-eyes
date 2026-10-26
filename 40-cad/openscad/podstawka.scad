@@ -131,7 +131,7 @@ espRama = 1.5; espRamaH = 4;                     // ramka ESP32-C3
 pcaX0 = 75; pcaY0 = 45;                          // PCA9685: lewy przedni narożnik płytki na tacce (listwy kanałów do przodu – w stronę tulei, zacisk do tyłu; elektronika 26.10)
 pcaPrzod = 25;                                   // wolne miejsce przed listwą kanałów (kondensator i przewody 5 V na kanałach 8–11)
 espOdBoku = 15;                                  // ESP32-C3 z przodu po lewej, USB-C do przodu (lewy przedni narożnik płytki)
-espPodH = 16; espPodW = 10; espPodD = 4; espPodDp = 7; espLip = 1.5;   // podstawka ESP (elektronika 26.10: piny w dół z wtykami Dupont): wysokość podpórek, szerokość (środek płytki, między rzędami pinów), głębokość tylnej / przedniej (z tunelem opaski) pod płytką, wysokość ramki
+espPodH = 16; espPodW = 11; espPodD = 3; espLip = 1;   // podstawka ESP klejonego (elektronika 26.10: piny w dół z Dupontami, bez płytki stykowej): wysokość słupków, szerokość górnej powierzchni pod klej (mniej niż 18 – na 18 weszłyby wtyki narożnych pinów), głębokość pod krótką krawędzią, wysokość rantu z tyłu
 espRzedy = 15.2;                                 // rozstaw rzędów pinów ESP32-C3 SuperMini (wzdłuż długich boków)
 bkGn = 9.5;                                      // wyjście gniazda USB-C ESP32-C3 w ramce (8,94 + luz)
 bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilania w kasecie (jak v1: wycięcie kablowe szufladki na tej osi, przed gniazdem miejsce na wtyk)
@@ -253,7 +253,7 @@ assert(pcaY0 + pcaW <= kD - kTylT - 2, "PCA9685 nachodzi na tylny pas");
 assert(pcaY0 - pcaPrzod >= uchSkretkiY + uchD / 2, "uchwyty skrętek w wolnej strefie przed PCA9685");
 rezOsZ = kDno + rezNad + rezD / 2;               // oś rezystora nad spodem tacki
 assert(rezX + rezD / 2 + rezOdst <= pcaX0 && rezY0 - rezSlupW / 2 >= espOdBoku + espL + 2 * espRama + 3, "rezystor nachodzi na PCA9685 albo ESP32-C3");
-assert(espPodW <= espRzedy - 2.54 - 1, "podpórki ESP wchodzą pod rzędy pinów");
+assert(espPodW <= espRzedy - 2.54 - 1, "słupki ESP wchodzą pod wtyki Dupont rzędów pinów");
 assert(kDno + espPodH + 1.6 + 4 <= H_IN - 5, "ESP za wysoko pod płytą");
 assert(rezX - rezD / 2 - rezOdst >= kSc, "rezystor za blisko lewej ścianki");
 assert(rezY0 + rezRozst + rezSlupW / 2 <= kD - kTylT, "słupek rezystora wchodzi w tylny pas");
@@ -351,14 +351,10 @@ module kaseta() {   // układ kasety: x od lewego boku, y od przodu kasety
     }
   }
 }
-module espPodstawka() {   // 2 podpórki pod krótkimi krawędziami (środek, między rzędami pinów); z tyłu ramka; z przodu tunel na opaskę w poprzek płytki za USB
+module espPodstawka() {   // 2 słupki pod krótkimi krawędziami (płaskie górne powierzchnie pod klej; środek płytki, między rzędami pinów z Dupontami); niski rant z tyłu jako ogranicznik
   cxE = espOdBoku + espW / 2;
-  translate([cxE - espPodW / 2, espOdBoku + espL - espPodD, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);   // podpórka tylna (koniec z anteną)
-  translate([cxE - espPodW / 2, espOdBoku, kDno - zak]) difference() {                                         // podpórka przednia (pod USB) z tunelem opaski
-    cube([espPodW, espPodDp, espPodH + zak]);
-    translate([-1, (espPodDp - (opW + 2 * opLuz)) / 2, espPodH / 3]) cube([espPodW + 2, opW + 2 * opLuz, opT + 2 * opLuz]);   // opaska płasko w poprzek (wzdłuż x)
-  }
-  translate([cxE - espPodW / 2, espOdBoku + espL + luzSlizg, kDno - zak]) cube([espPodW, espRama, espPodH + espLip + zak]);   // ramka z tyłu (płytka nie zjedzie do tyłu)
+  for (y = [espOdBoku, espOdBoku + espL - espPodD]) translate([cxE - espPodW / 2, y, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);
+  translate([cxE - espPodW / 2, espOdBoku + espL + luzSlizg, kDno - zak]) cube([espPodW, espRama, espPodH + espLip + zak]);   // rant z tyłu (koniec z anteną)
 }
 module uchwytOpaski(x, y, obrot, h) translate([x, y, kDno - zak]) rotate([0, 0, obrot]) difference() {   // blok z tunelem na opaskę (tunel wzdłuż x po obrocie)
   translate([-uchL / 2, -uchD / 2, 0]) cube([uchL, uchD, h + zak]);
