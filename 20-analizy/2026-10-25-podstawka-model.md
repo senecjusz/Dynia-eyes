@@ -318,3 +318,12 @@ Wykonano (agent):
 **Założenia do pomiaru przez użytkownika (zmienne w `podstawka.scad`):** gwint gniazda `gnGwintD` 12, grubość ścianki pod nakrętkę `gnT` 3, nakrętka `gnNakS` 16, kołnierz `gnKolD` 18, korpus za ścianką `gnKorpL` 30; PCA9685 (płytka 62 × 25, otwory 55,9 × 19,05), ESP32-C3 (22,5 × 18).
 
 Kontrole: siatka tacki 0 błędów, 1 bryła, 170 × 100 × 25; kolizje szufladki zamkniętej i wsuwania z tacką: pusto.
+
+**Układ tacki po zdjęciu PCA9685 użytkownika (HW-170), uzgodniony z elektroniką 26.10** (rysunek `40-cad/openscad/podglad/podstawka-v2-kaseta-uklad.png`):
+- otwór Ø60 w płycie (tuleja, skrętki) jest nad przodem tacki z lewej (x 33–93, y −24…36 w układzie tacki) – elektronika zakładała tuleję z tyłu; poprawione za jej zgodą;
+- PCA9685 x 75–137, y 45–70 (`pcaX0`, `pcaY0`): listwy kanałów do przodu (skrętki do otworu), przed listwą wolne 25 (`pcaPrzod`: kondensator 1000 µF i przewody 5 V na kanałach 8–11), zacisk V+/GND z tyłu – ok. 5 cm przewodu od gniazda (koniec korpusu gniazda x 157, y ok. 81);
+- ESP32-C3 z przodu po lewej (ramka jak v1), USB-C do przodu; I²C do lewej listwy sterującej PCA;
+- rezystor 3 W z tyłu po lewej (x 32, y 68–93) na 2 uchwytach z tunelem na opaskę;
+- uchwyty opasek: 3 na skrętki pod otworem w płycie (y 12; x 55 / 75 / 95), 1 na przewód PIR przy wejściu z szufladki (x 142, y 10), poza strefą wtyku C–C (x 150–164);
+- nad PCA9685 do płyty ok. 31 mm (wtyki Dupont i gięcie ok. 25).
+Kontrole: siatka OK, kolizje szufladki z tacką: pusto. Wymiary płytek i gniazda nadal do pomiaru.
