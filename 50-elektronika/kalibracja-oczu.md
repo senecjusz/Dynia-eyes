@@ -14,7 +14,7 @@ Wynik programu `kalibracja/` (komenda `t`), wklejony tutaj. Program docelowy bie
 
 | Kanał | Moduł | Środek µs | Min µs | Max µs | Min to | Uwagi |
 |---|---|---|---|---|---|---|
-| 0 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
+| 0 | małe oko | 1500 | 1100 | 1800 | prawo | nowy moduł 27.10: przy 1500 patrzy prosto (potwierdził użytkownik), krańce bez buczenia; zapisane w NVS kalibratora |
 | 1 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
 | 2 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
 | 3 | małe oko | 1500 | 1100 | 1800 | | wspólne dla wszystkich małych oczu (test 25.10) |
@@ -26,3 +26,5 @@ Wynik programu `kalibracja/` (komenda `t`), wklejony tutaj. Program docelowy bie
 | 13 | duże oko: góra–dół | | | | | |
 | 14 | duże oko: powieka górna | | | | | |
 | 15 | duże oko: powieka dolna | | | | | |
+
+**Uwagi z testu 25.10:** moduł „8” buczy przy środku, a ostatni złożony moduł chodzi ciężko. Oba do sprawdzenia przed montażem w dyni. Kierunek „Min to” sprawdzony 27.10 tylko na kanale 0. Pozostałe moduły mają ten sam wydruk i serwo, więc najpewniej też „prawo”, ale to założenie.
