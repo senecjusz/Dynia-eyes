@@ -29,4 +29,4 @@ Wynik programu `kalibracja/` (komenda `t`), wklejony tutaj. Program docelowy bie
 
 **Uwagi z testu 25.10:** moduł „8” buczy przy środku, a ostatni złożony moduł chodzi ciężko. Oba do sprawdzenia przed montażem w dyni. Kierunek „Min to” sprawdzony 27.10 tylko na kanale 0. Pozostałe moduły mają ten sam wydruk i serwo, więc najpewniej też „prawo”, ale to założenie.
 
-**27.10, sprawdzenie na stole (kanał 0 kalibratora):** dwa nowe moduły, po kolei. Oba przy 1500 patrzą prosto, Min 1100 = prawo, Max 1800 = lewo, bez buczenia (potwierdził użytkownik). Drugi moduł nie ma jeszcze przydzielonego kanału w dyni. Wspólne wartości 1500 / 1100 / 1800 pasują i do niego.
+**27.10, sprawdzenie na stole (kanał 0 kalibratora):** trzy nowe moduły, po kolei. Każdy przy 1500 patrzy prosto, Min 1100 = prawo, Max 1800 = lewo, bez buczenia (potwierdził użytkownik). Drugi i trzeci moduł nie mają jeszcze przydzielonego kanału w dyni. Wspólne wartości 1500 / 1100 / 1800 pasują do wszystkich trzech.
