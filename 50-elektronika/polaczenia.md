@@ -37,7 +37,7 @@ ESP ma piny skierowane w dół i stoi na 2 słupkach tacki (klej); przewody Dupo
 | GND | PCA kanał 10, pin GND |
 | OUT | ESP GPIO10 (3,3 V przy ruchu) |
 
-Piny patrząc od strony kopułki, potencjometry na dole: VCC, OUT, GND (od strony elementów odwrotnie, VCC przy diodzie). Zworka na H, potencjometr czasu (najpewniej bliżej zworki) w lewo do oporu, czułość na środku. PIR jest we froncie szufladki: przewód z pętlą zapasu ok. 200 mm.
+Piny patrząc od strony kopułki, potencjometry na dole: VCC, OUT, GND (od strony elementów odwrotnie, VCC przy diodzie). Zworka na H, potencjometr czasu (najpewniej bliżej zworki) w lewo do oporu, czułość na środku. PIR jest we froncie szufladki (bez ogranicznika, wysuw roboczy ≤ 100 mm): przewód bez złącza, opaska przy PIR i na tacce (uchwyt przy przednim prawym rogu), zapas ok. 150 mm zwinięty w pasie wtyku USB-C w korpusie i przypięty luźną opaską do ścianki, żeby nie spadł przed tackę i nie został przyszczypnięty przy domykaniu (ustalenie z montażem 27.10, trasa może się jeszcze zmienić).
 
 ### Przycisk
 
