@@ -36,7 +36,7 @@ Wersja 0.3, 28.10.2026. Dokument opisuje, co ma powstać i jaki jest stan. Histo
 | Powieki | górna i dolna, każda na własnym serwie, niezależne; od pełnego zamknięcia do pełnego otwarcia; otwarte nie zasłaniają źrenicy |
 | Serwa | 4 × MG90S: lewo–prawo, góra–dół, powieka górna, powieka dolna |
 | Otwór w dyni | najwyżej Ø80; maskownica wystaje najwyżej 2 mm poza otwór |
-| Mocowanie w dyni | moduł wkładany od środka dyni w tubę; tuba ma kołnierz przykręcony od środka wkrętami do drewna; od zewnątrz maskownica zakrywa krawędź otworu |
+| Mocowanie w dyni | moduł wkładany od środka dyni w tubę i podparty od dołu dwoma wspornikami przyklejonymi do tuby; tuba ma kołnierz z 8 łapami przykręcony od środka wkrętami do drewna; od zewnątrz maskownica zakrywa krawędź otworu |
 | Kolory | mechanizm pomarańczowy, gałka biała |
 | Prostota | wzorem jest mechanizm The Face (maker101, PCBWay); nic ponad niego bez zgody użytkownika (§9) |
 
@@ -53,13 +53,13 @@ Model: `40-cad/openscad/duze-oko-v3.scad`. Pliki do druku: `40-cad/3mf/Duze oko 
   - Każdą powiekę ciągnie drut Ø1 z własnego serwa. Drut jest zaczepiony w uszku na tylnej krawędzi powieki, a jego końcówka przy uszku jest zagięta w stronę serwa.
   - Na orczyki serw powiek nakłada się drukowane przedłużenie z rowkiem na ramię orczyka.
 - **Kable serw** wychodzą po tej samej stronie co wałek. Przy serwach powiek kable przechodzą przez dwie wnęki 4 × 8 mm, wycięte ręcznie w krawędzi płyty.
-- **Tuba** wchodzi w otwór w dyni. Jest drukowana w trzech długościach (30, 40 i 50 mm), żeby przy składaniu wybrać tę, która pasuje do grubości ściany dyni.
+- **Tuba** wchodzi w otwór w dyni. Jest w trzech długościach (30, 40 i 50 mm); drukuje się tę, która pasuje do grubości ściany dyni. Kołnierz ma 8 łap co 45° (łapę, która w czymś przeszkadza, można pominąć). W tylnym końcu tuby ścianka zamyka dół otworu.
+- **Wsporniki płyty** (2 sztuki, w kształcie L, w tej samej długości co tuba) są przyklejone na gorąco do ścianki i kołnierza tuby. Płyta leży na ich półkach i jest do nich przyklejona. Tak cały moduł ma podparcie od dołu, a nie wisi na samych ramionach.
 
 ### Stan (28.10)
 
-- Wydrukowane: płyta, gałka, trzpienie kardana, tuby (pierwsza wersja), maskownica.
-- Do druku: obie powieki z powiększonymi uszkami i przedłużenia orczyków.
-- **Do decyzji użytkownika:** podparcie płyty w tubie. Użytkownik uznał, że klejenie samych ramion do tuby to za mało. Projektant przygotował wersję z tubą o 8 łapach, ścianką w tylnym końcu i dwoma wspornikami pod płytą. Wymaga przedruku jednej tuby i dwóch małych wsporników.
+- Wydrukowane: płyta, gałka, trzpienie kardana, maskownica.
+- Do druku: obie powieki z powiększonymi uszkami, przedłużenia orczyków, jedna tuba z 8 łapami i para wsporników w tej samej długości.
 - Gałka chodzi na sprzęcie w obu osiach. Ruch lewo–prawo lekko ściąga gałkę w pionie. Program ma to wyrównywać, a wielkość poprawki trzeba ustalić na sprzęcie.
 - Powieki zostaną skalibrowane po montażu.
 
@@ -76,7 +76,7 @@ Model: `40-cad/openscad/duze-oko-v3.scad`. Pliki do druku: `40-cad/3mf/Duze oko 
 - **Szufladka** otwiera się do przodu, bo z tyłu stoją inne dynie. Mieści tylko powerbank: Baseus 20 000 mAh (160 × 70 × 32 mm), zapasowy Manta. Wtyk USB-C wpina się ręcznie. Front jest przykręcony do korpusu szufladki, ma małą rączkę i jest blokowany śrubą M4 wkręcaną w płytę górną (przed dziećmi).
 - **Mocowanie dyni do podstawki:** tuleja z gwintem, przykręcona kołnierzem do płyty górnej nad otworem na kable. Wchodzi przez otwór w dnie dyni, a od środka dyni dokręca się nakrętkę. Przez tuleję idą skrętki do oczu.
   - Pliki: `40-cad/3mf/Podstawka v2/Tuleja z gwintem.3mf` i `Nakretka.3mf`.
-  - **Do decyzji użytkownika:** średnica. Otwór w dnie dyni ma ciasno obejmować tuleję. Do wyboru: otwornica 60, tak jak w płycie, albo 80 z tuleją ok. Ø79. Obecny model ma gwint Ø76 przy otworze Ø80, co daje za duży luz.
+  - **Otwór w dnie dyni: otwornica 60**, tak jak w płycie (decyzja użytkownika 28.10). Tuleja ma ciasno pasować do tego otworu. Model trzeba przerobić: obecny ma gwint Ø76 pod otwór Ø80.
 
 ### Elektronika
 
@@ -136,6 +136,4 @@ Program: `50-elektronika/dynia-v2`.
 
 ## 10. Otwarte
 
-- Średnica tulei i otworu w dnie dyni (§5).
-- Podparcie płyty dużego oka w tubie (§4).
 - Jak długo powerbank ma działać między wymianami.

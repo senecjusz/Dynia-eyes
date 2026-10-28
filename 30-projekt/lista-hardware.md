@@ -6,7 +6,7 @@ Lista wszystkiego, co jest potrzebne do złożenia i uruchomienia dyni na czwart
 
 - **Pozycje:** 73 (hardware i materiały: 47, narzędzia: 26), do tego 11 części drukowanych.
 - **ZAŁOŻONE: 36 z 73.**
-  - Hardware i materiały (21): D8, P4, P6, P7, K3, K4, K5, W5, W6, W7, Z2, Z3, Z6, Z7, Z8, S3, S5, Y2, Y3, Y4, Y5.
+  - Hardware i materiały (21): D8, P4, P6, P7, K3, K4, K5, W7, Z2, Z3, Z6, Z7, Z8, S3, S5, Y2, Y3, Y4, Y5.
   - Narzędzia (15): N5, N6, N7, N8, N11, N12, N13, N14, N15, N18, N19, N22, N24, N25, N26.
   - Do tego 3 części drukowane o nieznanym stanie druku: R7, R9, R11.
 - **BRAKI (potrzebny zamiennik): wśród rzeczy wymaganych przez aktualne instrukcje nie ma potwierdzonego braku.** Trzy braki z 27.10 są już zastąpione w instrukcjach (sekcja 11):
@@ -83,9 +83,10 @@ Powerbanki i kabel USB-C są w sekcji 6, PIR i przycisk w sekcji 7.
 | **W1** Kabel skrętka Ethernet, 8 żył: odcinki długie | 3 (lewa n = 0, prawa n = 4, duże oko n = 12); długości instrukcja nie podaje | z listew PCA przez otwór Ø60 w płycie i przez tuleję do keystone'ów w dyni; T568B | [PRD] §5; [POL] „Skrętki do dyni” | **POTWIERDZONE**: [PRD] §5 i `decyzje.md` 25.10: „Użytkownik: ma kabel i zaciskarkę” | |
 | **W2** Gniazdo keystone RJ45 | 3 | w dyni, zarobione na końcu długiej skrętki (T568B) | [PRD] §5 (zmiana 27.10); [POL] | **POTWIERDZONE**: 26/27.10: „mam keystone”; `decyzje.md` 24.10: „keystone’y już kupione” | |
 | **W3** Wtyk RJ45 8P8C do zaciśnięcia | 3 + zapas na nieudane zaciśnięcia | krótki odcinek skrętki od strony oczu, wpinany w keystone | [POL] „Skrętki do dyni” | **POTWIERDZONE**: 26/27.10, w odpowiedzi na pytanie o złącza RJ45: „mam koncówki do zarbaiania przwodów” | |
-| **W4** Skrętka: krótki odcinek od keystone'a do oczu | 3; długości instrukcja nie podaje | z jednej strony wtyk RJ45, z drugiej żyły przylutowane do goldpinów | [POL] | **POTWIERDZONE**: ten sam kabel co W1 | |
-| **W5** Listwa goldpin męska 3-pin, raster 2,54 | 12 (8 do małych oczu, 4 do dużego oka) | po stronie oczu, jedna na serwo (GND, V+, sygnał); para serw dzieli żyły V+ i GND | [POL] „Skrętki do dyni” | **ZAŁOŻONE**: w rozmowach nikt nie potwierdził | |
-| **W6** Wtyk Dupont żeński 1-pin na żyłę skrętki | 24 (3 × 8) | po stronie podstawki: sygnały na piny PWM, V+ i GND kanałów n i n+2 | [POL] „Skrętki do dyni” | **ZAŁOŻONE**: instrukcja nie mówi, czy to zaciskane gniazda, czy ucięte przewody F–F; „końcówki” z 26/27.10 dotyczyły RJ45 | |
+| **W4** Skrętka: krótki odcinek od keystone'a do oczu | 3; długości instrukcja nie podaje | z jednej strony wtyk RJ45, z drugiej żyły przylutowane wprost do przewodów serw (28.10) | [POL] | **POTWIERDZONE**: ten sam kabel co W1 | |
+| **W5** Wtyczki odcięte z serw (3-pin), przylutowane do żył skrętki | 12 | po stronie PCA: A i C po 3 przewody, B i D tylko sygnał; po stronie oczu serwa przylutowane wprost do krótkiej skrętki, bez goldpinów | [POL] i `50-elektronika/montaz-elektroniki.md` (74d82f4) | **POTWIERDZONE**: użytkownik 28.10: „zakładałem, że skrętkę będziemy montować odcinając końcówki z serwomechanizmów” | |
+| **W6** Kable Dupont męsko-żeńskie 20 cm, przecinane na pół (żeńskie połówki) | na 19 żeńskich końców (ESP, PIR, kondensator, przycisk) | połówka z wtykiem żeńskim na pin, drugi koniec lutowany, koszulka termokurczliwa | [POL] (74d82f4) | **POTWIERDZONE**: użytkownik 28.10: „większość kabli, które mam, to jest female to male DuPont… 20 centymetrowe” | |
+| **W8** Kabel DFRobot do czujnika analogowego (wtyczka odcięta) | 1 | przewód PIR | [POL] (74d82f4) | **POTWIERDZONE**: użytkownik 28.10 | |
 | **W7** Cyna | wg potrzeby | żyły skrętek do goldpinów, przewody przycisku, ewentualnie PIR i rezystor | [POL] („żyły lutowane do listew goldpin”) | **ZAŁOŻONE**: użytkownik lutował 19.10 („Zlutowałem też ukłąd”), ale zapasu cyny nikt nie potwierdził | |
 
 ## 6. Zasilanie
