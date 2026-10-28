@@ -1,7 +1,7 @@
 # Duże oko v3: obrazy do ilustrowanej instrukcji montażu (§5 duze-oko-v3-montaz.md, kroki 1–9).
 # Na każdym obrazie część dokładana w danym kroku jest turkusowa, części już zamontowane mają zwykłe kolory, reszta jest ukryta;
 # narzędzia (wkrętak PH1, imbus 2) szare na drodze z instrukcji. Druty jako pełne „Z”: noga drut_noga z otworem na środku,
-# ogon drut_ogon; w uszkach powiek bez ogona, bo jego zakończenie czeka na decyzję użytkownika (§8 instrukcji).
+# ogon drut_ogon; w uszkach powiek ogon zagięty w drugą stronę: równolegle do drutu, ku serwu (decyzja użytkownika 28.10, §8 instrukcji).
 # Użycie: blender -b -P duze-oko-v3-montaz-render.py -- <katalog STL złożenia z parametry.json (eksport-v3.sh)> <katalog wyjściowy> [ujęcie …]
 # Wynik: <katalog wyjściowy>/<ujęcie>.jpg (40-cad/openscad/podglad/duze-oko-v3/montaz/, używane w duze-oko-v3-montaz.html).
 # Technika jak w duze-oko-v3-blender.py (EEVEE, krzywe z grubością jako druty); pliku .blend nie zapisuje.
@@ -125,7 +125,7 @@ def scena(kroki, pozycja, kamera, nazwa, przezr=()):
     if jest('osie'):
         for s in (1, -1): cyl('oś powiek Ø2', (s * 31.6, 0, 0), (s * 37.2, 0, 0), 1.0, m_('osie', 'os_'))
 
-    # druty „Z”: ogon przy gałce i orczyku równoległy do odcinka głównego, od niego; w uszku powieki na zewnątrz od osi zawiasu (oś x)
+    # druty „Z”: ogon przy gałce i orczyku równoległy do odcinka głównego, od niego; w uszku powieki równoległy do drutu, ku serwu
     def drut(nazwa, pts, m):
         cu = bpy.data.curves.new(nazwa, 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = P.get('drut_d', 1.0) / 2; cu.bevel_resolution = 3; cu.use_fill_caps = True
         sp = cu.splines.new('POLY'); sp.points.add(len(pts) - 1)
@@ -134,8 +134,7 @@ def scena(kroki, pozycja, kamera, nazwa, przezr=()):
     def koniec(otw, n, ods, dalej, uszko=False):
         """Punkty jednego końca „Z” od ogona do zagięcia przy odcinku głównym."""
         otw, n = Vector(otw), Vector(n).normalized(); zag = otw + n * ods; c = otw - n * (NOGA - ods)
-        if uszko: return [c, zag]   # ogon w uszku: do decyzji użytkownika, nie rysowany
-        return [c + (zag - Vector(dalej)).normalized() * OGON, c, zag]
+        return [c + (zag - Vector(dalej)).normalized() * (-OGON if uszko else OGON), c, zag]   # w uszku ogon ku serwu
     def drut_Z(nazwa, a, na, ods_a, b, nb, m, uszko=False):
         b1 = Vector(b) + Vector(nb).normalized() * P['orcz_ods']
         A = koniec(a, na, ods_a, b1, uszko); B_ = koniec(b, nb, P['orcz_ods'], A[-1])

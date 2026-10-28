@@ -33,7 +33,7 @@ drut_d   = 1.0;    // drut napędu Ø1 (jest w warsztacie – użytkownik 26.10,
 drut_noga = 7;     // noga „Z” między zagięciami (osie)
 drut_r_gi = 1;     // promień gięcia (wewnętrzny)
 drut_ogon = 2;     // ogon za drugim zagięciem
-zacz_otw = 1.3;    // otwór na drut Ø1 w uszkach powiek i przedłużeniach orczyka (0,15 na stronę)
+zacz_otw = 1.3;    // otwór na drut Ø1 w przedłużeniach orczyka (0,15 na stronę; uszka powiek: zacz_pow_otw)
 zacz_gardz_d = 2.0;  // otwór dwustożkowy w języczkach gałki: światło gardzieli (drut Ø1 przechyla się do ok. 37°)
 zacz_gardz_l = 1.0;  // długość gardzieli; dalej fazki 45° do obu ścian
 zacz_ods = drut_noga / 2;   // odsadzenie zagięcia „Z” od środka otworu wzdłuż osi otworu (otwór na środku nogi)
@@ -58,9 +58,15 @@ os_wkret_otw = 1.6; os_leb = [4.0, 2.0]; os_szczel_luz = 0.5;   // szczelina tub
 os_ucho_D_wew = 31.0;   // ucho dolnej pogrubione do środka: pełny pierścień wokół gwintu M2 na x 31,0…33,0 (review Astry: było 1,2 pełne); do gałki R30 1,0
 os_szczel_x = 40.5;     // szczelina tuby tylko do |x| 40,5 (łeb do 39,2): kołnierz Ø92 zostaje cały
 zaczG    = [5, 34.0];      // zaczep drutu powieki górnej: [x, promień od osi zawiasu]
-zaczD    = [-5, 31.5];     // dolnej
-zacz_pow_gr = 2;           // grubość uszka drutu (wzdłuż x)
-zacz_pow_z  = 1.6;         // otwór uszka nad płaszczyzną osi (pod uszkiem wycięcie paska krawędzi tylnej)
+zaczD    = [-5, 32.4];     // dolnej (28.10: z 31,5, żeby od strony gałki została ścianka ≥ 1 przy luzie 0,8 do gałki)
+// uszko drutu (28.10, wydrukowane uszko 2 × 2,7 ze ścianką 0,1–0,4 od gałki nie dodrukowało się): blok ze ścianką zacz_pow_sc dookoła otworu,
+// otwór wzdłuż x z daszkiem 45° ku przodowi (w druku do góry), nad blokiem skos 45° do skorupy; pod blokiem podpora ze slicera (użytkownik 28.10)
+zacz_pow_gr  = 2.8;        // grubość uszka (wzdłuż x); noga „Z” 6,5–7,5 zostawia prosty odcinek 3,5–4,5; przy 3,0 noga za uszkiem 0,50 do ściany (wymóg 0,5)
+zacz_pow_otw = 1.4;        // otwór na drut Ø1 (poziomo w druku, wychodzi ciaśniej niż pionowy Ø1,3 w przedłużeniu)
+zacz_pow_sc  = 1.3;        // ścianka wokół otworu (promieniowo i nad daszkiem)
+zacz_pow_gal = 0.8;        // najmniejszy luz uszka do gałki R30 (wewnętrzna strona przycięta sferą)
+zacz_pow_skos = 3.5;       // skos 45° nad blokiem: zwężenie od zewnątrz do skorupy
+zacz_pow_z  = 1.6;         // otwór uszka nad płaszczyzną osi (obok uszka wycięcia paska krawędzi tylnej na drut i ogon)
 pow_ods     = drut_noga / 2;   // odsadzenie zagięcia „Z” drutu powieki od środka uszka (otwór na środku nogi)
 otwarcie = 51.5;           // pełne otwarcie powiek
 
@@ -229,6 +235,22 @@ module trzpien_kardana(d = tk_d, dk = tk_kol_d) {   // czoło kołnierza (strona
 }
 
 // =================== POWIEKI ===================
+// uszko drutu na tylnej krawędzi: blok od zb do zt (ścianka zacz_pow_sc pod i nad otworem), otwór wzdłuż x na promieniu zacz[1];
+// nad blokiem skos 45° od zewnątrz do skorupy; wewnętrzna strona przycięta sferą R_kula + zacz_pow_gal (luz do gałki)
+module uszko_drutu(zacz, s) {
+  yc = sqrt(pow(zacz[1], 2) - pow(zacz_pow_z, 2));
+  y0 = yc - zacz_pow_otw / 2 - zacz_pow_sc; y1 = yc + zacz_pow_otw / 2 + zacz_pow_sc;
+  zt = zacz_pow_z + zacz_pow_otw / 2 * sqrt(2) + zacz_pow_sc;   // nad wierzchołkiem daszka ścianka zacz_pow_sc
+  zb = zacz_pow_z - zacz_pow_otw / 2 - zacz_pow_sc;              // spód bloku (w druku 2,6 nad stołem, na podporze)
+  x0 = zacz[0] - zacz_pow_gr / 2; x1 = zacz[0] + zacz_pow_gr / 2;
+  difference() {
+    mirror([0, s > 0 ? 0 : 1, 0]) {
+      pudlo(x0, x1, y0, y1, zb, zt);
+      hull() { pudlo(x0, x1, y0, y1, zt - E, zt); pudlo(x0, x1, y0, y1 - zacz_pow_skos, zt + zacz_pow_skos - E, zt + zacz_pow_skos); }
+    }
+    sphere(r = R_kula + zacz_pow_gal, $fn = 120);
+  }
+}
 module powieka(ri, ro, gora, ucho, zacz, ucho_inne, otw = os_otw, ucho_wew = 0) {
   s = gora ? 1 : -1;
   difference() {
@@ -240,22 +262,19 @@ module powieka(ri, ro, gora, ucho, zacz, ucho_inne, otw = os_otw, ucho_wew = 0) 
           // boczne krawędzie powieki do wewnętrznej płaszczyzny ucha
           translate([-ucho[1], -50, -50]) cube([2 * ucho[1], 100, 100]);
         }
-        // wycięcie krawędzi tylnej przy uszku drutu: drut wychodzi z otworu (z = zacz_pow_z) do tyłu po stronie uszka
-        translate([zacz[0] - 5, -50, -pow_tyl - 1]) cube([10, 100, pow_tyl + 1 + zacz_pow_z + 1]);
+        // wycięcie krawędzi tylnej przy uszku drutu: drut wychodzi z otworu (z = zacz_pow_z) do tyłu po stronie uszka;
+        // sufit 1,3 nad osią otworu: noga „Z” za uszkiem 0,8 do sufitu (przy 1,0 było 0,50 przy wymogu 0,5)
+        translate([zacz[0] - 5, -50, -pow_tyl - 1]) cube([10, 100, pow_tyl + 1 + zacz_pow_z + 1.3]);
       }
       for (m = [0, 1]) mirror([m, 0, 0]) hull() {         // ucho: krążek r 3 + podstawa do płaszczyzny z = −3
         walec_x(2 * ucho_r, ucho_wew > 0 ? ucho_wew : ucho[0], ucho[1]);
         pudlo(ucho_wew > 0 ? ucho_wew : ucho[0], ucho[1], -ucho_r, ucho_r, -pow_tyl, -pow_tyl + E);
       }
-      // uszko drutu na tylnej krawędzi: płytka w płaszczyźnie YZ, otwór wzdłuż x na promieniu zacz[1]
-      intersection() {
-        translate([zacz[0] - zacz_pow_gr / 2, 0, 0]) rotate([0, 90, 0])
-          linear_extrude(zacz_pow_gr) polygon([[0, s * (ri - 0.3)], [0, s * (zacz[1] + 1.6)], [-2 * zacz_pow_z - 0.2, s * (zacz[1] + 1.6)], [-2 * zacz_pow_z - 0.2, s * (ri - 0.3)]]);
-        translate([-50, -50, -pow_tyl]) cube(100);
-      }
+      uszko_drutu(zacz, s);
     }
     for (m = [0, 1]) mirror([m, 0, 0]) walec_x(d_opis(otw, OTW_N), ucho[0] - 2, ucho[1] + 1, OTW_N);
-    translate([zacz[0], s * sqrt(pow(zacz[1], 2) - pow(zacz_pow_z, 2)), zacz_pow_z]) rotate([0, 90, 0]) cylinder(d = zacz_otw, h = 10, center = true, $fn = 16);
+    translate([zacz[0], s * sqrt(pow(zacz[1], 2) - pow(zacz_pow_z, 2)), zacz_pow_z]) rotate([0, 90, 0])   // daszek w +z
+      linear_extrude(10, center = true) rotate(90) hull() { circle(d = d_opis(zacz_pow_otw, 16), $fn = 16); rotate(45) square(zacz_pow_otw / 2); }
     // miejsce na ucho drugiej powieki (górna: wycięcie przy osi w pasie ucha dolnej)
     if (len(ucho_inne) == 2) for (m = [0, 1]) mirror([m, 0, 0]) walec_x(2 * 4.6, ucho_inne[0] - 0.2, ucho_inne[1] + 0.2);
   }
