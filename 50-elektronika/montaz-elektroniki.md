@@ -63,6 +63,21 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
    ![PCA na słupkach](montaz-elektroniki/img/krok01-pca.png)
 2. **ESP – wtyki przed klejeniem:** nałóż wtyki na 9 pinów: 5V, G, 3V3, 4, 8, 9, 10, 3, 5 (piny z rysunku w `polaczenia.md`; napisy na płytce mają pierwszeństwo). Opisz końce taśmą. Zmierz od spodu płytki do miejsca, gdzie przewód da się zgiąć – to wysokość podkładek + 16. Podkładki przyklej na słupki, ESP na podkładki, USB do przodu.
 
+   Piny ESP (widok z góry, USB do przodu tacki; liczone od strony USB). Wtyk = Dupont żeński na pinie:
+
+   | Poz. od USB | Rząd od ściany tacki | wtyk → dokąd | Rząd od PCA | wtyk → dokąd |
+   |---|---|---|---|---|
+   | 1 | 5 | **tak** – zapas, koniec zaizolowany | 5V | **tak** → kanał 9 V+ |
+   | 2 | 6 | – | G | **tak** → kanał 9 GND |
+   | 3 | 7 | – | 3V3 | **tak** → lewa listwa VCC |
+   | 4 | 8 | **tak** → lewa listwa SDA | 4 | **tak** → przycisk |
+   | 5 | 9 | **tak** → lewa listwa SCL | 3 | **tak** – zapas, koniec zaizolowany |
+   | 6 | 10 | **tak** → PIR OUT | 2 | – |
+   | 7 | 20 | – | 1 | – |
+   | 8 | 21 | – | 0 | – |
+
+   Kolejność z typowego ESP32-C3 SuperMini – przed nałożeniem wtyków porównaj z napisami na płytce. Wtyki zabezpiecz klejem na gorąco dopiero po testach (krok 9): kropla łączy obudowy w rzędzie z plastikiem listwy, nie na elementy płytki i nie na gniazdo USB.
+
    ![ESP: wtyki, podkładki, ESP na słupkach](montaz-elektroniki/img/krok02-esp.png)
 
    ![Wtyki na pinach ESP, widok od przodu z dołu](montaz-elektroniki/img/krok02a-esp-piny.png)
