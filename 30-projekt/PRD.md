@@ -76,7 +76,7 @@ Model: `40-cad/openscad/duze-oko-v3.scad`. Pliki do druku: `40-cad/3mf/Duze oko 
 - **Szufladka** otwiera się do przodu, bo z tyłu stoją inne dynie. Mieści tylko powerbank: Baseus 20 000 mAh (160 × 70 × 32 mm), zapasowy Manta. Wtyk USB-C wpina się ręcznie. Front jest przykręcony do korpusu szufladki, ma małą rączkę i jest blokowany śrubą M4 wkręcaną w płytę górną (przed dziećmi).
 - **Mocowanie dyni do podstawki:** tuleja z gwintem, przykręcona kołnierzem do płyty górnej nad otworem na kable. Wchodzi przez otwór w dnie dyni, a od środka dyni dokręca się nakrętkę. Przez tuleję idą skrętki do oczu.
   - Pliki: `40-cad/3mf/Podstawka v2/Tuleja z gwintem.3mf` i `Nakretka.3mf`.
-  - **Otwór w dnie dyni: otwornica 60**, tak jak w płycie (decyzja użytkownika 28.10). Tuleja ma ciasno pasować do tego otworu. Model trzeba przerobić: obecny ma gwint Ø76 pod otwór Ø80.
+  - **Otwór w dnie dyni: otwornica 60**, tak jak w płycie. Tuleja ma gwint Ø59, czyli 0,5 mm luzu na stronę: wchodzi ręką, bez dużego luzu. Nakrętka ma 0,20 mm luzu gwintu. Ścianka pod gwintem 3 mm, przelot na kable Ø49 (wtyki RJ45 przeciąga się pojedynczo), wysokość 78 mm, gwint na całej wysokości.
 
 ### Elektronika
 
