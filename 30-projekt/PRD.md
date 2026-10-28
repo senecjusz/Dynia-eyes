@@ -8,19 +8,19 @@ Wersja 0.3, 28.10.2026. Dokument opisuje, co ma powstać i jaki jest stan. Histo
 
 - Prawdziwa dynia z ruchomymi oczami, robiona z synem, na wystawę w szkole.
 - Dynia ma być w szkole **w czwartek 29.10 rano**. Stoi tam kilka dni, także 31.10.
-- **Minimum na szkołę:** 8 małych oczu w ruchu, czujnik ruchu PIR i przycisk blokady. Duże oko i strona w telefonie są mile widziane, ale nie wymagane.
+- **Na szkołę:** 8 małych oczu w ruchu (4 po lewej, 3 po prawej, 1 na środku frontu), czujnik ruchu PIR i przycisk blokady. **Duże oko nie będzie gotowe na czwartek** (użytkownik 28.10); zostaje do dokończenia po terminie. Strona w telefonie też po terminie.
 - **Zasada na finiszu:** nie drukujemy ponownie dużych części (płyty dużego oka, gałki, tacki elektroniki, elementów podstawki). Problemy rozwiązujemy na tym, co już jest wydrukowane, albo małą częścią, która drukuje się szybko.
 
 ## 2. Skład
 
-- Duże oko na środku frontu dyni.
-- 8 małych oczu po bokach, po 4 na stronę.
+- 8 małych oczu: 4 po lewej stronie, 3 po prawej, rozłożone niesymetrycznie także na boki dyni, i 1 na środku frontu. Rozmieszczenie: `20-analizy/2026-10-28-rozstaw-oczu.md`.
+- Duże oko po terminie trafi na środek frontu w miejsce środkowego małego oka (otwór rozwiercony na Ø80); odstępy w rozmieszczeniu to przewidują.
 - Drewniana podstawka pod dynią, a w niej powerbank i elektronika.
 
 ## 3. Małe oczy (gotowe)
 
 - Moduł v2.8: oko z piłeczki pingpongowej porusza się w lewo i w prawo o ±25°. Instrukcja: `70-budowa/montaz-v2.8.md`.
-- Wszystkie 8 modułów jest złożonych i skalibrowanych. Mają wspólne ustawienia serwa: środek 1500 µs, skrajne prawo 1100 µs, skrajne lewo 1800 µs. Ustawienia są zapisane w pamięci ESP i w `50-elektronika/kalibracja-oczu.md`.
+- Złożonych i skalibrowanych jest 8 modułów; wszystkie trafiają do dyni. Mają wspólne ustawienia serwa: środek 1500 µs, skrajne prawo 1100 µs, skrajne lewo 1800 µs. Ustawienia są zapisane w pamięci ESP i w `50-elektronika/kalibracja-oczu.md`.
 - Zostaje montaż modułów w dyni i podłączenie.
 
 ## 4. Duże oko
@@ -83,13 +83,13 @@ Model: `40-cad/openscad/duze-oko-v3.scad`. Pliki do druku: `40-cad/3mf/Duze oko 
 - ESP32-C3 i sterownik serw PCA9685 na tacce w podstawce. Instrukcja montażu: `50-elektronika/montaz-elektroniki.md`.
 - Na tacce:
   - ESP stoi na słupkach podniesionych o 7 mm doklejonymi podkładkami, żeby zmieściły się pod nim wtyki Dupont;
-  - rezystor 47 Ω / 3 W, który obciąża powerbank, żeby się nie wyłączał, siedzi wysoko na dwóch słupkach, z dala od plastiku, żeby mógł się chłodzić;
+  - rezystor 47 Ω / 3 W, który obciąża powerbank, żeby się nie wyłączał, siedzi wysoko na dwóch słupkach, z dala od plastiku, żeby mógł się chłodzić. Program włącza go tranzystorem IRLZ44N na 1 s co 10 s (tranzystor zamówiony przez użytkownika);
   - kondensator 470 µF leży poziomo.
 - **Kanały PCA9685:**
-  - małe oczy po lewej: 0–3; po prawej: 4–7;
+  - małe oczy po lewej: 0–3; po prawej: 4–6; środkowe: 7 (czwarte serwo prawej skrętki, więc obie skrętki mają po 4 serwa);
   - duże oko: 12 lewo–prawo, 13 góra–dół, 14 powieka górna, 15 powieka dolna.
   - Pinout: `50-elektronika/polaczenia.md`.
-- **Okablowanie:** trzy skrętki Ethernet (lewa strona, prawa strona, duże oko), rozłączane w dyni na gniazdach keystone RJ45.
+- **Okablowanie:** skrętki Ethernet rozłączane w dyni na gniazdach keystone RJ45: lewa strona (4 serwa) i prawa strona z okiem środkowym (4 serwa); trzecia skrętka do dużego oka dojdzie po terminie. Po stronie PCA żyły są przylutowane do wtyczek odciętych z serw, po stronie oczu do przewodów serw.
 - **PIR HC-SR501** jest we froncie szufladki, po prawej stronie. Przewód ma zapas ok. 150 mm, żeby szufladka mogła się wysunąć.
 - **Przycisk:** jeden, chwilowy, PBS-33B, wklejony w otwór Ø12 w prawym boku podstawki, blisko tyłu.
   - Przytrzymanie przez 5 s blokuje dynię: duże oko staje na środku, powieki się otwierają, wszystkie serwa stoją. To jest tryb do rysowania tęczówek.
@@ -104,7 +104,7 @@ Program: `50-elektronika/dynia-v2`.
 - **Spoczynek:** duże oko zamknięte, co ok. 5 s rusza się jedno małe oko.
 - **Ktoś podchodzi (PIR):** rusza się więcej oczu, najwyżej 2 małe naraz; duże oko się otwiera i rozgląda.
 - **Ruch naturalny:** płynne przyspieszanie i hamowanie, szybkie skoki spojrzenia na przemian ze spokojnym rozglądaniem, mruganie, powieka górna podąża za spojrzeniem.
-- Teraz w programie działają małe oczy i gałka dużego oka. Powieki zostaną włączone po kalibracji.
+- Program steruje 8 małymi oczami. Gałka dużego oka jest w programie, powieki zostaną dodane po kalibracji.
 - Po terminie: strona w telefonie do efektów i kalibracji, pilot.
 
 ## 7. Części
