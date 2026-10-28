@@ -9,7 +9,7 @@ Odpowiedzi na pytania blokujące koncepcji v3 (`20-analizy/2026-10-23-duze-oko-2
 | Kardan 5/5: położenie krzyżaka, szerokość widełek, zgięcie (25.10) | oś sworznia ok. 13 od czoła każdej piasty (w połowie długości); szerokość na całej długości, także widełek przy krzyżaku, 11 (użytkownik 25.10); zgięcie do oporu ok. 90° (±15°) | zdjęcia z linijką, `70-budowa/zdjecia/2026-10-25-kardan-5-5/` (±1 mm) |
 | **B4** MG90S Miuzei MS60-4-D-V1: otwór w uchu | **brak** – na rysunku otwarte wycięcia bez wymiaru; osie wycięć 27,7, końce uszu 31,8, ucho gr. 2, spód ucha 18 nad spodem korpusu | rysunek Amazon „Product Size” |
 | MG90S: szerokość ucha | brak osobno; korpus 12,5 (rysunek) / 12,1 (pudełko); ucho na całą szerokość korpusu – założenie | – |
-| MG90S: kabel | z krótszej ściany **po stronie przeciwnej do wałka**, nisko przy spodzie; wysokość brak. Uwaga: SG90 w `sprzet.md` ma kabel od strony wałka – dla MG90S do sprawdzenia | niska – rysunek |
+| MG90S: kabel | z krótszej ściany **po stronie wałka**, nisko przy spodzie (użytkownik 28.10 przy montażu dużego oka; wcześniejsze „po stronie przeciwnej” z rysunku było błędne) | wysoka – posiadane serwo |
 | MG90S: wałek | czubek wałka 35 nad spodem; korpus 22 / 22,8; wieżyczka + wałek ok. 12–13 nad korpusem, wielowypust 3 mm (20T Ø4,9); oś wałka ok. 5,5 od czoła (±0,5) | rysunek |
 | Orczyk jednoramienny | 7 otworów ok. Ø1 co 2,0 mm, 5,5–17,5 od osi (±0,3); długości orczyków 21 / 31,5 / 33,5 | zdjęcie użytkownika, rysunek |
 | **B1** przeguby kulowe RC M2 i M5 | **brak danych** – do pomiaru przez użytkownika | – |
