@@ -4,6 +4,10 @@ Stan 28.10. Pinout i rysunki: `polaczenia.md`, sekcja „Dynia: połączenia doc
 
 Wymiary wtyków i listew to wartości typowe (obudowa Dupont 14 mm, plastik listwy goldpin 2,5 mm). Przed klejeniem ESP sprawdź jedną wtyczką (krok 2).
 
+Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commita 8a07059; render: `montaz-elektroniki/render.py`), wymiary kupnych części są typowe; kontrola kolizji (`eksport.sh`): wtyki, ESP, kondensator, przycisk i PCA bez kolizji z tacką, przewody i elementy poniżej spodu płyty, kolizja tylko rezystora z tylnym pasem.
+
+![Całość na tacce](montaz-elektroniki/img/krok00-calosc.png)
+
 ## 1. Co przygotować
 
 | Co | Ile | Uwagi |
@@ -34,8 +38,8 @@ Wymiary wtyków i listew to wartości typowe (obudowa Dupont 14 mm, plastik list
 | 8 | PIR VCC | kanał 10 V+ | czerwony | 400, przyciąć na miejscu | Dupont / Dupont |
 | 9 | PIR GND | kanał 10 GND | czarny | 400, przyciąć | Dupont / Dupont |
 | 10 | PIR OUT | ESP 10 | żółty | 450, przyciąć | Dupont / Dupont |
-| 11 | przycisk nóżka 1 | prawa listwa GND | czarny | 100 | lut + koszulka / Dupont |
-| 12 | przycisk nóżka 2 | ESP 4 | żółty | 260 | lut + koszulka / Dupont |
+| 11 | przycisk nóżka 2 | prawa listwa GND | czarny | 100 | lut + koszulka / Dupont |
+| 12 | przycisk nóżka 1 | ESP 4 | żółty | 260 | lut + koszulka / Dupont |
 | 13 | ESP 3 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 | 14 | ESP 5 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 
@@ -50,16 +54,52 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
 | Kondensator stojący na wtyku kanału 8 | ok. 39,5 | **kłaść poziomo** do przodu, w wolne 25 mm przed PCA |
 | Rezystor 47 Ω / 3 W | – | tylny słupek 1,5 mm od tylnego pasa – sposób montażu ustala montaż z użytkownikiem; potrzebny tylko, gdy powerbank gaśnie |
 
+![Wysokości całości, widok od przodu w przekroju](montaz-elektroniki/img/krok08-wysokosci.png)
+
 ## 4. Kolejność na tacce (test po każdym kroku)
 
 1. **PCA:** przykręć 4 wkrętami M3 × 8, listwa kanałów do przodu, zacisk do tyłu.
+
+   ![PCA na słupkach](montaz-elektroniki/img/krok01-pca.png)
 2. **ESP – wtyki przed klejeniem:** nałóż wtyki na 9 pinów: 5V, G, 3V3, 4, 8, 9, 10, 3, 5 (piny z rysunku w `polaczenia.md`; napisy na płytce mają pierwszeństwo). Opisz końce taśmą. Zmierz od spodu płytki do miejsca, gdzie przewód da się zgiąć – to wysokość podkładek + 16. Podkładki przyklej na słupki, ESP na podkładki, USB do przodu.
+
+   ![ESP: wtyki, podkładki, ESP na słupkach](montaz-elektroniki/img/krok02-esp.png)
+
+   ![Wtyki na pinach ESP, widok od przodu z dołu](montaz-elektroniki/img/krok02a-esp-piny.png)
+
+   ![Wysokości przy ESP](montaz-elektroniki/img/krok02b-esp-wysokosci.png)
 3. **Zasilanie:** gniazdo USB-C w ściankę (nakrętka od tyłu), przewody 1–2 przez uchwyt opaski do zacisku (V+ i GND według napisu przy zacisku). **Test:** powerbank, miernik na pinach V+/GND kanału 9: ok. 5 V.
+
+   ![Zasilanie: gniazdo USB-C do zacisku](montaz-elektroniki/img/krok03-zasilanie.png)
 4. **ESP do PCA:** przewody 3–4 (kanał 9), 5–7 (lewa listwa). **Program:** wyjmij przewód 3 (5V) z kanału 9, podłącz ESP do komputera, wgraj `dynia-v2`, w monitorze `?` → „PCA OK”. Odłącz komputer, przewód 3 z powrotem.
-5. **Kondensator:** nóżki skrócone i zagięte, wtyki na kanał 8: pasek (−) na GND (rząd przy krawędzi płytki), druga na V+. Korpus leży poziomo do przodu.
+
+   ![ESP do PCA](montaz-elektroniki/img/krok04-esp-pca.png)
+
+   ![Lewa listwa PCA: VCC, SDA, SCL](montaz-elektroniki/img/krok04b-lewa-listwa.png)
+
+   ![Kanał 9: 5V i G z ESP](montaz-elektroniki/img/krok04c-kanal9.png)
+
+   ![Przewody na pinach ESP](montaz-elektroniki/img/krok04d-esp-piny.png)
+5. **Kondensator:** nóżki skrócone i zagięte, wtyki na kanał 8: pasek (−) na GND (rząd przy krawędzi płytki), druga na V+. Korpus leży poziomo do przodu; przewody 5V i G do kanału 9 poprowadź obok korpusu, nie przez niego (w modelu trasa ociera o kondensator).
+
+   ![Kondensator na kanale 8](montaz-elektroniki/img/krok05-kondensator.png)
 6. **PIR i przycisk:** przewody 8–12. **Test:** komputer jak w kroku 4 albo powerbank + komputer bez przewodu 3; `?` pokazuje PIR (po 60 s od startu) i przycisk (1 przy wciśnięciu).
+
+   ![PIR i przycisk](montaz-elektroniki/img/krok06-pir-przycisk.png)
+
+   ![Kanał 10 i prawa listwa](montaz-elektroniki/img/krok06b-kanal10-przycisk.png)
+
+   ![PIR OUT i przycisk na pinach ESP](montaz-elektroniki/img/krok06c-esp-piny.png)
 7. **Skrętki** (rozdział 5), po jednej: lewa → test oczu 0–3, prawa → 4–7, duże oko → 12–15 + ustalenie sprzężenia (`dynia-v2/README.md`).
+
+   ![Skrętki do oczu](montaz-elektroniki/img/krok07-skretki.png)
+
+   ![Skrętki na listwie kanałów](montaz-elektroniki/img/krok07b-skretki-listwa.png)
 8. **Powerbank 30 min** w trybie aktywnym. Gaśnie → rezystor.
+
+   ![Rezystor: przekrój na wysokości nóżek](montaz-elektroniki/img/krok09-rezystor.png)
+
+   ![Rezystor: koniec nóżki za tylną ścianką](montaz-elektroniki/img/krok09b-rezystor-z-tylu.png)
 9. **Opaski** na uchwytach, klej na gorąco na wtyki dopiero po wszystkich testach.
 
 ## 5. Skrętki (3 sztuki: lewa n = 0, prawa n = 4, duże oko n = 12)
@@ -70,6 +110,8 @@ Lutowanie jest tylko po stronie oczu. Wtyk RJ45 się zaciska, keystone zarabia (
 
 1. Strona tacki: zdejmij płaszcz na ok. 80 mm, każda żyła z końcówką Dupont w obudowie 1-pin, opisz numery żył.
 2. Wpięcie (tabela w `polaczenia.md`): żyły 1, 2, 3, 6 – sygnały kanałów n, n+1, n+2, n+3; 4 / 5 – V+ / GND kanału n; 7 / 8 – V+ / GND kanału n+2.
+
+   ![Żyły lewej skrętki na kanałach 0–3](montaz-elektroniki/img/krok07c-zyly-kanaly0-3.png)
 3. Drugi koniec: przez otwór w płycie i tuleję, keystone zarobić według oznaczeń „B” na keystonie.
 
 **Krótki odcinek (keystone → oczy):** długość od keystone'a do grupy oczu na dyni + zapas; kable serw SG90 mają swoje ok. 250 mm.
