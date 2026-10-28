@@ -16,7 +16,7 @@ Wymiary wtyków i listew to wartości typowe (obudowa Dupont 14 mm, plastik list
 | Keystone RJ45 | 3 | narzędzie LSA, jeśli keystone nie jest beznarzędziowy |
 | Skrętka | 3 długie odcinki ok. 450 mm + 3 krótkie (długość z dyni) | długość długich: niżej |
 | Kondensator 470 µF / 10 V | 1 | z zestawu |
-| 2 podkładki pod ESP ok. 7 mm | 2 | wydruk od montażu |
+| 2 podkładki pod ESP, 7 mm | 2 | `40-cad/3mf/Podstawka v2/Tacka - podkladki ESP (2 szt).3mf` (montaż, commit 8a07059 na `wykonawca-montaz`); fartuch od strony środka płytki |
 | Opaski ≤ 4 mm | 7 | uchwyty na tacce |
 | Wkręty M3 × 8 | 4 | PCA na słupkach (otwór 2,6 – wkręt wkręca się w plastik) |
 
