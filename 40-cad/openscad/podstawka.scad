@@ -53,9 +53,9 @@ tryb = "zlozenie";
 // Test zginania: podstawka-zginanie.sh (warianty w 20-analizy/2026-10-25-podstawka-model.md, sekcja v2).
 
 // ---------- BAZOWE: dynia (mierzone przy montażu) ----------
-hDoc     = 45;      // wysokość dna wnętrza dyni przy otworze nad wierzchem płyty (mierzona, gdy dynia stoi na płycie)
+hDoc     = 65;      // zapas zamiast pomiaru (użytkownik 28.10: jedyne ograniczenie to otwór w płycie): tuleja wyższa niż grubość dna dyni, nakrętka zjeżdża po gwincie do dyni, nadmiar zostaje w środku
 nadDnem  = 10;      // tuleja wystaje ponad dno wnętrza (nakrętka + 2)
-otwDyni  = 80;      // otwór w dnie dyni (otwornica 80)
+otwDyni  = 60;      // otwór w dnie dyni: otwornica 60, jak w płycie (decyzja użytkownika 28.10: tuleja pod otwór 60, ciasno)
 // ---------- BAZOWE: podstawka ze sklejki – stan wykonany (pomiary użytkownika 25.10, PRD 0.2 §5) ----------
 WIN      = 216;     // szerokość wnętrza (zmierzona przy froncie i z tyłu)
 H_IN     = 40;      // wysokość wnętrza (ścianki na dnie)
@@ -164,13 +164,14 @@ zapW = 20; zapL = 30; zapRozst = 25; zapX = 55; zapY0 = 64;   // miejsce zapasow
 // ---------- BAZOWE: gwint (jak próbka E2.0: 45°, skok 5, zarys 2,0) ----------
 skok = 5; zarys = 2; zabRdzen = 4.8;             // ząb u rdzenia (szerokość osiowa)
 gwKrok = 3;                                      // rozdzielczość helisy zwoju [°]
-gwD = 76;                                        // średnica zewnętrzna gwintu tulei
+gwD = 59;                                        // średnica zewnętrzna gwintu tulei: otwór w dyni 60 – luz 0,5 na stronę, wchodzi bez wciskania (użytkownik 28.10)
 // ---------- BAZOWE: tuleja i nakrętka ----------
-tulRw = 32;                                      // promień otworu na kable (Ø64)
+tulRw = 24.5;                                    // promień otworu na kable (Ø49): ścianka pod gwintem 3 (użytkownik 28.10: 2,5–3); wtyki RJ45 przechodzą pojedynczo, potem zostają same kable
+przelotMin = 30;                                 // najmniejszy przelot na kable i wtyk RJ45 (przekątna wtyku ok. 18,5 + 2 kable Ø6)
 kolR = 60; kolT = 3;                             // kołnierz
 wkretR = 50; dWkret = 3.5; dLebWkretu = 6.5;     // 3 wkręty 3 × 16 w płytę
 fazaTul = 2;                                     // fazka wejścia na górze tulei
-nakR = 65; nakH = 8; fazaNak = 1;                // nakrętka: promień opisany sześciokąta, wysokość, fazka otworu
+nakR = 45; nakH = 8; fazaNak = 1;                // nakrętka: promień opisany sześciokąta, wysokość, fazka otworu
 probkaH = 15; probkaKolR = 45; probkaNakR = 45;  // próbka gwintu
 // ---------- BAZOWE: luzy (AGENTS.md) ----------
 luzPb    = 1;       // powerbank w komorze – na stronę
@@ -245,10 +246,11 @@ assert(frontZ1 - blokZ >= dLebM4 / 2 + 1, "łeb blokady wystaje nad front");
 assert(frontW <= 256, "front nie mieści się na X1C");
 assert(wcX >= sc && wcX + wcCiecie <= szW - sc, "wycięcie kablowe poza tylną ścianą korpusu");
 assert(szD + wtyk <= kY0 + bkY, "wtyk USB-C nie mieści się przed gniazdem kasety");
-assert(gwD / 2 < otwDyni / 2, "tuleja nie wchodzi w otwór dyni");
-assert(dOtwPl < 2 * tulRw, "otwór w płycie większy niż w tulei");
+assert(otwDyni - gwD >= 2 * 0.5, "luz tulei w otworze dyni < 0,5 na stronę");
+assert(2 * tulRw >= przelotMin, "przelot tulei za mały na kable i wtyk RJ45");
 assert(kW <= WIN, "kaseta szersza niż wnętrze");
-assert(rc - tulRw >= 2, "ścianka tulei < 2");
+assert(rc - tulRw >= 2.5, "ścianka tulei pod gwintem < 2,5");
+assert(nakR * sqrt(3) / 2 - gwD / 2 >= 8, "nakrętka za wąska – za mały docisk do dna dyni");
 gnObrys = max(gnWolneD, gnNakE, gnKolD);         // największy okrąg wokół osi gniazda (wolne miejsce na nakrętkę)
 gnOsZ  = kDno + gnObrys / 2 + 1;                 // oś gniazda nad spodem tacki
 gnScW  = gnObrys + 2 * gnMarg;                   // szerokość ścianki gniazda
