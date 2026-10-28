@@ -48,7 +48,7 @@ module esp() {
   translate([24.2 - 4.5, 15, eZ + eT]) cube([9, 7.5, 3.2]);           // gniazdo USB-C ESP
 }
 module espPiny() for (r = [0, 1], k = [0:7]) translate([eRowX[r] - 1.25, eY(k) - 1.25, eZ - plast]) cube([2.5, 2.5, plast]);
-uzyteESP = [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [0, 0], [0, 3], [0, 4], [0, 5]];   // [rząd, k]: 5V, G, 3V3, 4, 3 | 5, 8, 9, 10
+uzyteESP = [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [0, 3], [0, 4], [0, 5]];   // [rząd, k]: 5V, G, 3V3, 4, 3 | 8, 9, 10 (5–6–7: wtyczka przycisku)
 module espWtyki() for (u = uzyteESP) dupDol(eRowX[u[0]], eY(u[1]));
 module gniazdo() {
   translate([gX, gY - 2, gZ]) rotate([-90, 0, 0]) cylinder(d = 14, h = 2, $fn = 32);     // kołnierz przed ścianką
@@ -79,12 +79,14 @@ module pir(n) {   // 0 VCC → 10 V+, 1 GND → 10 GND, 2 OUT → ESP 10
 }
 module pirWtyki() { dupGora(chX(10), rowY[0]); dupGora(chX(10), rowY[1]); }
 module przycisk() translate([151, bY, bZ]) rotate([0, 90, 0]) cylinder(d = 15, h = 20, $fn = 32);
-module przyciskPrzew(n) {
-  if (n == 0) przewod(concat([[151, bY - 3, bZ], [140, 62, dupTop + 4]], [[bokXP, bokY(0), dupTop + 3], [bokXP, bokY(0), dupTop]]));
-  if (n == 1) przewod([[151, bY + 3, bZ], [120, 82, 20], [70, 82, 14], [45, 55, 10], [36, 28, 5], [eRowX[1], eY(3), 5], [eRowX[1], eY(3), eDupBot]]);
+// przycisk (użytkownik 28.10): gotowy przewód, dwa przewody na skrajnych pozycjach wtyczki Dupont 3-pin, środek pusty;
+// wtyczka wprost na ESP, rząd od ściany, pozycje 1–3 od USB = GPIO5 (masa, program LOW), GPIO6 (pusty), GPIO7 (odczyt); bez połączenia z PCA
+module przyciskPrzew(n) {   // 0: GPIO5 (masa, czarny), 1: GPIO7 (odczyt, pomarańczowy)
+  k = n ? 2 : 0; d = n ? 0 : 1.4;
+  przewod([[eRowX[0], eY(k), eDupBot], [eRowX[0], eY(k), 5], [12 - d, 28, 5], [13 - d, 45 + d, 6], [45, 55 + d, 10], [70, 82 + d, 14], [120, 82 + d, 20], [151, bY - 3 + 6 * n, bZ]]);
 }
-module przyciskWtyk() dupGora(bokXP, bokY(0));
-module zapasESP() { przewod([[eRowX[1], eY(4), eDupBot], [eRowX[1], eY(4), 5], [40, eY(4), 5], [44, 42, 5]]); przewod([[eRowX[0], eY(0), eDupBot], [eRowX[0], eY(0), 5], [9, 18, 5], [8, 32, 5]]); }
+module przyciskWtyczka() translate([eRowX[0] - 1.25, eY(1) - 3.8, eDupBot]) cube([2.5, 7.6, dup]);   // obudowa 3-pin 2,5 × 7,6 × 14 na pinach 5–6–7
+module zapasESP() { przewod([[eRowX[1], eY(4), eDupBot], [eRowX[1], eY(4), 5], [40, eY(4), 5], [44, 42, 5]]); przewod([[eRowX[1], eY(3), eDupBot], [eRowX[1], eY(3), 6.5], [42, eY(3) + 1, 6.5], [46, 27, 6.5]]); }   // GPIO3, GPIO4: końce zaizolowane
 // skrętki: s = 0 lewa (ch 0–3), 1 prawa (4–7), 2 duże oko (12–15)
 // Strona PCA (użytkownik 28.10): żyły przylutowane do 4 wtyczek odciętych od serw (A–D na kanały n…n+3),
 // każda wtyczka z ok. 5 cm własnego przewodu (brązowy GND, czerwony V+, pomarańczowy sygnał) do lutu w koszulce.
@@ -141,9 +143,9 @@ else if (grupa == "pirGND") pir(1);
 else if (grupa == "pirOUT") pir(2);
 else if (grupa == "pirWtyki") pirWtyki();
 else if (grupa == "przycisk") przycisk();
-else if (grupa == "przyciskGND") przyciskPrzew(0);
+else if (grupa == "przyciskMasa") przyciskPrzew(0);
 else if (grupa == "przyciskSyg") przyciskPrzew(1);
-else if (grupa == "przyciskWtyk") przyciskWtyk();
+else if (grupa == "przyciskWtyczka") przyciskWtyczka();
 else if (grupa == "zapasESP") zapasESP();
 else if (grupa == "skL") { skretkaPlaszcz(0); }
 else if (grupa == "skP") { skretkaPlaszcz(1); }
@@ -163,6 +165,6 @@ else if (grupa == "skZyla7") for (s = [0:2]) skretkaZyla(s, 7);
 else if (grupa == "skZyla8") for (s = [0:2]) skretkaZyla(s, 8);
 else if (grupa == "rezystor") rezystor();
 // kontrola kolizji: elementy, które nie mogą wchodzić w tackę ani w sufit
-else if (grupa == "kolizjaTacka") intersection() { kaseta(); union() { espWtyki(); esp(); kondensator(); przycisk(); pca(); for (s = [0:2]) skretkaWtyczki(s); espPCAwtyki(); zacisk(); } }
-else if (grupa == "kolizjaSufit") intersection() { translate([0, 0, SUFIT]) cube([170, 100, 30]); union() { esp(); kondensator(); for (s = [0:2], z = [1:8]) skretkaZyla(s, z); for (r = [0:2]) skPrzewody(r); skKoszulki(); espPCA(0); espPCA(1); espPCA(2); espPCA(3); espPCA(4); pir(0); pir(1); przyciskPrzew(0); } }
+else if (grupa == "kolizjaTacka") intersection() { kaseta(); union() { espWtyki(); esp(); kondensator(); przycisk(); przyciskWtyczka(); pca(); for (s = [0:2]) skretkaWtyczki(s); espPCAwtyki(); zacisk(); } }
+else if (grupa == "kolizjaSufit") intersection() { translate([0, 0, SUFIT]) cube([170, 100, 30]); union() { esp(); kondensator(); for (s = [0:2], z = [1:8]) skretkaZyla(s, z); for (r = [0:2]) skPrzewody(r); skKoszulki(); espPCA(0); espPCA(1); espPCA(2); espPCA(3); espPCA(4); pir(0); pir(1); pir(2); przyciskPrzew(0); przyciskPrzew(1); zapasESP(); } }
 else if (grupa == "kolizjaRezystor") intersection() { kaseta(); rezystor(); }

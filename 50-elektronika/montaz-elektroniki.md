@@ -39,7 +39,7 @@ Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commit
 | 8 | PIR VCC | kanał 10 V+ | czerwony | 400, przyciąć na miejscu | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 9 | PIR GND | kanał 10 GND | czarny | 400, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 10 | PIR OUT | ESP 10 | żółty | 450, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
-| 11 | przycisk (obie nóżki) | ESP piny 5–6–7, rząd od ściany tacki | gotowy przewód użytkownika | ok. 260 od prawej ścianki do ESP – sprawdź, czy sięga | przylutowany / wtyczka 3-pin na skrajnych pozycjach, środek pusty; strona wtyczki obojętna |
+| 11 | przycisk (obie nóżki) | ESP piny 5–6–7, rząd od ściany tacki | gotowy przewód użytkownika | min. ok. 200 (trasa w modelu ok. 185) – sprawdź, czy sięga | przylutowany / wtyczka 3-pin na skrajnych pozycjach, środek pusty; strona wtyczki obojętna |
 | 13 | ESP 3 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 | 14 | ESP 4 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 
@@ -61,7 +61,7 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
 1. **PCA:** przykręć 4 wkrętami M3 × 8, listwa kanałów do przodu, zacisk do tyłu.
 
    ![PCA na słupkach](montaz-elektroniki/img/krok01-pca.png)
-2. **ESP – wtyki przed klejeniem:** nałóż wtyki na 9 pinów: 5V, G, 3V3, 4, 8, 9, 10, 3, 5 (piny z rysunku w `polaczenia.md`; napisy na płytce mają pierwszeństwo). Opisz końce taśmą. Zmierz od spodu płytki do miejsca, gdzie przewód da się zgiąć – to wysokość podkładek + 16. Podkładki przyklej na słupki, ESP na podkładki, USB do przodu.
+2. **ESP – wtyki przed klejeniem:** nałóż 8 pojedynczych wtyków (5V, G, 3V3, 4, 8, 9, 10, 3) i wtyczkę przycisku 3-pin na piny 5–6–7 (przycisk z przewodem wisi luzem do kroku 6) (piny z rysunku w `polaczenia.md`; napisy na płytce mają pierwszeństwo). Opisz końce taśmą. Zmierz od spodu płytki do miejsca, gdzie przewód da się zgiąć – to wysokość podkładek + 16. Podkładki przyklej na słupki, ESP na podkładki, USB do przodu.
 
    Piny ESP (widok z góry, USB do przodu tacki; liczone od strony USB). Wtyk = Dupont żeński na pinie:
 
@@ -98,11 +98,11 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
 5. **Kondensator:** nóżki skrócone i zagięte, wtyki na kanał 8: pasek (−) na GND (rząd przy krawędzi płytki), druga na V+. Korpus leży poziomo do przodu; przewody 5V i G do kanału 9 poprowadź obok korpusu, nie przez niego (w modelu trasa ociera o kondensator).
 
    ![Kondensator na kanale 8](montaz-elektroniki/img/krok05-kondensator.png)
-6. **PIR i przycisk:** przewody 8–10; wtyczka przycisku na pinach ESP 5–6–7 (rząd od ściany, pozycje 1–3 od USB). **Test:** komputer jak w kroku 4 albo powerbank + komputer bez przewodu 3; `?` pokazuje PIR (po 60 s od startu) i przycisk (1 przy wciśnięciu).
+6. **PIR i przycisk:** przewody 8–10; przycisk (wtyczka już na ESP od kroku 2) wklejasz w otwór w prawej ściance, przewód wzdłuż lewej ściany tacki do tyłu. **Test:** komputer jak w kroku 4 albo powerbank + komputer bez przewodu 3; `?` pokazuje PIR (po 60 s od startu) i przycisk (1 przy wciśnięciu).
 
    ![PIR i przycisk](montaz-elektroniki/img/krok06-pir-przycisk.png)
 
-   ![Kanał 10 i prawa listwa](montaz-elektroniki/img/krok06b-kanal10-przycisk.png)
+   ![Kanał 10: PIR VCC / GND](montaz-elektroniki/img/krok06b-kanal10-przycisk.png)
 
    ![PIR OUT i przycisk na pinach ESP](montaz-elektroniki/img/krok06c-esp-piny.png)
 7. **Skrętki** (rozdział 5), po jednej: lewa → test oczu 0–3, prawa → 4–7, duże oko → 12–15 + ustalenie sprzężenia (`dynia-v2/README.md`).

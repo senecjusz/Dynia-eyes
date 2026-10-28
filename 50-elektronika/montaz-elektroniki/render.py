@@ -50,7 +50,7 @@ KOL = {
     "esp5V": "#d81e1e", "espG": "#141414", "espI2C": "#1e90ff", "espPCAwtyki": "#202020", "zapasESP": "#2bb3a0",
     "kondensator": "#7b3fb0", "kondWtyki": "#202020",
     "pirVCC": "#d81e1e", "pirGND": "#141414", "pirOUT": "#f2c200", "pirWtyki": "#202020",
-    "przycisk": "#8b1a1a", "przyciskGND": "#141414", "przyciskSyg": "#ff8c00", "przyciskWtyk": "#202020",
+    "przycisk": "#8b1a1a", "przyciskMasa": "#141414", "przyciskSyg": "#ff8c00", "przyciskWtyczka": "#202020",
     "skL": "#8e7fa6", "skP": "#7f7896", "skD": "#9b8fb0",
     "skWtyczki": "#202020", "skPrzewBraz": "#6b3a17", "skPrzewCzerw": "#d81e1e", "skPrzewPom": "#f06a00", "skKoszulki": "#5c5c5c",
     "rezystor": "#e2c99a",
@@ -187,11 +187,11 @@ def opisz(plik, tytul, etykiety, poziomy=(), znaczniki=(), legenda=True):
 
 # ---------- kroki ----------
 K1 = ["tacka", "pca", "pcaListwy", "zacisk"]
-K2 = ["podkladki", "esp", "espPiny", "espWtyki"]
+K2 = ["podkladki", "esp", "espPiny", "espWtyki", "przyciskWtyczka"]   # wtyczka przycisku na ESP przed klejeniem (tabela pinów, krok 2)
 K3 = ["gniazdo", "wtykCC", "zasilCzerw", "zasilCzarny"]
 K4 = ["esp5V", "espG", "espI2C", "espPCAwtyki", "zapasESP"]
 K5 = ["kondensator", "kondWtyki"]
-K6 = ["pirVCC", "pirGND", "pirOUT", "pirWtyki", "przycisk", "przyciskGND", "przyciskSyg", "przyciskWtyk"]
+K6 = ["pirVCC", "pirGND", "pirOUT", "pirWtyki", "przycisk", "przyciskMasa", "przyciskSyg"]
 K7 = ["skL", "skP", "skD", "skWtyczki", "skPrzewBraz", "skPrzewCzerw", "skPrzewPom", "skKoszulki"] + ["skZyla%d" % z for z in range(1, 9)]
 WSZ = K1 + K2 + K3 + K4 + K5 + K6 + K7 + ["rezystor"]
 ISO = (-0.75, -1.35, 1.25)
@@ -203,7 +203,7 @@ def krok(nazwa, tytul, nowe, stare, cam, etykiety=(), sufit=False, poziomy=(), z
                       zn=znaczniki, ukryj=ukryj, leg=legenda))
 
 def pinESP(r, k, z=eDupBot): return (eRowX[r], eY(k), z)   # r: 0 rząd od ściany, 1 rząd od PCA; k: 0 = od przodu (USB)
-NIE_ESP = [g for g in GRUPY if g not in ("esp", "espPiny", "espWtyki", "podkladki")]   # widoki spodu ESP: bez tacki i reszty
+NIE_ESP = [g for g in GRUPY if g not in ("esp", "espPiny", "espWtyki", "podkladki", "przyciskWtyczka")]   # widoki spodu ESP: bez tacki i reszty
 SPOD = ((24.2, 26, 14), (0, -1.0, -1.0), 44)                                           # od przodu i z dołu
 dP = dupTop + 1.5                                                                      # punkt na przewodzie tuż nad wtykiem
 
@@ -213,6 +213,7 @@ krok("krok00-calosc", "Całość na tacce", WSZ, [], ((85, 50, 12), ISO, 205), [
     ("zacisk V+ / GND", (106, 66, 19), (900, 180), "#1f6f8b"),
     ("gniazdo USB-C", (157, 46, 16), (1480, 600), SZ),
     ("przycisk", (161, 83, 30.5), (1420, 200), "#8b1a1a"),
+    ("przycisk: wtyczka 3-pin na ESP 5–6–7 (środek pusty)", (70, 82.7, 14), (560, 90), "#ff8c00"),
     ("skrętki do oczu", (70, 6, 40), (520, 880), FI),
     ("kondensator", (107, 30, 33), (900, 880), FI),
     ("rezystor (zapas)", (32, 80, 16.4), (300, 150), PO),
@@ -227,15 +228,18 @@ krok("krok01-pca", "4.1  PCA9685 na słupkach", K1, [], ((106, 58, 8), ISO, 115)
 krok("krok02-esp", "4.2  ESP: wtyki na pinach, podkładki, ESP na słupkach", K2, K1, ((28, 30, 18), (-0.6, -1.2, 1.0), 80), [
     ("podkładki 7 mm na słupkach (2 szt.)", (24.2, 16.5, 21.9), (1150, 420), PO),
     ("ESP: USB do przodu", (24.2, 15, 29.8), (330, 260), NI),
-    ("9 wtyków nałożonych przed klejeniem", (eRowX[1] + 1.25, eY(0) - 1.25, 12), (1150, 820), SZ),
+    ("8 wtyków nałożonych przed klejeniem", (eRowX[1] + 1.25, eY(0) - 1.25, 12), (1150, 820), SZ),
+    ("przycisk: wtyczka 3-pin na ESP 5–6–7 (środek pusty)", (eRowX[0] - 1.25, eY(1), 12), (520, 900), "#ff8c00"),
 ])
 krok("krok02a-esp-piny", "4.2  Wtyki na pinach ESP (od przodu z dołu, tacka ukryta)", K2, [], SPOD, [
     ("5V", pinESP(1, 0), (1300, None), CZ),
     ("G", pinESP(1, 1), (1300, None), SZ),
     ("3V3", pinESP(1, 2), (1300, None), NI),
-    ("4 (przycisk)", pinESP(1, 3), (1300, None), "#ff8c00"),
-    ("3 (zapas)", pinESP(1, 4), (1300, None), "#888888"),
-    ("5 (zapas)", pinESP(0, 0), (300, None), "#888888"),
+    ("4: zapas", pinESP(1, 3), (1300, None), "#888888"),
+    ("3: zapas", pinESP(1, 4), (1300, None), "#888888"),
+    ("5: masa przycisku", pinESP(0, 0), (300, None), SZ),
+    ("6: pusty", pinESP(0, 1), (300, None), "#888888"),
+    ("7: przycisk", pinESP(0, 2), (300, None), "#ff8c00"),
     ("8 = SDA", pinESP(0, 3), (300, None), NI),
     ("9 = SCL", pinESP(0, 4), (300, None), NI),
     ("10 (PIR OUT)", pinESP(0, 5), (300, None), ZO),
@@ -260,7 +264,7 @@ krok("krok03-zasilanie", "4.3  Zasilanie: gniazdo USB-C do zacisku", K3, K1 + K2
 krok("krok04-esp-pca", "4.4  ESP do PCA", K4, K1 + K2 + K3, ((70, 42, 12), ISO, 135), [
     ("kanał 9: 5V / G z ESP", (chX(9), 48, 25.5), (1330, 430), CZ),
     ("lewa listwa: SDA, SCL, VCC", (bokXL, bokY(3), 25.5), (620, 150), NI),
-    ("zapas: ESP 3 i 5", (8, 32, 5), (200, 700), "#888888"),
+    ("zapas: ESP 3 i 4", (46, 27, 6.5), (200, 700), "#888888"),
 ])
 krok("krok04b-lewa-listwa", "4.4  Zbliżenie: lewa listwa PCA (widok od lewej)", K4, K1 + K2 + K3, ((bokXL, 57.5, 21), (-1.0, -0.3, 0.9), 42), [
     ("VCC ← ESP 3V3", (bokXL, bokY(4), dP), (560, 170), NI),
@@ -278,8 +282,11 @@ krok("krok04d-esp-piny", "4.4  Przewody na pinach ESP (od przodu z dołu, tacka 
     ("5V → kanał 9 V+", pinESP(1, 0, 6.5), (1330, None), CZ),
     ("G → kanał 9 GND", pinESP(1, 1, 6.5), (1330, None), SZ),
     ("3V3 → VCC lewej listwy", pinESP(1, 2, 6.5), (1330, None), NI),
+    ("4: zapas", pinESP(1, 3, 7.7), (1330, 690), "#888888"),
     ("3: zapas", pinESP(1, 4, 6.5), (1330, None), "#888888"),
-    ("5: zapas", pinESP(0, 0, 6.5), (260, None), "#888888"),
+    ("5: masa przycisku", pinESP(0, 0), (260, None), SZ),
+    ("6: pusty", pinESP(0, 1), (260, None), "#888888"),
+    ("7: przycisk", pinESP(0, 2), (260, None), "#ff8c00"),
     ("8 → SDA lewej listwy", pinESP(0, 3, 6.5), (260, None), NI),
     ("9 → SCL lewej listwy", pinESP(0, 4, 6.5), (260, None), NI),
 ], ukryj=[g for g in NIE_ESP if g not in K4])
@@ -291,20 +298,20 @@ krok("krok05-kondensator", "4.5  Kondensator na kanale 8 (leży poziomo do przod
 krok("krok06-pir-przycisk", "4.6  PIR i przycisk", K6, K1 + K2 + K3 + K4 + K5, ((90, 50, 12), ISO, 190), [
     ("PIR (od szufladki): VCC, GND, OUT", (150, 10, 5), (1300, 860), ZO),
     ("PIR OUT → ESP pin 10", (40, 22, 4), (330, 860), ZO),
-    ("przycisk nóżka 1 → ESP pin 4", (70, 82, 14), (350, 200), "#ff8c00"),
-    ("przycisk nóżka 2 → GND prawej listwy", (bokXP, bokY(0), dupTop + 3), (1130, 160), SZ),
+    ("przycisk: wtyczka 3-pin na ESP 5–6–7 (środek pusty)", (70, 82.7, 14), (560, 200), "#ff8c00"),
     ("PIR VCC / GND → kanał 10", (125, 30, 5), (900, 880), CZ),
 ])
-krok("krok06b-kanal10-przycisk", "4.6  Zbliżenie: kanał 10 i prawa listwa", K6, K1 + K2 + K3 + K4 + K5, ((118, 52, 22), (0.2, -1.0, 1.5), 55), [
+krok("krok06b-kanal10-przycisk", "4.6  Zbliżenie – kanał 10: PIR VCC / GND", K6, K1 + K2 + K3 + K4 + K5, ((118, 52, 22), (0.2, -1.0, 1.5), 55), [
     ("kanał 10 V+ ← PIR VCC (czerwony)", (chX(10), rowY[1], dP), (480, 840), CZ),
     ("kanał 10 GND ← PIR GND (czarny)", (chX(10), rowY[0], dupTop - 2), (1000, 900), SZ),
-    ("prawa listwa GND ← przycisk nóżka 2", (bokXP, bokY(0), dP), (1180, 250), SZ),
     ("kanał 8: kondensator", (chX(8) - 1, 40.5, dupTop + 4), (330, 300), FI),
     ("kanał 9: ESP", (chX(9), rowY[1], dP + 1.5), (380, 500), CZ),
 ])
 krok("krok06c-esp-piny", "4.6  PIR i przycisk na pinach ESP (od przodu z dołu, tacka ukryta)", K6, K2 + K4, SPOD, [
     ("10 ← PIR OUT", pinESP(0, 5, 6.5), (260, None), ZO),
-    ("4 ← przycisk nóżka 1", pinESP(1, 3, 6.5), (1360, 560), "#ff8c00"),
+    ("5: masa przycisku", pinESP(0, 0), (260, None), SZ),
+    ("6: pusty", pinESP(0, 1), (260, None), "#888888"),
+    ("7: przycisk", pinESP(0, 2), (260, None), "#ff8c00"),
 ], ukryj=[g for g in NIE_ESP if g not in K4 + K6] + ["przycisk"])
 krok("krok07-skretki", "4.7  Skrętki do oczu (po jednej, z testem)", K7, K1 + K2 + K3 + K4 + K5 + K6, ((90, 35, 18), ISO, 150), [
     ("lewa: kanały 0–3", (55, 9, 12), (330, 850), FI),
