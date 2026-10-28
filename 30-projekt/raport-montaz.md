@@ -91,7 +91,9 @@ Kontrole OK. Po pomiarach użytkownika 26.10 doszły:
 - rezystor 47 Ω na słupkach;
 - miejsce zapasowe 20 × 30.
 
-**Tacka gotowa do druku.** Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
+**Tacka gotowa do druku.**
+
+**Rezystor poza słupkami (28.10, elektronika, commit 5615aca):** tylny słupek rezystora stoi ok. 1 mm od ścianki tacki (pomiar użytkownika), więc nóżki nie da się w nim osadzić. Rezystor jest wpięty Dupontem w kanał 11 PCA, ok. 20 mm nad płytką. Słupki w wydrukowanej tacce zostają nieużywane. Przy przedruku tacki usunąć je z modelu (`rezX`, `rezY0`). Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
 
 ### Przycisk zewnętrzny (27.10)
 
