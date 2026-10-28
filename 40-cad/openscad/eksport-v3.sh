@@ -30,4 +30,12 @@ timeout 1800 "$OS" -o "$STL/Plyta (druk 45).3mf" -D 'czesc="PlytaDruk45"' -D 'tr
 node $N/sprawdz_siatki.js "$STL/Plyta (druk 45).3mf" || { node $N/napraw_siatki.js "$STL/Plyta (druk 45).3mf" "$STL/naprawa.3mf" && cp "$STL/naprawa.3mf" "$STL/Plyta (druk 45).3mf"; }
 node $N/zbiorczy_3mf.js "$OUT/Plyta + podpora (druk 45).3mf" bez "$STL/Plyta (druk 45).3mf" "$OUT/Podpora plyty (druk 45).3mf"
 node $N/sprawdz_siatki.js "$OUT/Plyta + podpora (druk 45).3mf"; node $N/skladowe_siatki.js "$OUT/Plyta + podpora (druk 45).3mf"
+# trzpień kardana z rdzeniem M3: 4 sztuki nominalne (2 + 2 zapasowe) i warianty do przymiarki w jednym 3MF, STL obu w złożeniu
+TK=(); for v in "4.95 9.3" "4.9 9.3" "5.0 9.3" "4.95 9.2"; do set -- $v; f="$STL/Trzpien kardana T$1 K$2.3mf"
+  timeout 300 "$OS" -o "$f" -D 'czesc="TrzpienKardana"' -D 'tryb="druk"' -D "tk_d=$1" -D "tk_kol_d=$2" duze-oko-v3.scad > "$STL/TrzpienKardana-druk.log" 2>&1 || echo "BLAD trzpien $v"
+  node $N/sprawdz_siatki.js "$f"; node $N/skladowe_siatki.js "$f"
+  if [ "$v" = "4.95 9.3" ]; then for i in 1 2 3 4; do cp "$f" "$STL/Trzpien kardana T$1 K$2 nr $i.3mf"; TK+=("$STL/Trzpien kardana T$1 K$2 nr $i.3mf"); done; else TK+=("$f"); fi; done
+node $N/zbiorczy_3mf.js "$OUT/Trzpien kardana M3 (2 + 2 zapas + warianty).3mf" 6 "${TK[@]}"
+node $N/sprawdz_siatki.js "$OUT/Trzpien kardana M3 (2 + 2 zapas + warianty).3mf"; node $N/skladowe_siatki.js "$OUT/Trzpien kardana M3 (2 + 2 zapas + warianty).3mf"
+timeout 300 "$OS" -o "$STL/TrzpienKardana.stl" -D 'czesc="TrzpienKardana"' -D 'tryb="zlozenie"' duze-oko-v3.scad > "$STL/TrzpienKardana-zl.log" 2>&1 || echo "BLAD trzpien zlozenie"
 echo KONIEC

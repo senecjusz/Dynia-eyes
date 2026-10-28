@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 590" font-family="system-ui, sans-serif" font-size="22">
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+  </defs>
+  <rect width="800" height="590" fill="#fff"/>
+
+  <!-- A: „Z” w płaszczyźnie, skala 1 mm = 30 px; zagięcia w x 300, noga od y 130 do y 340 -->
+  <text x="20" y="40" font-size="26" font-weight="700">A. Koniec „Z” (gałka i orczyki)</text>
+  <text x="40" y="112">do serwa / do gałki</text>
+  <path d="M40,130 L270,130 Q300,130 300,160 L300,310 Q300,340 330,340 L390,340" fill="none" stroke="#c0392b" stroke-width="12" stroke-linecap="round"/>
+  <rect x="250" y="223" width="100" height="24" fill="#e8913a" opacity="0.85"/>
+  <circle cx="300" cy="235" r="9" fill="#fff" stroke="#333" stroke-width="2"/>
+  <text x="318" y="168" font-size="19">r ≈ 1</text>
+  <!-- noga 7 po lewej -->
+  <line x1="200" y1="130" x2="200" y2="340" stroke="#333" stroke-width="1.5" marker-start="url(#g)" marker-end="url(#g)"/>
+  <line x1="192" y1="340" x2="320" y2="340" stroke="#333" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="60" y="230" font-weight="700">noga ≈ 7</text>
+  <text x="60" y="256" font-size="17">(6,5–7,5)</text>
+  <!-- połówki po prawej -->
+  <line x1="450" y1="130" x2="450" y2="235" stroke="#333" stroke-width="1.5" marker-start="url(#g)" marker-end="url(#g)"/>
+  <line x1="450" y1="235" x2="450" y2="340" stroke="#333" stroke-width="1.5" marker-start="url(#g)" marker-end="url(#g)"/>
+  <line x1="310" y1="130" x2="458" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="360" y1="235" x2="458" y2="235" stroke="#333" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="400" y1="340" x2="458" y2="340" stroke="#333" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="464" y="190">3,5</text>
+  <text x="464" y="296">3,5</text>
+  <text x="520" y="230" font-size="19">otwór na środku nogi</text>
+  <text x="520" y="254" font-size="17">gałka Ø2,0 · orczyk Ø1,3</text>
+  <!-- ogon -->
+  <line x1="300" y1="380" x2="390" y2="380" stroke="#333" stroke-width="1.5" marker-start="url(#g)" marker-end="url(#g)"/>
+  <text x="290" y="412" font-weight="700">ogon ≈ 2</text>
+  <text x="40" y="440" font-size="18">ogon równoległy do drutu, w przeciwną stronę niż drut</text>
+  <text x="40" y="474" font-size="18">Drut Ø1. Tniesz ok. 5 mm dłużej, gniesz oba zagięcia kombinerkami,</text>
+  <text x="40" y="498" font-size="18">nadmiar ogona obcinasz po zgięciu. Noga przesuwa się w otworze o ±0,5.</text>
+
+  <text x="40" y="540" font-size="18" fill="#c0392b">Uszko powieki: ogon 2 mm w PRZECIWNĄ stronę (równolegle do drutu, ku serwu)</text>
+  <text x="40" y="564" font-size="18" fill="#c0392b">(do przodu wchodzi w powieki i gałkę; sprawdzone przemiataniem 28.10).</text>
+</svg>

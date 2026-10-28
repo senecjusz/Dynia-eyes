@@ -162,17 +162,18 @@ def lam_lam(L1, L2): return min(odc_odc(a, b, c, d) for a, b in L1 for c, d in L
 
 ODS, WYST = P.get('orcz_ods', 1.75), 1.6
 NOGA, OGON = P.get('drut_noga', 0), P.get('drut_ogon', 0)
-def ogon(otw, n, ods, zag, dalej):
+OGON_POW_KIER = float(os.environ.get('OGON_POW_KIER', '1'))   # −1: ogon drutu powieki w uszku zagięty w przeciwną stronę (równolegle do drutu, ku serwu)
+def ogon(otw, n, ods, zag, dalej, kier=1):
     """Druga strona „Z”: reszta nogi od 2,5 za środkiem otworu do drugiego zagięcia i ogon (kierunek od odcinka głównego)."""
     if NOGA <= 0: return []
     c = otw - n * (NOGA - ods); t = (zag - dalej).normalized()
     out = [(otw - n * 2.5, c)] if NOGA - ods > 2.5 else []
-    return out + [(c, c + t * OGON)]
+    return out + [(c, c + t * OGON * kier)]
 def drut_Z(a, na, b, nb, ods_a=ODS):
     """Łamana drutu z zakończeniami „Z”: zwraca (odcinki przez otwory [zaczep, orczyk], odcinki główne, ogony)."""
     a, b, na, nb = Vector(a), Vector(b), Vector(na).normalized(), Vector(nb).normalized()
     a1, b1 = a + na * ods_a, b + nb * ODS
-    return [(a - na * WYST, a1), (b - nb * WYST, b1)], [(a1, b1)], ogon(a, na, ods_a, a1, b1) + ogon(b, nb, ODS, b1, a1)
+    return [(a - na * WYST, a1), (b - nb * WYST, b1)], [(a1, b1)], ogon(a, na, ods_a, a1, b1, OGON_POW_KIER) + ogon(b, nb, ODS, b1, a1)
 def pret_Z(otw, n, zag, b, nb):
     """Pręt gałki: noga „Z” przez otwór języczka (oś n) do zagięcia zag (odsadzenie zacz_ods), odcinek główny, „Z” w orczyku."""
     otw, n, zag, b, nb = Vector(otw), Vector(n).normalized(), Vector(zag), Vector(b), Vector(nb).normalized()
