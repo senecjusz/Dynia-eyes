@@ -29,7 +29,7 @@ Wartości w `kalibracja.h`, przepisane z `../kalibracja-oczu.md`.
 
 ## Połączenia
 
-`../polaczenia.md`, sekcja „Dynia: połączenia docelowe”: PIR na GPIO10, przycisk GPIO4–GND, I²C GPIO8/9.
+`../polaczenia.md`, sekcja „Dynia: połączenia docelowe”: PIR na GPIO10, przycisk na GPIO7, masa przycisku GPIO5 (wyjście LOW), I²C GPIO8/9.
 
 ## Kompilacja i wgranie
 

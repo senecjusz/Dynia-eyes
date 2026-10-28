@@ -25,11 +25,11 @@ Kanały 8–11 PCA nie sterują serwami: ich piny V+ i GND (wspólne szyny z zac
 | GPIO9 (SCL) | PCA listwa boczna SCL |
 | 3V3 | PCA listwa boczna VCC (logika 3,3 V) |
 | GPIO10 | PIR OUT |
-| GPIO4 | przycisk, nóżka 1 (nóżka 2 → PCA listwa boczna GND); podciąganie w ESP |
+| GPIO5, 6, 7 | wtyczka przycisku 3-pin (skrajne pozycje, środek pusty): GPIO5 = masa przycisku (program: wyjście LOW), GPIO6 pod pustym środkiem, GPIO7 = odczyt (podciąganie w ESP). Strona wtyczki obojętna |
 
 ESP ma piny skierowane w dół i stoi na 2 słupkach tacki (klej); przewody Dupont od spodu. Piny startowe 2, 8, 9 nie są ciągnięte do masy.
 
-Przed przyklejeniem ESP nałóż wtyki na wszystkie piny, które mogą się przydać, i opisz końce taśmą: 5V, G, 3V3, GPIO4, 8, 9, 10 (używane) oraz GPIO3 i GPIO5 (zapas, ok. 200 mm, końce zwinięte i zaizolowane, np. na drugi przycisk). Później pod przyklejoną płytką nie da się dołożyć wtyku.
+Przed przyklejeniem ESP nałóż wtyki na wszystkie piny, które mogą się przydać, i opisz końce taśmą: 5V, G, 3V3, 8, 9, 10 (używane) oraz GPIO4 (bramka IRLZ44N obciążenia: 220 Ω szeregowo, 10 kΩ bramka–źródło; dren ← rezystor 47 Ω / 3 W ← V+, źródło → GND; program: impuls 1 s co 10 s) i GPIO3 (zapas, ok. 200 mm, końce zwinięte i zaizolowane, np. na drugi przycisk). Później pod przyklejoną płytką nie da się dołożyć wtyku.
 
 ### PIR HW-416A (klon HC-SR501)
 
@@ -43,7 +43,7 @@ Piny patrząc od strony kopułki, potencjometry na dole: VCC, OUT, GND (od stron
 
 ### Przycisk
 
-PBS-33B, chwilowy NO, otwór Ø12. Przytrzymanie 5 s = blokada (duże oko na środku, powieki otwarte, ruch stop – do rysowania tęczówek), ponowne 5 s = praca. Po włączeniu prądu zawsze praca.
+PBS-33B, chwilowy NO, otwór Ø12. Przytrzymanie 5 s = blokada (duże oko na środku, powieki otwarte, ruch stop – do rysowania tęczówek), ponowne 5 s = praca. Po włączeniu prądu zawsze praca. Przewód z wtyczką 3-pin (użytkownik 28.10) wpięty wprost w ESP, piny 5–6–7; bez połączenia z PCA.
 
 ### Kanały PCA9685
 
@@ -62,7 +62,7 @@ Listwa kanałów HW-170: od krawędzi płytki GND (czarny), V+ (czerwony), sygna
 
 ### Skrętki do dyni (T568B na obu końcach)
 
-Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce każda żyła z wtykiem Dupont na pin PCA; w dyni keystone (gniazdo RJ45), do niego krótki odcinek skrętki z wtykiem RJ45 od strony oczu.
+Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce żyły na wtyczkach odciętych od serw, wpiętych w kanały PCA; w dyni keystone (gniazdo RJ45), do niego krótki odcinek skrętki z wtykiem RJ45 od strony oczu.
 
 | Żyła | Kolor | PCA | Serwo |
 |---|---|---|---|
@@ -75,7 +75,7 @@ Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce każ
 | 7 | biało-brązowy | V+ kanału n+2 | C i D: czerwony |
 | 8 | brązowy | GND kanału n+2 | C i D: brązowy |
 
-Duże oko: A lewo–prawo, B góra–dół, C powieka górna, D powieka dolna. Po stronie oczu żyły lutowane do listew goldpin 3-pin (GND, V+, sygnał), po jednej na serwo; para serw dzieli żyły V+ i GND.
+Duże oko: A lewo–prawo, B góra–dół, C powieka górna, D powieka dolna. Po stronie PCA żyły lutowane do wtyczek odciętych od serw (A i C – 3 przewody, B i D – tylko sygnał); po stronie oczu serwa lutowane wprost do żył, para serw dzieli żyły V+ i GND (sposób użytkownika 28.10, szczegóły: `montaz-elektroniki.md`, rozdział 5).
 
 ### Kolejność uruchomienia
 
