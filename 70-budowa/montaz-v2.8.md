@@ -9,6 +9,8 @@ Instrukcja do składania we dwóch: rodzic i syn. Oko to piłeczka pingpongowa, 
 
 Obrazki pochodzą z v2.7; różnice (otwór zamiast kanału w bloku, ucha bez wkładek) są małe i opisane w tekście.
 
+**Stan 25.10 – seria (M1):** moduły składasz z **Jarzmem obróconym o 180°** względem obrazków v2.7: korba i przegub H po przeciwnej stronie, Ramię w lewo (decyzja 24.10 przy kalibracji z programistą, `30-projekt/decyzje.md`). Kroki 4–6 i „Pozycja zero” są niżej opisane już w tym ułożeniu; obrazki 04–07 i rysunek pozycji zero pokazują ułożenie dawne – czytaj je w lustrze lewo–prawo. *Do potwierdzenia przez użytkownika:* decyzja mówi „Ramię w lewo” bez punktu patrzenia; instrukcja przyjmuje „patrząc od tyłu Kasety” (korba z prawej, H z lewej) – porównaj z modułami 1–3. Wszystkie małe oczy mają wspólną kalibrację **1500 / 1100 / 1800 µs** (`50-elektronika/kalibracja-oczu.md`). Lista kontrolna na całą serię: „Seria modułów” na końcu.
+
 **Co nowego wobec v2.5** (po montażu 20.10, `70-budowa/dziennik.md`):
 - serwo trzyma blok w Kasecie (wkręt przez okno) i nowa **Klamra H** z tyłu – **Sanek już nie ma**,
 - Cięgno bez wkładek: przeguby na **śrubie M3×12, podkładce i nakrętce samohamującej**,
@@ -80,7 +82,7 @@ Wkrętów z torebki serwa nie używaj. Śruby z wysokim walcowym łbem (DIN 912,
 
 **Kierunki.** „Od tyłu” = od strony Pokrywy (środek dyni). „Od przodu” = od strony piłeczki. „Od spodu” = od strony serwa. „Góra” = strzałka GÓRA i okno w Kasecie.
 
-**Narzędzia:** imbus 2,0 i długi imbus 2,5, klucz płaski 5,5 (nakrętki), wkrętak krzyżakowy PH0/PH1 długi (przez okno Kasety), ESP32 + PCA9685 z programem `50-elektronika/kalibracja` (środek 1500 µs, Krok 4), wiertło do biegunów piłeczki (Krok 2), otwornica 2½", suwmiarka, nożyk.
+**Narzędzia:** imbus 2,0 i długi imbus 2,5, klucz płaski 5,5 (nakrętki), wkrętak krzyżakowy PH0/PH1 długi (przez okno Kasety), pęseta, obcinaczki (dźwigienka), ESP32 + PCA9685 z programem `50-elektronika/kalibracja` (środek 1500 µs, Krok 4), **wiertło Ø3,2** do biegunów piłeczki (Krok 2), otwornica 2½", suwmiarka, nożyk, marker (numer modułu).
 
 ## Części i ich miejsca
 
@@ -123,7 +125,9 @@ Wkrętów z torebki serwa nie używaj. Śruby z wysokim walcowym łbem (DIN 912,
 
 ![Klejenie piłeczki](montaz-v2.7/02_klejenie_pileczki.png)
 
-Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od oczek i otworów osi, Jarzmo oczkami na słupki przyrządu, śruby M3×10 przyrządu. **Klej:** cyjanoakryl z primerem (20.10 trzymał; klej modelarski nie trzymał). Po związaniu kleju **nawierć bieguny piłeczki** wiertłem Ø2,5 (założenie – średnicę użytą 21.10 trzeba potwierdzić i wpisać tu) przez otwory oczek Jarzma (oczka prowadzą wiertło), na głębokość ok. 5 mm. W te otwory pójdą śruby osi oka M3×10 (Krok 6).
+Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od oczek i otworów osi, Jarzmo oczkami na słupki przyrządu, śruby M3×10 przyrządu. **Klej:** cyjanoakryl z primerem (20.10 trzymał; klej modelarski nie trzymał). Po związaniu kleju **nawierć bieguny piłeczki wiertłem Ø3,2** przez otwory oczek Jarzma (oczka Ø3,3 prowadzą wiertło). Wierć ręcznie albo wkrętarką na najniższych obrotach, tylko przez ściankę piłeczki (ok. 0,4 mm), bez docisku – nie wbijaj wiertła w głąb piłeczki. W te otwory pójdą końce śrub osi oka M3×10 (Krok 6).
+
+> **Skąd Ø3,2:** śruba osi wkręca się w występ Kasety (Ø2,6), a w oczku Jarzma i w piłeczce pracuje jako czop (oczko Ø3,3 – luźny otwór M3 z tabeli luzów w `AGENTS.md`). Ścianka piłeczki ma ok. 0,4 mm i gwint w niej nie trzyma (`20-analizy/2026-10-17-mocowanie-pileczki-sruby.md`, wariant P1: otwory Ø3,2 na biegunach). Piłeczkę trzyma klej w misce, nie śruby. Mniejsze wiertło (np. Ø2,5) sprawi, że M3 wcina się w celuloid i może go pęknąć. Moduły już nawiercone mniejszym wiertłem, które działają, zostaw bez zmian.
 
 **Sprawdź:** oczka przylegają do słupków, kołki i otwory osi czyste.
 
@@ -146,12 +150,12 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 1. Podłącz serwo do kanału PCA9685 (ESP32 + PCA9685 jak w `50-elektronika/polaczenia.md`), wgraj `50-elektronika/kalibracja` z `KANAL` ustawionym na ten kanał, otwórz monitor portu i wyślij `1500`. Serwo trzyma 1500 µs, dopóki program działa. **Nie odłączaj zasilania i nie wysyłaj `off` przez cały czas nasadzania**, aż do końca Kroku 7 (dźwigienka i Ramię przykręcone). **Nie używaj `test-serwa`**: trzyma środek tylko 5 s, potem jedzie ±30° w pętli.
 2. Dźwigienkę przyłóż do kieszeni od spodu Ramienia; jeśli dłuższa niż kieszeń, przytnij obcinaczkami.
-3. Przy serwie trzymającym 1500 µs nasadź dźwigienkę na **goły wałek** tak, żeby wskazywała **do przodu, ok. 20° w prawo** (patrząc od tyłu Kasety) – w stronę, gdzie stanie przegub H Ramienia. To daje położenie „otwarte V, przegub H po prawej, patrząc od tyłu” z rysunku w „Pozycja zero i kalibracja”. Wałka nie obracaj ręką.
+3. Przy serwie trzymającym 1500 µs nasadź dźwigienkę na **goły wałek** tak, żeby wskazywała **do przodu, ok. 20° w lewo** (patrząc od tyłu Kasety) – w stronę, gdzie stanie przegub H Ramienia. To daje położenie „otwarte V, przegub H po lewej, patrząc od tyłu” (rysunek w „Pozycja zero i kalibracja” w lustrze). Wałka nie obracaj ręką.
 4. Wkręć wkręt środkowy M2×6 przez okno w wałek. Serwo dalej trzyma 1500 µs.
 
-**Sprawdź:** dźwigienka siedzi bez luzu i wskazuje do przodu, ok. 20° w prawo; mały błąd środka poprawi później kalibracja w ESP32.
+**Sprawdź:** dźwigienka siedzi bez luzu i wskazuje do przodu, ok. 20° w lewo; mały błąd środka poprawi później kalibracja w ESP32.
 
-> **Ważne (montaż 21.10):** dźwigienkę (a przy ponownym nasadzaniu Ramię z dźwigienką) nasadzaj na **goły wałek przy serwie trzymającym 1500 µs z programu `kalibracja`** (komenda `1500`, zasilanie przez cały czas nasadzania), w położeniu z rysunku w „Pozycja zero i kalibracja”: otwarte „V” Ramienia i Cięgna z przegubem H po prawej (patrząc od tyłu). Czworobok da się złożyć na dwa sposoby; w drugim przegub H się składa, Ramię kładzie się na Cięgnie i serwo blokuje mechanizm. Jeśli po złożeniu środek wypada daleko od 1500 µs albo ruch w jedną stronę jest krótki – wyślij `1500`, zdejmij Ramię z wałka (wkręt środkowy przez okno) i nasadź ponownie według tej zasady.
+> **Ważne (montaż 21.10):** dźwigienkę (a przy ponownym nasadzaniu Ramię z dźwigienką) nasadzaj na **goły wałek przy serwie trzymającym 1500 µs z programu `kalibracja`** (komenda `1500`, zasilanie przez cały czas nasadzania), w położeniu z „Pozycja zero i kalibracja”: otwarte „V” Ramienia i Cięgna z przegubem H po lewej (patrząc od tyłu; rysunek w lustrze). Czworobok da się złożyć na dwa sposoby; w drugim przegub H się składa, Ramię kładzie się na Cięgnie i serwo blokuje mechanizm. Jeśli po złożeniu środek wypada daleko od 1500 µs albo ruch w jedną stronę jest krótki – wyślij `1500`, zdejmij Ramię z wałka (wkręt środkowy przez okno) i nasadź ponownie według tej zasady.
 
 ## Krok 5. Skręć napęd na stole (może zrobić syn, nakrętki rodzic)
 
@@ -168,9 +172,9 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 ![Napęd wsuwany od przodu, śruby osi oka](montaz-v2.7/06_naped_do_kasety.png)
 
-1. Oko na wprost: źrenica do przodu, oczka u góry i u dołu, korba do tyłu. Patrząc w tył Kasety, korba i pas miski są po lewej.
+1. Oko na wprost: źrenica do przodu, oczka u góry i u dołu, korba do tyłu. Patrząc w tył Kasety, korba i pas miski są **po prawej** (Jarzmo obrócone o 180° wobec obrazka 06; decyzja 24.10).
 2. Wsuń Jarzmo od przodu Kasety, lekko przechylone, aż kołki ograniczników wejdą w łukowe szczeliny wokół osi oka. Ramię i Cięgno jadą przodem w głąb rury.
-3. Przy końcu opuść Ramię **kieszenią na dźwigienkę** na wałku (serwo wciąż trzyma 1500 µs z Kroku 4). Mechanizm w położeniu „otwarte V”, przegub H po prawej (patrząc od tyłu); dźwigienki nie obracaj.
+3. Przy końcu opuść Ramię **kieszenią na dźwigienkę** na wałku (serwo wciąż trzyma 1500 µs z Kroku 4). Mechanizm w położeniu „otwarte V”, przegub H po lewej (patrząc od tyłu); dźwigienki nie obracaj.
 4. Wkręć śruby osi oka M3×10 od góry i od dołu, przez występy i oczka w nawiercone bieguny piłeczki, łby w zagłębieniach; bez dociągania.
 
 > **Niesprawdzone:** czy skręcony napęd daje się unieść o ok. 1,6 mm, żeby kieszeń Ramienia weszła na dźwigienkę (Fable szacuje ok. 1,7 mm z luzów przegubów). Jeśli nie wchodzi, poluzuj nakrętkę przegubu H o pół obrotu, nasadź Ramię i dokręć. Wynik zapisz w dzienniku.
@@ -198,7 +202,7 @@ Jak w v2.5: źrenica, piłeczka w przyrządzie, klej na pas miski z dala od ocze
 
 ![Gniazdo w dyni](montaz-v2.7/09_gniazdo_w_dyni.png)
 
-1. Ścianka dyni 15–25 mm; kilka oczu: środki co najmniej 125 mm obok siebie, 145 mm jeden nad drugim.
+1. Ścianka dyni 15–25 mm (gwint Nakrętki i okienka zaczepów; przy grubszej ściance zestrugaj miąższ od środka wokół otworu na Ø ok. 90, do 20–25 mm); kilka oczu: środki co najmniej 125 mm obok siebie, 145 mm jeden nad drugim. Rozmieszczenie i kolejność w dyni: `70-budowa/kompletacja-dyni.md`.
 2. Otwornica 2½" (63,5 mm), prostopadle do skórki; otwór 63–64 mm.
 3. Włóż Gniazdo od zewnątrz, strzałką GÓRA pionowo do góry. Rant wystaje tylko 2 mm poza otwór.
 
@@ -228,14 +232,14 @@ Wciśnij oba haczyki przez okienka Gniazda i wyciągnij Kasetę do tyłu (albo W
 
 ![Pozycja zero mechanizmu – widok z góry](montaz-v2.7/pozycja_zero.svg)
 
-*Oko na wprost: Ramię od wałka do przodu i lekko w prawo, przegub H ok. 9 mm na prawo od środka, Cięgno z H w lewo do przegubu C na korbie Jarzma. „V” Ramienia i Cięgna otwarte, wierzchołek w prawo.*
+*Rysunek pokazuje ułożenie z v2.7. W serii (Jarzmo obrócone o 180°) wszystko jest w lustrze, patrząc od tyłu: Ramię od wałka do przodu i lekko w lewo, przegub H ok. 9 mm na lewo od środka, Cięgno z H w prawo do przegubu C na korbie Jarzma. „V” Ramienia i Cięgna otwarte, wierzchołek w lewo.*
 
 Kalibracja programem `50-elektronika/kalibracja` (port szeregowy 115200; po włączeniu serwo jest bez impulsu i się nie rusza):
 
 1. Nie przesuwaj oka ręką przy zasilonym serwie i nie używaj `off` w trakcie – serwo nie zna swojej pozycji, więc następny impuls skoczy.
 2. Pierwsza komenda: `1500` (przy dźwigience nasadzonej jak w Kroku 4 oko stoi na wprost).
 3. Ruch sprawdzaj płynnie: `g 1350 4000`, `g 1650 6000`, `g 1500 4000`, potem szerzej `g 1200 5000`, `g 1800 8000`.
-4. Krańce: pierwszy moduł (21.10) chodził płynnie w ±300 µs wokół 1500; w programie ruchu `oczy-ruch` zakres ±25° serwa (±278 µs). Środek każdego oka zapisz trwale: w tabeli `50-elektronika/kalibracja-oczu.md` (E5.4) i w programie – w `test-24h` komendą `k<nr> <µs>` (zapis w NVS), w `oczy-ruch` stałą `srodekUs` (tam `k<nr> <µs>` działa tylko do restartu).
+4. Krańce: wspólne dla wszystkich małych oczu **1500 / 1100 / 1800 µs** (środek / min / max, test 25.10, `50-elektronika/kalibracja-oczu.md`). Sprawdź nowy moduł: `g 1100 6000`, `g 1800 6000`, `g 1500 4000` – oko dochodzi do obu krańców bez buczenia i bez oporu. Jeśli moduł buczy albo chodzi ciężko na kraniec, nie zmieniaj wspólnych wartości: wpisz w kolumnie „Uwagi” tabeli, przy którym impulsie zaczyna się opór, i zgłoś programiście.
 
 ## Sprawdzenie na koniec
 
@@ -254,3 +258,19 @@ Wyniki zapisz w `70-budowa/dziennik.md` – zwłaszcza Krok 3 (śruby M3 w uszac
 - **Źródła:** brief `30-projekt/brief-e4-v2.6.md` i `brief-e4.4-ciegno-nakretki.md`, raport `40-cad/onshape/weryfikacja-v2.6.md` (wykonawca), review `20-analizy/review/2026-10-20-v2.6-*.md`, decyzje z 20.10 w `30-projekt/decyzje.md`. Wymiary i luzy części bez zmian – `montaz-v2.5.md`, „Dla dociekliwych”.
 - **Kluczowe luzy v2.8:** Kaseta–Gniazdo 0,25/str.; łeb osi w bruździe 1,05 z boku, 0,3 promieniowo (łeb ≤ 2,75); serwo w kieszeni 0,4 z przodu i z tyłu; otwory uszu Ø2,6 × 8 (M3×10), ścianki ≥ 0,95; otwory Pokrywy Ø2,6 × 5,6 (M3×8); Klamra–Kaseta 0,25; Klamra–kabel 0,9; nakrętka H–Kaseta 0,79 przy ±30°, 0,27 przy ±33°; M3×8 Pokrywy 0,6 do dna otworu (v2.8, `40-cad/onshape/weryfikacja-v2.8.md`).
 - **Śruba przegubu M3×12:** łeb na kołnierzu tulejki, tulejka 3,5 + Cięgno 2,5 + podkładka 0,5 + nakrętka 4 → wystaje 1,5 (przy 2 podkładkach 1,0); M3×10 za krótka.
+
+## Seria modułów (M1, stan 25.10)
+
+Moduły 1–3 skalibrowane i działają; „8” buczy, ostatni chodzi ciężko (`30-projekt/otwarte-2026-10-25.md`). Każdy kolejny moduł:
+
+| # | Krok | Sprawdź |
+|---|---|---|
+| 1 | Kroki 1–3: gwinty na sucho, piłeczka wklejona, bieguny Ø3,2, serwo z Klamrą H | serwo nie kiwa się |
+| 2 | Kroki 4–7 z Jarzmem obróconym o 180°: dźwigienka przy 1500 µs, ok. 20° w lewo od tyłu | „V” otwarte, H po lewej (od tyłu) |
+| 3 | Test na stole: `g 1100 6000`, `g 1800 6000`, `g 1500 4000` | oko na wprost przy 1500, bez buczenia na krańcach |
+| 4 | Krok 8: Pokrywa | kabel pod Klamrą |
+| 5 | Numer modułu markerem na Pokrywie i na wtyczce serwa = kanał PCA9685, wiersz w `50-elektronika/kalibracja-oczu.md` | numer czytelny od tyłu |
+
+**Moduł, który buczy albo chodzi ciężko:** najpierw zdejmij Ramię (wkręt przez okno), wyślij `1500` i nasadź ponownie (Krok 4, „Ważne”). Jeśli dalej ciężko: poluzuj nakrętki przegubów C i H o ćwierć obrotu (Krok 5: obracają się lekko na tulejkach) i sprawdź, czy łby osi oka nie są dociągnięte (Krok 6: „bez dociągania”). Wynik wpisz w dzienniku.
+
+Wynik każdego modułu (numer, test 1100/1800, uwagi) zapisz w `70-budowa/dziennik.md`.

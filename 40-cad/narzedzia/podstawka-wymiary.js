@@ -1,7 +1,7 @@
 // Podstawka: wymiary (prostopadłościan otaczający) siatek 3MF wobec oczekiwanych z parametrów SCAD (x, y, z; z od 0).
 // Użycie: node podstawka-wymiary.js <katalog 3MF> <parametry.json>. Plik → część: wg słownika PLIK (jak w podstawka-eksport.sh).
 const fs = require('fs'), path = require('path'), zlib = require('zlib');
-const PLIK = { 'Szuflada v2 - korpus (X1C)': 'Korpus', 'Szuflada v2 - front (X1C)': 'Front', 'Szuflada v2 - raczka': 'Raczka', 'Szuflada v2 - probka gniazda PIR': 'ProbkaPIR',
+const PLIK = { 'Szuflada v2 - korpus (X1C)': 'Korpus', 'Szuflada v2 - front (X1C)': 'Front', 'Szuflada v2 - raczka': 'Raczka', 'Szuflada v2 - probka gniazda PIR': 'ProbkaPIR', 'Tacka - podkladki ESP (2 szt)': 'PodkladkaESP',
   'Kaseta elektroniki': 'Kaseta', 'Tuleja z gwintem': 'Tuleja', 'Nakretka': 'Nakretka' };
 function modele(buf) {   // pliki .model z archiwum ZIP 3MF (deflate albo bez kompresji)
   const out = []; let i = 0;

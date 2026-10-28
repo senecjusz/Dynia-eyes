@@ -7,7 +7,7 @@
 // Zasada: każda liczba geometrii jest zmienną w sekcji „zmienne”; w modułach tylko zmienne, 0, ±1, 1/2 i kąty 90/120/180/360.
 // Eksport: bash podstawka-eksport.sh albo
 //   openscad -o <plik>.3mf -D 'czesc="Korpus"' -D 'tryb="druk"' podstawka.scad
-//   czesc: Korpus | Front | Raczka | ProbkaPIR | Kaseta | Tuleja | Nakretka | ProbkaTuleja | ProbkaNakretka
+//   czesc: Korpus | Front | Raczka | ProbkaPIR | PodkladkaESP | Kaseta | Tuleja | Nakretka | ProbkaTuleja | ProbkaNakretka
 //          | Plyta | ScianaBoczna | ScianaTylna | Dno | RysunekCiecia (sklejka) | parametry | zlozenie
 //          | KolizjaZamknieta | KolizjaWsuwanie | KolizjaPIR | KolizjaWkladaniePIR | KolizjaSruby (kontrole: podstawka-kolizje.sh)
 //   tryb:  druk (płaska strona na stole, z ≥ 0) | zlozenie (położenie w podstawce)
@@ -133,6 +133,7 @@ pcaX0 = 75; pcaY0 = 45;                          // PCA9685: lewy przedni naroż
 pcaPrzod = 25;                                   // wolne miejsce przed listwą kanałów (kondensator i przewody 5 V na kanałach 8–11)
 espOdBoku = 15;                                  // ESP32-C3 z przodu po lewej, USB-C do przodu (lewy przedni narożnik płytki)
 espPodH = 16; espPodW = 11; espPodD = 3; espLip = 1;   // podstawka ESP klejonego (elektronika 26.10: piny w dół z Dupontami, bez płytki stykowej): wysokość słupków, szerokość górnej powierzchni pod klej (mniej niż 18 – na 18 weszłyby wtyki narożnych pinów), głębokość pod krótką krawędzią, wysokość rantu z tyłu
+espPodkl = 7; espPodklFart = 3; espPodklFartT = 1.6;   // podkładka na wydrukowany słupek ESP (użytkownik 28.10: bez przedruku tacki, ESP wyżej; elektronika: obudowa Dupont 16,5 + zgięcie przewodu ok. 6 → spód ESP 23 nad dnem): podniesienie, fartuch od strony środka płytki (głębokość, grubość)
 espRzedy = 15.2;                                 // rozstaw rzędów pinów ESP32-C3 SuperMini (wzdłuż długich boków)
 bkGn = 9.5;                                      // wyjście gniazda USB-C ESP32-C3 w ramce (8,94 + luz)
 bkX = 157.1; bkY = 48;                           // oś i przód gniazda zasilania w kasecie (jak v1: wycięcie kablowe szufladki na tej osi, przed gniazdem miejsce na wtyk)
@@ -372,6 +373,10 @@ module espPodstawka() {   // 2 słupki pod krótkimi krawędziami (płaskie gór
   cxE = espOdBoku + espW / 2;
   for (y = [espOdBoku + espUsbWyst, espOdBoku + espL - espPodD]) translate([cxE - espPodW / 2, y, kDno - zak]) cube([espPodW, espPodD, espPodH + zak]);   // przedni pod płytką, za wystającym gniazdem USB
   translate([cxE - espPodW / 2, espOdBoku + espL + luzSlizg, kDno - zak]) cube([espPodW, espRama, espPodH + espLip + zak]);   // rant z tyłu (koniec z anteną)
+}
+module podkladkaESP() {   // jedna podkładka w układzie słupka (słupek pod spodem: x 0..espPodW, y 0..espPodD, wierzch z = 0); fartuch od strony środka płytki – ustawia i daje klej z boku; x jak słupek (wtyki narożnych pinów)
+  translate([0, 0, 0]) cube([espPodW, espPodD + luzSlizg + espPodklFartT, espPodkl]);
+  translate([0, espPodD + luzSlizg, -espPodklFart]) cube([espPodW, espPodklFartT, espPodklFart + zak]);
 }
 module uchwytOpaski(x, y, obrot, h) translate([x, y, kDno - zak]) rotate([0, 0, obrot]) difference() {   // blok z tunelem na opaskę (tunel wzdłuż x po obrocie)
   translate([-uchL / 2, -uchD / 2, 0]) cube([uchL, uchD, h + zak]);
@@ -618,6 +623,7 @@ module druk(c) {
   else if (c == "Raczka") translate([0, 0, tF + rD]) rotate([90, 0, 0]) raczka();
   else if (c == "ProbkaPIR") translate([0, 0, tF]) rotate([90, 0, 0]) probkaPIR();
   else if (c == "Korpus") korpus();
+  else if (c == "PodkladkaESP") for (i = [0, 1]) translate([i * (espPodW + 5), 0, espPodkl]) mirror([0, 0, 1]) podkladkaESP();   // 2 szt., wierzchem (pod klej ESP) na stole, fartuch do góry
 }
 if (czesc == "parametry")
   echo(str("PARAMETRY{\"SZ\":", SZ, ",\"DL\":", DL, ",\"H\":", Z_PL, ",\"H_IN\":", H_IN, ",\"WIN\":", WIN, ",\"szW\":", szW, ",\"szD\":", szD,
@@ -625,9 +631,11 @@ if (czesc == "parametry")
            ",\"oczekiwane\":{\"Korpus\":[", szW, ",", szD, ",", dnoSz + scH,
            "],\"Front\":[", frontW, ",", frontZ1 - frontZ0, ",", tF + pirYp,
            "],\"Raczka\":[", rL2, ",", rH2, ",", rD,
+           "],\"PodkladkaESP\":[", 2 * espPodW + 5, ",", espPodD + luzSlizg + espPodklFartT, ",", espPodkl + espPodklFart,
            "],\"ProbkaPIR\":[", probkaPirW, ",", probkaPirH, ",", tF + pirYp,
            "],\"Tuleja\":[", 2 * kolR, ",", 2 * kolR, ",", tulH, "],\"Kaseta\":[", kW, ",", kD, ",", kTylH, "],\"Nakretka\":[", 2 * nakR, ",", nakR * sqrt(3), ",", nakH, "]}}"));
 else if (czesc == "zlozenie") zlozenie();
+else if (czesc == "PodkladkaESP") druk(czesc);
 else if (czesc == "ProbkaPIR") { if (tryb == "druk") druk(czesc); else wPodstawce() probkaPIR(); }
 else if (czesc == "Korpus" || czesc == "Front" || czesc == "Raczka") { if (tryb == "druk") druk(czesc); else wPodstawce() { if (czesc == "Korpus") korpus(); if (czesc == "Front") front(); if (czesc == "Raczka") raczka(); } }
 else if (czesc == "Kaseta") kaseta();

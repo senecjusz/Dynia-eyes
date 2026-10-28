@@ -93,6 +93,10 @@ Kontrole OK. Po pomiarach użytkownika 26.10 doszły:
 
 **Tacka gotowa do druku.** Szczegóły: `20-analizy/2026-10-25-podstawka-model.md`, sekcja „Tacka elektroniki (kaseta) v2”.
 
+### Podkładki ESP32-C3 na wydrukowaną tackę (28.10)
+
+Słupki ESP w tacce v2 mają 16 mm, a pod płytką potrzeba ok. 23 mm (wtyk Dupont z listwą 16,5 mm plus zgięcie przewodu; zgłoszenie elektroniki). Decyzja użytkownika: tacka zostaje, ESP idzie wyżej. Plik `40-cad/3mf/Podstawka v2/Tacka - podkladki ESP (2 szt).3mf`: 2 podkładki 11 × 4,9 × 7 z fartuchem 1,6 × 3 od strony środka płytki, który obejmuje słupek. Drukować wierzchem na stole, bez podpór. Szerokość 11 jak słupek, więc nie wchodzi w wtyki narożnych pinów. Wysokość `espPodkl` = 7 (ostateczna po pomiarze jednej wtyczki). Siatki OK, wymiary OK. Podgląd: `40-cad/openscad/podglad/podstawka-v2-podkladka-esp.png`.
+
 ### Przycisk zewnętrzny (27.10)
 
 Decyzja użytkownika: prawy bok, blisko tyłu, przycisk wklejony. Otwór Ø12 na wylot, 36 mm od tyłu podstawki, oś 32 mm nad stołem. Wiercić od zewnątrz. Od środka nie koliduje z tacką ani z kablami (kontrola `KolizjaPrzycisk`: pusto).
