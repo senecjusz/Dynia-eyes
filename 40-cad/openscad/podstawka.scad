@@ -53,7 +53,7 @@ tryb = "zlozenie";
 // Test zginania: podstawka-zginanie.sh (warianty w 20-analizy/2026-10-25-podstawka-model.md, sekcja v2).
 
 // ---------- BAZOWE: dynia (mierzone przy montażu) ----------
-hDoc     = 45;      // wysokość dna wnętrza dyni przy otworze nad wierzchem płyty (mierzona, gdy dynia stoi na płycie)
+hDoc     = 65;      // zapas zamiast pomiaru (użytkownik 28.10: jedyne ograniczenie to otwór w płycie): tuleja wyższa niż grubość dna dyni, nakrętka zjeżdża po gwincie do dyni, nadmiar zostaje w środku
 nadDnem  = 10;      // tuleja wystaje ponad dno wnętrza (nakrętka + 2)
 otwDyni  = 80;      // otwór w dnie dyni (otwornica 80)
 // ---------- BAZOWE: podstawka ze sklejki – stan wykonany (pomiary użytkownika 25.10, PRD 0.2 §5) ----------
