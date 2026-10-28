@@ -30,3 +30,14 @@ Wynik programu `kalibracja/` (komenda `t`), wklejony tutaj. Program docelowy bie
 **Uwagi z testu 25.10:** moduł „8” buczy przy środku, a ostatni złożony moduł chodzi ciężko. Oba do sprawdzenia przed montażem w dyni. Kierunek „Min to” sprawdzony 27.10 tylko na kanale 0. Pozostałe moduły mają ten sam wydruk i serwo, więc najpewniej też „prawo”, ale to założenie.
 
 **27.10, sprawdzenie na stole (kanał 0 kalibratora):** trzy nowe moduły, po kolei. Każdy przy 1500 patrzy prosto, Min 1100 = prawo, Max 1800 = lewo, bez buczenia (potwierdził użytkownik). Trzeci z nich to ósme małe oko (użytkownik 27.10): **wszystkie 8 małych oczu skalibrowane** na wspólnych wartościach 1500 / 1100 / 1800. Kanał w dyni każdy moduł dostaje przy montażu (numer na module i wtyczce).
+
+## Duże oko – pierwszy ruch gałki (28.10, `test-galka/`)
+
+- Orczyki obu serw gałki nasadzone przy 1500 µs (kalibrator, kanały stołu 1–4).
+- Na stole: **góra–dół na kanale 12, lewo–prawo na kanale 11** (pomyłka w liczeniu slotów; kanały liczą się od 0, czwórki 0–3, 4–7, 8–11, 12–15). W dyni ma być 12 = lewo–prawo, 13 = góra–dół: przed montażem przełożyć wtyczki.
+- Zakresy sprawdzone sinusem i w trybie „losowo”, bez oporu (użytkownik: „jest ok”, „gałka chodzi”):
+  - góra–dół ±239 µs (±21,5° serwa), czyli pełna krótsza strona z kinematyki v3 (+26,6° / −21,5° serwa dla ±25° gałki);
+  - lewo–prawo ±284 µs (±25,6° serwa), czyli pełna krótsza strona z kinematyki v3 (+33,5° / −25,6° dla ±35°).
+- Dłuższych stron (+57 µs G–D, +88 µs L–P) jeszcze nie sprawdzono. Nie wiadomo też, który kierunek µs to „+” z kinematyki.
+- **Sprzężenie osi widoczne na sprzęcie:** ruch L–P ściąga gałkę w pionie. Kinematyka v3 podaje, że przy L–P ±35° G–D musi dodać +4,4° serwa (ok. 49 µs, rośnie z kwadratem wychylenia). Do zaprogramowania w programie docelowym; znak w µs do ustalenia na sprzęcie.
+- Środek, min i max gałki do `kalibracja.h` dopiero po przełożeniu na kanały docelowe.
