@@ -13,9 +13,9 @@ Ustalone z użytkownikiem 26–27.10. Program: `dynia-v2/`. Rozmieszczenie na ta
 | Kondensator 470 µF / 10 V, „+” | PCA kanał 8, pin V+ | „−” (pasek) na pin GND kanału 8; zestaw użytkownika |
 | ESP32-C3 5V | PCA kanał 9, pin V+ | nie zasilać jednocześnie z USB komputera |
 | ESP32-C3 G | PCA kanał 9, pin GND | |
-| Rezystor 47 Ω / 3 W (tylko gdy powerbank gaśnie) | PCA kanał 11, piny V+ i GND | na nóżkach wtyki Dupont żeńskie (obudowa 2-pin), korpus stoi ok. 20 mm nad płytką i nie dotyka PLA ani przewodów; ok. 0,53 W, korpus 55–60 °C. Słupki rezystora na tacce nie są potrzebne (28.10: tylny słupek ok. 1 mm od ścianki, nie da się w nim osadzić nóżki) |
+| Rezystor 47 Ω / 3 W (tylko gdy powerbank gaśnie) | zacisk V+ i GND | wisi na nóżkach na słupkach tacki; ok. 0,53 W |
 
-Kanały 8–11 PCA nie sterują serwami: ich piny V+ i GND (wspólne szyny z zaciskiem) służą jako rozdzielacz 5 V. Kanał 11 zarezerwowany na rezystor podtrzymania.
+Kanały 8–11 PCA nie sterują serwami: ich piny V+ i GND (wspólne szyny z zaciskiem) służą jako rozdzielacz 5 V. Kanał 11 wolny.
 
 ### ESP32-C3 SuperMini
 
@@ -29,7 +29,7 @@ Kanały 8–11 PCA nie sterują serwami: ich piny V+ i GND (wspólne szyny z zac
 
 ESP ma piny skierowane w dół i stoi na 2 słupkach tacki (klej); przewody Dupont od spodu. Piny startowe 2, 8, 9 nie są ciągnięte do masy.
 
-Przed przyklejeniem ESP nałóż wtyki na wszystkie piny, które mogą się przydać, i opisz końce taśmą: 5V, G, 3V3, GPIO4, 8, 9, 10 (używane) oraz GPIO3 i GPIO5 (zapas, ok. 200 mm, końce zwinięte i zaizolowane: np. drugi przycisk albo tranzystor obciążenia). Później pod przyklejoną płytką nie da się dołożyć wtyku.
+Przed przyklejeniem ESP nałóż wtyki na wszystkie piny, które mogą się przydać, i opisz końce taśmą: 5V, G, 3V3, GPIO4, 8, 9, 10 (używane) oraz GPIO3 i GPIO5 (zapas, ok. 200 mm, końce zwinięte i zaizolowane, np. na drugi przycisk). Później pod przyklejoną płytką nie da się dołożyć wtyku.
 
 ### PIR HW-416A (klon HC-SR501)
 
@@ -52,7 +52,7 @@ PBS-33B, chwilowy NO, otwór Ø12. Przytrzymanie 5 s = blokada (duże oko na śr
 | 0–3 | małe oczy, strona lewa (patrząc od przodu) |
 | 4–7 | małe oczy, strona prawa |
 | 8, 9, 10 | rozdzielacz 5 V: kondensator, ESP, PIR |
-| 11 | rezystor podtrzymania (tylko gdy powerbank gaśnie) |
+| 11 | wolny |
 | 12 | duże oko lewo–prawo |
 | 13 | duże oko góra–dół |
 | 14 | powieka górna |
