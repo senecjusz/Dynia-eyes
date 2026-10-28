@@ -145,6 +145,6 @@ Wtyczkę odcinasz ok. 5 cm od obudowy (przewody przy wtyczce do lutowania), resz
 
    ![Lewa skrętka, strona serw: 4 serwa (kanały 0–3; duże oko 12–15)](montaz-elektroniki/img/skretka-4-serwa-strona-serw.png)
 
-   ![Prawa skrętka, strona serw: 3 serwa (kanały 4–6), żyła 6 obcięta](montaz-elektroniki/img/skretka-3-serwa-strona-serw.png)
+   ![Prawa skrętka, strona serw: 4 serwa (kanały 4–7; D = ósme oko na środku frontu)](montaz-elektroniki/img/skretka-prawa-strona-serw.png)
 
 Duże oko: A = L–P (12), B = G–D (13), C = powieka górna (14), D = powieka dolna (15).

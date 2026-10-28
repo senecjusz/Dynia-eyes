@@ -226,11 +226,13 @@ def legenda_serwa(x, y):
     s += tekst(x + 100, yy, "lut w koszulce termokurczliwej (każdy)", 24)
     return s
 
-def skretka_strona_serw(ile):
+def skretka_strona_serw(ile, prawa=False):
     """ile = 4 (lewa: kanały 0–3; duże oko 12–15) albo 3 (prawa: kanały 4–6, żyła 6 obcięta)."""
     W, H = 1900, 1830
-    kan0 = 0 if ile == 4 else 4
-    if ile == 4:
+    kan0 = 4 if prawa or ile == 3 else 0
+    if ile == 4 and prawa:
+        s = tekst(30, 54, "Prawa skrętka – strona serw: wtyk RJ45 → 8 żył → 4 serwa (kanały 4–7)", 36, bold=True)
+    elif ile == 4:
         s = tekst(30, 54, "Lewa skrętka – strona serw: wtyk RJ45 → 8 żył → 4 serwa (kanały 0–3)", 36, bold=True)
     else:
         s = tekst(30, 54, "Prawa skrętka – strona serw: wtyk RJ45 → żyły → 3 serwa (kanały 4–6)", 36, bold=True)
@@ -343,14 +345,19 @@ def skretka_strona_serw(ile):
     s += f'<rect x="30" y="{yb}" width="{W - 60}" height="120" rx="10" fill="#fff4f4" stroke="{CZERW}" stroke-width="3"/>'
     s += f'<circle cx="95" cy="{yb + 60}" r="34" fill="#ffffff" stroke="{CZERW}" stroke-width="4"/>' + tekst(95, yb + 72, "V", 34, CZERW, "middle", True)
     s += tekst(150, yb + 46, "Przed lutowaniem serw: ok. 5 V między żyłą 4 i 5 oraz między żyłą 7 i 8", 28, CZERW, "start", True)
-    if ile == 4:
+    if ile == 4 and prawa:
+        s += tekst(150, yb + 90, "Prawa skrętka: A, B, C = 3 oczy po prawej (kanały 4–6), D = ósme oko na środku frontu (kanał 7).", 23, "#222")
+    elif ile == 4:
         s += tekst(150, yb + 90, "Duże oko: ten sam rysunek, kanały 12–15: A = lewo–prawo, B = góra–dół, C = powieka górna, D = powieka dolna.", 23, "#222")
     else:
         s += tekst(150, yb + 90, "Prawa skrętka: serwo C samo na żyłach 7 i 8 (zwykłe luty); kanał 7 wolny.", 23, "#222")
-    zapisz("skretka-4-serwa-strona-serw" if ile == 4 else "skretka-3-serwa-strona-serw", W, H, s)
+    zapisz("skretka-prawa-strona-serw" if prawa else "skretka-4-serwa-strona-serw" if ile == 4 else "skretka-3-serwa-strona-serw", W, H, s)
 
 def skretka4():
     skretka_strona_serw(4)
+
+def skretka_prawa():
+    skretka_strona_serw(4, prawa=True)
 
 def skretka3():
     skretka_strona_serw(3)
@@ -426,7 +433,7 @@ def skretka_tacka():
                     s += f'<circle cx="{x}" cy="{ry[r]}" r="9" fill="#555" stroke="#999" stroke-width="2"/>'
             s += tekst(x + 46, ry["c"] + 14, lit, 40, "#ffffff", "start", True)
     s += tekst(bx0 + 10, by0 + 34, "kanał:", 22, "#ffffff", "start")
-    s += tekst(450 + 5.5 * 145, by0 + 310, "kanały 4–7: prawa skrętka", 22, "#c9d4f5", "middle")
+    s += tekst(450 + 5.5 * 145, by0 + 310, "kanały 4–7: prawa skrętka (4 wtyczki)", 22, "#c9d4f5", "middle")
     s += f'<path d="M{bx1 + 40},{ry["b"]} L{bx1 + 40},{by1 - 6}" stroke="{CZERW}" stroke-width="5"/>'
     s += f'<path d="M{bx1 + 28},{by1 - 26} L{bx1 + 40},{by1 - 4} L{bx1 + 52},{by1 - 26} z" fill="{CZERW}"/>'
     s += tekst(bx1 + 20, by1 + 40, "krawędź płytki", 24, CZERW, "end", True)
@@ -434,13 +441,13 @@ def skretka_tacka():
     yb = H - 180
     s += f'<rect x="30" y="{yb}" width="{W - 60}" height="150" rx="10" fill="#f4f7ff" stroke="#1d3fb8" stroke-width="3"/>'
     s += tekst(60, yb + 44, "Lewa skrętka: A → kanał 0, B → 1, C → 2, D → 3 (jak na rysunku).", 26, "#111", "start", True)
-    s += tekst(60, yb + 84, "Prawa skrętka: A → 4, B → 5, C → 6; wtyczki D nie robisz – kanał 7 wolny, żyła 6 obcięta i zaizolowana.", 24, "#111")
+    s += tekst(60, yb + 84, "Prawa skrętka: A → 4, B → 5, C → 6, D → 7 (D = ósme oko na środku frontu) – też 4 wtyczki.", 24, "#111")
     s += tekst(60, yb + 122, "Duże oko: A → 12, B → 13, C → 14, D → 15 (wszystkie 4 wtyczki).", 24, "#111")
     zapisz("skretka-strona-tacki", W, H, s)
 
 if __name__ == "__main__":
     os.makedirs(IMG, exist_ok=True)
     RYS = {"krok02a-esp-piny": krok02a, "skretka-4-serwa-strona-serw": skretka4,
-           "skretka-3-serwa-strona-serw": skretka3, "skretka-strona-tacki": skretka_tacka}
+           "skretka-prawa-strona-serw": skretka_prawa, "skretka-strona-tacki": skretka_tacka}
     for n in sys.argv[1:] or RYS:
         RYS[n]()
