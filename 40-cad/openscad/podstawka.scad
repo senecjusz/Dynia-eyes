@@ -164,9 +164,9 @@ zapW = 20; zapL = 30; zapRozst = 25; zapX = 55; zapY0 = 64;   // miejsce zapasow
 // ---------- BAZOWE: gwint (jak próbka E2.0: 45°, skok 5, zarys 2,0) ----------
 skok = 5; zarys = 2; zabRdzen = 4.8;             // ząb u rdzenia (szerokość osiowa)
 gwKrok = 3;                                      // rozdzielczość helisy zwoju [°]
-gwD = 60;                                        // średnica zewnętrzna gwintu tulei = otwór w dyni: grzbiety gwintu wchodzą w miąższ ciasno
+gwD = 59;                                        // średnica zewnętrzna gwintu tulei: otwór w dyni 60 – luz 0,5 na stronę, wchodzi bez wciskania (użytkownik 28.10)
 // ---------- BAZOWE: tuleja i nakrętka ----------
-tulRw = 25.5;                                    // promień otworu na kable (Ø51): 3 skrętki, wtyk RJ45 przechodzi przy dwóch kablach już w środku (≥ 30)
+tulRw = 24.5;                                    // promień otworu na kable (Ø49): ścianka pod gwintem 3 (użytkownik 28.10: 2,5–3); wtyki RJ45 przechodzą pojedynczo, potem zostają same kable
 przelotMin = 30;                                 // najmniejszy przelot na kable i wtyk RJ45 (przekątna wtyku ok. 18,5 + 2 kable Ø6)
 kolR = 60; kolT = 3;                             // kołnierz
 wkretR = 50; dWkret = 3.5; dLebWkretu = 6.5;     // 3 wkręty 3 × 16 w płytę
@@ -246,10 +246,10 @@ assert(frontZ1 - blokZ >= dLebM4 / 2 + 1, "łeb blokady wystaje nad front");
 assert(frontW <= 256, "front nie mieści się na X1C");
 assert(wcX >= sc && wcX + wcCiecie <= szW - sc, "wycięcie kablowe poza tylną ścianą korpusu");
 assert(szD + wtyk <= kY0 + bkY, "wtyk USB-C nie mieści się przed gniazdem kasety");
-assert(gwD <= otwDyni + 0.5, "tuleja za gruba na otwór w dyni");
+assert(otwDyni - gwD >= 2 * 0.5, "luz tulei w otworze dyni < 0,5 na stronę");
 assert(2 * tulRw >= przelotMin, "przelot tulei za mały na kable i wtyk RJ45");
 assert(kW <= WIN, "kaseta szersza niż wnętrze");
-assert(rc - tulRw >= 2.4, "ścianka tulei pod gwintem < 2,4");
+assert(rc - tulRw >= 2.5, "ścianka tulei pod gwintem < 2,5");
 assert(nakR * sqrt(3) / 2 - gwD / 2 >= 8, "nakrętka za wąska – za mały docisk do dna dyni");
 gnObrys = max(gnWolneD, gnNakE, gnKolD);         // największy okrąg wokół osi gniazda (wolne miejsce na nakrętkę)
 gnOsZ  = kDno + gnObrys / 2 + 1;                 // oś gniazda nad spodem tacki
