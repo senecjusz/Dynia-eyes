@@ -4,7 +4,7 @@ Stan 28.10. Pinout i rysunki: `polaczenia.md`, sekcja „Dynia: połączenia doc
 
 Wymiary wtyków i listew to wartości typowe (obudowa Dupont 14 mm, plastik listwy pinów 2,5 mm). Przed klejeniem ESP sprawdź jedną wtyczką (krok 2).
 
-Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commita 8a07059; render: `montaz-elektroniki/render.py`), wymiary kupnych części są typowe; kontrola kolizji (`eksport.sh`): wtyki, ESP, kondensator, przycisk i PCA bez kolizji z tacką, przewody i elementy poniżej spodu płyty, kolizja tylko rezystora z tylnym pasem.
+Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commita 8a07059; render: `montaz-elektroniki/render.py`; schematy lutowania 07d i 07e: `montaz-elektroniki/schematy.py`), wymiary kupnych części są typowe; kontrola kolizji (`eksport.sh`): wtyki, ESP, kondensator, przycisk i PCA bez kolizji z tacką, przewody i elementy poniżej spodu płyty, kolizja tylko rezystora z tylnym pasem.
 
 ![Całość na tacce](montaz-elektroniki/img/krok00-calosc.png)
 
@@ -40,7 +40,7 @@ Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commit
 | 9 | PIR GND | kanał 10 GND | czarny | 400, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 10 | PIR OUT | ESP 10 | żółty | 450, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 11 | przycisk nóżka 2 | prawa listwa GND | czarny | 100 | lut + koszulka / Dupont |
-| 12 | przycisk nóżka 1 | ESP 4 | żółty | 260 | lut + koszulka / Dupont |
+| 12 | przycisk nóżka 1 | ESP 4 | pomarańczowy (żółty ma PIR OUT) | 260 | lut + koszulka / Dupont |
 | 13 | ESP 3 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 | 14 | ESP 5 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 
@@ -131,6 +131,8 @@ Wtyczkę odcinasz ok. 5 cm od obudowy (przewody przy wtyczce do lutowania), resz
    - wtyczka B: pomarańczowy ← żyła 2; brązowy i czerwony obcięte i zaizolowane;
    - wtyczka C: brązowy ← żyła 8, czerwony ← żyła 7, pomarańczowy ← żyła 3;
    - wtyczka D: pomarańczowy ← żyła 6; brązowy i czerwony obcięte i zaizolowane.
+
+   ![Strona tacki: żyły skrętki do wtyczek A–D](montaz-elektroniki/img/krok07d-lutowanie-wtyczek.png)
 2. Wpięcie: A na kanał n, B na n+1, C na n+2, D na n+3 – brązowy przewód od krawędzi płytki (GND). Wynik jak w tabeli w `polaczenia.md`: żyły 1, 2, 3, 6 – sygnały n…n+3; 4 / 5 – V+ / GND kanału n; 7 / 8 – V+ / GND kanału n+2.
 
    ![Żyły lewej skrętki na kanałach 0–3](montaz-elektroniki/img/krok07c-zyly-kanaly0-3.png)
@@ -145,5 +147,7 @@ Wtyczkę odcinasz ok. 5 cm od obudowy (przewody przy wtyczce do lutowania), resz
    - C i D: oba czerwone ← żyła 7, oba brązowe ← żyła 8.
    - serwo opisz literą i numerem kanału.
 3. **Test przed lutowaniem serw:** długi odcinek wpięty w PCA i w keystone, krótki z wtykiem w keystone, zasilanie włączone: miernik między żyłą 4 i 5 oraz 7 i 8 na wolnym końcu krótkiego odcinka – ok. 5 V. Dopiero potem lutujesz serwa.
+
+   ![Krótki odcinek: serwa A–D lutowane do żył](montaz-elektroniki/img/krok07e-serwa-strona-oczu.png)
 
 Duże oko: A = L–P (12), B = G–D (13), C = powieka górna (14), D = powieka dolna (15).

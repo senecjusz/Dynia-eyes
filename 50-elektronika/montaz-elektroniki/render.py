@@ -36,6 +36,10 @@ def eY(k): return 18.3 + k * gp
 eDupBot = 25.4 - 2.5 - 14                         # 8,9
 SUFIT = 40
 gX, gY, gZ = 157.1, 48, 2.4 + 9 + 1
+SK = [(50, 55, 0), (63, 75, 4), (76, 95, 12)]       # skrętki: x nad otworem, x uchwytu, n (jak sk w elementy.scad)
+def skXg(s): return (chX(SK[s][2]) + chX(SK[s][2] + 3)) / 2
+def skTr(s, t): return (SK[s][1] + t * (skXg(s) - SK[s][1]), 20 + t * 16, 5 + t * (dupTop + 1))
+def skLut(s, k): return (skXg(s) + (k - 3.5) * 1.8, 26 if k % 2 else 33, 20 if s == 2 else 12)   # lut k: A brąz., A czerw., A pom., B pom., C brąz., C czerw., C pom., D pom.
 
 # ---------- kolory ----------
 def rgb(h): return tuple(int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))
@@ -47,11 +51,14 @@ KOL = {
     "kondensator": "#7b3fb0", "kondWtyki": "#202020",
     "pirVCC": "#d81e1e", "pirGND": "#141414", "pirOUT": "#f2c200", "pirWtyki": "#202020",
     "przycisk": "#8b1a1a", "przyciskGND": "#141414", "przyciskSyg": "#ff8c00", "przyciskWtyk": "#202020",
-    "skL": "#8e7fa6", "skP": "#7f7896", "skD": "#9b8fb0", "skZyly": "#ffffff", "skWtyki": "#202020",
+    "skL": "#8e7fa6", "skP": "#7f7896", "skD": "#9b8fb0",
+    "skWtyczki": "#202020", "skPrzewBraz": "#6b3a17", "skPrzewCzerw": "#d81e1e", "skPrzewPom": "#f06a00", "skKoszulki": "#5c5c5c",
     "rezystor": "#e2c99a",
 }
-# T568B: żyła 1..8
+# T568B: żyła 1..8 (grupy skZyla1 … skZyla8)
 ZYLY = {1: "#f7c79a", 2: "#f07f12", 3: "#a8e0a0", 4: "#1f5fd1", 5: "#a9c4f0", 6: "#1f9a2f", 7: "#d2b48c", 8: "#7a4a1e"}
+for _z, _k in ZYLY.items():
+    KOL["skZyla%d" % _z] = _k
 GRUPY = list(KOL)
 
 def przygas(c):  # wcześniejsze elementy: jaśniej i szarzej
@@ -97,31 +104,6 @@ for g in GRUPY:
     o.name = g
     obj[g] = o
     o.data.materials.append(mat(rgb(KOL[g])))
-
-# żyły skrętek: kolor T568B wg najbliższego odcinka trasy (trasa jak skretkaZyla w elementy.scad)
-def trasy_zyl():
-    t = []
-    for n in (0, 4, 12):
-        xg = (chX(n) + chX(n + 3)) / 2
-        cel = {1: (chX(n), rowY[2]), 2: (chX(n + 1), rowY[2]), 3: (chX(n + 2), rowY[2]), 6: (chX(n + 3), rowY[2]),
-               4: (chX(n), rowY[1]), 5: (chX(n), rowY[0]), 7: (chX(n + 2), rowY[1]), 8: (chX(n + 2), rowY[0])}
-        for z, (x, y) in cel.items():
-            p = [Vector((xg, 36, dupTop + 6)), Vector((x, y - 3, dupTop + 4)), Vector((x, y, dupTop + 3)), Vector((x, y, dupTop))]
-            t.append((z, p))
-    return t
-def odl_odc(p, a, b):
-    ab = b - a
-    s = max(0.0, min(1.0, (p - a).dot(ab) / ab.length_squared))
-    return (a + ab * s - p).length
-o = obj["skZyly"]
-o.data.materials.clear()
-for z in range(1, 9):
-    o.data.materials.append(mat(rgb(ZYLY[z])))
-tr = trasy_zyl()
-for f in o.data.polygons:
-    c = f.center
-    best = min(((min(odl_odc(c, p[i], p[i + 1]) for i in range(3)), z) for z, p in tr))
-    f.material_index = best[1] - 1
 
 # kolory bazowe slotów (do przygaszania)
 BAZA = {g: [tuple(m.diffuse_color)[:3] for m in obj[g].data.materials] for g in GRUPY}
@@ -210,7 +192,7 @@ K3 = ["gniazdo", "wtykCC", "zasilCzerw", "zasilCzarny"]
 K4 = ["esp5V", "espG", "espI2C", "espPCAwtyki", "zapasESP"]
 K5 = ["kondensator", "kondWtyki"]
 K6 = ["pirVCC", "pirGND", "pirOUT", "pirWtyki", "przycisk", "przyciskGND", "przyciskSyg", "przyciskWtyk"]
-K7 = ["skL", "skP", "skD", "skZyly", "skWtyki"]
+K7 = ["skL", "skP", "skD", "skWtyczki", "skPrzewBraz", "skPrzewCzerw", "skPrzewPom", "skKoszulki"] + ["skZyla%d" % z for z in range(1, 9)]
 WSZ = K1 + K2 + K3 + K4 + K5 + K6 + K7 + ["rezystor"]
 ISO = (-0.75, -1.35, 1.25)
 CZ, NI, ZI, ZO, PO, FI, SZ = "#d81e1e", "#1e78d8", "#1f8a3a", "#c89a00", "#f28c1c", "#7b3fb0", "#333333"
@@ -309,44 +291,46 @@ krok("krok05-kondensator", "4.5  Kondensator na kanale 8 (leży poziomo do przod
 krok("krok06-pir-przycisk", "4.6  PIR i przycisk", K6, K1 + K2 + K3 + K4 + K5, ((90, 50, 12), ISO, 190), [
     ("PIR (od szufladki): VCC, GND, OUT", (150, 10, 5), (1300, 860), ZO),
     ("PIR OUT → ESP pin 10", (40, 22, 4), (330, 860), ZO),
-    ("przycisk → ESP pin 4", (70, 82, 14), (350, 200), "#ff8c00"),
-    ("przycisk → GND prawej listwy", (bokXP, bokY(0), dupTop + 3), (1180, 160), SZ),
+    ("przycisk nóżka 1 → ESP pin 4", (70, 82, 14), (350, 200), "#ff8c00"),
+    ("przycisk nóżka 2 → GND prawej listwy", (bokXP, bokY(0), dupTop + 3), (1130, 160), SZ),
     ("PIR VCC / GND → kanał 10", (125, 30, 5), (900, 880), CZ),
 ])
 krok("krok06b-kanal10-przycisk", "4.6  Zbliżenie: kanał 10 i prawa listwa", K6, K1 + K2 + K3 + K4 + K5, ((118, 52, 22), (0.2, -1.0, 1.5), 55), [
     ("kanał 10 V+ ← PIR VCC (czerwony)", (chX(10), rowY[1], dP), (480, 840), CZ),
     ("kanał 10 GND ← PIR GND (czarny)", (chX(10), rowY[0], dupTop - 2), (1000, 900), SZ),
-    ("prawa listwa GND ← przycisk", (bokXP, bokY(0), dP), (1250, 250), SZ),
+    ("prawa listwa GND ← przycisk nóżka 2", (bokXP, bokY(0), dP), (1180, 250), SZ),
     ("kanał 8: kondensator", (chX(8) - 1, 40.5, dupTop + 4), (330, 300), FI),
     ("kanał 9: ESP", (chX(9), rowY[1], dP + 1.5), (380, 500), CZ),
 ])
 krok("krok06c-esp-piny", "4.6  PIR i przycisk na pinach ESP (od przodu z dołu, tacka ukryta)", K6, K2 + K4, SPOD, [
     ("10 ← PIR OUT", pinESP(0, 5, 6.5), (260, None), ZO),
-    ("4 ← przycisk", pinESP(1, 3, 6.5), (1400, 560), "#ff8c00"),
+    ("4 ← przycisk nóżka 1", pinESP(1, 3, 6.5), (1360, 560), "#ff8c00"),
 ], ukryj=[g for g in NIE_ESP if g not in K4 + K6] + ["przycisk"])
 krok("krok07-skretki", "4.7  Skrętki do oczu (po jednej, z testem)", K7, K1 + K2 + K3 + K4 + K5 + K6, ((90, 35, 18), ISO, 150), [
     ("lewa: kanały 0–3", (55, 9, 12), (330, 850), FI),
     ("prawa: kanały 4–7", (75, 9, 12), (760, 900), FI),
     ("duże oko: kanały 12–15", (95, 9, 12), (1200, 870), FI),
     ("do otworu w płycie", (63, 6, 40), (450, 200), FI),
+    ("4 wtyczki serw A–D na skrętkę", (chX(13), rowY[1] - 3.8, dupTop - 4), (1250, 330), SZ),
+    ("8 lutów w koszulce na skrętkę", skLut(1, 6), (260, 560), SZ),
 ])
-krok("krok07b-skretki-listwa", "4.7  Zbliżenie: skrętki na listwie kanałów", K7, K1 + K2 + K3 + K4 + K5 + K6, ((103, 48, 24), (0, -1.0, 1.6), 62), [
-    ("lewa: 0–3", (chX(1), rowY[2], dupTop + 3), (330, 200), FI),
-    ("prawa: 4–7", (chX(5), rowY[2], dupTop + 3), (760, 200), FI),
-    ("duże oko: 12–15", (chX(13), rowY[2], dupTop + 3), (1300, 200), FI),
-    ("kanał 0 (sprawdź na płytce)", (chX(0), rowY[2], dupTop + 3), (260, 880), SZ),
+krok("krok07b-skretki-listwa", "4.7  Zbliżenie: wtyczki skrętek na listwie kanałów", K7, K1 + K2 + K3 + K4 + K5 + K6, ((103, 47, 25), (0.1, -1.0, 0.9), 62), [
+    ("lewa: 0–3", (chX(1), rowY[2], dupTop + 1), (330, 200), FI),
+    ("prawa: 4–7", (chX(5), rowY[2], dupTop + 1), (760, 200), FI),
+    ("duże oko: 12–15", (chX(13), rowY[2], dupTop + 1), (1300, 200), FI),
+    ("kanał 0 (sprawdź na płytce)", (chX(0), rowY[2], dupTop + 1), (260, 880), SZ),
     ("kanały 8–10: kond., ESP, PIR", (chX(9), rowY[1], dP + 2), (1100, 900), SZ),
     ("11: wolny", (chX(11), rowY[2], 17.5), (1480, 520), "#888888"),
+    ("brązowy od krawędzi (GND)", (chX(4) - 1.5, 40, 20), (700, 900), "#6b3a17"),
 ])
-krok("krok07c-zyly-kanaly0-3", "4.7  Żyły lewej skrętki (kanały 0–3, T568B)", K7, K1 + K2 + K3 + K4 + K5 + K6, ((chX(1.5) - 1.27, 48, 27), (-0.55, -1.0, 0.9), 34), [
-    ("żyła 1 → sygnał 0", (chX(0), rowY[2], dP), (300, 200), "#f07f12"),
-    ("żyła 2 → sygnał 1", (chX(1), rowY[2], dP), (720, 160), "#f07f12"),
-    ("żyła 3 → sygnał 2", (chX(2), rowY[2], dP), (1100, 160), ZI),
-    ("żyła 6 → sygnał 3", (chX(3), rowY[2], dP), (1400, 280), ZI),
-    ("żyła 4 → V+ kanału 0", (chX(0), rowY[1], dP), (230, 470), NI),
-    ("żyła 5 → GND kanału 0", (chX(0), rowY[0], dP), (240, 760), NI),
-    ("żyła 7 → V+ kanału 2", (chX(2), rowY[1], dP), (1400, 560), "#7a4a1e"),
-    ("żyła 8 → GND kanału 2", (chX(2), rowY[0], dP), (1350, 800), "#7a4a1e"),
+krok("krok07c-zyly-kanaly0-3", "4.7  Wtyczki lewej skrętki na kanałach 0–3", K7, K1 + K2 + K3 + K4 + K5 + K6, ((chX(1) + 1.27, 46, 26), (-0.6, -1.0, 0.65), 40), [
+    ("wtyczka A (kanał 0): żyły 5 / 4 / 1", (chX(0), rowY[1] - 3.8, 19), (300, 640), SZ),
+    ("B (kanał 1): tylko żyła 2", (chX(1), rowY[2], dupTop + 3.6), (380, 110), "#f06a00"),
+    ("C (kanał 2): 8 / 7 / 3", (chX(2), rowY[1], dupTop + 3.2), (1000, 110), SZ),
+    ("D (kanał 3): tylko żyła 6", (chX(3), rowY[2], dupTop + 3.6), (1350, 200), "#f06a00"),
+    ("brązowy od krawędzi (GND)", (chX(0), rowY[0], dupTop + 1), (280, 470), "#6b3a17"),
+    ("B, D: brązowy i czerwony obcięte, zaizolowane", (chX(3), rowY[0], dupTop + 2.8), (1180, 470), "#5c5c5c"),
+    ("brązowy GND · czerwony V+ · pomarańczowy sygnał", None, (800, 950), "#f06a00"),
 ], legenda=False)
 krok("krok08-wysokosci", "Wysokości całości (widok od przodu, przekrój)", WSZ, [], ((118.75, 40, 20), (0, -1, 0), 250, 28), [],
      sufit=True, poziomy=[

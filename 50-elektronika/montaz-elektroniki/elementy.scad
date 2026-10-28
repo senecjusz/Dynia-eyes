@@ -1,7 +1,7 @@
 // Elektronika na tacce v2 – model do instrukcji montażu i kontroli kolizji (sesja elektroniki, 28.10).
 // Tacka: podstawka.scad z gałęzi wykonawca-montaz (commit 8a07059, podkładki ESP 7 mm), kopiowana obok przez eksport.sh.
 // Układ tacki: x od lewego boku, y od przodu tacki, z od spodu tacki [mm]. Sufit = spód płyty górnej, 40 nad spodem tacki.
-// Wymiary kupnych części: TYPOWE (nie mierzone) – listwa goldpin 2,5 plastiku, obudowa Dupont 2,5 × 2,5 × 14, kondensator Ø8 × 12,
+// Wymiary kupnych części: TYPOWE (nie mierzone) – listwa goldpin 2,5 plastiku, obudowa Dupont 2,5 × 2,5 × 14, wtyczka serwa 3-pin 2,5 × 7,6 × 14, kondensator Ø8 × 12,
 // gniazdo USB-C z pomiarów użytkownika (kołnierz 14, korpus 13, gwint 11, nakrętka 15,5 × 3). Kanał 0 PCA po lewej – do sprawdzenia na płytce.
 use <podstawka.scad>
 grupa = "wszystko";
@@ -86,16 +86,30 @@ module przyciskPrzew(n) {
 module przyciskWtyk() dupGora(bokXP, bokY(0));
 module zapasESP() { przewod([[eRowX[1], eY(4), eDupBot], [eRowX[1], eY(4), 5], [40, eY(4), 5], [44, 42, 5]]); przewod([[eRowX[0], eY(0), eDupBot], [eRowX[0], eY(0), 5], [9, 18, 5], [8, 32, 5]]); }
 // skrętki: s = 0 lewa (ch 0–3), 1 prawa (4–7), 2 duże oko (12–15)
+// Strona PCA (użytkownik 28.10): żyły przylutowane do 4 wtyczek odciętych od serw (A–D na kanały n…n+3),
+// każda wtyczka z ok. 5 cm własnego przewodu (brązowy GND, czerwony V+, pomarańczowy sygnał) do lutu w koszulce.
+// B i D: tylko pomarańczowy; brązowy i czerwony obcięte przy wtyczce i zaizolowane.
 sk = [[50, 55, 0], [63, 75, 4], [76, 95, 12]];   // x nad otworem, x uchwytu, n
 function skCh(s) = sk[s][2];
-module skretkaPlaszcz(s) { n = skCh(s); xg = (chX(n) + chX(n + 3)) / 2; przewod([[sk[s][0], 6, SUFIT], [sk[s][1], 9, 12], [sk[s][1], 12, 4.9], [sk[s][1], 20, 5], [xg, 36, dupTop + 6]], 5); }
-module skretkaZyla(s, z) {   // żyła 1..8 → pin
-  n = skCh(s); xg = (chX(n) + chX(n + 3)) / 2;
-  cel = z == 1 ? [chX(n), rowY[2]] : z == 2 ? [chX(n + 1), rowY[2]] : z == 3 ? [chX(n + 2), rowY[2]] : z == 6 ? [chX(n + 3), rowY[2]]
-      : z == 4 ? [chX(n), rowY[1]] : z == 5 ? [chX(n), rowY[0]] : z == 7 ? [chX(n + 2), rowY[1]] : [chX(n + 2), rowY[0]];
-  przewod(concat([[xg, 36, dupTop + 6]], [[cel[0], cel[1] - 3, dupTop + 4]], doPCA(cel[0], cel[1])), 1);
+function skXg(s) = (chX(skCh(s)) + chX(skCh(s) + 3)) / 2;
+function skTr(s, t) = [sk[s][1] + t * (skXg(s) - sk[s][1]), 20 + t * 16, 5 + t * (dupTop + 1)];   // trasa od uchwytu do grupy kanałów
+skWt = [[0, 0, 5], [0, 1, 4], [0, 2, 1], [1, 2, 2], [2, 0, 8], [2, 1, 7], [2, 2, 3], [3, 2, 6]];   // [wtyczka 0..3 = A..D, pin 0 brązowy / 1 czerwony / 2 pomarańczowy, żyła]
+wtW = 7.6; wtT = 2.5; kosL = 8;                                       // obudowa wtyczki serwa 3-pin (typowa), długość koszulki na lucie
+function skLut(s, k) = [skXg(s) + (k - 3.5) * 1.8, k % 2 ? 26 : 33, s == 2 ? 20 : 12];   // środek lutu k: przed grupą kanałów, dwa rzędy (duże oko wyżej – nad przewodami PIR)
+function zWyj(r) = dupTop + 3 + r * 1.3;                               // przewód wtyczki nad obudową: sygnał najwyżej, wierzch 31,6 (rozdz. 3: zgięcie ok. 6)
+module skretkaPlaszcz(s) przewod([[sk[s][0], 6, SUFIT], [sk[s][1], 9, 12], [sk[s][1], 12, 4.9], [sk[s][1], 20, 5], skTr(s, 0.1)], 5);   // płaszcz zdjęty ok. 80 mm
+module skretkaWtyczki(s) for (i = [0:3]) translate([chX(skCh(s) + i) - wtT / 2, rowY[1] - wtW / 2, pTop + plast]) cube([wtT, wtW, dup]);
+module skPrzewodWt(s, k) {   // przewód wtyczki: od obudowy do lutu
+  w = skWt[k]; x = chX(skCh(s) + w[0]); L = skLut(s, k);
+  przewod([[x, rowY[w[1]], dupTop], [x, rowY[w[1]], zWyj(w[1])], [x, 43, zWyj(w[1])], [L[0], L[1] + kosL / 2 + 1, L[2]], [L[0], L[1], L[2]]], 1);
 }
-module skretkaWtyki(s) { n = skCh(s); for (i = [0:3]) dupGora(chX(n + i), rowY[2]); for (i = [0, 2], r = [0, 1]) dupGora(chX(n + i), rowY[r]); }
+module skKikut(s, i, r) { x = chX(skCh(s) + i); przewod([[x, rowY[r], dupTop], [x, rowY[r], dupTop + 2]], 1); }   // B, D: obcięty brązowy / czerwony
+module skPrzewody(r) for (s = [0:2]) { for (k = [0:7]) if (skWt[k][1] == r) skPrzewodWt(s, k); if (r < 2) for (i = [1, 3]) skKikut(s, i, r); }
+module skKoszulki() for (s = [0:2]) {
+  for (k = [0:7]) { L = skLut(s, k); translate([L[0], L[1] - kosL / 2, L[2]]) rotate([-90, 0, 0]) cylinder(d = 2.2, h = kosL, $fn = 12); }
+  for (i = [1, 3], r = [0, 1]) translate([chX(skCh(s) + i), rowY[r], dupTop + 1.5]) cylinder(d = 1.5, h = 1.5, $fn = 12);   // izolacja obciętych końców
+}
+module skretkaZyla(s, z) for (k = [0:7]) if (skWt[k][2] == z) { L = skLut(s, k); przewod([skTr(s, 0.1), [L[0], L[1] - kosL / 2 - 1, L[2]], [L[0], L[1], L[2]]], 0.9); }
 module rezystor() {
   translate([32, 72, kDno + 8 + 3]) rotate([-90, 0, 0]) cylinder(d = 6, h = 17, $fn = 24);
   translate([32, 64, kDno + 8 + 3]) rotate([-90, 0, 0]) cylinder(d = 0.9, h = 37, $fn = 8);   // nóżki: tylna wychodzi za tylny słupek
@@ -134,10 +148,21 @@ else if (grupa == "zapasESP") zapasESP();
 else if (grupa == "skL") { skretkaPlaszcz(0); }
 else if (grupa == "skP") { skretkaPlaszcz(1); }
 else if (grupa == "skD") { skretkaPlaszcz(2); }
-else if (grupa == "skZyly") for (s = [0:2], z = [1:8]) skretkaZyla(s, z);
-else if (grupa == "skWtyki") for (s = [0:2]) skretkaWtyki(s);
+else if (grupa == "skWtyczki") for (s = [0:2]) skretkaWtyczki(s);
+else if (grupa == "skPrzewBraz") skPrzewody(0);
+else if (grupa == "skPrzewCzerw") skPrzewody(1);
+else if (grupa == "skPrzewPom") skPrzewody(2);
+else if (grupa == "skKoszulki") skKoszulki();
+else if (grupa == "skZyla1") for (s = [0:2]) skretkaZyla(s, 1);
+else if (grupa == "skZyla2") for (s = [0:2]) skretkaZyla(s, 2);
+else if (grupa == "skZyla3") for (s = [0:2]) skretkaZyla(s, 3);
+else if (grupa == "skZyla4") for (s = [0:2]) skretkaZyla(s, 4);
+else if (grupa == "skZyla5") for (s = [0:2]) skretkaZyla(s, 5);
+else if (grupa == "skZyla6") for (s = [0:2]) skretkaZyla(s, 6);
+else if (grupa == "skZyla7") for (s = [0:2]) skretkaZyla(s, 7);
+else if (grupa == "skZyla8") for (s = [0:2]) skretkaZyla(s, 8);
 else if (grupa == "rezystor") rezystor();
 // kontrola kolizji: elementy, które nie mogą wchodzić w tackę ani w sufit
-else if (grupa == "kolizjaTacka") intersection() { kaseta(); union() { espWtyki(); esp(); kondensator(); przycisk(); pca(); for (s = [0:2]) skretkaWtyki(s); espPCAwtyki(); zacisk(); } }
-else if (grupa == "kolizjaSufit") intersection() { translate([0, 0, SUFIT]) cube([170, 100, 30]); union() { esp(); kondensator(); for (s = [0:2], z = [1:8]) skretkaZyla(s, z); espPCA(0); espPCA(1); espPCA(2); espPCA(3); espPCA(4); pir(0); pir(1); przyciskPrzew(0); } }
+else if (grupa == "kolizjaTacka") intersection() { kaseta(); union() { espWtyki(); esp(); kondensator(); przycisk(); pca(); for (s = [0:2]) skretkaWtyczki(s); espPCAwtyki(); zacisk(); } }
+else if (grupa == "kolizjaSufit") intersection() { translate([0, 0, SUFIT]) cube([170, 100, 30]); union() { esp(); kondensator(); for (s = [0:2], z = [1:8]) skretkaZyla(s, z); for (r = [0:2]) skPrzewody(r); skKoszulki(); espPCA(0); espPCA(1); espPCA(2); espPCA(3); espPCA(4); pir(0); pir(1); przyciskPrzew(0); } }
 else if (grupa == "kolizjaRezystor") intersection() { kaseta(); rezystor(); }
