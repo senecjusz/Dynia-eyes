@@ -62,7 +62,7 @@ Listwa kanałów HW-170: od krawędzi płytki GND (czarny), V+ (czerwony), sygna
 
 ### Skrętki do dyni (T568B na obu końcach)
 
-Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce każda żyła z wtykiem Dupont na pin PCA; w dyni keystone (gniazdo RJ45), do niego krótki odcinek skrętki z wtykiem RJ45 od strony oczu.
+Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce żyły na wtyczkach odciętych od serw, wpiętych w kanały PCA; w dyni keystone (gniazdo RJ45), do niego krótki odcinek skrętki z wtykiem RJ45 od strony oczu.
 
 | Żyła | Kolor | PCA | Serwo |
 |---|---|---|---|
@@ -75,7 +75,7 @@ Trzy skrętki: lewa (n = 0), prawa (n = 4), duże oko (n = 12). W podstawce każ
 | 7 | biało-brązowy | V+ kanału n+2 | C i D: czerwony |
 | 8 | brązowy | GND kanału n+2 | C i D: brązowy |
 
-Duże oko: A lewo–prawo, B góra–dół, C powieka górna, D powieka dolna. Po stronie oczu żyły lutowane do listew goldpin 3-pin (GND, V+, sygnał), po jednej na serwo; para serw dzieli żyły V+ i GND.
+Duże oko: A lewo–prawo, B góra–dół, C powieka górna, D powieka dolna. Po stronie PCA żyły lutowane do wtyczek odciętych od serw (A i C – 3 przewody, B i D – tylko sygnał); po stronie oczu serwa lutowane wprost do żył, para serw dzieli żyły V+ i GND (sposób użytkownika 28.10, szczegóły: `montaz-elektroniki.md`, rozdział 5).
 
 ### Kolejność uruchomienia
 
