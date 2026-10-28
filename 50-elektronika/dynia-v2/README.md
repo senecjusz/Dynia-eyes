@@ -13,7 +13,19 @@ Poza zakresem: strona w telefonie, efekty, nastroje, mruganie.
 
 ## Kalibracja
 
-Wartości w `kalibracja.h`, przepisane z `../kalibracja-oczu.md`. **Duże oko jest wyłączone** (`DUZE_OKO_GOTOWE = false`), dopóki kanały 12–15 nie mają kalibracji: wtedy kanały 12–15 nie dostają żadnego impulsu. Po kalibracji (`kalibracja/`, `k 12` … `k 15`) wpisz środek, min i max gałki oraz impulsy „zamknięta” i „otwarta” obu powiek i ustaw `true`.
+Wartości w `kalibracja.h`, przepisane z `../kalibracja-oczu.md`.
+
+- **Gałka dużego oka włączona** (`GALKA_GOTOWA = true`): kanał 12 = lewo–prawo 1500 ±284 µs, 13 = góra–dół 1500 ±239 µs (sprawdzona krótsza strona kinematyki, 28.10). Na stole L–P był na kanale 11, a G–D na 12 – przed testem przełożyć: G–D na 13, L–P na 12.
+- **Powieki wyłączone** (`POWIEKI_GOTOWE = false`): kanały 14–15 bez impulsu. Po kalibracji wpisz impulsy „zamknięta” i „otwarta” i ustaw `true`.
+- **Sprzężenie osi** (`SPRZ_GY_PRZY_X_MIN`, `SPRZ_GY_PRZY_X_MAX`): ruch L–P ściąga gałkę w pionie; program dodaje do impulsu G–D poprawkę rosnącą z kwadratem wychylenia L–P, osobno dla obu stron. Kinematyka: ok. 49 µs przy L–P 35°. Znak nieznany, w kodzie 0.
+
+### Ustalenie sprzężenia na sprzęcie
+
+1. Monitor (115200), komendy z Enter. `g 0 0` – gałka na środek (dynia przechodzi w blokadę).
+2. `g -100 0` – gałka w bok na stronę min L–P. Patrz, czy gałka uciekła w górę albo w dół względem `g 0 0`.
+3. `z -50 0`, potem `z 50 0` (pierwsza liczba = strona min) – zostaw ten znak, przy którym gałka przy `g -100 0` patrzy poziomo; dobierz wielkość co 10 µs.
+4. To samo dla strony max: `g 100 0`, `z <min> -50` / `z <min> 50`.
+5. Wartości z `?` (linia „sprzężenie G–D”) wpisz do `kalibracja.h` i wgraj program. `z` działa tylko do restartu.
 
 ## Połączenia
 
@@ -26,7 +38,7 @@ arduino-cli compile -b esp32:esp32:esp32c3:CDCOnBoot=cdc 50-elektronika/dynia-v2
 arduino-cli upload -p /dev/ttyACM0 -b esp32:esp32:esp32c3:CDCOnBoot=cdc 50-elektronika/dynia-v2
 ```
 
-Port szeregowy 115200: `a` tryb aktywny, `s` spoczynek, `b` blokada wł./wył., `?` stan kanałów.
+Port szeregowy 115200, komenda + Enter: `a` tryb aktywny, `s` spoczynek, `b` blokada wł./wył., `?` stan kanałów, `g <x> <y>` gałka w punkt (−100…100 % zakresu, przechodzi w blokadę), `z <min> <max>` sprzężenie osi w µs do restartu.
 
 ## Do sprawdzenia na stole (użytkownik)
 
@@ -35,4 +47,5 @@ Port szeregowy 115200: `a` tryb aktywny, `s` spoczynek, `b` blokada wł./wył., 
 3. PIR: po 60 s od startu machnięcie ręką → oczy się rozglądają, najwyżej 2 naraz; po 30 s spokoju powrót.
 4. Przycisk 5 s → oczy na środek i stop; znowu 5 s → praca.
 5. Powerbank Baseus ≥ 30 min w trybie aktywnym (`a` co jakiś czas albo ruch przed PIR) bez odcięcia.
-6. Po kalibracji dużego oka: otwieranie, rozglądanie, zamykanie; czy powieki bez impulsu trzymają pozycję (jeśli opadają, wyłączyć ciszę dla kanałów 14–15).
+6. Gałka: w trybie aktywnym rozgląda się (elipsa, bez rogów), w spoczynku i blokadzie na środku; sprzężenie według „Ustalenie sprzężenia”. Czy gałka bez impulsu trzyma pozycję.
+7. Po kalibracji powiek: otwieranie, rozglądanie, zamykanie; czy powieki bez impulsu trzymają pozycję (jeśli opadają, wyłączyć ciszę dla kanałów 14–15).

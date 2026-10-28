@@ -1,25 +1,30 @@
-# Raport: elektronika i software
+# Raport – elektronika i software
 
-Stan na 27.10. Wykonawca: sesja elektroniki. Gałąź `elektronika/dynia-v2`.
+Wykonawca: sesja „elektronika”, gałąź `elektronika/dynia-v2`. Zakres: PRD §5–6, brief PM z 25.10, zakres etapu 1 od PM z 27.10.
+
+## Stan (28.10)
 
 | Zadanie | Stan | Uwagi |
 |---|---|---|
-| S1 – plan etapów, decyzje | zrobione | zakres etapu 1 zatwierdzony przez użytkownika (PM 27.10); kanały 12–15 przyjęte; odstępstwo: bez strony, efektów, nastrojów i mrugania |
-| S2 etap 1 – `dynia-v2/` | w toku: kod gotowy, kompiluje się; czeka na test na stole | duże oko wyłączone do kalibracji kanałów 12–15 |
-| M2 – kalibracja małych oczu | czeka na użytkownika | wspólne 1500/1100/1800 µs w `kalibracja-oczu.md`; pytanie o kanał 0 przy 1500 µs otwarte; moduł „8” buczy, ostatni chodzi ciężko (program wyłącza impuls po ruchu) |
-| P10 – okablowanie, skrętki | zrobione | `50-elektronika/polaczenia.md`, sekcja „Dynia: połączenia docelowe”: T568B, keystone'y w dyni, kanały |
-| PIR | zrobione (podłączenie) | HW-416A, GPIO10, zasilanie z kanału 10 PCA; zworka H, Tx minimum |
-| Zasilanie | zrobione (projekt) | gniazdo USB-C wkręcane użytkownika (do potwierdzenia pomiarem 5 V); kondensator 470 µF na kanale 8; rezystor 47 Ω / 3 W jako zapas; tacka zaprojektowana przez montaż |
-| Przycisk blokady | zrobione w kodzie | GPIO4, 5 s |
-| S3 – test podtrzymania powerbanku z programem | czeka na użytkownika | po złożeniu: Baseus ≥ 30 min, w tym tryb aktywny |
+| S1 – plan `dynia-v2` | zrobione | Zakres etapu 1 (PM 27.10, słowa użytkownika: „minimum to 8 oczu małych, ruch oczu, PIR i przycisk. Bez strony w telefonie”). Kanały: małe 0–3 lewa, 4–7 prawa; 8–10 rozdzielacz 5 V (kondensator, ESP, PIR), 11 wolny; duże oko 12 L–P, 13 G–D, 14 powieka górna, 15 powieka dolna |
+| S2 – program `dynia-v2/` | kod gotowy, kompiluje się bez ostrzeżeń; **nie wgrany** | 8 małych oczu, PIR, przycisk blokady 5 s, AP Wi-Fi (podtrzymanie powerbanku). Gałka dużego oka włączona (28.10) ze sprzężeniem osi; powieki wyłączone do kalibracji |
+| Sprzężenie osi gałki | w kodzie; **znak i wielkość do ustalenia na sprzęcie** | Poprawka G–D = SPRZ × (wychylenie L–P / zakres)², osobno dla strony min i max; w `kalibracja.h` 0. Procedura: `dynia-v2/README.md`, „Ustalenie sprzężenia” (komendy `g`, `z`). Sprzężenie G–D → L–P (+1,5°) pominięte – kinematyka dopuszcza |
+| M2 – kalibracja małych oczu | zrobione (kalibrator) | 1500 / Min 1100 = prawo / Max 1800 = lewo; moduł „8” buczy, ostatni z 25.10 chodzi ciężko (program wyłącza impuls po ruchu) |
+| Gałka dużego oka | zakresy z kalibratora (28.10) | G–D ±239, L–P ±284 µs wokół 1500 – sprawdzona krótsza strona, dłuższe niesprawdzone. Na stole L–P na kanale 11, G–D na 12 – przed testem programu przełożyć na 12 / 13 |
+| P10 – okablowanie, skrętki | zrobione | `50-elektronika/polaczenia.md`, „Dynia: połączenia docelowe”: T568B, keystone'y w dyni |
+| PIR | zrobione (podłączenie) | HW-416A na GPIO10, zasilanie z kanału 10; przewód w szufladce bez złącza, zapas 150 mm w pasie wtyku (z montażem 27.10) |
+| Zasilanie | zrobione (projekt) | gniazdo USB-C wkręcane → zacisk PCA; 470 µF na kanale 8; ESP z kanału 9; rezystor 47 Ω / 3 W jako zapas. Plan tacki z przewodami pokazany użytkownikowi 28.10 |
+| Przycisk blokady | zrobione w kodzie | GPIO4 i GND prawej listwy PCA, 5 s |
+| S3 – test powerbanku z programem | czeka | Baseus ≥ 30 min, w tym tryb aktywny |
 
 ## Wyniki
 
-- Kompilacja `dynia-v2` (arduino-cli, esp32 3.3.12, `--warnings all`): bez ostrzeżeń; 984 593 B flash (75 %), 37 704 B RAM (11 %).
-- Wgranie i testy na sprzęcie: nie wykonane (płytka nie była podłączona do komputera).
+- Kompilacja `dynia-v2` (arduino-cli, esp32 3.3.12, `--warnings all`) 28.10: bez ostrzeżeń; 1 011 587 B flash (77 %), 37 736 B RAM (11 %).
+- Wgranie i testy programu na sprzęcie: nie wykonane.
 
 ## Blokady i pytania do użytkownika
 
-1. Kalibracja dużego oka (kanały 12–15) – bez niej duże oko nie rusza.
-2. Pomiar 5 V na przewodach gniazda USB-C z powerbanku.
-3. Kanał 0 przy 1500 µs – czy oko patrzy prosto.
+1. Podłączenie ESP do komputera – wgranie `dynia-v2` i test na stole.
+2. Sprzężenie osi: znak i wielkość na sprzęcie (po przełożeniu wtyczek gałki na 12 / 13).
+3. Kalibracja powiek (kanały 14–15).
+4. Pomiar 5 V na przewodach gniazda USB-C z powerbanku.
