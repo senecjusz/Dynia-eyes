@@ -16,6 +16,8 @@ Wszyscy agenci piszą **po polsku**: odpowiedzi, raporty, dokumenty, opisy commi
 2. `30-projekt/decyzje.md`: co ustalono. Nie zmieniaj bez zgody użytkownika.
 3. `30-projekt/stan-projektu.md`: stan projektu.
 4. `README.md` i README w folderach: układ repo i co gdzie trafia. Trzymaj się ich.
+5. `30-projekt/sesje.md`: role sesji, ich gałęzie i stan; z niego wznawiasz pracę bez historii rozmów (np. po zmianie konta).
+6. `30-projekt/lista-hardware.md`: wszystkie części i narzędzia do złożenia, z informacją, co użytkownik ma.
 
 ## Rozmowa z użytkownikiem (orkiestrator)
 

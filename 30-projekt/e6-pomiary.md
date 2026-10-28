@@ -5,7 +5,7 @@ Odpowiedzi na pytania blokujące koncepcji v3 (`20-analizy/2026-10-23-duze-oko-2
 | Pytanie | Odpowiedź | Pewność / źródło |
 |---|---|---|
 | **B2** kardan 5/5: oś wkrętu M4 piasty wobec osi sworznia widełek tej piasty | **równoległa** (łeb sworznia i otwór M4 tej samej piasty patrzą w tę samą stronę) | średnia – zdjęcie użytkownika i karta produktu |
-| Kardan 5/5: długość, Ø, otwór | L 25,5 (±0,2), Ø zewn. 11 (karta), otwór Ø5 głęb. 7 (pomiar użytkownika), oś sworznia → oś M4 9,1 (±0,2), zgięcie > 90° (użytkownik) | zdjęcia suwmiarki |
+| Kardan 5/5: długość, Ø, otwór | L 25,5 (±0,2), Ø zewn. 11 (karta), otwór Ø5,05–5,1 gładki (pomiar użytkownika 27.10; wcześniejsze Ø5 z karty), głęb. 7, użytkowa 6 (pomiar użytkownika 22.10), oś sworznia → oś M4 9,1 (±0,2), zgięcie > 90° (użytkownik) | zdjęcia suwmiarki |
 | Kardan 5/5: położenie krzyżaka, szerokość widełek, zgięcie (25.10) | oś sworznia ok. 13 od czoła każdej piasty (w połowie długości); szerokość na całej długości, także widełek przy krzyżaku, 11 (użytkownik 25.10); zgięcie do oporu ok. 90° (±15°) | zdjęcia z linijką, `70-budowa/zdjecia/2026-10-25-kardan-5-5/` (±1 mm) |
 | **B4** MG90S Miuzei MS60-4-D-V1: otwór w uchu | **brak** – na rysunku otwarte wycięcia bez wymiaru; osie wycięć 27,7, końce uszu 31,8, ucho gr. 2, spód ucha 18 nad spodem korpusu | rysunek Amazon „Product Size” |
 | MG90S: szerokość ucha | brak osobno; korpus 12,5 (rysunek) / 12,1 (pudełko); ucho na całą szerokość korpusu – założenie | – |
