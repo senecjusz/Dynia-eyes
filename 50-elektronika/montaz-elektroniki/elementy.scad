@@ -18,7 +18,7 @@ dupTop = pTop + plast + dup;                                          // 25,5 �
 // ESP32-C3 SuperMini na podkładkach
 eX0 = 15; eY0 = 16.5; eW = 18.4; eL = 22.5; eT = 1.2;
 eZ = kDno + 16 + 7;                                                    // spód płytki 25,4
-eRowX = [24.2 - 7.6, 24.2 + 7.6];                                      // rząd od ściany (5,6,7,8,9,10,20,21), rząd od PCA (5V,G,3V3,4,3,2,1,0)
+eRowX = [24.2 + 7.6, 24.2 - 7.6];                                      // [0] rząd prawy, od PCA (5,6,7,8,9,10,20,21); [1] rząd lewy, od ściany (5V,G,3V3,4,3,2,1,0) – widok z góry, układ scalony do góry, USB do przodu (pinout RNT, płytka od spodu przy USB u góry)
 function eY(k) = 18.3 + k * gp;
 eDupBot = eZ - plast - dup;                                            // 8,9 – spód wtyków pod ESP
 // gniazdo USB-C
@@ -31,7 +31,6 @@ module dupGora(x, y) { translate([x - 1.25, y - 1.25, pTop + plast]) cube([2.5, 
 module dupDol(x, y) { translate([x - 1.25, y - 1.25, eDupBot]) cube([2.5, 2.5, dup]); }
 // przewód wchodzący od góry do wtyku na PCA: ostatnie punkty nad pinem
 function doPCA(x, y) = [[x, y, dupTop + 3], [x, y, dupTop]];
-function zESP(k, r) = [[eRowX[r], eY(k), eDupBot], [eRowX[r], eY(k), 5]];
 
 // ---------- grupy ----------
 module pca() {
@@ -60,12 +59,15 @@ module zasilanie(kolor) {   // 0 czerwony → V+, 1 czarny → GND (śruby zacis
   xs = [108.6, 103.5];
   przewod([[gX + (kolor ? 1.5 : -1.5), 61, gZ], [150, 88, 6], [130, 88 + (kolor ? 2 : 0), 6], [xs[kolor], 80, 14], [xs[kolor], 70.5, 14]], 1.6);
 }
-module espPCA(n) {   // 0: 5V→9 V+, 1: G→9 GND, 2: 3V3→VCC, 3: 8→SDA, 4: 9→SCL
-  if (n == 0) przewod(concat(zESP(0, 1), [[45, 30, 5], [100, 38, 5], [chX(9) + 0.4, 40, dupTop + 3]], doPCA(chX(9) + 0.4, rowY[1])));
-  if (n == 1) przewod(concat(zESP(1, 1), [[44, 32, 5], [98, 40, 5], [chX(9) - 0.4, 42, dupTop + 3]], doPCA(chX(9) - 0.4, rowY[0])));
-  if (n == 2) przewod(concat(zESP(2, 1), [[40, 45, 5], [70, bokY(4), 5], [bokXL - 3, bokY(4), dupTop + 3]], doPCA(bokXL, bokY(4))));
-  if (n == 3) przewod(concat(zESP(3, 0), [[24, 34, 4], [38, 47, 4], [70, bokY(3), 4], [bokXL - 3, bokY(3), dupTop + 4]], doPCA(bokXL, bokY(3))));
-  if (n == 4) przewod(concat(zESP(4, 0), [[24, 37, 4], [36, 49, 4], [70, bokY(2), 4], [bokXL - 3, bokY(2), dupTop + 5]], doPCA(bokXL, bokY(2))));
+// trasy pod ESP (spód wtyków 8,9): pion z pinu, potem warstwy z – 3,6 (5V, G, 3V3 pod resztą), 5 (zgięcia, PIR OUT, zapas), 6,4 (SDA, przycisk), 7,8 (SCL);
+// słupki z podkładkami zajmują x 18,7–29,7 przy y 16,5–19,5 i 36–40,8 – przejście pod płytką tylko między nimi
+function zPin(k, r, z) = [[eRowX[r], eY(k), eDupBot], [eRowX[r], eY(k), z]];
+module espPCA(n) {   // 0: 5V→9 V+, 1: G→9 GND, 2: 3V3→VCC (rząd lewy, pod ESP do prawej), 3: 8→SDA, 4: 9→SCL (rząd prawy, od razu w prawo)
+  if (n == 0) przewod(concat(zPin(0, 1, 5), [[19.2, 21.6, 5], [24, 24, 3.6], [45, 30, 3.6], [100, 38, 3.6], [chX(9) + 0.4, 40, dupTop + 3]], doPCA(chX(9) + 0.4, rowY[1])));
+  if (n == 1) przewod(concat(zPin(1, 1, 5), [[19.2, 24.14, 5], [24, 26.5, 3.6], [45, 32.5, 3.6], [98, 40, 3.6], [chX(9) - 0.4, 42, dupTop + 3]], doPCA(chX(9) - 0.4, rowY[0])));
+  if (n == 2) przewod(concat(zPin(2, 1, 5), [[19.2, 26.7, 5], [24, 29, 3.6], [34, 33, 3.6], [45, 45, 3.6], [70, bokY(4), 3.6], [bokXL - 3, bokY(4), dupTop + 3]], doPCA(bokXL, bokY(4))));
+  if (n == 3) przewod(concat(zPin(3, 0, 6.4), [[38, eY(3), 6.4], [48, 45, 6.4], [70, bokY(3), 6.4], [bokXL - 3, bokY(3), dupTop + 4]], doPCA(bokXL, bokY(3))));
+  if (n == 4) przewod(concat(zPin(4, 0, 7.8), [[40, eY(4), 7.8], [47, 43, 7.8], [70, bokY(2), 7.8], [bokXL - 3, bokY(2), dupTop + 5]], doPCA(bokXL, bokY(2))));
 }
 module espPCAwtyki() { dupGora(chX(9), rowY[0]); dupGora(chX(9), rowY[1]); for (k = [2:4]) dupGora(bokXL, bokY(k)); }
 module kondensator() {
@@ -75,18 +77,19 @@ module kondensator() {
 module kondWtyki() for (r = [0, 1]) dupGora(chX(8), rowY[r]);
 module pir(n) {   // 0 VCC → 10 V+, 1 GND → 10 GND, 2 OUT → ESP 10
   if (n < 2) przewod(concat([[150, 10, 5], [142, 10 + n, 5], [125, 30, 5], [chX(10) + (n ? -0.4 : 0.4), 40, dupTop + 3]], doPCA(chX(10) + (n ? -0.4 : 0.4), rowY[1 - n])));
-  if (n == 2) przewod(concat([[150, 9, 5], [142, 9, 5], [138, 22, 4], [40, 22, 4]], [[eRowX[0], eY(5), 5], [eRowX[0], eY(5), eDupBot]]));
+  if (n == 2) przewod(concat([[150, 9, 5], [142, 9, 5], [138, 22, 5], [45, eY(5), 5]], [[eRowX[0], eY(5), 5], [eRowX[0], eY(5), eDupBot]]));   // do pinu 10 od prawej, pod SDA/SCL
 }
 module pirWtyki() { dupGora(chX(10), rowY[0]); dupGora(chX(10), rowY[1]); }
 module przycisk() translate([151, bY, bZ]) rotate([0, 90, 0]) cylinder(d = 15, h = 20, $fn = 32);
 // przycisk (użytkownik 28.10): gotowy przewód, dwa przewody na skrajnych pozycjach wtyczki Dupont 3-pin, środek pusty;
-// wtyczka wprost na ESP, rząd od ściany, pozycje 1–3 od USB = GPIO5 (masa, program LOW), GPIO6 (pusty), GPIO7 (odczyt); bez połączenia z PCA
-module przyciskPrzew(n) {   // 0: GPIO5 (masa, czarny), 1: GPIO7 (odczyt, pomarańczowy)
-  k = n ? 2 : 0; d = n ? 0 : 1.4;
-  przewod([[eRowX[0], eY(k), eDupBot], [eRowX[0], eY(k), 5], [12 - d, 28, 5], [13 - d, 45 + d, 6], [45, 55 + d, 10], [70, 82 + d, 14], [120, 82 + d, 20], [151, bY - 3 + 6 * n, bZ]]);
+// wtyczka wprost na ESP, rząd prawy (od PCA), pozycje 1–3 od USB = GPIO5 (masa, program LOW), GPIO6 (pusty), GPIO7 (odczyt); bez połączenia z PCA
+module przyciskPrzew(n) {   // 0: GPIO5 (masa, czarny), 1: GPIO7 (odczyt, pomarańczowy); pod ESP ukosem między słupkami do lewej ściany (z 6,4, nad 5V/G/3V3)
+  d = n ? 0 : 1.4;
+  przewod(concat(n ? zPin(2, 0, 6.4) : concat(zPin(0, 0, 6.4), [[31, 21, 6.4]]),
+    [[eRowX[1], n ? 34.8 : 32.3, 6.4], [12 - d, n ? 38.5 : 37, 6], [13 - d, 45 + d, 6], [45, 55 + d, 10], [70, 82 + d, 14], [120, 82 + d, 20], [151, bY - 3 + 6 * n, bZ]]));
 }
 module przyciskWtyczka() translate([eRowX[0] - 1.25, eY(1) - 3.8, eDupBot]) cube([2.5, 7.6, dup]);   // obudowa 3-pin 2,5 × 7,6 × 14 na pinach 5–6–7
-module zapasESP() { przewod([[eRowX[1], eY(4), eDupBot], [eRowX[1], eY(4), 5], [40, eY(4), 5], [44, 42, 5]]); przewod([[eRowX[1], eY(3), eDupBot], [eRowX[1], eY(3), 6.5], [42, eY(3) + 1, 6.5], [46, 27, 6.5]]); }   // GPIO3, GPIO4: końce zaizolowane
+module zapasESP() for (k = [3, 4]) przewod(concat(zPin(k, 1, 5), [[11, eY(k) - 1.9, 5]]));   // GPIO4 (k 3), GPIO3 (k 4): krótko w stronę lewej ściany, końce zaizolowane
 // skrętki: s = 0 lewa (ch 0–3), 1 prawa (4–7), 2 duże oko (12–15)
 // Strona PCA (użytkownik 28.10): żyły przylutowane do 4 wtyczek odciętych od serw (A–D na kanały n…n+3),
 // każda wtyczka z ok. 5 cm własnego przewodu (brązowy GND, czerwony V+, pomarańczowy sygnał) do lutu w koszulce.

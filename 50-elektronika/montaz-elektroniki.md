@@ -39,7 +39,7 @@ Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commit
 | 8 | PIR VCC | kanał 10 V+ | czerwony | 400, przyciąć na miejscu | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 9 | PIR GND | kanał 10 GND | czarny | 400, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 10 | PIR OUT | ESP 10 | żółty | 450, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
-| 11 | przycisk (obie nóżki) | ESP piny 5–6–7, rząd od ściany tacki | gotowy przewód użytkownika | min. ok. 200 (trasa w modelu ok. 185) – sprawdź, czy sięga | przylutowany / wtyczka 3-pin na skrajnych pozycjach, środek pusty; strona wtyczki obojętna |
+| 11 | przycisk (obie nóżki) | ESP piny 5–6–7, rząd prawy (od PCA), pozycje 1–3 od USB | gotowy przewód użytkownika | min. ok. 200 (trasa w modelu ok. 185) – sprawdź, czy sięga | przylutowany / wtyczka 3-pin na skrajnych pozycjach, środek pusty; strona wtyczki obojętna |
 | 13 | ESP 3 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 | 14 | ESP 4 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 
@@ -63,24 +63,24 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
    ![PCA na słupkach](montaz-elektroniki/img/krok01-pca.png)
 2. **ESP – wtyki przed klejeniem:** nałóż 8 pojedynczych wtyków (5V, G, 3V3, 4, 8, 9, 10, 3) i wtyczkę przycisku 3-pin na piny 5–6–7 (przycisk z przewodem wisi luzem do kroku 6) (piny z rysunku w `polaczenia.md`; napisy na płytce mają pierwszeństwo). Opisz końce taśmą. Zmierz od spodu płytki do miejsca, gdzie przewód da się zgiąć – to wysokość podkładek + 16. Podkładki przyklej na słupki, ESP na podkładki, USB do przodu.
 
-   Piny ESP (widok z góry, USB do przodu tacki; liczone od strony USB). Wtyk = Dupont żeński na pinie:
+   Piny ESP – widok z góry: układ scalony do góry, USB do przodu tacki (do Ciebie, na dole). Pozycja liczona od USB. Wtyk = Dupont żeński na pinie:
 
-   | Poz. od USB | Rząd od ściany tacki | wtyk → dokąd | Rząd od PCA | wtyk → dokąd |
+   | Poz. od USB | Rząd LEWY (od ściany tacki) | wtyk → dokąd | Rząd PRAWY (od PCA) | wtyk → dokąd |
    |---|---|---|---|---|
-   | 1 | 5 | **wtyczka przycisku** (masa przycisku – program ustawia LOW) | 5V | **tak** → kanał 9 V+ |
-   | 2 | 6 | środek wtyczki przycisku – pusty | G | **tak** → kanał 9 GND |
-   | 3 | 7 | **wtyczka przycisku** (odczyt) | 3V3 | **tak** → lewa listwa VCC |
-   | 4 | 8 | **tak** → lewa listwa SDA | 4 | **tak** – zapas, koniec zaizolowany |
-   | 5 | 9 | **tak** → lewa listwa SCL | 3 | **tak** – zapas, koniec zaizolowany |
-   | 6 | 10 | **tak** → PIR OUT | 2 | – |
-   | 7 | 20 | – | 1 | – |
-   | 8 | 21 | – | 0 | – |
+   | 1 | 5V | **tak** → kanał 9 V+ | 5 | **wtyczka przycisku** (masa przycisku – program ustawia LOW) |
+   | 2 | G | **tak** → kanał 9 GND | 6 | środek wtyczki przycisku – pusty |
+   | 3 | 3V3 | **tak** → lewa listwa VCC | 7 | **wtyczka przycisku** (odczyt) |
+   | 4 | 4 | **tak** – zapas, koniec zaizolowany | 8 | **tak** → lewa listwa SDA |
+   | 5 | 3 | **tak** – zapas, koniec zaizolowany | 9 | **tak** → lewa listwa SCL |
+   | 6 | 2 | – | 10 | **tak** → PIR OUT |
+   | 7 | 1 | – | 20 | – |
+   | 8 | 0 | – | 21 | – |
 
-   Kolejność z typowego ESP32-C3 SuperMini – przed nałożeniem wtyków porównaj z napisami na płytce. Wtyki zabezpiecz klejem na gorąco dopiero po testach (krok 9): kropla łączy obudowy w rzędzie z plastikiem listwy, nie na elementy płytki i nie na gniazdo USB.
+   Układ według pinoutu ESP32-C3 SuperMini (Random Nerd Tutorials; tam płytka pokazana od spodu, USB u góry) i obserwacji użytkownika 28.10 (USB do siebie, 5V, G, 3V3 po lewej). Napisy na płytce mają pierwszeństwo. Wtyki zabezpiecz klejem na gorąco dopiero po testach (krok 9): kropla łączy obudowy w rzędzie z plastikiem listwy, nie na elementy płytki i nie na gniazdo USB.
 
    ![ESP: wtyki, podkładki, ESP na słupkach](montaz-elektroniki/img/krok02-esp.png)
 
-   ![Wtyki na pinach ESP, widok od przodu z dołu](montaz-elektroniki/img/krok02a-esp-piny.png)
+   ![Piny ESP, widok z góry, USB do Ciebie: dokąd idzie każdy pin](montaz-elektroniki/img/krok02a-esp-piny.png)
 
    ![Wysokości przy ESP](montaz-elektroniki/img/krok02b-esp-wysokosci.png)
 3. **Zasilanie:** gniazdo USB-C w ściankę (nakrętka od tyłu), przewody 1–2 przez uchwyt opaski do zacisku (V+ i GND według napisu przy zacisku). **Test:** powerbank, miernik na pinach V+/GND kanału 9: ok. 5 V.
@@ -93,8 +93,6 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
    ![Lewa listwa PCA: VCC, SDA, SCL](montaz-elektroniki/img/krok04b-lewa-listwa.png)
 
    ![Kanał 9: 5V i G z ESP](montaz-elektroniki/img/krok04c-kanal9.png)
-
-   ![Przewody na pinach ESP](montaz-elektroniki/img/krok04d-esp-piny.png)
 5. **Kondensator:** nóżki skrócone i zagięte, wtyki na kanał 8: pasek (−) na GND (rząd przy krawędzi płytki), druga na V+. Korpus leży poziomo do przodu; przewody 5V i G do kanału 9 poprowadź obok korpusu, nie przez niego (w modelu trasa ociera o kondensator).
 
    ![Kondensator na kanale 8](montaz-elektroniki/img/krok05-kondensator.png)
@@ -103,8 +101,6 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
    ![PIR i przycisk](montaz-elektroniki/img/krok06-pir-przycisk.png)
 
    ![Kanał 10: PIR VCC / GND](montaz-elektroniki/img/krok06b-kanal10-przycisk.png)
-
-   ![PIR OUT i przycisk na pinach ESP](montaz-elektroniki/img/krok06c-esp-piny.png)
 7. **Skrętki** (rozdział 5), po jednej: lewa → test oczu 0–3, prawa → 4–7, duże oko → 12–15 + ustalenie sprzężenia (`dynia-v2/README.md`).
 
    ![Skrętki do oczu](montaz-elektroniki/img/krok07-skretki.png)

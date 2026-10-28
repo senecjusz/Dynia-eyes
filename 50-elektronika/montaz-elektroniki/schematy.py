@@ -1,7 +1,7 @@
-# Rysunki schematyczne skrętek do montaz-elektroniki.md, rozdział 5 (SVG → PNG przez rsvg-convert).
-# Użycie: python3 schematy.py   → img/krok07d-lutowanie-wtyczek.png, img/krok07e-serwa-strona-oczu.png
+# Rysunki schematyczne do montaz-elektroniki.md: piny ESP (krok 2) i skrętki (rozdział 5), SVG → PNG przez rsvg-convert.
+# Użycie: python3 schematy.py [nazwa ...]   → img/krok02a-esp-piny.png, img/krok07d-lutowanie-wtyczek.png, img/krok07e-serwa-strona-oczu.png
 # Wymaga: rsvg-convert (librsvg), czcionka Liberation Sans albo DejaVu Sans.
-import os, subprocess
+import os, subprocess, sys
 
 TU = os.path.dirname(os.path.abspath(__file__))
 IMG = os.path.join(TU, "img")
@@ -51,6 +51,84 @@ def strzalka_wym(x0, x1, y, t):
         s += f'<path d="M{x},{y} l{14 * d},-8 l0,16 z" fill="#b00020"/>'
         s += f'<line x1="{x}" y1="{y - 16}" x2="{x}" y2="{y + 16}" stroke="#b00020" stroke-width="2"/>'
     return s + tekst((x0 + x1) / 2, y - 14, t, 22, "#b00020", "middle", True)
+
+# ---------- krok02a: piny ESP32-C3 SuperMini, widok z góry, USB do patrzącego ----------
+# Zgodnie z tabelą pinów w montaz-elektroniki.md, krok 2 (rząd lewy od ściany tacki: 5V, G, 3V3, 4, 3, 2, 1, 0;
+# rząd prawy od PCA: 5, 6, 7, 8, 9, 10, 20, 21; pozycje od USB).
+def krok02a():
+    W, H = 1600, 960
+    CZ, CA, NB, ZO, PO, ZP, SZ = "#d81e1e", "#141414", "#1e78d8", "#b08600", "#e07800", "#1f9a8a", "#9a9a9a"
+    LEWY = [("5V", "→ kanał 9 V+ (PCA)", CZ), ("G", "→ kanał 9 GND (PCA)", CA), ("3V3", "→ lewa listwa PCA: VCC", NB),
+            ("4", "zapas – koniec zaizolowany", ZP), ("3", "zapas – koniec zaizolowany", ZP),
+            ("2", "wolny", None), ("1", "wolny", None), ("0", "wolny", None)]
+    PRAWY = [("5", "→ przycisk: masa", PO), ("6", "pusty (środek wtyczki)", None), ("7", "→ przycisk: odczyt", PO),
+             ("8", "→ lewa listwa PCA: SDA", NB), ("9", "→ lewa listwa PCA: SCL", NB), ("10", "→ PIR OUT", ZO),
+             ("20", "wolny", None), ("21", "wolny", None)]
+    mm = 20                                     # skala płytki [px/mm]
+    cx, yb = 800, 740                           # oś płytki, krawędź płytki od strony USB
+    bw, bl = 18.4 * mm, 22.5 * mm
+    xl, xp = cx - 7.6 * mm, cx + 7.6 * mm       # rzędy pinów
+    def yk(k): return yb - (1.8 + 2.54 * k) * mm
+    s = tekst(30, 52, "4.2  Piny ESP – widok z góry: układ scalony do góry, USB do Ciebie", 34, bold=True)
+    s += tekst(30, 88, "pozycja liczona od USB (1 = najbliżej USB) · czarny kwadrat = wtyk Dupont nałożony na pin od spodu · napisy na płytce mają pierwszeństwo", 20, "#555")
+    # nagłówki kolumn i strony tacki
+    s += tekst(xl - 60, 170, "LEWY rząd (od ściany tacki)", 30, "#111", "end", True)
+    s += tekst(xp + 60, 170, "PRAWY rząd (od PCA)", 30, "#111", "start", True)
+    s += tekst(30, 215, "← lewa ściana tacki", 24, "#555")
+    s += tekst(W - 30, 215, "PCA9685 →", 24, "#555", "end")
+    # płytka
+    s += f'<rect x="{cx - bw / 2}" y="{yb - bl}" width="{bw}" height="{bl}" rx="14" fill="#1d3fb8" stroke="#0d1f66" stroke-width="4"/>'
+    s += f'<rect x="{cx - 2.5 * mm}" y="{yb - bl + 1.2 * mm}" width="{5 * mm}" height="{2.6 * mm}" rx="4" fill="#d9d9d9" stroke="#333" stroke-width="2"/>'
+    s += tekst(cx, yb - bl + 1.2 * mm + 34, "antena", 20, "#111", "middle")
+    s += f'<rect x="{cx - 2.6 * mm}" y="{yk(4.2)}" width="{5.2 * mm}" height="{5.2 * mm}" rx="6" fill="#151515" stroke="#555" stroke-width="2"/>'
+    s += tekst(cx, yk(4.2) + 2.6 * mm - 6, "układ", 20, "#fff", "middle", True)
+    s += tekst(cx, yk(4.2) + 2.6 * mm + 18, "scalony", 20, "#fff", "middle", True)
+    # gniazdo USB-C ESP (wystaje przed płytkę)
+    s += f'<rect x="{cx - 4.5 * mm}" y="{yb - 6 * mm}" width="{9 * mm}" height="{7.5 * mm}" rx="16" fill="#c0c4c9" stroke="#333" stroke-width="3"/>'
+    s += tekst(cx, yb - 2.2 * mm, "USB-C", 24, "#111", "middle", True)
+    # wtyczka przycisku 3-pin na prawych pozycjach 1–3 (obudowa pod płytką)
+    s += f'<rect x="{xp - 22}" y="{yk(2) - 30}" width="44" height="{yk(0) - yk(2) + 60}" rx="6" fill="#202020" stroke="{PO}" stroke-width="4"/>'
+    # piny, wtyki, nazwy na płytce, etykiety
+    for strona, rzad, x in (("L", LEWY, xl), ("P", PRAWY, xp)):
+        for k, (nazwa, dokad, kol) in enumerate(rzad):
+            y = yk(k)
+            wtyk = kol is not None
+            if wtyk and not (strona == "P" and k <= 2):
+                s += f'<rect x="{x - 19}" y="{y - 19}" width="38" height="38" rx="4" fill="#151515"/>'
+            s += f'<circle cx="{x}" cy="{y}" r="11" fill="#e8c35a" stroke="#6b5310" stroke-width="3"/>'
+            s += f'<circle cx="{x}" cy="{y}" r="4" fill="#6b5310"/>'
+            # nazwa pinu na płytce (jak nadruk)
+            s += tekst(x + (26 if strona == "L" else -26), y + 7, nazwa, 20, "#ffffff", "start" if strona == "L" else "end", True)
+            # numer pozycji od USB
+            xn = x - 70 if strona == "L" else x + 70
+            # etykieta: [nazwa] dokąd
+            kol_r = kol or SZ
+            txt = dokad
+            szer_n = 22 + 15 * len(nazwa)
+            szer_t = 13.2 * len(txt) + 20
+            xb0 = xn - 30 - szer_n - szer_t if strona == "L" else xn + 30
+            s += f'<line x1="{x}" y1="{y}" x2="{xn + (-17 if strona == "L" else 17)}" y2="{y}" stroke="{kol_r}" stroke-width="3"/>'
+            s += f'<line x1="{xn + (-17 if strona == "L" else 17)}" y1="{y}" x2="{xb0 + (szer_n + szer_t if strona == "L" else 0)}" y2="{y}" stroke="{kol_r}" stroke-width="3"/>'
+            s += f'<circle cx="{xn}" cy="{y}" r="17" fill="#ffffff" stroke="#777" stroke-width="2"/>' + tekst(xn, y + 7, str(k + 1), 20, "#555", "middle", True)
+            s += f'<rect x="{xb0}" y="{y - 20}" width="{szer_n + szer_t}" height="40" rx="7" fill="#ffffff" stroke="{kol_r}" stroke-width="3"/>'
+            s += f'<rect x="{xb0}" y="{y - 20}" width="{szer_n}" height="40" rx="7" fill="{kol_r}"/>'
+            s += tekst(xb0 + szer_n / 2, y + 9, nazwa, 26, "#ffffff", "middle", True)
+            s += tekst(xb0 + szer_n + 10, y + 8, txt, 22, "#111" if kol else "#888", "start", bool(kol))
+    for xn in (xl - 70, xp + 70):
+        s += tekst(xn, yk(7) - 34, "poz.", 18, "#777", "middle", True)
+    # klamra: wtyczka przycisku
+    xk = 1460
+    s += f'<path d="M{xk},{yk(0) + 20} l14,0 l0,{-(yk(0) - yk(2)) - 40} l-14,0" fill="none" stroke="{PO}" stroke-width="4"/>'
+    s += tekst(xk + 22, yk(1) - 4, "jedna", 22, PO, "start", True)
+    s += tekst(xk + 22, yk(1) + 20, "wtyczka", 22, PO, "start", True)
+    s += tekst(xk + 22, yk(1) + 44, "przycisku", 22, PO, "start", True)
+    # USB do patrzącego
+    ya = yb + 2 * mm
+    s += f'<line x1="{cx}" y1="{ya}" x2="{cx}" y2="{ya + 90}" stroke="#b00020" stroke-width="6"/>'
+    s += f'<path d="M{cx - 20},{ya + 80} L{cx},{ya + 115} L{cx + 20},{ya + 80} z" fill="#b00020"/>'
+    s += tekst(cx + 40, ya + 70, "USB – do Ciebie / do przodu tacki", 28, "#b00020", "start", True)
+    s += tekst(30, H - 30, "Wolne piny: 2, 1, 0 (lewy rząd) oraz 20, 21 (prawy rząd) – bez wtyków.", 22, "#333")
+    zapisz("krok02a-esp-piny", W, H, s)
 
 # ---------- krok07d: strona tacki – żyły do wtyczek odciętych od serw ----------
 def krok07d():
@@ -165,5 +243,6 @@ def krok07e():
 
 if __name__ == "__main__":
     os.makedirs(IMG, exist_ok=True)
-    krok07d()
-    krok07e()
+    RYS = {"krok02a-esp-piny": krok02a, "krok07d-lutowanie-wtyczek": krok07d, "krok07e-serwa-strona-oczu": krok07e}
+    for n in sys.argv[1:] or RYS:
+        RYS[n]()
