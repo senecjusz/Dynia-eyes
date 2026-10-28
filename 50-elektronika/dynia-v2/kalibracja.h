@@ -7,7 +7,8 @@
 struct Kal { uint8_t ch; int16_t mn, sr, mx; };       // kanał, impuls min, środek, max
 struct KalPow { uint8_t ch; int16_t zamk, otw; };      // powieka: impuls zamknięta, otwarta
 
-// Małe oczy: kanały 0–3 strona lewa, 4–7 strona prawa (patrząc od przodu). Test 25.10: wspólne wartości.
+// Małe oczy: kanały 0–3 skrętka z 4 oczami, 4–6 skrętka z 3 oczami (użytkownik 28.10: „4 plus 3”); kanał 7 bez serwa. Test 25.10: wspólne wartości.
+constexpr int N_MALE = 7;   // pierwsze N_MALE wpisów MALE; reszta bez impulsu
 const Kal MALE[8] = {
   {0, 1100, 1500, 1800}, {1, 1100, 1500, 1800}, {2, 1100, 1500, 1800}, {3, 1100, 1500, 1800},
   {4, 1100, 1500, 1800}, {5, 1100, 1500, 1800}, {6, 1100, 1500, 1800}, {7, 1100, 1500, 1800},

@@ -144,7 +144,7 @@ void krokRuchu(uint32_t t) {
   if (GALKA_GOTOWA && S[I_GX].ruch && !S[I_GY].ruch) { impuls(S[I_GY], S[I_GY].us); S[I_GY].tKonca = t; }
 }
 
-int malychWRuchu() { int n = 0; for (int i = 0; i < 8; i++) n += S[i].ruch; return n; }
+int malychWRuchu() { int n = 0; for (int i = 0; i < N_MALE; i++) n += S[i].ruch; return n; }
 bool wszystkieStoja() { for (int i = 0; i < N_SERW; i++) if (S[i].ruch) return false; return true; }
 
 // Czas ruchu z odległości: spokojny w spoczynku, szybszy (sakada) w trybie aktywnym.
@@ -155,7 +155,7 @@ uint32_t czasRuchu(float d, bool szybko) {
 
 // Małe oczy na środek, najwyżej MAX_MALYCH_W_RUCHU naraz.
 void naSrodekPoKolei(uint32_t czas) {
-  for (int i = 0; i < 8 && malychWRuchu() < MAX_MALYCH_W_RUCHU; i++)
+  for (int i = 0; i < N_MALE && malychWRuchu() < MAX_MALYCH_W_RUCHU; i++)
     if (!S[i].ruch && fabsf(S[i].us - S[i].sr) >= 1) ruch(i, S[i].sr, czas);
 }
 
@@ -215,12 +215,12 @@ void ustawTryb(Tryb n) {
   Serial.printf("%lu s: tryb %s\n", millis() / 1000, nazwaTrybu());
   uint32_t t = millis();
   if (n == BLOKADA) {   // małe oczy jadą na środek w krokTrybu, po 2 naraz
-    for (int i = 0; i < 8; i++) S[i].ruch = false;
+    for (int i = 0; i < N_MALE; i++) S[i].ruch = false;
     if (GALKA_GOTOWA) { galkaNaSrodek(600); powieki(1, 600); }
   } else if (n == SPOCZYNEK) {
     tNastepnySpoczynek = t + losuj(4000, 6000);
   } else if (n == AKTYWNY) {
-    for (int i = 0; i < 8; i++) S[i].tNastepny = t + losuj(0, 1500);
+    for (int i = 0; i < N_MALE; i++) S[i].tNastepny = t + losuj(0, 1500);
     if (GALKA_GOTOWA) S[I_GX].tNastepny = t;
   }
 }
@@ -229,6 +229,7 @@ void krokTrybu(uint32_t t) {
   if (tryb == ROZRUCH) {
     // Kanał po kanale impuls z NVS (tam serwo stoi), potem wolny dojazd: małe oczy i gałka na środek, na końcu powieki zamknięte.
     if (rozruchKanal < N_SERW) {
+      if (rozruchKanal >= N_MALE && rozruchKanal < 8) { rozruchKanal++; return; }   // kanały małych oczu bez serwa: bez impulsu
       if (t - tRozruchu >= ROZRUCH_KANAL_MS) { impuls(S[rozruchKanal], S[rozruchKanal].us); rozruchKanal++; tRozruchu = t; }
       return;
     }
@@ -236,7 +237,7 @@ void krokTrybu(uint32_t t) {
       naSrodekPoKolei(ROZRUCH_RUCH_MS);
       if (malychWRuchu() == 0) {
         bool wszystkie = true;
-        for (int i = 0; i < 8; i++) if (fabsf(S[i].us - S[i].sr) >= 1) wszystkie = false;
+        for (int i = 0; i < N_MALE; i++) if (fabsf(S[i].us - S[i].sr) >= 1) wszystkie = false;
         if (wszystkie) rozruchDojazd = true;
       }
       if (GALKA_GOTOWA && !duzeWRuchu() && !galkaNaSrodku()) galkaNaSrodek(ROZRUCH_RUCH_MS);
@@ -257,13 +258,13 @@ void krokTrybu(uint32_t t) {
   if (tryb == SPOCZYNEK) {
     duzeZamknij();
     if ((int32_t)(t - tNastepnySpoczynek) >= 0) {
-      int i = losuj(0, 7);
+      int i = losuj(0, N_MALE - 1);
       if (!S[i].ruch) malyCel(i, false, 0.6f);
       tNastepnySpoczynek = t + losuj(4000, 6000);
     }
   } else {  // AKTYWNY
     if (t - tOstRuchuPir > AKTYWNY_MS) { ustawTryb(SPOCZYNEK); return; }
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < N_MALE; i++) {
       Serwo &s = S[i];
       if (s.ruch || (int32_t)(t - s.tNastepny) < 0 || malychWRuchu() >= MAX_MALYCH_W_RUCHU) continue;
       malyCel(i, true, 0.9f);
