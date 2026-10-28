@@ -127,7 +127,7 @@ Wtyczkę odcinasz ok. 5 cm od obudowy (przewody przy wtyczce do lutowania), resz
    - wtyczka C: brązowy ← żyła 8, czerwony ← żyła 7, pomarańczowy ← żyła 3;
    - wtyczka D: pomarańczowy ← żyła 6; brązowy i czerwony obcięte i zaizolowane.
 
-   ![Strona tacki: żyły skrętki do wtyczek A–D](montaz-elektroniki/img/krok07d-lutowanie-wtyczek.png)
+   ![Strona tacki: żyły skrętki do wtyczek A–D](montaz-elektroniki/img/skretka-strona-tacki.png)
 2. Wpięcie: A na kanał n, B na n+1, C na n+2, D na n+3 – brązowy przewód od krawędzi płytki (GND). Wynik jak w tabeli w `polaczenia.md`: żyły 1, 2, 3, 6 – sygnały n…n+3; 4 / 5 – V+ / GND kanału n; 7 / 8 – V+ / GND kanału n+2.
 
    ![Żyły lewej skrętki na kanałach 0–3](montaz-elektroniki/img/krok07c-zyly-kanaly0-3.png)
@@ -143,6 +143,8 @@ Wtyczkę odcinasz ok. 5 cm od obudowy (przewody przy wtyczce do lutowania), resz
    - serwo opisz literą i numerem kanału.
 3. **Test przed lutowaniem serw:** długi odcinek wpięty w PCA i w keystone, krótki z wtykiem w keystone, zasilanie włączone: miernik między żyłą 4 i 5 oraz 7 i 8 na wolnym końcu krótkiego odcinka – ok. 5 V. Dopiero potem lutujesz serwa.
 
-   ![Krótki odcinek: serwa A–D lutowane do żył](montaz-elektroniki/img/krok07e-serwa-strona-oczu.png)
+   ![Lewa skrętka, strona serw: 4 serwa (kanały 0–3; duże oko 12–15)](montaz-elektroniki/img/skretka-4-serwa-strona-serw.png)
+
+   ![Prawa skrętka, strona serw: 3 serwa (kanały 4–6), żyła 6 obcięta](montaz-elektroniki/img/skretka-3-serwa-strona-serw.png)
 
 Duże oko: A = L–P (12), B = G–D (13), C = powieka górna (14), D = powieka dolna (15).

@@ -1,5 +1,5 @@
 # Rysunki schematyczne do montaz-elektroniki.md: piny ESP (krok 2) i skrętki (rozdział 5), SVG → PNG przez rsvg-convert.
-# Użycie: python3 schematy.py [nazwa ...]   → img/krok02a-esp-piny.png, img/krok07d-lutowanie-wtyczek.png, img/krok07e-serwa-strona-oczu.png
+# Użycie: python3 schematy.py [nazwa ...]   → img/krok02a-esp-piny.png, img/skretka-*.png
 # Wymaga: rsvg-convert (librsvg), czcionka Liberation Sans albo DejaVu Sans.
 import os, subprocess, sys
 
@@ -130,119 +130,317 @@ def krok02a():
     s += tekst(30, H - 30, "Wolne piny: 2, 1, 0 (lewy rząd) oraz 20, 21 (prawy rząd) – bez wtyków.", 22, "#333")
     zapisz("krok02a-esp-piny", W, H, s)
 
-# ---------- krok07d: strona tacki – żyły do wtyczek odciętych od serw ----------
-def krok07d():
-    W, H = 1600, 1060
-    s = tekst(30, 52, "5  Strona tacki: żyły skrętki → 4 wtyczki odcięte od serw (T568B)", 34, bold=True)
-    s += tekst(30, 88, "każdy lut w koszulce · przewód wtyczki: brązowy GND, czerwony V+, pomarańczowy sygnał · brązowy od krawędzi płytki", 21, "#555")
-    # wiersze: (wtyczka, przewód wtyczki, żyła albo None = obcięty)
-    WIERSZE = []
-    grupy = [("A", "n", {"b": 5, "c": 4, "p": 1}), ("B", "n+1", {"b": None, "c": None, "p": 2}),
-             ("C", "n+2", {"b": 8, "c": 7, "p": 3}), ("D", "n+3", {"b": None, "c": None, "p": 6})]
-    y0, dy, dg = 190, 42, 66
-    yc = 0
-    for gi, (lit, kan, m) in enumerate(grupy):
-        for ri, r in enumerate("bcp"):
-            WIERSZE.append((lit, kan, r, m[r], y0 + gi * (3 * dy + dg) + ri * dy))
-    xj, xr, xk, xw, xp = 300, 470, 760, 840, 1180          # koniec płaszcza, początek prostej, koszulka, przewód wtyczki, wtyczka
-    yj = (WIERSZE[0][4] + WIERSZE[-1][4]) / 2
-    # płaszcz
-    s += f'<rect x="30" y="{yj - 20}" width="{xj - 30}" height="40" rx="8" fill="#9b8fb0" stroke="#333" stroke-width="2"/>'
-    s += tekst(40, yj - 34, "skrętka – długi odcinek", 22, bold=True)
-    s += tekst(40, yj + 52, "do keystone'a w dyni", 20, "#555")
-    # żyły → koszulka → przewód wtyczki
-    aktywne = [w for w in WIERSZE if w[3]]
-    for i, (lit, kan, r, z, y) in enumerate(aktywne):
-        ys = yj - 14 + i * 4
-        s += zyla(f"M{xj},{ys} C{xj + 90},{ys} {xr - 90},{y} {xr},{y} L{xk},{y}", z)
-    for lit, kan, r, z, y in aktywne:
-        nazwa, kol = SERWO[r]
-        s += przewod(f"M{xw},{y} L{xp},{y}", kol)
-        s += koszulka(xk - 10, y)
-        s += tekst(xr + 6, y - 12, f"żyła {z} ({ZYLA[z][0]})", 20, bold=True)
-        s += tekst(xw + 14, y - 12, nazwa, 18, "#444")
-    # obcięte brązowy i czerwony (B, D)
-    for lit, kan, r, z, y in WIERSZE:
-        if z is None:
-            nazwa, kol = SERWO[r]
-            s += przewod(f"M{xp - 40},{y} L{xp},{y}", kol)
-            s += f'<rect x="{xp - 64}" y="{y - 10}" width="28" height="20" rx="5" fill="{KOSZ}" stroke="#222" stroke-width="2"/>'
-            s += tekst(xp - 76, y + 7, f"{nazwa}: obcięty, zaizolowany", 19, "#444", "end")
-    # wtyczki i piny
-    for gi, (lit, kan, m) in enumerate(grupy):
-        ys = [w[4] for w in WIERSZE if w[0] == lit]
-        s += f'<rect x="{xp}" y="{ys[0] - 24}" width="64" height="{ys[2] - ys[0] + 48}" rx="5" fill="#202020"/>'
-        s += tekst(xp + 32, ys[1] + 12, lit, 34, "#ffffff", "middle", True)
-        for y, pin in zip(ys, ("GND", "V+", "sygnał")):
-            s += tekst(xp + 76, y + 7, pin, 19, "#333")
-        s += tekst(xp + 160, ys[1] - 4, f"wtyczka {lit}", 26, bold=True)
-        s += tekst(xp + 160, ys[1] + 26, f"→ kanał {kan}", 22)
-        if not m["b"]:
-            s += tekst(xp + 160, ys[1] + 54, "tylko sygnał", 22, "#b00020", bold=True)
-    # wymiary i opisy
-    s += f'<line x1="{xk + 20}" y1="{WIERSZE[0][4] - 12}" x2="{xk - 40}" y2="{WIERSZE[0][4] - 46}" stroke="#555" stroke-width="2"/>'
-    s += tekst(xk - 46, WIERSZE[0][4] - 44, "lut w koszulce", 20, "#333", "end")
-    s += strzalka_wym(xw - 40, xp, 128, "ok. 5 cm przewodu przy wtyczce")
-    yb = WIERSZE[-1][4] + 70
-    s += strzalka_wym(xj, xk + 70, yb, "płaszcz zdjęty ok. 80 mm")
-    s += tekst(30, H - 40, "n: lewa skrętka 0 · prawa 4 · duże oko 12.  Wtyczki A–D wpinasz w kolejne kanały n…n+3, brązowy przewód od krawędzi płytki (GND).", 21, "#111")
-    zapisz("krok07d-lutowanie-wtyczek", W, H, s)
+# ---------- rozdział 5: skrętki (strona serw i strona tacki) ----------
+CZERW = "#b00020"
 
-# ---------- krok07e: krótki odcinek – serwa lutowane do żył ----------
-def krok07e():
-    W, H = 1600, 1080
-    s = tekst(30, 52, "5  Krótki odcinek (keystone → oczy): serwa A–D lutowane wprost do żył", 34, bold=True)
-    s += tekst(30, 88, "każdy lut w koszulce · serwa A i B dzielą żyły 4 (V+) i 5 (GND), serwa C i D – żyły 7 (V+) i 8 (GND)", 21, "#555")
-    xj, xr, xk, xs = 300, 480, 760, 1150   # koniec płaszcza, początek prostej, koszulka, serwo
-    # serwa: litera, kanał, przewody od góry
-    serwa = [("A", "n", "pcb", 190), ("B", "n+1", "bcp", 400), ("C", "n+2", "pcb", 600), ("D", "n+3", "bcp", 810)]
-    yw = {}
-    for lit, kan, kol, yt in serwa:
-        for i, r in enumerate(kol):
-            yw[(lit, r)] = yt + i * 34
-    # żyła → wiersz koszulki, cele (serwo, przewód)
-    pol = [(1, [("A", "p")]), (4, [("A", "c"), ("B", "c")]), (5, [("A", "b"), ("B", "b")]), (2, [("B", "p")]),
-           (3, [("C", "p")]), (7, [("C", "c"), ("D", "c")]), (8, [("C", "b"), ("D", "b")]), (6, [("D", "p")])]
-    yk = {1: 190, 4: 285, 5: 375, 2: 468, 3: 600, 7: 695, 8: 785, 6: 878}
-    yj = (yk[1] + yk[6]) / 2
-    # wtyk RJ45 i płaszcz
-    s += f'<rect x="30" y="{yj - 30}" width="110" height="60" rx="6" fill="#e9eef2" stroke="#333" stroke-width="3"/>'
-    s += f'<rect x="20" y="{yj - 12}" width="14" height="24" fill="#c9d2da" stroke="#333" stroke-width="2"/>'
-    s += f'<rect x="140" y="{yj - 18}" width="{xj - 140}" height="36" rx="8" fill="#9b8fb0" stroke="#333" stroke-width="2"/>'
-    s += tekst(30, yj - 46, "wtyk RJ45 (T568B)", 22, bold=True)
-    s += tekst(30, yj + 62, "→ do keystone'a w dyni", 20, "#555")
-    # przewody serw (najpierw, żeby żyły i koszulki leżały na wierzchu)
-    for z, cele in pol:
-        for lit, r in cele:
-            y1 = yw[(lit, r)]
-            s += przewod(f"M{xk + 70},{yk[z]} C{xk + 200},{yk[z]} {xs - 170},{y1} {xs - 40},{y1} L{xs},{y1}", SERWO[r][1])
-    for i, (z, cele) in enumerate(pol):
-        y = yk[z]
-        ys = yj - 14 + i * 4
-        s += zyla(f"M{xj},{ys} C{xj + 90},{ys} {xr - 90},{y} {xr},{y} L{xk},{y}", z)
-        s += koszulka(xk - 10, y)
-        opis = " + ".join(f"{SERWO[r][0]} {lit}" for lit, r in cele)
-        s += tekst(xr + 6, y - 12, f"żyła {z} ({ZYLA[z][0]})", 20, bold=True)
-        s += tekst(xr + 6, y + 32, "→ " + ("razem: " if len(cele) > 1 else "") + opis, 18, "#444")
+def sciezka(pts, r=18, hops=(), hr=20):
+    """Ścieżka ortogonalna przez punkty pts, zaokrąglone narożniki r; hops = punkty na odcinkach,
+    w których przewód przeskakuje mostkiem (łuk hr) nad innym przewodem."""
+    def sg(v): return (v > 0) - (v < 0)
+    d = f"M{pts[0][0]},{pts[0][1]}"
+    for i in range(1, len(pts)):
+        (ax, ay), (bx, by) = pts[i - 1], pts[i]
+        ux, uy = sg(bx - ax), sg(by - ay)
+        na = [h for h in hops if (ux == 0 and h[0] == ax and min(ay, by) < h[1] < max(ay, by)) or
+              (uy == 0 and h[1] == ay and min(ax, bx) < h[0] < max(ax, bx))]
+        na.sort(key=lambda h: (h[0] - ax) * ux + (h[1] - ay) * uy)
+        for hx, hy in na:
+            d += f" L{hx - ux * hr},{hy - uy * hr} A{hr},{hr} 0 0 1 {hx + ux * hr},{hy + uy * hr}"
+        if i < len(pts) - 1:
+            cx, cy = pts[i + 1]
+            vx, vy = sg(cx - bx), sg(cy - by)
+            d += f" L{bx - ux * r},{by - uy * r} Q{bx},{by} {bx + vx * r},{by + vy * r}"
+        else:
+            d += f" L{bx},{by}"
+    return d
+
+def znaczek(x, y, z, r=24):
+    """Kółko z numerem żyły w jej kolorach (biało-X: obwódka w paski)."""
+    _, k, p = ZYLA[z]
+    s = f'<circle cx="{x}" cy="{y}" r="{r}" fill="#ffffff" stroke="#333" stroke-width="{12}"/>'
+    s += f'<circle cx="{x}" cy="{y}" r="{r}" fill="#ffffff" stroke="{k}" stroke-width="8"/>'
+    if p:
+        s += f'<circle cx="{x}" cy="{y}" r="{r}" fill="none" stroke="{p}" stroke-width="8" stroke-dasharray="9 7"/>'
+    return s + tekst(x, y + 9, str(z), 26, "#111", "middle", True)
+
+def tuleja(x, y, w=90, h=30):
+    """Koszulka termokurczliwa (półprzezroczysta) na lucie."""
+    return (f'<rect x="{x - w / 2}" y="{y - h / 2}" width="{w}" height="{h}" rx="9" fill="#555" fill-opacity="0.55" '
+            f'stroke="#222" stroke-width="2.5"/>')
+
+def kropla(x, y):
+    return f'<circle cx="{x}" cy="{y}" r="9" fill="#c8c8c8" stroke="#222" stroke-width="2.5"/>'
+
+def nozyczki(x, y):
+    """Symbol obcięcia: czerwony krzyżyk z nożyczkami."""
+    s = f'<g stroke="{CZERW}" stroke-width="5" fill="none" stroke-linecap="round">'
+    s += f'<circle cx="{x - 30}" cy="{y - 14}" r="10"/><circle cx="{x - 30}" cy="{y + 14}" r="10"/>'
+    s += f'<line x1="{x - 21}" y1="{y - 9}" x2="{x + 12}" y2="{y + 12}"/><line x1="{x - 21}" y1="{y + 9}" x2="{x + 12}" y2="{y - 12}"/></g>'
+    return s
+
+def zaslepka(x, y, kol, kier=1):
+    """Koniec obciętego przewodu: zamknięta koszulka (kier = 1 – przewód wchodzi z lewej)."""
+    x0 = x if kier == 1 else x - 44
+    return (f'<rect x="{x0}" y="{y - 15}" width="44" height="30" rx="13" fill="#555" fill-opacity="0.85" stroke="#222" stroke-width="2.5"/>')
+
+def serwo_sg90(x, yc, lit, kanal):
+    """SG90 z boku: kabel wchodzi z lewej (3 przewody co 30 px wokół yc), orczyk po prawej."""
+    s = f'<rect x="{x - 26}" y="{yc - 46}" width="30" height="92" rx="6" fill="#1a1a1a"/>'          # wyjście kabla
+    s += f'<rect x="{x}" y="{yc - 62}" width="230" height="124" rx="10" fill="#2a62d6" stroke="#0d2a6b" stroke-width="3"/>'
+    s += f'<rect x="{x + 150}" y="{yc - 75}" width="26" height="150" rx="5" fill="#2a62d6" stroke="#0d2a6b" stroke-width="3"/>'   # uszy
+    s += f'<rect x="{x + 230}" y="{yc - 30}" width="22" height="60" rx="6" fill="#5d8be6" stroke="#0d2a6b" stroke-width="3"/>'     # wieżyczka
+    s += f'<rect x="{x + 252}" y="{yc - 75}" width="20" height="150" rx="10" fill="#ffffff" stroke="#333" stroke-width="3"/>'    # orczyk
+    for k in (-50, -25, 25, 50):
+        s += f'<circle cx="{x + 262}" cy="{yc + k}" r="3.5" fill="#333"/>'
+    s += f'<circle cx="{x + 262}" cy="{yc}" r="8" fill="#ddd" stroke="#333" stroke-width="2"/>'
+    s += tekst(x + 62, yc + 24, lit, 72, "#ffffff", "middle", True)
+    s += tekst(x + 104, yc - 4, "kanał", 24, "#ffffff", "start", True)
+    s += tekst(x + 104, yc + 28, str(kanal), 32, "#ffffff", "start", True)
+    return s
+
+def wtyk_rj45(x, y):
+    """Wtyk RJ45 od strony styków: styki u góry, kabel w dół, styk 1 po lewej. Zwraca (svg, x środka kabla, y końca kabla)."""
+    w, h = 320, 300
+    cx = x + w / 2
+    s = ""
+    s += f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="#e3edf4" fill-opacity="0.75" stroke="#333" stroke-width="4"/>'
+    xs = [x + 48 + i * 32 for i in range(8)]
+    ycab = y + h + 4
+    for i, xc in enumerate(xs):
+        z = i + 1
+        xe = cx - 35 + i * 10
+        s += zyla(f"M{xc},{y + 70} L{xc},{y + 170} C{xc},{y + 230} {xe},{y + 230} {xe},{ycab}", z, 11)
+    for i, xc in enumerate(xs):
+        s += f'<rect x="{xc - 9}" y="{y + 14}" width="18" height="64" rx="3" fill="#e2b42a" stroke="#7a5a00" stroke-width="2.5"/>'
+        s += tekst(xc, y - 14, str(i + 1), 28, "#111", "middle", True)
+    return s, cx, ycab
+
+def legenda_serwa(x, y):
+    s = tekst(x, y, "przewód serwa:", 24, "#111", "start", True)
+    for i, (r, opis) in enumerate((("b", "brązowy = GND (masa)"), ("c", "czerwony = V+ (5 V)"), ("p", "pomarańczowy = sygnał"))):
+        yy = y + 40 + i * 38
+        s += przewod(f"M{x + 10},{yy - 8} L{x + 80},{yy - 8}", SERWO[r][1])
+        s += tekst(x + 100, yy, opis, 24)
+    yy = y + 40 + 3 * 38
+    s += przewod(f"M{x + 0},{yy - 8} L{x + 90},{yy - 8}", ZYLA[4][1]) + tuleja(x + 45, yy - 8, 60, 30) + kropla(x + 45, yy - 8)
+    s += tekst(x + 100, yy, "lut w koszulce termokurczliwej (każdy)", 24)
+    return s
+
+def skretka_strona_serw(ile):
+    """ile = 4 (lewa: kanały 0–3; duże oko 12–15) albo 3 (prawa: kanały 4–6, żyła 6 obcięta)."""
+    W, H = 1900, 1830
+    kan0 = 0 if ile == 4 else 4
+    if ile == 4:
+        s = tekst(30, 54, "Lewa skrętka – strona serw: wtyk RJ45 → 8 żył → 4 serwa (kanały 0–3)", 36, bold=True)
+    else:
+        s = tekst(30, 54, "Prawa skrętka – strona serw: wtyk RJ45 → żyły → 3 serwa (kanały 4–6)", 36, bold=True)
+    s += tekst(30, 94, "krótki odcinek z wtykiem do keystone'a w dyni · kolory T568B · każdą żyłę prowadź palcem od wtyku do serwa", 22, "#444")
+    # --- wtyk i instrukcja trzymania
+    sw, cx, ycab = wtyk_rj45(70, 200)
+    yj = 640                                             # koniec płaszcza
+    s += f'<rect x="{cx - 48}" y="{ycab - 10}" width="96" height="{yj - ycab + 10}" rx="10" fill="#9b8fb0" stroke="#333" stroke-width="3"/>'
+    s += sw
+    s += tekst(440, 220, "WTYK RJ45 – patrzysz na złote styki", 28, "#111", "start", True)
+    s += tekst(440, 262, "• styki do Ciebie, zatrzask z tyłu (od Ciebie)", 24)
+    s += tekst(440, 298, "• kabel w dół", 24)
+    s += tekst(440, 334, "• wtedy styk 1 jest po LEWEJ", 24, "#111", "start", True)
+    s += tekst(440, 386, "kolejność T568B od lewej:", 22, "#555")
+    for i in range(8):
+        s += znaczek(460 + i * 58, 424, i + 1, 22)
+    s += tekst(440, 500, "Po wyjściu z płaszcza żyły ułożone", 22, "#555")
+    s += tekst(440, 528, "tak, żeby się nie krzyżowały – licz kolor.", 22, "#555")
+    s += legenda_serwa(1140, 210)
+    # --- geometria
+    xs = 1520                                            # lewa krawędź serwa
+    off = 480
+    gr = []                                              # (lit, kanał, yc serwa, odwrócone?)
+    for g in range(2):
+        b = g * off
+        gr.append(("AC"[g], 740 + b, False))             # od góry: pomarańczowy, czerwony, brązowy
+        gr.append(("BD"[g], 1060 + b, True))             # od góry: brązowy, czerwony, pomarańczowy
+    def yw(yc, odw, r):
+        k = {"p": -30, "c": 0, "b": 30}[r]
+        return yc - k if odw else yc + k
+    yr = {1: 710, 4: 840, 5: 940, 2: 1090, 3: 1190, 7: 1320, 8: 1420, 6: 1570}
+    tory = [6, 8, 7, 3, 2, 5, 4, 1]                      # od lewej; najbardziej w lewo skręca najniżej
+    xt = {z: 150 + i * 26 for i, z in enumerate(tory)}
+    xe = {z: cx - 35 + i * 10 for i, z in enumerate(tory)}
+    XL1, XL2, XLP = 1000, 1200, 860                      # lut pierwszej / drugiej pary zasilania, lut sygnału
+    serwa = [("A", 740), ("B", 1060), ("C", 1220), ("D", 1540)]
+    if ile == 3:
+        serwa = serwa[:3]
+    nr = {lit: kan0 + i for i, (lit, _) in enumerate(serwa)}
+    ycs = dict(serwa)
+    odw = {"A": False, "B": True, "C": False, "D": True}
+    # przewody serw: (żyła, serwo, kolor, punkty, mostki)
+    dz = []
+    def pojedynczy(z, lit, r, xl):
+        y0 = yr[z]; y1 = yw(ycs[lit], odw[lit], r)
+        if y0 == y1:
+            pts = [(xl, y0), (xs - 26, y0)]
+        else:
+            xf = xl + 70
+            pts = [(xl, y0), (xf, y0), (xf, y1), (xs - 26, y1)]
+        dz.append((z, lit, r, pts, ()))
+    for (z1, z4, z5, z2, lA, lB, rozdz) in ((1, 4, 5, 2, "A", "B", True), (3, 7, 8, 6, "C", "D", ile == 4)):
+        pojedynczy(z1, lA, "p", XLP)
+        if rozdz:
+            pojedynczy(z2, lB, "p", XLP)
+            for z, xl, r in ((z4, XL1, "c"), (z5, XL2, "b")):
+                y0 = yr[z]; xf = xl + 70
+                yA = yw(ycs[lA], odw[lA], r); yB = yw(ycs[lB], odw[lB], r)
+                dz.append((z, lA, r, [(xl, y0 - 9), (xf, y0 - 9), (xf, yA), (xs - 26, yA)], ()))
+                hop = ((xf, yr[z5]),) if r == "c" else ()
+                dz.append((z, lB, r, [(xl, y0 + 9), (xf, y0 + 9), (xf, yB), (xs - 26, yB)], hop))
+        else:
+            pojedynczy(z4, lA, "c", XL1)
+            pojedynczy(z5, lA, "b", XL2)
+    lut_x = {}
+    for z, lit, r, pts, hop in dz:
+        lut_x[z] = pts[0][0]
+    obciete = [] if ile == 4 else [6]
+    # żyły skrętki (od końca płaszcza do lutu)
+    for z in tory:
+        y = yr[z]
+        xk = (lut_x[z] if z not in obciete else 700)
+        d = (f"M{xe[z]},{yj - 20} C{xe[z]},{yj + 15} {xt[z]},{yj + 10} {xt[z]},{yj + 45} " +
+             sciezka([(xt[z], yj + 45), (xt[z], y), (xk, y)], 30)[len(f"M{xt[z]},{yj + 45}"):])
+        s += zyla(d, z, 12)
+    # koniec płaszcza na wierzchu żył
+    s += f'<rect x="{cx - 48}" y="{yj - 60}" width="96" height="44" rx="8" fill="#9b8fb0" stroke="#333" stroke-width="3"/>'
+    s += tekst(cx + 60, yj - 30, "koniec płaszcza", 22, "#555")
+    # przewody serw – z mostkiem przewód leżący wyżej rysowany później
+    for z, lit, r, pts, hop in sorted(dz, key=lambda t: len(t[4])):
+        s += przewod(sciezka(list(pts), 16, hop), SERWO[r][1], None, 12)
+    # luty, koszulki, opisy
+    for z in tory:
+        y = yr[z]
+        cele = [(lit, r) for zz, lit, r, _, _ in dz if zz == z]
+        if z in obciete:
+            s += zaslepka(700, y, None) + nozyczki(800, y)
+            s += tekst(860, y + 9, f"żyła {z}: obciąć, zaizolować (nieużywana)", 26, CZERW, "start", True)
+        else:
+            xl = lut_x[z]
+            podw = len(cele) == 2
+            s += tuleja(xl, y, 96, 44 if podw else 30) + kropla(xl, y)
+            if podw:
+                s += f'<circle cx="{xl}" cy="{y}" r="56" fill="none" stroke="{CZERW}" stroke-width="4"/>'
+                if xl == XL1:
+                    opis = f"1 lut: żyła {z} + {SERWO[cele[0][1]][0]} {cele[0][0]} + {SERWO[cele[1][1]][0]} {cele[1][0]}"
+                    s += tekst(xl - 70, y - 22, opis, 24, CZERW, "end", True)
+                else:                                    # lut drugiej żyły: opis w 3 liniach na prawo od lutu
+                    for k, t_ in enumerate((f"1 lut: żyła {z}", f"+ {SERWO[cele[0][1]][0]} {cele[0][0]}", f"+ {SERWO[cele[1][1]][0]} {cele[1][0]}")):
+                        s += tekst(xl + 94, y - 125 + k * 30, t_, 24, CZERW, "start", True)
+            else:
+                lit, r = cele[0]
+                s += tekst(470, y - 20, f"żyła {z} → {SERWO[r][0]} {lit}", 24, "#111", "start", True)
+        s += znaczek(410, y, z)
     # serwa
-    for lit, kan, kol, yt in serwa:
-        s += f'<rect x="{xs}" y="{yt - 30}" width="190" height="{2 * 34 + 60}" rx="10" fill="#1f5fd1" stroke="#123" stroke-width="2"/>'
-        s += tekst(xs + 95, yt + 30, f"serwo {lit}", 28, "#ffffff", "middle", True)
-        s += tekst(xs + 95, yt + 62, f"kanał {kan}", 20, "#ffffff", "middle")
-    s += tekst(xs + 210, 224, "opisz serwo", 20, "#555")
-    s += tekst(xs + 210, 250, "literą i kanałem", 20, "#555")
-    # test przed lutowaniem serw
-    yb = 940
-    s += f'<rect x="30" y="{yb}" width="{W - 60}" height="110" rx="10" fill="#fff4f4" stroke="#b00020" stroke-width="3"/>'
-    s += f'<circle cx="95" cy="{yb + 55}" r="34" fill="#ffffff" stroke="#b00020" stroke-width="4"/>' + tekst(95, yb + 67, "V", 34, "#b00020", "middle", True)
-    s += tekst(150, yb + 42, "Przed lutowaniem serw zmierz ok. 5 V między żyłą 4 i 5 oraz między żyłą 7 i 8", 25, "#b00020", bold=True)
-    s += tekst(150, yb + 80, "(wolny koniec krótkiego odcinka; długi odcinek wpięty w PCA i keystone, krótki z wtykiem w keystone, zasilanie włączone)", 19, "#333")
-    s += tekst(xs - 10, 140, "n: lewa 0 · prawa 4 · duże oko 12", 20, "#333")
-    s += tekst(30, 140, "duże oko: A = L–P (12), B = G–D (13), C = powieka górna (14), D = powieka dolna (15)", 20, "#333")
-    zapisz("krok07e-serwa-strona-oczu", W, H, s)
+    for lit, yc in serwa:
+        s += serwo_sg90(xs, yc, lit, nr[lit])
+    # stopka
+    yb = H - 150
+    s += f'<rect x="30" y="{yb}" width="{W - 60}" height="120" rx="10" fill="#fff4f4" stroke="{CZERW}" stroke-width="3"/>'
+    s += f'<circle cx="95" cy="{yb + 60}" r="34" fill="#ffffff" stroke="{CZERW}" stroke-width="4"/>' + tekst(95, yb + 72, "V", 34, CZERW, "middle", True)
+    s += tekst(150, yb + 46, "Przed lutowaniem serw: ok. 5 V między żyłą 4 i 5 oraz między żyłą 7 i 8", 28, CZERW, "start", True)
+    if ile == 4:
+        s += tekst(150, yb + 90, "Duże oko: ten sam rysunek, kanały 12–15: A = lewo–prawo, B = góra–dół, C = powieka górna, D = powieka dolna.", 23, "#222")
+    else:
+        s += tekst(150, yb + 90, "Prawa skrętka: serwo C samo na żyłach 7 i 8 (zwykłe luty); kanał 7 wolny.", 23, "#222")
+    zapisz("skretka-4-serwa-strona-serw" if ile == 4 else "skretka-3-serwa-strona-serw", W, H, s)
+
+def skretka4():
+    skretka_strona_serw(4)
+
+def skretka3():
+    skretka_strona_serw(3)
+
+def skretka_tacka():
+    """Strona tacki (długi odcinek przy PCA): żyły → 4 wtyczki odcięte od serw, wersja lewa (kanały 0–3)."""
+    W, H = 1900, 2080
+    s = tekst(30, 54, "Strona tacki (przy PCA): 8 żył → 4 wtyczki odcięte od serw (lewa skrętka: kanały 0–3)", 34, bold=True)
+    s += tekst(30, 94, "długi odcinek · kolory T568B · przy wtyczce ok. 5 cm przewodu · każdy lut w koszulce", 22, "#444")
+    s += legenda_serwa(30, 140)
+    grupy = [("A", {"b": 5, "c": 4, "p": 1}), ("B", {"b": None, "c": None, "p": 2}),
+             ("C", {"b": 8, "c": 7, "p": 3}), ("D", {"b": None, "c": None, "p": 6})]
+    dy, pitch, y0 = 58, 280, 370
+    W_ = []                                              # (lit, r, żyła, y)
+    for gi, (lit, m) in enumerate(grupy):
+        for ri, r in enumerate("bcp"):
+            W_.append((lit, r, m[r], y0 + gi * pitch + ri * dy))
+    akt = [w for w in W_ if w[2]]
+    yj = (akt[0][3] + akt[-1][3]) / 2
+    xj, xf, XL, XP = 250, 520, 1000, 1330               # koniec płaszcza, koniec rozejścia, lut, wtyczka
+    s += f'<rect x="30" y="{yj - 26}" width="{xj - 30}" height="52" rx="10" fill="#9b8fb0" stroke="#333" stroke-width="3"/>'
+    s += tekst(40, yj - 40, "skrętka", 24, "#111", "start", True)
+    s += tekst(40, yj + 62, "do keystone'a", 22, "#555")
+    s += tekst(40, yj + 90, "w dyni", 22, "#555")
+    for i, (lit, r, z, y) in enumerate(akt):
+        ys = yj - 21 + i * 6
+        s += zyla(f"M{xj - 10},{ys} C{xj + 150},{ys} {xf - 150},{y} {xf},{y} L{XL},{y}", z, 12)
+    s += f'<rect x="{xj - 30}" y="{yj - 26}" width="30" height="52" rx="6" fill="#9b8fb0" stroke="#333" stroke-width="3"/>'
+    for lit, r, z, y in akt:
+        s += przewod(f"M{XL},{y} L{XP},{y}", SERWO[r][1], None, 12)
+        s += tuleja(XL, y) + kropla(XL, y)
+        s += znaczek(570, y, z)
+        s += tekst(610, y - 18, f"żyła {z} → {SERWO[r][0]}", 24, "#111", "start", True)
+    for lit, r, z, y in W_:
+        if z is None:
+            s += przewod(f"M{XP - 120},{y} L{XP},{y}", SERWO[r][1], None, 12)
+            s += zaslepka(XP - 120, y, None, -1)
+    for gi, (lit, m) in enumerate(grupy):
+        ys = [w[3] for w in W_ if w[0] == lit]
+        s += f'<rect x="{XP}" y="{ys[0] - 32}" width="80" height="{ys[2] - ys[0] + 64}" rx="6" fill="#1c1c1c"/>'
+        s += tekst(XP + 40, ys[1] + 16, lit, 44, "#ffffff", "middle", True)
+        for y, pin in zip(ys, ("GND", "V+", "sygnał")):
+            s += tekst(XP + 94, y + 8, pin, 22, "#333")
+        s += tekst(XP + 210, ys[1] - 6, f"wtyczka {lit}", 30, "#111", "start", True)
+        s += tekst(XP + 210, ys[1] + 30, f"→ kanał {gi}", 26)
+        if m["b"] is None:
+            s += nozyczki(XP - 210, (ys[0] + ys[1]) / 2)
+            s += tekst(XP - 260, (ys[0] + ys[1]) / 2 - 2, "brązowy i czerwony:", 23, CZERW, "end", True)
+            s += tekst(XP - 260, (ys[0] + ys[1]) / 2 + 26, "obciąć, zaizolować", 23, CZERW, "end", True)
+    s += strzalka_wym(XL + 60, XP, y0 + 2 * dy + 70, "ok. 5 cm przewodu przy wtyczce")
+    # --- widok na PCA
+    yt = 1420
+    s += tekst(30, yt, "Wpięcie w PCA9685 – widok z góry: brązowy przewód (GND) od krawędzi płytki", 30, "#111", "start", True)
+    bx0, bx1, by0, by1 = 330, 1560, yt + 30, yt + 350
+    s += f'<rect x="{bx0}" y="{by0}" width="{bx1 - bx0}" height="{by1 - by0}" rx="10" fill="#1d3fb8" stroke="#0d1f66" stroke-width="4"/>'
+    s += f'<line x1="{bx0}" y1="{by1}" x2="{bx1}" y2="{by1}" stroke="#000" stroke-width="8"/>'
+    ry = {"p": by0 + 95, "c": by0 + 170, "b": by0 + 245}
+    for r, t in (("p", "sygnał"), ("c", "V+"), ("b", "GND")):
+        s += tekst(bx0 - 16, ry[r] + 8, t, 26, "#111", "end", True)
+    for k in range(8):
+        x = 450 + k * 145
+        akt_k = k < 4
+        for r in "pcb":
+            s += f'<rect x="{x - 13}" y="{ry[r] - 13}" width="26" height="26" fill="#e2b42a" stroke="#6b5310" stroke-width="2" opacity="{1 if akt_k else 0.5}"/>'
+        s += tekst(x, by0 + 34, str(k), 26, "#ffffff" if akt_k else "#9fb0e6", "middle", True)
+        if akt_k:
+            lit, m = grupy[k]
+            s += f'<rect x="{x - 40}" y="{ry["p"] - 38}" width="80" height="{ry["b"] - ry["p"] + 76}" rx="6" fill="#1c1c1c" stroke="#fff" stroke-width="2"/>'
+            for r in "pcb":
+                if m[r] is not None:
+                    s += f'<circle cx="{x}" cy="{ry[r]}" r="17" fill="{SERWO[r][1]}" stroke="#fff" stroke-width="3"/>'
+                else:
+                    s += f'<circle cx="{x}" cy="{ry[r]}" r="9" fill="#555" stroke="#999" stroke-width="2"/>'
+            s += tekst(x + 46, ry["c"] + 14, lit, 40, "#ffffff", "start", True)
+    s += tekst(bx0 + 10, by0 + 34, "kanał:", 22, "#ffffff", "start")
+    s += tekst(450 + 5.5 * 145, by0 + 310, "kanały 4–7: prawa skrętka", 22, "#c9d4f5", "middle")
+    s += f'<path d="M{bx1 + 40},{ry["b"]} L{bx1 + 40},{by1 - 6}" stroke="{CZERW}" stroke-width="5"/>'
+    s += f'<path d="M{bx1 + 28},{by1 - 26} L{bx1 + 40},{by1 - 4} L{bx1 + 52},{by1 - 26} z" fill="{CZERW}"/>'
+    s += tekst(bx1 + 20, by1 + 40, "krawędź płytki", 24, CZERW, "end", True)
+    # stopka
+    yb = H - 180
+    s += f'<rect x="30" y="{yb}" width="{W - 60}" height="150" rx="10" fill="#f4f7ff" stroke="#1d3fb8" stroke-width="3"/>'
+    s += tekst(60, yb + 44, "Lewa skrętka: A → kanał 0, B → 1, C → 2, D → 3 (jak na rysunku).", 26, "#111", "start", True)
+    s += tekst(60, yb + 84, "Prawa skrętka: A → 4, B → 5, C → 6; wtyczki D nie robisz – kanał 7 wolny, żyła 6 obcięta i zaizolowana.", 24, "#111")
+    s += tekst(60, yb + 122, "Duże oko: A → 12, B → 13, C → 14, D → 15 (wszystkie 4 wtyczki).", 24, "#111")
+    zapisz("skretka-strona-tacki", W, H, s)
 
 if __name__ == "__main__":
     os.makedirs(IMG, exist_ok=True)
-    RYS = {"krok02a-esp-piny": krok02a, "krok07d-lutowanie-wtyczek": krok07d, "krok07e-serwa-strona-oczu": krok07e}
+    RYS = {"krok02a-esp-piny": krok02a, "skretka-4-serwa-strona-serw": skretka4,
+           "skretka-3-serwa-strona-serw": skretka3, "skretka-strona-tacki": skretka_tacka}
     for n in sys.argv[1:] or RYS:
         RYS[n]()
