@@ -21,6 +21,7 @@ Wykonawca: sesja „elektronika”, gałąź `elektronika/dynia-v2`. Zakres: PRD
 
 - Kompilacja `dynia-v2` (arduino-cli, esp32 3.3.12, `--warnings all`) 28.10: bez ostrzeżeń; 1 011 587 B flash (77 %), 37 736 B RAM (11 %).
 - Wgranie i testy programu na sprzęcie: nie wykonane.
+- 28.10, test na stole (szkic testowy, ESP z USB, PIR zasilany z pinów 5V/G ESP): przycisk na wtyczce ESP 5–6–7 – 10 z 10 wciśnięć wykrytych, bez fałszywych zmian; PIR na GPIO10 reaguje (0 → 1 przy ruchu). PIR trzyma stan „ruch” ponad 30 s – do sprawdzenia potencjometr czasu (do oporu w lewo) i pomiar czasu powrotu.
 
 ## Blokady i pytania do użytkownika
 
