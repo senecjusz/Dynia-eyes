@@ -4,7 +4,7 @@
 //
 // Układ złożenia: 0 = środek kuli, z do przodu (na zewnątrz dyni), y w górę, x w prawo patrząc od przodu.
 // Użycie: openscad -D 'czesc="Galka"' -D 'tryb="druk"' -o Galka.3mf duze-oko-v3.scad
-//   czesc: Plyta, Galka, PowiekaGorna, PowiekaDolna, PrzedluzenieOrczyka, Tuba30, Tuba40, Tuba50, Maskownica,
+//   czesc: Plyta, Galka, PowiekaGorna, PowiekaDolna, PrzedluzenieOrczyka, Tuba30, Tuba40, Tuba50, Maskownica, Wspornik30/40/50,
 //          parametry (echo JSON), zlozenie (podgląd całości)
 //   tryb:  "druk" (orientacja do druku, płaska strona na z = 0) albo "zlozenie" (położenie w układzie złożenia)
 // Źrenica ≤ Ø20, gałka 24 mm przed rantem, czasza ok. 111°: decyzje użytkownika 26.10 (P4, P5).
@@ -138,8 +138,16 @@ prz_kolki = [13.5, 17.5]; // otwory na kołki z drutu Ø1 przez otwory orczyka (
 tuba_D = 79.5; tuba_d = 76.3;          // otwór w dyni Ø80
 rant_z = R_kula - wystawanie;          // +6
 kol_D  = 92; kol_gr = 3;               // kołnierz od środka dyni
-lapa_r = 47; lapa_szer = 12; lapa_otw = 4.5; lapa_kat = [45, 135, 225, 315];   // 4 łapy na wkręty do drewna 4 × 30–40
+lapa_r = 47; lapa_szer = 12; lapa_otw = 4.5; lapa_kat = [0, 45, 90, 135, 180, 225, 270, 315];   // 8 łap na wkręty do drewna 4 × 30–40 (użytkownik 28.10: łapę w miejscu kolizji pomijasz)
 mask_D = 84; mask_d = 76.3; mask_gr = 2;
+// podparcie płyty (użytkownik 28.10: moduł nie może wisieć na klejonych słupkach): ścianka zamykająca dół tylnego końca tuby od środka
+// (płaska powierzchnia do klejenia) i osobny wspornik L ze wzmocnieniem 45° przyklejony do niej; płyta leży spodem na półce wspornika
+tz_y = -26;  tz_gr = 2.5;          // ścianka: od dołu tuby do y = tz_y (pod tym nie ma powiek, gałki ani prętów), grubość od tylnego końca w głąb tuby
+tz_wyc = [-12, 2];                 // wycięcie w ściance na drut powieki dolnej (x −8,5…−1,75 przy otwarciu, z −47 przy tubie 50: 4,0 do ścianki tuby)
+wsp_x = [12, 26];                  // wspornik (|x|): pod płytą bez otworów (szczelina orczyka powieki dolnej x −9,5…1,5); korpus L–P pod płytą od x 26,75 i z −60,5: 0,75
+wsp_gr = 4; wsp_zebro = 10;        // grubość nogi i półki; wzmocnienie 45° w narożniku
+wsp_dol = -36;                     // spód nogi (na ściance i pierścieniu kołnierza; kołnierz przy |x| 26 sięga y −37,9)
+wsp_tyl = -61;                     // koniec półki pod płytą (12 pod spodem płyty od przodu z −49)
 
 // ---------- pomocnicze ----------
 E = 0.01;
@@ -436,7 +444,10 @@ module tuba(L) {     // w układzie złożenia: rant na z = rant_z, kołnierz za
         translate([lapa_r, 0, 0]) cylinder(d = lapa_szer, h = kol_gr);
       }
     }
-    translate([0, 0, -1]) cylinder(d = tuba_d, h = L + kol_gr + 2, $fn = 240);
+    translate([0, 0, -1]) difference() {   // światło tuby bez ścianki podparcia przy tylnym końcu
+      cylinder(d = tuba_d, h = L + kol_gr + 2, $fn = 240);
+      difference() { pudlo(-50, 50, -50, tz_y, 0, 1 + tz_gr); pudlo(tz_wyc[0], tz_wyc[1], -51, tz_y + 1, -1, 2 + tz_gr); }
+    }
     for (a = lapa_kat) rotate([0, 0, a]) translate([lapa_r, 0, -1]) cylinder(d = lapa_otw, h = kol_gr + 2, $fn = 24);
     // szczeliny na łby wkrętów osi powiek: przez ściankę, od tylnego końca do osi (z = 0) + promień łba
     w = os_leb[0] + 2 * os_szczel_luz;
@@ -446,6 +457,16 @@ module tuba(L) {     // w układzie złożenia: rant na z = rant_z, kołnierz za
     }
   }
 }
+// wspornik płyty (prawy, x > 0; lewy to odbicie), mocowany do tuby (użytkownik 28.10): zaczep wisi na górnej krawędzi ścianki tuby
+// (ustala wysokość, ciężar modułu idzie w nacisk na ściankę), noga przyklejona do tylnej strony ścianki, płyta wsuwana na półkę
+module wspornik_plyty(L) {
+  zf = rant_z - L - kol_gr;   // tylny koniec tuby (tył kołnierza)
+  ys = pl_y - pl_gr;          // spód płyty = wierzch półki
+  translate([wsp_x[0], 0, 0]) rotate([90, 0, 90]) linear_extrude(wsp_x[1] - wsp_x[0])   // profil (y, z) wzdłuż x
+    polygon([[ys, zf + tz_gr], [ys, wsp_tyl], [ys - wsp_gr, wsp_tyl], [ys - wsp_gr, zf - wsp_gr - wsp_zebro],
+             [ys - wsp_gr - wsp_zebro, zf - wsp_gr], [wsp_dol, zf - wsp_gr], [wsp_dol, zf], [tz_y, zf], [tz_y, zf + tz_gr]]);
+}
+module wsporniki(L) { wspornik_plyty(L); mirror([1, 0, 0]) wspornik_plyty(L); }
 module maskownica() { translate([0, 0, rant_z]) difference() { cylinder(d = mask_D, h = mask_gr, $fn = 240); translate([0, 0, -1]) cylinder(d = mask_d, h = mask_gr + 2, $fn = 240); } }
 
 // =================== WYBÓR CZĘŚCI ===================
@@ -461,6 +482,10 @@ module druk(c) {
   else if (c == "Tuba40")         translate([0, 0, -(rant_z - 40 - kol_gr)]) tuba(40);
   else if (c == "Tuba50")         translate([0, 0, -(rant_z - 50 - kol_gr)]) tuba(50);
   else if (c == "Maskownica")     translate([0, 0, -rant_z]) maskownica();
+  else if (c == "Wspornik30" || c == "Wspornik40" || c == "Wspornik50") {   // 2 sztuki (prawy i lewy), na boku: profil L na stole
+    L = c == "Wspornik30" ? 30 : c == "Wspornik40" ? 40 : 50;
+    for (i = [0, 1]) translate([0, i * 30, 0]) mirror([0, i, 0]) rotate([0, -90, 0]) translate([-wsp_x[0], 0, 0]) wspornik_plyty(L);
+  }
   else if (c == "PlytaDruk45")    plyta_druk45();                                                         // płyta pod 45° (do pliku z podporą)
   else if (c == "PodporaPlyty")   podpora_plyty();                                                        // podpora w położeniu względem płyty pod 45°
 }
@@ -478,6 +503,9 @@ module zlozenie_czesc(c) {
   else if (c == "Tuba40") tuba(40);
   else if (c == "Tuba50") tuba(50);
   else if (c == "Maskownica") maskownica();
+  else if (c == "Wspornik30") wsporniki(30);
+  else if (c == "Wspornik40") wsporniki(40);
+  else if (c == "Wspornik50") wsporniki(50);
   else if (c == "PodporaPlyty") podpora_plyty();    // (w układzie druku – podpora nie należy do złożenia)
 }
 

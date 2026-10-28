@@ -22,7 +22,8 @@ Układ: 0 = środek kuli, z do przodu, y w górę, x w prawo patrząc od przodu.
 | `Powieka gorna` | 1 | R33,2–34,4 | Krawędzią tylną (z = −3) na stole, z brimem (pasek 1,2 mm). **Podpora pod uszkiem drutu:** uszko (blok 2,8 wzdłuż otworu × 4 promieniowo × 4,3, ścianki wokół otworu ≥ 1,1) zaczyna się 2,6 mm nad stołem; pod nim podpora ze slicera. Otwór Ø1,4 leży poziomo, z daszkiem 45° do góry (bez podpory w otworze). Nad wycięciem przy uszku jest mostek 10 mm. Ewentualnie podpora wewnątrz pod szczytem kopułki |
 | `Powieka dolna` | 1 | R31,0–32,2 | jak górna, także podpora pod uszkiem drutu |
 | `Przedluzenie orczyka (druk x2)` | 2 | 33 × 10 × 3,7 (listwa 2,5 + ścianki rowka 1,2) | płasko, ściankami rowka do góry, bez podpór |
-| `Tuba 30`, `Tuba 40`, `Tuba 50` | po 1 | Ø79,5 / Ø76,3, kołnierz Ø92 × 3, 4 łapy; wysokość 33 / 43 / 53 | Kołnierzem na stole. Po bokach (x ±) szczeliny 4,6 przez ściankę od tylnego końca do osi powiek: przejście łbów wkrętów osi M2. Drukujesz wszystkie trzy, przy składaniu wybierasz tę, która pasuje do ściany dyni |
+| `Tuba 30`, `Tuba 40`, `Tuba 50` | 1 (ta, która pasuje do ściany dyni) | Ø79,5 / Ø76,3, kołnierz Ø92 × 3, 8 łap co 45° (łapę w miejscu kolizji pomijasz); wysokość 33 / 43 / 53; w tylnym końcu ścianka 2,5 zamykająca dół otworu do 26 pod osią (wycięcie x −12…+2 na drut powieki dolnej) | Kołnierzem na stole, ścianka też na stole. Po bokach (x ±) szczeliny 5,0 przez ściankę od tylnego końca do osi powiek: przejście łbów wkrętów osi M2 |
+| `Wspornik plyty 30/40/50 (druk x2)` | 2 (lewy i prawy, w jednym pliku), numer jak tuby | L ze wzmocnieniem 45° i zaczepem na górnej krawędzi ścianki tuby, szer. 14, noga i półka gr. 4; półka 34 / 24 / 14 (tuba 30 / 40 / 50), 12 pod spodem płyty | Na boku (profil L na stole), bez podpór |
 | `Maskownica` | 1 | Ø84 / Ø76,3 × 2 | płasko |
 | `Trzpien kardana M3 (2 + 2 zapas + warianty)` | 2 (+2 zapasowe) | kołnierz Ø9,3 × 5,2, trzpień Ø4,95 × 7,25, razem 12,45 | Pionowo, kołnierzem na stole, warstwa 0,12, bez podpór. W pliku 7 obiektów: 4 × T4.95 K9.3 (nominalne) i warianty do przymiarki T4.9 K9.3, T5.0 K9.3, T4.95 K9.2 (T = trzpień, K = kołnierz) |
 | `Plyta + podpora (druk 45)` | 1 | płyta pod 45° z projektowaną podporą, 2 obiekty | **To jest plik do druku płyty** (opis pod tabelą); `Podpora plyty (druk 45)` osobno |
@@ -157,14 +158,14 @@ Narzędzia: klucz imbusowy 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orcz
    - pręt L–P montujesz jak pręt G–D: noga „Z” 7 w języczku L–P (otwór na środku nogi), zagięcie do pręta od strony +y, otwór orczyka 17,5, orczyk ramieniem w −x, wkręt z góry (wzdłuż −y na x 33,0, z −66; nad nim nic nie ma).
 10. **Test ruchu i kalibracja** na stole (ESP, strona w telefonie).
 11. **W dyni:**
-    - tubę z kołnierzem mocujesz od środka czterema wkrętami do drewna, maskownicę przyklejasz z zewnątrz (PRD);
-    - moduł wkładasz przez wieczko, słupki z gałką wsuwasz w tubę od środka;
+    - tubę z kołnierzem mocujesz od środka wkrętami do drewna w łapach (z 8 łap używasz tych, które nie kolidują, najmniej 4), maskownicę przyklejasz z zewnątrz (PRD);
+    - **wsporniki na tubie (od środka dyni):** każdy wspornik zawieszasz zaczepem na górnej krawędzi ścianki w tylnym końcu tuby, 12–26 mm od środka (po obu stronach wycięcia na drut), półką do wnętrza dyni; noga przylega do ścianki i kołnierza – klej na gorąco na nodze. Zaczep ustala wysokość, ciężar modułu dociska go do ścianki;
+    - moduł wkładasz przez wieczko: słupki z gałką wsuwasz w tubę od środka, płyta wjeżdża spodem na półki wsporników;
     - **ustawienie przed klejeniem:**
       - **Wzdłuż osi:** czoło słupków 2 mm za rantem tuby.
       - **Środek otworu:** szczelina gałka–tuba (8,15) ma być równa dookoła, przy powiekach zamkniętych też widać równy pierścień. Słupki stoją poziomo, a ich szczeliny przy tubie mają po 0,95 z obu stron i u góry, i u dołu.
-      - Bez podparcia moduł opada w tubie do 4,8 mm, bo łuk R37,2 centruje tylko w x.
-      - Jedna osoba trzyma płytę od środka dyni w tym położeniu, druga sprawdza pierścień od frontu.
-    - **klejenie:** klej na gorąco w obu szczelinach słupek–tuba u góry i u dołu ramion, od tyłu tuby; trzymasz bez ruchu, aż klej zwiąże (ok. minuty). Potem dokładasz klej przy tylnym brzegu tuby.
+      - Płyta leży na półkach (wierzch półki 20 pod osią tuby), łuki słupków opierają się o tubę po bokach: moduł nie opada.
+    - **klejenie:** płyta do półek klejem na gorąco, potem klej w szczelinach słupek–tuba u góry i u dołu ramion, od tyłu tuby; trzymasz bez ruchu, aż klej zwiąże.
     - opcjonalnie dla pewności położenia: paski papieru grubości ok. 0,9 mm wsunięte w szczeliny słupek–tuba na czas klejenia i wyjęte potem. To materiał pomocniczy, nie część.
 
 ## 6. Kontrola
