@@ -10,7 +10,7 @@
 // Ruch płynny (smoothstep). Po dojściu do celu impuls kanału jest wyłączany (serwo trzyma tarciem, nie buczy).
 // Start bez skoku: ostatnia pozycja każdego kanału w NVS; po starcie impuls z NVS, potem wolny dojazd na środek.
 // Punkt dostępu Wi-Fi (ukryty, bez strony) włączony stale: obciążenie podtrzymujące powerbank Baseus.
-// Port szeregowy 115200 (komenda + Enter): a = aktywny, s = spoczynek, b = blokada wł./wył., ? = stan,
+// Port szeregowy 115200 (komenda + Enter): a = aktywny, s = spoczynek, b = blokada wł./wył., ? = stan, o = impulsy obciążenia wł./wył.,
 //   g <x> <y> = gałka w punkt (−100…100 % zakresu, przechodzi w blokadę), z <min> <max> = sprzężenie osi w µs (do restartu).
 // Kompilacja: arduino-cli compile -b esp32:esp32:esp32c3:CDCOnBoot=cdc 50-elektronika/dynia-v2
 
@@ -23,6 +23,8 @@
 // ===== Piny i stałe =====
 // Przycisk na wtyczce 3-pin na pinach ESP 5–6–7 (środek pusty): GPIO5 = masa przycisku (wyjście LOW), GPIO7 = odczyt (podciąganie).
 const int PIN_SDA = 8, PIN_SCL = 9, PIN_PIR = 10, PIN_PRZYCISK = 7, PIN_PRZYCISK_MASA = 5;
+// Obciążenie podtrzymujące powerbank: IRLZ44N (bramka przez 220 Ω z GPIO4, 10 kΩ bramka–masa), rezystor 47 Ω / 3 W między V+ a drenem.
+const int PIN_OBCIAZENIE = 4;
 const uint8_t PCA_ADR = 0x40;
 const uint32_t OSC_HZ = 27000000;
 const uint8_t PRESCALE_50HZ = 131;
@@ -38,6 +40,8 @@ const uint32_t AKTYWNY_MS = 30000;        // tyle po ostatnim ruchu PIR dynia je
 const uint32_t PRZYCISK_MS = 5000;        // przytrzymanie przycisku
 const int MAX_MALYCH_W_RUCHU = 2;
 const uint32_t ZAPIS_KANAL_MS = 2000, ZAPIS_ODSTEP_MS = 500;   // NVS: najwyżej co 2 s na kanał, 0,5 s ogólnie
+const uint32_t OBC_WL_MS = 1000, OBC_OKRES_MS = 10000;   // impuls obciążenia: 1 s co 10 s (ok. 100 mA w impulsie, średnio 0,05 W na rezystorze)
+bool obciazenieWl = true;                                 // komenda o przełącza (do testu, czy powerbank gaśnie bez impulsów)
 
 // ===== Serwa =====
 // Indeksy: 0–7 małe oczy, 8 gałka X (L–P), 9 gałka Y (G–D), 10 powieka górna, 11 powieka dolna.
@@ -326,6 +330,7 @@ void wykonaj(char *l, uint32_t t) {
   else if (c == 's') { if (tryb == AKTYWNY) ustawTryb(SPOCZYNEK); }
   else if (c == 'b') ustawTryb(tryb == BLOKADA ? SPOCZYNEK : BLOKADA);
   else if (c == '?') wypiszStan();
+  else if (c == 'o') { obciazenieWl = !obciazenieWl; Serial.printf("impulsy obciążenia: %s\n", obciazenieWl ? "wł." : "wył."); }
   else if (c == 'g') { float x = 0, y = 0; sscanf(l + 1, "%f %f", &x, &y); galkaW(x, y); }
   else if (c == 'z') {
     int a = sprzMin, b = sprzMax;
@@ -370,6 +375,7 @@ void setup() {
   pinMode(PIN_PIR, INPUT_PULLDOWN);
   pinMode(PIN_PRZYCISK, INPUT_PULLUP);
   pinMode(PIN_PRZYCISK_MASA, OUTPUT); digitalWrite(PIN_PRZYCISK_MASA, LOW);
+  pinMode(PIN_OBCIAZENIE, OUTPUT); digitalWrite(PIN_OBCIAZENIE, LOW);
   // Podtrzymanie powerbanku: punkt dostępu włączony przed rozruchem serw (test 22.10: bez Wi-Fi Baseus gasł co ok. 15 s).
   WiFi.mode(WIFI_AP);
   WiFi.softAP(AP_SSID, AP_HASLO, 1, 1, 1);
@@ -382,6 +388,11 @@ void setup() {
                 GALKA_GOTOWA ? (POWIEKI_GOTOWE ? "tak" : "gałka bez powiek") : "wyłączone (brak kalibracji)");
 }
 
+// Impulsy obciążenia: powerbank widzi pobór okresowo. Bez podłączonego tranzystora nic nie robią.
+void krokObciazenia(uint32_t t) {
+  digitalWrite(PIN_OBCIAZENIE, obciazenieWl && t % OBC_OKRES_MS < OBC_WL_MS ? HIGH : LOW);
+}
+
 void loop() {
   static uint32_t tKroku = 0;
   uint32_t t = millis();
@@ -392,5 +403,6 @@ void loop() {
     krokTrybu(t);
     krokRuchu(t);
     krokZapisu(t);
+    krokObciazenia(t);
   }
 }

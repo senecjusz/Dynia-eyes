@@ -29,7 +29,7 @@ Kanały 8–11 PCA nie sterują serwami: ich piny V+ i GND (wspólne szyny z zac
 
 ESP ma piny skierowane w dół i stoi na 2 słupkach tacki (klej); przewody Dupont od spodu. Piny startowe 2, 8, 9 nie są ciągnięte do masy.
 
-Przed przyklejeniem ESP nałóż wtyki na wszystkie piny, które mogą się przydać, i opisz końce taśmą: 5V, G, 3V3, 8, 9, 10 (używane) oraz GPIO3 i GPIO4 (zapas, ok. 200 mm, końce zwinięte i zaizolowane, np. na drugi przycisk). Później pod przyklejoną płytką nie da się dołożyć wtyku.
+Przed przyklejeniem ESP nałóż wtyki na wszystkie piny, które mogą się przydać, i opisz końce taśmą: 5V, G, 3V3, 8, 9, 10 (używane) oraz GPIO4 (bramka IRLZ44N obciążenia: 220 Ω szeregowo, 10 kΩ bramka–źródło; dren ← rezystor 47 Ω / 3 W ← V+, źródło → GND; program: impuls 1 s co 10 s) i GPIO3 (zapas, ok. 200 mm, końce zwinięte i zaizolowane, np. na drugi przycisk). Później pod przyklejoną płytką nie da się dołożyć wtyku.
 
 ### PIR HW-416A (klon HC-SR501)
 

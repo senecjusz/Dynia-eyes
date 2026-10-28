@@ -70,7 +70,7 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
    | 1 | 5V | **tak** → kanał 9 V+ | 5 | **wtyczka przycisku** (masa przycisku – program ustawia LOW) |
    | 2 | G | **tak** → kanał 9 GND | 6 | środek wtyczki przycisku – pusty |
    | 3 | 3V3 | **tak** → lewa listwa VCC | 7 | **wtyczka przycisku** (odczyt) |
-   | 4 | 4 | **tak** – zapas, koniec zaizolowany | 8 | **tak** → lewa listwa SDA |
+   | 4 | 4 | **tak** → bramka IRLZ44N przez 220 Ω (obciążenie powerbanku) | 8 | **tak** → lewa listwa SDA |
    | 5 | 3 | **tak** – zapas, koniec zaizolowany | 9 | **tak** → lewa listwa SCL |
    | 6 | 2 | – | 10 | **tak** → PIR OUT |
    | 7 | 1 | – | 20 | – |
