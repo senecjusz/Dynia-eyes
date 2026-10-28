@@ -10,7 +10,8 @@
 // Ruch płynny (smoothstep). Po dojściu do celu impuls kanału jest wyłączany (serwo trzyma tarciem, nie buczy).
 // Start bez skoku: ostatnia pozycja każdego kanału w NVS; po starcie impuls z NVS, potem wolny dojazd na środek.
 // Punkt dostępu Wi-Fi (ukryty, bez strony) włączony stale: obciążenie podtrzymujące powerbank Baseus.
-// Port szeregowy 115200: a = aktywny, s = spoczynek, b = blokada wł./wył., ? = stan.
+// Port szeregowy 115200 (komenda + Enter): a = aktywny, s = spoczynek, b = blokada wł./wył., ? = stan,
+//   g <x> <y> = gałka w punkt (−100…100 % zakresu, przechodzi w blokadę), z <min> <max> = sprzężenie osi w µs (do restartu).
 // Kompilacja: arduino-cli compile -b esp32:esp32:esp32c3:CDCOnBoot=cdc 50-elektronika/dynia-v2
 
 #include <Wire.h>
@@ -38,9 +39,10 @@ const int MAX_MALYCH_W_RUCHU = 2;
 const uint32_t ZAPIS_KANAL_MS = 2000, ZAPIS_ODSTEP_MS = 500;   // NVS: najwyżej co 2 s na kanał, 0,5 s ogólnie
 
 // ===== Serwa =====
-// Indeksy: 0–7 małe oczy, 8 gałka X, 9 gałka Y, 10 powieka górna, 11 powieka dolna.
+// Indeksy: 0–7 małe oczy, 8 gałka X (L–P), 9 gałka Y (G–D), 10 powieka górna, 11 powieka dolna.
 const int I_GX = 8, I_GY = 9, I_PG = 10, I_PD = 11;
-const int N_SERW = DUZE_OKO_GOTOWE ? 12 : 8;
+const int N_SERW = GALKA_GOTOWA ? (POWIEKI_GOTOWE ? 12 : 10) : 8;
+int16_t sprzMin = SPRZ_GY_PRZY_X_MIN, sprzMax = SPRZ_GY_PRZY_X_MAX;   // sprzężenie osi, zmieniane komendą z
 
 struct Serwo {
   uint8_t ch; int16_t mn, sr, mx;
@@ -89,10 +91,20 @@ bool pcaStart() {
   return true;
 }
 
+// Sprzężenie osi: poprawka impulsu G–D zależna od położenia L–P (kwadrat wychylenia, osobno dla strony min i max).
+float sprzezenieGY() {
+  const Serwo &x = S[I_GX];
+  float d = x.us - x.sr;
+  float n = d < 0 ? d / (x.sr - x.mn) : d / (x.mx - x.sr);
+  return (d < 0 ? sprzMin : sprzMax) * n * n;
+}
+
+// s.us to pozycja „logiczna” (ruch, NVS); do PCA idzie z poprawką sprzężenia, gdy to kanał G–D gałki.
 void impuls(Serwo &s, float v) {
   v = constrain(v, (float)s.mn, (float)s.mx);
   s.us = v;
   if (!pcaOk) return;
+  if (GALKA_GOTOWA && &s == &S[I_GY]) v = constrain(v + sprzezenieGY(), (float)s.mn, (float)s.mx);
   pca.setPWM(s.ch, 0, (uint16_t)(v / usNaTick + 0.5f));
   s.pwm = true;
 }
@@ -123,6 +135,8 @@ void krokRuchu(uint32_t t) {
       bezImpulsu(s);
     }
   }
+  // L–P jedzie, a G–D stoi: G–D dostaje impuls z nową poprawką sprzężenia i trzyma go jeszcze CISZA_MS po końcu L–P.
+  if (GALKA_GOTOWA && S[I_GX].ruch && !S[I_GY].ruch) { impuls(S[I_GY], S[I_GY].us); S[I_GY].tKonca = t; }
 }
 
 int malychWRuchu() { int n = 0; for (int i = 0; i < 8; i++) n += S[i].ruch; return n; }
@@ -151,25 +165,27 @@ void malyCel(int i, bool szybko, float zakres) {
 float powUs(const KalPow &p, float otwarcie) { return p.zamk + (p.otw - p.zamk) * otwarcie; }
 bool galkaNaSrodku() { return fabsf(S[I_GX].us - S[I_GX].sr) < 2 && fabsf(S[I_GY].us - S[I_GY].sr) < 2; }
 bool powiekiNa(float otwarcie) {
+  if (!POWIEKI_GOTOWE) return true;
   return fabsf(S[I_PG].us - powUs(POW_G, otwarcie)) < 2 && fabsf(S[I_PD].us - powUs(POW_D, otwarcie)) < 2;
 }
 bool duzeWRuchu() { return S[I_GX].ruch || S[I_GY].ruch || S[I_PG].ruch || S[I_PD].ruch; }
 
 void galkaNaSrodek(uint32_t czas) { ruch(I_GX, S[I_GX].sr, czas); ruch(I_GY, S[I_GY].sr, czas); }
 void powieki(float otwarcie, uint32_t czas) {
+  if (!POWIEKI_GOTOWE) return;
   ruch(I_PG, powUs(POW_G, otwarcie), czas); ruch(I_PD, powUs(POW_D, otwarcie), czas);
 }
 
 // Zamknięte: najpierw gałka na środek, potem powieki.
 void duzeZamknij() {
-  if (!DUZE_OKO_GOTOWE || duzeWRuchu()) return;
+  if (!GALKA_GOTOWA || duzeWRuchu()) return;
   if (!galkaNaSrodku()) galkaNaSrodek(500);
   else if (!powiekiNa(0)) powieki(0, 400);
 }
 
 // Otwarte i rozgląda się: cel gałki w elipsie zakresów obu osi (bez rogów).
 void duzeRozgladaj(uint32_t t) {
-  if (!DUZE_OKO_GOTOWE || duzeWRuchu()) return;
+  if (!GALKA_GOTOWA || duzeWRuchu()) return;
   if (!powiekiNa(1)) { powieki(1, 500); S[I_GX].tNastepny = t + 300; return; }
   if ((int32_t)(t - S[I_GX].tNastepny) < 0) return;
   float a = losujF(0, 2 * PI), r = sqrtf(losujF(0, 1)) * 0.9f;
@@ -195,12 +211,12 @@ void ustawTryb(Tryb n) {
   uint32_t t = millis();
   if (n == BLOKADA) {   // małe oczy jadą na środek w krokTrybu, po 2 naraz
     for (int i = 0; i < 8; i++) S[i].ruch = false;
-    if (DUZE_OKO_GOTOWE) { galkaNaSrodek(600); powieki(1, 600); }
+    if (GALKA_GOTOWA) { galkaNaSrodek(600); powieki(1, 600); }
   } else if (n == SPOCZYNEK) {
     tNastepnySpoczynek = t + losuj(4000, 6000);
   } else if (n == AKTYWNY) {
     for (int i = 0; i < 8; i++) S[i].tNastepny = t + losuj(0, 1500);
-    if (DUZE_OKO_GOTOWE) S[I_GX].tNastepny = t;
+    if (GALKA_GOTOWA) S[I_GX].tNastepny = t;
   }
 }
 
@@ -218,10 +234,10 @@ void krokTrybu(uint32_t t) {
         for (int i = 0; i < 8; i++) if (fabsf(S[i].us - S[i].sr) >= 1) wszystkie = false;
         if (wszystkie) rozruchDojazd = true;
       }
-      if (DUZE_OKO_GOTOWE && !duzeWRuchu() && !galkaNaSrodku()) galkaNaSrodek(ROZRUCH_RUCH_MS);
+      if (GALKA_GOTOWA && !duzeWRuchu() && !galkaNaSrodku()) galkaNaSrodek(ROZRUCH_RUCH_MS);
       return;
     }
-    if (DUZE_OKO_GOTOWE && !(galkaNaSrodku() && powiekiNa(0))) { duzeZamknij(); return; }
+    if (GALKA_GOTOWA && !(galkaNaSrodku() && powiekiNa(0))) { duzeZamknij(); return; }
     if (wszystkieStoja()) ustawTryb(SPOCZYNEK);
     return;
   }
@@ -283,19 +299,47 @@ void krokZapisu(uint32_t t) {
 void wypiszStan() {
   Serial.printf("tryb %s, PIR %d (%s), przycisk %d, PCA %s, duże oko %s\n", nazwaTrybu(), digitalRead(PIN_PIR),
                 millis() - tStartu > PIR_IGNORUJ_MS ? "czynny" : "ignorowany", digitalRead(PIN_PRZYCISK) == LOW,
-                pcaOk ? "OK" : "BŁĄD", DUZE_OKO_GOTOWE ? "tak" : "wyłączone (brak kalibracji)");
+                pcaOk ? "OK" : "BŁĄD", GALKA_GOTOWA ? (POWIEKI_GOTOWE ? "tak" : "gałka bez powiek") : "wyłączone (brak kalibracji)");
+  if (GALKA_GOTOWA) Serial.printf("  sprzężenie G–D: %d / %d us, teraz %+d us\n", sprzMin, sprzMax, (int)lroundf(sprzezenieGY()));
   for (int i = 0; i < N_SERW; i++)
     Serial.printf("  kanał %2d: %4d us%s%s\n", S[i].ch, (int)lroundf(S[i].us), S[i].ruch ? " ruch" : "", S[i].pwm ? " impuls" : "");
 }
 
+// Gałka w punkt: x, y w % zakresu (−100…100, ujemne = strona min). Do ustalania sprzężenia na sprzęcie.
+void galkaW(float x, float y) {
+  if (!GALKA_GOTOWA) { Serial.println("gałka wyłączona (GALKA_GOTOWA = false)"); return; }
+  if (tryb != BLOKADA) ustawTryb(BLOKADA);
+  x = constrain(x, -100.0f, 100.0f) / 100; y = constrain(y, -100.0f, 100.0f) / 100;
+  Serwo &gx = S[I_GX], &gy = S[I_GY];
+  float cx = x < 0 ? gx.sr + x * (gx.sr - gx.mn) : gx.sr + x * (gx.mx - gx.sr);
+  float cy = y < 0 ? gy.sr + y * (gy.sr - gy.mn) : gy.sr + y * (gy.mx - gy.sr);
+  ruch(I_GX, cx, 800); ruch(I_GY, cy, 800);
+  Serial.printf("gałka: L–P %d us, G–D %d us (+ sprzężenie przy celu %d us)\n", (int)lroundf(cx), (int)lroundf(cy),
+                (int)lroundf((x < 0 ? sprzMin : sprzMax) * x * x));
+}
+
+void wykonaj(char *l, uint32_t t) {
+  char c = l[0];
+  if (tryb == ROZRUCH && c != '?') return;
+  if (c == 'a') { tOstRuchuPir = t; if (tryb == SPOCZYNEK) ustawTryb(AKTYWNY); }
+  else if (c == 's') { if (tryb == AKTYWNY) ustawTryb(SPOCZYNEK); }
+  else if (c == 'b') ustawTryb(tryb == BLOKADA ? SPOCZYNEK : BLOKADA);
+  else if (c == '?') wypiszStan();
+  else if (c == 'g') { float x = 0, y = 0; sscanf(l + 1, "%f %f", &x, &y); galkaW(x, y); }
+  else if (c == 'z') {
+    int a = sprzMin, b = sprzMax;
+    if (sscanf(l + 1, "%d %d", &a, &b) >= 1) { sprzMin = constrain(a, -150, 150); sprzMax = constrain(b, -150, 150); }
+    Serial.printf("sprzężenie G–D: %d us przy L–P min, %d us przy L–P max (do restartu; na stałe w kalibracja.h)\n", sprzMin, sprzMax);
+    if (GALKA_GOTOWA && S[I_GY].pwm) impuls(S[I_GY], S[I_GY].us);
+  }
+}
+
 void krokPortu(uint32_t t) {
+  static char l[40]; static uint8_t n = 0;
   while (Serial.available()) {
     char c = Serial.read();
-    if (tryb == ROZRUCH && c != '?') continue;
-    if (c == 'a') { tOstRuchuPir = t; if (tryb == SPOCZYNEK) ustawTryb(AKTYWNY); }
-    else if (c == 's') { if (tryb == AKTYWNY) ustawTryb(SPOCZYNEK); }
-    else if (c == 'b') ustawTryb(tryb == BLOKADA ? SPOCZYNEK : BLOKADA);
-    else if (c == '?') wypiszStan();
+    if (c == '\r' || c == '\n') { if (n) { l[n] = 0; wykonaj(l, t); n = 0; } }
+    else if (n < sizeof l - 1) l[n++] = c;
   }
 }
 
@@ -333,7 +377,7 @@ void setup() {
   przygotujSerwa();
   tStartu = tRozruchu = millis();
   Serial.printf("dynia-v2 etap 1: PCA %s, NVS %s, duże oko %s\n", pcaOk ? "OK" : "BŁĄD", nvsOk ? "OK" : "BŁĄD",
-                DUZE_OKO_GOTOWE ? "tak" : "wyłączone (brak kalibracji)");
+                GALKA_GOTOWA ? (POWIEKI_GOTOWE ? "tak" : "gałka bez powiek") : "wyłączone (brak kalibracji)");
 }
 
 void loop() {

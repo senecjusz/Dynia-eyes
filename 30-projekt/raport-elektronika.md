@@ -1,27 +1,30 @@
 # Raport – elektronika i software
 
-Wykonawca: sesja „elektronika”, gałąź `elektronika/dynia-v2`. Zakres: PRD §5–6, brief PM z 25.10.
+Wykonawca: sesja „elektronika”, gałąź `elektronika/dynia-v2`. Zakres: PRD §5–6, brief PM z 25.10, zakres etapu 1 od PM z 27.10.
 
-## Stan (27.10)
+## Stan (28.10)
 
 | Zadanie | Stan | Uwagi |
 |---|---|---|
-| S1 – plan `dynia-v2` | w toku | Kanały: duże oko 12–15 (12 lewo–prawo, 13 góra–dół, 14 powieka górna, 15 powieka dolna), małe 0–3 lewa, 4–7 prawa, 8–11 wolne. Użytkownik bez preferencji, przyjęte technicznie. Pytanie o zgodę na wersję bez strony w telefonie: użytkownik przerwał je, nie odpowiedział |
-| S2 – program `dynia-v2/` | czeka na S1 | |
-| M2 – kalibracja małych oczu | **zrobione** | Wszystkie 8 małych oczu skalibrowane (użytkownik 27.10): środek 1500, Min 1100 = prawo, Max 1800 = lewo. Przy 1500 oko patrzy prosto (potwierdzone na nowych modułach). Moduł „8” buczy, ostatni z 25.10 chodzi ciężko |
-| P10 – pinout RJ45 | nie zaczęte | |
-| PIR | nie zaczęte | PRD 0.2: PIR we froncie szufladki. Przewód musi wytrzymać wysuwanie szufladki (do uzgodnienia z montażem) |
-| S3 – test powerbanku | czeka na S2 | |
+| S1 – plan `dynia-v2` | zrobione | Zakres etapu 1 (PM 27.10, słowa użytkownika: „minimum to 8 oczu małych, ruch oczu, PIR i przycisk. Bez strony w telefonie”). Kanały: małe 0–3 lewa, 4–7 prawa; 8–10 rozdzielacz 5 V (kondensator, ESP, PIR), 11 wolny; duże oko 12 L–P, 13 G–D, 14 powieka górna, 15 powieka dolna |
+| S2 – program `dynia-v2/` | kod gotowy, kompiluje się bez ostrzeżeń; **nie wgrany** | 8 małych oczu, PIR, przycisk blokady 5 s, AP Wi-Fi (podtrzymanie powerbanku). Gałka dużego oka włączona (28.10) ze sprzężeniem osi; powieki wyłączone do kalibracji |
+| Sprzężenie osi gałki | w kodzie; **znak i wielkość do ustalenia na sprzęcie** | Poprawka G–D = SPRZ × (wychylenie L–P / zakres)², osobno dla strony min i max; w `kalibracja.h` 0. Procedura: `dynia-v2/README.md`, „Ustalenie sprzężenia” (komendy `g`, `z`). Sprzężenie G–D → L–P (+1,5°) pominięte – kinematyka dopuszcza |
+| M2 – kalibracja małych oczu | zrobione (kalibrator) | 1500 / Min 1100 = prawo / Max 1800 = lewo; moduł „8” buczy, ostatni z 25.10 chodzi ciężko (program wyłącza impuls po ruchu) |
+| Gałka dużego oka | zakresy z kalibratora (28.10) | G–D ±239, L–P ±284 µs wokół 1500 – sprawdzona krótsza strona, dłuższe niesprawdzone. Na stole L–P na kanale 11, G–D na 12 – przed testem programu przełożyć na 12 / 13 |
+| P10 – okablowanie, skrętki | zrobione | `50-elektronika/polaczenia.md`, „Dynia: połączenia docelowe”: T568B, keystone'y w dyni |
+| PIR | zrobione (podłączenie) | HW-416A na GPIO10, zasilanie z kanału 10; przewód w szufladce bez złącza, zapas 150 mm w pasie wtyku (z montażem 27.10) |
+| Zasilanie | zrobione (projekt) | gniazdo USB-C wkręcane → zacisk PCA; 470 µF na kanale 8; ESP z kanału 9; rezystor 47 Ω / 3 W jako zapas. Plan tacki z przewodami pokazany użytkownikowi 28.10 |
+| Przycisk blokady | zrobione w kodzie | GPIO4 i GND prawej listwy PCA, 5 s |
+| S3 – test powerbanku z programem | czeka | Baseus ≥ 30 min, w tym tryb aktywny |
 
-## Testy na sprzęcie
+## Wyniki
 
-- 27.10, kalibrator `kalibracja/` na kanale 0: trzy nowe moduły po kolei, każdy 1500 → 1100 → 1800 → 1500. Bez buczenia na krańcach, przy 1500 prosto (potwierdził użytkownik). Kierunek „Min = prawo” odczytany ze zdjęcia z kamery warsztatowej.
+- Kompilacja `dynia-v2` (arduino-cli, esp32 3.3.12, `--warnings all`) 28.10: bez ostrzeżeń; 1 011 587 B flash (77 %), 37 736 B RAM (11 %).
+- Wgranie i testy programu na sprzęcie: nie wykonane.
 
 ## Blokady i pytania do użytkownika
 
-- Zgoda na program na środę bez strony w telefonie (odstępstwo od PRD §6).
-- Czy breakout USB-C z 5,1 kΩ na CC jest w warsztacie.
-
-## Commity
-
-- `28b522a`, `aaab8c6`, `0aa3935` i ten commit – `50-elektronika/kalibracja-oczu.md`.
+1. Podłączenie ESP do komputera – wgranie `dynia-v2` i test na stole.
+2. Sprzężenie osi: znak i wielkość na sprzęcie (po przełożeniu wtyczek gałki na 12 / 13).
+3. Kalibracja powiek (kanały 14–15).
+4. Pomiar 5 V na przewodach gniazda USB-C z powerbanku.
