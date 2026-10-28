@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1180" font-family="system-ui, sans-serif" font-size="20">
+  <rect width="900" height="1180" fill="#fff"/>
+  <defs><marker id="g" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+
+  <!-- 1. OGON -->
+  <text x="20" y="40" font-size="26" font-weight="700">1. Ogon drutu w uszku powieki (problem otwarty)</text>
+  <text x="20" y="70" font-size="17" fill="#555">Schemat (nie w skali). Liczby z przemiatania Astry na modelu.</text>
+  <!-- gałka -->
+  <path d="M60,420 A330,330 0 0 1 60,110" fill="none" stroke="#999" stroke-width="22"/>
+  <text x="40" y="450" fill="#777">gałka</text>
+  <!-- powieki -->
+  <path d="M120,400 A300,300 0 0 1 120,130" fill="none" stroke="#2e8b57" stroke-width="12"/>
+  <path d="M150,390 A290,290 0 0 1 150,140" fill="none" stroke="#3155b0" stroke-width="12"/>
+  <text x="105" y="470" fill="#2e8b57" font-size="17">powieka dolna</text>
+  <text x="105" y="492" fill="#3155b0" font-size="17">powieka górna</text>
+  <!-- uszko + drut -->
+  <rect x="300" y="240" width="40" height="60" fill="#3155b0"/>
+  <text x="285" y="225" font-size="17">uszko na powiece</text>
+  <path d="M700,270 L360,270" stroke="#c0392b" stroke-width="7" fill="none"/>
+  <path d="M360,270 L290,270" stroke="#c0392b" stroke-width="7" fill="none"/>
+  <path d="M290,270 L290,330" stroke="#c0392b" stroke-width="7" fill="none"/>
+  <path d="M290,330 L230,330" stroke="#c0392b" stroke-width="7" fill="none"/>
+  <text x="560" y="255" fill="#c0392b">drut od serwa</text>
+  <text x="300" y="370" fill="#c0392b" font-size="17">„Z”: przez otwór uszka</text>
+  <circle cx="225" cy="330" r="22" fill="none" stroke="#c0392b" stroke-width="3" stroke-dasharray="5 4"/>
+  <text x="560" y="320" font-size="18">ogon = koniec „Z” za uszkiem;</text>
+  <text x="560" y="344" font-size="18">trzyma drut, żeby nie wyskoczył</text>
+  <text x="560" y="368" font-size="18">z otworu uszka</text>
+  <!-- tabela -->
+  <text x="40" y="540" font-weight="700">Ogon</text><text x="200" y="540" font-weight="700">wchodzi w powieki</text><text x="440" y="540" font-weight="700">do gałki</text><text x="620" y="540" font-weight="700">ocena</text>
+  <text x="40" y="572">2 mm</text><text x="200" y="572" fill="#c0392b">1,0 mm w materiał</text><text x="440" y="572" fill="#c0392b">−0,65 (w gałkę)</text><text x="620" y="572" fill="#c0392b">koliduje</text>
+  <text x="40" y="604">1 mm</text><text x="200" y="604" fill="#c0392b">0,5 mm w materiał</text><text x="440" y="604" fill="#c0392b">0,2 (wymóg 0,5)</text><text x="620" y="604" fill="#c0392b">koliduje</text>
+  <text x="40" y="636">0 (ucięty)</text><text x="200" y="636" fill="#2e8b57">nic</text><text x="440" y="636" fill="#2e8b57">0,5 OK</text><text x="620" y="636" fill="#b8860b">drut może wyskoczyć</text>
+  <text x="40" y="672" font-size="18">Powieki można przedrukować z wnęką na ogon. Gałki nie ruszamy, więc ogon nie może iść w stronę gałki.</text>
+
+  <!-- 2. GWINT -->
+  <text x="20" y="740" font-size="26" font-weight="700">2. Gwint M2 w powiece dolnej: za mało pełnego materiału</text>
+  <rect x="140" y="790" width="80" height="90" fill="#2e8b57" opacity="0.35"/>
+  <rect x="220" y="790" width="100" height="90" fill="#2e8b57"/>
+  <rect x="140" y="827" width="460" height="16" fill="#c0392b"/>
+  <text x="140" y="910" font-size="17" fill="#2e8b57">tylko pół obwodu</text>
+  <text x="225" y="780" font-size="17" fill="#2e8b57">pełne ucho 1,2 mm = 3 zwoje</text>
+  <text x="430" y="820" font-size="17" fill="#c0392b">wkręt M2 → słupek</text>
+  <text x="40" y="950" font-size="18">Poprawka: ucho dolnej pogrubione do środka (pełny pierścień ok. 2 mm). Do gałki zostaje 1,0 mm.</text>
+
+  <!-- 3. TUBA -->
+  <text x="20" y="1010" font-size="26" font-weight="700">3. Szczelina w tubie na łeb wkrętu</text>
+  <text x="40" y="1050" font-size="18">Teraz: 4,6 mm na łeb Ø4 (0,3 na stronę), bez fazki; przecina cały kołnierz.</text>
+  <text x="40" y="1080" font-size="18">Poprawka: 5,0 mm z fazką na wejściu; cięcie tylko do |x| ≈ 40, kołnierz zostaje cały (6 mm).</text>
+  <text x="40" y="1130" font-size="18" fill="#555">Uwag o kleju w serwach i przedłużeniach nie poprawiam na rano: nie blokują montażu.</text>
+</svg>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duże oko v3 — montaż</title>
+<!-- Ilustrowana instrukcja montażu (kroki 1–9 z §5 duze-oko-v3-montaz.md). Obrazy: narzedzia/duze-oko-v3-montaz-render.py. -->
+<style>
+  :root { --tlo: #fafaf8; --tekst: #1d1d1b; --szary: #5b5b57; --nowa: #0a8ca6; --ramka: #ddd; }
+  @media (prefers-color-scheme: dark) { :root { --tlo: #161615; --tekst: #ecece8; --szary: #a5a59f; --nowa: #35b6cf; --ramka: #333; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--tlo); color: var(--tekst); font: 18px/1.5 system-ui, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 1.5em; margin: 0.2em 0 0.4em; }
+  h2 { font-size: 1.25em; margin: 0 0 0.4em; }
+  section { border-top: 1px solid var(--ramka); padding: 22px 0 10px; }
+  img { width: 100%; height: auto; display: block; border-radius: 8px; margin: 8px 0; background: #fff; }
+  figure { margin: 0; }
+  figcaption { color: var(--szary); font-size: 0.85em; margin-bottom: 6px; }
+  p { margin: 0.5em 0; }
+  .nowa { color: var(--nowa); font-weight: 700; }
+  .uwaga { border-left: 4px solid #c0392b; padding: 4px 12px; margin: 10px 0; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+  nav a { border: 1px solid var(--ramka); border-radius: 6px; padding: 6px 12px; color: inherit; text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+<h1>Duże oko v3 — montaż</h1>
+<p>Na obrazach <span class="nowa">turkusowa</span> jest część dokładana w danym kroku. Części zamontowane wcześniej mają zwykłe kolory, a tych, których jeszcze nie ma, nie widać. Druty są czerwone, narzędzia szare.</p>
+<p>Narzędzia: imbus 2 mm (wkręty M4 kardana), wkrętak PH1 (wkręty orczyków), imbus lub wkrętak do M3 ISO 7380, kombinerki (drut), pęseta.</p>
+<nav><a href="#z">Drut „Z”</a><a href="#k1">1</a><a href="#k2">2</a><a href="#k3">3</a><a href="#k4">4</a><a href="#k5">5</a><a href="#k6">6</a><a href="#k7">7</a><a href="#k8">8</a><a href="#k9">9</a></nav>
+
+<section id="z">
+<h2>Drut „Z” — gięcie</h2>
+<img src="podglad/duze-oko-v3/montaz/drut-z.svg" alt="Wymiary gięcia drutu Z">
+<p>Drut Ø1, 4 odcinki: gotowe ok. 77 / 71 / 104 / 79 mm. Tnij każdy ok. 5 mm dłużej. Oba końce gniesz w „Z”: noga ok. 7 między zagięciami, promień ok. 1, ogon ok. 2. Otwór wypada na środku nogi.</p>
+<p class="uwaga">W uszku powieki ogon 2 mm zaginasz w przeciwną stronę: równolegle do drutu, w stronę serwa, nie do przodu (do przodu wchodzi w powieki i gałkę).</p>
+</section>
+
+<section id="k1">
+<h2>1. Trzpienie kardana</h2>
+<figure><img src="podglad/duze-oko-v3/montaz/trzpien-kardana.png" alt="Trzpień kardana w przekroju z wkrętem M3"><figcaption>Trzpień kardana w przekroju: kołnierz Ø9,3 × 5,2, trzpień Ø4,95, wkręt M3 × 10 ISO 7380 w środku.</figcaption></figure>
+<img src="podglad/duze-oko-v3/montaz/krok1.jpg" alt="Trzpień w gnieździe na czole słupka kardana">
+<img src="podglad/duze-oko-v3/montaz/krok1-galka.jpg" alt="Trzpień w gnieździe piasty gałki">
+<p>W każdy drukowany trzpień wkręcasz od strony kołnierza wkręt M3 × 10 ISO 7380, aż łeb schowa się w kieszeni; nie dokręcaj na siłę. Przymierz trzpień w otworze kardana: ma wejść ręcznie, bez luzu na boki, inaczej weź wariant T4.9 albo T5.0.</p>
+<p>Kołnierz wklejasz CA w gniazdo na czole słupka kardana (trzpień do przodu) i w gniazdo piasty gałki (trzpień do tyłu), łbem M3 do dna gniazda. Za ciasny kołnierz zamień na wariant K9.2.</p>
+</section>
+
+<section id="k2">
+<h2>2. Orczyki i przedłużenia</h2>
+<img src="podglad/duze-oko-v3/montaz/krok2.jpg" alt="Orczyki i przedłużenia orczyków powiek">
+<p>Przedłużenie kładziesz na płaską stronę orczyka (od wkrętu, nie od serwa): ramię wchodzi w rowek między ściankami, pierścień piasty w otwór Ø7. Dwa kołki z drutu Ø1 przez otwory przedłużenia w otwory orczyka (za ciasno: rozwierć orczyk wiertłem 1,0), obetnij równo. Kropla CA na styk. Pręty idą w fabryczne otwory orczyków L–P (17,5) i G–D (11,5). Odstaw do związania.</p>
+</section>
+
+<section id="k3">
+<h2>3. Serwa G–D, powieki górnej i dolnej</h2>
+<img src="podglad/duze-oko-v3/montaz/krok3.jpg" alt="Trzy serwa na płycie">
+<p>Kabel MG90S wychodzi po stronie wałka, przy spodzie. G–D stoi wałkiem do góry, więc jego kabel też idzie górą (przejście w płycie zostaje puste). Serwa powiek stoją wałkiem na dole, kabel wychodzi w płytę: przed klejeniem wytnij w płycie wnęki 4 × 8 od zewnętrznej krawędzi (rysunek niżej). Miejsce sprawdź serwem na sucho i zaznacz markerem.</p>
+<img src="podglad/duze-oko-v3/montaz/plyta-wneki-kabli.png" alt="Wnęki na kable serw powiek">
+<p>Każde serwo stawiasz na płycie: dolne ucho w szczelinie, wieżyczki powiek nad wnękami. Klej na gorąco; serwo powieki górnej kleisz tylko od tyłu i z boków, bo przed nim ląduje ucho serwa L–P.</p>
+<p>Serwo L–P możesz wkleić od razu: wkręty orczyków G–D i powieki dolnej dokręcasz wkrętakiem pod skosem obok niego.</p>
+</section>
+
+<section id="k4">
+<h2>4. Kardan na słupek</h2>
+<img src="podglad/duze-oko-v3/montaz/krok4.jpg" alt="Kardan na trzpieniu słupka, imbus z góry">
+<p>Piastę tylną kardana nasuwasz na trzpień słupka, wkręt dociskowy M4 do góry. Dokręcasz imbusem 2 z góry; gałki jeszcze nie ma, wszystko jest otwarte.</p>
+</section>
+
+<section id="k5">
+<h2>5. Gałka na kardan</h2>
+<img src="podglad/duze-oko-v3/montaz/krok5.jpg" alt="Gałka na kardanie, imbus przez otwór tylny">
+<p>Wsuwasz gałkę od przodu, trzpień gałki wchodzi w piastę przednią; wkręt M4 tej piasty patrzy w −x. Dokręcasz go imbusem 2: krótkie ramię promieniowo, długie wychodzi do tyłu przez otwór tylny gałki na x ≈ −18. Klucz przekładasz co ok. 60°.</p>
+</section>
+
+<section id="k6">
+<h2>6. Pręt G–D</h2>
+<img src="podglad/duze-oko-v3/montaz/krok6.jpg" alt="Pręt G–D i orczyk G–D, wkrętak z prawej">
+<figure><img src="podglad/duze-oko-v3/montaz/krok6-zaczep.jpg" alt="Zbliżenie: zaczep Z w słupku G–D gałki"><figcaption>Zbliżenie: „Z” w otworze słupka G–D (gałka półprzezroczysta).</figcaption></figure>
+<p>Zagięcia pręta są w płaszczyznach prostopadłych: noga przy gałce wzdłuż y gałki, przy orczyku wzdłuż x. „Z” wkładasz kombinerkami w otwór słupka G–D przez otwór tylny; noga 7 z otworem na środku, zagięcie do pręta od strony osi, pręt biegnie pod słupkiem.</p>
+<p>Drugi koniec w otwór 11,5 zdjętego orczyka. Serwo na 1500 µs, orczyk ramieniem do góry, wkręt wkrętakiem z prawej, pod skosem obok serwa L–P.</p>
+</section>
+
+<section id="k7">
+<h2>7. Powieki</h2>
+<img src="podglad/duze-oko-v3/montaz/krok7.jpg" alt="Powieki na słupkach">
+<figure><img src="podglad/duze-oko-v3/montaz/krok7-os.jpg" alt="Zbliżenie: oś powiek w słupku i uszach"><figcaption>Zbliżenie: oś (wkręt M2 × 6) w otworze słupka i w uszach powiek.</figcaption></figure>
+<p>Najpierw dolna, potem górna; uszy wsuwasz od przodu między słupki. Oś to wkręt M2 × 6: od zewnątrz przez słupek i ucho górnej, wkręcony w ucho dolnej, aż łeb dotknie słupka, potem pół obrotu w tył. Bez kleju. Łeb przechodzi w szczelinie tuby.</p>
+</section>
+
+<section id="k8">
+<h2>8. Druty i orczyki powiek</h2>
+<img src="podglad/duze-oko-v3/montaz/krok8.jpg" alt="Druty powiek i przedłużenia orczyków, dwa wkrętaki">
+<figure><img src="podglad/duze-oko-v3/montaz/krok8-uszko.jpg" alt="Zbliżenie: drut powieki w uszku"><figcaption>Zbliżenie: „Z” w uszku powieki górnej; ogon w uszku zagięty w stronę serwa.</figcaption></figure>
+<p>„Z” wkładasz w uszko powieki (noga 7, otwór na środku, uszko gr. 2,8 mieści nogę 6,5–7,5; zagięcie do drutu górnej na +x, dolnej na −x), drugi koniec w otwór 25 przedłużenia. Ogon w uszku (2 mm) zaginasz w przeciwną stronę: równolegle do drutu, w stronę serwa.</p>
+<p>Powiekę zamykasz, serwo na „zamknięte”, orczyk nasadzasz: górny 25° od pionu ku przodowi, dolny 35° w dół ku przodowi. Wkręt górnego wkrętakiem z lewej, dolnego z prawej, pod skosem obok serwa L–P.</p>
+</section>
+
+<section id="k9">
+<h2>9. Serwo L–P</h2>
+<img src="podglad/duze-oko-v3/montaz/krok9.jpg" alt="Serwo L–P, pręt L–P, wkrętak z góry">
+<p>Kabel wychodzi z przedniej ściany przy spodzie, pod płytą: najpierw przełóż kabel w dół przez gniazdo, potem wsuń serwo (luz 0,2 na stronę; przy oporze zeskrob ok. 1 mm z przedniej ścianki gniazda). Serwo wkładasz z góry w gniazdo na wylot, ucha leżą na płycie, klej. Pręt L–P jak G–D: noga „Z” 7 w języczku L–P (otwór na środku), zagięcie do pręta od strony +y, drugi koniec w otwór 17,5 orczyka. Orczyk ramieniem w −x, wkręt z góry — nad nim nic nie ma.</p>
+<p>Dalej: test ruchu i kalibracja na stole (krok 10), potem montaż w dyni (krok 11) według instrukcji tekstowej.</p>
+</section>
+</main>
+</body>
+</html>
