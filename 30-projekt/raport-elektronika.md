@@ -14,7 +14,7 @@ Wykonawca: sesja „elektronika”, gałąź `elektronika/dynia-v2`. Zakres: PRD
 | P10 – okablowanie, skrętki | zrobione | `50-elektronika/polaczenia.md`, „Dynia: połączenia docelowe”: T568B, keystone'y w dyni |
 | PIR | zrobione (podłączenie) | HW-416A na GPIO10, zasilanie z kanału 10; przewód w szufladce bez złącza, zapas 150 mm w pasie wtyku (z montażem 27.10) |
 | Zasilanie | zrobione (projekt) | gniazdo USB-C wkręcane → zacisk PCA; 470 µF na kanale 8; ESP z kanału 9; rezystor 47 Ω / 3 W jako zapas. Plan tacki z przewodami pokazany użytkownikowi 28.10 |
-| Przycisk blokady | zrobione w kodzie | GPIO4 i GND prawej listwy PCA, 5 s |
+| Przycisk blokady | zrobione w kodzie | wtyczka 3-pin użytkownika na ESP 5–6–7: GPIO5 = masa (LOW), GPIO7 = odczyt; 5 s |
 | S3 – test powerbanku z programem | czeka | Baseus ≥ 30 min, w tym tryb aktywny |
 
 ## Wyniki

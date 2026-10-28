@@ -12,7 +12,7 @@ Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commit
 
 | Co | Ile | Uwagi |
 |---|---|---|
-| Żeńskie końce Dupont | 19 + zapas | z przeciętych kabli Dupont męsko-żeńskich 20 cm (żeńska połówka + lut + koszulka): 9 na piny ESP, 10 na pozostałe końce (tabela przewodów) |
+| Żeńskie końce Dupont | 17 + zapas | z przeciętych kabli Dupont męsko-żeńskich 20 cm (żeńska połówka + lut + koszulka): 8 na piny ESP, 9 na pozostałe końce (tabela przewodów) |
 | Wtyczki odcięte od serw | 12 | 8 SG90 + 4 MG90S, ok. 5 cm przewodu przy wtyczce; po stronie PCA na skrętki (rozdział 5) |
 | Kabel DFRobot (Dupont 3-pin + wtyczka czujnika) | 1 | do PIR: wtyczka czujnika odcięta |
 | Przewód jednożyłowy/linka ok. 0,2–0,35 mm² | ok. 3 m | kolory: czerwony 5 V, czarny masa, inne sygnały |
@@ -39,10 +39,9 @@ Obrazki wygenerowano z modelu `montaz-elektroniki/elementy.scad` (tacka z commit
 | 8 | PIR VCC | kanał 10 V+ | czerwony | 400, przyciąć na miejscu | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 9 | PIR GND | kanał 10 GND | czarny | 400, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
 | 10 | PIR OUT | ESP 10 | żółty | 450, przyciąć | kabel DFRobot na PIR (środkowy przewód = OUT – sprawdź) / lut + żeńska połówka |
-| 11 | przycisk nóżka 2 | prawa listwa GND | czarny | 100 | lut + koszulka / Dupont |
-| 12 | przycisk nóżka 1 | ESP 4 | pomarańczowy (żółty ma PIR OUT) | 260 | lut + koszulka / Dupont |
+| 11 | przycisk (obie nóżki) | ESP piny 5–6–7, rząd od ściany tacki | gotowy przewód użytkownika | ok. 260 od prawej ścianki do ESP – sprawdź, czy sięga | przylutowany / wtyczka 3-pin na skrajnych pozycjach, środek pusty; strona wtyczki obojętna |
 | 13 | ESP 3 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
-| 14 | ESP 5 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
+| 14 | ESP 4 | – (zapas) | dowolny | 200 | Dupont / koniec zaizolowany |
 
 PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni prawy róg), z pętlą zapasu ok. 150 mm zwiniętą w pasie wtyku USB-C w korpusie.
 
@@ -68,10 +67,10 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
 
    | Poz. od USB | Rząd od ściany tacki | wtyk → dokąd | Rząd od PCA | wtyk → dokąd |
    |---|---|---|---|---|
-   | 1 | 5 | **tak** – zapas, koniec zaizolowany | 5V | **tak** → kanał 9 V+ |
-   | 2 | 6 | – | G | **tak** → kanał 9 GND |
-   | 3 | 7 | – | 3V3 | **tak** → lewa listwa VCC |
-   | 4 | 8 | **tak** → lewa listwa SDA | 4 | **tak** → przycisk |
+   | 1 | 5 | **wtyczka przycisku** (masa przycisku – program ustawia LOW) | 5V | **tak** → kanał 9 V+ |
+   | 2 | 6 | środek wtyczki przycisku – pusty | G | **tak** → kanał 9 GND |
+   | 3 | 7 | **wtyczka przycisku** (odczyt) | 3V3 | **tak** → lewa listwa VCC |
+   | 4 | 8 | **tak** → lewa listwa SDA | 4 | **tak** – zapas, koniec zaizolowany |
    | 5 | 9 | **tak** → lewa listwa SCL | 3 | **tak** – zapas, koniec zaizolowany |
    | 6 | 10 | **tak** → PIR OUT | 2 | – |
    | 7 | 20 | – | 1 | – |
@@ -99,7 +98,7 @@ PIR: od płytki w szufladce przez korpus do uchwytu opaski na tacce (przedni pra
 5. **Kondensator:** nóżki skrócone i zagięte, wtyki na kanał 8: pasek (−) na GND (rząd przy krawędzi płytki), druga na V+. Korpus leży poziomo do przodu; przewody 5V i G do kanału 9 poprowadź obok korpusu, nie przez niego (w modelu trasa ociera o kondensator).
 
    ![Kondensator na kanale 8](montaz-elektroniki/img/krok05-kondensator.png)
-6. **PIR i przycisk:** przewody 8–12. **Test:** komputer jak w kroku 4 albo powerbank + komputer bez przewodu 3; `?` pokazuje PIR (po 60 s od startu) i przycisk (1 przy wciśnięciu).
+6. **PIR i przycisk:** przewody 8–10; wtyczka przycisku na pinach ESP 5–6–7 (rząd od ściany, pozycje 1–3 od USB). **Test:** komputer jak w kroku 4 albo powerbank + komputer bez przewodu 3; `?` pokazuje PIR (po 60 s od startu) i przycisk (1 przy wciśnięciu).
 
    ![PIR i przycisk](montaz-elektroniki/img/krok06-pir-przycisk.png)
 

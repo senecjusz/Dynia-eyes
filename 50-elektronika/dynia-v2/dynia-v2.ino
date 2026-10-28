@@ -21,7 +21,8 @@
 #include "kalibracja.h"
 
 // ===== Piny i stałe =====
-const int PIN_SDA = 8, PIN_SCL = 9, PIN_PIR = 10, PIN_PRZYCISK = 4;
+// Przycisk na wtyczce 3-pin na pinach ESP 5–6–7 (środek pusty): GPIO5 = masa przycisku (wyjście LOW), GPIO7 = odczyt (podciąganie).
+const int PIN_SDA = 8, PIN_SCL = 9, PIN_PIR = 10, PIN_PRZYCISK = 7, PIN_PRZYCISK_MASA = 5;
 const uint8_t PCA_ADR = 0x40;
 const uint32_t OSC_HZ = 27000000;
 const uint8_t PRESCALE_50HZ = 131;
@@ -368,6 +369,7 @@ void setup() {
   Serial.setTxTimeoutMs(0);
   pinMode(PIN_PIR, INPUT_PULLDOWN);
   pinMode(PIN_PRZYCISK, INPUT_PULLUP);
+  pinMode(PIN_PRZYCISK_MASA, OUTPUT); digitalWrite(PIN_PRZYCISK_MASA, LOW);
   // Podtrzymanie powerbanku: punkt dostępu włączony przed rozruchem serw (test 22.10: bez Wi-Fi Baseus gasł co ok. 15 s).
   WiFi.mode(WIFI_AP);
   WiFi.softAP(AP_SSID, AP_HASLO, 1, 1, 1);
