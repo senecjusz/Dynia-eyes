@@ -1,92 +1,141 @@
 # PRD – Dynia z ruchomymi oczami (Halloween 2026)
 
-Wersja 0.2, 25.10.2026 (0.1: 23.10; 0.2: podstawka wykonana i szufladka v2). Źródło: rozmowa użytkownika z PM (Claude). **Funkcję zmienia tylko użytkownik.** Zmiana techniczna, która zmienia funkcję, wraca do użytkownika do decyzji. Ten plik ma pierwszeństwo przed briefami i koncepcjami z 18–23.10.
+Wersja 0.3, 28.10.2026. Dokument opisuje, co ma powstać i jaki jest stan. Historia ustaleń, z datami i uzasadnieniem, jest w `30-projekt/decyzje.md`.
+
+**Funkcję zmienia tylko użytkownik.** Jeśli zmiana techniczna zmienia funkcję, decyduje użytkownik. Ten plik ma pierwszeństwo przed briefami i koncepcjami.
 
 ## 1. Cel i termin
 
-- Prawdziwa dynia z ruchomymi oczami na wystawę **w szkole**, robiona z synem.
-- **Dynia w szkole w czwartek 29.10 rano** (zmiana użytkownika 27.10, wcześniej środa 28.10), stoi kilka dni (także 31.10). Większość gotowa do niedzieli 25.10.
+- Prawdziwa dynia z ruchomymi oczami, robiona z synem, na wystawę w szkole.
+- Dynia ma być w szkole **w czwartek 29.10 rano**. Stoi tam kilka dni, także 31.10.
+- **Minimum na szkołę:** 8 małych oczu w ruchu, czujnik ruchu PIR i przycisk blokady. Duże oko i strona w telefonie są mile widziane, ale nie wymagane.
+- **Zasada na finiszu:** nie drukujemy ponownie dużych części (płyty dużego oka, gałki, tacki elektroniki, elementów podstawki). Problemy rozwiązujemy na tym, co już jest wydrukowane, albo małą częścią, która drukuje się szybko.
 
 ## 2. Skład
 
-- Duże oko na środku frontu, małe oczy po bokach.
-- Małych oczu wydrukowanych 8; ile trafi do dyni, użytkownik decyduje po zakupie dyni.
+- Duże oko na środku frontu dyni.
+- 8 małych oczu po bokach, po 4 na stronę.
+- Drewniana podstawka pod dynią, a w niej powerbank i elektronika.
 
-## 3. Małe oko (gotowe)
+## 3. Małe oczy (gotowe)
 
-- Konstrukcja v2.7/v2.8 bez zmian, ruch lewo–prawo ±25°.
-- Zostaje złożenie i kalibracja pozostałych sztuk.
+- Moduł v2.8: oko z piłeczki pingpongowej porusza się w lewo i w prawo o ±25°. Instrukcja: `70-budowa/montaz-v2.8.md`.
+- Wszystkie 8 modułów jest złożonych i skalibrowanych. Mają wspólne ustawienia serwa: środek 1500 µs, skrajne prawo 1100 µs, skrajne lewo 1800 µs. Ustawienia są zapisane w pamięci ESP i w `50-elektronika/kalibracja-oczu.md`.
+- Zostaje montaż modułów w dyni i podłączenie.
 
-## 4. Duże oko (projekt od nowa)
+## 4. Duże oko
+
+### Wymagania
 
 | Funkcja | Wymaganie |
 |---|---|
-| Gałka | Ø60, biała, gładka; tęczówkę rysuje syn; dopuszczalne wgłębienie zera Ø3 |
-| Lewo–prawo | cel ±35°, minimum ±30° |
-| Góra–dół | cel ±25°, minimum ±20° |
-| Narożniki | pełny zakres każdej osi przy drugiej w środku; w narożnikach (obie osie naraz) zakres elastyczny, mniejszy dopuszczalny |
-| Powieki | od pełnego zamknięcia do pełnego otwarcia; **całkowicie otwarte** nie zasłaniają źrenicy w zakresie ruchu (nie dotyczy mrugania i przymykania); wielkość źrenicy projektant przyjmuje jako założenie do akceptacji użytkownika |
-| Napęd powiek | **Każda powieka na własnym serwie (wariant C, decyzja użytkownika 25.10)** – obie ruchome i niezależne; drut zaczepiony w uszku na tylnej krawędzi czaszy, ok. 34 mm od osi; drukowane przedłużenie orczyka 25 mm, pełne otwarcie ok. 51,5° |
-| Serwa | **4 × MG90S**: lewo–prawo, góra–dół, powieka górna, powieka dolna |
-| Otwór w dyni | ≤ Ø80; z zewnątrz prosty rant ≤ 2 mm poza otwór |
-| Montaż | skręcane i kalibrowane na stole; **moduł wkładany od środka dyni** (tuba w otworze, kołnierz z łapami od środka, wkręty do drewna 4 × 30–40 w miąższ), z zewnątrz **maskownica** krawędzi otworu ≤ 2 mm poza otwór (zmiana użytkownika 24.10, zastępuje wcisk od zewnątrz); nic ponad to bez uzasadnienia |
-| Wyjmowanie | mile widziane, nie wymagane – odpada, jeśli komplikuje (zastosowanie praktycznie jednorazowe) |
-| Kolor | mechanizm pomarańczowy, gałka biała |
-| Druk | do niedzieli wieczorem tylko A1 mini – każda część ≤ 180 mm |
+| Gałka | kula Ø60, biała, gładka; tęczówkę rysuje syn; źrenica najwyżej Ø20; gałka wystaje 24 mm przed rant tuby; czasza sięga ok. 111° od przodu |
+| Ruch lewo–prawo | cel ±35°, minimum ±30° |
+| Ruch góra–dół | cel ±25°, minimum ±20° |
+| Ruch po skosie | gdy obie osie wychylają się naraz, zakres może być mniejszy |
+| Powieki | górna i dolna, każda na własnym serwie, niezależne; od pełnego zamknięcia do pełnego otwarcia; otwarte nie zasłaniają źrenicy |
+| Serwa | 4 × MG90S: lewo–prawo, góra–dół, powieka górna, powieka dolna |
+| Otwór w dyni | najwyżej Ø80; maskownica wystaje najwyżej 2 mm poza otwór |
+| Mocowanie w dyni | moduł wkładany od środka dyni w tubę; tuba ma kołnierz przykręcony od środka wkrętami do drewna; od zewnątrz maskownica zakrywa krawędź otworu |
+| Kolory | mechanizm pomarańczowy, gałka biała |
+| Prostota | wzorem jest mechanizm The Face (maker101, PCBWay); nic ponad niego bez zgody użytkownika (§9) |
 
-**Mechanizm referencyjny:** [The Face maker101 (PCBWay)](https://www.pcbway.com/project/shareproject/The_Face_maker101_c4124445.html) – gałka na kardanie, nieruchome MG90S za okiem, pręty pchające gałkę. Projektant bierze z niego zasadę i przenosi ją na gałkę Ø60 i otwór Ø80, **bez dodatków**. Każdy element spoza referencji wymaga uzasadnienia.
+### Jak jest zbudowane
 
-**Wzór (26.10):** model v3: `40-cad/openscad/duze-oko-v3.scad`, pliki `40-cad/3mf/Duze oko v3/`; źrenica ≤ Ø20, gałka 24 mm przed rantem, czasza ok. 111° (użytkownik 26.10). Wcześniejsze ustalenie – adaptacja referencji, synteza `20-analizy/2026-10-25-referencja-face-maker101-synteza.md`: jedna płyta serw, **jeden przegub gałki – kardan 5/5 w środku kuli**, pręty z drutu bez przegubów, zawias powiek na słupkach płyty. Gałka od tyłu głębsza niż w referencji, do ok. 120° od przodu (otwór tylny ok. Ø52, kardan przy ±35° potrzebuje ok. Ø48), żeby przy wychyleniu w otworze nie było widać krawędzi czaszy; jeśli zaczepy prętów się nie zmieszczą – kształt jak w referencji (użytkownik 26.10). Model v9 (kardany 2/2 przy gałce, ramki serw) jest nieaktualny. **Tuba z kołnierzem drukowana z góry w 3 długościach** pokrywających ścianę dyni 28–50 mm (np. 30 / 40 / 50), żeby przy składaniu wybrać pasującą bez czekania na wydruk (użytkownik 26.10).
+Model: `40-cad/openscad/duze-oko-v3.scad`. Pliki do druku: `40-cad/3mf/Duze oko v3/`. Instrukcja montażu z obrazkami: `40-cad/openscad/duze-oko-v3-montaz.md` i `.html`.
 
-**Pręty:** drut Ø2 albo drukowane, najprostsze, co działa; bez przyrządów do gięcia, bez własnych drukowanych mini-kardanów na śrubach M2.
+- **Płyta** trzyma 4 serwa. Z przodu ma słupek, na którym siedzi gałka, i dwa ramiona z zawiasem powiek.
+- **Gałka** obraca się na metalowym przegubie krzyżakowym (kardan 5/5), który siedzi w środku kuli.
+  - Kardan ma z obu stron gładki otwór Ø5,05–5,1 o głębokości 7 mm (wykorzystujemy 6 mm). Trzpień w otworze dociska boczny wkręt bez łba.
+  - Trzpienie kardana to małe części drukowane z kołnierzem, wklejone w gniazda gałki i słupka. W środku każdego jest stalowa śruba M3 × 10 z łbem grzybkowym, która usztywnia trzpień.
+- **Pręty** popychają gałkę od serw lewo–prawo i góra–dół. Są z drutu sprężynowego Ø1, z końcami zagiętymi w kształt „Z” kombinerkami: odcinek środkowy ok. 7 mm, końcówka ok. 2 mm.
+- **Powieki** to dwie czasze na wspólnej osi. Oś to wkręt M2 × 6, wkręcony w powiekę dolną; przez słupek i powiekę górną przechodzi luźno.
+  - Każdą powiekę ciągnie drut Ø1 z własnego serwa. Drut jest zaczepiony w uszku na tylnej krawędzi powieki, a jego końcówka przy uszku jest zagięta w stronę serwa.
+  - Na orczyki serw powiek nakłada się drukowane przedłużenie z rowkiem na ramię orczyka.
+- **Kable serw** wychodzą po tej samej stronie co wałek. Przy serwach powiek kable przechodzą przez dwie wnęki 4 × 8 mm, wycięte ręcznie w krawędzi płyty.
+- **Tuba** wchodzi w otwór w dyni. Jest drukowana w trzech długościach (30, 40 i 50 mm), żeby przy składaniu wybrać tę, która pasuje do grubości ściany dyni.
+
+### Stan (28.10)
+
+- Wydrukowane: płyta, gałka, trzpienie kardana, tuby (pierwsza wersja), maskownica.
+- Do druku: obie powieki z powiększonymi uszkami i przedłużenia orczyków.
+- **Do decyzji użytkownika:** podparcie płyty w tubie. Użytkownik uznał, że klejenie samych ramion do tuby to za mało. Projektant przygotował wersję z tubą o 8 łapach, ścianką w tylnym końcu i dwoma wspornikami pod płytą. Wymaga przedruku jednej tuby i dwóch małych wsporników.
+- Gałka chodzi na sprzęcie w obu osiach. Ruch lewo–prawo lekko ściąga gałkę w pionie. Program ma to wyrównywać, a wielkość poprawki trzeba ustalić na sprzęcie.
+- Powieki zostaną skalibrowane po montażu.
 
 ## 5. Elektronika i zasilanie
 
-- ESP32-C3 + PCA9685: do 8 małych oczu + 4 serwa dużego oka (≤ 12 kanałów).
-- **Tylko powerbank** (w szkole nie ma gniazdka): Baseus 20 000 mAh przez USB-C, zapas Manta. Wymiana albo podładowanie powerbanku bez wyjmowania elektroniki.
-- **Podstawka pod dynią** (zmiana użytkownika 24.10, zastępuje pudełko w środku dyni): w niej powerbank i elektronika, kable do dyni przez otwór w dnie dyni, dynia (ok. 10 kg) przymocowana do podstawki od środka. **Powerbank wymieniany szufladką otwieraną do przodu (z tyłu stoją inne dynie), bez podnoszenia dyni; w szufladce tylko powerbank, USB-C wpinany ręcznie. Szufladka zabezpieczona śrubą przed otwarciem przez dzieci (użytkownik 25.10).** Elektronika (ESP32-C3, PCA9685) na stałe w podstawce, nie w szufladzie; **w dyni nie ma żadnego pudełka** – całe „pudełko” to podstawka; żadne kable nie wychodzą na zewnątrz. **Stan 25.10: dynia kupiona, podstawka z drewna wykonana** – dno sklejone ze ściankami, elektronika mocowana do dna, na końcu płyta górna 18 mm przykręcona 4 śrubami do dołu (wymiary wykonane niżej); dynia mocowana tuleją przez otwór Ø80 w środku dna (przykręcona do płyty, nakrętka od środka dyni), przez tuleję idą skrętki (zmiany użytkownika 25.10). Podstawa może być ze sklejki 18 lub 12 mm (użytkownik ma piłę stołową), druk tam, gdzie upraszcza. Powerbank Baseus 160 × 70 × 32 mm, na środku krótszej ścianki USB-C, obok 2 × USB-A. Szufladka i uchwyty elektroniki drukowane 3D; korpus podstawki może być ze sklejki.
-- **Jeden przycisk chwilowy na prawym boku podstawki, blisko tyłu, wklejony w otwór Ø12 w ściance 18 mm** (użytkownik 27.10; PBS-33B, Ø12, NO, posiadany; zastępuje wariant z dwoma przyciskami): przytrzymanie 5 s = blokada (duże oko na środek, powieki otwarte, wszystkie serwa stop – do rysowania tęczówek); ponowne przytrzymanie 5 s = powrót do pracy; krótkie naciśnięcie nic nie robi. Całkowite odcięcie prądu = wypięcie USB-C w szufladzie. Po włączeniu prądu dynia zawsze startuje w zwykłej pracy; blokada nie przetrwa wyłączenia – wypięcie prądu działa też jako reset (użytkownik 27.10).
-- **Okablowanie skrętką Ethernet** (użytkownik ma kabel i zaciskarkę RJ45): jedna skrętka na grupę 3–4 małych oczu po jednej stronie, druga na drugą stronę, trzecia na duże oko. Rozłączne na gniazdach keystone RJ45 użytkownika w dyni (zmiana 27.10, zamiast łączników gniazdo–gniazdo). Kanały PCA9685: lewa strona 0–3, prawa 4–7, duże oko 12–15 (lewo–prawo, góra–dół, powieka górna, dolna); pinout w `50-elektronika/polaczenia.md` (użytkownik 27.10).
-- **Podstawka – wymiary wykonane (pomiary użytkownika 25.10, mają pierwszeństwo przed modelem):** szerokość wnętrza **216 mm** (zmierzona przy froncie i z tyłu), wysokość wnętrza 40 mm, dno 9 mm, głębokość całkowita 226 mm, wysokość całkowita 69 mm (z sumy dno + wnętrze + płyta wychodzi 67; bez wpływu na szufladkę), wkręty płyty górnej 20 mm od frontu i od tyłu, otwór w płycie Ø60–61.
-- **Szufladka v2 (użytkownik 25.10, zastępuje szufladkę jednoczęściową):**
-  - korpus i front osobno, skręcane (2 × M4 rączki + 2 × M4 × 12 stożkowe przy dolnych rogach, łby równo z licem – użytkownik 26.10); korpus ≤ 215 mm szerokości;
-  - rączka na froncie na wklejonych śrubach M4 (łeb okrągły, epoksyd, imbus), nakrętki od środka, z dala od powerbanku; kształt niski i nienachalny: ścięty ostrosłup z zaokrąglonymi krawędziami, na środku frontu; mała, bo używana raz–dwa razy (użytkownik 25.10);
-  - blokada: śruba M4 na środku górnej krawędzi frontu, wkręcana w przednią krawędź płyty górnej (zastępuje M4 w prawym kołnierzu i prawej ściance);
-  - PIR we froncie (niżej).
-- Czujnik obecności: **PIR HC-SR501** (kupiony), we froncie szufladki po prawej stronie, nad pasem kabla USB-C (użytkownik 25.10): otwór Ø24 na kopułkę, od tyłu gniazdo 23,5 × 23,5 mm na kołnierz soczewki; płytka na 2 podkładkach 4 × 8 wys. 3,5 (szersze i wyższe po przymiarce, użytkownik 26.10), przykręcona 2 × M2 w rozstawie 28,5 (potwierdzone próbką); za płytką ≥ 10 mm miejsca (z przewodem wlutowanym; z wtykami Dupont ok. 20 mm). Potencjometry i zworkę ustawić przed montażem. Wymiary płytki (pomiar ze zdjęć 25.10): 32 × 24 × 1,5, kołnierz 22,97 (suwmiarka) × 3, kopułka 14 mm od płytki, otwory Ø2 w rozstawie ok. 28–29 mm.
+### Podstawka
+
+- Drewniana podstawka pod dynią. Mieści powerbank w szufladce i elektronikę na stałe. W dyni nie ma żadnego pudełka i żadne kable nie wychodzą na zewnątrz.
+- **Wymiary wykonane** (pomiar użytkownika, mają pierwszeństwo przed modelem):
+  - szerokość wnętrza 216 mm, wysokość wnętrza 40 mm;
+  - dno 9 mm, płyta górna 18 mm;
+  - głębokość całkowita 226 mm, wysokość całkowita ok. 69 mm;
+  - w środku płyty górnej otwór Ø60–61 na kable.
+- **Szufladka** otwiera się do przodu, bo z tyłu stoją inne dynie. Mieści tylko powerbank: Baseus 20 000 mAh (160 × 70 × 32 mm), zapasowy Manta. Wtyk USB-C wpina się ręcznie. Front jest przykręcony do korpusu szufladki, ma małą rączkę i jest blokowany śrubą M4 wkręcaną w płytę górną (przed dziećmi).
+- **Mocowanie dyni do podstawki:** tuleja z gwintem, przykręcona kołnierzem do płyty górnej nad otworem na kable. Wchodzi przez otwór w dnie dyni, a od środka dyni dokręca się nakrętkę. Przez tuleję idą skrętki do oczu.
+  - Pliki: `40-cad/3mf/Podstawka v2/Tuleja z gwintem.3mf` i `Nakretka.3mf`.
+  - **Do decyzji użytkownika:** średnica. Otwór w dnie dyni ma ciasno obejmować tuleję. Do wyboru: otwornica 60, tak jak w płycie, albo 80 z tuleją ok. Ø79. Obecny model ma gwint Ø76 przy otworze Ø80, co daje za duży luz.
+
+### Elektronika
+
+- ESP32-C3 i sterownik serw PCA9685 na tacce w podstawce. Instrukcja montażu: `50-elektronika/montaz-elektroniki.md`.
+- Na tacce:
+  - ESP stoi na słupkach podniesionych o 7 mm doklejonymi podkładkami, żeby zmieściły się pod nim wtyki Dupont;
+  - rezystor 47 Ω / 3 W, który obciąża powerbank, żeby się nie wyłączał, siedzi wysoko na dwóch słupkach, z dala od plastiku, żeby mógł się chłodzić;
+  - kondensator 470 µF leży poziomo.
+- **Kanały PCA9685:**
+  - małe oczy po lewej: 0–3; po prawej: 4–7;
+  - duże oko: 12 lewo–prawo, 13 góra–dół, 14 powieka górna, 15 powieka dolna.
+  - Pinout: `50-elektronika/polaczenia.md`.
+- **Okablowanie:** trzy skrętki Ethernet (lewa strona, prawa strona, duże oko), rozłączane w dyni na gniazdach keystone RJ45.
+- **PIR HC-SR501** jest we froncie szufladki, po prawej stronie. Przewód ma zapas ok. 150 mm, żeby szufladka mogła się wysunąć.
+- **Przycisk:** jeden, chwilowy, PBS-33B, wklejony w otwór Ø12 w prawym boku podstawki, blisko tyłu.
+  - Przytrzymanie przez 5 s blokuje dynię: duże oko staje na środku, powieki się otwierają, wszystkie serwa stoją. To jest tryb do rysowania tęczówek.
+  - Ponowne przytrzymanie przez 5 s przywraca pracę.
+  - Po włączeniu prądu dynia zawsze startuje w zwykłej pracy.
+  - Całkowite wyłączenie: wypięcie USB-C w szufladce.
 
 ## 6. Software
 
+Program: `50-elektronika/dynia-v2`.
+
 - **Spoczynek:** duże oko zamknięte, co ok. 5 s rusza się jedno małe oko.
 - **Ktoś podchodzi (PIR):** rusza się więcej oczu, najwyżej 2 małe naraz; duże oko się otwiera i rozgląda.
-- **Ruch „plastyczny”:** płynne przyspieszanie i hamowanie, sakady przeplatane spokojnym rozglądaniem, mruganie, przymykanie powiek zależnie od nastroju, powieka górna podąża za spojrzeniem.
-- Strona w telefonie: efekty i kalibracja (jest).
-- **Minimum na szkołę (użytkownik 27.10):** 8 małych oczu, ruch oczu, PIR i przycisk blokady; bez strony w telefonie. Strona i efekty po terminie.
-- Duże oko na 4 serwach: powieki niezależne (decyzja 25.10, wraca do stanu ze starego firmware'u).
-- Pilot później, jeśli starczy czasu (sam software).
+- **Ruch naturalny:** płynne przyspieszanie i hamowanie, szybkie skoki spojrzenia na przemian ze spokojnym rozglądaniem, mruganie, powieka górna podąża za spojrzeniem.
+- Teraz w programie działają małe oczy i gałka dużego oka. Powieki zostaną włączone po kalibracji.
+- Po terminie: strona w telefonie do efektów i kalibracji, pilot.
 
-## 7. Części i zasady
+## 7. Części
 
-- **Tylko posiadane części:** MG90S × 4; kardany 5/5 × 2 (wkręty M4) i 2/2 × 2 (wkręty M3) – środek gałki 5/5, a jeśli za duży, 2/2 (wybiera projektant, z uzasadnieniem); śruby M3/M4/M5 8–50 mm z nakrętkami; druty sprężynowe Ø1,0 i Ø1,2, ocynkowany Ø2,0; łożyska 608-2RS i 6802-2RS. Bez zakupów modelarskich.
-- Zasady z `AGENTS.md`: śruby z nakrętkami, DFAM, luzy z tabeli. **To, co PRD mówi wprost (4 serwa, drut, klej dozwolony, praca bez orkiestratora), ma pierwszeństwo przed ogólnymi zasadami `AGENTS.md`.**
+- **Używamy tylko części, które użytkownik ma.** Niczego nie zamawiamy i nie kupujemy w sklepie.
+- **Pełna lista wszystkiego do złożenia jest w `30-projekt/lista-hardware.md`.** Użytkownik zaznacza w kolumnie „Mam?”, co ma. Każda śruba, drut i część w instrukcji musi być na tej liście potwierdzona, zanim część pójdzie do druku.
+- Śruby potwierdzone: M5 × 16 stożkowe, M4 × 12 stożkowe, M4 × 8 z łbem walcowym, M3 × 10 z łbem grzybkowym, M2 × 5, M2 × 6.
+- Inne posiadane części: MG90S × 4, kardany 5/5 × 2 i 2/2 × 2, drut sprężynowy Ø1 i Ø1,2, łożyska 608-2RS i 6802-2RS.
+- Dozwolone są klej i śruby. Szczegółowe zasady konstrukcyjne są w `AGENTS.md`. To, co mówi ten plik, ma przed nimi pierwszeństwo.
 
 ## 8. Poza zakresem
 
-- **Odporność na dzieci:** bez ograniczników na rękę, ochrony przekładni i wzmocnień „na wszelki wypadek”. Jak zepsują, to zepsują.
+- Zabezpieczenia przed dziećmi ponad blokadę szufladki: bez ograniczników, osłon i wzmocnień „na wszelki wypadek”.
 - Światło i dźwięk.
-- Trwałość ponad czas wystawy; demontowalność kosztem złożoności.
+- Trwałość dłuższa niż czas wystawy.
 - Pilot w pierwszym terminie.
-- **„Duże oko v1”** (Onshape, 22–23.10, koncepcje v1–v3.2): porzucone, nic nie wydrukowano; tylko do wglądu. Zostają pomiary kardana 5/5, MG90S i orczyka (`30-projekt/e6-pomiary.md`).
+- Wyjmowanie dużego oka z dyni: mile widziane, ale nie kosztem prostoty.
 
 ## 9. Sposób pracy
 
-- PM (Claude w rozmowie) prowadzi PRD i pilnuje zakresu. Bez orkiestratora i rund review wieloma agentami, chyba że użytkownik poprosi.
-- **Prostota przed zakresem (użytkownik 25.10, po trzech iteracjach rozbudowy dużego oka):**
-  - **Każdy dodatkowy przegub projektant omawia z użytkownikiem, zanim trafi do koncepcji.**
-  - Referencja to górna granica złożoności. Każdy element ponad nią (przegub, dodatkowa część, śruba, ramka) projektant pokazuje użytkownikowi w koncepcji, ze szkicem, że się mieści. Bez akceptacji nie trafia do CAD.
-  - Montaż rękami: każde miejsce, w którym coś się wkłada albo przykręca, ma dostęp dla palców i narzędzia (wkrętak, imbus po prostej). W koncepcji projektant opisuje kolejność montażu i drogę narzędzia.
-  - Części montowane nie przechodzą obok siebie „na milimetr”. Konstrukcja, która działa tylko przy luzach rzędu 1 mm w ciasnym wnętrzu, jest za skomplikowana i wraca do uproszczenia.
-- **Projektant pracuje w dwóch krokach:**
-  1. **Wstępna koncepcja** (szkic albo prosta makieta, bez dopracowanych szczegółów): układ gałki, kardana, serw i powiek, co czym się rusza, lista części (drukowane i posiadane), główne wymiary i przyjęte założenia (np. wielkość źrenicy). Użytkownik akceptuje albo zawraca.
-  2. **Dopiero po akceptacji** szczegóły i CAD.
-- Otwarte: jak długo powerbank ma działać między wymianami.
+- **Użytkownik rozmawia bezpośrednio z sesjami obszarów:** duże oko, montaż, elektronika, kalibracja. Kto co robi i na której gałęzi, opisuje `30-projekt/sesje.md`.
+- **PM jest koordynatorem.** Nie wydaje sesjom poleceń. Zbiera ustalenia do tego pliku, do `decyzje.md`, planu i listy części, a użytkownikowi zgłasza sprzeczności i braki.
+- **Stan projektu zawsze jest w gicie, wypchnięty na GitHuba.** Po zmianie konta Claude historia rozmów znika, więc z repo musi dać się wznowić pracę.
+- **Prostota:**
+  - każdy dodatkowy przegub albo część ponad wzór (The Face) najpierw omawiamy z użytkownikiem;
+  - wszystko da się złożyć rękami: palce i narzędzie mają dostęp do każdego miejsca, w którym coś się wkłada albo przykręca;
+  - części nie mijają się „na milimetr”.
+- Zmiany pokazujemy użytkownikowi przed commitem. Commit dopiero po jego „ok”.
+
+## 10. Otwarte
+
+- Średnica tulei i otworu w dnie dyni (§5).
+- Podparcie płyty dużego oka w tubie (§4).
+- Jak długo powerbank ma działać między wymianami.
