@@ -8,7 +8,7 @@ Wersja 0.3, 28.10.2026. Dokument opisuje, co ma powstać i jaki jest stan. Histo
 
 - Prawdziwa dynia z ruchomymi oczami, robiona z synem, na wystawę w szkole.
 - Dynia ma być w szkole **w czwartek 29.10 rano**. Stoi tam kilka dni, także 31.10.
-- **Na szkołę:** 8 małych oczu w ruchu (4 po lewej, 3 po prawej, 1 na środku frontu), czujnik ruchu PIR i przycisk blokady. **Duże oko nie będzie gotowe na czwartek** (użytkownik 28.10); zostaje do dokończenia po terminie. Strona w telefonie też po terminie.
+- **Na szkołę: 4 małe oczy w ruchu** (lewa skrętka, kanały 0–3), czujnik ruchu PIR i przycisk blokady (decyzja użytkownika 29.10 w nocy: „Zostaną tylko cztery. Nie dam rady zrobić to”). Pozostałe oczy i duże oko po terminie. **Duże oko nie będzie gotowe na czwartek** (użytkownik 28.10); zostaje do dokończenia po terminie. Strona w telefonie też po terminie.
 - **Zasada na finiszu:** nie drukujemy ponownie dużych części (płyty dużego oka, gałki, tacki elektroniki, elementów podstawki). Problemy rozwiązujemy na tym, co już jest wydrukowane, albo małą częścią, która drukuje się szybko.
 
 ## 2. Skład

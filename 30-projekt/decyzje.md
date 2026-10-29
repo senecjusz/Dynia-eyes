@@ -157,3 +157,4 @@
 | 2026-10-28 | Obciążenie powerbanku: rezystor 47 Ω / 3 W włączany tranzystorem IRLZ44N z ESP, impuls 1 s co 10 s | Elektronika z użytkownikiem; tranzystor zamówiony przez użytkownika |
 | 2026-10-28 | Duże oko nie będzie gotowe na czwartek 29.10; do szkoły jadą małe oczy, PIR i przycisk | Użytkownik: „już widzę, że dużego oka nie skończę na jutro” |
 | 2026-10-28 | Na czwartek 8 małych oczu: 4 po lewej, 3 po prawej i 1 na środku frontu (w miejscu przyszłego dużego oka); środkowe oko na kanale 7, jako czwarte serwo prawej skrętki | Użytkownik: „przyjmuję rozwiązanie z 8 małymi oczami” |
+| 2026-10-29 | Na wystawę 4 małe oczy (lewa skrętka, kanały 0–3); pozostałe 4 i duże oko po terminie; firmware N_MALE = 4 (74a1979) | Użytkownik ok. 4:15: „Rezygnuję z ruszania się czterech oczu. Zostaną tylko cztery. Nie dam rady zrobić to”. Sprawdzone na sprzęcie: 4 oczy, przycisk blokady, powerbank 35,7 min bez restartu z obciążeniem IRLZ44N |
